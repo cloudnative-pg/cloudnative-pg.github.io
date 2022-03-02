@@ -1,0 +1,17 @@
+{{ define "main" }}
+{{ partial "hero" . }}
+<div class="container grid grid-cols-3 gap-3 w-full">
+{{ with .GetPage "about" }}
+{{ partial "card" . }}
+{{ end }}
+{{ with .GetPage "about" }}
+{{ partial "card" . }}
+{{ end }}
+{{ with .GetPage "github" }}
+{{ partial "card" . }}
+{{ end }}
+</div>
+{{ with .GetPage "install" }}
+{{ partial "cta" . }}
+{{ end }}
+{{ end }}

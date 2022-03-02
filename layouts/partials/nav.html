@@ -1,0 +1,11 @@
+<nav class="fixed text-right w-full z-30 p-2 top-0 h-12 bg-gray-400 text-white">
+  <div>
+    <ol class="nav navbar-nav inline-block"></ol>
+    <li class="inline"><a href="/">Open CNP</a></li>
+    {{ range .Site.Sections }}
+    <li class="inline"><a href="{{ .Permalink }}">{{ .Title }}</a></li>
+    {{ end }}
+    <li class="inline"><a href="/">Github</a></li>
+    </ol>
+  </div>
+</nav>

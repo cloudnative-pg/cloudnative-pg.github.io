@@ -1,0 +1,39 @@
+{
+  "devDependencies": {
+    "@babel/cli": "^7.12.8",
+    "@babel/core": "^7.12.9",
+    "@babel/preset-env": "^7.12.7",
+    "autoprefixer": "^10.0.2",
+    "object-fit-images": "^3.2.4",
+    "picoapp": "^3.6.2",
+    "postcss-cli": "^8.3.0",
+    "postcss-nested": "^5.0.1",
+    "postcss-object-fit-images": "^1.1.2",
+    "postcss-preset-env": "^6.7.0",
+    "tailwindcss": "^2.0.1"
+  },
+  "dependencies": {
+    "postcss": "^8.3.11",
+    "postcss-scss": "^4.0.2"
+  },
+  "name": "temp-cnp-webpage",
+  "description": "",
+  "version": "1.0.0",
+  "main": "postcss.config.js",
+  "scripts": {
+    "prod": "NODE_ENV=production hugo server -e production",
+    "build": "NODE_ENV=production hugo -e production",
+    "dev": "NODE_ENV=development hugo server -D -e development --disableFastRender",
+    "build-dev": "NODE_ENV=development hugo -D -e development --disableFastRender"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EnterpriseDB/temp-cnp-webpage.git"
+  },
+  "author": "",
+  "license": "ASF v2",
+  "bugs": {
+    "url": "https://github.com/EnterpriseDB/temp-cnp-webpage/issues"
+  },
+  "homepage": "https://github.com/EnterpriseDB/temp-cnp-webpage#readme"
+}

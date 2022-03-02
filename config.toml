@@ -1,0 +1,9 @@
+baseURL = 'http://example.org/'
+languageCode = 'en-us'
+title = 'Open CNP'
+
+[build]
+  writeStats = true
+
+[project]
+  name = 'Open CNP'
