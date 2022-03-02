@@ -1,5 +1,14 @@
 # Cloud Native Postgres
 
+## Requirements
+
+- [HUGO](https://gohugo.io/)
+- [Node.js](https://nodejs.org/en/)
+
+On macOS with brew type: `brew install hugo node`
+
+## Building
+
 Build locally (once you've installed Hugo & npm):
 
 With drafts:
