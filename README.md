@@ -7,7 +7,7 @@ With drafts:
 npm install && npm run dev
 ```
 
-As the GH Action builds:
+As the GH Action builds (excludes draft content):
 ```
 npm install && npm run prod
 ```
