@@ -9,7 +9,7 @@ author: Gabriele
 tags:
  - security
 draft: true
-summary: How should you securely deploy PostGres (and other tools) to Kubernetes?
+summary: How should you securely deploy PostgreSQL (and other tools) to Kubernetes?
 ---
 
 In this blog post, we'll analyze in more depth some relevant security aspects

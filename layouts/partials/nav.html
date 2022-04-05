@@ -4,19 +4,18 @@
     <div class="flex flex-row px-16 justify-between py-5">
       <div>
         {{ $image := resources.Get "logo/large_logo.svg" }}
-        <img src="{{ $image.Permalink }}" class="h-14" alt="Cloud Native Postgres Logo">
-        <!--Logo needed-->
+        <a href="/"><img src="{{ $image.Permalink }}" class="h-14" alt="Cloud Native Postgres Logo"></a>
       </div>
       <div>
         <ul class="flex gap-14 text-lg text-slate-400 my-5">
           <li>Documentation</li>
           <li>Support</li>
-          <li>Blog</li>
+          <li><a href="blog">Blog</a></li>
         </ul>
       </div>
       <div class="flex gap-5 my-4">
         {{ $image := resources.Get "icons/Git.svg" }}
-        <img src="{{ $image.Permalink }}" alt="Github">
+        <a href="https://github.com/cloudnative-pg/cloudnative-pg"><img src="{{ $image.Permalink }}" alt="Github"></a>
         {{ $image := resources.Get "icons/Slack.svg" }}
         <img src="{{ $image.Permalink }}" alt="Slack">
         {{ $image := resources.Get "icons/Twitter.svg" }}

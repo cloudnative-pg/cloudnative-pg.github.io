@@ -1,7 +1,8 @@
 {{ define "main" }}
-<div class="mx-auto container my-12">
+
+<article class="mx-auto container my-12">
     <h1 class="text-xl">{{.Title}}</h1>
-    <p class="text-l">{{ .Params.summary }}</p>
+    <p class="text-lg">{{ .Params.summary }}</p>
 
     {{ with .Resources.GetMatch .Params.image.url }}
     {{- $img := . -}}
@@ -13,7 +14,7 @@
         </figcaption>
     </figure>
     {{ end }}
-
     {{.Content}}
-</div>
+</article>
+
 {{ end }}

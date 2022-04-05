@@ -1,15 +1,16 @@
 {{ define "main" }}
-{{ partial "hero" . }}
 
+{{ with .GetPage "hero" }}
+{{ partial "hero" . }}
+{{ end }}
 <section>
     <!--Info starts here-->
     <div class="w-full grid grid-cols-3 text-white bg-rose-600 px-36 my-12 py-12">
-        {{ with .GetPage "about" }}
+        {{ range where .Site.Pages "Params.type" "card" }}
         {{ partial "card" . }}
         {{ end }}
-        {{ with .GetPage "github" }}
-        {{ partial "card" . }}
-        {{ end }}
+    </div>
+    <div class="w-full grid grid-cols-3 text-white bg-rose-600 px-36 my-12 py-12">
         {{ with .GetPage "install" }}
         {{ partial "cta" . }}
         {{ end }}

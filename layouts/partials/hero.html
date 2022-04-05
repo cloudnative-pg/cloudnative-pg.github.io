@@ -2,15 +2,14 @@
   <div class="py-16">
     <div class="flex flex-row justify-center">
       <div class="">
-        <h1 class="text-5xl font-bold text-slate-900 leading-10">Full Lifecycle.</h1>
-        <h1 class="text-5xl font-bold text-rose-600 leading-10 pt-4">Native Streaming.</h1>
+        <h1 class="text-5xl font-bold text-slate-900 leading-10">{{.Title}}</h1>
+        <h1 class="text-5xl font-bold text-rose-600 leading-10 pt-4">{{.Params.subtitle}}</h1>
         <p class=" text-slate-600 text-xl font-light leading-9 pt-5 w-600">
-          The Kubernetes operator that covers the full lifecycle of a PostgreSQL
-          database cluster with a primary/standby architecture, using native
-          streaming replication.
+          {{ .Content | plainify }}
         </p>
         <div class="pt-7">
-          <a href="#" class="bg-rose-600 py-4 px-12 rounded-full text-white text-xl">View on GitHub</a>
+          <a href="{{.Params.cta.url}}"
+            class="bg-rose-600 py-4 px-12 rounded-full text-white text-xl">{{.Params.cta.content| plainify}}</a>
         </div>
       </div>
       <div>
