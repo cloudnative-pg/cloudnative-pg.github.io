@@ -2,6 +2,14 @@
 title: "Security and containers in Cloud Native PostgreSQL"
 date: 2021-03-01T16:06:00Z
 draft: true
+image:
+    url: ali-kazal-h5VjkUqMCsc-unsplash.jpg
+    attribution: Photo by <a href="https://unsplash.com/@lureofadventure?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Ali Kazal</a> on <a href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+author: Gabriele
+tags:
+ - security
+draft: true
+summary: How should you securely deploy PostGres (and other tools) to Kubernetes?
 ---
 
 In this blog post, we'll analyze in more depth some relevant security aspects

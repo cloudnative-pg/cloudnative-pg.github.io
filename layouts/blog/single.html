@@ -1,0 +1,17 @@
+{{ define "main" }}
+<h1 class="text-xl">{{.Title}}</h1>
+<p class="text-l">{{ .Params.summary }}</p>
+
+{{ with .Resources.GetMatch .Params.image.url }}
+{{- $img := . -}}
+<figure>
+{{- $img = $img.Crop "2048x350 center" -}}
+<img src="{{ $img.RelPermalink }}">
+<figcaption>
+    <h4>{{.Params.image.attribution | safeHTML}}</h4>
+</figcaption>
+</figure>
+{{ end }}
+
+{{.Content}}
+{{ end }}

@@ -1,0 +1,11 @@
+{{ define "main" }}
+<h2 class="text-xl">{{.Title}}</h2>
+<p>{{.Content}}</p>
+<!-- TODO: a paginator here -->
+
+<ul>
+    {{ range .Pages }}
+    <li><a href="{{ .Permalink }}">{{ .Title }}</a> - {{ .Params.summary }}</li>
+    {{ end }}
+</ul>
+{{ end }}

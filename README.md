@@ -26,7 +26,9 @@ npm install && npm run prod
 Add a draft blog post by running:
 
 ```
-hugo new content/blog/first-post.md
+hugo new blog/first-post
 ```
+
+This will make the necessary files and duplicate a header image. Find an [openly available one to replace it with on Unsplash](https://unsplash.com/) or similar, and include the attribution.
 
 Edit the file, and once happy remove the `draft: true` - it should now show up for `npm run prod`.
