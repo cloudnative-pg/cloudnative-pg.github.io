@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Blog posts on Open CNP</title>
+    <title>Blog posts on CloudNative PG</title>
     <link>http://example.org/blog/</link>
-    <description>Recent content in Blog posts on Open CNP</description>
+    <description>Recent content in Blog posts on CloudNative PG</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language><atom:link href="http://example.org/blog/index.xml" rel="self" type="application/rss+xml" />
   </channel>
