@@ -12,15 +12,15 @@
   </url><url>
     <loc>http://example.org/categories/</loc>
   </url><url>
+    <loc>http://example.org/cards/data_persistence/</loc>
+  </url><url>
+    <loc>http://example.org/cards/integrated/</loc>
+  </url><url>
     <loc>http://example.org/docs/</loc>
-  </url><url>
-    <loc>http://example.org/cards/easy/</loc>
-  </url><url>
-    <loc>http://example.org/hero/</loc>
   </url><url>
     <loc>http://example.org/install/</loc>
   </url><url>
-    <loc>http://example.org/cards/integrated/</loc>
+    <loc>http://example.org/hero/</loc>
   </url><url>
     <loc>http://example.org/tags/</loc>
   </url>

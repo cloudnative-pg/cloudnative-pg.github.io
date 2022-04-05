@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language><atom:link href="http://example.org/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Automated</title>
+      <title>Autopilot</title>
       <link>http://example.org/cards/automated/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -16,21 +16,21 @@
     </item>
     
     <item>
-      <title>Easy to Manage</title>
-      <link>http://example.org/cards/easy/</link>
+      <title>Data persistence</title>
+      <link>http://example.org/cards/data_persistence/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/cards/easy/</guid>
+      <guid>http://example.org/cards/data_persistence/</guid>
       <description>It doesn’t rely on statefulsets and uses its own way to manage persistent volume claims where the PGDATA is stored.</description>
     </item>
     
     <item>
-      <title>Full Lifecycle.</title>
-      <link>http://example.org/hero/</link>
+      <title>Designed for Kubernetes</title>
+      <link>http://example.org/cards/integrated/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/hero/</guid>
-      <description>The Kubernetes operator that covers the full lifecycle of a PostgreSQL database cluster with a primary/standby architecture, using native streaming replication.</description>
+      <guid>http://example.org/cards/integrated/</guid>
+      <description>It&amp;rsquo;s entirely declarative, and directly integrates with the Kubernetes API server to update the state of the cluster — for this reason, it does not require an external failover management tool.</description>
     </item>
     
     <item>
@@ -43,12 +43,12 @@
     </item>
     
     <item>
-      <title>Integrated</title>
-      <link>http://example.org/cards/integrated/</link>
+      <title>Run PostgreSQL.</title>
+      <link>http://example.org/hero/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/cards/integrated/</guid>
-      <description>It is entirely declarative, and directly integrates with the Kubernetes API server to update the state of the cluster — for this reason, it does not require an external failover management tool.</description>
+      <guid>http://example.org/hero/</guid>
+      <description>CloudNativePG is the Kubernetes operator that covers the full lifecycle of a highly available PostgreSQL database cluster with a primary/standby architecture, using native streaming replication.</description>
     </item>
     
   </channel>
