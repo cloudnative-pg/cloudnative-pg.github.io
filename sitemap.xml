@@ -2,17 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://example.org/about/</loc>
+    <loc>http://example.org/cards/automated/</loc>
   </url><url>
     <loc>http://example.org/blog/</loc>
+  </url><url>
+    <loc>http://example.org/cards/</loc>
   </url><url>
     <loc>http://example.org/categories/</loc>
   </url><url>
     <loc>http://example.org/docs/</loc>
   </url><url>
-    <loc>http://example.org/github/</loc>
+    <loc>http://example.org/cards/easy/</loc>
+  </url><url>
+    <loc>http://example.org/hero/</loc>
   </url><url>
     <loc>http://example.org/install/</loc>
+  </url><url>
+    <loc>http://example.org/cards/integrated/</loc>
   </url><url>
     <loc>http://example.org/</loc>
   </url><url>
