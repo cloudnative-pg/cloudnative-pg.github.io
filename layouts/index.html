@@ -1,17 +1,20 @@
 {{ define "main" }}
 {{ partial "hero" . }}
-<div class="container grid grid-cols-3 gap-3 w-full">
-{{ with .GetPage "about" }}
-{{ partial "card" . }}
-{{ end }}
-{{ with .GetPage "about" }}
-{{ partial "card" . }}
-{{ end }}
-{{ with .GetPage "github" }}
-{{ partial "card" . }}
-{{ end }}
-</div>
-{{ with .GetPage "install" }}
-{{ partial "cta" . }}
-{{ end }}
+
+<section>
+    <!--Info starts here-->
+    <div class="w-full grid grid-cols-3 text-white bg-rose-600 px-36 my-12 py-12">
+        {{ with .GetPage "about" }}
+        {{ partial "card" . }}
+        {{ end }}
+        {{ with .GetPage "github" }}
+        {{ partial "card" . }}
+        {{ end }}
+        {{ with .GetPage "install" }}
+        {{ partial "cta" . }}
+        {{ end }}
+    </div>
+    <!--Info ends here-->
+</section>
+
 {{ end }}

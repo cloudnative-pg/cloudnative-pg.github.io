@@ -1,13 +1,13 @@
 resources/_gen
 hugo_stats.json
-
+assets/css/output.css
 # Binaries for programs and plugins
 *.exe
 *.exe~
 *.dll
 *.so
 *.dylib
-
+.hugo_build.lock
 # Test binary, built with `go test -c`
 *.test
 

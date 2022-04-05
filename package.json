@@ -10,21 +10,22 @@
     "postcss-nested": "^5.0.1",
     "postcss-object-fit-images": "^1.1.2",
     "postcss-preset-env": "^6.7.0",
-    "tailwindcss": "^2.0.1"
+    "tailwindcss": "^3.0.1"
   },
   "dependencies": {
     "postcss": "^8.3.11",
     "postcss-scss": "^4.0.2"
   },
-  "name": "temp-cnp-webpage",
+  "name": "cloudnative-pg",
   "description": "",
   "version": "1.0.0",
   "main": "postcss.config.js",
   "scripts": {
-    "prod": "NODE_ENV=production hugo server -e production",
-    "build": "NODE_ENV=production hugo -e production",
-    "dev": "NODE_ENV=development hugo server -D -e development --disableFastRender",
-    "build-dev": "NODE_ENV=development hugo -D -e development --disableFastRender"
+    "css": "tailwindcss build -i assets/css/main.css -o assets/css/output.css",
+    "prod": "NODE_ENV=production npm run css && hugo server -e production",
+    "build": "NODE_ENV=production npm run css && hugo -e production",
+    "dev": "NODE_ENV=development npm run css && hugo server -D -e development --disableFastRender",
+    "build-dev": "NODE_ENV=development npm run css && hugo -D -e development --disableFastRender"
   },
   "repository": {
     "type": "git",

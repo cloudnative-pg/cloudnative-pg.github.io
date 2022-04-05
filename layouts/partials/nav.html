@@ -1,11 +1,29 @@
-<nav class="fixed text-right w-full z-30 p-2 top-0 h-12 bg-gray-400 text-white">
-  <div>
-    <ol class="nav navbar-nav inline-block"></ol>
-    <li class="inline"><a href="/">Open CNP</a></li>
-    {{ range .Site.Sections }}
-    <li class="inline"><a href="{{ .Permalink }}">{{ .Title }}</a></li>
-    {{ end }}
-    <li class="inline"><a href="/">Github</a></li>
-    </ol>
-  </div>
-</nav>
+<!--Navbar starts here-->
+<main>
+  <header>
+    <div class="flex flex-row px-16 justify-between py-5">
+      <div>
+        {{ $image := resources.Get "logo/large_logo.svg" }}
+        <img src="{{ $image.Permalink }}" class="h-14" alt="Cloud Native Postgres Logo">
+        <!--Logo needed-->
+      </div>
+      <div>
+        <ul class="flex gap-14 text-lg text-slate-400 my-5">
+          <li>Documentation</li>
+          <li>Support</li>
+          <li>Blog</li>
+        </ul>
+      </div>
+      <div class="flex gap-5 my-4">
+        {{ $image := resources.Get "icons/Git.svg" }}
+        <img src="{{ $image.Permalink }}" alt="Github">
+        {{ $image := resources.Get "icons/Slack.svg" }}
+        <img src="{{ $image.Permalink }}" alt="Slack">
+        {{ $image := resources.Get "icons/Twitter.svg" }}
+        <img src="{{ $image.Permalink }}" alt="Twitter">
+        {{ $image := resources.Get "icons/YouTube.svg" }}
+        <img src="{{ $image.Permalink }}" alt="YouTube">
+      </div>
+    </div>
+  </header>
+</main>

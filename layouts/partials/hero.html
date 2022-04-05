@@ -1,7 +1,22 @@
-<div>
-  <h1 class="my-4 text-5xl font-bold leading-tight">{{ .Title }}</h1>
-  <p class="leading-normal text-2xl mb-8">
-    {{ .Content }}
-  </p>
-</div>
+<section>
+  <div class="py-16">
+    <div class="flex flex-row justify-center">
+      <div class="">
+        <h1 class="text-5xl font-bold text-slate-900 leading-10">Full Lifecycle.</h1>
+        <h1 class="text-5xl font-bold text-rose-600 leading-10 pt-4">Native Streaming.</h1>
+        <p class=" text-slate-600 text-xl font-light leading-9 pt-5 w-600">
+          The Kubernetes operator that covers the full lifecycle of a PostgreSQL
+          database cluster with a primary/standby architecture, using native
+          streaming replication.
+        </p>
+        <div class="pt-7">
+          <a href="#" class="bg-rose-600 py-4 px-12 rounded-full text-white text-xl">View on GitHub</a>
+        </div>
+      </div>
+      <div>
 
+        {{ $image := resources.Get "images/hero_image.svg" }}
+        <img src="{{ $image.Permalink }}" alt="hero image">
+      </div>
+    </div>
+</section>

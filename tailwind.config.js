@@ -1,15 +1,15 @@
 const { screens } = require('tailwindcss/defaultTheme')
-
+const colors = require('tailwindcss/colors');
 module.exports = {
-    purge: [
+    content: [
         "./layouts/**/*.html",
         "./content/**/*.md",
         "./content/**/*.html",
         "./assets/scripts/**/*.js"
     ],
-    darkMode: false, // or 'media' or 'class'
     variants: {},
     plugins: [],
+    // colors: colors,
     corePlugins: {
         textOpacity: false,
         float: false,
