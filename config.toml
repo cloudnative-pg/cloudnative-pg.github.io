@@ -1,9 +1,9 @@
 baseURL = 'http://example.org/'
 languageCode = 'en-us'
-title = 'Open CNP'
+title = 'CloudNative PG'
 
 [build]
   writeStats = true
 
 [project]
-  name = 'Open CNP'
+  name = 'CloudNative PG'
