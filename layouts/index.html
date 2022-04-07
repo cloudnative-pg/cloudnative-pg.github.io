@@ -4,18 +4,34 @@
 {{ partial "hero" . }}
 {{ end }}
 <section>
-    <!--Info starts here-->
+
+    <!-- Cards start here-->
     <div class="w-full grid grid-cols-3 text-white bg-rose-600 px-36 my-12 py-12">
         {{ range where .Site.Pages "Params.type" "card" }}
         {{ partial "card" . }}
         {{ end }}
     </div>
-    <div class="w-full grid grid-cols-3 text-white bg-rose-600 px-36 my-12 py-12">
-        {{ with .GetPage "install" }}
+    <!-- Cards end here-->
+
+    <!-- Info starts here-->
+    <div class="w-full text-gray-900 bg-white px-36 my-12 py-12">
+        {{ with .GetPage "info/cloud-native" }}
         {{ partial "cta" . }}
         {{ end }}
     </div>
-    <!--Info ends here-->
+
+    <div class="w-full text-gray-900 bg-gray-400 px-36 my-12 py-12">
+        {{ with .GetPage "info/install" }}
+        {{ partial "cta" . }}
+        {{ end }}
+    </div>
+
+    <div class="w-full text-gray-900 bg-white px-36 my-12 py-12">
+        {{ with .GetPage "info/security" }}
+        {{ partial "cta" . }}
+        {{ end }}
+    </div>
+    <!-- Info ends here-->
 </section>
 
 {{ end }}

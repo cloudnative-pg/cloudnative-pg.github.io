@@ -1,0 +1,139 @@
+/* Custom styling goes here */
+
+.text-4xl {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+}
+
+.text-6xl {
+    font-size: 3.75rem;
+    line-height: 1rem;
+}
+
+.text-7xl {
+    font-size: 4.5rem;
+    line-height: 1rem;
+}
+
+.text-8xl {
+    font-size: 6rem;
+    line-height: 1rem;
+}
+
+.text-9xl {
+    font-size: 8rem;
+    line-height: 1rem;
+}
+
+.font-thin {
+    font-weight: 100;
+}
+
+.font-extralight {
+    font-weight: 200;
+}
+
+.font-light {
+    font-weight: 300;
+}
+
+.font-normal {
+    font-weight: 400;
+}
+
+.font-semibold {
+    font-weight: 600;
+}
+
+.font-extrabold {
+    font-weight: 800;
+}
+
+.font-black {
+    font-weight: 900;
+}
+
+.leading-3 {
+    line-height: .75rem;
+}
+
+.leading-4 {
+    line-height: 1rem;
+}
+
+.leading-5 {
+    line-height: 1.25rem;
+}
+
+.leading-6 {
+    line-height: 1.5rem;
+}
+
+.leading-7 {
+    line-height: 1.75rem;
+}
+
+.leading-8 {
+    line-height: 2rem;
+}
+
+.leading-10 {
+    line-height: 2.5rem;
+}
+
+.leading-none {
+    line-height: 1;
+}
+
+.leading-snug {
+    line-height: 1.375;
+}
+
+.leading-relaxed {
+    line-height: 1.625;
+}
+
+.leading-loose {
+    line-height: 2;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-justify {
+    text-align: justify;
+}
+
+.text-slate-50 {
+    color: #f8fafc;
+}
+
+.text-slate-100 {
+    color: #f1f5f9;
+}
+
+.text-slate-400 {
+    color: #94a3b8;
+}
+
+
+.space-x-20 {
+    margin-left: 5rem;
+}
+
+.w-80 {
+    width: 20rem;
+}
+
+.w-600 {
+    width: 28rem;
+}
+
+.pl-11 {
+    padding-left: 2.75rem;
+}
+
+.pr-4 {
+    padding-top: 1rem;
+}
