@@ -14,23 +14,12 @@
     <!-- Cards end here-->
 
     <!-- Info starts here-->
-    <div class="w-full text-gray-900 bg-white px-36 my-12 py-12">
-        {{ with .GetPage "info/cloud-native" }}
-        {{ partial "cta" . }}
-        {{ end }}
-    </div>
-
-    <div class="w-full text-gray-900 bg-gray-400 px-36 my-12 py-12">
-        {{ with .GetPage "info/install" }}
-        {{ partial "cta" . }}
-        {{ end }}
-    </div>
-
-    <div class="w-full text-gray-900 bg-white px-36 my-12 py-12">
-        {{ with .GetPage "info/security" }}
-        {{ partial "cta" . }}
-        {{ end }}
-    </div>
+    {{ with .GetPage "info" }}
+    {{ range sort .Pages ".Params.order" }}
+    {{ $.Scratch.Add "i" 1 }}
+    {{ partial "cta" (dict "context" . "i" ($.Scratch.Get "i")) }}
+    {{ end }}
+    {{ end }}
     <!-- Info ends here-->
 </section>
 

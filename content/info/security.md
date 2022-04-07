@@ -1,5 +1,5 @@
 ---
 title: Security & TLS Certificates
-type: cta
+order: 10
 ---
-This would be a fun CTA for setting up CNP
+Information about Security & TLS Certificates

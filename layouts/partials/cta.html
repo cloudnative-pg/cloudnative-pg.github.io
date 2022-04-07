@@ -1,4 +1,10 @@
-<section class="container mx-auto text-center py-6 mb-12">
-  <h1 class="text-2xl py-4 font-medium">{{.Title}}</h1>
-  {{ .Content }}
-</section>
+{{ if modBool .i 2 }}
+<div class="w-full text-gray-900 bg-gray-400 px-36 my-12 py-12">
+{{ else }}
+<div class="w-full text-gray-900 bg-white px-36 my-12 py-12">
+{{ end }}
+    <section class="container mx-auto text-center py-6 mb-12">
+      <h1 class="text-2xl py-4 font-medium">{{ .context.Title }}</h1>
+      {{ .context.Content }}
+    </section>
+</div>

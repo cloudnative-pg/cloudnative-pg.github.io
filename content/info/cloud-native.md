@@ -1,5 +1,5 @@
 ---
 title: Cloud Native
-type: cta
+order: 0
 ---
-This would be a fun CTA for setting up CNP
+Information about Cloud Native
