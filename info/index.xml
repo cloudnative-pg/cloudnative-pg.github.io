@@ -2,34 +2,34 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Infoes on CloudNative PG</title>
-    <link>http://example.org/info/</link>
+    <link>https://cloudnative-pg.io/info/</link>
     <description>Recent content in Infoes on CloudNative PG</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="http://example.org/info/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language><atom:link href="https://cloudnative-pg.io/info/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Cloud Native</title>
-      <link>http://example.org/info/cloud-native/</link>
+      <link>https://cloudnative-pg.io/info/cloud-native/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/info/cloud-native/</guid>
+      <guid>https://cloudnative-pg.io/info/cloud-native/</guid>
       <description>Built on proven DevOps concepts like immutable infrastructure, declarative configuration, and microservice architecture, CloudNativePG exclusively relies on the Kubernetes API server to maintain the state of a PostgreSQL cluster and provides cloud native capabilities like self-healing, high availability, rolling updates, scale up/down of read-only replicas, affinity/anti-affinity/tolerations for scheduling, resource management, and so on.</description>
     </item>
     
     <item>
       <title>High Availability</title>
-      <link>http://example.org/info/high-availability/</link>
+      <link>https://cloudnative-pg.io/info/high-availability/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/info/high-availability/</guid>
+      <guid>https://cloudnative-pg.io/info/high-availability/</guid>
       <description>Information about High Availability</description>
     </item>
     
     <item>
       <title>Security &amp; TLS Certificates</title>
-      <link>http://example.org/info/security/</link>
+      <link>https://cloudnative-pg.io/info/security/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/info/security/</guid>
+      <guid>https://cloudnative-pg.io/info/security/</guid>
       <description>Information about Security &amp;amp; TLS Certificates</description>
     </item>
     

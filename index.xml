@@ -2,79 +2,79 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>CloudNative PG</title>
-    <link>http://example.org/</link>
+    <link>https://cloudnative-pg.io/</link>
     <description>Recent content on CloudNative PG</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="http://example.org/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language><atom:link href="https://cloudnative-pg.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Autopilot</title>
-      <link>http://example.org/cards/automated/</link>
+      <link>https://cloudnative-pg.io/cards/automated/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/cards/automated/</guid>
+      <guid>https://cloudnative-pg.io/cards/automated/</guid>
       <description>It automates the steps that a human operator would do to deploy and to manage a Postgres database inside Kubernetes, including automated failover.</description>
     </item>
     
     <item>
       <title>Cloud Native</title>
-      <link>http://example.org/info/cloud-native/</link>
+      <link>https://cloudnative-pg.io/info/cloud-native/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/info/cloud-native/</guid>
+      <guid>https://cloudnative-pg.io/info/cloud-native/</guid>
       <description>Built on proven DevOps concepts like immutable infrastructure, declarative configuration, and microservice architecture, CloudNativePG exclusively relies on the Kubernetes API server to maintain the state of a PostgreSQL cluster and provides cloud native capabilities like self-healing, high availability, rolling updates, scale up/down of read-only replicas, affinity/anti-affinity/tolerations for scheduling, resource management, and so on.</description>
     </item>
     
     <item>
       <title>Data persistence</title>
-      <link>http://example.org/cards/data_persistence/</link>
+      <link>https://cloudnative-pg.io/cards/data_persistence/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/cards/data_persistence/</guid>
+      <guid>https://cloudnative-pg.io/cards/data_persistence/</guid>
       <description>It doesn’t rely on statefulsets and uses its own way to manage persistent volume claims where the PGDATA is stored.</description>
     </item>
     
     <item>
       <title>Designed for Kubernetes</title>
-      <link>http://example.org/cards/integrated/</link>
+      <link>https://cloudnative-pg.io/cards/integrated/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/cards/integrated/</guid>
+      <guid>https://cloudnative-pg.io/cards/integrated/</guid>
       <description>It&amp;rsquo;s entirely declarative, and directly integrates with the Kubernetes API server to update the state of the cluster — for this reason, it does not require an external failover management tool.</description>
     </item>
     
     <item>
       <title>Example content for styleguide</title>
-      <link>http://example.org/styleguide/</link>
+      <link>https://cloudnative-pg.io/styleguide/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/styleguide/</guid>
+      <guid>https://cloudnative-pg.io/styleguide/</guid>
       <description>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id nibh et sapien maximus tincidunt eu lobortis nisi. Etiam diam nibh, dapibus at pellentesque non, lobortis eu elit. Aliquam tristique a ligula vel pretium. Vestibulum congue id odio id mattis. Sed nunc nisi, convallis ut nisl a, blandit ultrices eros. Interdum et malesuada fames ac ante ipsum primis in faucibus. Quisque rutrum quam at scelerisque sodales. Fusce ac sem sit amet urna blandit dignissim.</description>
     </item>
     
     <item>
       <title>High Availability</title>
-      <link>http://example.org/info/high-availability/</link>
+      <link>https://cloudnative-pg.io/info/high-availability/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/info/high-availability/</guid>
+      <guid>https://cloudnative-pg.io/info/high-availability/</guid>
       <description>Information about High Availability</description>
     </item>
     
     <item>
       <title>Run PostgreSQL.</title>
-      <link>http://example.org/hero/</link>
+      <link>https://cloudnative-pg.io/hero/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/hero/</guid>
+      <guid>https://cloudnative-pg.io/hero/</guid>
       <description>CloudNativePG is the Kubernetes operator that covers the full lifecycle of a highly available PostgreSQL database cluster with a primary/standby architecture, using native streaming replication.</description>
     </item>
     
     <item>
       <title>Security &amp; TLS Certificates</title>
-      <link>http://example.org/info/security/</link>
+      <link>https://cloudnative-pg.io/info/security/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/info/security/</guid>
+      <guid>https://cloudnative-pg.io/info/security/</guid>
       <description>Information about Security &amp;amp; TLS Certificates</description>
     </item>
     

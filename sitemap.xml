@@ -2,34 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://example.org/</loc>
+    <loc>https://cloudnative-pg.io/</loc>
   </url><url>
-    <loc>http://example.org/cards/automated/</loc>
+    <loc>https://cloudnative-pg.io/cards/automated/</loc>
   </url><url>
-    <loc>http://example.org/blog/</loc>
+    <loc>https://cloudnative-pg.io/blog/</loc>
   </url><url>
-    <loc>http://example.org/cards/</loc>
+    <loc>https://cloudnative-pg.io/cards/</loc>
   </url><url>
-    <loc>http://example.org/categories/</loc>
+    <loc>https://cloudnative-pg.io/categories/</loc>
   </url><url>
-    <loc>http://example.org/info/cloud-native/</loc>
+    <loc>https://cloudnative-pg.io/info/cloud-native/</loc>
   </url><url>
-    <loc>http://example.org/cards/data_persistence/</loc>
+    <loc>https://cloudnative-pg.io/cards/data_persistence/</loc>
   </url><url>
-    <loc>http://example.org/cards/integrated/</loc>
+    <loc>https://cloudnative-pg.io/cards/integrated/</loc>
   </url><url>
-    <loc>http://example.org/docs/</loc>
+    <loc>https://cloudnative-pg.io/docs/</loc>
   </url><url>
-    <loc>http://example.org/styleguide/</loc>
+    <loc>https://cloudnative-pg.io/styleguide/</loc>
   </url><url>
-    <loc>http://example.org/info/high-availability/</loc>
+    <loc>https://cloudnative-pg.io/info/high-availability/</loc>
   </url><url>
-    <loc>http://example.org/info/</loc>
+    <loc>https://cloudnative-pg.io/info/</loc>
   </url><url>
-    <loc>http://example.org/hero/</loc>
+    <loc>https://cloudnative-pg.io/hero/</loc>
   </url><url>
-    <loc>http://example.org/info/security/</loc>
+    <loc>https://cloudnative-pg.io/info/security/</loc>
   </url><url>
-    <loc>http://example.org/tags/</loc>
+    <loc>https://cloudnative-pg.io/tags/</loc>
   </url>
 </urlset>

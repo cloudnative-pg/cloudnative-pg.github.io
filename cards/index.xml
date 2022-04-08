@@ -2,34 +2,34 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Cards on CloudNative PG</title>
-    <link>http://example.org/cards/</link>
+    <link>https://cloudnative-pg.io/cards/</link>
     <description>Recent content in Cards on CloudNative PG</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="http://example.org/cards/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language><atom:link href="https://cloudnative-pg.io/cards/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Autopilot</title>
-      <link>http://example.org/cards/automated/</link>
+      <link>https://cloudnative-pg.io/cards/automated/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/cards/automated/</guid>
+      <guid>https://cloudnative-pg.io/cards/automated/</guid>
       <description>It automates the steps that a human operator would do to deploy and to manage a Postgres database inside Kubernetes, including automated failover.</description>
     </item>
     
     <item>
       <title>Data persistence</title>
-      <link>http://example.org/cards/data_persistence/</link>
+      <link>https://cloudnative-pg.io/cards/data_persistence/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/cards/data_persistence/</guid>
+      <guid>https://cloudnative-pg.io/cards/data_persistence/</guid>
       <description>It doesn’t rely on statefulsets and uses its own way to manage persistent volume claims where the PGDATA is stored.</description>
     </item>
     
     <item>
       <title>Designed for Kubernetes</title>
-      <link>http://example.org/cards/integrated/</link>
+      <link>https://cloudnative-pg.io/cards/integrated/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/cards/integrated/</guid>
+      <guid>https://cloudnative-pg.io/cards/integrated/</guid>
       <description>It&amp;rsquo;s entirely declarative, and directly integrates with the Kubernetes API server to update the state of the cluster — for this reason, it does not require an external failover management tool.</description>
     </item>
     
