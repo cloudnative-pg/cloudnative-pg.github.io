@@ -6,7 +6,7 @@
 <html lang="en">
 
 <head>
-	<meta name="generator" content="Hugo 0.87.0" />
+	<meta name="generator" content="Hugo 0.96.0" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
@@ -14,10 +14,7 @@
   <meta name="description" content="Simple landind page" />
   <meta name="keywords" content="" />
   <meta name="author" content="" />
-  <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" />
-  
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet" />
-  
 
   
   
@@ -26,7 +23,7 @@
   
   
 
-  <link href="http://example.org/css/output.min.css" rel="stylesheet" />
+  <link href="http://example.org/main.min.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -37,24 +34,23 @@
     <div class="flex flex-row px-16 justify-between py-5">
       <div>
         
-        <a href="/"><img src="http://example.org/logo/large_logo.svg" class="h-14" alt="Cloud Native Postgres Logo"></a>
+        <a href="/"><img src="/logo/large_logo.svg" class="h-14" alt="Cloud Native Postgres Logo"></a>
       </div>
       <div>
         <ul class="flex gap-14 text-lg text-slate-400 my-5">
           <li>Documentation</li>
           <li>Support</li>
           <li><a href="blog">Blog</a></li>
+          <li>Hello</li>
         </ul>
       </div>
       <div class="flex gap-5 my-4">
-        
-        <a href="https://github.com/cloudnative-pg/cloudnative-pg"><img src="http://example.org/icons/Git.svg" alt="Github"></a>
-        
-        <img src="http://example.org/icons/Slack.svg" alt="Slack">
-        
-        <img src="http://example.org/icons/Twitter.svg" alt="Twitter">
-        
-        <img src="http://example.org/icons/YouTube.svg" alt="YouTube">
+        <a href="https://github.com/cloudnative-pg/cloudnative-pg">
+          <img src="/icons/Git.svg" alt="Github">
+        </a>
+        <img src="/icons/Slack.svg" alt="Slack">
+        <img src="/icons/Twitter.svg" alt="Twitter">
+        <img src="/icons/YouTube.svg" alt="YouTube">
       </div>
     </div>
   </header>
@@ -87,6 +83,7 @@
 </section>
 
 <section>
+
     
     <div class="w-full grid grid-cols-3 text-white bg-rose-600 px-36 my-12 py-12">
         
@@ -110,21 +107,53 @@ Postgres database inside Kubernetes, including automated failover.</p>
 </div>
         
     </div>
-    <div class="w-full grid grid-cols-3 text-white bg-rose-600 px-36 my-12 py-12">
-        
-        <section class="container mx-auto text-center py-6 mb-12">
-  Call to Action
-  <p>This would be a fun CTA for setting up CNP</p>
+    
 
-</section>
-        
-    </div>
+    
+    
+    
+    
+    
+<div class="w-full text-gray-900 bg-white px-36 my-12 py-12">
+
+    <section class="container mx-auto text-center py-6 mb-12">
+      <h1 class="text-2xl py-4 font-medium">Cloud Native</h1>
+      <p>Built on proven DevOps concepts like immutable infrastructure, declarative configuration, and microservice architecture, CloudNativePG exclusively relies on the Kubernetes API server to maintain the state of a PostgreSQL cluster and provides cloud native capabilities like self-healing, high availability, rolling updates, scale up/down of read-only replicas, affinity/anti-affinity/tolerations for scheduling, resource management, and so on.</p>
+
+    </section>
+</div>
+    
+    
+    
+<div class="w-full text-gray-900 bg-gray-400 px-36 my-12 py-12">
+
+    <section class="container mx-auto text-center py-6 mb-12">
+      <h1 class="text-2xl py-4 font-medium">Security &amp; TLS Certificates</h1>
+      <p>Information about Security &amp; TLS Certificates</p>
+
+    </section>
+</div>
+    
+    
+    
+<div class="w-full text-gray-900 bg-white px-36 my-12 py-12">
+
+    <section class="container mx-auto text-center py-6 mb-12">
+      <h1 class="text-2xl py-4 font-medium">High Availability</h1>
+      <p>Information about High Availability</p>
+
+    </section>
+</div>
+    
+    
     
 </section>
 
 
 
-    <footer class="text-center bg-teal p-2 fixed w-full z-30 bottom-0 h-24 bg-gray-400 text-white">The footer</footer>
+    <footer class="text-center p-2 fixed w-full z-30 bottom-0 h-24 bg-gray-400 text-white">
+    The footer is great
+</footer>
   </div>
 </body>
 

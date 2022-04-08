@@ -12,15 +12,23 @@
   </url><url>
     <loc>http://example.org/categories/</loc>
   </url><url>
+    <loc>http://example.org/info/cloud-native/</loc>
+  </url><url>
     <loc>http://example.org/cards/data_persistence/</loc>
   </url><url>
     <loc>http://example.org/cards/integrated/</loc>
   </url><url>
     <loc>http://example.org/docs/</loc>
   </url><url>
-    <loc>http://example.org/install/</loc>
+    <loc>http://example.org/styleguide/</loc>
+  </url><url>
+    <loc>http://example.org/info/high-availability/</loc>
+  </url><url>
+    <loc>http://example.org/info/</loc>
   </url><url>
     <loc>http://example.org/hero/</loc>
+  </url><url>
+    <loc>http://example.org/info/security/</loc>
   </url><url>
     <loc>http://example.org/tags/</loc>
   </url>
