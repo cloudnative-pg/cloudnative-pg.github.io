@@ -1,6 +1,7 @@
 resources/_gen
 hugo_stats.json
 assets/css/output.css
+public
 # Binaries for programs and plugins
 *.exe
 *.exe~
