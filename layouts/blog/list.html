@@ -6,7 +6,7 @@
     <!-- TODO: a paginator here -->
     <dl>
         {{ range .Pages }}
-        <dt class="text-lg font-semibold"><a href="{{ .Permalink }}">{{ .Title }}</a></dt>
+        <dt class="text-lg font-semibold"><a href="{{ .RelPermalink }}">{{ .Title }}</a></dt>
         <dd>{{ .Params.summary }}</dd>
         {{ end }}
     </dl>
