@@ -6,6 +6,6 @@ icon: icons/info/monitoring.svg
 
 CloudNativePG has a built-in exporter for Prometheus that can be configured and
 customized through user defined metrics written in SQL. Logs, including
-database and audit ones, are transparently sent to stdout in JSON format for
+database and audit, are transparently sent to stdout in JSON format for
 native integration with infrastructure log management pipelines.
 
