@@ -7,6 +7,24 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language><atom:link href="https://cloudnative-pg.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title></title>
+      <link>https://cloudnative-pg.io/footer/footer/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://cloudnative-pg.io/footer/footer/</guid>
+      <description>© 2019-2022 The CloudNativePG Contributors. All rights reserved. The Linux Foundation has registered trademarks and uses trademarks. For a list of trademarks of The Linux Foundation, please see our Trademark Usage page.</description>
+    </item>
+    
+    <item>
+      <title>Advanced Architectures</title>
+      <link>https://cloudnative-pg.io/info/advanced-architectures/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://cloudnative-pg.io/info/advanced-architectures/</guid>
+      <description>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egestas turpis urna nullam pellentesque. Aliquam malesuada elit nunc malesuada quis nisi sed. Netus egestas venenatis, orci, orci. Nibh odio sed gravida blandit.</description>
+    </item>
+    
+    <item>
       <title>Autopilot</title>
       <link>https://cloudnative-pg.io/cards/automated/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -43,6 +61,15 @@
     </item>
     
     <item>
+      <title>Disaster Recovery</title>
+      <link>https://cloudnative-pg.io/info/disaster-recovery/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://cloudnative-pg.io/info/disaster-recovery/</guid>
+      <description>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egestas turpis urna nullam pellentesque. Aliquam malesuada elit nunc malesuada quis nisi sed. Netus egestas venenatis, orci, orci. Nibh odio sed gravida blandit.</description>
+    </item>
+    
+    <item>
       <title>Example content for styleguide</title>
       <link>https://cloudnative-pg.io/styleguide/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -57,7 +84,25 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://cloudnative-pg.io/info/high-availability/</guid>
-      <description>Information about High Availability</description>
+      <description>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egestas turpis urna nullam pellentesque. Aliquam malesuada elit nunc malesuada quis nisi sed. Netus egestas venenatis, orci, orci. Nibh odio sed gravida blandit.</description>
+    </item>
+    
+    <item>
+      <title>Monitoring</title>
+      <link>https://cloudnative-pg.io/info/monitoring/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://cloudnative-pg.io/info/monitoring/</guid>
+      <description>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egestas turpis urna nullam pellentesque. Aliquam malesuada elit nunc malesuada quis nisi sed. Netus egestas venenatis, orci, orci. Nibh odio sed gravida blandit.</description>
+    </item>
+    
+    <item>
+      <title>Postgres Operations</title>
+      <link>https://cloudnative-pg.io/info/postgres-operations/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://cloudnative-pg.io/info/postgres-operations/</guid>
+      <description>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egestas turpis urna nullam pellentesque. Aliquam malesuada elit nunc malesuada quis nisi sed. Netus egestas venenatis, orci, orci. Nibh odio sed gravida blandit.</description>
     </item>
     
     <item>
@@ -75,7 +120,7 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://cloudnative-pg.io/info/security/</guid>
-      <description>Information about Security &amp;amp; TLS Certificates</description>
+      <description>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egestas turpis urna nullam pellentesque. Aliquam malesuada elit nunc malesuada quis nisi sed. Netus egestas venenatis, orci, orci. Nibh odio sed gravida blandit.</description>
     </item>
     
   </channel>

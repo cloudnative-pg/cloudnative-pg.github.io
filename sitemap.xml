@@ -4,6 +4,10 @@
   <url>
     <loc>https://cloudnative-pg.io/</loc>
   </url><url>
+    <loc>https://cloudnative-pg.io/footer/footer/</loc>
+  </url><url>
+    <loc>https://cloudnative-pg.io/info/advanced-architectures/</loc>
+  </url><url>
     <loc>https://cloudnative-pg.io/cards/automated/</loc>
   </url><url>
     <loc>https://cloudnative-pg.io/blog/</loc>
@@ -18,13 +22,21 @@
   </url><url>
     <loc>https://cloudnative-pg.io/cards/integrated/</loc>
   </url><url>
+    <loc>https://cloudnative-pg.io/info/disaster-recovery/</loc>
+  </url><url>
     <loc>https://cloudnative-pg.io/docs/</loc>
   </url><url>
     <loc>https://cloudnative-pg.io/styleguide/</loc>
   </url><url>
+    <loc>https://cloudnative-pg.io/footer/</loc>
+  </url><url>
     <loc>https://cloudnative-pg.io/info/high-availability/</loc>
   </url><url>
     <loc>https://cloudnative-pg.io/info/</loc>
+  </url><url>
+    <loc>https://cloudnative-pg.io/info/monitoring/</loc>
+  </url><url>
+    <loc>https://cloudnative-pg.io/info/postgres-operations/</loc>
   </url><url>
     <loc>https://cloudnative-pg.io/hero/</loc>
   </url><url>

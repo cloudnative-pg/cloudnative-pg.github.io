@@ -28,7 +28,7 @@
         <a href="/"><img src="/logo/large_logo.svg" class="h-14" alt="Cloud Native Postgres Logo"></a>
       </div>
       <div>
-        <ul class="flex gap-14 text-lg text-slate-400 my-5">
+        <ul class="flex gap-14 text-2xl text-slate-400 my-5">
           <li>Documentation</li>
           <li>Support</li>
           <li><a href="blog">Blog</a></li>
@@ -51,21 +51,20 @@
 
 <section>
   <div class="py-16">
-    <div class="flex flex-row justify-center">
-      <div class="">
-        <h1 class="text-5xl font-bold text-slate-900 leading-10">Run PostgreSQL.</h1>
-        <h1 class="text-5xl font-bold text-rose-600 leading-10 pt-4">The Kubernetes way.</h1>
-        <p class=" text-slate-600 text-xl font-light leading-9 pt-5 w-600">
+    <div class="flex flex-row px-56 justify-between">
+      <div class="w-1/2">
+        <h1 class="text-6xl font-bold text-slate-900">Run PostgreSQL.</h1>
+        <h1 class="text-6xl font-bold text-rose-600 pt-2.5">The Kubernetes way.</h1>
+        <p class=" text-slate-600 text-2xl font-light leading-10 py-5 container tracking-wider">
           CloudNativePG is the Kubernetes operator that covers the full lifecycle of a highly available PostgreSQL database cluster with a primary/standby architecture, using native streaming replication.
 
         </p>
         <div class="pt-7">
           <a href="https://github.com/cloudnative-pg/cloudnative-pg"
-            class="bg-rose-600 py-4 px-12 rounded-full text-white text-xl">View on GitHub</a>
+            class="bg-rose-600 py-4 px-12 rounded-full text-white text-3xl">View on GitHub</a>
         </div>
       </div>
-      <div>
-
+      <div class="ml-8">
         
         <img src="/images/hero_image.svg" alt="hero image">
       </div>
@@ -75,23 +74,23 @@
 <section>
 
     
-    <div class="w-full grid grid-cols-3 text-white bg-rose-600 px-36 my-12 py-12">
+    <div class="w-full grid grid-cols-3 text-white bg-rose-600 px-36 py-12">
         
-        <div class="w-full py-4 w-80">
-    <h1 class="text-2xl py-4 font-medium">Autopilot</h1>
+        <div class="w-full py-4 px-20">
+    <h1 class="text-3xl py-4 font-medium">Autopilot</h1>
     <p class="text-xl"><p>It automates the steps that a human operator would do to deploy and to manage a
 Postgres database inside Kubernetes, including automated failover.</p>
 </p>
 </div>
         
-        <div class="w-full py-4 w-80">
-    <h1 class="text-2xl py-4 font-medium">Data persistence</h1>
+        <div class="w-full py-4 px-20">
+    <h1 class="text-3xl py-4 font-medium">Data persistence</h1>
     <p class="text-xl"><p>It doesn’t rely on statefulsets and uses its own way to manage persistent volume claims where the <code>PGDATA</code> is stored.</p>
 </p>
 </div>
         
-        <div class="w-full py-4 w-80">
-    <h1 class="text-2xl py-4 font-medium">Designed for Kubernetes</h1>
+        <div class="w-full py-4 px-20">
+    <h1 class="text-3xl py-4 font-medium">Designed for Kubernetes</h1>
     <p class="text-xl"><p>It&rsquo;s entirely declarative, and directly integrates with the Kubernetes API server to update the state of the cluster — for this reason, it does not require an external failover management tool.</p>
 </p>
 </div>
@@ -100,49 +99,182 @@ Postgres database inside Kubernetes, including automated failover.</p>
     
 
     
+    <div>
+        
     
     
     
-    
-  <div class="w-full text-gray-900 bg-white px-36 my-12 py-12">
-    
-    <section class="container mx-auto text-center py-6 mb-12">
-      <h1 class="text-2xl py-4 font-medium">Cloud Native</h1>
-      <p>Built on proven DevOps concepts like immutable infrastructure, declarative configuration, and microservice architecture, CloudNativePG exclusively relies on the Kubernetes API server to maintain the state of a PostgreSQL cluster and provides cloud native capabilities like self-healing, high availability, rolling updates, scale up/down of read-only replicas, affinity/anti-affinity/tolerations for scheduling, resource management, and so on.</p>
+<div class="w-full text-gray-900 bg-white py-16 px-64">
+  <section class="container text-left flex flex-row justify-between">
+    <div class="w-3/5">
+      <h1 class="text-3xl py-4 font-medium">Cloud Native</h1>
+      <p class="text-xl leading-8"><p>Built on proven DevOps concepts like immutable infrastructure, declarative configuration, and microservice architecture, CloudNativePG exclusively relies on the Kubernetes API server to maintain the state of a PostgreSQL cluster and provides cloud native capabilities like self-healing, high availability, rolling updates, scale up/down of read-only replicas, affinity/anti-affinity/tolerations for scheduling, resource management, and so on.</p>
+</p>
+    </div>
+    <div class="mx-auto my-auto">
+      <img src="icons/info/cloud-native.svg" alt="Cloud Native" />
+    </div>
+  </section>
+</div>
 
-    </section>
-  </div>
-    
-    
-    
-<div class="w-full text-gray-900 bg-gray-200 px-36 my-12 py-12">
+
   
-    <section class="container mx-auto text-center py-6 mb-12">
-      <h1 class="text-2xl py-4 font-medium">Security &amp; TLS Certificates</h1>
-      <p>Information about Security &amp; TLS Certificates</p>
+  
 
-    </section>
-  </div>
-    
-    
-    
-  <div class="w-full text-gray-900 bg-white px-36 my-12 py-12">
-    
-    <section class="container mx-auto text-center py-6 mb-12">
-      <h1 class="text-2xl py-4 font-medium">High Availability</h1>
-      <p>Information about High Availability</p>
 
-    </section>
-  </div>
     
     
     
+<div class="w-full text-gray-900 bg-gray-200 py-16 px-64">
+  <section class="container text-left flex flex-row justify-between">
+    <div class="mx-auto my-auto">
+      <img src="icons/info/security.svg" alt="Security &amp; TLS Certificates" class="" />
+    </div>
+    <div class="w-3/5">
+      <h1 class="text-3xl py-4 font-medium">Security &amp; TLS Certificates</h1>
+      <p class="text-xl leading-8"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egestas turpis urna nullam pellentesque. Aliquam malesuada elit nunc malesuada quis nisi sed. Netus egestas venenatis, orci, orci. Nibh odio sed gravida blandit.</p>
+</p>
+    </div>
+  </section>
+</div>
+
+
+  
+  
+
+
+    
+    
+    
+<div class="w-full text-gray-900 bg-white py-16 px-64">
+  <section class="container text-left flex flex-row justify-between">
+    <div class="w-3/5">
+      <h1 class="text-3xl py-4 font-medium">High Availability</h1>
+      <p class="text-xl leading-8"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egestas turpis urna nullam pellentesque. Aliquam malesuada elit nunc malesuada quis nisi sed. Netus egestas venenatis, orci, orci. Nibh odio sed gravida blandit.</p>
+</p>
+    </div>
+    <div class="mx-auto my-auto">
+      <img src="icons/info/high-availability.svg" alt="High Availability" />
+    </div>
+  </section>
+</div>
+
+
+  
+  
+
+
+    
+    
+    
+<div class="w-full text-gray-900 bg-gray-200 py-16 px-64">
+  <section class="container text-left flex flex-row justify-between">
+    <div class="mx-auto my-auto">
+      <img src="icons/info/desaster.svg" alt="Disaster Recovery" class="" />
+    </div>
+    <div class="w-3/5">
+      <h1 class="text-3xl py-4 font-medium">Disaster Recovery</h1>
+      <p class="text-xl leading-8"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egestas turpis urna nullam pellentesque. Aliquam malesuada elit nunc malesuada quis nisi sed. Netus egestas venenatis, orci, orci. Nibh odio sed gravida blandit.</p>
+</p>
+    </div>
+  </section>
+</div>
+
+
+  
+  
+
+
+    
+    
+    
+<div class="w-full text-gray-900 bg-white py-16 px-64">
+  <section class="container text-left flex flex-row justify-between">
+    <div class="w-3/5">
+      <h1 class="text-3xl py-4 font-medium">Monitoring</h1>
+      <p class="text-xl leading-8"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egestas turpis urna nullam pellentesque. Aliquam malesuada elit nunc malesuada quis nisi sed. Netus egestas venenatis, orci, orci. Nibh odio sed gravida blandit.</p>
+</p>
+    </div>
+    <div class="mx-auto my-auto">
+      <img src="icons/info/monitoring.svg" alt="Monitoring" />
+    </div>
+  </section>
+</div>
+
+
+  
+  
+
+
+    
+    
+    
+<div class="w-full text-gray-900 bg-gray-200 py-16 px-64">
+  <section class="container text-left flex flex-row justify-between">
+    <div class="mx-auto my-auto">
+      <img src="icons/info/advanced.svg" alt="Advanced Architectures" class="" />
+    </div>
+    <div class="w-3/5">
+      <h1 class="text-3xl py-4 font-medium">Advanced Architectures</h1>
+      <p class="text-xl leading-8"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egestas turpis urna nullam pellentesque. Aliquam malesuada elit nunc malesuada quis nisi sed. Netus egestas venenatis, orci, orci. Nibh odio sed gravida blandit.</p>
+</p>
+    </div>
+  </section>
+</div>
+
+
+  
+  
+
+
+    
+    
+    
+<div class="w-full text-gray-900 bg-white py-16 px-64">
+  <section class="container text-left flex flex-row justify-between">
+    <div class="w-3/5">
+      <h1 class="text-3xl py-4 font-medium">Postgres Operations</h1>
+      <p class="text-xl leading-8"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egestas turpis urna nullam pellentesque. Aliquam malesuada elit nunc malesuada quis nisi sed. Netus egestas venenatis, orci, orci. Nibh odio sed gravida blandit.</p>
+</p>
+    </div>
+    <div class="mx-auto my-auto">
+      <img src="icons/info/postgres-operations.svg" alt="Postgres Operations" />
+    </div>
+  </section>
+</div>
+
+
+  
+  
+
+
+    
+    
+
+    </div>
+    
+
+    
+    <div class="text-center bg-slate-900 py-32">
+        <h1 class="text-5xl font-bold text-rose-600 leading-10 pt-4">100%</h1>
+        <h1 class="text-5xl font-bold text-white leading-10 pt-4">Open Source</h1>
+        <p class="text-xl text-white w-2/5 mx-auto mt-10">CloudNativePG is 100% open source and community-driven.  All components are available under the <a href="#" class="text-rose-600">Apache 2 license</a> on <a href="#" class="text-rose-600">GitHub</a>.</p>
+        <img src="icons/section/Rating.svg" alt="rating" class="mx-auto pt-5">
+        <h1 class="text-xl text-white mt-20">This open source project has been provided by</h1>
+        <img src="logo/edb_logo.svg" alt="EDB logo" class="mx-auto pt-5">
+    </div>
+    
+
 </section>
 
 
 
-    <footer class="text-center p-2 fixed w-full z-30 bottom-0 h-24 bg-gray-200 text-white">
-    The footer is great
+    <footer class="text-center p-24">
+    <div>
+        <a href="#" class="bg-rose-600 py-4 px-12 rounded-full text-white text-xl">View on GitHub</a>
+    </div>
+    <p class="text-sm text-slate-600 w-1/2 mx-auto pt-10">&copy; 2019-2022 The CloudNativePG Contributors. All rights reserved. The Linux Foundation has registered trademarks and uses trademarks. 
+    For a list of trademarks of The Linux Foundation, please see our <a href="#" class="text-rose-600">Trademark Usage page</a>.</p>
 </footer>
   </div>
 </body>
