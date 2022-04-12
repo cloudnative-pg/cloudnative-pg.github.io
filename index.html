@@ -38,13 +38,20 @@
         <a href="https://github.com/cloudnative-pg/cloudnative-pg">
           <img src="/icons/Git.svg" alt="Github">
         </a>
-        <img src="/icons/Slack.svg" alt="Slack">
-        <img src="/icons/Twitter.svg" alt="Twitter">
-        <img src="/icons/YouTube.svg" alt="YouTube">
+        <a href="https://cloudnativepg.slack.com/">
+          <img src="/icons/Slack.svg" alt="Slack">
+        </a>
+        <a href="https://twitter.com/CloudNativePg">
+          <img src="/icons/Twitter.svg" alt="Twitter">
+        </a>
+        <a href="https://www.youtube.com/channel/UCTGH88W1BiuRRPTzJUDPJyA">
+          <img src="/icons/YouTube.svg" alt="YouTube">
+        </a>
       </div>
     </div>
   </header>
 </main>
+
 
     
 
@@ -108,7 +115,13 @@ Postgres database inside Kubernetes, including automated failover.</p>
   <section class="container text-left flex flex-row justify-between">
     <div class="w-3/5">
       <h1 class="text-3xl py-4 font-medium">Cloud Native</h1>
-      <p class="text-xl leading-8"><p>Built on proven DevOps concepts like immutable infrastructure, declarative configuration, and microservice architecture, CloudNativePG exclusively relies on the Kubernetes API server to maintain the state of a PostgreSQL cluster and provides cloud native capabilities like self-healing, high availability, rolling updates, scale up/down of read-only replicas, affinity/anti-affinity/tolerations for scheduling, resource management, and so on.</p>
+      <p class="text-xl leading-8"><p>Built on proven DevOps concepts like immutable infrastructure, declarative
+configuration, and microservice architecture, CloudNativePG exclusively relies
+on the Kubernetes API server to maintain the state of a PostgreSQL cluster.
+Additionally, CloudNativePG provides cloud native capabilities like self-healing,
+high availability, rolling updates, scale up/down of read-only replicas,
+affinity/anti-affinity/tolerations for scheduling, resource management, and so
+on.</p>
 </p>
     </div>
     <div class="mx-auto my-auto">
@@ -132,7 +145,11 @@ Postgres database inside Kubernetes, including automated failover.</p>
     </div>
     <div class="w-3/5">
       <h1 class="text-3xl py-4 font-medium">Security &amp; TLS Certificates</h1>
-      <p class="text-xl leading-8"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egestas turpis urna nullam pellentesque. Aliquam malesuada elit nunc malesuada quis nisi sed. Netus egestas venenatis, orci, orci. Nibh odio sed gravida blandit.</p>
+      <p class="text-xl leading-8"><p>CloudNativePG supports security contexts by default and implements in-transit
+encrypted TLS connections. If you are not happy with auto-generated
+certificates, you can bring your own and even integrate with cert-manager. TLS
+client authentication for PostgreSQL is also supported, and auditing with PGAudit
+can be easily enabled in a declarative way.</p>
 </p>
     </div>
   </section>
@@ -150,7 +167,10 @@ Postgres database inside Kubernetes, including automated failover.</p>
   <section class="container text-left flex flex-row justify-between">
     <div class="w-3/5">
       <h1 class="text-3xl py-4 font-medium">High Availability</h1>
-      <p class="text-xl leading-8"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egestas turpis urna nullam pellentesque. Aliquam malesuada elit nunc malesuada quis nisi sed. Netus egestas venenatis, orci, orci. Nibh odio sed gravida blandit.</p>
+      <p class="text-xl leading-8"><p>PostgreSQL has a reliable foundation for high availability that is built on
+physical replication. CloudNativePG leverages streaming replication and a
+file-based one as a fallback method. You can tune synchronous replication to
+obtain zero data loss replicas.</p>
 </p>
     </div>
     <div class="mx-auto my-auto">
@@ -174,7 +194,10 @@ Postgres database inside Kubernetes, including automated failover.</p>
     </div>
     <div class="w-3/5">
       <h1 class="text-3xl py-4 font-medium">Disaster Recovery</h1>
-      <p class="text-xl leading-8"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egestas turpis urna nullam pellentesque. Aliquam malesuada elit nunc malesuada quis nisi sed. Netus egestas venenatis, orci, orci. Nibh odio sed gravida blandit.</p>
+      <p class="text-xl leading-8"><p>Define your disaster recovery objectives through continuous backup on object
+stores, and exploits the native Point-In-Time-Recovery capabilities of
+PostgreSQL by boostrapping a new cluster starting from a backup to a given
+timestamp.</p>
 </p>
     </div>
   </section>
@@ -192,7 +215,10 @@ Postgres database inside Kubernetes, including automated failover.</p>
   <section class="container text-left flex flex-row justify-between">
     <div class="w-3/5">
       <h1 class="text-3xl py-4 font-medium">Monitoring</h1>
-      <p class="text-xl leading-8"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egestas turpis urna nullam pellentesque. Aliquam malesuada elit nunc malesuada quis nisi sed. Netus egestas venenatis, orci, orci. Nibh odio sed gravida blandit.</p>
+      <p class="text-xl leading-8"><p>CloudNativePG has a built-in exporter for Prometheus that can be configured and
+customized through user defined metrics written in SQL. Logs, including
+database and audit, are transparently sent to stdout in JSON format for
+native integration with infrastructure log management pipelines.</p>
 </p>
     </div>
     <div class="mx-auto my-auto">
@@ -216,7 +242,12 @@ Postgres database inside Kubernetes, including automated failover.</p>
     </div>
     <div class="w-3/5">
       <h1 class="text-3xl py-4 font-medium">Advanced Architectures</h1>
-      <p class="text-xl leading-8"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egestas turpis urna nullam pellentesque. Aliquam malesuada elit nunc malesuada quis nisi sed. Netus egestas venenatis, orci, orci. Nibh odio sed gravida blandit.</p>
+      <p class="text-xl leading-8"><p>You can extend the primary/standby architecture by adding a PgBouncer
+connection pooler between your application and your PostgreSQL database.
+Additionally, you can take advantage of replica clusters by creating one or
+more disaster recovery clusters in different regions, solely relying on file
+based WAL shipping from an object store or using a streaming replication
+connection.</p>
 </p>
     </div>
   </section>
@@ -234,7 +265,10 @@ Postgres database inside Kubernetes, including automated failover.</p>
   <section class="container text-left flex flex-row justify-between">
     <div class="w-3/5">
       <h1 class="text-3xl py-4 font-medium">Postgres Operations</h1>
-      <p class="text-xl leading-8"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egestas turpis urna nullam pellentesque. Aliquam malesuada elit nunc malesuada quis nisi sed. Netus egestas venenatis, orci, orci. Nibh odio sed gravida blandit.</p>
+      <p class="text-xl leading-8"><p>Most Postgres related operations can be done in a declarative way, including
+management of superuser credentials, application user, and application
+database. Declarative configuration also covers Postgres configuration and some
+common extensions like <code>pg_stat_statements</code>.</p>
 </p>
     </div>
     <div class="mx-auto my-auto">
@@ -273,9 +307,13 @@ Postgres database inside Kubernetes, including automated failover.</p>
     <div>
         <a href="#" class="bg-rose-600 py-4 px-12 rounded-full text-white text-xl">View on GitHub</a>
     </div>
-    <p class="text-sm text-slate-600 w-1/2 mx-auto pt-10">&copy; 2019-2022 The CloudNativePG Contributors. All rights reserved. The Linux Foundation has registered trademarks and uses trademarks. 
-    For a list of trademarks of The Linux Foundation, please see our <a href="#" class="text-rose-600">Trademark Usage page</a>.</p>
+    <p class="text-sm text-slate-600 w-1/2 mx-auto pt-10">&copy; 2019-2022 The CloudNativePG Contributors<br/>
+    The Linux Foundation has registered trademarks and uses trademarks. 
+    For a list of trademarks of The Linux Foundation, please see our <a href="https://www.linuxfoundation.org/trademark-usage/" class="text-rose-600">Trademark Usage page</a>.<br/>
+    Postgres, PostgreSQL and the Slonik Logo are trademarks or registered trademarks of the PostgreSQL Community Association of Canada, and used with their permission.
+    </p>
 </footer>
+
   </div>
 </body>
 
