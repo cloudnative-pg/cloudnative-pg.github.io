@@ -1,19 +1,18 @@
 <section>
   <div class="py-16">
-    <div class="flex flex-row justify-center">
-      <div class="">
-        <h1 class="text-5xl font-bold text-slate-900 leading-10">{{.Title}}</h1>
-        <h1 class="text-5xl font-bold text-rose-600 leading-10 pt-4">{{.Params.subtitle}}</h1>
-        <p class=" text-slate-600 text-xl font-light leading-9 pt-5 w-600">
+    <div class="flex flex-row px-56 justify-between">
+      <div class="w-1/2">
+        <h1 class="text-6xl font-bold text-slate-900">{{.Title}}</h1>
+        <h1 class="text-6xl font-bold text-rose-600 pt-2.5">{{.Params.subtitle}}</h1>
+        <p class=" text-slate-600 text-2xl font-light leading-10 py-5 container tracking-wider">
           {{ .Content | plainify }}
         </p>
         <div class="pt-7">
           <a href="{{.Params.cta.url}}"
-            class="bg-rose-600 py-4 px-12 rounded-full text-white text-xl">{{.Params.cta.content| plainify}}</a>
+            class="bg-rose-600 py-4 px-12 rounded-full text-white text-3xl">{{.Params.cta.content| plainify}}</a>
         </div>
       </div>
-      <div>
-
+      <div class="ml-8">
         {{ $image := resources.Get "images/hero_image.svg" }}
         <img src="{{ $image.RelPermalink }}" alt="hero image">
       </div>
