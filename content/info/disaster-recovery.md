@@ -3,4 +3,8 @@ title: Disaster Recovery
 order: 30
 icon: icons/info/desaster.svg
 ---
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egestas turpis urna nullam pellentesque. Aliquam malesuada elit nunc malesuada quis nisi sed. Netus egestas venenatis, orci, orci. Nibh odio sed gravida blandit.
+Define your disaster recovery objectives through continuous backup on object
+stores, and exploits the native Point-In-Time-Recovery capabilities of
+PostgreSQL by boostrapping a new cluster starting from a backup to a given
+timestamp.
+
