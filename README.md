@@ -29,6 +29,8 @@ CSS is partly built by hugo & partly built outside of hugo by `npm run css`, whi
 
 ## Adding content
 
+### Blogs
+
 Add a draft blog post by running:
 
 ```
@@ -38,3 +40,7 @@ hugo new blog/first-post
 This will make the necessary files and duplicate a header image. Find an [openly available one to replace it with on Unsplash](https://unsplash.com/) or similar, and include the attribution.
 
 Edit the file, and once happy remove the `draft: true` - it should now show up for `npm run prod`.
+
+### Documentation
+
+Documentation lives [next to the code](https://github.com/cloudnative-pg/cloudnative-pg), and is imported into this repo by running `import_docs.sh`. This script takes a release tag, clones the repo at that tag and moves the documentation content into the appropriate place under `content`.
