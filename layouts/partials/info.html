@@ -1,13 +1,12 @@
-
 {{ if modBool .i 2 }}
 <div class="w-full text-gray-900 bg-gray-200 py-16 px-64">
   <section class="container text-left flex flex-row justify-between">
     <div class="mx-auto my-auto">
-      <img src="{{ .context.Params.icon }}" alt="{{.context.Title}}" class="">
+      <img src="{{ .context.Params.icon }}" alt="{{.context.Title}}" class="" />
     </div>
     <div class="w-3/5">
       <h1 class="text-3xl py-4 font-medium">{{ .context.Title }}</h1>
-    <p class="text-xl leading-8">{{ .context.Content }}</p>
+      <p class="text-xl leading-8">{{ .context.Content }}</p>
     </div>
   </section>
   {{ else }}
@@ -15,13 +14,13 @@
     <section class="container text-left flex flex-row justify-between">
       <div class="w-3/5">
         <h1 class="text-3xl py-4 font-medium">{{ .context.Title }}</h1>
-      <p class="text-xl leading-8">{{ .context.Content }}</p>
+        <p class="text-xl leading-8">{{ .context.Content }}</p>
       </div>
-      
+
       <div class="mx-auto my-auto">
-        <img src="{{ .context.Params.icon }}" alt="{{.context.Title}}">
+        <img src="{{ .context.Params.icon }}" alt="{{.context.Title}}" />
       </div>
     </section>
-    
     {{ end }}
   </div>
+</div>
