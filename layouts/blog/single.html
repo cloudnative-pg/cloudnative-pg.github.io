@@ -3,23 +3,23 @@
 <!--User profile-->
 <div class="flex gap-3 my-10 mx-auto flex justify-center">
     <div class="my-auto">
-        <img src="/images/temp-avatar.png" class="w-10 h-10 rounded-full" alt="">
+        <img src="{{ .Params.avatar.image }}" class="w-10 h-10 rounded-full" alt="">
     </div>
     <div>
         <div>
             <h1 class="text-lg charcoal font-bold">
-                {{ .Author}}
+                {{ .Params.author }}
             </h1>
         </div>
         <div class="flex gap-2 text-sm charcoal opacity-75">
             <div class="">
-                <h4>March 24</h4>
+                <h4>{{ .Date }}</h4>
             </div>
             <div>
                 <h1>•</h1>
             </div>
             <div>
-                <h4>8 min read</h4>
+                <h4>{{ .Params.time }}</h4>
             </div>
         </div>
     </div> 
@@ -28,12 +28,12 @@
 
 <!--Blog image-->
 <div>
-    <img src="/images/temp-banner.jpg" alt="blog image" class="h-80 mx-auto w-full px-56">
+    <img src="{{ .Params.image.url }}" alt="blog image" class="h-80 mx-auto w-full px-56">
 </div>
 <!--Blog image-->
 
 <!--Blog content-->
-<div class="p-medium px-56 my-10">
+<div class="px-56 my-10">
 {{ .Content }}
 </div>
 <!--Blog content-->
@@ -42,17 +42,16 @@
 <div class="mx-auto px-56 mt-20 pb-24">
     <h3 class="h2 font-bold my-3 charcoal">Popular Posts</h3>
     <div class="flex columns-3 gap-x-10 pt-5">
-        <!--Card 1-->
+        <!--Card 1 starts here-->
         <div class="p-8 bg-white drop-shadow-md rounded-md border-2 border-slate-50">
             <!--User profile-->
             <div class="flex gap-3 mb-2.5">
                 <div class="my-auto">
-                    {{ $image := resources.Get "images/temp-banner.jpg" }}
-                    <img src="/images/temp-banner.jpg" class="w-10 h-10 rounded-full" alt="">
+                    <img src="{{ .Params.avatar.image }}" class="w-10 h-10 rounded-full" alt="">
                 </div>
                 <div class="my-auto">
                     <h1 class="text-base charcoal font-bold">
-                        Angela Ramos
+                        {{.Params.author}}
                     </h1>
                 </div> 
             </div>
@@ -60,8 +59,7 @@
     
             <!--Blog image and content preview-->
             <div>
-                {{ $image := resources.Get "images/temp-banner.jpg" }}
-                <img src="/images/temp-banner.jpg" class="object-fill w-full h-36" alt="Blog image">
+                <img src="{{ .Params.image.url }}" class="object-fill w-full h-36" alt="Blog image">
             </div>
             <div class="charcoal">
                 <h2 class="text-lg my-2.5 font-bold">{{.Title}}</h2>
@@ -76,22 +74,22 @@
                     <h1>•</h1>
                 </div>
                 <div>
-                    <h4>8 min read</h4>
+                    <h4>{{ .Params.time }}</h4>
                 </div>
             </div>
         </div>
-        <!--Card 1-->
-        <!--card 2-->
+        <!--Card 1 ends here-->
+
+        <!--Card 2 starts here-->
         <div class="p-8 bg-white drop-shadow-md rounded-md border-2 border-slate-50">
             <!--User profile-->
             <div class="flex gap-3 mb-2.5">
                 <div class="my-auto">
-                    {{ $image := resources.Get "images/temp-banner.jpg" }}
-                    <img src="/images/temp-banner.jpg" class="w-10 h-10 rounded-full" alt="">
+                    <img src="{{ .Params.avatar.image }}" class="w-10 h-10 rounded-full" alt="">
                 </div>
                 <div class="my-auto">
                     <h1 class="text-base charcoal font-bold">
-                        Angela Ramos
+                        {{.Params.author}}
                     </h1>
                 </div> 
             </div>
@@ -99,8 +97,7 @@
     
             <!--Blog image and content preview-->
             <div>
-                {{ $image := resources.Get "images/temp-banner.jpg" }}
-                <img src="/images/temp-banner.jpg" class="object-fill w-full h-36" alt="Blog image">
+                <img src="{{ .Params.image.url }}" class="object-fill w-full h-36" alt="Blog image">
             </div>
             <div class="charcoal">
                 <h2 class="text-lg my-2.5 font-bold">{{.Title}}</h2>
@@ -115,22 +112,22 @@
                     <h1>•</h1>
                 </div>
                 <div>
-                    <h4>8 min read</h4>
+                    <h4>{{ .Params.time }}</h4>
                 </div>
             </div>
         </div>
-        <!--card 2-->
-        <!--card 3-->
+        <!--Card 2 ends here-->
+
+        <!--Card 3 starts here-->
         <div class="p-8 bg-white drop-shadow-md rounded-md border-2 border-slate-50">
             <!--User profile-->
             <div class="flex gap-3 mb-2.5">
                 <div class="my-auto">
-                    {{ $image := resources.Get "images/temp-banner.jpg" }}
-                    <img src="/images/temp-banner.jpg" class="w-10 h-10 rounded-full" alt="">
+                    <img src="{{ .Params.avatar.image }}" class="w-10 h-10 rounded-full" alt="">
                 </div>
                 <div class="my-auto">
                     <h1 class="text-base charcoal font-bold">
-                        Angela Ramos
+                        {{.Params.author}}
                     </h1>
                 </div> 
             </div>
@@ -138,8 +135,7 @@
     
             <!--Blog image and content preview-->
             <div>
-                {{ $image := resources.Get "images/temp-banner.jpg" }}
-                <img src="/images/temp-banner.jpg" class="object-fill w-full h-36" alt="Blog image">
+                <img src="{{ .Params.image.url }}" class="object-fill w-full h-36" alt="Blog image">
             </div>
             <div class="charcoal">
                 <h2 class="text-lg my-2.5 font-bold">{{.Title}}</h2>
@@ -148,17 +144,18 @@
 
             <div class="flex gap-2 text-sm charcoal opacity-75">
                 <div>
-                    <h4>{{.Date}}</h4>
+                    <h4>{{ .Date}}</h4>
                 </div>
                 <div>
                     <h1>•</h1>
                 </div>
                 <div>
-                    <h4>8 min read</h4>
+                    <h4>{{ .Params.time }}</h4>
                 </div>
             </div>
         </div>
-        <!--card 3-->
+        <!--Card 3 ends here-->
+        
     </div>
 </div>
 <!--Popular posts-->
