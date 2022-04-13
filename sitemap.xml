@@ -18,6 +18,8 @@
   </url><url>
     <loc>https://cloudnative-pg.io/info/cloud-native/</loc>
   </url><url>
+    <loc>https://cloudnative-pg.io/hero/</loc>
+  </url><url>
     <loc>https://cloudnative-pg.io/cards/data_persistence/</loc>
   </url><url>
     <loc>https://cloudnative-pg.io/cards/integrated/</loc>
@@ -37,8 +39,6 @@
     <loc>https://cloudnative-pg.io/info/monitoring/</loc>
   </url><url>
     <loc>https://cloudnative-pg.io/info/postgres-operations/</loc>
-  </url><url>
-    <loc>https://cloudnative-pg.io/hero/</loc>
   </url><url>
     <loc>https://cloudnative-pg.io/info/security/</loc>
   </url><url>
