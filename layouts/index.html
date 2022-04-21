@@ -6,7 +6,7 @@
 <section>
 
     <!-- Cards start here-->
-    <div class="w-full grid grid-cols-3 text-white bg-rose-600 px-36 py-12">
+    <div class="w-full grid grid-cols-3 text-white bg-red-1 px-36 py-12">
         {{ range where .Site.Pages "Params.type" "card" }}
         {{ partial "card" . }}
         {{ end }}
@@ -26,16 +26,21 @@
     <!-- Info ends here-->
 
     <!--Section starts here-->
-    <div class="text-center bg-slate-900 py-32">
-        <h1 class="text-5xl font-bold text-rose-600 leading-10 pt-4">100%</h1>
+    <div class="text-center bg-cnp-blue py-36">
+        <h1 class="text-xl text-white">This open source project has been provided by</h1>
+        <img src="logo/edb_logo.svg" alt="EDB logo" class="mx-auto pt-6">
+        <div class="mx-auto py-24 px-56">
+            <hr>
+        </div>
+        <h1 class="text-5xl font-bold red-1 leading-10 pt-4">100%</h1>
         <h1 class="text-5xl font-bold text-white leading-10 pt-4">Open Source</h1>
         <p class="text-xl text-white w-2/5 mx-auto mt-10">CloudNativePG is 100% open source and community-driven.  All components are available under the <a href="#" class="text-rose-600">Apache 2 license</a> on <a href="#" class="text-rose-600">GitHub</a>.</p>
         <img src="icons/section/Rating.svg" alt="rating" class="mx-auto pt-5">
-        <h1 class="text-xl text-white mt-20">This open source project has been provided by</h1>
-        <img src="logo/edb_logo.svg" alt="EDB logo" class="mx-auto pt-5">
     </div>
     <!--Section ends here-->
 
+    <div class="text-center pt-24">
+        <a href="#" class="bg-red-1 py-4 px-12 rounded-full text-white text-xl">View on GitHub</a>
+    </div>
 </section>
-
 {{ end }}

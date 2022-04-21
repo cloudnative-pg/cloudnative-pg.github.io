@@ -7,3 +7,212 @@
 .w-600 {
     width: 28rem;
     }
+
+.charcoal {
+    color: #424242;
+    }
+
+.bg-charcoal-opacity-10 {
+    background: rgba(66, 66, 66, 0.1);
+    }
+
+.medium-gray {
+    color: #ACADBE;
+}
+
+.cnp-blue {
+    color: #121646;
+}
+
+.bg-cnp-blue {
+    background: #121646;
+}
+
+.fill-cnp-blue {
+    fill: #121646;
+}
+
+.red-1 {
+    color: #E63054;
+}
+
+.bg-red-1 {
+    background: #E63054;
+}
+
+.red-2 {
+    color: #EF7890;
+}
+
+.bg-red-2 {
+    background: #EF7890;
+}
+
+.red-3 {
+    color: #FCE4E9;
+}
+
+.bg-red-3 {
+    background: #FCE4E9;
+}
+
+.gray-1 {
+    color: #F6F6F6;
+}
+
+.bg-gray-1 {
+    background: #F6F6F6;
+}
+
+.gray-2 {
+    color: #DFDFE3;
+}
+
+.bg-gray-2 {
+    background: #DFDFE3;
+}
+
+.gray-3 {
+    color: #ACADBE;
+}
+
+.bg-gray-3 {
+    background: #ACADBE;
+}
+
+.gray-4 {
+    color: #212C31;
+}
+
+.bg-gray-4 {
+    background: #212C31;
+}
+
+.gray-5 {
+    color: #222222;
+}
+
+.bg-gray-5 {
+    background: #222222;
+}
+
+.purple-1 {
+    color: #40228C;
+}
+
+.bg-purple-1 {
+    background: #40228C;
+}
+
+.purple-2 {
+    color: #F7F6FA;
+}
+
+.bg-purple-2 {
+    background: #F7F6FA;
+}
+
+.button-large {
+    padding-top: 0.625rem; /* 10px */
+    padding-bottom: 0.625rem; /* 10px */
+    padding-left: 4rem; /* 64px */
+    padding-right: 4rem; /* 64px */
+}
+
+.button-medium {
+    padding-top: 0.625rem; /* 10px */
+    padding-bottom: 0.625rem; /* 10px */
+    padding-left: 4rem; /* 64px */
+    padding-right: 4rem; /* 64px */
+}
+
+.button-small {
+    padding-top: 0.5rem; /* 8px */
+    padding-bottom: 0.5rem; /* 8px */
+    padding-left: 2.75rem; /* 44px */
+    padding-right: 2.75rem; /* 44px */
+}
+
+.button-link {
+    font-family: 'Supreme';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 140%;
+    letter-spacing: -0.0025em;
+}
+
+.button-large {
+    font-family: 'Supreme';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 46px;
+    letter-spacing: -0.0025em;
+}
+
+.button-medium {
+    font-family: 'Supreme';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 32px;
+    letter-spacing: -0.0025em;
+}
+
+.h1 {
+    font-family: 'Supreme';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 64px;
+    line-height: 104%;
+    letter-spacing: -0.015em;
+}
+
+.h2 {
+    font-family: 'Supreme';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 49px;
+    letter-spacing: -0.005em;
+}
+
+.h3 {
+    font-family: 'Supreme';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 34px;
+    line-height: 46px;
+}
+
+.p-large {
+    font-family: 'Supreme';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 140%;
+    letter-spacing: -0.005em;
+}
+
+.p-medium {
+    font-family: 'Supreme';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 140%;
+    letter-spacing: -0.0025em;
+}
+
+.p-small {
+    font-family: 'Supreme';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 140%;
+    letter-spacing: -0.0025em;
+}
+
+.bg-docs-banner {
+    background: linear-gradient(180deg, #40218B 0%, #141749 100%);
+}

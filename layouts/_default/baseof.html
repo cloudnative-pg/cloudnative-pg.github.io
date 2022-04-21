@@ -19,6 +19,8 @@
   {{- $styles = $styles | minify }}
   {{- end }}
   <link href="{{ $styles.RelPermalink }}" rel="stylesheet" />
+  {{ $image := resources.Get "favicon/favicon.ico" }}
+  <link rel="favicon" href="/favicon/favicon.ico">
 </head>
 
 <body>
