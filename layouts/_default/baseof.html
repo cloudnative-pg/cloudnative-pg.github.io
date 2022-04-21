@@ -10,7 +10,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <meta name="description" content="{{ with .GetPage "hero" }}{{ .Content | chomp }}{{ end }}" />
+  <meta name="description" content="{{ with .GetPage " hero" }}{{ .Content | chomp }}{{ end }}" />
   <meta name="keywords" content="" />
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet" />
   {{- $styles := resources.Match "css/*.css" | resources.Concat "main.css" }}
@@ -29,6 +29,9 @@
 
     {{ partial "footer" . }}
   </div>
+  <!-- Fathom - beautiful, simple website analytics -->
+  <script src="https://cdn.usefathom.com/script.js" data-site="GSMQCVAJ" defer></script>
+  <!-- / Fathom -->
 </body>
 
 </html>
