@@ -1,10 +1,178 @@
 {{ define "main" }}
-<h1>This is H1</h1>
-<h2>This is H2</h2>
-
-<hr>
-
-<h1>{{ .Title }}</h1>
-{{ .Content }}
-
+<div class="px-56 space-y-32 pt-16">
+    <!--Color Palette starts here-->
+    <div class="space-y-16">
+        <h1 class="h2 cnp-blue">Color Palette</h1>
+        <div class="space-y-16">
+            <!--ROW 1-->
+            <div class="flex space-x-9">
+             <!--Tile 1 start here-->
+                <div class="p-4 bg-white drop-shadow-md rounded-md border-2 border-slate-50 w-36">
+                    <div>
+                        <div class="bg-red-1 w-28 h-32 rounded-lg"></div>
+                        <div class="pt-2"><h1>Red 1 - #E63054</h1></div>
+                    </div>
+                </div>
+             <!--Tile 1 start here-->
+    
+             <!--Tile 2 start here-->
+                <div class="p-4 bg-white drop-shadow-md rounded-md border-2 border-slate-50 w-36">
+                    <div>
+                     <div class="bg-red-2 w-28 h-32 rounded-lg"></div>
+                     <div class="pt-2"><h1>Red 2 - #EF7890</h1></div>
+                    </div>
+                </div>
+             <!--Tile 2 start here-->
+    
+             <!--Tile 3 start here-->
+                <div class="p-4 bg-white drop-shadow-md rounded-md border-2 border-slate-50 w-36">
+                    <div>
+                        <div class="bg-red-3 w-28 h-32 rounded-lg"></div>
+                        <div class="pt-2"><h1>Red 3 - #FCE4E9</h1></div>
+                    </div>
+                </div>
+             <!--Tile 3 start here-->
+    
+             <!--Tile 4 start here-->
+                <div class="p-4 bg-white drop-shadow-md rounded-md border-2 border-slate-50 w-36">
+                    <div>
+                        <div class="bg-cnp-blue w-28 h-32 rounded-lg"></div>
+                        <div class="pt-2"><h1>CNP Blue -#121646</h1></div>
+                    </div>
+                </div>
+             <!--Tile 4 start here-->
+    
+             <!--Tile 5 start here-->
+                <div class="p-4 bg-white drop-shadow-md rounded-md border-2 border-slate-50 w-36">
+                    <div>
+                        <div class="bg-purple-1 w-28 h-32 rounded-lg"></div>
+                        <div class="pt-2"><h1>Purple 1 -#40228C</h1></div>
+                    </div>
+                </div>
+             <!--Tile 5 start here-->
+    
+             <!--Tile 6 start here-->
+                <div class="p-4 bg-white drop-shadow-md rounded-md border-2 border-slate-50 w-36">
+                    <div>
+                        <div class="bg-purple-2 w-28 h-32 rounded-lg"></div>
+                        <div class="pt-2"><h1>Purple 2 -#F7F6FA</h1></div>
+                    </div>
+                </div>
+             <!--Tile 6 start here-->
+            </div>
+            <!--ROW 1-->
+            <!--ROW 2-->
+            <div class="flex space-x-9">
+                <!--Tile 1 start here-->
+                   <div class="p-4 bg-white drop-shadow-md rounded-md border-2 border-slate-50 w-36">
+                       <div>
+                           <div class="bg-gray-5 w-28 h-32 rounded-lg"></div>
+                           <div class="pt-2"><h1>Gray 5 -#222222</h1></div>
+                       </div>
+                   </div>
+                <!--Tile 1 start here-->
+       
+                <!--Tile 2 start here-->
+                   <div class="p-4 bg-white drop-shadow-md rounded-md border-2 border-slate-50 w-36">
+                       <div>
+                        <div class="bg-gray-4 w-28 h-32 rounded-lg"></div>
+                        <div class="pt-2"><h1>Gray 4 -#212C31</h1></div>
+                       </div>
+                   </div>
+                <!--Tile 2 start here-->
+       
+                <!--Tile 3 start here-->
+                   <div class="p-4 bg-white drop-shadow-md rounded-md border-2 border-slate-50 w-36">
+                       <div>
+                           <div class="bg-gray-3 w-28 h-32 rounded-lg"></div>
+                           <div class="pt-2"><h1>Gray 3 -#ACADBE</h1></div>
+                       </div>
+                   </div>
+                <!--Tile 3 start here-->
+       
+                <!--Tile 4 start here-->
+                   <div class="p-4 bg-white drop-shadow-md rounded-md border-2 border-slate-50 w-36">
+                       <div>
+                           <div class="bg-gray-2 w-28 h-32 rounded-lg"></div>
+                           <div class="pt-2"><h1>Gray 2 -#DFDFE3</h1></div>
+                       </div>
+                   </div>
+                <!--Tile 4 start here-->
+       
+                <!--Tile 5 start here-->
+                   <div class="p-4 bg-white drop-shadow-md rounded-md border-2 border-slate-50 w-36">
+                       <div>
+                           <div class="bg-gray-1 w-28 h-32 rounded-lg"></div>
+                           <div class="pt-2"><h1>Gray 1 -#F6F6F6</h1></div>
+                       </div>
+                   </div>
+                <!--Tile 5 start here-->
+            </div>
+            <!--ROW 2-->        
+        </div>
+    </div>
+    <!--Color Palette ends here-->
+    
+    <!--Typography starts here-->
+    <div class="space-y-16 pb-24">
+        <h2 class="h2 cnp-blue">Typography</h2>
+        <div class="space-y-16">
+            <!--H1 Style-->
+            <div class="flex space-x-16">
+                <h2 class="gray-5 w-80">Header 1</h2>
+                <h2 class="h1 pl-16 cnp-blue">Header 1</h2>
+            </div>
+            <!--H1 Style-->
+            <!--H2 Style-->
+            <div class="flex space-x-16">
+                <h2 class="gray-5 w-80">Header 2</h2>
+                <h2 class="h2 pl-16 cnp-blue">Header 2</h2>
+            </div>
+            <!--H2 Style-->
+            <!--H3 Style-->
+            <div class="flex space-x-16">
+                <h2 class="gray-5 w-80">Header 3</h2>
+                <h2 class="h3 pl-16 cnp-blue">Header 3</h2>
+            </div>
+            <!--H3 Style-->
+            <!--PL Style-->
+            <div class="flex space-x-16">
+                <h2 class="gray-5 w-80">Paragraph Large</h2>
+                <h2 class="cnp-blue pl-16 p-large w-1/2">Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.</h2>
+            </div>
+            <!--PL Style-->
+            <!--PM Style-->
+            <div class="flex space-x-16">
+                <h2 class="gray-5 w-80">Paragraph Medium</h2>
+                <h2 class="cnp-blue pl-16 p-medium w-1/2">Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.</h2>
+            </div>
+            <!--PM Style-->
+            <!--PS Style-->
+            <div class="flex space-x-16">
+                <h2 class="gray-5 w-80">Paragraph Small</h2>
+                <h2 class="cnp-blue pl-16 p-small w-1/2">Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.</h2>
+            </div>
+            <!--PS Style-->
+            <!--BL Style-->
+            <div class="flex space-x-16">
+                <h2 class="gray-5 w-80">Button Large</h2>
+                <h2 class="cnp-blue pl-16 button-large">Button Large</h2>
+            </div>
+            <!--BL Style-->
+            <!--BM Style-->
+            <div class="flex">
+                <h2 class="gray-5 w-80">Button Medium</h2>
+                <h2 class="cnp-blue ml-16 button-medium">Button Medium</h2>
+            </div>
+            <!--BM Style-->
+            <!--Blink Style-->
+            <div class="flex space-x-16">
+                <h2 class="gray-5 w-80">Button Link</h2>
+                <h2 class="cnp-blue pl-16 button-link">Button Link</h2>
+            </div>
+            <!--Blink Style-->
+        </div>
+    </div>
+    <!--Typography ends here-->
+</div>
 {{ end }}

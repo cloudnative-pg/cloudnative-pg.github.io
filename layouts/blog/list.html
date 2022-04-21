@@ -1,14 +1,223 @@
 {{ define "main" }}
 
-<div class="mx-auto container my-12">
-    <h2 class="text-xl">{{.Title}}</h2>
-    <p>{{.Content}}</p>
-    <!-- TODO: a paginator here -->
-    <dl>
-        {{ range .Pages }}
-        <dt class="text-lg font-semibold"><a href="{{ .RelPermalink }}">{{ .Title }}</a></dt>
-        <dd>{{ .Params.summary }}</dd>
-        {{ end }}
-    </dl>
+<div class="px-56 pt-20 flex">
+    <!--col 1-->
+    <div class="space-y-28 w-4/6 pr-20">
+    <!--Blog list item 1-->
+    <div>
+        <!--User profile-->
+        <div class="flex gap-3 my-5">
+            <div class="my-auto">
+                <img src="security-and-containers/ali-kazal-h5VjkUqMCsc-unsplash.jpg" class="w-10 h-10 rounded-full" alt="">
+            </div>
+            <div>
+                <div>
+                    <h1 class="text-lg charcoal font-bold">
+                        Angela Ramos
+                    </h1>
+                </div>
+                <div class="flex gap-2 text-sm charcoal opacity-75">
+                    <div class="">
+                        <h4>March 24</h4>
+                    </div>
+                    <div>
+                        <h1>•</h1>
+                    </div>
+                    <div>
+                        <h4>8 min read</h4>
+                    </div>
+                </div>
+            </div> 
+        </div>
+        <!--User profile-->
+        
+        <!--Blog image and content preview-->
+        <div>
+            <img src="security-and-containers/ali-kazal-h5VjkUqMCsc-unsplash.jpg" class="object-fill w-full h-80" alt="Blog image">
+        </div>
+
+        <div class="charcoal">
+            <h2 class="text-3xl my-5 font-bold">{{.Title}}</h2>
+            <div class="flex text-xs gap-1.5">
+                <h2 class="bg-charcoal-opacity-10 py-1 px-2.5">DATABASE BASICS</h2>
+                <h2 class="bg-charcoal-opacity-10 py-1 px-2.5">IPSUM</h2>
+                <h3 class="bg-charcoal-opacity-10 py-1 px-2.5">CONSECTETUR</h3>
+            </div>
+            <div class="text-2xl my-5">
+                {{.Content}}
+            </div>
+        </div>
+        <!--Blog image and content preview-->
+
+        <!--CTA-->
+        <div class="pt-10">
+            <a href="#" class="bg-rose-600 py-4 px-12 rounded-full text-white text-xl">Continue Reading</a>
+        </div>
+        <!--CTA-->
+    </div>
+    <!--Blog list item 1-->
+
+    <!--Blog list item 2-->
+    <div class="pb-24">
+        <!--User profile-->
+        <div class="flex gap-3 my-5">
+            <div class="my-auto">
+                <img src="security-and-containers/ali-kazal-h5VjkUqMCsc-unsplash.jpg" class="w-10 h-10 rounded-full" alt="">
+            </div>
+            <div>
+                <div>
+                    <h1 class="text-lg charcoal font-bold">
+                        {{ .Author }}
+                    </h1>
+                </div>
+                <div class="flex gap-2 text-sm charcoal opacity-75">
+                    <div class="">
+                        <h4>March 24</h4>
+                    </div>
+                    <div>
+                        <h1>•</h1>
+                    </div>
+                    <div>
+                        <h4>8 min read</h4>
+                    </div>
+                </div>
+            </div> 
+        </div>
+        <!--User profile-->
+
+        <!--Blog image and content preview-->
+        <a href="{{ .RelPermalink }}">
+        <div>
+            <img src="security-and-containers/ali-kazal-h5VjkUqMCsc-unsplash.jpg" class="object-fill w-full h-80" alt="Blog image">
+        </div>
+        </a>
+        <div class="charcoal">
+            <dl>
+                {{ range .Pages }}
+                <dt class="text-3xl my-5 font-bold"><a href="{{ .RelPermalink }}">{{ .Title }}</a></dt>
+                <div class="flex text-xs gap-1.5">
+                    <h2 class="bg-charcoal-opacity-10 py-1 px-2.5">DATABASE BASICS</h2>
+                    <h2 class="bg-charcoal-opacity-10 py-1 px-2.5">IPSUM</h2>
+                    <h3 class="bg-charcoal-opacity-10 py-1 px-2.5">CONSECTETUR</h3>
+                </div>
+                <dd class="text-2xl my-5">{{ .Params.summary }}</dd>
+                {{ end }}
+            </dl>
+        </div>
+        <!--Blog image and content preview-->
+
+        <!--CTA-->
+        <div class="pt-10">
+            <a href="#" class="bg-rose-600 py-4 px-12 rounded-full text-white text-xl">Continue Reading</a>
+        </div>
+        <!--CTA-->
+    </div>
+    <!--Blog list item 2-->
+    </div>
+    <!--col 1-->
+
+    <!--col 2-->
+    <div class="space-y-10 w-2/6 pt-10 pl-5">
+        <!--Search-->
+        <div>
+            <input type="text" placeholder="Search blog..." class="border-2 border-slate-200 p-2.5 w-full">
+        </div>
+        <!--Search-->
+
+        <!--Categories-->
+        <div class="my-5">
+            <h3 class="text-xl font-bold my-3">Categories</h3>
+            <div class="text-xs space-y-1.5 my-5">
+                <h2 class="bg-charcoal-opacity-10 py-1 px-2.5 w-fit">DATABASE BASICS</h2>
+                <h2 class="bg-charcoal-opacity-10 py-1 px-2.5 w-fit">IPSUM</h2>
+                <h3 class="bg-charcoal-opacity-10 py-1 px-2.5 w-fit">CONSECTETUR</h3>
+            </div>
+        </div>
+        <!--Categories-->
+
+        <!--Popular Posts-->
+        <div>
+            <h3 class="text-xl font-bold pb-8 my-3">Popular Posts</h3>
+            <div class="space-y-10">
+                <!--card 1-->
+                <div class="p-8 bg-white drop-shadow-md rounded-md border-2 border-slate-50">
+                    <!--User profile-->
+                    <div class="flex gap-3 mb-2.5">
+                        <div class="my-auto">
+                            <img src="security-and-containers/ali-kazal-h5VjkUqMCsc-unsplash.jpg" class="w-10 h-10 rounded-full" alt="">
+                        </div>
+                        <div class="my-auto">
+                            <h1 class="text-base charcoal font-bold">
+                                Angela Ramos
+                            </h1>
+                        </div> 
+                    </div>
+                    <!--User profile-->
+            
+                    <!--Blog image and content preview-->
+                    <div>
+                        <img src="security-and-containers/ali-kazal-h5VjkUqMCsc-unsplash.jpg" class="object-fill w-full h-36" alt="Blog image">
+                    </div>
+                    <div class="charcoal">
+                        <h2 class="text-lg my-2.5 font-bold">{{.Title}}</h2>
+                    </div>
+                    <!--Blog image and content preview-->
+
+                    <div class="flex gap-2 text-sm charcoal opacity-75">
+                        <div>
+                            <h4>March 24</h4>
+                        </div>
+                        <div>
+                            <h1>•</h1>
+                        </div>
+                        <div>
+                            <h4>8 min read</h4>
+                        </div>
+                    </div>
+                </div>
+                <!--card 1-->
+
+                <!--card 2-->
+                <div class="p-8 bg-white drop-shadow-md rounded-md border-2 border-slate-50">
+                    <!--User profile-->
+                    <div class="flex gap-3 mb-2.5">
+                        <div class="my-auto">
+                            <img src="security-and-containers/ali-kazal-h5VjkUqMCsc-unsplash.jpg" class="w-10 h-10 rounded-full" alt="">
+                        </div>
+                        <div class="my-auto">
+                            <h1 class="text-base charcoal font-bold">
+                                Angela Ramos
+                            </h1>
+                        </div> 
+                    </div>
+                    <!--User profile-->
+            
+                    <!--Blog image and content preview-->
+                    <div>
+                        <img src="security-and-containers/ali-kazal-h5VjkUqMCsc-unsplash.jpg" class="object-fill w-full h-36" alt="Blog image">
+                    </div>
+                    <div class="charcoal">
+                        <h2 class="text-lg my-2.5 font-bold">{{.Title}}</h2>
+                    </div>
+                    <!--Blog image and content preview-->
+
+                    <div class="flex gap-2 text-sm charcoal opacity-75">
+                        <div>
+                            <h4>March 24</h4>
+                        </div>
+                        <div>
+                            <h1>•</h1>
+                        </div>
+                        <div>
+                            <h4>8 min read</h4>
+                        </div>
+                    </div>
+                </div>
+                <!--card 2-->
+            </div>
+        </div>
+        <!--Popular Posts-->
+    </div>
+    <!--col 2-->
 </div>
 {{ end }}
