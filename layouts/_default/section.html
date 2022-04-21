@@ -1,8 +1,9 @@
 {{ define "main" }}
 <h2 class="text-xl">{{.Title}}</h2>
 <p>{{.Content}}</p>
-<p>TODO: a paginator here</p>
-{{ range .Pages }}
+
+{{ $ps := .Paginate (union .Pages .Sections) }}
+{{ range $ps.Pages }}
 <a href="{{ .RelPermalink }}">{{ .Title }}</a>
 {{ end }}
 {{ end }}
