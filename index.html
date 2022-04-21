@@ -11,7 +11,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <meta name="description" content="" />
+  <meta name="description" content="CloudNativePG is the Kubernetes operator that covers the full lifecycle of a highly available PostgreSQL database cluster with a primary/standby architecture, using native streaming replication." />
   <meta name="keywords" content="" />
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet" />
   <link href="/main.min.css" rel="stylesheet" />
@@ -19,6 +19,39 @@
 
 <body>
   <div class="h-screen w-screen">
+    
+<main>
+  <header>
+    <div class="flex flex-row px-16 justify-between py-5">
+      <div>
+        
+        <a href="/"><img src="/logo/large_logo.svg" class="h-14" alt="Cloud Native Postgres Logo"></a>
+      </div>
+      <div>
+        <ul class="flex gap-14 text-2xl text-slate-400 my-5">
+          <li>Documentation</li>
+          <li>Support</li>
+          <li><a href="blog">Blog</a></li>
+        </ul>
+      </div>
+      <div class="flex gap-5 my-4">
+        <a href="https://github.com/cloudnative-pg/cloudnative-pg">
+          <img src="/icons/Git.svg" alt="Github">
+        </a>
+        <a href="https://cloudnativepg.slack.com/">
+          <img src="/icons/Slack.svg" alt="Slack">
+        </a>
+        <a href="https://twitter.com/CloudNativePg">
+          <img src="/icons/Twitter.svg" alt="Twitter">
+        </a>
+        <a href="https://www.youtube.com/channel/UCTGH88W1BiuRRPTzJUDPJyA">
+          <img src="/icons/YouTube.svg" alt="YouTube">
+        </a>
+      </div>
+    </div>
+  </header>
+</main>
+
 
     
 
@@ -27,14 +60,15 @@
   <div class="py-16">
     <div class="flex flex-row px-56 justify-between">
       <div class="w-1/2">
-        <h1 class="text-6xl font-bold text-slate-900">Coming soon!</h1>
-        <h1 class="text-6xl font-bold text-rose-600 pt-2.5">Stay tuned.</h1>
+        <h1 class="text-6xl font-bold text-slate-900">Run PostgreSQL.</h1>
+        <h1 class="text-6xl font-bold text-rose-600 pt-2.5">The Kubernetes way.</h1>
         <p class=" text-slate-600 text-2xl font-light leading-10 py-5 container tracking-wider">
-          
+          CloudNativePG is the Kubernetes operator that covers the full lifecycle of a highly available PostgreSQL database cluster with a primary/standby architecture, using native streaming replication.
+
         </p>
         <div class="pt-7">
-          <a href="https://events.linuxfoundation.org/kubecon-cloudnativecon-europe/"
-            class="bg-rose-600 py-4 px-12 rounded-full text-white text-3xl">Come and meet us at KubeCon in Valencia!</a>
+          <a href="https://github.com/cloudnative-pg/cloudnative-pg"
+            class="bg-rose-600 py-4 px-12 rounded-full text-white text-3xl">View on GitHub</a>
         </div>
       </div>
       <div class="ml-8">
@@ -44,11 +78,240 @@
     </div>
 </section>
 
+<section>
+
+    
+    <div class="w-full grid grid-cols-3 text-white bg-rose-600 px-36 py-12">
+        
+        <div class="w-full py-4 px-20">
+    <h1 class="text-3xl py-4 font-medium">Autopilot</h1>
+    <p class="text-xl"><p>It automates the steps that a human operator would do to deploy and to manage a
+Postgres database inside Kubernetes, including automated failover.</p>
+</p>
+</div>
+        
+        <div class="w-full py-4 px-20">
+    <h1 class="text-3xl py-4 font-medium">Data persistence</h1>
+    <p class="text-xl"><p>It doesn’t rely on statefulsets and uses its own way to manage persistent volume claims where the <code>PGDATA</code> is stored.</p>
+</p>
+</div>
+        
+        <div class="w-full py-4 px-20">
+    <h1 class="text-3xl py-4 font-medium">Designed for Kubernetes</h1>
+    <p class="text-xl"><p>It&rsquo;s entirely declarative, and directly integrates with the Kubernetes API server to update the state of the cluster — for this reason, it does not require an external failover management tool.</p>
+</p>
+</div>
+        
+    </div>
+    
+
+    
+    <div>
+        
+    
+    
+    
+<div class="w-full text-gray-900 bg-white py-16 px-64">
+  <section class="container text-left flex flex-row justify-between">
+    <div class="w-3/5">
+      <h1 class="text-3xl py-4 font-medium">Cloud Native</h1>
+      <p class="text-xl leading-8"><p>Built on proven DevOps concepts like immutable infrastructure, declarative
+configuration, and microservice architecture, CloudNativePG exclusively relies
+on the Kubernetes API server to maintain the state of a PostgreSQL cluster.
+Additionally, CloudNativePG provides cloud native capabilities like self-healing,
+high availability, rolling updates, scale up/down of read-only replicas,
+affinity/anti-affinity/tolerations for scheduling, resource management, and so
+on.</p>
+</p>
+    </div>
+    <div class="mx-auto my-auto">
+      <img src="icons/info/cloud-native.svg" alt="Cloud Native" />
+    </div>
+  </section>
+</div>
+
+
+  
+  
+
+
+    
+    
+    
+<div class="w-full text-gray-900 bg-gray-200 py-16 px-64">
+  <section class="container text-left flex flex-row justify-between">
+    <div class="mx-auto my-auto">
+      <img src="icons/info/security.svg" alt="Security &amp; TLS Certificates" class="" />
+    </div>
+    <div class="w-3/5">
+      <h1 class="text-3xl py-4 font-medium">Security &amp; TLS Certificates</h1>
+      <p class="text-xl leading-8"><p>CloudNativePG supports security contexts by default and implements in-transit
+encrypted TLS connections. If you are not happy with auto-generated
+certificates, you can bring your own and even integrate with cert-manager. TLS
+client authentication for PostgreSQL is also supported, and auditing with PGAudit
+can be easily enabled in a declarative way.</p>
+</p>
+    </div>
+  </section>
+</div>
+
+
+  
+  
+
+
+    
+    
+    
+<div class="w-full text-gray-900 bg-white py-16 px-64">
+  <section class="container text-left flex flex-row justify-between">
+    <div class="w-3/5">
+      <h1 class="text-3xl py-4 font-medium">High Availability</h1>
+      <p class="text-xl leading-8"><p>PostgreSQL has a reliable foundation for high availability that is built on
+physical replication. CloudNativePG leverages streaming replication and a
+file-based one as a fallback method. You can tune synchronous replication to
+obtain zero data loss replicas.</p>
+</p>
+    </div>
+    <div class="mx-auto my-auto">
+      <img src="icons/info/high-availability.svg" alt="High Availability" />
+    </div>
+  </section>
+</div>
+
+
+  
+  
+
+
+    
+    
+    
+<div class="w-full text-gray-900 bg-gray-200 py-16 px-64">
+  <section class="container text-left flex flex-row justify-between">
+    <div class="mx-auto my-auto">
+      <img src="icons/info/desaster.svg" alt="Disaster Recovery" class="" />
+    </div>
+    <div class="w-3/5">
+      <h1 class="text-3xl py-4 font-medium">Disaster Recovery</h1>
+      <p class="text-xl leading-8"><p>Define your disaster recovery objectives through continuous backup on object
+stores, and exploits the native Point-In-Time-Recovery capabilities of
+PostgreSQL by boostrapping a new cluster starting from a backup to a given
+timestamp.</p>
+</p>
+    </div>
+  </section>
+</div>
+
+
+  
+  
+
+
+    
+    
+    
+<div class="w-full text-gray-900 bg-white py-16 px-64">
+  <section class="container text-left flex flex-row justify-between">
+    <div class="w-3/5">
+      <h1 class="text-3xl py-4 font-medium">Monitoring</h1>
+      <p class="text-xl leading-8"><p>CloudNativePG has a built-in exporter for Prometheus that can be configured and
+customized through user defined metrics written in SQL. Logs, including
+database and audit, are transparently sent to stdout in JSON format for
+native integration with infrastructure log management pipelines.</p>
+</p>
+    </div>
+    <div class="mx-auto my-auto">
+      <img src="icons/info/monitoring.svg" alt="Monitoring" />
+    </div>
+  </section>
+</div>
+
+
+  
+  
+
+
+    
+    
+    
+<div class="w-full text-gray-900 bg-gray-200 py-16 px-64">
+  <section class="container text-left flex flex-row justify-between">
+    <div class="mx-auto my-auto">
+      <img src="icons/info/advanced.svg" alt="Advanced Architectures" class="" />
+    </div>
+    <div class="w-3/5">
+      <h1 class="text-3xl py-4 font-medium">Advanced Architectures</h1>
+      <p class="text-xl leading-8"><p>You can extend the primary/standby architecture by adding a PgBouncer
+connection pooler between your application and your PostgreSQL database.
+Additionally, you can take advantage of replica clusters by creating one or
+more disaster recovery clusters in different regions, solely relying on file
+based WAL shipping from an object store or using a streaming replication
+connection.</p>
+</p>
+    </div>
+  </section>
+</div>
+
+
+  
+  
+
+
+    
+    
+    
+<div class="w-full text-gray-900 bg-white py-16 px-64">
+  <section class="container text-left flex flex-row justify-between">
+    <div class="w-3/5">
+      <h1 class="text-3xl py-4 font-medium">Postgres Operations</h1>
+      <p class="text-xl leading-8"><p>Most Postgres related operations can be done in a declarative way, including
+management of superuser credentials, application user, and application
+database. Declarative configuration also covers Postgres configuration and some
+common extensions like <code>pg_stat_statements</code>.</p>
+</p>
+    </div>
+    <div class="mx-auto my-auto">
+      <img src="icons/info/postgres-operations.svg" alt="Postgres Operations" />
+    </div>
+  </section>
+</div>
+
+
+  
+  
+
+
+    
+    
+
+    </div>
+    
+
+    
+    <div class="text-center bg-slate-900 py-32">
+        <h1 class="text-5xl font-bold text-rose-600 leading-10 pt-4">100%</h1>
+        <h1 class="text-5xl font-bold text-white leading-10 pt-4">Open Source</h1>
+        <p class="text-xl text-white w-2/5 mx-auto mt-10">CloudNativePG is 100% open source and community-driven.  All components are available under the <a href="#" class="text-rose-600">Apache 2 license</a> on <a href="#" class="text-rose-600">GitHub</a>.</p>
+        <img src="icons/section/Rating.svg" alt="rating" class="mx-auto pt-5">
+        <h1 class="text-xl text-white mt-20">This open source project has been provided by</h1>
+        <img src="logo/edb_logo.svg" alt="EDB logo" class="mx-auto pt-5">
+    </div>
+    
+
+</section>
 
 
 
-    <footer class="text-center">
-    <p class="text-sm text-slate-600 w-1/2 mx-auto pt-10">Copyright &copy; 2022 EnterpriseDB corporation</p>
+    <footer class="text-center p-24">
+    <div>
+        <a href="#" class="bg-rose-600 py-4 px-12 rounded-full text-white text-xl">View on GitHub</a>
+    </div>
+    <p class="text-sm text-slate-600 w-1/2 mx-auto pt-10">&copy; 2019-2022 The CloudNativePG Contributors<br/>
+    The Linux Foundation has registered trademarks and uses trademarks. 
+    For a list of trademarks of The Linux Foundation, please see our <a href="https://www.linuxfoundation.org/trademark-usage/" class="text-rose-600">Trademark Usage page</a>.<br/>
+    Postgres, PostgreSQL and the Slonik Logo are trademarks or registered trademarks of the PostgreSQL Community Association of Canada, and used with their permission.
+    </p>
 </footer>
 
   </div>

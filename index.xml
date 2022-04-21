@@ -43,15 +43,6 @@
     </item>
     
     <item>
-      <title>Coming soon!</title>
-      <link>https://cloudnative-pg.io/hero/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://cloudnative-pg.io/hero/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Data persistence</title>
       <link>https://cloudnative-pg.io/cards/data_persistence/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -112,6 +103,15 @@
       
       <guid>https://cloudnative-pg.io/info/postgres-operations/</guid>
       <description>Most Postgres related operations can be done in a declarative way, including management of superuser credentials, application user, and application database. Declarative configuration also covers Postgres configuration and some common extensions like pg_stat_statements.</description>
+    </item>
+    
+    <item>
+      <title>Run PostgreSQL.</title>
+      <link>https://cloudnative-pg.io/hero/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://cloudnative-pg.io/hero/</guid>
+      <description>CloudNativePG is the Kubernetes operator that covers the full lifecycle of a highly available PostgreSQL database cluster with a primary/standby architecture, using native streaming replication.</description>
     </item>
     
     <item>
