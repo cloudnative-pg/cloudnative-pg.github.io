@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+
+
+
+
+<html lang="en">
+
+<head>
+  <title>CloudNative PG</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <meta name="description" content="CloudNativePG is the Kubernetes operator that covers the full lifecycle of a highly available PostgreSQL database cluster with a primary/standby architecture, using native streaming replication." />
+  <meta name="keywords" content="" />
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet" />
+  <link href="/main.min.css" rel="stylesheet" />
+</head>
+
+<body>
+  <div class="h-screen w-screen">
+    
+<main>
+  <header>
+    <div class="flex flex-row px-16 justify-between py-5">
+      <div>
+        
+        <a href="/"><img src="/logo/large_logo.svg" class="h-14" alt="Cloud Native Postgres Logo"></a>
+      </div>
+      <div>
+        <ul class="flex gap-14 text-2xl text-slate-400 my-5">
+          <li><a href="/docs/1.15.0/" target="_blank">Documentation</a></li>
+          <li>Support</li>
+          <li>End users</li>
+          <li>Blog</li>
+        </ul>
+      </div>
+      <div class="flex gap-5 my-4">
+        <a href="https://github.com/cloudnative-pg/cloudnative-pg">
+          <img src="/icons/Git.svg" alt="Github">
+        </a>
+        <a href="https://cloudnativepg.slack.com/">
+          <img src="/icons/Slack.svg" alt="Slack">
+        </a>
+        <a href="https://twitter.com/CloudNativePg">
+          <img src="/icons/Twitter.svg" alt="Twitter">
+        </a>
+        <a href="https://www.youtube.com/channel/UCTGH88W1BiuRRPTzJUDPJyA">
+          <img src="/icons/YouTube.svg" alt="YouTube">
+        </a>
+      </div>
+    </div>
+  </header>
+</main>
+
+
+    
+<h2 class="text-2xl"></h2>
+<h1 id="configuration-samples">Configuration Samples</h1>
+<p>In this section, you can find some examples of configuration files to set up your PostgreSQL <code>Cluster</code>.</p>
+<ul>
+<li><a href="samples/cluster-example.yaml"><code>cluster-example.yaml</code></a>:
+a basic example of <code>Cluster</code> that uses the default storage class. For demonstration and experimentation purposes
+on a personal Kubernetes cluster with Minikube or Kind as described in the <a href="quickstart.md">&ldquo;Quickstart&rdquo;</a>.</li>
+<li><a href="samples/cluster-example-custom.yaml"><code>cluster-example-custom.yaml</code></a>:
+a basic example of <code>Cluster</code> that uses the default storage class and custom parameters for <code>postgresql.conf</code> and
+<code>pg_hba.conf</code> files</li>
+<li><a href="samples/cluster-storage-class.yaml"><code>cluster-storage-class.yaml</code></a>:
+a basic example of <code>Cluster</code> that uses a specified storage class.</li>
+<li><a href="samples/cluster-pvc-template.yaml"><code>cluster-pvc-template.yaml</code></a>:
+a basic example of <code>Cluster</code> that uses a persistent volume claim template.</li>
+<li><a href="samples/cluster-example-full.yaml"><code>cluster-example-full.yaml</code></a>:
+an example of <code>Cluster</code> that sets most of the available options.</li>
+</ul>
+<p>For a list of available options, please refer to the <a href="api_reference.md">&ldquo;API Reference&rdquo; page</a>.</p>
+
+
+
+    <footer class="text-center p-24">
+    <div>
+        <a href="#" class="bg-rose-600 py-4 px-12 rounded-full text-white text-xl">View on GitHub</a>
+    </div>
+    <p class="text-sm text-slate-600 w-1/2 mx-auto pt-10">&copy; 2019-2022 The CloudNativePG Contributors<br/>
+    The Linux Foundation has registered trademarks and uses trademarks. 
+    For a list of trademarks of The Linux Foundation, please see our <a href="https://www.linuxfoundation.org/trademark-usage/" class="text-rose-600">Trademark Usage page</a>.<br/>
+    Postgres, PostgreSQL and the Slonik Logo are trademarks or registered trademarks of the PostgreSQL Community Association of Canada, and used with their permission.
+    </p>
+</footer>
+
+  </div>
+  
+  <script src="https://cdn.usefathom.com/script.js" data-site="GSMQCVAJ" defer></script>
+  
+</body>
+
+</html>

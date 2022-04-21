@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+
+
+
+
+<html lang="en">
+
+<head>
+  <title>CloudNative PG</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <meta name="description" content="CloudNativePG is the Kubernetes operator that covers the full lifecycle of a highly available PostgreSQL database cluster with a primary/standby architecture, using native streaming replication." />
+  <meta name="keywords" content="" />
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet" />
+  <link href="/main.min.css" rel="stylesheet" />
+</head>
+
+<body>
+  <div class="h-screen w-screen">
+    
+<main>
+  <header>
+    <div class="flex flex-row px-16 justify-between py-5">
+      <div>
+        
+        <a href="/"><img src="/logo/large_logo.svg" class="h-14" alt="Cloud Native Postgres Logo"></a>
+      </div>
+      <div>
+        <ul class="flex gap-14 text-2xl text-slate-400 my-5">
+          <li><a href="/docs/1.15.0/" target="_blank">Documentation</a></li>
+          <li>Support</li>
+          <li>End users</li>
+          <li>Blog</li>
+        </ul>
+      </div>
+      <div class="flex gap-5 my-4">
+        <a href="https://github.com/cloudnative-pg/cloudnative-pg">
+          <img src="/icons/Git.svg" alt="Github">
+        </a>
+        <a href="https://cloudnativepg.slack.com/">
+          <img src="/icons/Slack.svg" alt="Slack">
+        </a>
+        <a href="https://twitter.com/CloudNativePg">
+          <img src="/icons/Twitter.svg" alt="Twitter">
+        </a>
+        <a href="https://www.youtube.com/channel/UCTGH88W1BiuRRPTzJUDPJyA">
+          <img src="/icons/YouTube.svg" alt="YouTube">
+        </a>
+      </div>
+    </div>
+  </header>
+</main>
+
+
+    
+<h2 class="text-2xl"></h2>
+<h1 id="client-tlsssl-connections">Client TLS/SSL Connections</h1>
+<p>!!! Seealso &ldquo;Certificates&rdquo;
+Please refer to the <a href="certificates.md">&ldquo;Certificates&rdquo;</a>
+page for more details on how Cloud Native PostgreSQL supports TLS certificates.</p>
+<p>The Cloud Native PostgreSQL operator has been designed to work with TLS/SSL for both encryption in transit and
+authentication, on server and client sides. Clusters created using the CNP operator comes with a Certification
+Authority (CA) to create and sign TLS client certificates. Through the <code>cnp</code> plugin for <code>kubectl</code> you can
+issue a new TLS client certificate which can be used to authenticate a user instead of using passwords.</p>
+<p>Please refer to the following steps to authenticate via TLS/SSL certificates, which assume you have
+installed a cluster using the <a href="samples/cluster-example.yaml">cluster-example.yaml</a> deployment manifest.
+According to the convention over configuration paradigm, that file automatically creates an <code>app</code> database
+which is owned by a user called <code>app</code> (you can change this convention through the <code>initdb</code> configuration
+in the <code>bootstrap</code> section).</p>
+<h2 id="issuing-a-new-certificate">Issuing a new certificate</h2>
+<p>!!! Seealso &ldquo;About CNP plugin for kubectl&rdquo;
+Please refer to the <a href="cnp-plugin.md#certificates">&ldquo;Certificates&rdquo; section in the &ldquo;Cloud Native PostgreSQL Plugin&rdquo;</a>
+page for details on how to use the plugin for <code>kubectl</code>.</p>
+<p>You can create a certificate for the <code>app</code> user in the <code>cluster-example</code> PostgreSQL cluster as follows:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>kubectl cnp certificate cluster-app <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --cnp-cluster cluster-example <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --cnp-user app
+</span></span></code></pre></div><p>You can now verify the certificate with:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>kubectl get secret cluster-app <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  -o jsonpath<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;{.data[&#39;tls\.crt&#39;]}&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  | base64 -d | openssl x509 -text -noout <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  | head -n <span style="color:#ae81ff">11</span>
+</span></span></code></pre></div><p>Output:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>Certificate:
+</span></span><span style="display:flex;"><span>  Data:
+</span></span><span style="display:flex;"><span>    Version: 3 (0x2)
+</span></span><span style="display:flex;"><span>    Serial Number:
+</span></span><span style="display:flex;"><span>      5d:e1:72:8a:39:9f:ce:51:19:9d:21:ff:1e:4b:24:5d
+</span></span><span style="display:flex;"><span>    Signature Algorithm: ecdsa-with-SHA256
+</span></span><span style="display:flex;"><span>    Issuer: OU = default, CN = cluster-example
+</span></span><span style="display:flex;"><span>    Validity
+</span></span><span style="display:flex;"><span>      Not Before: Mar 22 10:22:14 2021 GMT
+</span></span><span style="display:flex;"><span>      Not After : Mar 22 10:22:14 2022 GMT
+</span></span><span style="display:flex;"><span>    Subject: CN = app
+</span></span></code></pre></div><p>As you can see, TLS client certificates by default are created with 90 days of validity, and with a simple CN that
+corresponds to the username in PostgreSQL. This is necessary to leverage the <code>cert</code> authentication method for <code>hostssl</code>
+entries in <code>pg_hba.conf</code>.</p>
+<h2 id="testing-the-connection-via-a-tls-certificate">Testing the connection via a TLS certificate</h2>
+<p>Now we will test this client certificate by configuring a demo client application that connects to our Cloud Native
+PostgreSQL cluster.</p>
+<p>The following manifest called <code>cert-test.yaml</code> creates a demo Pod with a test application
+in the same namespace where your database cluster is running:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">apps/v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Deployment</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">cert-test</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">replicas</span>: <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">selector</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">matchLabels</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">app</span>: <span style="color:#ae81ff">webtest</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">template</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">labels</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">app</span>: <span style="color:#ae81ff">webtest</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">containers</span>:
+</span></span><span style="display:flex;"><span>        - <span style="color:#f92672">image</span>: <span style="color:#ae81ff">quay.io/leonardoce/webtest:1.3.0</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">name</span>: <span style="color:#ae81ff">cert-test</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">volumeMounts</span>:
+</span></span><span style="display:flex;"><span>            - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">secret-volume-root-ca</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">mountPath</span>: <span style="color:#ae81ff">/etc/secrets/ca</span>
+</span></span><span style="display:flex;"><span>            - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">secret-volume-app</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">mountPath</span>: <span style="color:#ae81ff">/etc/secrets/app</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">ports</span>:
+</span></span><span style="display:flex;"><span>            - <span style="color:#f92672">containerPort</span>: <span style="color:#ae81ff">8080</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">env</span>:
+</span></span><span style="display:flex;"><span>            - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">DATABASE_URL</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">value</span>: &gt;<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                sslkey=/etc/secrets/app/tls.key
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                sslcert=/etc/secrets/app/tls.crt
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                sslrootcert=/etc/secrets/ca/ca.crt
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                host=cluster-example-rw.default.svc
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                dbname=app
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                user=app
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                sslmode=verify-full</span>                
+</span></span><span style="display:flex;"><span>            - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">SQL_QUERY</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">value</span>: <span style="color:#ae81ff">SELECT 1</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">readinessProbe</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">httpGet</span>:
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">port</span>: <span style="color:#ae81ff">8080</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">path</span>: <span style="color:#ae81ff">/tx</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">volumes</span>:
+</span></span><span style="display:flex;"><span>        - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">secret-volume-root-ca</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">secret</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">secretName</span>: <span style="color:#ae81ff">cluster-example-ca</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">defaultMode</span>: <span style="color:#ae81ff">0600</span>
+</span></span><span style="display:flex;"><span>        - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">secret-volume-app</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">secret</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">secretName</span>: <span style="color:#ae81ff">cluster-app</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">defaultMode</span>: <span style="color:#ae81ff">0600</span>
+</span></span></code></pre></div><p>This Pod will mount secrets managed by the Cloud Native PostgreSQL operator, including:</p>
+<ul>
+<li><code>sslcert</code>: the TLS client public certificate</li>
+<li><code>sslkey</code>: the TLS client certificate private key</li>
+<li><code>sslrootcert</code>: the TLS Certification Authority certificate, that signed the certificate on
+the server to be used to verify the identity of the instances</li>
+</ul>
+<p>They will be used to create the default resources that <code>psql</code> (and other libpq based applications like <code>pgbench</code>)
+requires to establish a TLS encrypted connection to the Postgres database.</p>
+<p>By default <code>psql</code> searches for certificates inside the <code>~/.postgresql</code> directory of the current user, but we can use
+the sslkey, sslcert, sslrootcert options to point libpq to the actual location of the cryptographic material.
+The content of the above files is gathered from the secrets that were previously created by using the <code>cnp</code> plugin for
+kubectl.</p>
+<p>Now deploy the application:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>kubectl create -f cert-test.yaml
+</span></span></code></pre></div><p>Then we will use created Pod as PostgreSQL client to validate SSL connection and
+authentication using TLS certificates we just created.</p>
+<p>A readiness probe has been configured to ensure that the application is ready when the database server can be
+reached.</p>
+<p>You can verify that the connection works by executing an interactive <code>bash</code> inside the Pod&rsquo;s container to run <code>psql</code>
+using the necessary options. The PostgreSQL server is exposed through the read-write Kubernetes service. We will point
+the <code>psql</code> command to connect to this service:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>kubectl exec -it cert-test -- bash -c <span style="color:#e6db74">&#34;psql
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&#39;sslkey=/etc/secrets/app/tls.key sslcert=/etc/secrets/appuser/tls.crt
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">sslrootcert=/etc/secrets/ca/ca.crt host=cluster-example-rw.default.svc dbname=app
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">user=app sslmode=verify-full&#39; -c &#39;select version();&#39;&#34;</span>
+</span></span></code></pre></div><p>Output :</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>                                        version
+</span></span><span style="display:flex;"><span>--------------------------------------------------------------------------------------
+</span></span><span style="display:flex;"><span>------------------
+</span></span><span style="display:flex;"><span>PostgreSQL 14.1 on x86_64-pc-linux-gnu, compiled by gcc (GCC) 8.3.1 20191121 (Red Hat
+</span></span><span style="display:flex;"><span>8.3.1-5), 64-bit
+</span></span><span style="display:flex;"><span>(1 row)
+</span></span></code></pre></div>
+
+
+    <footer class="text-center p-24">
+    <div>
+        <a href="#" class="bg-rose-600 py-4 px-12 rounded-full text-white text-xl">View on GitHub</a>
+    </div>
+    <p class="text-sm text-slate-600 w-1/2 mx-auto pt-10">&copy; 2019-2022 The CloudNativePG Contributors<br/>
+    The Linux Foundation has registered trademarks and uses trademarks. 
+    For a list of trademarks of The Linux Foundation, please see our <a href="https://www.linuxfoundation.org/trademark-usage/" class="text-rose-600">Trademark Usage page</a>.<br/>
+    Postgres, PostgreSQL and the Slonik Logo are trademarks or registered trademarks of the PostgreSQL Community Association of Canada, and used with their permission.
+    </p>
+</footer>
+
+  </div>
+  
+  <script src="https://cdn.usefathom.com/script.js" data-site="GSMQCVAJ" defer></script>
+  
+</body>
+
+</html>

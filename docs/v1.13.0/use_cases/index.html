@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+
+
+
+
+<html lang="en">
+
+<head>
+  <title>CloudNative PG</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <meta name="description" content="CloudNativePG is the Kubernetes operator that covers the full lifecycle of a highly available PostgreSQL database cluster with a primary/standby architecture, using native streaming replication." />
+  <meta name="keywords" content="" />
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet" />
+  <link href="/main.min.css" rel="stylesheet" />
+</head>
+
+<body>
+  <div class="h-screen w-screen">
+    
+<main>
+  <header>
+    <div class="flex flex-row px-16 justify-between py-5">
+      <div>
+        
+        <a href="/"><img src="/logo/large_logo.svg" class="h-14" alt="Cloud Native Postgres Logo"></a>
+      </div>
+      <div>
+        <ul class="flex gap-14 text-2xl text-slate-400 my-5">
+          <li><a href="/docs/1.15.0/" target="_blank">Documentation</a></li>
+          <li>Support</li>
+          <li>End users</li>
+          <li>Blog</li>
+        </ul>
+      </div>
+      <div class="flex gap-5 my-4">
+        <a href="https://github.com/cloudnative-pg/cloudnative-pg">
+          <img src="/icons/Git.svg" alt="Github">
+        </a>
+        <a href="https://cloudnativepg.slack.com/">
+          <img src="/icons/Slack.svg" alt="Slack">
+        </a>
+        <a href="https://twitter.com/CloudNativePg">
+          <img src="/icons/Twitter.svg" alt="Twitter">
+        </a>
+        <a href="https://www.youtube.com/channel/UCTGH88W1BiuRRPTzJUDPJyA">
+          <img src="/icons/YouTube.svg" alt="YouTube">
+        </a>
+      </div>
+    </div>
+  </header>
+</main>
+
+
+    
+<h2 class="text-2xl"></h2>
+<h1 id="use-cases">Use cases</h1>
+<p>Cloud Native PostgreSQL has been designed to work with applications
+that reside in the same Kubernetes cluster, for a full cloud native
+experience.</p>
+<p>However, it might happen that, while the database can be hosted
+inside a Kubernetes cluster, applications cannot be containerized
+at the same time and need to run in a <em>traditional environment</em> such
+as a VM.</p>
+<h2 id="case-1-applications-inside-kubernetes">Case 1: Applications inside Kubernetes</h2>
+<p>In a typical situation, the application and the database run in the same
+namespace inside a Kubernetes cluster.</p>
+<p><img src="./images/apps-in-k8s.png" alt="Application and Database inside Kubernetes"></p>
+<p>The application, normally stateless, is managed as a standard <code>Deployment</code>,
+with multiple replicas spread over different Kubernetes node, and internally
+exposed through a <code>ClusterIP</code> service.</p>
+<p>The service is exposed externally to the end user through an <code>Ingress</code> and the
+provider&rsquo;s load balancer facility, via HTTPS.</p>
+<p>The application uses the backend PostgreSQL database to keep track of the state
+in a reliable and persistent way. The application refers to the read-write
+service exposed by the <code>Cluster</code> resource defined by Cloud Native PostgreSQL,
+which points to the current primary instance, through a TLS connection.  The
+<code>Cluster</code> resource embeds the logic of single primary and multiple standby
+architecture, hiding the complexity of managing a high availability cluster in
+Postgres.</p>
+<p><img src="./images/architecture-in-k8s.png" alt="Close-up view of application and database inside Kubernetes"></p>
+<h2 id="case-2-applications-outside-kubernetes">Case 2: Applications outside Kubernetes</h2>
+<p>Another possible use case is to manage your PostgreSQL database inside
+Kubernetes, while having your applications outside of it (for example in a
+virtualized environment). In this case, PostgreSQL is represented by an IP
+address (or host name) and a TCP port, corresponding to the defined Ingress
+resource in Kubernetes.</p>
+<p>The application can still benefit from a TLS connection to PostgreSQL.</p>
+<p><img src="./images/apps-outside-k8s.png" alt="Application outside Kubernetes"></p>
+
+
+
+    <footer class="text-center p-24">
+    <div>
+        <a href="#" class="bg-rose-600 py-4 px-12 rounded-full text-white text-xl">View on GitHub</a>
+    </div>
+    <p class="text-sm text-slate-600 w-1/2 mx-auto pt-10">&copy; 2019-2022 The CloudNativePG Contributors<br/>
+    The Linux Foundation has registered trademarks and uses trademarks. 
+    For a list of trademarks of The Linux Foundation, please see our <a href="https://www.linuxfoundation.org/trademark-usage/" class="text-rose-600">Trademark Usage page</a>.<br/>
+    Postgres, PostgreSQL and the Slonik Logo are trademarks or registered trademarks of the PostgreSQL Community Association of Canada, and used with their permission.
+    </p>
+</footer>
+
+  </div>
+  
+  <script src="https://cdn.usefathom.com/script.js" data-site="GSMQCVAJ" defer></script>
+  
+</body>
+
+</html>

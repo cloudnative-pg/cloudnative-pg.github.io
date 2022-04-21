@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+
+
+
+
+<html lang="en">
+
+<head>
+  <title>CloudNative PG</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <meta name="description" content="CloudNativePG is the Kubernetes operator that covers the full lifecycle of a highly available PostgreSQL database cluster with a primary/standby architecture, using native streaming replication." />
+  <meta name="keywords" content="" />
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet" />
+  <link href="/main.min.css" rel="stylesheet" />
+</head>
+
+<body>
+  <div class="h-screen w-screen">
+    
+<main>
+  <header>
+    <div class="flex flex-row px-16 justify-between py-5">
+      <div>
+        
+        <a href="/"><img src="/logo/large_logo.svg" class="h-14" alt="Cloud Native Postgres Logo"></a>
+      </div>
+      <div>
+        <ul class="flex gap-14 text-2xl text-slate-400 my-5">
+          <li><a href="/docs/1.15.0/" target="_blank">Documentation</a></li>
+          <li>Support</li>
+          <li>End users</li>
+          <li>Blog</li>
+        </ul>
+      </div>
+      <div class="flex gap-5 my-4">
+        <a href="https://github.com/cloudnative-pg/cloudnative-pg">
+          <img src="/icons/Git.svg" alt="Github">
+        </a>
+        <a href="https://cloudnativepg.slack.com/">
+          <img src="/icons/Slack.svg" alt="Slack">
+        </a>
+        <a href="https://twitter.com/CloudNativePg">
+          <img src="/icons/Twitter.svg" alt="Twitter">
+        </a>
+        <a href="https://www.youtube.com/channel/UCTGH88W1BiuRRPTzJUDPJyA">
+          <img src="/icons/YouTube.svg" alt="YouTube">
+        </a>
+      </div>
+    </div>
+  </header>
+</main>
+
+
+    
+<h2 class="text-xl"></h2>
+<p><h1 id="cloud-native-postgresql">Cloud Native PostgreSQL</h1>
+<p><strong>Cloud Native PostgreSQL</strong> is an <a href="https://kubernetes.io/docs/concepts/extend-kubernetes/operator/">operator</a>
+designed by <a href="https://www.enterprisedb.com">EDB</a>
+to manage <a href="https://www.postgresql.org/">PostgreSQL</a> workloads on any supported <a href="https://kubernetes.io">Kubernetes</a>
+cluster running in private, public, hybrid, or multi-cloud environments.
+Cloud Native PostgreSQL adheres to DevOps principles and concepts
+such as declarative configuration and immutable infrastructure.</p>
+<p>It defines a new Kubernetes resource called &ldquo;Cluster&rdquo; representing a PostgreSQL
+cluster made up of a single primary and an optional number of replicas that co-exist
+in a chosen Kubernetes namespace for High Availability and offloading of
+read-only queries.</p>
+<p>Applications that reside in the same Kubernetes cluster can access the
+PostgreSQL database using a service which is solely managed by the operator,
+without having to worry about changes of the primary role following a failover
+or a switchover. Applications that reside outside the Kubernetes cluster, need
+to configure a Service or Ingress object to expose the Postgres via TCP.
+Web applications can take advantage of the native connection pooler based on PgBouncer.</p>
+<p>Cloud Native PostgreSQL works with PostgreSQL and is available under the
+<a href="https://www.enterprisedb.com/limited-use-license">EDB Limited Use License</a>.</p>
+<p>!!! Note
+Based on the <a href="operator_capability_levels.md">Operator Capability Levels model</a>,
+users can expect a <strong>&ldquo;Level V - Auto Pilot&rdquo;</strong> set of capabilities from the
+Cloud Native PostgreSQL Operator.</p>
+<h2 id="supported-kubernetes-distributions">Supported Kubernetes distributions</h2>
+<p>Cloud Native PostgreSQL requires Kubernetes 1.19 or higher.</p>
+<p>Cloud Native PostgreSQL has also been certified for
+<a href="https://www.openshift.com/products/container-platform">Red Hat OpenShift Container Platform (OCP)</a>
+4.6+ and is available directly from the <a href="https://catalog.redhat.com/">Red Hat Catalog</a>.
+OpenShift Container Platform is an open-source distribution of Kubernetes which is
+<a href="https://access.redhat.com/support/policy/updates/openshift#ocp4">maintained and commercially supported</a>
+by Red Hat.</p>
+<p>!!! Important
+Please take into account that some delay may occur when releasing Cloud
+Native PostgreSQL on Red Hat&rsquo;s OpenShift Container Platform, as the process is
+not entirely under our control.</p>
+<p>Please refer to the
+<a href="https://www.enterprisedb.com/product-compatibility#cnp">&ldquo;Platform Compatibility&rdquo;</a>
+page from the EDB website for a list of the currently supported Kubernetes distributions.</p>
+<h3 id="multiple-architectures">Multiple architectures</h3>
+<p>The Cloud Native PostgreSQL Operator container images support the multi-arch
+format for the following platforms: <code>linux/amd64</code>, <code>linux/ppc64le</code>, <code>linux/s390x</code>.</p>
+<p>!!! Warning
+Cloud Native PostgreSQL requires that all nodes in a Kubernetes cluster have the
+same CPU architecture, thus a hybrid CPU architecture Kubernetes cluster is not
+supported. Additionally, EDB supports <code>linux/ppc64le</code> and <code>linux/s390x</code> architectures
+on OpenShift only.</p>
+<h2 id="supported-postgres-versions">Supported Postgres versions</h2>
+<p>The following versions of Postgres are currently supported:</p>
+<ul>
+<li>PostgreSQL 14 (default), 13, 12, 11, and 10</li>
+</ul>
+<p>All of the above versions, except PostgreSQL 10, are available on the
+following platforms: <code>linux/amd64</code>, <code>linux/ppc64le</code>, <code>linux/s390x</code>.
+PostgreSQL 10 is available on <code>linux/amd64</code> only.
+EDB supports operand images for <code>linux/ppc64le</code> and <code>linux/s390x</code>
+architectures on OpenShift only.</p>
+<h2 id="main-features">Main features</h2>
+<ul>
+<li>Direct integration with Kubernetes API server for High Availability,
+without requiring an external tool</li>
+<li>Self-Healing capability, through:
+<ul>
+<li>failover of the primary instance by promoting the most aligned replica</li>
+<li>automated recreation of a replica</li>
+</ul>
+</li>
+<li>Planned switchover of the primary instance by promoting a selected replica</li>
+<li>Scale up/down capabilities</li>
+<li>Definition of an arbitrary number of instances (minimum 1 - one primary server)</li>
+<li>Definition of the <em>read-write</em> service, to connect your applications to the only primary server of the cluster</li>
+<li>Definition of the <em>read-only</em> service, to connect your applications to any of the instances for reading workloads</li>
+<li>Support for Local Persistent Volumes with PVC templates</li>
+<li>Reuse of Persistent Volumes storage in Pods</li>
+<li>Rolling updates for PostgreSQL minor versions</li>
+<li>In-place or rolling updates for operator upgrades</li>
+<li>TLS connections and client certificate authentication</li>
+<li>Support for custom TLS certificates (including integration with cert-manager)</li>
+<li>Continuous backup to an object store  (AWS S3 and S3-compatible, Azure Blob Storage, and Google Cloud Storage)</li>
+<li>Backup retention policies (based on recovery window)</li>
+<li>Full recovery and Point-In-Time recovery from an existing backup in an object store</li>
+<li>Replica clusters for PostgreSQL deployments across multiple Kubernetes
+clusters, enabling private, public, hybrid, and multi-cloud architectures</li>
+<li>Support for Synchronous Replicas</li>
+<li>Connection pooling with PgBouncer</li>
+<li>Support for node affinity via <code>nodeSelector</code></li>
+<li>Native customizable exporter of user defined metrics for Prometheus through the <code>metrics</code> port (9187)</li>
+<li>Standard output logging of PostgreSQL error messages in JSON format</li>
+<li>Support for the <code>restricted</code> security context constraint (SCC) in Red Hat OpenShift</li>
+<li><code>cnp</code> plugin for <code>kubectl</code></li>
+<li>Multi-arch format container images</li>
+</ul>
+<h2 id="about-this-guide">About this guide</h2>
+<p>Follow the instructions in the <a href="quickstart.md">&ldquo;Quickstart&rdquo;</a> to test Cloud Native PostgreSQL
+on a local Kubernetes cluster using Minikube or Kind.</p>
+<p>In case you are not familiar with some basic terminology on Kubernetes and PostgreSQL,
+please consult the <a href="before_you_start.md">&ldquo;Before you start&rdquo; section</a>.</p>
+<p>!!! Note
+Although the guide primarily addresses Kubernetes, all concepts can
+be extended to OpenShift as well.</p>
+</p>
+<p>Documention by version</p>
+<ul>
+    
+</ul>
+
+
+    <footer class="text-center p-24">
+    <div>
+        <a href="#" class="bg-rose-600 py-4 px-12 rounded-full text-white text-xl">View on GitHub</a>
+    </div>
+    <p class="text-sm text-slate-600 w-1/2 mx-auto pt-10">&copy; 2019-2022 The CloudNativePG Contributors<br/>
+    The Linux Foundation has registered trademarks and uses trademarks. 
+    For a list of trademarks of The Linux Foundation, please see our <a href="https://www.linuxfoundation.org/trademark-usage/" class="text-rose-600">Trademark Usage page</a>.<br/>
+    Postgres, PostgreSQL and the Slonik Logo are trademarks or registered trademarks of the PostgreSQL Community Association of Canada, and used with their permission.
+    </p>
+</footer>
+
+  </div>
+  
+  <script src="https://cdn.usefathom.com/script.js" data-site="GSMQCVAJ" defer></script>
+  
+</body>
+
+</html>

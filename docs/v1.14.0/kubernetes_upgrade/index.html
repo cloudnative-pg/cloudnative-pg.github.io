@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+
+
+
+
+<html lang="en">
+
+<head>
+  <title>CloudNative PG</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <meta name="description" content="CloudNativePG is the Kubernetes operator that covers the full lifecycle of a highly available PostgreSQL database cluster with a primary/standby architecture, using native streaming replication." />
+  <meta name="keywords" content="" />
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet" />
+  <link href="/main.min.css" rel="stylesheet" />
+</head>
+
+<body>
+  <div class="h-screen w-screen">
+    
+<main>
+  <header>
+    <div class="flex flex-row px-16 justify-between py-5">
+      <div>
+        
+        <a href="/"><img src="/logo/large_logo.svg" class="h-14" alt="Cloud Native Postgres Logo"></a>
+      </div>
+      <div>
+        <ul class="flex gap-14 text-2xl text-slate-400 my-5">
+          <li><a href="/docs/1.15.0/" target="_blank">Documentation</a></li>
+          <li>Support</li>
+          <li>End users</li>
+          <li>Blog</li>
+        </ul>
+      </div>
+      <div class="flex gap-5 my-4">
+        <a href="https://github.com/cloudnative-pg/cloudnative-pg">
+          <img src="/icons/Git.svg" alt="Github">
+        </a>
+        <a href="https://cloudnativepg.slack.com/">
+          <img src="/icons/Slack.svg" alt="Slack">
+        </a>
+        <a href="https://twitter.com/CloudNativePg">
+          <img src="/icons/Twitter.svg" alt="Twitter">
+        </a>
+        <a href="https://www.youtube.com/channel/UCTGH88W1BiuRRPTzJUDPJyA">
+          <img src="/icons/YouTube.svg" alt="YouTube">
+        </a>
+      </div>
+    </div>
+  </header>
+</main>
+
+
+    
+<h2 class="text-2xl"></h2>
+<h1 id="kubernetes-upgrade">Kubernetes Upgrade</h1>
+<p>Kubernetes clusters must be kept updated. This becomes even more
+important if you are self-managing your Kubernetes clusters, especially
+on <strong>bare metal</strong>.</p>
+<p>Planning and executing regular updates is a way for your organization
+to clean up the technical debt and reduce the business risks, despite
+the introduction in your Kubernetes infrastructure of controlled
+downtimes that temporarily take out a node from the cluster for
+maintenance reasons (recommended reading:
+<a href="https://landing.google.com/sre/sre-book/chapters/embracing-risk/">&ldquo;Embracing Risk&rdquo;</a>
+from the Site Reliability Engineering book).</p>
+<p>For example, you might need to apply security updates on the Linux
+servers where Kubernetes is installed, or to replace a malfunctioning
+hardware component such as RAM, CPU, or RAID controller, or even upgrade
+the cluster to the latest version of Kubernetes.</p>
+<p>Usually, maintenance operations in a cluster are performed one node
+at a time by:</p>
+<ol>
+<li>evicting the workloads from the node to be updated (<code>drain</code>)</li>
+<li>performing the actual operation (for example, system update)</li>
+<li>re-joining the node to the cluster (<code>uncordon</code>)</li>
+</ol>
+<p>The above process requires workloads to be either stopped for the
+entire duration of the upgrade or migrated to another node.</p>
+<p>While the latest case is the expected one in terms of service
+reliability and self-healing capabilities of Kubernetes, there can
+be situations where it is advised to operate with a temporarily
+degraded cluster and wait for the upgraded node to be up again.</p>
+<p>In particular, if your PostgreSQL cluster relies on <strong>node-local storage</strong>
+- that is <em>storage which is local to the Kubernetes worker node where
+the PostgreSQL database is running</em>.
+Node-local storage (or simply <em>local storage</em>) is used to enhance performance.</p>
+<p>!!! Note
+If your database files are on shared storage over the network,
+you may not need to define a maintenance window. If the volumes currently
+used by the pods can be reused by pods running on different nodes after
+the drain, the default self-healing behavior of the operator will work
+fine (you can then skip the rest of this section).</p>
+<p>When using local storage for PostgreSQL, you are advised to temporarily
+put the cluster in <strong>maintenance mode</strong> through the <code>nodeMaintenanceWindow</code>
+option to avoid standard self-healing procedures to kick in,
+while, for example, enlarging the partition on the physical node or
+updating the node itself.</p>
+<p>!!! Warning
+Limit the duration of the maintenance window to the shortest
+amount of time possible. In this phase, some of the expected
+behaviors of Kubernetes are either disabled or running with
+some limitations, including self-healing, rolling updates,
+and Pod disruption budget.</p>
+<p>The <code>nodeMaintenanceWindow</code> option of the cluster has two further
+settings:</p>
+<p><code>inProgress</code>:
+Boolean value that states if the maintenance window for the nodes
+is currently in progress or not. By default, it is set to <code>off</code>.
+During the maintenance window, the <code>reusePVC</code> option below is
+evaluated by the operator.</p>
+<p><code>reusePVC</code>:
+Boolean value that defines if an existing PVC is reused or
+not during the maintenance operation. By default, it is set to <code>on</code>.
+When <strong>enabled</strong>, Kubernetes waits for the node to come up
+again and then reuses the existing PVC; the <code>PodDisruptionBudget</code>
+policy is temporarily removed.
+When <strong>disabled</strong>, Kubernetes forces the recreation of the
+Pod on a different node with a new PVC by relying on
+PostgreSQL&rsquo;s physical streaming replication, then destroys
+the old PVC together with the Pod. This scenario is generally
+not recommended unless the database&rsquo;s size is small, and re-cloning
+the new PostgreSQL instance takes shorter than waiting. This behavior
+does <strong>not</strong> apply to clusters with only one instance and
+reusePVC disabled: see section below.</p>
+<p>!!! Note
+When performing the <code>kubectl drain</code> command, you will need
+to add the <code>--delete-local-data</code> option.
+Don&rsquo;t be afraid: it refers to another volume internally used
+by the operator - not the PostgreSQL data directory.</p>
+<h2 id="single-instance-clusters-with-reusepvc-set-to-false">Single instance clusters with <code>reusePVC</code> set to <code>false</code></h2>
+<p>!!! Important
+We recommend to always create clusters with more
+than one instance in order to guarantee high availability.</p>
+<p>Deleting the only PostgreSQL instance in a single instance cluster with
+<code>reusePVC</code> set to <code>false</code> would imply all data being lost,
+therefore we prevent users from draining nodes such instances might be running
+on, even in maintenance mode.</p>
+<p>However, in case maintenance is required for such a node you have two options:</p>
+<ol>
+<li>Enable <code>reusePVC</code>, accepting the downtime</li>
+<li>Replicate the instance on a different node and switch over the primary</li>
+</ol>
+<p>As long as a database service downtime is acceptable for your environment,
+draining the node is as simple as setting the <code>nodeMaintenanceWindow</code> to
+<code>inProgress: true</code> and <code>reusePVC: true</code>. This will allow the instance to
+be deleted and recreated as soon as the original PVC is available
+(e.g. with node local storage, as soon as the node is back up).</p>
+<p>Otherwise you will have to scale up the cluster, creating a new instance
+on a different node and promoting the new instance to primary in order to
+shut down the original one on the node undergoing maintenance. The only
+downtime in this case will be the duration of the switchover.</p>
+<p>A possible approach could be:</p>
+<ol>
+<li>Cordon the node on which the current instance is running.</li>
+<li>Scale up the cluster to 2 instances, could take some time depending on the database size.</li>
+<li>As soon as the new instance is running, the operator will automatically
+perform a switchover given that the current primary is running on a cordoned node.</li>
+<li>Scale back down the cluster to a single instance, this will delete the old instance</li>
+<li>The old primary&rsquo;s node can now be drained successfully, while leaving the new primary
+running on a new node.</li>
+</ol>
+
+
+
+    <footer class="text-center p-24">
+    <div>
+        <a href="#" class="bg-rose-600 py-4 px-12 rounded-full text-white text-xl">View on GitHub</a>
+    </div>
+    <p class="text-sm text-slate-600 w-1/2 mx-auto pt-10">&copy; 2019-2022 The CloudNativePG Contributors<br/>
+    The Linux Foundation has registered trademarks and uses trademarks. 
+    For a list of trademarks of The Linux Foundation, please see our <a href="https://www.linuxfoundation.org/trademark-usage/" class="text-rose-600">Trademark Usage page</a>.<br/>
+    Postgres, PostgreSQL and the Slonik Logo are trademarks or registered trademarks of the PostgreSQL Community Association of Canada, and used with their permission.
+    </p>
+</footer>
+
+  </div>
+  
+  <script src="https://cdn.usefathom.com/script.js" data-site="GSMQCVAJ" defer></script>
+  
+</body>
+
+</html>

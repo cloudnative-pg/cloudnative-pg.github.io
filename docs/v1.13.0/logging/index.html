@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+
+
+
+
+<html lang="en">
+
+<head>
+  <title>CloudNative PG</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <meta name="description" content="CloudNativePG is the Kubernetes operator that covers the full lifecycle of a highly available PostgreSQL database cluster with a primary/standby architecture, using native streaming replication." />
+  <meta name="keywords" content="" />
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet" />
+  <link href="/main.min.css" rel="stylesheet" />
+</head>
+
+<body>
+  <div class="h-screen w-screen">
+    
+<main>
+  <header>
+    <div class="flex flex-row px-16 justify-between py-5">
+      <div>
+        
+        <a href="/"><img src="/logo/large_logo.svg" class="h-14" alt="Cloud Native Postgres Logo"></a>
+      </div>
+      <div>
+        <ul class="flex gap-14 text-2xl text-slate-400 my-5">
+          <li><a href="/docs/1.15.0/" target="_blank">Documentation</a></li>
+          <li>Support</li>
+          <li>End users</li>
+          <li>Blog</li>
+        </ul>
+      </div>
+      <div class="flex gap-5 my-4">
+        <a href="https://github.com/cloudnative-pg/cloudnative-pg">
+          <img src="/icons/Git.svg" alt="Github">
+        </a>
+        <a href="https://cloudnativepg.slack.com/">
+          <img src="/icons/Slack.svg" alt="Slack">
+        </a>
+        <a href="https://twitter.com/CloudNativePg">
+          <img src="/icons/Twitter.svg" alt="Twitter">
+        </a>
+        <a href="https://www.youtube.com/channel/UCTGH88W1BiuRRPTzJUDPJyA">
+          <img src="/icons/YouTube.svg" alt="YouTube">
+        </a>
+      </div>
+    </div>
+  </header>
+</main>
+
+
+    
+<h2 class="text-2xl"></h2>
+<h1 id="logging">Logging</h1>
+<p>The operator is designed to log in JSON format directly to standard output,
+including PostgreSQL logs.</p>
+<p>Each log entry has the following fields:</p>
+<ul>
+<li><code>level</code>: log level (<code>info</code>, <code>notice</code>, &hellip;)</li>
+<li><code>ts</code>: the timestamp (epoch with microseconds)</li>
+<li><code>logger</code>: the type of the record (e.g. <code>postgres</code> or <code>pg_controldata</code>)</li>
+<li><code>msg</code>: the actual message or the keyword <code>record</code> in case the message is parsed in JSON format</li>
+<li><code>record</code>: the actual record (with structure that varies depending on the
+<code>logger</code> type)</li>
+<li><code>logging_podName</code>: the pod where the log was created generated</li>
+</ul>
+<h2 id="operator-log">Operator log</h2>
+<p>A log level can be specified in the cluster spec with the option <code>logLevel</code> and
+can be set to any of <code>error</code>, <code>warning</code>, <code>info</code>(default), <code>debug</code> or <code>trace</code>.</p>
+<p>At the moment, the log level can only be set when an instance starts and can not be
+changed at runtime. If the value is changed in the cluster spec after the cluster
+was started, this will take effect only in the new pods and not the old ones.</p>
+<h2 id="postgresql-log">PostgreSQL log</h2>
+<p>Each entry in the PostgreSQL log is a JSON object having the <code>logger</code> key set
+to <code>postgres</code> and the structure described in the following example:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;level&#34;</span>: <span style="color:#e6db74">&#34;info&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;ts&#34;</span>: <span style="color:#ae81ff">1619781249.7188137</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;logger&#34;</span>: <span style="color:#e6db74">&#34;postgres&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;msg&#34;</span>: <span style="color:#e6db74">&#34;record&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;record&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;log_time&#34;</span>: <span style="color:#e6db74">&#34;2021-04-30 11:14:09.718 UTC&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;user_name&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;database_name&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;process_id&#34;</span>: <span style="color:#e6db74">&#34;25&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;connection_from&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;session_id&#34;</span>: <span style="color:#e6db74">&#34;608be681.19&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;session_line_num&#34;</span>: <span style="color:#e6db74">&#34;1&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;command_tag&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;session_start_time&#34;</span>: <span style="color:#e6db74">&#34;2021-04-30 11:14:09 UTC&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;virtual_transaction_id&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;transaction_id&#34;</span>: <span style="color:#e6db74">&#34;0&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;error_severity&#34;</span>: <span style="color:#e6db74">&#34;LOG&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;sql_state_code&#34;</span>: <span style="color:#e6db74">&#34;00000&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;message&#34;</span>: <span style="color:#e6db74">&#34;database system was interrupted; last known up at 2021-04-30 11:14:07 UTC&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;detail&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;hint&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;internal_query&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;internal_query_pos&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;context&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;query&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;query_pos&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;location&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;application_name&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;backend_type&#34;</span>: <span style="color:#e6db74">&#34;startup&#34;</span>
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;logging_pod&#34;</span>: <span style="color:#e6db74">&#34;cluster-example-1&#34;</span>,
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Internally, the operator relies on the PostgreSQL CSV log format. Please refer
+to the PostgreSQL documentation for more information about the <a href="https://www.postgresql.org/docs/current/runtime-config-logging.html">CSV log
+format</a>.</p>
+<h2 id="pgaudit-logs">PGAudit logs</h2>
+<p>Cloud Native PostgreSQL has transparent and native support for
+<a href="https://www.pgaudit.org/">PGAudit</a> on PostgreSQL clusters.</p>
+<p>All you need to do is add the required <code>pgaudit</code> parameters to the <code>postgresql</code>
+section in the configuration of the cluster.</p>
+<p>!!! Important
+It is unnecessary to add the PGAudit library to <code>shared_preload_libraries</code>.
+The library will be added automatically by Cloud Native PostgreSQL based on the
+presence of <code>pgaudit.*</code> parameters in the postgresql configuration.
+The operator will detect and manage the addition and removal of the
+library from <code>shared_preload_libraries</code>.</p>
+<p>The operator also takes care of creating and removing the extension from all
+the available databases in the cluster.</p>
+<p>!!! Important
+Cloud Native PostgreSQL runs the <code>CREATE EXTENSION</code> and
+<code>DROP EXTENSION</code> command in all databases in the cluster that accept
+connections.</p>
+<p>Here is an example of a PostgreSQL 13 <code>Cluster</code> deployment which will result in
+<code>pgaudit</code> being enabled with the requested configuration:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">postgresql.k8s.enterprisedb.io/v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Cluster</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">cluster-example</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">instances</span>: <span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">imageName</span>: <span style="color:#ae81ff">quay.io/enterprisedb/postgresql:13</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">postgresql</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">parameters</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;pgaudit.log&#34;: </span><span style="color:#e6db74">&#34;all, -misc&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;pgaudit.log_catalog&#34;: </span><span style="color:#e6db74">&#34;off&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;pgaudit.log_parameter&#34;: </span><span style="color:#e6db74">&#34;on&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;pgaudit.log_relation&#34;: </span><span style="color:#e6db74">&#34;on&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">storage</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">size</span>: <span style="color:#ae81ff">1Gi</span>
+</span></span></code></pre></div><p>The audit CSV logs entries returned by PGAudit are then parsed and routed to
+stdout in JSON format, similarly to all the remaining logs:</p>
+<ul>
+<li><code>.logger</code> is set to <code>pgaudit</code></li>
+<li><code>.msg</code> is set to <code>record</code></li>
+<li><code>.record</code> contains the whole parsed record as a JSON object, similar to
+<code>logging_collector</code> logs - except for <code>.record.audit</code>, which contains the
+PGAudit CSV message formatted as a JSON object</li>
+</ul>
+<p>See the example below:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;level&#34;</span>: <span style="color:#e6db74">&#34;info&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;ts&#34;</span>: <span style="color:#ae81ff">1627394507.8814096</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;logger&#34;</span>: <span style="color:#e6db74">&#34;pgaudit&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;msg&#34;</span>: <span style="color:#e6db74">&#34;record&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;record&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;log_time&#34;</span>: <span style="color:#e6db74">&#34;2021-07-27 14:01:47.881 UTC&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;user_name&#34;</span>: <span style="color:#e6db74">&#34;postgres&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;database_name&#34;</span>: <span style="color:#e6db74">&#34;postgres&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;process_id&#34;</span>: <span style="color:#e6db74">&#34;203&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;connection_from&#34;</span>: <span style="color:#e6db74">&#34;[local]&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;session_id&#34;</span>: <span style="color:#e6db74">&#34;610011cb.cb&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;session_line_num&#34;</span>: <span style="color:#e6db74">&#34;1&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;command_tag&#34;</span>: <span style="color:#e6db74">&#34;SELECT&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;session_start_time&#34;</span>: <span style="color:#e6db74">&#34;2021-07-27 14:01:47 UTC&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;virtual_transaction_id&#34;</span>: <span style="color:#e6db74">&#34;3/336&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;transaction_id&#34;</span>: <span style="color:#e6db74">&#34;0&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;error_severity&#34;</span>: <span style="color:#e6db74">&#34;LOG&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;sql_state_code&#34;</span>: <span style="color:#e6db74">&#34;00000&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;backend_type&#34;</span>: <span style="color:#e6db74">&#34;client backend&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;audit&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;audit_type&#34;</span>: <span style="color:#e6db74">&#34;SESSION&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;statement_id&#34;</span>: <span style="color:#e6db74">&#34;1&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;substatement_id&#34;</span>: <span style="color:#e6db74">&#34;1&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;class&#34;</span>: <span style="color:#e6db74">&#34;READ&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;command&#34;</span>: <span style="color:#e6db74">&#34;SELECT FOR KEY SHARE&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;statement&#34;</span>: <span style="color:#e6db74">&#34;SELECT pg_current_wal_lsn()&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;parameter&#34;</span>: <span style="color:#e6db74">&#34;&lt;none&gt;&#34;</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;logging_pod&#34;</span>: <span style="color:#e6db74">&#34;cluster-example-1&#34;</span>,
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Please refer to the
+<a href="https://github.com/pgaudit/pgaudit/blob/master/README.md#format">PGAudit documentation</a> <!-- raw HTML omitted -->
+for more details about each field in a record.</p>
+<h2 id="other-logs">Other logs</h2>
+<p>All logs that are produced by the operator and its instances are in JSON
+format, with <code>logger</code> set accordingly to the process that produced them.
+Therefore, all the possible <code>logger</code> values are the following ones:</p>
+<ul>
+<li><code>barman-cloud-wal-archive</code>: from <code>barman-cloud-wal-archive</code> directly</li>
+<li><code>barman-cloud-wal-restore</code>: from <code>barman-cloud-wal-restore</code> directly</li>
+<li><code>initdb</code>: from running <code>initdb</code></li>
+<li><code>pg_basebackup</code>: from running <code>pg_basebackup</code></li>
+<li><code>pg_controldata</code>: from running <code>pg_controldata</code></li>
+<li><code>pg_ctl</code>: from running any <code>pg_ctl</code> subcommand</li>
+<li><code>pg_rewind</code>: from running <code>pg_rewind</code></li>
+<li><code>pgaudit</code>: from PGAudit extension</li>
+<li><code>postgres</code>: from the <code>postgres</code> instance (having <code>msg</code> different than <code>record</code>)</li>
+<li><code>wal-archive</code>: from the <code>wal-archive</code> subcommand of the instance manager</li>
+<li><code>wal-restore</code>: from the <code>wal-restore</code> subcommand of the instance manager</li>
+</ul>
+<p>Except for <code>postgres</code> that has the aforementioned structures,
+all other possible values just have <code>msg</code> set to the escaped message that is
+logged.</p>
+
+
+
+    <footer class="text-center p-24">
+    <div>
+        <a href="#" class="bg-rose-600 py-4 px-12 rounded-full text-white text-xl">View on GitHub</a>
+    </div>
+    <p class="text-sm text-slate-600 w-1/2 mx-auto pt-10">&copy; 2019-2022 The CloudNativePG Contributors<br/>
+    The Linux Foundation has registered trademarks and uses trademarks. 
+    For a list of trademarks of The Linux Foundation, please see our <a href="https://www.linuxfoundation.org/trademark-usage/" class="text-rose-600">Trademark Usage page</a>.<br/>
+    Postgres, PostgreSQL and the Slonik Logo are trademarks or registered trademarks of the PostgreSQL Community Association of Canada, and used with their permission.
+    </p>
+</footer>
+
+  </div>
+  
+  <script src="https://cdn.usefathom.com/script.js" data-site="GSMQCVAJ" defer></script>
+  
+</body>
+
+</html>

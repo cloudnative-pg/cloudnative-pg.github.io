@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+
+
+
+
+<html lang="en">
+
+<head>
+  <title>CloudNative PG</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <meta name="description" content="CloudNativePG is the Kubernetes operator that covers the full lifecycle of a highly available PostgreSQL database cluster with a primary/standby architecture, using native streaming replication." />
+  <meta name="keywords" content="" />
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet" />
+  <link href="/main.min.css" rel="stylesheet" />
+</head>
+
+<body>
+  <div class="h-screen w-screen">
+    
+<main>
+  <header>
+    <div class="flex flex-row px-16 justify-between py-5">
+      <div>
+        
+        <a href="/"><img src="/logo/large_logo.svg" class="h-14" alt="Cloud Native Postgres Logo"></a>
+      </div>
+      <div>
+        <ul class="flex gap-14 text-2xl text-slate-400 my-5">
+          <li><a href="/docs/1.15.0/" target="_blank">Documentation</a></li>
+          <li>Support</li>
+          <li>End users</li>
+          <li>Blog</li>
+        </ul>
+      </div>
+      <div class="flex gap-5 my-4">
+        <a href="https://github.com/cloudnative-pg/cloudnative-pg">
+          <img src="/icons/Git.svg" alt="Github">
+        </a>
+        <a href="https://cloudnativepg.slack.com/">
+          <img src="/icons/Slack.svg" alt="Slack">
+        </a>
+        <a href="https://twitter.com/CloudNativePg">
+          <img src="/icons/Twitter.svg" alt="Twitter">
+        </a>
+        <a href="https://www.youtube.com/channel/UCTGH88W1BiuRRPTzJUDPJyA">
+          <img src="/icons/YouTube.svg" alt="YouTube">
+        </a>
+      </div>
+    </div>
+  </header>
+</main>
+
+
+    
+<h2 class="text-2xl"></h2>
+<h1 id="failure-modes">Failure Modes</h1>
+<p>This section provides an overview of the major failure scenarios that
+PostgreSQL can face on a Kubernetes cluster during its lifetime.</p>
+<p>!!! Important
+In case the failure scenario you are experiencing is not covered by this
+section, please immediately contact EDB for support and assistance.</p>
+<p>!!! Seealso &ldquo;Postgres instance manager&rdquo;
+Please refer to the <a href="instance_manager.md">&ldquo;Postgres instance manager&rdquo; section</a>
+for more information the liveness and readiness probes implemented by
+Cloud Native PostgreSQL.</p>
+<h2 id="storage-space-usage">Storage space usage</h2>
+<p>The operator will instantiate one PVC for every PostgreSQL instance to store the <code>PGDATA</code> content.</p>
+<p>Such storage space is set for reuse in two cases:</p>
+<ul>
+<li>when the corresponding Pod is deleted by the user (and a new Pod will be recreated)</li>
+<li>when the corresponding Pod is evicted and scheduled on another node</li>
+</ul>
+<p>If you want to prevent the operator from reusing a certain PVC you need to
+remove the PVC before deleting the Pod. For this purpose, you can use the
+following command:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>kubectl delete -n <span style="color:#f92672">[</span>namespace<span style="color:#f92672">]</span> pvc/<span style="color:#f92672">[</span>cluster-name<span style="color:#f92672">]</span>-<span style="color:#f92672">[</span>serial<span style="color:#f92672">]</span> pod/<span style="color:#f92672">[</span>cluster-name<span style="color:#f92672">]</span>-<span style="color:#f92672">[</span>serial<span style="color:#f92672">]</span>
+</span></span></code></pre></div><p>For example:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ kubectl delete -n default pvc/cluster-example-1 pod/cluster-example-1
+</span></span><span style="display:flex;"><span>persistentvolumeclaim <span style="color:#e6db74">&#34;cluster-example-1&#34;</span> deleted
+</span></span><span style="display:flex;"><span>pod <span style="color:#e6db74">&#34;cluster-example-1&#34;</span> deleted
+</span></span></code></pre></div><h2 id="failure-modes-1">Failure modes</h2>
+<p>A pod belonging to a <code>Cluster</code> can fail in the following ways:</p>
+<ul>
+<li>the pod is explicitly deleted by the user;</li>
+<li>the readiness probe on its <code>postgres</code> container fails;</li>
+<li>the liveness probe on its <code>postgres</code> container fails;</li>
+<li>the Kubernetes worker node is drained;</li>
+<li>the Kubernetes worker node where the pod is scheduled fails.</li>
+</ul>
+<p>Each one of these failures has different effects on the <code>Cluster</code> and the
+services managed by the operator.</p>
+<h3 id="pod-deleted-by-the-user">Pod deleted by the user</h3>
+<p>The operator is notified of the deletion. A new pod belonging to the
+<code>Cluster</code> will be automatically created reusing the existing PVC, if available,
+or starting from a physical backup of the <em>primary</em> otherwise.</p>
+<p>!!! Important
+In case of deliberate deletion of a pod, <code>PodDisruptionBudget</code> policies
+will not be enforced.</p>
+<p>Self-healing will happen as soon as the <em>apiserver</em> is notified.</p>
+<h3 id="readiness-probe-failure">Readiness probe failure</h3>
+<p>After 3 failures, the pod will be considered <em>not ready</em>. The pod will still
+be part of the <code>Cluster</code>, no new pod will be created.</p>
+<p>If the cause of the failure can&rsquo;t be fixed, it is possible to delete the pod
+manually. Otherwise, the pod will resume the previous role when the failure
+is solved.</p>
+<p>Self-healing will happen after three failures of the probe.</p>
+<h3 id="liveness-probe-failure">Liveness probe failure</h3>
+<p>After 3 failures, the <code>postgres</code> container will be considered failed. The
+pod will still be part of the <code>Cluster</code>, and the <em>kubelet</em> will try to restart
+the container. If the cause of the failure can&rsquo;t be fixed, it is possible
+to delete the pod manually.</p>
+<p>Self-healing will happen after three failures of the probe.</p>
+<h3 id="worker-node-drained">Worker node drained</h3>
+<p>The pod will be evicted from the worker node and removed from the service. A
+new pod will be created on a different worker node from a physical backup of the
+<em>primary</em> if the <code>reusePVC</code> option of the <code>nodeMaintenanceWindow</code> parameter
+is set to <code>off</code> (default: <code>on</code> during maintenance windows, <code>off</code> otherwise).</p>
+<p>The <code>PodDisruptionBudget</code> may prevent the pod from being evicted if there
+is at least another pod that is not ready.</p>
+<p>!!! Note
+Single instance clusters prevent node drain when <code>reusePVC</code> is
+set to <code>false</code>. Refer to the <a href="kubernetes_upgrade.md">Kubernetes Upgrade section</a>.</p>
+<p>Self-healing will happen as soon as the <em>apiserver</em> is notified.</p>
+<h3 id="worker-node-failure">Worker node failure</h3>
+<p>Since the node is failed, the <em>kubelet</em> won&rsquo;t execute the liveness and
+the readiness probes. The pod will be marked for deletion after the
+toleration seconds configured by the Kubernetes cluster administrator for
+that specific failure cause. Based on how the Kubernetes cluster is configured,
+the pod might be removed from the service earlier.</p>
+<p>A new pod will be created on a different worker node from a physical backup
+of the <em>primary</em>. The default value for that parameter in a Kubernetes
+cluster is 5 minutes.</p>
+<p>Self-healing will happen after <code>tolerationSeconds</code>.</p>
+<h2 id="self-healing">Self-healing</h2>
+<p>If the failed pod is a standby, the pod is removed from the <code>-r</code> service
+and from the <code>-ro</code> service.
+The pod is then restarted using its PVC if available; otherwise, a new
+pod will be created from a backup of the current primary. The pod
+will be added again to the <code>-r</code> service and to the <code>-ro</code> service when ready.</p>
+<p>If the failed pod is the primary, the operator will promote the active pod
+with status ready and the lowest replication lag, then point the <code>-rw</code> service
+to it. The failed pod will be removed from the <code>-r</code> service and from the
+<code>-rw</code> service.
+Other standbys will start replicating from the new primary. The former
+primary will use <code>pg_rewind</code> to synchronize itself with the new one if its
+PVC is available; otherwise, a new standby will be created from a backup of the
+current primary.</p>
+<h2 id="manual-intervention">Manual intervention</h2>
+<p>In the case of undocumented failure, it might be necessary to intervene
+to solve the problem manually.</p>
+<p>!!! Important
+In such cases, please do not perform any manual operation without the
+support and assistance of EDB engineering team.</p>
+<p>From version 1.11.0 of the operator, you can use the
+<code>k8s.enterprisedb.io/reconciliationLoop</code> annotation to temporarily disable the
+reconciliation loop on a selected PostgreSQL cluster, as follows:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">cluster-example-no-reconcile</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">annotations</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">k8s.enterprisedb.io/reconciliationLoop</span>: <span style="color:#e6db74">&#34;disabled&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># ...</span>
+</span></span></code></pre></div><p>The <code>k8s.enterprisedb.io/reconciliationLoop</code> must be used with extreme care
+and for the sole duration of the extraordinary/emergency operation.</p>
+<p>!!! Warning
+Please make sure that you use this annotation only for a limited period of
+time and you remove it when the emergency has finished. Leaving this annotation
+in a cluster will prevent the operator from issuing any self-healing operation,
+such as a failover.</p>
+
+
+
+    <footer class="text-center p-24">
+    <div>
+        <a href="#" class="bg-rose-600 py-4 px-12 rounded-full text-white text-xl">View on GitHub</a>
+    </div>
+    <p class="text-sm text-slate-600 w-1/2 mx-auto pt-10">&copy; 2019-2022 The CloudNativePG Contributors<br/>
+    The Linux Foundation has registered trademarks and uses trademarks. 
+    For a list of trademarks of The Linux Foundation, please see our <a href="https://www.linuxfoundation.org/trademark-usage/" class="text-rose-600">Trademark Usage page</a>.<br/>
+    Postgres, PostgreSQL and the Slonik Logo are trademarks or registered trademarks of the PostgreSQL Community Association of Canada, and used with their permission.
+    </p>
+</footer>
+
+  </div>
+  
+  <script src="https://cdn.usefathom.com/script.js" data-site="GSMQCVAJ" defer></script>
+  
+</body>
+
+</html>

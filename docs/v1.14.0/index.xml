@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>CloudNative PG</title>
+    <link>https://cloudnative-pg.io/docs/v1.14.0/</link>
+    <description>Recent content on CloudNative PG</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language><atom:link href="https://cloudnative-pg.io/docs/v1.14.0/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title></title>
+      <link>https://cloudnative-pg.io/docs/v1.14.0/api_reference/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://cloudnative-pg.io/docs/v1.14.0/api_reference/</guid>
+      <description>API Reference Cloud Native PostgreSQL extends the Kubernetes API defining the following custom resources:
+ Backup Cluster Pooler ScheduledBackup  All the resources are defined in the postgresql.k8s.enterprisedb.io/v1 API.
+Please refer to the &amp;ldquo;Configuration Samples&amp;rdquo; page&amp;quot; of the documentation for examples of usage.
+Below you will find a description of the defined resources:
+ AffinityConfiguration AzureCredentials Backup BackupConfiguration BackupList BackupSource BackupSpec BackupStatus BarmanObjectStoreConfiguration BootstrapConfiguration BootstrapInitDB BootstrapPgBaseBackup BootstrapRecovery CertificatesConfiguration CertificatesStatus Cluster ClusterCondition ClusterList ClusterSpec ClusterStatus ConfigMapKeySelector ConfigMapResourceVersion DataBackupConfiguration EmbeddedObjectMetadata ExternalCluster GoogleCredentials InstanceID LocalObjectReference MonitoringConfiguration NodeMaintenanceWindow PgBouncerIntegrationStatus PgBouncerSecrets PgBouncerSpec PodMeta PodTemplateSpec Pooler PoolerIntegrations PoolerList PoolerSecrets PoolerSpec PoolerStatus PostgresConfiguration RecoveryTarget ReplicaClusterConfiguration RollingUpdateStatus S3Credentials ScheduledBackup ScheduledBackupList ScheduledBackupSpec ScheduledBackupStatus SecretKeySelector SecretVersion SecretsResourceVersion StorageConfiguration WalBackupConfiguration  AffinityConfiguration AffinityConfiguration contains the info we need to create the affinity rules for Pods</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://cloudnative-pg.io/docs/v1.14.0/applications/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://cloudnative-pg.io/docs/v1.14.0/applications/</guid>
+      <description>Connecting from an application Applications are supposed to work with the services created by Cloud Native PostgreSQL in the same Kubernetes cluster:
+ [cluster name]-rw [cluster name]-ro [cluster name]-r  Those services are entirely managed by the Kubernetes cluster and implement a form of Virtual IP as described in the &amp;ldquo;Service&amp;rdquo; page of the Kubernetes Documentation.
+!!! Hint It is highly recommended using those services in your applications, and avoiding connecting directly to a specific PostgreSQL instance, as the latter can change during the cluster lifetime.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://cloudnative-pg.io/docs/v1.14.0/architecture/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://cloudnative-pg.io/docs/v1.14.0/architecture/</guid>
+      <description>Architecture For High Availability and Scalability goals, the PostgreSQL database management system provides administrators with built-in physical replication capabilities based on Write Ahead Log (WAL) shipping.
+PostgreSQL supports both asynchronous and synchronous streaming replication over the network, as well as asynchronous file-based log shipping (normally used as a fallback option, for example, to store WAL files in an object store). Replicas are usually called standby servers and can also be used for read-only workloads, thanks to the Hot Standby feature.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://cloudnative-pg.io/docs/v1.14.0/backup_recovery/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://cloudnative-pg.io/docs/v1.14.0/backup_recovery/</guid>
+      <description>Backup and Recovery The operator can orchestrate a continuous backup infrastructure that is based on the Barman tool. Instead of using the classical architecture with a Barman server, which backs up many PostgreSQL instances, the operator relies on the barman-cloud-wal-archive, barman-cloud-check-wal-archive, barman-cloud-backup, barman-cloud-backup-list, and barman-cloud-backup-delete tools. As a result, base backups will be tarballs. Both base backups and WAL files can be compressed and encrypted.
+For this, it is required an image with barman-cli-cloud installed.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://cloudnative-pg.io/docs/v1.14.0/before_you_start/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://cloudnative-pg.io/docs/v1.14.0/before_you_start/</guid>
+      <description>Before You Start Before we get started, it is essential to go over some terminology that is specific to Kubernetes and PostgreSQL.
+Kubernetes terminology    Resource Description     Node A node is a worker machine in Kubernetes, either virtual or physical, where all services necessary to run pods are managed by the control plane node(s).   Pod A pod is the smallest computing unit that can be deployed in a Kubernetes cluster and is composed of one or more containers that share network and storage.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://cloudnative-pg.io/docs/v1.14.0/bootstrap/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://cloudnative-pg.io/docs/v1.14.0/bootstrap/</guid>
+      <description>Bootstrap This section describes the options you have to create a new PostgreSQL cluster and the design rationale behind them. There are primarily two ways to bootstrap a new cluster:
+ from scratch (initdb) from an existing PostgreSQL cluster, either directly (pg_basebackup) or indirectly (recovery)  !!! Important Bootstrapping from an existing cluster opens up the possibility to create a replica cluster, that is an independent PostgreSQL cluster which is in continuous recovery, synchronized with the source and that accepts read-only connections.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://cloudnative-pg.io/docs/v1.14.0/certificates/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://cloudnative-pg.io/docs/v1.14.0/certificates/</guid>
+      <description>Certificates Cloud Native PostgreSQL has been designed to natively support TLS certificates. In order to set up a Cluster, the operator requires:
+ a server Certification Authority (CA) certificate a server TLS certificate signed by the server Certification Authority a client Certification Authority certificate a streaming replication client certificate generated by the client Certification Authority  !!! Note You can find all the secrets used by the cluster and their expiration dates in the cluster&amp;rsquo;s status.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://cloudnative-pg.io/docs/v1.14.0/cnp-plugin/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://cloudnative-pg.io/docs/v1.14.0/cnp-plugin/</guid>
+      <description>Cloud Native PostgreSQL Plugin Cloud Native PostgreSQL provides a plugin for kubectl to manage a cluster in Kubernetes. The plugin also works with oc in an OpenShift environment.
+Install You can install the plugin in your system with:
+curl -sSfL \  https://github.com/EnterpriseDB/kubectl-cnp/raw/main/install.sh | \  sudo sh -s -- -b /usr/local/bin Supported Architectures Cloud Native PostgreSQL Plugin is currently build for the following operating system and architectures:
+ Linux  amd64 arm 5/6/7 arm64 s390x ppc64le   macOS  amd64 arm64   Windows  386 amd64 arm 5/6/7 arm64    Use Once the plugin was installed and deployed, you can start using it like this:</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://cloudnative-pg.io/docs/v1.14.0/connection_pooling/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://cloudnative-pg.io/docs/v1.14.0/connection_pooling/</guid>
+      <description>Connection Pooling Cloud Native PostgreSQL provides native support for connection pooling with PgBouncer, one of the most popular open source connection poolers for PostgreSQL, through the Pooler CRD.
+In a nutshell, a Pooler in Cloud Native PostgreSQL is a deployment of PgBouncer pods that sits between your applications and a PostgreSQL service (for example the rw service), creating a separate, scalable, configurable, and highly available database access layer.
+Architecture The following diagram highlights how the introduction of a database access layer based on PgBouncer changes the architecture of Cloud Native PostgreSQL, like an additional blade in a Swiss Army knife.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://cloudnative-pg.io/docs/v1.14.0/container_images/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://cloudnative-pg.io/docs/v1.14.0/container_images/</guid>
+      <description>Container Image Requirements The Cloud Native PostgreSQL operator for Kubernetes is designed to work with any compatible container image of PostgreSQL that complies with the following requirements:
+ PostgreSQL 10+ executables that must be in the path:  initdb postgres pg_ctl pg_controldata pg_basebackup   Barman Cloud executables that must be in the path:  barman-cloud-wal-archive barman-cloud-wal-restore barman-cloud-backup barman-cloud-restore barman-cloud-backup-list barman-cloud-check-wal-archive   PGAudit extension installed (optional - only if PGAudit is required in the deployed clusters) Sensible locale settings  No entry point and/or command is required in the image definition, as Cloud Native PostgreSQL overrides it with its instance manager.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://cloudnative-pg.io/docs/v1.14.0/e2e/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://cloudnative-pg.io/docs/v1.14.0/e2e/</guid>
+      <description>End-to-End Tests Cloud Native PostgreSQL operator is automatically tested after each commit via a suite of End-to-end (E2E) tests. It ensures that the operator correctly deploys and manages the PostgreSQL clusters.
+Moreover, the following Kubernetes versions are tested for each commit, ensuring failure and bugs detection at an early stage of the development process:
+ 1.23 1.22 1.21 1.20 1.19  The following PostgreSQL versions are tested:
+ PostgreSQL 14 PostgreSQL 13 PostgreSQL 12 PostgreSQL 11 PostgreSQL 10  For each tested version of Kubernetes and PostgreSQL, a Kubernetes cluster is created using kind, and the following suite of E2E tests are performed on that cluster:</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://cloudnative-pg.io/docs/v1.14.0/expose_pg_services/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://cloudnative-pg.io/docs/v1.14.0/expose_pg_services/</guid>
+      <description>Exposing Postgres Services This section explains how to expose a PostgreSQL service externally, allowing access to your PostgreSQL database from outside your Kubernetes cluster using NGINX Ingress Controller.
+If you followed the QuickStart, you should have by now a database that can be accessed inside the cluster via the cluster-example-rw (primary) and cluster-example-r (read-only) services in the default namespace. Both services use port 5432.
+Let&amp;rsquo;s assume that you want to make the primary instance accessible from external accesses on port 5432.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://cloudnative-pg.io/docs/v1.14.0/failover/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://cloudnative-pg.io/docs/v1.14.0/failover/</guid>
+      <description>Automated failover In the case of unexpected errors on the primary, the cluster will go into failover mode. This may happen, for example, when:
+ The primary pod has a disk failure The primary pod is deleted The postgres container on the primary has any kind of sustained failure  In the failover scenario, the primary cannot be assumed to be working properly.
+After cases like the ones above, the readiness probe for the primary pod will start failing.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://cloudnative-pg.io/docs/v1.14.0/failure_modes/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://cloudnative-pg.io/docs/v1.14.0/failure_modes/</guid>
+      <description>Failure Modes This section provides an overview of the major failure scenarios that PostgreSQL can face on a Kubernetes cluster during its lifetime.
+!!! Important In case the failure scenario you are experiencing is not covered by this section, please immediately contact EDB for support and assistance.
+!!! Seealso &amp;ldquo;Postgres instance manager&amp;rdquo; Please refer to the &amp;ldquo;Postgres instance manager&amp;rdquo; section for more information the liveness and readiness probes implemented by Cloud Native PostgreSQL.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://cloudnative-pg.io/docs/v1.14.0/installation_upgrade/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://cloudnative-pg.io/docs/v1.14.0/installation_upgrade/</guid>
+      <description>Installation and upgrades !!! Seealso &amp;ldquo;OpenShift&amp;rdquo; For instructions on how to install Cloud Native PostgreSQL on Red Hat OpenShift Container Platform, please refer to the &amp;ldquo;OpenShift&amp;rdquo; section.
+Installation on Kubernetes Directly using the operator manifest The operator can be installed like any other resource in Kubernetes, through a YAML manifest applied via kubectl.
+You can install the latest operator manifest as follows:
+kubectl apply -f \  https://get.enterprisedb.io/cnp/postgresql-operator-1.14.0.yaml Once you have run the kubectl command, Cloud Native PostgreSQL will be installed in your Kubernetes cluster.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://cloudnative-pg.io/docs/v1.14.0/instance_manager/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://cloudnative-pg.io/docs/v1.14.0/instance_manager/</guid>
+      <description>Postgres instance manager Cloud Native PostgreSQL does not rely on an external tool for failover management. It simply relies on the Kubernetes API server and a native key component called: the Postgres instance manager.
+The instance manager takes care of the entire lifecycle of the PostgreSQL leading process (also known as postmaster).
+When you create a new cluster, the operator makes a Pod per instance. The field .spec.instances specifies how many instances to create.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://cloudnative-pg.io/docs/v1.14.0/kubernetes_upgrade/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://cloudnative-pg.io/docs/v1.14.0/kubernetes_upgrade/</guid>
+      <description>Kubernetes Upgrade Kubernetes clusters must be kept updated. This becomes even more important if you are self-managing your Kubernetes clusters, especially on bare metal.
+Planning and executing regular updates is a way for your organization to clean up the technical debt and reduce the business risks, despite the introduction in your Kubernetes infrastructure of controlled downtimes that temporarily take out a node from the cluster for maintenance reasons (recommended reading: &amp;ldquo;Embracing Risk&amp;rdquo; from the Site Reliability Engineering book).</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://cloudnative-pg.io/docs/v1.14.0/labels_annotations/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://cloudnative-pg.io/docs/v1.14.0/labels_annotations/</guid>
+      <description>Labels and annotations Resources in Kubernetes are organized in a flat structure, with no hierarchical information or relationship between them. However, such resources and objects can be linked together and put in relationship through labels and annotations.
+!!! info For more information, please refer to the Kubernetes documentation on annotations and labels.
+In short:
+ an annotation is used to assign additional non-identifying information to resources with the goal to facilitate integration with external tools a label is used to group objects and query them through Kubernetes&amp;rsquo; native selector capability  You can select one or more labels and/or annotations you will use in your Cloud Native PostgreSQL deployments.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://cloudnative-pg.io/docs/v1.14.0/logging/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://cloudnative-pg.io/docs/v1.14.0/logging/</guid>
+      <description>Logging The operator is designed to log in JSON format directly to standard output, including PostgreSQL logs.
+Each log entry has the following fields:
+ level: log level (info, notice, &amp;hellip;) ts: the timestamp (epoch with microseconds) logger: the type of the record (e.g. postgres or pg_controldata) msg: the actual message or the keyword record in case the message is parsed in JSON format record: the actual record (with structure that varies depending on the logger type) logging_podName: the pod where the log was created generated  Operator log A log level can be specified in the cluster spec with the option logLevel and can be set to any of error, warning, info(default), debug or trace.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://cloudnative-pg.io/docs/v1.14.0/monitoring/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://cloudnative-pg.io/docs/v1.14.0/monitoring/</guid>
+      <description>Monitoring Monitoring Instances For each PostgreSQL instance, the operator provides an exporter of metrics for Prometheus via HTTP, on port 9187, named metrics. The operator comes with a predefined set of metrics, as well as a highly configurable and customizable system to define additional queries via one or more ConfigMap or Secret resources (see the &amp;ldquo;User defined metrics&amp;rdquo; section below for details).
+!!! Important Starting from version 1.11, Cloud Native PostgreSQL already installs by default a set of predefined metrics in a ConfigMap called default-monitoring.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://cloudnative-pg.io/docs/v1.14.0/openshift/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://cloudnative-pg.io/docs/v1.14.0/openshift/</guid>
+      <description>Red Hat OpenShift Cloud Native PostgreSQL is certified to run on Red Hat OpenShift Container Platform (OCP) version 4.x and is available directly from the Red Hat Catalog.
+The goal of this section is to help you decide the best installation method for Cloud Native PostgreSQL based on your organizations&amp;rsquo; security and access control policies.
+Cloud Native PostgreSQL can be installed and managed via:
+ OpenShift web console OpenShift command-line interface (CLI) called oc, for full control  Cloud Native PostgreSQL supports all available install modes defined by OpenShift:</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://cloudnative-pg.io/docs/v1.14.0/operator_capability_levels/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://cloudnative-pg.io/docs/v1.14.0/operator_capability_levels/</guid>
+      <description>Operator Capability Levels This section provides a summary of the capabilities implemented by Cloud Native PostgreSQL, classified using the &amp;ldquo;Operator SDK definition of Capability Levels&amp;rdquo; framework.
+!!! Important Based on the Operator Capability Levels model, You can expect a &amp;ldquo;Level V - Auto Pilot&amp;rdquo; set of capabilities from the Cloud Native PostgreSQL Operator.
+Each capability level is associated with a certain set of management features the operator offers:
+ Basic Install Seamless Upgrades Full Lifecycle Deep Insights Auto Pilot  !</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://cloudnative-pg.io/docs/v1.14.0/operator_conf/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://cloudnative-pg.io/docs/v1.14.0/operator_conf/</guid>
+      <description>Operator configuration The operator for Cloud Native PostgreSQL is installed from a standard deployment manifest and follows the convention over configuration paradigm. While this is fine in most cases, there are some scenarios where you want to change the default behavior, such as:
+ defining annotations and labels to be inherited by all resources created by the operator and that are set in the cluster resource defining a different default image for PostgreSQL or an additional pull secret  By default, the operator is installed in the postgresql-operator-system namespace as a Kubernetes Deployment called postgresql-operator-controller-manager.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://cloudnative-pg.io/docs/v1.14.0/postgresql_conf/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://cloudnative-pg.io/docs/v1.14.0/postgresql_conf/</guid>
+      <description>PostgreSQL Configuration Users that are familiar with PostgreSQL are aware of the existence of the following two files to configure an instance:
+ postgresql.conf: main run-time configuration file of PostgreSQL pg_hba.conf: clients authentication file  Due to the concepts of declarative configuration and immutability of the PostgreSQL containers, users are not allowed to directly touch those files. Configuration is possible through the postgresql section of the Cluster resource definition by defining custom postgresql.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://cloudnative-pg.io/docs/v1.14.0/quickstart/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://cloudnative-pg.io/docs/v1.14.0/quickstart/</guid>
+      <description>Quickstart This section describes how to test a PostgreSQL cluster on your laptop/computer using Cloud Native PostgreSQL on a local Kubernetes cluster in Minikube or Kind.
+Red Hat OpenShift Container Platform users can test the certified operator for Cloud Native PostgreSQL on the Red Hat CodeReady Containers (CRC) for OpenShift.
+!!! Warning The instructions contained in this section are for demonstration, testing, and practice purposes only and must not be used in production.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://cloudnative-pg.io/docs/v1.14.0/release_notes/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://cloudnative-pg.io/docs/v1.14.0/release_notes/</guid>
+      <description>Release notes History of user-visible changes for Cloud Native PostgreSQL.
+Version 1.14.0 Release date: 25 March 2022
+Features:
+ Natively support Google Cloud Storage for backup and recovery, by taking advantage of the features introduced in Barman Cloud 2.19 Improved observability of backups through the introduction of the LastBackupSucceeded condition for the Cluster object Support update of Hot Standby sensitive parameters: max_connections, max_prepared_transactions, max_locks_per_transaction, max_wal_senders, max_worker_processes Add the Online upgrade in progress phase in the Cluster object to show when an online upgrade of the operator is in progress Ability to inherit an AWS IAM Role as an alternative way to provide credentials for the S3 object storage Support for Opaque secrets for Pooler’s authQuerySecret and certificates Updated default PostgreSQL version to 14.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://cloudnative-pg.io/docs/v1.14.0/replication/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://cloudnative-pg.io/docs/v1.14.0/replication/</guid>
+      <description>Replication Physical replication is one of the strengths of PostgreSQL and one of the reasons why some of the world&amp;rsquo;s largest organizations in the world have chosen it for the management of their data in business continuity contexts. Primarily used to achieve high availability, physical replication also allows scale-out of read-only workloads and offloading some work from the primary.
+Application-level replication Having contributed throughout the years to the replication feature in PostgreSQL, we have decided to build high availability in Cloud Native PostgreSQL on top of the native physical replication technology and integrate it directly in the Kubernetes API.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://cloudnative-pg.io/docs/v1.14.0/resource_management/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://cloudnative-pg.io/docs/v1.14.0/resource_management/</guid>
+      <description>Resource management In a typical Kubernetes cluster, pods run with unlimited resources. By default, they might be allowed to use as much CPU and RAM as needed.
+Cloud Native PostgreSQL allows administrators to control and manage resource usage by the pods of the cluster, through the resources section of the manifest, with two knobs:
+ requests: initial requirement limits: maximum usage, in case of dynamic increase of resource needs  For example, you can request an initial amount of RAM of 32MiB (scalable to 128MiB) and 50m of CPU (scalable to 100m) as follows:</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://cloudnative-pg.io/docs/v1.14.0/rolling_update/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://cloudnative-pg.io/docs/v1.14.0/rolling_update/</guid>
+      <description>Rolling Updates The operator allows changing the PostgreSQL version used in a cluster while applications are running against it.
+!!! Important Only upgrades for PostgreSQL minor releases are supported.
+Rolling upgrades are started when:
+  the user changes the imageName attribute of the cluster specification;
+  a change in the PostgreSQL configuration requires a restart to be applied;
+  a change on the Cluster .spec.resources values
+  a change in size of the persistent volume claim on AKS</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://cloudnative-pg.io/docs/v1.14.0/samples/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://cloudnative-pg.io/docs/v1.14.0/samples/</guid>
+      <description>Configuration Samples In this section, you can find some examples of configuration files to set up your PostgreSQL Cluster.
+ cluster-example.yaml: a basic example of Cluster that uses the default storage class. For demonstration and experimentation purposes on a personal Kubernetes cluster with Minikube or Kind as described in the &amp;ldquo;Quickstart&amp;rdquo;. cluster-example-custom.yaml: a basic example of Cluster that uses the default storage class and custom parameters for postgresql.conf and pg_hba.conf files cluster-storage-class.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://cloudnative-pg.io/docs/v1.14.0/scheduling/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://cloudnative-pg.io/docs/v1.14.0/scheduling/</guid>
+      <description>Scheduling Scheduling, in Kubernetes, is the process responsible for placing a new pod on the best node possible, based on several criteria.
+!!! Seealso &amp;ldquo;Kubernetes documentation&amp;rdquo; Please refer to the Kubernetes documentation for more information on scheduling, including all the available policies. On this page we assume you are familiar with concepts like affinity, anti-affinity, node selectors, and so on.
+You can control how the Cloud Native PostgreSQL cluster&amp;rsquo;s instances should be scheduled through the affinity section in the definition of the cluster, which supports:</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://cloudnative-pg.io/docs/v1.14.0/security/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://cloudnative-pg.io/docs/v1.14.0/security/</guid>
+      <description>Security This section contains information about security for Cloud Native PostgreSQL, that are analyzed at 3 different layers: Code, Container and Cluster.
+!!! Warning The information contained in this page must not exonerate you from performing regular InfoSec duties on your Kubernetes cluster. Please familiarize yourself with the &amp;ldquo;Overview of Cloud Native Security&amp;rdquo; page from the Kubernetes documentation.
+!!! Seealso &amp;ldquo;About the 4C&amp;rsquo;s Security Model&amp;rdquo; Please refer to &amp;ldquo;The 4C’s Security Model in Kubernetes&amp;rdquo; blog article to get a better understanding and context of the approach EDB has taken with security in Cloud Native PostgreSQL.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://cloudnative-pg.io/docs/v1.14.0/ssl_connections/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://cloudnative-pg.io/docs/v1.14.0/ssl_connections/</guid>
+      <description>Client TLS/SSL Connections !!! Seealso &amp;ldquo;Certificates&amp;rdquo; Please refer to the &amp;ldquo;Certificates&amp;rdquo; page for more details on how Cloud Native PostgreSQL supports TLS certificates.
+The Cloud Native PostgreSQL operator has been designed to work with TLS/SSL for both encryption in transit and authentication, on server and client sides. Clusters created using the CNP operator comes with a Certification Authority (CA) to create and sign TLS client certificates. Through the cnp plugin for kubectl you can issue a new TLS client certificate which can be used to authenticate a user instead of using passwords.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://cloudnative-pg.io/docs/v1.14.0/storage/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://cloudnative-pg.io/docs/v1.14.0/storage/</guid>
+      <description>Storage Storage is the most critical component in a database workload. Storage should be always available, scale, perform well, and guarantee consistency and durability. The same expectations and requirements that apply to traditional environments, such as virtual machines and bare metal, are also valid in container contexts managed by Kubernetes.
+!!! Important Kubernetes has its own specificities, when it comes to dynamically provisioned storage. These include storage classes, persistent volumes, and persistent volume claims.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://cloudnative-pg.io/docs/v1.14.0/troubleshooting/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://cloudnative-pg.io/docs/v1.14.0/troubleshooting/</guid>
+      <description>Troubleshooting In this page, you can find some basic information on how to troubleshoot Cloud Native PostgreSQL in your Kubernetes cluster deployment.
+!!! Hint As a Kubernetes administrator, you should have the kubectl Cheat Sheet page bookmarked!
+Before you start Kubernetes environment What can make a difference in a troubleshooting activity is to provide clear information about the underlying Kubernetes system.
+Make sure you know:
+ the Kubernetes distribution and version you are using the specifications of the nodes where PostgreSQL is running as much as you can about the actual storage, including storage class and benchmarks you have done before going into production.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://cloudnative-pg.io/docs/v1.14.0/use_cases/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://cloudnative-pg.io/docs/v1.14.0/use_cases/</guid>
+      <description>Use cases Cloud Native PostgreSQL has been designed to work with applications that reside in the same Kubernetes cluster, for a full cloud native experience.
+However, it might happen that, while the database can be hosted inside a Kubernetes cluster, applications cannot be containerized at the same time and need to run in a traditional environment such as a VM.
+Case 1: Applications inside Kubernetes In a typical situation, the application and the database run in the same namespace inside a Kubernetes cluster.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+
+
+
+
+<html lang="en">
+
+<head>
+  <title>CloudNative PG</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <meta name="description" content="CloudNativePG is the Kubernetes operator that covers the full lifecycle of a highly available PostgreSQL database cluster with a primary/standby architecture, using native streaming replication." />
+  <meta name="keywords" content="" />
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet" />
+  <link href="/main.min.css" rel="stylesheet" />
+</head>
+
+<body>
+  <div class="h-screen w-screen">
+    
+<main>
+  <header>
+    <div class="flex flex-row px-16 justify-between py-5">
+      <div>
+        
+        <a href="/"><img src="/logo/large_logo.svg" class="h-14" alt="Cloud Native Postgres Logo"></a>
+      </div>
+      <div>
+        <ul class="flex gap-14 text-2xl text-slate-400 my-5">
+          <li><a href="/docs/1.15.0/" target="_blank">Documentation</a></li>
+          <li>Support</li>
+          <li>End users</li>
+          <li>Blog</li>
+        </ul>
+      </div>
+      <div class="flex gap-5 my-4">
+        <a href="https://github.com/cloudnative-pg/cloudnative-pg">
+          <img src="/icons/Git.svg" alt="Github">
+        </a>
+        <a href="https://cloudnativepg.slack.com/">
+          <img src="/icons/Slack.svg" alt="Slack">
+        </a>
+        <a href="https://twitter.com/CloudNativePg">
+          <img src="/icons/Twitter.svg" alt="Twitter">
+        </a>
+        <a href="https://www.youtube.com/channel/UCTGH88W1BiuRRPTzJUDPJyA">
+          <img src="/icons/YouTube.svg" alt="YouTube">
+        </a>
+      </div>
+    </div>
+  </header>
+</main>
+
+
+    
+<h2 class="text-2xl"></h2>
+<h1 id="resource-management">Resource management</h1>
+<p>In a typical Kubernetes cluster, pods run with unlimited resources. By default,
+they might be allowed to use as much CPU and RAM as needed.</p>
+<p>Cloud Native PostgreSQL allows administrators to control and manage resource usage by the pods of the cluster,
+through the <code>resources</code> section of the manifest, with two knobs:</p>
+<ul>
+<li><code>requests</code>: initial requirement</li>
+<li><code>limits</code>: maximum usage, in case of dynamic increase of resource needs</li>
+</ul>
+<p>For example, you can request an initial amount of RAM of 32MiB (scalable to 128MiB) and 50m of CPU (scalable to 100m)
+as follows:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>  <span style="color:#f92672">resources</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">requests</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">memory</span>: <span style="color:#e6db74">&#34;32Mi&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">cpu</span>: <span style="color:#e6db74">&#34;50m&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">limits</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">memory</span>: <span style="color:#e6db74">&#34;128Mi&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">cpu</span>: <span style="color:#e6db74">&#34;100m&#34;</span>
+</span></span></code></pre></div><p>Memory requests and limits are associated with containers, but it is useful to think of a pod as having a memory request
+and limit. The pod&rsquo;s memory request is the sum of the memory requests for all the containers in the pod.</p>
+<p>Pod scheduling is based on requests and not on limits. A pod is scheduled to run on a Node only if the Node has enough
+available memory to satisfy the pod&rsquo;s memory request.</p>
+<p>For each resource, we divide containers into 3 Quality of Service (QoS) classes, in decreasing order of priority:</p>
+<ul>
+<li><em>Guaranteed</em></li>
+<li><em>Burstable</em></li>
+<li><em>Best-Effort</em></li>
+</ul>
+<p>For more details, please refer to the <a href="https://kubernetes.io/docs/tasks/configure-pod-container/quality-service-pod/#qos-classes">&ldquo;Configure Quality of Service for Pods&rdquo;</a>
+section in the Kubernetes documentation.</p>
+<p>For a PostgreSQL workload it is recommended to set a &ldquo;Guaranteed&rdquo; QoS.</p>
+<p>To avoid resources related issues in Kubernetes, we can refer to the best practices for &ldquo;out of resource&rdquo; handling
+while creating a cluster:</p>
+<ul>
+<li>Specify your required values for memory and CPU in the resources section of the manifest file.
+This way, you can avoid the <code>OOM Killed</code> (where &ldquo;OOM&rdquo; stands for Out Of Memory) and <code>CPU throttle</code> or any other
+resource-related issues on running instances.</li>
+<li>For your cluster&rsquo;s pods to get assigned to the &ldquo;Guaranteed&rdquo; QoS class, you must set limits and requests
+for both memory and CPU to the same value.</li>
+<li>Specify your required PostgreSQL memory parameters consistently with the pod resources (as you would do
+in a VM or physical machine scenario - see below).</li>
+<li>Set up database server pods on a dedicated node using nodeSelector.
+See the &ldquo;nodeSelector&rdquo; and &ldquo;tolerations&rdquo; fields of the
+<a href="api_reference.md#affinityconfiguration">“affinityconfiguration&quot;</a> resource on the API reference page.</li>
+</ul>
+<p>You can refer to the following example manifest:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">postgresql.k8s.enterprisedb.io/v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Cluster</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">postgresql-resources</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">instances</span>: <span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">postgresql</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">parameters</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">shared_buffers</span>: <span style="color:#e6db74">&#34;256MB&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">resources</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">requests</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">memory</span>: <span style="color:#e6db74">&#34;1024Mi&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">cpu</span>: <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">limits</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">memory</span>: <span style="color:#e6db74">&#34;1024Mi&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">cpu</span>: <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">storage</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">size</span>: <span style="color:#ae81ff">1Gi</span>
+</span></span></code></pre></div><p>In the above example, we have specified <code>shared_buffers</code> parameter with a value of <code>256MB</code> - i.e., how much memory is
+dedicated to the PostgreSQL server for caching data (the default value for this parameter is <code>128MB</code> in case
+it&rsquo;s not defined).</p>
+<p>A reasonable starting value for <code>shared_buffers</code> is 25% of the memory in your system.
+For example: if your <code>shared_buffers</code> is 256 MB, then the recommended value for your container memory size is 1 GB,
+which means that within a pod all the containers will have a total of 1 GB memory that Kubernetes will always preserve,
+enabling our containers to work as expected.
+For more details, please refer to the <a href="https://www.postgresql.org/docs/current/runtime-config-resource.html">&ldquo;Resource Consumption&rdquo;</a>
+section in the PostgreSQL documentation.</p>
+<p>!!! Seealso &ldquo;Managing Compute Resources for Containers&rdquo;
+For more details on resource management, please refer to the
+<a href="https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/">&ldquo;Managing Compute Resources for Containers&rdquo;</a>
+page from the Kubernetes documentation.</p>
+
+
+
+    <footer class="text-center p-24">
+    <div>
+        <a href="#" class="bg-rose-600 py-4 px-12 rounded-full text-white text-xl">View on GitHub</a>
+    </div>
+    <p class="text-sm text-slate-600 w-1/2 mx-auto pt-10">&copy; 2019-2022 The CloudNativePG Contributors<br/>
+    The Linux Foundation has registered trademarks and uses trademarks. 
+    For a list of trademarks of The Linux Foundation, please see our <a href="https://www.linuxfoundation.org/trademark-usage/" class="text-rose-600">Trademark Usage page</a>.<br/>
+    Postgres, PostgreSQL and the Slonik Logo are trademarks or registered trademarks of the PostgreSQL Community Association of Canada, and used with their permission.
+    </p>
+</footer>
+
+  </div>
+  
+  <script src="https://cdn.usefathom.com/script.js" data-site="GSMQCVAJ" defer></script>
+  
+</body>
+
+</html>
