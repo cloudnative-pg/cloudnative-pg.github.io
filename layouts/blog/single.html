@@ -1,20 +1,82 @@
 {{ define "main" }}
+<h1 class="h1 text-center mx-auto w-3/5">{{.Title}}</h1>
+<div class="w-3/5 mx-auto">
+    <!--User profile-->
+    <div class="flex gap-3 my-10 mx-auto flex justify-center">
+        <div class="my-auto">
+            <img src="{{ .Params.avatar.image }}" class="w-10 h-10 rounded-full" alt="">
+        </div>
+        <div>
+            <div>
+                <h1 class="text-lg charcoal font-bold">
+                    {{ .Params.author }}
+                </h1>
+            </div>
+            <div class="flex gap-2 text-sm charcoal opacity-75">
+                <ul class="flex gap-2 text-sm charcoal">
+                    <li>{{ .PublishDate.Format "January 2, 2006" }}</li>
+                    <li>•</li>
+                    <li>{{ .Params.time }}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--User profile-->
 
-<article class="mx-auto container my-12">
-    <h1 class="text-xl">{{.Title}}</h1>
-    <p class="text-lg">{{ .Params.summary }}</p>
+    <!--Blog image-->
+    <div>
+        <img src="{{ .Params.image.url }}" alt="blog image" class="h-80 mx-auto w-full">
+    </div>
+    <!--Blog image-->
 
-    {{ with .Resources.GetMatch .Params.image.url }}
-    {{- $img := . -}}
-    <figure>
-        {{- $img = $img.Crop "2048x350 center" -}}
-        <img src="{{ $img.RelPermalink }}">
-        <figcaption>
-            <h4>{{.Params.image.attribution | safeHTML}}</h4>
-        </figcaption>
-    </figure>
-    {{ end }}
-    {{.Content}}
-</article>
+    <!--Blog content-->
+    <div class="mx-auto my-10">
+        {{ .Content }}
+    </div>
+    <!--Blog content-->
+
+    <!--Popular posts-->
+    <div class="mt-20 pb-24 w-1/3">
+        <h3 class="h2 font-bold my-3 charcoal">Popular Posts</h3>
+        <div class="flex columns-3 gap-x-10 pt-5">
+            <!--Card 1 starts here-->
+            <div class="p-8 bg-white drop-shadow-md rounded-md border-2 border-slate-50">
+                <!--User profile-->
+                <div class="flex gap-3 mb-2.5">
+                    <div class="my-auto">
+                        <img src="{{ .Params.avatar.image }}" class="w-10 h-10 rounded-full" alt="">
+                    </div>
+                    <div class="my-auto">
+                        <h1 class="text-base charcoal font-bold">
+                            {{.Params.author}}
+                        </h1>
+                    </div>
+                </div>
+                <!--User profile-->
+
+                <!--Blog image and content preview-->
+                <div>
+                    <img src="{{ .Params.image.url }}" class="object-fill w-full h-36" alt="Blog image">
+                </div>
+                <div class="charcoal">
+                    <h2 class="text-lg my-2.5 font-bold">{{.Title}}</h2>
+                </div>
+                <!--Blog image and content preview-->
+
+                <div class="flex gap-2 text-sm charcoal opacity-75">
+                    <div>
+                        <ul class="flex gap-2 text-sm charcoal">
+                            <li>{{ .PublishDate.Format "January 2, 2006" }}</li>
+                            <li>•</li>
+                            <li>{{ .Params.time }}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!--Card 1 ends here-->
+        </div>
+    </div>
+    <!--Popular posts-->
+</div>
 
 {{ end }}

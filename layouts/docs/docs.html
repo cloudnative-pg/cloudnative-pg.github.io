@@ -1,0 +1,39 @@
+{{ define "main" }}
+<div class="flex px-56 pt-14 gap-5">
+    <div class="bg-purple-2 pt-14">
+        <!-- Tree node-->
+        <h1 class="px-11 cnp-blue bg-purple-2 w-96 font-bold py-1">What is CloudNativePG?</h1>
+        <h1 class="pl-20 pr-11 cnp-blue bg-purple-2 w-96 py-1">Archectiture and Concepts</h1>
+        <h1 class="pl-20 pr-11 cnp-blue bg-purple-2 w-96 py-1">Terminology</h1>
+        <h1 class="pl-20 pr-11 cnp-blue bg-purple-2 w-96 py-1">Best Practices</h1>
+        <h1 class="pl-20 pr-11 cnp-blue bg-purple-2 w-96 py-1">Contributors</h1>
+        <!-- Tree node-->
+        <h1 class="px-11 cnp-blue bg-purple-2 w-96 font-bold py-1">Deploy</h1>
+        <h1 class="pl-20 pr-11 cnp-blue bg-purple-2 w-96 py-1">Quick Installation</h1>
+        <h1 class="pl-32 pr-11 cnp-blue bg-purple-2 w-96 py-1">Tree item</h1>
+        <h1 class="pl-32 pr-11 cnp-blue bg-purple-2 w-96 py-1">Tree item</h1>
+        <h1 class="pl-20 pr-11 cnp-blue bg-purple-2 w-96 py-1">Accessing the UI</h1>
+        <h1 class="pl-20 pr-11 cnp-blue bg-purple-2 w-96 py-1">Upgrade</h1>
+        <h1 class="pl-20 pr-11 cnp-blue bg-purple-2 w-96 py-1">Uninstall CloudNativePG</h1>
+    </div>
+    <div>
+        <div>
+            <h1 class="h1 text-center mx-auto bg-docs-banner rounded-lg text-white my-auto py-24 px-5">Lorem ipsum dolor
+                sit amet, consectetur adipiscing elit ut aliquam, purus sit</h1>
+        </div>
+        {{ range .Pages }}
+        <!--Blog content-->
+        <p class="p-medium my-10">
+            {{ .Content }}
+        </p>
+        <!--Blog content-->
+        {{ end }}
+        <!--Diagram image-->
+        <div>
+            {{ $image := resources.Get "images/temp-docs.jpg" }}
+            <img src="/images/temp-docs.jpg" alt="docs image" class="mx-auto w-auto px-56 pb-24">
+        </div>
+        <!--Diagram image-->
+    </div>
+</div>
+{{ end }}
