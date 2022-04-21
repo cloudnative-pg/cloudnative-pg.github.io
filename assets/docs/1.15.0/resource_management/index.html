@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="The CloudNativePG Contributors" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Resource management - CloudNativePG</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Resource management";
+        var mkdocs_page_input_path = "resource_management.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> CloudNativePG
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">CloudNativePG</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../before_you_start/">Before You Start</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../use_cases/">Use cases</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../architecture/">Architecture</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../installation_upgrade/">Installation and upgrades</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../quickstart/">Quickstart</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../bootstrap/">Bootstrap</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../security/">Security</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../instance_manager/">Postgres instance manager</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../scheduling/">Scheduling</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Resource management</a>
+    <ul class="current">
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../failure_modes/">Failure Modes</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../rolling_update/">Rolling Updates</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../replication/">Replication</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../backup_recovery/">Backup and Recovery</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../postgresql_conf/">PostgreSQL Configuration</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../operator_conf/">Operator configuration</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../storage/">Storage</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../labels_annotations/">Labels and annotations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../monitoring/">Monitoring</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../logging/">Logging</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../certificates/">Certificates</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../ssl_connections/">Client TLS/SSL Connections</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../applications/">Connecting from an application</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../connection_pooling/">Connection Pooling</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../kubernetes_upgrade/">Kubernetes Upgrade</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../expose_pg_services/">Exposing Postgres Services</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../cnpg-plugin/">CloudNativePG Plugin</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../failover/">Automated failover</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../troubleshooting/">Troubleshooting</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../fencing/">Fencing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../e2e/">End-to-End Tests</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../container_images/">Container Image Requirements</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../operator_capability_levels/">Operator Capability Levels</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../samples/">Configuration Samples</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../commercial_support/">Commercial support</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../api_reference/">API Reference</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../supported_releases/">Supported releases</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../release_notes/">Release notes</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">CloudNativePG</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li><li>Resource management</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="resource-management">Resource management</h1>
+<p>In a typical Kubernetes cluster, pods run with unlimited resources. By default,
+they might be allowed to use as much CPU and RAM as needed.</p>
+<p>CloudNativePG allows administrators to control and manage resource usage by the pods of the cluster,
+through the <code>resources</code> section of the manifest, with two knobs:</p>
+<ul>
+<li><code>requests</code>: initial requirement</li>
+<li><code>limits</code>: maximum usage, in case of dynamic increase of resource needs</li>
+</ul>
+<p>For example, you can request an initial amount of RAM of 32MiB (scalable to 128MiB) and 50m of CPU (scalable to 100m)
+as follows:</p>
+<pre><code class="language-yaml">  resources:
+    requests:
+      memory: &quot;32Mi&quot;
+      cpu: &quot;50m&quot;
+    limits:
+      memory: &quot;128Mi&quot;
+      cpu: &quot;100m&quot;
+</code></pre>
+<p>Memory requests and limits are associated with containers, but it is useful to think of a pod as having a memory request
+and limit. The pod's memory request is the sum of the memory requests for all the containers in the pod.</p>
+<p>Pod scheduling is based on requests and not on limits. A pod is scheduled to run on a Node only if the Node has enough
+available memory to satisfy the pod's memory request.</p>
+<p>For each resource, we divide containers into 3 Quality of Service (QoS) classes, in decreasing order of priority:</p>
+<ul>
+<li><em>Guaranteed</em></li>
+<li><em>Burstable</em></li>
+<li><em>Best-Effort</em></li>
+</ul>
+<p>For more details, please refer to the <a href="https://kubernetes.io/docs/tasks/configure-pod-container/quality-service-pod/#qos-classes">"Configure Quality of Service for Pods"</a>
+section in the Kubernetes documentation.</p>
+<p>For a PostgreSQL workload it is recommended to set a "Guaranteed" QoS.</p>
+<p>To avoid resources related issues in Kubernetes, we can refer to the best practices for "out of resource" handling
+while creating a cluster:</p>
+<ul>
+<li>Specify your required values for memory and CPU in the resources section of the manifest file.
+   This way, you can avoid the <code>OOM Killed</code> (where "OOM" stands for Out Of Memory) and <code>CPU throttle</code> or any other
+   resource-related issues on running instances.</li>
+<li>For your cluster's pods to get assigned to the "Guaranteed" QoS class, you must set limits and requests
+   for both memory and CPU to the same value.</li>
+<li>Specify your required PostgreSQL memory parameters consistently with the pod resources (as you would do
+   in a VM or physical machine scenario - see below).</li>
+<li>Set up database server pods on a dedicated node using nodeSelector.
+   See the "nodeSelector" and "tolerations" fields of the
+   <a href="../api_reference/#affinityconfiguration">“affinityconfiguration"</a> resource on the API reference page.</li>
+</ul>
+<p>You can refer to the following example manifest:</p>
+<pre><code class="language-yaml">apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: postgresql-resources
+spec:
+
+  instances: 3
+
+  postgresql:
+    parameters:
+      shared_buffers: &quot;256MB&quot;
+
+  resources:
+    requests:
+      memory: &quot;1024Mi&quot;
+      cpu: 1
+    limits:
+      memory: &quot;1024Mi&quot;
+      cpu: 1
+
+  storage:
+    size: 1Gi
+</code></pre>
+<p>In the above example, we have specified <code>shared_buffers</code> parameter with a value of <code>256MB</code> - i.e., how much memory is
+dedicated to the PostgreSQL server for caching data (the default value for this parameter is <code>128MB</code> in case
+it's not defined).</p>
+<p>A reasonable starting value for <code>shared_buffers</code> is 25% of the memory in your system.
+For example: if your <code>shared_buffers</code> is 256 MB, then the recommended value for your container memory size is 1 GB,
+which means that within a pod all the containers will have a total of 1 GB memory that Kubernetes will always preserve,
+enabling our containers to work as expected.
+For more details, please refer to the <a href="https://www.postgresql.org/docs/current/runtime-config-resource.html">"Resource Consumption"</a>
+section in the PostgreSQL documentation.</p>
+<div class="admonition seealso">
+<p class="admonition-title">Managing Compute Resources for Containers</p>
+<p>For more details on resource management, please refer to the
+<a href="https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/">"Managing Compute Resources for Containers"</a>
+page from the Kubernetes documentation.</p>
+</div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../scheduling/" class="btn btn-neutral float-left" title="Scheduling"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../failure_modes/" class="btn btn-neutral float-right" title="Failure Modes">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../scheduling/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../failure_modes/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

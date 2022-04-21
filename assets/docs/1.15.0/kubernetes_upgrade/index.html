@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="The CloudNativePG Contributors" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Kubernetes Upgrade - CloudNativePG</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Kubernetes Upgrade";
+        var mkdocs_page_input_path = "kubernetes_upgrade.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> CloudNativePG
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">CloudNativePG</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../before_you_start/">Before You Start</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../use_cases/">Use cases</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../architecture/">Architecture</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../installation_upgrade/">Installation and upgrades</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../quickstart/">Quickstart</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../bootstrap/">Bootstrap</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../security/">Security</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../instance_manager/">Postgres instance manager</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../scheduling/">Scheduling</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../resource_management/">Resource management</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../failure_modes/">Failure Modes</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../rolling_update/">Rolling Updates</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../replication/">Replication</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../backup_recovery/">Backup and Recovery</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../postgresql_conf/">PostgreSQL Configuration</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../operator_conf/">Operator configuration</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../storage/">Storage</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../labels_annotations/">Labels and annotations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../monitoring/">Monitoring</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../logging/">Logging</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../certificates/">Certificates</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../ssl_connections/">Client TLS/SSL Connections</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../applications/">Connecting from an application</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../connection_pooling/">Connection Pooling</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Kubernetes Upgrade</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#single-instance-clusters-with-reusepvc-set-to-false">Single instance clusters with reusePVC set to false</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../expose_pg_services/">Exposing Postgres Services</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../cnpg-plugin/">CloudNativePG Plugin</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../failover/">Automated failover</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../troubleshooting/">Troubleshooting</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../fencing/">Fencing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../e2e/">End-to-End Tests</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../container_images/">Container Image Requirements</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../operator_capability_levels/">Operator Capability Levels</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../samples/">Configuration Samples</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../commercial_support/">Commercial support</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../api_reference/">API Reference</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../supported_releases/">Supported releases</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../release_notes/">Release notes</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">CloudNativePG</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li><li>Kubernetes Upgrade</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="kubernetes-upgrade">Kubernetes Upgrade</h1>
+<p>Kubernetes clusters must be kept updated. This becomes even more
+important if you are self-managing your Kubernetes clusters, especially
+on <strong>bare metal</strong>.</p>
+<p>Planning and executing regular updates is a way for your organization
+to clean up the technical debt and reduce the business risks, despite
+the introduction in your Kubernetes infrastructure of controlled
+downtimes that temporarily take out a node from the cluster for
+maintenance reasons (recommended reading:
+<a href="https://landing.google.com/sre/sre-book/chapters/embracing-risk/">"Embracing Risk"</a>
+from the Site Reliability Engineering book).</p>
+<p>For example, you might need to apply security updates on the Linux
+servers where Kubernetes is installed, or to replace a malfunctioning
+hardware component such as RAM, CPU, or RAID controller, or even upgrade
+the cluster to the latest version of Kubernetes.</p>
+<p>Usually, maintenance operations in a cluster are performed one node
+at a time by:</p>
+<ol>
+<li>evicting the workloads from the node to be updated (<code>drain</code>)</li>
+<li>performing the actual operation (for example, system update)</li>
+<li>re-joining the node to the cluster (<code>uncordon</code>)</li>
+</ol>
+<p>The above process requires workloads to be either stopped for the
+entire duration of the upgrade or migrated to another node.</p>
+<p>While the latest case is the expected one in terms of service
+reliability and self-healing capabilities of Kubernetes, there can
+be situations where it is advised to operate with a temporarily
+degraded cluster and wait for the upgraded node to be up again.</p>
+<p>In particular, if your PostgreSQL cluster relies on <strong>node-local storage</strong>
+- that is <em>storage which is local to the Kubernetes worker node where
+the PostgreSQL database is running</em>.
+Node-local storage (or simply <em>local storage</em>) is used to enhance performance.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If your database files are on shared storage over the network,
+you may not need to define a maintenance window. If the volumes currently
+used by the pods can be reused by pods running on different nodes after
+the drain, the default self-healing behavior of the operator will work
+fine (you can then skip the rest of this section).</p>
+</div>
+<p>When using local storage for PostgreSQL, you are advised to temporarily
+put the cluster in <strong>maintenance mode</strong> through the <code>nodeMaintenanceWindow</code>
+option to avoid standard self-healing procedures to kick in,
+while, for example, enlarging the partition on the physical node or
+updating the node itself.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Limit the duration of the maintenance window to the shortest
+amount of time possible. In this phase, some of the expected
+behaviors of Kubernetes are either disabled or running with
+some limitations, including self-healing, rolling updates,
+and Pod disruption budget.</p>
+</div>
+<p>The <code>nodeMaintenanceWindow</code> option of the cluster has two further
+settings:</p>
+<p><code>inProgress</code>:
+Boolean value that states if the maintenance window for the nodes
+is currently in progress or not. By default, it is set to <code>off</code>.
+During the maintenance window, the <code>reusePVC</code> option below is
+evaluated by the operator.</p>
+<p><code>reusePVC</code>:
+Boolean value that defines if an existing PVC is reused or
+not during the maintenance operation. By default, it is set to <code>on</code>.
+When <strong>enabled</strong>, Kubernetes waits for the node to come up
+again and then reuses the existing PVC; the <code>PodDisruptionBudget</code>
+policy is temporarily removed.
+When <strong>disabled</strong>, Kubernetes forces the recreation of the
+Pod on a different node with a new PVC by relying on
+PostgreSQL's physical streaming replication, then destroys
+the old PVC together with the Pod. This scenario is generally
+not recommended unless the database's size is small, and re-cloning
+the new PostgreSQL instance takes shorter than waiting. This behavior
+does <strong>not</strong> apply to clusters with only one instance and
+reusePVC disabled: see section below.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When performing the <code>kubectl drain</code> command, you will need
+to add the <code>--delete-local-data</code> option.
+Don't be afraid: it refers to another volume internally used
+by the operator - not the PostgreSQL data directory.</p>
+</div>
+<h2 id="single-instance-clusters-with-reusepvc-set-to-false">Single instance clusters with <code>reusePVC</code> set to <code>false</code></h2>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>We recommend to always create clusters with more
+than one instance in order to guarantee high availability.</p>
+</div>
+<p>Deleting the only PostgreSQL instance in a single instance cluster with
+<code>reusePVC</code> set to <code>false</code> would imply all data being lost,
+therefore we prevent users from draining nodes such instances might be running
+on, even in maintenance mode.</p>
+<p>However, in case maintenance is required for such a node you have two options:</p>
+<ol>
+<li>Enable <code>reusePVC</code>, accepting the downtime</li>
+<li>Replicate the instance on a different node and switch over the primary</li>
+</ol>
+<p>As long as a database service downtime is acceptable for your environment,
+draining the node is as simple as setting the <code>nodeMaintenanceWindow</code> to
+<code>inProgress: true</code> and <code>reusePVC: true</code>. This will allow the instance to
+be deleted and recreated as soon as the original PVC is available
+(e.g. with node local storage, as soon as the node is back up).</p>
+<p>Otherwise you will have to scale up the cluster, creating a new instance
+on a different node and promoting the new instance to primary in order to
+shut down the original one on the node undergoing maintenance. The only
+downtime in this case will be the duration of the switchover.</p>
+<p>A possible approach could be:</p>
+<ol>
+<li>Cordon the node on which the current instance is running.</li>
+<li>Scale up the cluster to 2 instances, could take some time depending on the database size.</li>
+<li>As soon as the new instance is running, the operator will automatically
+   perform a switchover given that the current primary is running on a cordoned node.</li>
+<li>Scale back down the cluster to a single instance, this will delete the old instance</li>
+<li>The old primary's node can now be drained successfully, while leaving the new primary
+   running on a new node.</li>
+</ol>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../connection_pooling/" class="btn btn-neutral float-left" title="Connection Pooling"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../expose_pg_services/" class="btn btn-neutral float-right" title="Exposing Postgres Services">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../connection_pooling/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../expose_pg_services/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

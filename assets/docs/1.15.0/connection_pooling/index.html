@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="The CloudNativePG Contributors" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Connection Pooling - CloudNativePG</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Connection Pooling";
+        var mkdocs_page_input_path = "connection_pooling.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> CloudNativePG
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">CloudNativePG</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../before_you_start/">Before You Start</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../use_cases/">Use cases</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../architecture/">Architecture</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../installation_upgrade/">Installation and upgrades</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../quickstart/">Quickstart</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../bootstrap/">Bootstrap</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../security/">Security</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../instance_manager/">Postgres instance manager</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../scheduling/">Scheduling</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../resource_management/">Resource management</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../failure_modes/">Failure Modes</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../rolling_update/">Rolling Updates</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../replication/">Replication</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../backup_recovery/">Backup and Recovery</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../postgresql_conf/">PostgreSQL Configuration</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../operator_conf/">Operator configuration</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../storage/">Storage</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../labels_annotations/">Labels and annotations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../monitoring/">Monitoring</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../logging/">Logging</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../certificates/">Certificates</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../ssl_connections/">Client TLS/SSL Connections</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../applications/">Connecting from an application</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Connection Pooling</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#architecture">Architecture</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#quickstart">Quickstart</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pooler-resource-lifecycle">Pooler resource lifecycle</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#security">Security</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#certificates">Certificates</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#authentication">Authentication</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#podtemplates">PodTemplates</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#high-availability-ha">High Availability (HA)</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pgbouncer-configuration-options">PgBouncer configuration options</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#monitoring">Monitoring</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#logging">Logging</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pausing-connections">Pausing connections</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#limitations">Limitations</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#single-postgresql-cluster">Single PostgreSQL cluster</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#controlled-configurability">Controlled configurability</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../kubernetes_upgrade/">Kubernetes Upgrade</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../expose_pg_services/">Exposing Postgres Services</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../cnpg-plugin/">CloudNativePG Plugin</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../failover/">Automated failover</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../troubleshooting/">Troubleshooting</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../fencing/">Fencing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../e2e/">End-to-End Tests</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../container_images/">Container Image Requirements</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../operator_capability_levels/">Operator Capability Levels</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../samples/">Configuration Samples</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../commercial_support/">Commercial support</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../api_reference/">API Reference</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../supported_releases/">Supported releases</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../release_notes/">Release notes</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">CloudNativePG</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li><li>Connection Pooling</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="connection-pooling">Connection Pooling</h1>
+<p>CloudNativePG provides native support for connection pooling with
+<a href="https://www.pgbouncer.org/">PgBouncer</a>, one of the most popular open source
+connection poolers for PostgreSQL, through the <code>Pooler</code> CRD.</p>
+<p>In a nutshell, a <code>Pooler</code> in CloudNativePG is a deployment of
+PgBouncer pods that sits between your applications and a PostgreSQL service
+(for example the <code>rw</code> service), creating a separate, scalable, configurable,
+and highly available <strong>database access layer</strong>.</p>
+<h2 id="architecture">Architecture</h2>
+<p>The following diagram highlights how the introduction of a database access
+layer based on PgBouncer changes the architecture of CloudNativePG,
+like an additional blade in a Swiss Army knife. Instead of directly connecting
+to the PostgreSQL primary service, applications can now connect to the
+equivalent service for PgBouncer, enabling reuse of existing connections for
+faster performance and better resource management on the PostgreSQL side.</p>
+<p><img alt="Applications writing to the single primary via PgBouncer" src="../images/pgbouncer-architecture-rw.png" /></p>
+<h2 id="quickstart">Quickstart</h2>
+<p>The easiest way to explain how CloudNativePG implements a PgBouncer
+pooler is through an example:</p>
+<pre><code class="language-yaml">apiVersion: postgresql.cnpg.io/v1
+kind: Pooler
+metadata:
+  name: pooler-example-rw
+spec:
+  cluster:
+    name: cluster-example
+
+  instances: 3
+  type: rw
+  pgbouncer:
+    poolMode: session
+    parameters:
+      max_client_conn: &quot;1000&quot;
+      default_pool_size: &quot;10&quot;
+</code></pre>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Pooler name should never match with any Cluster name within the same namespace.</p>
+</div>
+<p>This creates a new <code>Pooler</code> resource called <code>pooler-example-rw</code> (the name is
+arbitrary) that is strictly associated with the Postgres <code>Cluster</code> resource called
+<code>cluster-example</code> and pointing to the primary, identified by the read/write
+service (<code>rw</code>, therefore <code>cluster-example-rw</code>).</p>
+<p>The <code>Pooler</code> must live in the same namespace of the Postgres cluster.
+It consists of a Kubernetes deployment of 3 pods running the
+<a href="https://ghcr.io/cloudnative-pg/pgbouncer">latest stable image of PgBouncer</a>,
+configured with the <a href="https://www.pgbouncer.org/config.html#pool-mode"><code>session</code> pooling mode</a>
+and accepting up to 1000 connections each - with a default pool size of 10
+user/database pairs towards PostgreSQL.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>The <code>Pooler</code> only sets the <code>*</code> fallback database in PgBouncer, meaning
+that all parameters in the connection strings passed from the client are
+relayed to the PostgreSQL server (please refer to <a href="https://www.pgbouncer.org/config.html#section-databases">"Section [databases]"
+in PgBouncer's documentation</a>).</p>
+</div>
+<p>Additionally, CloudNativePG automatically creates a secret with the
+same name of the pooler containing the configuration files used with PgBouncer.</p>
+<div class="admonition seealso">
+<p class="admonition-title">API reference</p>
+<p>For details, please refer to <a href="../api_reference/#PgBouncerSpec"><code>PgBouncerSpec</code> section</a>
+in the API reference.</p>
+</div>
+<h2 id="pooler-resource-lifecycle">Pooler resource lifecycle</h2>
+<p><code>Pooler</code> resources are not <code>Cluster</code>-managed resources. You are supposed to
+create poolers manually when they are needed. Additionally, you can deploy
+multiple poolers per PostgreSQL Cluster.</p>
+<p>What is important to note is that the lifecycles of the <code>Cluster</code> and the
+<code>Pooler</code> resources are currently independent: the deletion of the <code>Cluster</code>
+doesn't imply the automatic deletion of the <code>Pooler</code>, and viceversa.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Now that you know how a <code>Pooler</code> works, you have full freedom in terms of
+possible architectures: you can have clusters without poolers, clusters with
+a single pooler, or clusters with several poolers (i.e. one per application).</p>
+</div>
+<h2 id="security">Security</h2>
+<p>Any PgBouncer pooler is transparently integrated with CloudNativePG
+support for in-transit encryption via <strong>TLS connections</strong>, both on the client
+(application) and server (PostgreSQL) side of the pool.</p>
+<p>Specifically, PgBouncer automatically reuses the certificates of the PostgreSQL
+server. Moreover, it uses TLS client certificate authentication to connect
+to the PostgreSQL server to run the <code>auth_query</code> for clients' password
+authentication (see the <a href="#authentication">"Authentication" section</a> below).</p>
+<p>Containers run as the <code>pgbouncer</code> system user, and access to the <code>pgbouncer</code>
+database is only allowed via local connections, through <code>peer</code> authentication.</p>
+<h3 id="certificates">Certificates</h3>
+<p>By default, PgBouncer pooler will use the same certificates that are used by the
+cluster itself, but if the user provides those certificates the pooler will accept
+secrets with the following format:</p>
+<ol>
+<li>Basic Auth</li>
+<li>TLS</li>
+<li>Opaque</li>
+</ol>
+<p>In the Opaque case, it will look for specific keys that needs to be used, those keys
+are the following:</p>
+<ul>
+<li>tls.crt</li>
+<li>tls.key</li>
+</ul>
+<p>So we can treat this secret as a TLS secret, and start from there.</p>
+<h2 id="authentication">Authentication</h2>
+<p><strong>Password based authentication</strong> is the only supported method for clients of
+PgBouncer in CloudNativePG.</p>
+<p>Internally, our implementation relies on PgBouncer's <code>auth_user</code> and <code>auth_query</code> options. Specifically, the operator:</p>
+<ul>
+<li>creates a standard user called <code>cnpg_pooler_pgbouncer</code> in the PostgreSQL server</li>
+<li>creates the lookup function in the <code>postgres</code> database and grants execution
+  privileges to the <code>cnpg_pooler_pgbouncer</code> user (PoLA)</li>
+<li>issues a TLS certificate for this user</li>
+<li>sets <code>cnpg_pooler_pgbouncer</code> as the <code>auth_user</code></li>
+<li>configures PgBouncer to use the TLS certificate to authenticate
+  <code>cnpg_pooler_pgbouncer</code> against the PostgreSQL server</li>
+<li>removes all the above when it detects that a cluster does not have
+  any pooler associated to it</li>
+</ul>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>If you specify your own secrets the operator will not automatically integrate the Pooler.</p>
+</div>
+<p>To manually integrate the Pooler, in the case that you have specified your own secrets, you must run the following queries from inside your cluster.</p>
+<ol>
+<li>Create the role:</li>
+</ol>
+<p><code>sql
+   CREATE ROLE cnpg_pooler_pgbouncer WITH LOGIN;</code></p>
+<ol>
+<li>For each application database, grant the permission for <code>cnpg_pooler_pgbouncer</code> to connect to it:</li>
+</ol>
+<p><code>sql
+   GRANT CONNECT ON DATABASE { database name here } TO cnpg_pooler_pgbouncer;</code></p>
+<ol>
+<li>Connect in each application database, then create the authentication function inside each of the application databases:</li>
+</ol>
+<p>```sql
+   CREATE OR REPLACE FUNCTION user_search(uname TEXT) RETURNS TABLE (usename name, passwd text) as 'SELECT usename, passwd FROM pg_shadow WHERE usename=$1;' LANGUAGE sql SECURITY DEFINER;</p>
+<p>REVOKE ALL ON FUNCTION user_search(text) FROM public;</p>
+<p>GRANT EXECUTE ON FUNCTION user_search(text) TO cnpg_pooler_pgbouncer;
+   ```</p>
+<h2 id="podtemplates">PodTemplates</h2>
+<p>You can take advantage of pod templates specification in the <code>template</code>
+section of a <code>Pooler</code> resource. For details, please refer to <a href="../api_reference/#PoolerSpec"><code>PoolerSpec</code>
+section</a> in the API reference.</p>
+<p>Through templates you can configure pods as you like, including fine
+control over affinity and anti-affinity rules for pods and nodes.
+By default, containers use images from <code>ghcr.io/cloudnative-pg/pgbouncer</code>.</p>
+<p>Here an example of Pooler specifying PodAntiAffinity:</p>
+<pre><code class="language-yaml">apiVersion: postgresql.cnpg.io/v1
+kind: Pooler
+metadata:
+  name: pooler-example-rw
+spec:
+  cluster:
+    name: cluster-example
+  instances: 3
+  type: rw
+
+  template:
+    metadata:
+      labels:
+        app: pooler
+    spec:
+      containers: []
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - pooler
+            topologyKey: &quot;kubernetes.io/hostname&quot;
+</code></pre>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code>.spec.template.spec.containers</code> has to be explicitly set to <code>[]</code> when not modified, as it's a required field for a <code>PodSpec</code>.
+If <code>.spec.template.spec.containers</code> is not set the kubernetes api-server will return the following error when trying to apply the manifest:
+<code>error validating "pooler.yaml": error validating data: ValidationError(Pooler.spec.template.spec): missing required field "containers"</code></p>
+</div>
+<p>Here an example setting resources and changing the used image:</p>
+<pre><code class="language-yaml">apiVersion: postgresql.cnpg.io/v1
+kind: Pooler
+metadata:
+  name: pooler-example-rw
+spec:
+  cluster:
+    name: cluster-example
+  instances: 3
+  type: rw
+
+  template:
+    metadata:
+      labels:
+        app: pooler
+    spec:
+      containers:
+        - name: pgbouncer
+          image: my-pgbouncer:latest
+          resources:
+            requests:
+              cpu: 0.1
+              memory: 100Mi
+            limits:
+              cpu: 0.5
+              memory: 500Mi
+</code></pre>
+<h2 id="high-availability-ha">High Availability (HA)</h2>
+<p>Thanks to Kubernetes' deployments, you can configure your pooler to run
+on a single instance or over multiple pods. The exposed service will
+make sure that your clients are randomly distributed over the available
+pods running PgBouncer - which will then automatically manage and reuse
+connections towards the underlying server (if using the <code>rw</code> service)
+or servers (if using the <code>ro</code> service with multiple replicas).</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Please be aware of network hops in case your infrastructure spans
+multiple availability zones with high latency across them. Consider
+for example the case of your application running in zone 2,
+connecting to PgBouncer running in zone 3, pointing to the PostgreSQL
+primary in zone 1. </p>
+</div>
+<h2 id="pgbouncer-configuration-options">PgBouncer configuration options</h2>
+<p>The operator manages most of the <a href="https://www.pgbouncer.org/config.html">configuration options for PgBouncer</a>, allowing you to modify only a subset of them.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>You are responsible to correctly set the value of each option, as the operator
+does not validate them.</p>
+</div>
+<p>Below you can find a list of the PgBouncer options you are allowed to
+customize. Each of them contains a link to the PgBouncer documentation for that
+specific parameter. Unless differently stated here, the default values are the
+ones directly set by PgBouncer:</p>
+<ul>
+<li><a href="https://www.pgbouncer.org/config.html#application_name_add_host"><code>application_name_add_host</code></a></li>
+<li><a href="https://www.pgbouncer.org/config.html#autodb_idle_timeout"><code>autodb_idle_timeout</code></a></li>
+<li><a href="https://www.pgbouncer.org/config.html#client_idle_timeout"><code>client_idle_timeout</code></a></li>
+<li><a href="https://www.pgbouncer.org/config.html#client_login_timeout"><code>client_login_timeout</code></a></li>
+<li><a href="https://www.pgbouncer.org/config.html#default_pool_size"><code>default_pool_size</code></a></li>
+<li><a href="https://www.pgbouncer.org/config.html#disable_pqexec"><code>disable_pqexec</code></a></li>
+<li><a href="https://www.pgbouncer.org/config.html#idle_transaction_timeout"><code>idle_transaction_timeout</code></a></li>
+<li><a href="https://www.pgbouncer.org/config.html#ignore_startup_parameters"><code>ignore_startup_parameters</code></a>:
+  to be appended to <code>extra_float_digits,options</code> - required by CNP</li>
+<li><a href="https://www.pgbouncer.org/config.html#log_connections"><code>log_connections</code></a></li>
+<li><a href="https://www.pgbouncer.org/config.html#log_disconnections"><code>log_disconnections</code></a></li>
+<li><a href="https://www.pgbouncer.org/config.html#log_pooler_errors"><code>log_pooler_errors</code></a></li>
+<li><a href="https://www.pgbouncer.org/config.html#log_stats"><code>log_stats</code></a>: by default
+  disabled (<code>0</code>), given that statistics are already collected by the Prometheus
+  export as described in the <a href="#monitoring">"Monitoring"</a> section below</li>
+<li><a href="https://www.pgbouncer.org/config.html#max_client_conn"><code>max_client_conn</code></a></li>
+<li><a href="https://www.pgbouncer.org/config.html#max_db_connections"><code>max_db_connections</code></a></li>
+<li><a href="https://www.pgbouncer.org/config.html#max_user_connections"><code>max_user_connections</code></a></li>
+<li><a href="https://www.pgbouncer.org/config.html#min_pool_size"><code>min_pool_size</code></a></li>
+<li><a href="https://www.pgbouncer.org/config.html#query_timeout"><code>query_timeout</code></a></li>
+<li><a href="https://www.pgbouncer.org/config.html#query_wait_timeout"><code>query_wait_timeout</code></a></li>
+<li><a href="https://www.pgbouncer.org/config.html#reserve_pool_size"><code>reserve_pool_size</code></a></li>
+<li><a href="https://www.pgbouncer.org/config.html#reserve_pool_timeout"><code>reserve_pool_timeout</code></a></li>
+<li><a href="https://www.pgbouncer.org/config.html#server_check_delay"><code>server_check_delay</code></a></li>
+<li><a href="https://www.pgbouncer.org/config.html#server_check_query"><code>server_check_query</code></a></li>
+<li><a href="https://www.pgbouncer.org/config.html#server_connect_timeout"><code>server_connect_timeout</code></a></li>
+<li><a href="https://www.pgbouncer.org/config.html#server_fast_close"><code>server_fast_close</code></a></li>
+<li><a href="https://www.pgbouncer.org/config.html#server_idle_timeout"><code>server_idle_timeout</code></a></li>
+<li><a href="https://www.pgbouncer.org/config.html#server_lifetime"><code>server_lifetime</code></a></li>
+<li><a href="https://www.pgbouncer.org/config.html#server_login_retry"><code>server_login_retry</code></a></li>
+<li><a href="https://www.pgbouncer.org/config.html#server_reset_query"><code>server_reset_query</code></a></li>
+<li><a href="https://www.pgbouncer.org/config.html#server_reset_query_always"><code>server_reset_query_always</code></a></li>
+<li><a href="https://www.pgbouncer.org/config.html#server_round_robin"><code>server_round_robin</code></a></li>
+<li><a href="https://www.pgbouncer.org/config.html#stats_period"><code>stats_period</code></a></li>
+<li><a href="https://www.pgbouncer.org/config.html#verbose"><code>verbose</code></a></li>
+</ul>
+<p>Customizations of the PgBouncer configuration are written
+declaratively in the <code>.spec.pgbouncer.parameters</code> map.</p>
+<p>The operator reacts to the changes in the Pooler specification,
+and every PgBouncer instance reloads the updated configuration
+without disrupting the service.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Every PgBouncer pod will have the same configuration, aligned
+with the parameters in the specification. A mistake in these
+parameters could disrupt the operability of the <strong>whole Pooler</strong>.
+The operator <strong>does not</strong> validate the value of any option.</p>
+</div>
+<h2 id="monitoring">Monitoring</h2>
+<p>The PgBouncer implementation of the <code>Pooler</code> comes with a default
+Prometheus exporter that automatically makes available several
+metrics having the <code>cnpg_pgbouncer_</code> prefix, by running:</p>
+<ul>
+<li><code>SHOW LISTS</code> (prefix: <code>cnpg_pgbouncer_lists</code>)</li>
+<li><code>SHOW POOLS</code> (prefix: <code>cnpg_pgbouncer_pools</code>)</li>
+<li><code>SHOW STATS</code> (prefix: <code>cnpg_pgbouncer_stats</code>)</li>
+</ul>
+<p>Similarly to the CloudNativePG instance, the exporter runs on port
+<code>9127</code> of each pod running PgBouncer, and also provides metrics related to the
+Go runtime (with prefix <code>go_*</code>). You can debug the exporter on a pod running
+PgBouncer through the following command:</p>
+<pre><code class="language-console">kubectl exec -ti &lt;PGBOUNCER_POD&gt; -- curl 127.0.0.1:9127/metrics
+</code></pre>
+<p>An example of the output for <code>cnpg_pgbouncer</code> metrics:</p>
+<pre><code class="language-text"># HELP cnpg_pgbouncer_collection_duration_seconds Collection time duration in seconds
+# TYPE cnpg_pgbouncer_collection_duration_seconds gauge
+cnpg_pgbouncer_collection_duration_seconds{collector=&quot;Collect.up&quot;} 0.002443168
+
+# HELP cnpg_pgbouncer_collections_total Total number of times PostgreSQL was accessed for metrics.
+# TYPE cnpg_pgbouncer_collections_total counter
+cnpg_pgbouncer_collections_total 1
+
+# HELP cnpg_pgbouncer_last_collection_error 1 if the last collection ended with error, 0 otherwise.
+# TYPE cnpg_pgbouncer_last_collection_error gauge
+cnpg_pgbouncer_last_collection_error 0
+
+# HELP cnpg_pgbouncer_lists_databases Count of databases.
+# TYPE cnpg_pgbouncer_lists_databases gauge
+cnpg_pgbouncer_lists_databases 1
+
+# HELP cnpg_pgbouncer_lists_dns_names Count of DNS names in the cache.
+# TYPE cnpg_pgbouncer_lists_dns_names gauge
+cnpg_pgbouncer_lists_dns_names 0
+
+# HELP cnpg_pgbouncer_lists_dns_pending Not used.
+# TYPE cnpg_pgbouncer_lists_dns_pending gauge
+cnpg_pgbouncer_lists_dns_pending 0
+
+# HELP cnpg_pgbouncer_lists_dns_queries Count of in-flight DNS queries.
+# TYPE cnpg_pgbouncer_lists_dns_queries gauge
+cnpg_pgbouncer_lists_dns_queries 0
+
+# HELP cnpg_pgbouncer_lists_dns_zones Count of DNS zones in the cache.
+# TYPE cnpg_pgbouncer_lists_dns_zones gauge
+cnpg_pgbouncer_lists_dns_zones 0
+
+# HELP cnpg_pgbouncer_lists_free_clients Count of free clients.
+# TYPE cnpg_pgbouncer_lists_free_clients gauge
+cnpg_pgbouncer_lists_free_clients 49
+
+# HELP cnpg_pgbouncer_lists_free_servers Count of free servers.
+# TYPE cnpg_pgbouncer_lists_free_servers gauge
+cnpg_pgbouncer_lists_free_servers 0
+
+# HELP cnpg_pgbouncer_lists_login_clients Count of clients in login state.
+# TYPE cnpg_pgbouncer_lists_login_clients gauge
+cnpg_pgbouncer_lists_login_clients 0
+
+# HELP cnpg_pgbouncer_lists_pools Count of pools.
+# TYPE cnpg_pgbouncer_lists_pools gauge
+cnpg_pgbouncer_lists_pools 1
+
+# HELP cnpg_pgbouncer_lists_used_clients Count of used clients.
+# TYPE cnpg_pgbouncer_lists_used_clients gauge
+cnpg_pgbouncer_lists_used_clients 1
+
+# HELP cnpg_pgbouncer_lists_used_servers Count of used servers.
+# TYPE cnpg_pgbouncer_lists_used_servers gauge
+cnpg_pgbouncer_lists_used_servers 0
+
+# HELP cnpg_pgbouncer_lists_users Count of users.
+# TYPE cnpg_pgbouncer_lists_users gauge
+cnpg_pgbouncer_lists_users 2
+
+# HELP cnpg_pgbouncer_pools_cl_active Client connections that are linked to server connection and can process queries.
+# TYPE cnpg_pgbouncer_pools_cl_active gauge
+cnpg_pgbouncer_pools_cl_active{database=&quot;pgbouncer&quot;,user=&quot;pgbouncer&quot;} 1
+
+# HELP cnpg_pgbouncer_pools_cl_cancel_req Client connections that have not forwarded query cancellations to the server yet.
+# TYPE cnpg_pgbouncer_pools_cl_cancel_req gauge
+cnpg_pgbouncer_pools_cl_cancel_req{database=&quot;pgbouncer&quot;,user=&quot;pgbouncer&quot;} 0
+
+# HELP cnpg_pgbouncer_pools_cl_waiting Client connections that have sent queries but have not yet got a server connection.
+# TYPE cnpg_pgbouncer_pools_cl_waiting gauge
+cnpg_pgbouncer_pools_cl_waiting{database=&quot;pgbouncer&quot;,user=&quot;pgbouncer&quot;} 0
+
+# HELP cnpg_pgbouncer_pools_maxwait How long the first (oldest) client in the queue has waited, in seconds. If this starts increasing, then the current pool of servers does not handle requests quickly enough. The reason may be either an overloaded server or just too small of a pool_size setting.
+# TYPE cnpg_pgbouncer_pools_maxwait gauge
+cnpg_pgbouncer_pools_maxwait{database=&quot;pgbouncer&quot;,user=&quot;pgbouncer&quot;} 0
+
+# HELP cnpg_pgbouncer_pools_maxwait_us Microsecond part of the maximum waiting time.
+# TYPE cnpg_pgbouncer_pools_maxwait_us gauge
+cnpg_pgbouncer_pools_maxwait_us{database=&quot;pgbouncer&quot;,user=&quot;pgbouncer&quot;} 0
+
+# HELP cnpg_pgbouncer_pools_pool_mode The pooling mode in use. 1 for session, 2 for transaction, 3 for statement, -1 if unknown
+# TYPE cnpg_pgbouncer_pools_pool_mode gauge
+cnpg_pgbouncer_pools_pool_mode{database=&quot;pgbouncer&quot;,user=&quot;pgbouncer&quot;} 3
+
+# HELP cnpg_pgbouncer_pools_sv_active Server connections that are linked to a client.
+# TYPE cnpg_pgbouncer_pools_sv_active gauge
+cnpg_pgbouncer_pools_sv_active{database=&quot;pgbouncer&quot;,user=&quot;pgbouncer&quot;} 0
+
+# HELP cnpg_pgbouncer_pools_sv_idle Server connections that are unused and immediately usable for client queries.
+# TYPE cnpg_pgbouncer_pools_sv_idle gauge
+cnpg_pgbouncer_pools_sv_idle{database=&quot;pgbouncer&quot;,user=&quot;pgbouncer&quot;} 0
+
+# HELP cnpg_pgbouncer_pools_sv_login Server connections currently in the process of logging in.
+# TYPE cnpg_pgbouncer_pools_sv_login gauge
+cnpg_pgbouncer_pools_sv_login{database=&quot;pgbouncer&quot;,user=&quot;pgbouncer&quot;} 0
+
+# HELP cnpg_pgbouncer_pools_sv_tested Server connections that are currently running either server_reset_query or server_check_query.
+# TYPE cnpg_pgbouncer_pools_sv_tested gauge
+cnpg_pgbouncer_pools_sv_tested{database=&quot;pgbouncer&quot;,user=&quot;pgbouncer&quot;} 0
+
+# HELP cnpg_pgbouncer_pools_sv_used Server connections that have been idle for more than server_check_delay, so they need server_check_query to run on them before they can be used again.
+# TYPE cnpg_pgbouncer_pools_sv_used gauge
+cnpg_pgbouncer_pools_sv_used{database=&quot;pgbouncer&quot;,user=&quot;pgbouncer&quot;} 0
+
+# HELP cnpg_pgbouncer_stats_avg_query_count Average queries per second in last stat period.
+# TYPE cnpg_pgbouncer_stats_avg_query_count gauge
+cnpg_pgbouncer_stats_avg_query_count{database=&quot;pgbouncer&quot;} 1
+
+# HELP cnpg_pgbouncer_stats_avg_query_time Average query duration, in microseconds.
+# TYPE cnpg_pgbouncer_stats_avg_query_time gauge
+cnpg_pgbouncer_stats_avg_query_time{database=&quot;pgbouncer&quot;} 0
+
+# HELP cnpg_pgbouncer_stats_avg_recv Average received (from clients) bytes per second.
+# TYPE cnpg_pgbouncer_stats_avg_recv gauge
+cnpg_pgbouncer_stats_avg_recv{database=&quot;pgbouncer&quot;} 0
+
+# HELP cnpg_pgbouncer_stats_avg_sent Average sent (to clients) bytes per second.
+# TYPE cnpg_pgbouncer_stats_avg_sent gauge
+cnpg_pgbouncer_stats_avg_sent{database=&quot;pgbouncer&quot;} 0
+
+# HELP cnpg_pgbouncer_stats_avg_wait_time Time spent by clients waiting for a server, in microseconds (average per second).
+# TYPE cnpg_pgbouncer_stats_avg_wait_time gauge
+cnpg_pgbouncer_stats_avg_wait_time{database=&quot;pgbouncer&quot;} 0
+
+# HELP cnpg_pgbouncer_stats_avg_xact_count Average transactions per second in last stat period.
+# TYPE cnpg_pgbouncer_stats_avg_xact_count gauge
+cnpg_pgbouncer_stats_avg_xact_count{database=&quot;pgbouncer&quot;} 1
+
+# HELP cnpg_pgbouncer_stats_avg_xact_time Average transaction duration, in microseconds.
+# TYPE cnpg_pgbouncer_stats_avg_xact_time gauge
+cnpg_pgbouncer_stats_avg_xact_time{database=&quot;pgbouncer&quot;} 0
+
+# HELP cnpg_pgbouncer_stats_total_query_count Total number of SQL queries pooled by pgbouncer.
+# TYPE cnpg_pgbouncer_stats_total_query_count gauge
+cnpg_pgbouncer_stats_total_query_count{database=&quot;pgbouncer&quot;} 3
+
+# HELP cnpg_pgbouncer_stats_total_query_time Total number of microseconds spent by pgbouncer when actively connected to PostgreSQL, executing queries.
+# TYPE cnpg_pgbouncer_stats_total_query_time gauge
+cnpg_pgbouncer_stats_total_query_time{database=&quot;pgbouncer&quot;} 0
+
+# HELP cnpg_pgbouncer_stats_total_received Total volume in bytes of network traffic received by pgbouncer.
+# TYPE cnpg_pgbouncer_stats_total_received gauge
+cnpg_pgbouncer_stats_total_received{database=&quot;pgbouncer&quot;} 0
+
+# HELP cnpg_pgbouncer_stats_total_sent Total volume in bytes of network traffic sent by pgbouncer.
+# TYPE cnpg_pgbouncer_stats_total_sent gauge
+cnpg_pgbouncer_stats_total_sent{database=&quot;pgbouncer&quot;} 0
+
+# HELP cnpg_pgbouncer_stats_total_wait_time Time spent by clients waiting for a server, in microseconds.
+# TYPE cnpg_pgbouncer_stats_total_wait_time gauge
+cnpg_pgbouncer_stats_total_wait_time{database=&quot;pgbouncer&quot;} 0
+
+# HELP cnpg_pgbouncer_stats_total_xact_count Total number of SQL transactions pooled by pgbouncer.
+# TYPE cnpg_pgbouncer_stats_total_xact_count gauge
+cnpg_pgbouncer_stats_total_xact_count{database=&quot;pgbouncer&quot;} 3
+
+# HELP cnpg_pgbouncer_stats_total_xact_time Total number of microseconds spent by pgbouncer when connected to PostgreSQL in a transaction, either idle in transaction or executing queries.
+# TYPE cnpg_pgbouncer_stats_total_xact_time gauge
+cnpg_pgbouncer_stats_total_xact_time{database=&quot;pgbouncer&quot;} 0
+</code></pre>
+<p>Like for <code>Clusters</code>, if you are using the <a href="https://github.com/prometheus-operator/prometheus-operator">Prometheus Operator</a>
+you can configure it to scrape a specific Pooler by defining the following <a href="https://github.com/prometheus-operator/prometheus-operator/blob/v0.47.1/Documentation/api.md#podmonitor">PodMonitor</a>:</p>
+<pre><code class="language-yaml">apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  name: &lt;POOLER_NAME&gt;
+spec:
+  selector:
+    matchLabels:
+      cnpg.io/poolerName: &lt;POOLER_NAME&gt;
+  podMetricsEndpoints:
+  - port: metrics
+</code></pre>
+<h2 id="logging">Logging</h2>
+<p>Logs are directly sent to standard output, in JSON format, like in the
+following example:</p>
+<pre><code class="language-json">{
+  &quot;level&quot;: &quot;info&quot;,
+  &quot;ts&quot;: SECONDS.MICROSECONDS,
+  &quot;msg&quot;: &quot;record&quot;,
+  &quot;pipe&quot;: &quot;stderr&quot;,
+  &quot;record&quot;: {
+    &quot;timestamp&quot;: &quot;YYYY-MM-DD HH:MM:SS.MS UTC&quot;,
+    &quot;pid&quot;: &quot;&lt;PID&gt;&quot;,
+    &quot;level&quot;: &quot;LOG&quot;,
+    &quot;msg&quot;: &quot;kernel file descriptor limit: 1048576 (hard: 1048576); max_client_conn: 100, max expected fd use: 112&quot;
+  }
+}
+</code></pre>
+<h2 id="pausing-connections">Pausing connections</h2>
+<p>The <code>Pooler</code> specification allows you to take advantage of PgBouncer's <code>PAUSE</code>
+and <code>RESUME</code> commands, using only declarative configuration - via the <code>paused</code>
+option, by default set to <code>false</code>. When set to <code>true</code>, the operator internally
+invokes the <code>PAUSE</code> command in PgBouncer, which:</p>
+<ol>
+<li>closes all active connections towards the PostgreSQL server, after waiting for the queries to complete</li>
+<li>pauses any new connection coming from the client</li>
+</ol>
+<p>When the <code>paused</code> option is set back to <code>false</code>, the operator will invoke the
+<code>RESUME</code> command in PgBouncer, re-opening the taps towards the PostgreSQL
+service defined in the <code>Pooler</code>.</p>
+<div class="admonition seealso">
+<p class="admonition-title">PAUSE</p>
+<p>For further information, please refer to the
+<a href="https://www.pgbouncer.org/usage.html#pause-db"><code>PAUSE</code> section in the PgBouncer documentation</a>.</p>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>In future versions, the switchover operation will be fully integrated
+with the PgBouncer pooler, and take advantage of the <code>PAUSE</code>/<code>RESUME</code>
+features to reduce the perceived downtime by client applications.
+At the moment, you can achieve the same results by setting the <code>paused</code>
+attribute to <code>true</code>, then issuing the switchover command through the
+<a href="../cnpg-plugin/#promote"><code>cnpg</code> plugin</a>, and finally restoring the <code>paused</code>
+attribute to <code>false</code>.</p>
+</div>
+<h2 id="limitations">Limitations</h2>
+<h3 id="single-postgresql-cluster">Single PostgreSQL cluster</h3>
+<p>The current implementation of the pooler is designed to work as part of a
+specific CloudNativePG cluster (a service, to be precise). It is not
+possible at the moment to create a pooler that spans over multiple clusters.</p>
+<h3 id="controlled-configurability">Controlled configurability</h3>
+<p>CloudNativePG transparently manages several configuration options
+that are used for the PgBouncer layer to communicate with PostgreSQL. Such
+options are not configurable from outside and include TLS certificates,
+authentication settings, <code>databases</code> section, and <code>users</code> section. Also,
+considering the specific use case for the single PostgreSQL cluster, the
+adopted criteria is to explicitly list the options that can be configured by
+users.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We have reasons to believe that the adopted solution addresses the majority of
+use cases, while leaving room for the future implementation of a separate
+operator for PgBouncer to complete the gamma with more advanced and customized
+scenarios.</p>
+</div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../applications/" class="btn btn-neutral float-left" title="Connecting from an application"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../kubernetes_upgrade/" class="btn btn-neutral float-right" title="Kubernetes Upgrade">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../applications/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../kubernetes_upgrade/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

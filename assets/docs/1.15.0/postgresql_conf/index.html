@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="The CloudNativePG Contributors" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>PostgreSQL Configuration - CloudNativePG</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "PostgreSQL Configuration";
+        var mkdocs_page_input_path = "postgresql_conf.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> CloudNativePG
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">CloudNativePG</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../before_you_start/">Before You Start</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../use_cases/">Use cases</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../architecture/">Architecture</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../installation_upgrade/">Installation and upgrades</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../quickstart/">Quickstart</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../bootstrap/">Bootstrap</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../security/">Security</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../instance_manager/">Postgres instance manager</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../scheduling/">Scheduling</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../resource_management/">Resource management</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../failure_modes/">Failure Modes</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../rolling_update/">Rolling Updates</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../replication/">Replication</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../backup_recovery/">Backup and Recovery</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">PostgreSQL Configuration</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#the-postgresql-section">The postgresql section</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#replication-settings">Replication settings</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#log-control-settings">Log control settings</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#shared-preload-libraries">Shared Preload Libraries</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#managed-extensions">Managed extensions</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#enabling-auto_explain">Enabling auto_explain</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#enabling-pg_stat_statements">Enabling pg_stat_statements</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#enabling-pgaudit">Enabling pgaudit</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#the-pg_hba-section">The pg_hba section</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#ldap-configuration">LDAP Configuration</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#changing-configuration">Changing configuration</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#dynamic-shared-memory-settings">Dynamic Shared Memory settings</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#posix-shared-memory">POSIX shared memory</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#system-v-shared-memory">System V shared memory</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#fixed-parameters">Fixed parameters</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../operator_conf/">Operator configuration</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../storage/">Storage</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../labels_annotations/">Labels and annotations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../monitoring/">Monitoring</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../logging/">Logging</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../certificates/">Certificates</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../ssl_connections/">Client TLS/SSL Connections</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../applications/">Connecting from an application</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../connection_pooling/">Connection Pooling</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../kubernetes_upgrade/">Kubernetes Upgrade</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../expose_pg_services/">Exposing Postgres Services</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../cnpg-plugin/">CloudNativePG Plugin</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../failover/">Automated failover</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../troubleshooting/">Troubleshooting</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../fencing/">Fencing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../e2e/">End-to-End Tests</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../container_images/">Container Image Requirements</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../operator_capability_levels/">Operator Capability Levels</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../samples/">Configuration Samples</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../commercial_support/">Commercial support</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../api_reference/">API Reference</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../supported_releases/">Supported releases</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../release_notes/">Release notes</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">CloudNativePG</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li><li>PostgreSQL Configuration</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="postgresql-configuration">PostgreSQL Configuration</h1>
+<p>Users that are familiar with PostgreSQL are aware of the existence of the following two files
+to configure an instance:</p>
+<ul>
+<li><code>postgresql.conf</code>: main run-time configuration file of PostgreSQL</li>
+<li><code>pg_hba.conf</code>: clients authentication file</li>
+</ul>
+<p>Due to the concepts of declarative configuration and immutability of the PostgreSQL
+containers, users are not allowed to directly touch those files. Configuration
+is possible through the <code>postgresql</code> section of the <code>Cluster</code> resource definition
+by defining custom <code>postgresql.conf</code> and <code>pg_hba.conf</code> settings via the
+<code>parameters</code> and the <code>pg_hba</code> keys.</p>
+<p>These settings are the same across all instances.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Please don't use the <code>ALTER SYSTEM</code> query to change the configuration of
+the PostgreSQL instances in an imperative way. Changing some of the options
+that are normally controlled by the operator might indeed lead to an
+unpredictable/unrecoverable state of the cluster.
+Moreover, <code>ALTER SYSTEM</code> changes are not replicated across the cluster.</p>
+</div>
+<p>A reference for custom settings usage is included in the samples, see
+<a href="../samples/cluster-example-custom.yaml"><code>cluster-example-custom.yaml</code></a>.</p>
+<h2 id="the-postgresql-section">The <code>postgresql</code> section</h2>
+<p>The PostgreSQL instance in the pod starts with a default <code>postgresql.conf</code> file,
+to which these settings are automatically added:</p>
+<pre><code class="language-text">listen_addresses = '*'
+include custom.conf
+</code></pre>
+<p>The <code>custom.conf</code> file will contain the user-defined settings in the
+<code>postgresql</code> section, as in the following example:</p>
+<pre><code class="language-yaml">  # ...
+  postgresql:
+    parameters:
+      shared_buffers: &quot;1GB&quot;
+  # ...
+</code></pre>
+<div class="admonition seealso">
+<p class="admonition-title">PostgreSQL GUCs: Grand Unified Configuration</p>
+<p>Refer to the PostgreSQL documentation for
+<a href="https://www.postgresql.org/docs/current/runtime-config.html">more information on the available parameters</a>,
+also known as GUC (Grand Unified Configuration).</p>
+</div>
+<p>The content of <code>custom.conf</code> is automatically generated and maintained by the
+operator by applying the following sections in this order:</p>
+<ul>
+<li>Global default parameters</li>
+<li>Default parameters that depend on the PostgreSQL major version</li>
+<li>User-provided parameters</li>
+<li>Fixed parameters</li>
+</ul>
+<p>The <strong>global default parameters</strong> are:</p>
+<pre><code class="language-text">dynamic_shared_memory_type = 'posix'
+logging_collector = 'on'
+log_destination = 'csvlog'
+log_directory = '/controller/log'
+log_filename = 'postgres'
+log_rotation_age = '0'
+log_rotation_size = '0'
+log_truncate_on_rotation = 'false'
+max_parallel_workers = '32'
+max_replication_slots = '32'
+max_worker_processes = '32'
+shared_memory_type = 'mmap' # for PostgreSQL &gt;= 12 only
+wal_keep_size = '512MB' # for PostgreSQL &gt;= 13 only
+wal_keep_segments = '32' # for PostgreSQL &lt;= 12 only
+wal_sender_timeout = '5s'
+wal_receiver_timeout = '5s'
+</code></pre>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>It is your duty to plan for WAL segments retention in your PostgreSQL
+cluster and properly configure either <code>wal_keep_size</code> or <code>wal_keep_segments</code>,
+depending on the server version, based on the expected and observed workloads.
+Until CloudNativePG supports replication slots, and if you don't have
+continuous backup in place, this is the only way at the moment that protects
+from the case of a standby falling out of sync and returning error messages like:
+<code>"could not receive data from WAL stream: ERROR: requested WAL segment ************************ has already been removed"</code>.
+This will require you to dedicate a part of your <code>PGDATA</code> to keep older
+WAL segments for streaming replication purposes.</p>
+</div>
+<p>The following parameters are <strong>fixed</strong> and exclusively controlled by the operator:</p>
+<pre><code class="language-text">archive_command = '/controller/manager wal-archive %p'
+archive_mode = 'on'
+archive_timeout = '5min'
+full_page_writes = 'on'
+hot_standby = 'true'
+listen_addresses = '*'
+port = '5432'
+restart_after_crash = 'false'
+ssl = 'on'
+ssl_ca_file = '/controller/certificates/client-ca.crt'
+ssl_cert_file = '/controller/certificates/server.crt'
+ssl_key_file = '/controller/certificates/server.key'
+unix_socket_directories = '/var/run/postgresql'
+wal_level = 'logical'
+wal_log_hints = 'on'
+</code></pre>
+<p>Since the fixed parameters are added at the end, they can't be overridden by the
+user via the YAML configuration. Those parameters are required for correct WAL
+archiving and replication.</p>
+<h3 id="replication-settings">Replication settings</h3>
+<p>The <code>primary_conninfo</code>, <code>restore_command</code>,  and <code>recovery_target_timeline</code>
+parameters are managed automatically by the operator according to the state of
+the instance in the cluster.</p>
+<pre><code class="language-text">primary_conninfo = 'host=cluster-example-rw user=postgres dbname=postgres'
+recovery_target_timeline = 'latest'
+</code></pre>
+<h3 id="log-control-settings">Log control settings</h3>
+<p>The operator requires PostgreSQL to output its log in CSV format, and the
+instance manager automatically parses it and outputs it in JSON format.
+For this reason, all log settings in PostgreSQL are fixed and cannot be
+changed.</p>
+<p>For further information, please refer to the <a href="../logging/">"Logging" section</a>.</p>
+<h3 id="shared-preload-libraries">Shared Preload Libraries</h3>
+<p>The <code>shared_preload_libraries</code> option in PostgreSQL exists to specify one or
+more shared libraries to be pre-loaded at server start, in the form of a
+comma-separated list. Typically, it is used in PostgreSQL to load those
+extensions that need to be available to most database sessions in the whole system
+(e.g. <code>pg_stat_statements</code>).</p>
+<p>In CloudNativePG the <code>shared_preload_libraries</code> option is empty by
+default. Although you can override the content of <code>shared_preload_libraries</code>,
+we recommend that only expert Postgres users take advantage of this option.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>In case a specified library is not found, the server fails to start,
+preventing CloudNativePG from any self-healing attempt and requiring
+manual intervention. Please make sure you always test both the extensions and
+the settings of <code>shared_preload_libraries</code> if you plan to directly manage its
+content.</p>
+</div>
+<p>CloudNativePG is able to automatically manage the content of the
+<code>shared_preload_libraries</code> option for some of the most used PostgreSQL
+extensions (see the <a href="#managed-extensions">"Managed extensions"</a> section below
+for details).</p>
+<p>Specifically, as soon as the operator notices that a configuration parameter
+requires one of the managed libraries, it will automatically add the needed
+library. The operator will also remove the library as soon as no actual parameter
+requires it.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Please always keep in mind that removing libraries from
+<code>shared_preload_libraries</code> requires a restart of all instances in the cluster
+in order to be effective.</p>
+</div>
+<p>You can provide additional <code>shared_preload_libraries</code> via
+<code>.spec.postgresql.shared_preload_libraries</code> as a list of strings: the operator
+will merge them with the ones that it automatically manages.</p>
+<h3 id="managed-extensions">Managed extensions</h3>
+<p>As anticipated in the previous section, CloudNativePG automatically
+manages the content in <code>shared_preload_libraries</code> for some well-known and
+supported extensions. The current list includes:</p>
+<ul>
+<li><code>auto_explain</code></li>
+<li><code>pg_stat_statements</code></li>
+<li><code>pgaudit</code></li>
+</ul>
+<p>Some of these libraries also require additional objects in a database before
+using them, normally views and/or functions managed via the <code>CREATE EXTENSION</code>
+command to be run in a database (the <code>DROP EXTENSION</code> command typically removes
+those objects).</p>
+<p>For such libraries, CloudNativePG automatically handles the creation
+and removal of the extension in all databases that accept a connection in the
+cluster, identified by the following query:</p>
+<pre><code class="language-sql">SELECT datname FROM pg_database WHERE datallowconn
+</code></pre>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The above query also includes template databases like <code>template1</code>.</p>
+</div>
+<h4 id="enabling-auto_explain">Enabling <code>auto_explain</code></h4>
+<p>The <a href="https://www.postgresql.org/docs/current/auto-explain.html"><code>auto_explain</code></a>
+extension provides a means for logging execution plans of slow statements
+automatically, without having to manually run <code>EXPLAIN</code> (helpful for tracking
+down un-optimized queries).</p>
+<p>You can enable <code>auto_explain</code> by adding to the configuration a parameter
+that starts with <code>auto_explain.</code> as in the following example excerpt (which
+automatically logs execution plans of queries that take longer than 10 seconds
+to complete):</p>
+<pre><code class="language-yaml">  # ...
+  postgresql:
+    parameters:
+      auto_explain.log_min_duration: &quot;10s&quot;
+  # ...
+</code></pre>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Enabling auto_explain can lead to performance issues. Please refer to <a href="https://www.postgresql.org/docs/current/auto-explain.html"><code>the auto explain documentation</code></a></p>
+</div>
+<h4 id="enabling-pg_stat_statements">Enabling <code>pg_stat_statements</code></h4>
+<p>The <a href="https://www.postgresql.org/docs/current/pgstatstatements.html"><code>pg_stat_statements</code></a>
+extension is one of the most important capabilities available in PostgreSQL for
+real-time monitoring of queries.</p>
+<p>You can enable <code>pg_stat_statements</code> by adding to the configuration a parameter
+that starts with <code>pg_stat_statements.</code> as in the following example excerpt:</p>
+<pre><code class="language-yaml">  # ...
+  postgresql:
+    parameters:
+      pg_stat_statements.max: &quot;10000&quot;
+      pg_stat_statements.track: all
+  # ...
+</code></pre>
+<p>As explained previously, the operator will automatically add
+<code>pg_stat_statements</code> to <code>shared_preload_libraries</code> and run <code>CREATE EXTENSION IF
+NOT EXISTS pg_stat_statements</code> on each database, enabling you to run queries
+against the <code>pg_stat_statements</code> view.</p>
+<h4 id="enabling-pgaudit">Enabling <code>pgaudit</code></h4>
+<p>The <code>pgaudit</code> extension provides detailed session and/or object audit logging via the standard PostgreSQL logging facility.</p>
+<p>CloudNativePG has transparent and native support for
+<a href="https://www.pgaudit.org/">PGAudit</a> on PostgreSQL clusters. For further information, please refer to the <a href="../logging/#pgaudit-logs">"PGAudit" logs section.</a></p>
+<p>You can enable <code>pgaudit</code> by adding to the configuration a parameter
+that starts with <code>pgaudit.</code> as in the following example excerpt:</p>
+<pre><code class="language-yaml">#
+postgresql:
+  parameters:
+    pgaudit.log: &quot;all, -misc&quot;
+    pgaudit.log_catalog: &quot;off&quot;
+    pgaudit.log_parameter: &quot;on&quot;
+    pgaudit.log_relation: &quot;on&quot;
+#
+</code></pre>
+<h2 id="the-pg_hba-section">The <code>pg_hba</code> section</h2>
+<p><code>pg_hba</code> is a list of PostgreSQL Host Based Authentication rules
+used to create the <code>pg_hba.conf</code> used by the pods.</p>
+<p>Since the first matching rule is used for authentication, the <code>pg_hba.conf</code> file
+generated by the operator can be seen as composed of four sections:</p>
+<ol>
+<li>Fixed rules</li>
+<li>User-defined rules</li>
+<li>Optional LDAP section</li>
+<li>Default rules</li>
+</ol>
+<p>Fixed rules:</p>
+<pre><code class="language-text">local all all peer
+
+hostssl postgres streaming_replica all cert
+hostssl replication streaming_replica all cert
+</code></pre>
+<p>Default rules:</p>
+<pre><code class="language-text">host all all all &lt;default-authentication-method&gt;
+</code></pre>
+<p>From PostgreSQL 14 the default value of the <code>password_encryption</code>
+database parameter is set to <code>scram-sha-256</code>. Because of that,
+the default authentication method is <code>scram-sha-256</code> from this
+PostgreSQL version.</p>
+<p>PostgreSQL 13 and older will use <code>md5</code> as the default authentication
+method.</p>
+<p>The resulting <code>pg_hba.conf</code> will look like this:</p>
+<pre><code class="language-text">local all all peer
+
+hostssl postgres streaming_replica all cert
+hostssl replication streaming_replica all cert
+
+&lt;user defined rules&gt;
+&lt;user defined LDAP&gt;
+
+host all all all scram-sha-256 # (or md5 for PostgreSQL version &lt;= 13)
+</code></pre>
+<p>Refer to the PostgreSQL documentation for <a href="https://www.postgresql.org/docs/current/auth-pg-hba-conf.html">more information on <code>pg_hba.conf</code></a>.</p>
+<h3 id="ldap-configuration">LDAP Configuration</h3>
+<p>Under the <code>postgres</code> section of the cluster spec there is an optional <code>ldap</code> section available to define an LDAP
+configuration to be converted into a rule added into the <code>pg_hba.conf</code> file.</p>
+<p>This will support two modes: <code>simple bind</code> mode which requires specifying a <code>server</code>, <code>prefix</code> and <code>suffix</code> in the LDAP 
+section and the <code>search+bind</code> mode which requires specifying <code>server</code>, <code>baseDN</code>, <code>binDN</code>, and a <code>bindPassword</code> which is
+a secret containing the ldap password. Additionally, in <code>search+bind</code> mode you have the option to specify a
+<code>searchFilter</code> or <code>searchAttribute</code>. If no <code>searchAttribute</code> is specified the default one of <code>uid</code> will be used.</p>
+<p>Additionally, both modes allow the specification of a <code>scheme</code> for ldapscheme and a <code>port</code>. Neither scheme nor port are
+required, however. </p>
+<p>This section filled out for search+bind could look as follows:</p>
+<pre><code class="language-yaml">postgresql:
+  parameters:
+    ldap:
+      server: 'openldap.default.svc.cluster.local'
+      bindSearchAuth:
+        baseDN: 'ou=org,dc=example,dc=com'
+        bindDN: 'cn=admin,dc=example,dc=com'
+        bindPassword:
+          name: 'ldapBindPassword'
+          key: 'data'
+        searchAttribute: 'uid'
+</code></pre>
+<h2 id="changing-configuration">Changing configuration</h2>
+<p>You can apply configuration changes by editing the <code>postgresql</code> section of
+the <code>Cluster</code> resource.</p>
+<p>After the change, the cluster instances will immediately reload the
+configuration to apply the changes.
+If the change involves a parameter requiring a restart, the operator will
+perform a rolling upgrade.</p>
+<h2 id="dynamic-shared-memory-settings">Dynamic Shared Memory settings</h2>
+<p>PostgreSQL supports a few implementations for dynamic shared memory
+management through the
+<a href="https://www.postgresql.org/docs/current/runtime-config-resource.html#GUC-DYNAMIC-SHARED-MEMORY-TYPE"><code>dynamic_shared_memory_type</code></a>
+configuration option. In CloudNativePG we recommend to limit ourselves to
+any of the following two values:</p>
+<ul>
+<li><code>posix</code>: which relies on POSIX shared memory allocated using <code>shm_open</code> (default setting)</li>
+<li><code>sysv</code>: which is based on System V shared memory allocated via <code>shmget</code></li>
+</ul>
+<p>In PostgreSQL, this setting is particularly important for memory allocation in parallel queries.
+For details, please refer to this
+<a href="https://www.postgresql.org/message-id/CA%2BhUKGJOj7qzDLxeFPVvto8YEWop6FSQoTYPO9Z6Ee%3Di-nPS_Q%40mail.gmail.com">thread from the <code>pgsql-general</code> mailing list</a>.</p>
+<h3 id="posix-shared-memory">POSIX shared memory</h3>
+<p>The default setting of <code>posix</code> should be enough in most cases, considering that
+the operator automatically mounts a <em>memory-bound <code>EmptyDir</code> volume</em> called <code>shm</code>
+under <code>/dev/shm</code>. You can verify the size of such volume inside the running
+Postgres container with:</p>
+<pre><code class="language-sh">mount | grep shm
+</code></pre>
+<p>You should get something similar to the following output:</p>
+<pre><code class="language-console">shm on /dev/shm type tmpfs (rw,nosuid,nodev,noexec,relatime,size=******)
+</code></pre>
+<h3 id="system-v-shared-memory">System V shared memory</h3>
+<p>In case your Kubernetes cluster has a high enough value for the <code>SHMMAX</code>
+and <code>SHMALL</code> parameters, you can also set:</p>
+<pre><code class="language-yaml">dynamic_shared_memory_type: &quot;sysv&quot;
+</code></pre>
+<p>You can check the <code>SHMMAX</code>/<code>SHMALL</code> from inside a PostgreSQL container, by running:</p>
+<pre><code class="language-sh">ipcs -lm
+</code></pre>
+<p>For example:</p>
+<pre><code class="language-console">------ Shared Memory Limits --------
+max number of segments = 4096
+max seg size (kbytes) = 18014398509465599
+max total shared memory (kbytes) = 18014398509481980
+min seg size (bytes) = 1
+</code></pre>
+<p>As you can see, the very high number of <code>max total shared memory</code> recommends
+setting <code>dynamic_shared_memory_type</code> to <code>sysv</code>.</p>
+<p>An alternate method is to run:</p>
+<pre><code class="language-sh">cat /proc/sys/kernel/shmall
+cat /proc/sys/kernel/shmmax
+</code></pre>
+<h2 id="fixed-parameters">Fixed parameters</h2>
+<p>Some PostgreSQL configuration parameters should be managed exclusively by the
+operator. The operator prevents the user from setting them using a webhook.</p>
+<p>Users are not allowed to set the following configuration parameters in the
+<code>postgresql</code> section:</p>
+<ul>
+<li><code>allow_system_table_mods</code></li>
+<li><code>archive_cleanup_command</code></li>
+<li><code>archive_command</code></li>
+<li><code>archive_mode</code></li>
+<li><code>archive_timeout</code></li>
+<li><code>bonjour</code></li>
+<li><code>bonjour_name</code></li>
+<li><code>cluster_name</code></li>
+<li><code>config_file</code></li>
+<li><code>data_directory</code></li>
+<li><code>data_sync_retry</code></li>
+<li><code>event_source</code></li>
+<li><code>external_pid_file</code></li>
+<li><code>full_page_writes</code></li>
+<li><code>hba_file</code></li>
+<li><code>hot_standby</code></li>
+<li><code>huge_pages</code></li>
+<li><code>ident_file</code></li>
+<li><code>jit_provider</code></li>
+<li><code>listen_addresses</code></li>
+<li><code>log_destination</code></li>
+<li><code>log_directory</code></li>
+<li><code>log_file_mode</code></li>
+<li><code>log_filename</code></li>
+<li><code>log_rotation_age</code></li>
+<li><code>log_rotation_size</code></li>
+<li><code>log_truncate_on_rotation</code></li>
+<li><code>logging_collector</code></li>
+<li><code>port</code></li>
+<li><code>primary_conninfo</code></li>
+<li><code>primary_slot_name</code></li>
+<li><code>promote_trigger_file</code></li>
+<li><code>recovery_end_command</code></li>
+<li><code>recovery_min_apply_delay</code></li>
+<li><code>recovery_target</code></li>
+<li><code>recovery_target_action</code></li>
+<li><code>recovery_target_inclusive</code></li>
+<li><code>recovery_target_lsn</code></li>
+<li><code>recovery_target_name</code></li>
+<li><code>recovery_target_time</code></li>
+<li><code>recovery_target_timeline</code></li>
+<li><code>recovery_target_xid</code></li>
+<li><code>restart_after_crash</code></li>
+<li><code>restore_command</code></li>
+<li><code>shared_preload_libraries</code></li>
+<li><code>ssl</code></li>
+<li><code>ssl_ca_file</code></li>
+<li><code>ssl_cert_file</code></li>
+<li><code>ssl_ciphers</code></li>
+<li><code>ssl_crl_file</code></li>
+<li><code>ssl_dh_params_file</code></li>
+<li><code>ssl_ecdh_curve</code></li>
+<li><code>ssl_key_file</code></li>
+<li><code>ssl_max_protocol_version</code></li>
+<li><code>ssl_min_protocol_version</code></li>
+<li><code>ssl_passphrase_command</code></li>
+<li><code>ssl_passphrase_command_supports_reload</code></li>
+<li><code>ssl_prefer_server_ciphers</code></li>
+<li><code>stats_temp_directory</code></li>
+<li><code>synchronous_standby_names</code></li>
+<li><code>syslog_facility</code></li>
+<li><code>syslog_ident</code></li>
+<li><code>syslog_sequence_numbers</code></li>
+<li><code>syslog_split_messages</code></li>
+<li><code>unix_socket_directories</code></li>
+<li><code>unix_socket_group</code></li>
+<li><code>unix_socket_permissions</code></li>
+<li><code>wal_level</code></li>
+<li><code>wal_log_hints</code></li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../backup_recovery/" class="btn btn-neutral float-left" title="Backup and Recovery"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../operator_conf/" class="btn btn-neutral float-right" title="Operator configuration">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../backup_recovery/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../operator_conf/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

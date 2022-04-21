@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="The CloudNativePG Contributors" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Certificates - CloudNativePG</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Certificates";
+        var mkdocs_page_input_path = "certificates.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> CloudNativePG
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">CloudNativePG</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../before_you_start/">Before You Start</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../use_cases/">Use cases</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../architecture/">Architecture</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../installation_upgrade/">Installation and upgrades</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../quickstart/">Quickstart</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../bootstrap/">Bootstrap</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../security/">Security</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../instance_manager/">Postgres instance manager</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../scheduling/">Scheduling</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../resource_management/">Resource management</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../failure_modes/">Failure Modes</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../rolling_update/">Rolling Updates</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../replication/">Replication</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../backup_recovery/">Backup and Recovery</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../postgresql_conf/">PostgreSQL Configuration</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../operator_conf/">Operator configuration</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../storage/">Storage</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../labels_annotations/">Labels and annotations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../monitoring/">Monitoring</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../logging/">Logging</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Certificates</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#operator-managed-mode">Operator managed mode</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#server-certificates">Server Certificates</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#server-ca-secret">Server CA Secret</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#server-tls-secret">Server TLS Secret</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#server-alternative-dns-names">Server alternative DNS names</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#client-certificates">Client Certificates</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#client-ca-secret">Client CA Secret</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#client-streaming_replica-certificate">Client streaming_replica Certificate</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#user-provided-certificates-mode">User-provided certificates mode</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#server-certificates_1">Server Certificates</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#example">Example</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#cert-manager-example">Cert-manager Example</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#client-certificate">Client Certificate</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#cert-manager-example_1">Cert-manager Example</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../ssl_connections/">Client TLS/SSL Connections</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../applications/">Connecting from an application</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../connection_pooling/">Connection Pooling</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../kubernetes_upgrade/">Kubernetes Upgrade</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../expose_pg_services/">Exposing Postgres Services</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../cnpg-plugin/">CloudNativePG Plugin</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../failover/">Automated failover</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../troubleshooting/">Troubleshooting</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../fencing/">Fencing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../e2e/">End-to-End Tests</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../container_images/">Container Image Requirements</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../operator_capability_levels/">Operator Capability Levels</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../samples/">Configuration Samples</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../commercial_support/">Commercial support</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../api_reference/">API Reference</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../supported_releases/">Supported releases</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../release_notes/">Release notes</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">CloudNativePG</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li><li>Certificates</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="certificates">Certificates</h1>
+<p>CloudNativePG has been designed to natively support TLS certificates.
+In order to set up a <code>Cluster</code>, the operator requires:</p>
+<ul>
+<li>a server Certification Authority (CA) certificate</li>
+<li>a server TLS certificate signed by the server Certification Authority</li>
+<li>a client Certification Authority certificate</li>
+<li>a streaming replication client certificate generated by the client Certification Authority</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You can find all the secrets used by the cluster and their expiration dates
+in the cluster's status.</p>
+</div>
+<p>CloudNativePG is very flexible when it comes to TLS certificates, and
+primarily operates in two modes:</p>
+<ol>
+<li><a href="#operator-managed-mode"><strong>operator managed</strong></a>: certificates are internally
+   managed by the operator in a fully automated way, and signed using a CA created
+   by CloudNativePG</li>
+<li><a href="#user-provided-certificates-mode"><strong>user provided</strong></a>: certificates are
+   generated outside the operator and imported in the cluster definition as
+   secrets - CloudNativePG integrates itself with cert-manager (see
+   examples below)</li>
+</ol>
+<p>You can also choose a hybrid approach, where only part of the certificates is
+generated outside CNPG.</p>
+<h2 id="operator-managed-mode">Operator managed mode</h2>
+<p>By default, the operator generates a single Certification Authority and uses it
+for both client and server certificates, which are then managed and renewed
+automatically.</p>
+<h3 id="server-certificates">Server Certificates</h3>
+<h4 id="server-ca-secret">Server CA Secret</h4>
+<p>The operator generates a self-signed CA and stores it in a generic secret
+containing the following keys:</p>
+<ul>
+<li><code>ca.crt</code>: CA certificate used to validate the server certificate, used as <code>sslrootcert</code> in clients' connection strings.</li>
+<li><code>ca.key</code>: the key used to sign Server SSL certificate automatically</li>
+</ul>
+<h4 id="server-tls-secret">Server TLS Secret</h4>
+<p>The operator uses the generated self-signed CA to sign a server TLS
+certificate, stored in a Secret of type <code>kubernetes.io/tls</code> and configured to
+be used as <code>ssl_cert_file</code> and <code>ssl_key_file</code> by the instances so that clients
+can verify their identity and connect securely.</p>
+<h4 id="server-alternative-dns-names">Server alternative DNS names</h4>
+<p>You can specify DNS server alternative names that will be part of the
+generated server TLS secret in addition to the default ones.</p>
+<h3 id="client-certificates">Client Certificates</h3>
+<h4 id="client-ca-secret">Client CA Secret</h4>
+<p>The same self-signed CA as the Server CA is used by default. The public part
+will be passed as <code>ssl_ca_file</code> to all the instances in order to be able to verify
+client certificates it signed. The private key will be stored in the same secret and
+used to sign Client certificates generated by the <code>kubectl cnpg</code> plugin.</p>
+<h4 id="client-streaming_replica-certificate">Client streaming_replica Certificate</h4>
+<p>The operator uses the generated self-signed CA to sign a client certificate for
+the user <code>streaming_replica</code>, storing it in a Secret of type <code>kubernetes.io/tls</code>.
+This certificate will be passed as <code>sslcert</code> and <code>sslkey</code> in replicas' connection strings,
+to allow securely connecting to the primary instance.</p>
+<h2 id="user-provided-certificates-mode">User-provided certificates mode</h2>
+<h3 id="server-certificates_1">Server Certificates</h3>
+<p>If required, you can also provide the two server certificates, generating them
+using a separate component such as <a href="https://cert-manager.io/">cert-manager</a>. In
+order to use a custom server TLS certificate for a Cluster, you must specify
+the following parameters:</p>
+<ul>
+<li><code>serverTLSSecret</code>: the name of a Secret of type <code>kubernetes.io/tls</code>,
+  containing the server TLS certificate.  It must contain both the standard
+  <code>tls.crt</code> and <code>tls.key</code> keys.</li>
+<li><code>serverCASecret</code>: the name of a Secret containing the <code>ca.crt</code> key.</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The operator will still create and manage the two secrets related to client
+certificates.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you want ConfigMaps and Secrets to be <strong>automatically</strong> reloaded by instances, you can
+add a label with key <code>cnpg.io/reload</code> to it, otherwise you will have to reload
+the instances using the <code>kubectl cnpg reload</code> subcommand.</p>
+</div>
+<p>See below for a complete example.</p>
+<h4 id="example">Example</h4>
+<p>Given the following files:</p>
+<ul>
+<li><code>server-ca.crt</code>: the certificate of the CA that signed the server TLS certificate.</li>
+<li><code>server.crt</code>: the certificate of the server TLS certificate.</li>
+<li><code>server.key</code>: the private key of the server TLS certificate.</li>
+</ul>
+<p>Create a secret containing the CA certificate:</p>
+<pre><code>kubectl create secret generic my-postgresql-server-ca \
+  --from-file=ca.crt=./server-ca.crt
+</code></pre>
+<p>Create a secret with the TLS certificate:</p>
+<pre><code>kubectl create secret tls my-postgresql-server \
+  --cert=./server.crt --key=./server.key
+</code></pre>
+<p>Create a <code>Cluster</code> referencing those secrets:</p>
+<pre><code class="language-bash">kubectl apply -f - &lt;&lt;EOF
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: cluster-example
+spec:
+  instances: 3
+  certificates:
+    serverCASecret: my-postgresql-server-ca
+    serverTLSSecret: my-postgresql-server
+  storage:
+    storageClass: standard
+    size: 1Gi
+EOF
+</code></pre>
+<p>The new cluster will use the provided server certificates for TLS connections.</p>
+<h4 id="cert-manager-example">Cert-manager Example</h4>
+<p>Here is a simple example about how to use <a href="https://cert-manager.io/">cert-manager</a> to set up a self-signed CA and generate 
+the needed TLS server certificate:</p>
+<pre><code class="language-yaml">---
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: selfsigned-issuer
+spec:
+  selfSigned: {}
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: my-postgres-server-cert
+  labels:
+    cnpg.io/reload: &quot;&quot;
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: my-postgres-server-cert
+spec:
+  secretName: my-postgres-server-cert
+  usages:
+    - server auth
+  dnsNames:
+    - cluster-example-lb.internal.mydomain.net
+    - cluster-example-rw
+    - cluster-example-rw.default
+    - cluster-example-rw.default.svc
+    - cluster-example-r
+    - cluster-example-r.default
+    - cluster-example-r.default.svc
+    - cluster-example-ro
+    - cluster-example-ro.default
+    - cluster-example-ro.default.svc
+  issuerRef:
+    name: selfsigned-issuer
+    kind: Issuer
+    group: cert-manager.io
+</code></pre>
+<p>A Secret named <code>my-postgres-server-cert</code> is created by cert-manager, containing all the needed files and can be referenced
+from a Cluster as follows:</p>
+<pre><code class="language-yaml">apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: cluster-example
+spec:
+  instances: 3
+  certificates:
+    serverTLSSecret: my-postgres-server-cert
+    serverCASecret: my-postgres-server-cert
+  storage:
+    size: 1Gi
+</code></pre>
+<p>You can find a complete example using cert-manager to manage both server and client CA and certificates in
+the <a href="../samples/cluster-example-cert-manager.yaml">cluster-example-cert-manager.yaml</a> deployment manifest.</p>
+<h3 id="client-certificate">Client Certificate</h3>
+<p>If required, you can also provide the two client certificates, generating them
+using a separate component such as <a href="https://cert-manager.io/">cert-manager</a> or
+<a href="https://www.vaultproject.io/docs/secrets/pki">hashicorp vault</a>. In order to
+use a custom CA to verify client certificates for a Cluster, you must specify
+the following parameters:</p>
+<ul>
+<li><code>replicationTLSSecret</code>: the name of a Secret of type <code>kubernetes.io/tls</code>,
+  containing the client certificate for user <code>streaming_replica</code>. It must contain
+  both the standard <code>tls.crt</code> and <code>tls.key</code> keys.</li>
+<li><code>clientCASecret</code>: the name of a Secret containing the <code>ca.crt</code> key of the CA
+  that should be used to verify client certificate.</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The operator will still create and manage the two secrets related to server
+certificates.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>As the Cluster is not in control of the client CA secret key, client certificates
+can not be generated using <code>kubectl cnpg certificate</code> anymore.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you want ConfigMaps and Secrets to be <strong>automatically</strong> reloaded by instances, you can
+add a label with key <code>cnpg.io/reload</code> to it, otherwise you will have to reload
+the instances using the <code>kubectl cnpg reload</code> subcommand.</p>
+</div>
+<h4 id="cert-manager-example_1">Cert-manager Example</h4>
+<p>Here a simple example about how to use <a href="https://cert-manager.io/">cert-manager</a> to set up a self-signed CA and generate
+the needed TLS server certificate:</p>
+<pre><code class="language-yaml">---
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: selfsigned-issuer
+spec:
+  selfSigned: {}
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: my-postgres-client-cert
+  labels:
+    cnpg.io/reload: &quot;&quot;
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: my-postgres-client-cert
+spec:
+  secretName: my-postgres-client-cert
+  usages:
+    - client auth
+  commonName: streaming_replica
+  issuerRef:
+    name: selfsigned-issuer
+    kind: Issuer
+    group: cert-manager.io
+</code></pre>
+<p>A Secret named <code>my-postgres-client-cert</code> is created by cert-manager, containing all the needed files and can be referenced
+from a Cluster as follows:</p>
+<pre><code class="language-yaml">apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: cluster-example
+spec:
+  instances: 3
+  certificates:
+    clientCASecret: my-postgres-client-cert
+    replicationTLSSecret: my-postgres-client-cert
+  storage:
+    size: 1Gi
+</code></pre>
+<p>You can find a complete example using cert-manager to manage both server and client CA and certificates in
+the <a href="../samples/cluster-example-cert-manager.yaml">cluster-example-cert-manager.yaml</a> deployment manifest.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../logging/" class="btn btn-neutral float-left" title="Logging"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../ssl_connections/" class="btn btn-neutral float-right" title="Client TLS/SSL Connections">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../logging/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../ssl_connections/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

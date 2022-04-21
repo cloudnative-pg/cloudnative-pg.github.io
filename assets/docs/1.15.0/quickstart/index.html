@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="The CloudNativePG Contributors" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Quickstart - CloudNativePG</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Quickstart";
+        var mkdocs_page_input_path = "quickstart.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> CloudNativePG
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">CloudNativePG</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../before_you_start/">Before You Start</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../use_cases/">Use cases</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../architecture/">Architecture</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../installation_upgrade/">Installation and upgrades</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Quickstart</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#part-1-setup-the-local-kubernetes-playground">Part 1 - Setup the local Kubernetes playground</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#minikube">Minikube</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#kind">Kind</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#part-2-install-cloudnativepg">Part 2 - Install CloudNativePG</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#part-3-deploy-a-postgresql-cluster">Part 3 - Deploy a PostgreSQL cluster</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../bootstrap/">Bootstrap</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../security/">Security</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../instance_manager/">Postgres instance manager</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../scheduling/">Scheduling</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../resource_management/">Resource management</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../failure_modes/">Failure Modes</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../rolling_update/">Rolling Updates</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../replication/">Replication</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../backup_recovery/">Backup and Recovery</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../postgresql_conf/">PostgreSQL Configuration</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../operator_conf/">Operator configuration</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../storage/">Storage</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../labels_annotations/">Labels and annotations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../monitoring/">Monitoring</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../logging/">Logging</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../certificates/">Certificates</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../ssl_connections/">Client TLS/SSL Connections</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../applications/">Connecting from an application</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../connection_pooling/">Connection Pooling</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../kubernetes_upgrade/">Kubernetes Upgrade</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../expose_pg_services/">Exposing Postgres Services</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../cnpg-plugin/">CloudNativePG Plugin</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../failover/">Automated failover</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../troubleshooting/">Troubleshooting</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../fencing/">Fencing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../e2e/">End-to-End Tests</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../container_images/">Container Image Requirements</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../operator_capability_levels/">Operator Capability Levels</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../samples/">Configuration Samples</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../commercial_support/">Commercial support</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../api_reference/">API Reference</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../supported_releases/">Supported releases</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../release_notes/">Release notes</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">CloudNativePG</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li><li>Quickstart</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="quickstart">Quickstart</h1>
+<p>This section describes how to test a PostgreSQL cluster on your laptop/computer
+using CloudNativePG on a local Kubernetes cluster in <a href="https://kind.sigs.k8s.io/">Kind</a> or
+<a href="https://kubernetes.io/docs/setup/learning-environment/minikube/">Minikube</a>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The instructions contained in this section are for demonstration,
+testing, and practice purposes only and must not be used in production.</p>
+</div>
+<p>Like any other Kubernetes application, CloudNativePG is deployed using
+regular manifests written in YAML.</p>
+<p>By following the instructions on this page you should be able to start a PostgreSQL
+cluster on your local Kubernetes installation and experiment with it.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Make sure that you have <code>kubectl</code> installed on your machine in order
+to connect to the Kubernetes cluster. Please follow the Kubernetes documentation
+on <a href="https://kubernetes.io/docs/tasks/tools/install-kubectl/">how to install <code>kubectl</code></a>.</p>
+</div>
+<h2 id="part-1-setup-the-local-kubernetes-playground">Part 1 - Setup the local Kubernetes playground</h2>
+<p>The first part is about installing Minikube or Kind. Please spend some time
+reading about the systems and decide which one to proceed with.
+After setting up one of them, please proceed with part 2.</p>
+<h3 id="minikube">Minikube</h3>
+<p>Minikube is a tool that makes it easy to run Kubernetes locally. Minikube runs a
+single-node Kubernetes cluster inside a Virtual Machine (VM) on your laptop for
+users looking to try out Kubernetes or develop with it day-to-day. Normally, it
+is used in conjunction with VirtualBox.</p>
+<p>You can find more information in the official <a href="https://kubernetes.io/docs/tasks/tools/install-minikube">Kubernetes documentation on how to
+install Minikube</a> in your local personal environment.
+When you installed it, run the following command to create a minikube cluster:</p>
+<pre><code class="language-sh">minikube start
+</code></pre>
+<p>This will create the Kubernetes cluster, and you will be ready to use it.
+Verify that it works with the following command:</p>
+<pre><code class="language-sh">kubectl get nodes
+</code></pre>
+<p>You will see one node called <code>minikube</code>.</p>
+<h3 id="kind">Kind</h3>
+<p>If you do not want to use a virtual machine hypervisor, then Kind is a tool for running
+local Kubernetes clusters using Docker container "nodes" (Kind stands for "Kubernetes IN Docker" indeed).</p>
+<p>Install <code>kind</code> on your environment following the instructions in the <a href="https://kind.sigs.k8s.io/docs/user/quick-start">Quickstart</a>,
+then create a Kubernetes cluster with:</p>
+<pre><code class="language-sh">kind create cluster --name pg
+</code></pre>
+<h2 id="part-2-install-cloudnativepg">Part 2 - Install CloudNativePG</h2>
+<p>Now that you have a Kubernetes installation up and running
+on your laptop, you can proceed with CloudNativePG installation.</p>
+<p>Please refer to the <a href="../installation_upgrade/">"Installation"</a> section and then proceed
+with the deployment of a PostgreSQL cluster.</p>
+<h2 id="part-3-deploy-a-postgresql-cluster">Part 3 - Deploy a PostgreSQL cluster</h2>
+<p>As with any other deployment in Kubernetes, to deploy a PostgreSQL cluster
+you need to apply a configuration file that defines your desired <code>Cluster</code>.</p>
+<p>The <a href="../samples/cluster-example.yaml"><code>cluster-example.yaml</code></a> sample file
+defines a simple <code>Cluster</code> using the default storage class to allocate
+disk space:</p>
+<pre><code class="language-yaml"># Example of PostgreSQL cluster
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: cluster-example
+spec:
+  instances: 3
+
+  # Example of rolling update strategy:
+  # - unsupervised: automated update of the primary once all
+  #                 replicas have been upgraded (default)
+  # - supervised: requires manual supervision to perform
+  #               the switchover of the primary
+  primaryUpdateStrategy: unsupervised
+
+  # Require 1Gi of space
+  storage:
+    size: 1Gi
+</code></pre>
+<div class="admonition note">
+<p class="admonition-title">There's more</p>
+<p>For more detailed information about the available options, please refer
+to the <a href="../api_reference/">"API Reference" section</a>.</p>
+</div>
+<p>In order to create the 3-node PostgreSQL cluster, you need to run the following command:</p>
+<pre><code class="language-sh">kubectl apply -f cluster-example.yaml
+</code></pre>
+<p>You can check that the pods are being created with the <code>get pods</code> command:</p>
+<pre><code class="language-sh">kubectl get pods
+</code></pre>
+<p>By default, the operator will install the latest available minor version
+of the latest major version of PostgreSQL when the operator was released.
+You can override this by setting the <code>imageName</code> key in the <code>spec</code> section of
+the <code>Cluster</code> definition. For example, to install PostgreSQL 13.6:</p>
+<pre><code class="language-yaml">apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+   # [...]
+spec:
+   # [...]
+   imageName: ghcr.io/cloudnative-pg/postgresql:13.6
+   #[...]
+</code></pre>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>The immutable infrastructure paradigm requires that you always
+point to a specific version of the container image.
+Never use tags like <code>latest</code> or <code>13</code> in a production environment
+as it might lead to unpredictable scenarios in terms of update
+policies and version consistency in the cluster.
+For strict deterministic and repeatable deployments, you can add the digests
+to the image name, through the <code>&lt;image&gt;:&lt;tag&gt;@sha256:&lt;digestValue&gt;</code> format.</p>
+</div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../installation_upgrade/" class="btn btn-neutral float-left" title="Installation and upgrades"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../bootstrap/" class="btn btn-neutral float-right" title="Bootstrap">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../installation_upgrade/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../bootstrap/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

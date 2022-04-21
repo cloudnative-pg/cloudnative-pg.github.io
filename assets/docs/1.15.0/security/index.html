@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="The CloudNativePG Contributors" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Security - CloudNativePG</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Security";
+        var mkdocs_page_input_path = "security.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> CloudNativePG
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">CloudNativePG</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../before_you_start/">Before You Start</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../use_cases/">Use cases</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../architecture/">Architecture</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../installation_upgrade/">Installation and upgrades</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../quickstart/">Quickstart</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../bootstrap/">Bootstrap</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Security</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#code">Code</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#container">Container</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#cluster">Cluster</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#role-based-access-control-rbac">Role Based Access Control (RBAC)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#pod-security-policies">Pod Security Policies</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#restricting-pod-access-using-apparmor">Restricting Pod access using AppArmor</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#network-policies">Network Policies</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#exposed-ports">Exposed Ports</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#postgresql">PostgreSQL</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../instance_manager/">Postgres instance manager</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../scheduling/">Scheduling</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../resource_management/">Resource management</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../failure_modes/">Failure Modes</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../rolling_update/">Rolling Updates</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../replication/">Replication</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../backup_recovery/">Backup and Recovery</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../postgresql_conf/">PostgreSQL Configuration</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../operator_conf/">Operator configuration</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../storage/">Storage</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../labels_annotations/">Labels and annotations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../monitoring/">Monitoring</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../logging/">Logging</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../certificates/">Certificates</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../ssl_connections/">Client TLS/SSL Connections</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../applications/">Connecting from an application</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../connection_pooling/">Connection Pooling</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../kubernetes_upgrade/">Kubernetes Upgrade</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../expose_pg_services/">Exposing Postgres Services</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../cnpg-plugin/">CloudNativePG Plugin</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../failover/">Automated failover</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../troubleshooting/">Troubleshooting</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../fencing/">Fencing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../e2e/">End-to-End Tests</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../container_images/">Container Image Requirements</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../operator_capability_levels/">Operator Capability Levels</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../samples/">Configuration Samples</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../commercial_support/">Commercial support</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../api_reference/">API Reference</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../supported_releases/">Supported releases</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../release_notes/">Release notes</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">CloudNativePG</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li><li>Security</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="security">Security</h1>
+<p>This section contains information about security for CloudNativePG,
+that are analyzed at 3 different layers: Code, Container and Cluster.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The information contained in this page must not exonerate you from
+performing regular InfoSec duties on your Kubernetes cluster. Please
+familiarize yourself with the <a href="https://kubernetes.io/docs/concepts/security/overview/">"Overview of Cloud Native Security"</a>
+page from the Kubernetes documentation.</p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">About the 4C's Security Model</p>
+<p>Please refer to <a href="https://www.enterprisedb.com/blog/4cs-security-model-kubernetes">"The 4C’s Security Model in Kubernetes"</a>
+blog article to get a better understanding and context of the approach EDB
+has taken with security in CloudNativePG.</p>
+</div>
+<h2 id="code">Code</h2>
+<p>Source code of CloudNativePG is <em>systematically scanned</em> for static analysis purposes,
+including <strong>security problems</strong>, using a popular open-source linter for Go called
+<a href="https://github.com/golangci/golangci-lint">GolangCI-Lint</a> directly in the CI/CD pipeline.
+GolangCI-Lint can run several <em>linters</em> on the same source code.</p>
+<p>One of these is <a href="https://github.com/securego/gosec">Golang Security Checker</a>, or simply <code>gosec</code>,
+a linter that scans the abstract syntactic tree of the source against a set of rules aimed at
+the discovery of well-known vulnerabilities, threats, and weaknesses hidden in
+the code such as hard-coded credentials, integer overflows and SQL injections - to name a few.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>A failure in the static code analysis phase of the CI/CD pipeline is a blocker
+for the entire delivery of CloudNativePG, meaning that each commit is validated
+against all the linters defined by GolangCI-Lint.</p>
+</div>
+<h2 id="container">Container</h2>
+<p>Every container image that is part of CloudNativePG is automatically built via CI/CD pipelines following every commit.
+Such images include not only the operator's, but also the operands' - specifically every supported PostgreSQL version.
+Within the pipelines, images are scanned with:</p>
+<ul>
+<li><a href="https://github.com/goodwithtech/dockle">Dockle</a>: for best practices in terms
+  of the container build process</li>
+</ul>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>All operand images are automatically rebuilt once a day by our pipelines in case
+of security updates at the base image and package level, providing <strong>patch level updates</strong>
+for the container images that EDB distributes.</p>
+</div>
+<p>The following guidelines and frameworks have been taken into account for container-level security:</p>
+<ul>
+<li>the <a href="https://dl.dod.cyber.mil/wp-content/uploads/devsecops/pdf/DevSecOps_Enterprise_Container_Image_Creation_and_Deployment_Guide_2.6-Public-Release.pdf">"Container Image Creation and Deployment Guide"</a>,
+  developed by the Defense Information Systems Agency (DISA) of the United States Department of Defense (DoD)</li>
+<li>the <a href="https://www.cisecurity.org/benchmark/docker/">"CIS Benchmark for Docker"</a>,
+  developed by the Center for Internet Security (CIS)</li>
+</ul>
+<div class="admonition seealso">
+<p class="admonition-title">About the Container level security</p>
+<p>Please refer to <a href="https://www.enterprisedb.com/blog/security-and-containers-cloud-native-postgresql">"Security and Containers in CloudNativePG"</a>
+blog article for more information about the approach that EDB has taken on
+security at the container level in CloudNativePG.</p>
+</div>
+<h2 id="cluster">Cluster</h2>
+<p>Security at the cluster level takes into account all Kubernetes components that
+form both the control plane and the nodes, as well as the applications that run in
+the cluster (PostgreSQL included).</p>
+<h3 id="role-based-access-control-rbac">Role Based Access Control (RBAC)</h3>
+<p>The operator interacts with the Kubernetes API server with a dedicated service
+account called <code>cnpg-manager</code>. In Kubernetes this is installed
+by default in the <code>cnpg-system</code> namespace, with a cluster role
+binding between this service account and the <code>cnpg-manager</code>
+cluster role which defines the set of rules/resources/verbs granted to the operator.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>The above permissions are exclusively reserved for the operator's service
+account to interact with the Kubernetes API server.  They are not directly
+accessible by the users of the operator that interact only with <code>Cluster</code>,
+<code>Pooler</code>, <code>Backup</code>, and <code>ScheduledBackup</code> resources.</p>
+</div>
+<p>Below we provide some examples and, most importantly, the reasons why
+CloudNativePG requires full or partial management of standard Kubernetes
+namespaced resources.</p>
+<dl>
+<dt><code>configmaps</code></dt>
+<dd>The operator needs to create and manage default config maps for
+  the Prometheus exporter monitoring metrics.</dd>
+<dt><code>deployments</code></dt>
+<dd>The operator needs to manage a PgBouncer connection pooler
+  using a standard Kubernetes <code>Deployment</code> resource.</dd>
+<dt><code>jobs</code></dt>
+<dd>The operator needs to handle jobs to manage different <code>Cluster</code>'s phases.</dd>
+<dt><code>persistentvolumeclaims</code></dt>
+<dd>The volume where the <code>PGDATA</code> resides is the
+  central element of a PostgreSQL <code>Cluster</code> resource; the operator needs
+  to interact with the selected storage class to dynamically provision
+  the requested volumes, based on the defined scheduling policies.</dd>
+<dt><code>pods</code></dt>
+<dd>The operator needs to manage <code>Cluster</code>'s instances.</dd>
+<dt><code>secrets</code></dt>
+<dd>Unless you provide certificates and passwords to your <code>Cluster</code>
+  objects, the operator adopts the "convention over configuration" paradigm by
+  self-provisioning random generated passwords and TLS certificates, and by
+  storing them in secrets.</dd>
+<dt><code>serviceaccounts</code></dt>
+<dd>The operator needs to create a service account that
+  enables the instance manager (which is the <em>PID 1</em> process of the container
+  that controls the PostgreSQL server) to safely communicate with the
+  Kubernetes API server to coordinate actions and continuously provide
+  a reliable status of the <code>Cluster</code>.</dd>
+<dt><code>services</code></dt>
+<dd>The operator needs to control network access to the PostgreSQL cluster
+  (or the connection pooler) from applications, and properly manage
+  failover/switchover operations in an automated way (by assigning, for example,
+  the correct end-point of a service to the proper primary PostgreSQL instance).</dd>
+</dl>
+<h3 id="pod-security-policies">Pod Security Policies</h3>
+<p>A <a href="https://kubernetes.io/docs/concepts/policy/pod-security-policy/">Pod Security Policy</a>
+is the Kubernetes way to define security rules and specifications that a pod needs to meet
+to run in a cluster.
+For InfoSec reasons, every Kubernetes platform should implement them.</p>
+<p>CloudNativePG does not require <em>privileged</em> mode for containers execution.
+The PostgreSQL containers run as <code>postgres</code> system user. No component whatsoever requires running as <code>root</code>.</p>
+<p>Likewise, Volumes access does not require <em>privileges</em> mode or <code>root</code> privileges either.
+Proper permissions must be properly assigned by the Kubernetes platform and/or administrators.
+The PostgreSQL containers run with a read-only root filesystem (i.e. no writable layer).</p>
+<p>The operator explicitly sets the required security contexts.</p>
+<h3 id="restricting-pod-access-using-apparmor">Restricting Pod access using AppArmor</h3>
+<p>You can assign an
+<a href="https://kubernetes.io/docs/tutorials/security/apparmor/">AppArmor</a> profile to
+the <code>postgres</code>, <code>initdb</code>, <code>join</code>, <code>full-recovery</code> and <code>bootstrap-controller</code> containers inside every <code>Cluster</code> pod through the
+<code>container.apparmor.security.beta.kubernetes.io</code> annotation.</p>
+<div class="admonition seealso">
+<p class="admonition-title">Example of cluster annotations</p>
+</div>
+<pre><code>    kind: Cluster
+    metadata:
+        name: cluster-apparmor
+        annotations:
+            container.apparmor.security.beta.kubernetes.io/postgres: runtime/default
+            container.apparmor.security.beta.kubernetes.io/initdb: runtime/default
+            container.apparmor.security.beta.kubernetes.io/join: runtime/default
+</code></pre>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Using this kind of annotations can result in your cluster to stop working.
+If this is the case, the annotation can be safely removed from the <code>Cluster</code>.</p>
+</div>
+<p>The AppArmor configuration must be at Kubernetes node level, meaning that the
+underlying operating system must have this option enable and properly
+configured.</p>
+<p>In case this is not the situation, and the annotations were added at the
+<code>Cluster</code> creation time, pods will not be created. On the other hand, if you
+add the annotations after the <code>Cluster</code> was created the pods in the cluster will
+be unable to start and you will get an error like this:</p>
+<pre><code>metadata.annotations[container.apparmor.security.beta.kubernetes.io/postgres]: Forbidden: may not add AppArmor annotations]
+</code></pre>
+<p>In such cases, please refer to your Kubernetes administrators and ask for the
+proper AppArmor profile to use.</p>
+<h3 id="network-policies">Network Policies</h3>
+<p>The pods created by the <code>Cluster</code> resource can be controlled by Kubernetes
+<a href="https://kubernetes.io/docs/concepts/services-networking/network-policies/">network policies</a>
+to enable/disable inbound and outbound network access at IP and TCP level.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>The operator needs to communicate to each instance on TCP port 8000
+to get information about the status of the PostgreSQL server. Please
+make sure you keep this in mind in case you add any network policy,
+and refer to the "Exposed Ports" section below for a list of ports used by
+CloudNativePG for finer control.</p>
+</div>
+<p>Network policies are beyond the scope of this document.
+Please refer to the <a href="https://kubernetes.io/docs/concepts/services-networking/network-policies/">"Network policies"</a>
+section of the Kubernetes documentation for further information.</p>
+<h4 id="exposed-ports">Exposed Ports</h4>
+<p>CloudNativePG exposes ports at operator, instance manager and operand
+levels, as listed in the table below:</p>
+<table>
+<thead>
+<tr>
+<th align="left">System</th>
+<th align="left">Port number</th>
+<th align="left">Exposing</th>
+<th align="left">Name</th>
+<th align="left">Certificates</th>
+<th align="left">Authentication</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">operator</td>
+<td align="left">9443</td>
+<td align="left">webhook server</td>
+<td align="left"><code>webhook-server</code></td>
+<td align="left">TLS</td>
+<td align="left">Yes</td>
+</tr>
+<tr>
+<td align="left">operator</td>
+<td align="left">8080</td>
+<td align="left">metrics</td>
+<td align="left"><code>metrics</code></td>
+<td align="left">no TLS</td>
+<td align="left">No</td>
+</tr>
+<tr>
+<td align="left">instance manager</td>
+<td align="left">9187</td>
+<td align="left">metrics</td>
+<td align="left"><code>metrics</code></td>
+<td align="left">no TLS</td>
+<td align="left">No</td>
+</tr>
+<tr>
+<td align="left">instance manager</td>
+<td align="left">8000</td>
+<td align="left">status</td>
+<td align="left"><code>status</code></td>
+<td align="left">no TLS</td>
+<td align="left">No</td>
+</tr>
+<tr>
+<td align="left">operand</td>
+<td align="left">5432</td>
+<td align="left">PostgreSQL instance</td>
+<td align="left"><code>postgresql</code></td>
+<td align="left">optional TLS</td>
+<td align="left">Yes</td>
+</tr>
+</tbody>
+</table>
+<h3 id="postgresql">PostgreSQL</h3>
+<p>The current implementation of CloudNativePG automatically creates
+passwords and <code>.pgpass</code> files for the <code>postgres</code> superuser and the database owner.</p>
+<p>As far as encryption of password is concerned, CloudNativePG follows
+the default behavior of PostgreSQL: starting from PostgreSQL 14,
+<code>password_encryption</code> is by default set to <code>scram-sha-256</code>, while on earlier
+versions it is set to <code>md5</code>.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Please refer to the <a href="https://www.postgresql.org/docs/current/auth-password.html">"Password authentication"</a>
+section in the PostgreSQL documentation for details.</p>
+</div>
+<p>You can disable management of the <code>postgres</code> user password via secrets by setting
+<code>enableSuperuserAccess</code> to <code>false</code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The operator supports toggling the <code>enableSuperuserAccess</code> option. When you
+disable it on a running cluster, the operator will ignore the content of the secret,
+remove it (if previously generated by the operator) and set the password of the
+<code>postgres</code> user to <code>NULL</code> (de facto disabling remote access through password authentication).</p>
+</div>
+<p>See the <a href="../architecture/#secrets">"Secrets" section in the "Architecture" page</a> for more information.</p>
+<p>You can use those files to configure application access to the database.</p>
+<p>By default, every replica is automatically configured to connect in <strong>physical
+async streaming replication</strong> with the current primary instance, with a special
+user called <code>streaming_replica</code>. The connection between nodes is <strong>encrypted</strong>
+and authentication is via <strong>TLS client certificates</strong> (please refer to the
+<a href="../ssl_connections/" title="Client TLS/SSL Connections">"Client TLS/SSL Connections"</a> page
+for details).</p>
+<p>Currently, the operator allows administrators to add <code>pg_hba.conf</code> lines directly in the manifest
+as part of the <code>pg_hba</code> section of the <code>postgresql</code> configuration. The lines defined in the
+manifest are added to a default <code>pg_hba.conf</code>.</p>
+<p>For further detail on how <code>pg_hba.conf</code> is managed by the operator, see the
+<a href="../postgresql_conf/#the-pg_hba-section">"PostgreSQL Configuration" page</a> of the documentation.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Examples assume that the Kubernetes cluster runs in a private and secure network.</p>
+</div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../bootstrap/" class="btn btn-neutral float-left" title="Bootstrap"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../instance_manager/" class="btn btn-neutral float-right" title="Postgres instance manager">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../bootstrap/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../instance_manager/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

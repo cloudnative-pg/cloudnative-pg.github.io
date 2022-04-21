@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="The CloudNativePG Contributors" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Troubleshooting - CloudNativePG</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Troubleshooting";
+        var mkdocs_page_input_path = "troubleshooting.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> CloudNativePG
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">CloudNativePG</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../before_you_start/">Before You Start</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../use_cases/">Use cases</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../architecture/">Architecture</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../installation_upgrade/">Installation and upgrades</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../quickstart/">Quickstart</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../bootstrap/">Bootstrap</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../security/">Security</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../instance_manager/">Postgres instance manager</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../scheduling/">Scheduling</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../resource_management/">Resource management</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../failure_modes/">Failure Modes</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../rolling_update/">Rolling Updates</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../replication/">Replication</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../backup_recovery/">Backup and Recovery</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../postgresql_conf/">PostgreSQL Configuration</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../operator_conf/">Operator configuration</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../storage/">Storage</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../labels_annotations/">Labels and annotations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../monitoring/">Monitoring</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../logging/">Logging</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../certificates/">Certificates</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../ssl_connections/">Client TLS/SSL Connections</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../applications/">Connecting from an application</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../connection_pooling/">Connection Pooling</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../kubernetes_upgrade/">Kubernetes Upgrade</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../expose_pg_services/">Exposing Postgres Services</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../cnpg-plugin/">CloudNativePG Plugin</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../failover/">Automated failover</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Troubleshooting</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#before-you-start">Before you start</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#kubernetes-environment">Kubernetes environment</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#useful-utilities">Useful utilities</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#logs">Logs</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#operator-information">Operator information</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#gather-more-information-about-the-operator">Gather more information about the operator</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#cluster-information">Cluster information</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pod-information">Pod information</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#gather-and-filter-extra-information-about-postgresql-pods">Gather and filter extra information about PostgreSQL pods</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#backup-information">Backup information</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#storage-information">Storage information</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#node-information">Node information</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#conditions">Conditions</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#how-to-wait-for-a-particular-condition">How to wait for a particular condition</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#some-common-issues">Some common issues</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#storage-is-full">Storage is full</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#pods-are-stuck-in-pending-state">Pods are stuck in Pending state</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#replicas-out-of-sync-when-no-backup-is-configured">Replicas out of sync when no backup is configured</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../fencing/">Fencing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../e2e/">End-to-End Tests</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../container_images/">Container Image Requirements</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../operator_capability_levels/">Operator Capability Levels</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../samples/">Configuration Samples</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../commercial_support/">Commercial support</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../api_reference/">API Reference</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../supported_releases/">Supported releases</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../release_notes/">Release notes</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">CloudNativePG</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li><li>Troubleshooting</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="troubleshooting">Troubleshooting</h1>
+<p>In this page, you can find some basic information on how to troubleshoot
+CloudNativePG in your Kubernetes cluster deployment.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>As a Kubernetes administrator, you should have the
+<a href="https://kubernetes.io/docs/reference/kubectl/cheatsheet/"><code>kubectl</code> Cheat Sheet</a> page
+bookmarked!</p>
+</div>
+<h2 id="before-you-start">Before you start</h2>
+<h3 id="kubernetes-environment">Kubernetes environment</h3>
+<p>What can make a difference in a troubleshooting activity is to provide
+clear information about the underlying Kubernetes system.</p>
+<p>Make sure you know:</p>
+<ul>
+<li>the Kubernetes distribution and version you are using</li>
+<li>the specifications of the nodes where PostgreSQL is running</li>
+<li>as much as you can about the actual <a href="../storage/">storage</a>, including storage
+  class and benchmarks you have done before going into production.</li>
+<li>which relevant Kubernetes applications you are using in your cluster (i.e.
+  Prometheus, Grafana, Istio, Certmanager, ...)</li>
+</ul>
+<h3 id="useful-utilities">Useful utilities</h3>
+<p>On top of the mandatory <code>kubectl</code> utility, for troubleshooting, we recommend the
+following plugins/utilities to be available in your system:</p>
+<ul>
+<li><a href="../cnpg-plugin/"><code>cnpg</code> plugin</a> for <code>kubectl</code></li>
+<li><a href="https://stedolan.github.io/jq/"><code>jq</code></a>, a lightweight and flexible command-line JSON processor</li>
+<li><a href="https://www.gnu.org/software/grep/"><code>grep</code></a>, searches one or more input files
+  for lines containing a match to a specified pattern. It is already available in most *nix distros.
+  If you are on Windows OS, you can use <a href="https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/findstr"><code>findstr</code></a> as an alternative to <code>grep</code> or directly use <a href="https://docs.microsoft.com/en-us/windows/wsl/"><code>wsl</code></a>
+  and install your preferred *nix distro and use the tools mentioned above.</li>
+</ul>
+<h3 id="logs">Logs</h3>
+<p>Every resource created and controlled by CloudNativePG logs to
+standard output, as expected by Kubernetes, and directly in <a href="../logging/">JSON
+format</a>. As a result, you should rely on the <code>kubectl logs</code>
+command to retrieve logs from a given resource.</p>
+<p>For more information, type:</p>
+<pre><code class="language-shell">kubectl logs --help
+</code></pre>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>JSON logs are great for machine reading, but hard to read for human beings.
+Our recommendation is to use the <code>jq</code> command to improve usability. For
+example, you can <em>pipe</em> the <code>kubectl logs</code> command with <code>| jq -C</code>.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In the sections below, we will show some examples on how to retrieve logs
+about different resources when it comes to troubleshooting CloudNativePG.</p>
+</div>
+<h2 id="operator-information">Operator information</h2>
+<p>By default, the CloudNativePG operator is installed in the
+<code>cnpg-system</code> namespace in Kubernetes as a <code>Deployment</code>
+(see the <a href="../installation_upgrade/#details-about-the-deployment">"Details about the deployment" section</a>
+for details).</p>
+<p>You can get a list of the operator pods by running:</p>
+<pre><code class="language-shell">kubectl get pods -n cnpg-system
+</code></pre>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Under normal circumstances, you should have one pod where the operator is
+running, identified by a name starting with <code>cnpg-controller-manager-</code>.
+In case you have set up your operator for high availability, you should have more entries.
+Those pods are managed by a deployment named <code>cnpg-controller-manager</code>.</p>
+</div>
+<p>Collect the relevant information about the operator that is running in pod
+<code>&lt;POD&gt;</code> with:</p>
+<pre><code class="language-shell">kubectl describe pod -n cnpg-system &lt;POD&gt;
+</code></pre>
+<p>Then get the logs from the same pod by running:</p>
+<pre><code class="language-shell">kubectl logs -n cnpg-system &lt;POD&gt;
+</code></pre>
+<h3 id="gather-more-information-about-the-operator">Gather more information about the operator</h3>
+<p>Get logs from all pods in CloudNativePG operator Deployment
+(in case you have a multi operator deployment) by running:</p>
+<pre><code class="language-shell">kubectl logs -n cnpg-system \
+  deployment/cnpg-controller-manager --all-containers=true
+</code></pre>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>You can add <code>-f</code> flag to above command to follow logs in real time.</p>
+</div>
+<p>Save logs to a JSON file by running:</p>
+<pre><code class="language-shell">kubectl logs -n cnpg-system \
+  deployment/cnpg-controller-manager --all-containers=true | \
+  jq -r . &gt; cnpg_logs.json
+</code></pre>
+<p>Get CloudNativePG operator version by using <code>kubectl-cnpg</code> plugin:</p>
+<pre><code class="language-shell">kubectl-cnpg status &lt;CLUSTER&gt;
+</code></pre>
+<p>Output:</p>
+<pre><code class="language-shell">Cluster in healthy state
+Name:               cluster-example
+Namespace:          default
+System ID:          7044925089871458324
+PostgreSQL Image:   ghcr.io/cloudnative-pg/postgresql:14.2-3
+Primary instance:   cluster-example-1
+Instances:          3
+Ready instances:    3
+Current Write LSN:  0/5000000 (Timeline: 1 - WAL File: 000000010000000000000004)
+
+Continuous Backup status
+Not configured
+
+Streaming Replication status
+Name               Sent LSN   Write LSN  Flush LSN  Replay LSN  Write Lag       Flush Lag       Replay Lag      State      Sync State  Sync Priority
+----               --------   ---------  ---------  ----------  ---------       ---------       ----------      -----      ----------  -------------
+cluster-example-2  0/5000000  0/5000000  0/5000000  0/5000000   00:00:00        00:00:00        00:00:00        streaming  async       0
+cluster-example-3  0/5000000  0/5000000  0/5000000  0/5000000   00:00:00.10033  00:00:00.10033  00:00:00.10033  streaming  async       0
+
+Instances status
+Name               Database Size  Current LSN  Replication role  Status  QoS         Manager Version
+----               -------------  -----------  ----------------  ------  ---         ---------------
+cluster-example-1  33 MB          0/5000000    Primary           OK      BestEffort  1.12.0
+cluster-example-2  33 MB          0/5000000    Standby (async)   OK      BestEffort  1.12.0
+cluster-example-3  33 MB          0/5000060    Standby (async)   OK      BestEffort  1.12.0
+</code></pre>
+<h2 id="cluster-information">Cluster information</h2>
+<p>You can check the status of the <code>&lt;CLUSTER&gt;</code> cluster in the <code>NAMESPACE</code>
+namespace with:</p>
+<pre><code class="language-shell">kubectl get cluster -n &lt;NAMESPACE&gt; &lt;CLUSTER&gt;
+</code></pre>
+<p>Output:</p>
+<pre><code class="language-shell">NAME        AGE        INSTANCES   READY   STATUS                     PRIMARY
+&lt;CLUSTER&gt;   10d4h3m    3           3       Cluster in healthy state   &lt;CLUSTER&gt;-1
+</code></pre>
+<p>The above example reports a healthy PostgreSQL cluster of 3 instances, all in
+<em>ready</em> state, and with <code>&lt;CLUSTER&gt;-1</code> being the primary.</p>
+<p>In case of unhealthy conditions, you can discover more by getting the manifest
+of the <code>Cluster</code> resource:</p>
+<pre><code class="language-shell">kubectl get cluster -o yaml -n &lt;NAMESPACE&gt; &lt;CLUSTER&gt;
+</code></pre>
+<p>Another important command to gather is the <code>status</code> one, as provided by the
+<code>cnpg</code> plugin:</p>
+<pre><code class="language-shell">kubectl cnpg status -n &lt;NAMESPACE&gt; &lt;CLUSTER&gt;
+</code></pre>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>You can print more information by adding the <code>--verbose</code> option.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Besides knowing cluster status, you can also do the following things with the cnpg plugin:
+Promote a replica.<br />
+Manage certificates.<br />
+Make a rollout restart cluster to apply configuration changes.<br />
+Make a reconciliation loop to reload and apply configuration changes.<br />
+For more information, please see <a href="../cnpg-plugin/"><code>cnpg</code> plugin</a> documentation.</p>
+</div>
+<p>Get PostgreSQL container image version:</p>
+<pre><code class="language-shell">kubectl describe cluster &lt;CLUSTER_NAME&gt; -n &lt;NAMESPACE&gt; | grep &quot;Image Name&quot;
+</code></pre>
+<p>Output:</p>
+<pre><code class="language-shell">  Image Name:    ghcr.io/cloudnative-pg/postgresql:14.2-3
+</code></pre>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Also you can use <code>kubectl-cnpg status -n &lt;NAMESPACE&gt; &lt;CLUSTER_NAME&gt;</code>
+to get the same information.</p>
+</div>
+<h2 id="pod-information">Pod information</h2>
+<p>You can retrieve the list of instances that belong to a given PostgreSQL
+cluster with:</p>
+<pre><code class="language-shell">kubectl get pod -l cnpg.io/cluster=&lt;CLUSTER&gt; -L role -n &lt;NAMESPACE&gt;
+</code></pre>
+<p>Output:</p>
+<pre><code class="language-shell">NAME          READY   STATUS    RESTARTS   AGE       ROLE
+&lt;CLUSTER&gt;-1   1/1     Running   0          10d4h5m   primary
+&lt;CLUSTER&gt;-2   1/1     Running   0          10d4h4m   replica
+&lt;CLUSTER&gt;-3   1/1     Running   0          10d4h4m   replica
+</code></pre>
+<p>You can check if/how a pod is failing by running:</p>
+<pre><code class="language-shell">kubectl get pod -n &lt;NAMESPACE&gt; -o yaml &lt;CLUSTER&gt;-&lt;N&gt;
+</code></pre>
+<p>You can get all the logs for a given PostgreSQL instance with:</p>
+<pre><code class="language-shell">kubectl logs -n &lt;NAMESPACE&gt; &lt;CLUSTER&gt;-&lt;N&gt;
+</code></pre>
+<p>If you want to limit the search to the PostgreSQL process only, you can run:</p>
+<pre><code class="language-shell">kubectl logs -n &lt;NAMESPACE&gt; &lt;CLUSTER&gt;-&lt;N&gt; | \
+  jq 'select(.logger==&quot;postgres&quot;) | .record.message'
+</code></pre>
+<p>The following example also adds the timestamp in a user-friendly format:</p>
+<pre><code class="language-shell">kubectl logs -n &lt;NAMESPACE&gt; &lt;CLUSTER&gt;-&lt;N&gt; | \
+  jq -r 'select(.logger==&quot;postgres&quot;) | [(.ts|strflocaltime(&quot;%Y-%m-%dT%H:%M:%S %Z&quot;)), .record.message] | @csv'
+</code></pre>
+<h3 id="gather-and-filter-extra-information-about-postgresql-pods">Gather and filter extra information about PostgreSQL pods</h3>
+<p>Check logs from a specific pod that has crashed:</p>
+<pre><code class="language-shell">kubectl logs -n &lt;NAMESPACE&gt; --previous &lt;CLUSTER&gt;-&lt;N&gt;
+</code></pre>
+<p>Get FATAL errors from a specific PostgreSQL pod:</p>
+<pre><code class="language-shell">kubectl logs -n &lt;NAMESPACE&gt; &lt;CLUSTER&gt;-&lt;N&gt; | \
+  jq -r '.record | select(.error_severity == &quot;FATAL&quot;)'
+</code></pre>
+<p>Output:</p>
+<pre><code class="language-json">{
+  &quot;log_time&quot;: &quot;2021-11-08 14:07:44.520 UTC&quot;,
+  &quot;user_name&quot;: &quot;streaming_replica&quot;,
+  &quot;process_id&quot;: &quot;68&quot;,
+  &quot;connection_from&quot;: &quot;10.244.0.10:60616&quot;,
+  &quot;session_id&quot;: &quot;61892f30.44&quot;,
+  &quot;session_line_num&quot;: &quot;1&quot;,
+  &quot;command_tag&quot;: &quot;startup&quot;,
+  &quot;session_start_time&quot;: &quot;2021-11-08 14:07:44 UTC&quot;,
+  &quot;virtual_transaction_id&quot;: &quot;3/75&quot;,
+  &quot;transaction_id&quot;: &quot;0&quot;,
+  &quot;error_severity&quot;: &quot;FATAL&quot;,
+  &quot;sql_state_code&quot;: &quot;28000&quot;,
+  &quot;message&quot;: &quot;role \&quot;streaming_replica\&quot; does not exist&quot;,
+  &quot;backend_type&quot;: &quot;walsender&quot;
+}
+</code></pre>
+<p>Filter PostgreSQL DB error messages in logs for a specific pod:</p>
+<pre><code class="language-shell">kubectl logs -n &lt;NAMESPACE&gt; &lt;CLUSTER&gt;-&lt;N&gt; | jq -r '.err | select(. != null)'
+</code></pre>
+<p>Output:</p>
+<pre><code class="language-shell">dial unix /controller/run/.s.PGSQL.5432: connect: no such file or directory
+</code></pre>
+<p>Get messages matching <code>err</code> word from a specific pod:</p>
+<pre><code class="language-shell">kubectl logs -n &lt;NAMESPACE&gt; &lt;CLUSTER&gt;-&lt;N&gt; | jq -r '.msg' | grep &quot;err&quot;
+</code></pre>
+<p>Output:</p>
+<pre><code class="language-shell">2021-11-08 14:07:39.610 UTC [15] LOG:  ending log output to stderr
+</code></pre>
+<p>Get all logs from PostgreSQL process from a specific pod:</p>
+<pre><code class="language-shell">kubectl logs -n &lt;NAMESPACE&gt; &lt;CLUSTER&gt;-&lt;N&gt; | \
+  jq -r '. | select(.logger == &quot;postgres&quot;) | select(.msg != &quot;record&quot;) | .msg'
+</code></pre>
+<p>Output:</p>
+<pre><code class="language-shell">2021-11-08 14:07:52.591 UTC [16] LOG:  redirecting log output to logging collector process
+2021-11-08 14:07:52.591 UTC [16] HINT:  Future log output will appear in directory &quot;/controller/log&quot;.
+2021-11-08 14:07:52.591 UTC [16] LOG:  ending log output to stderr
+2021-11-08 14:07:52.591 UTC [16] HINT:  Future log output will go to log destination &quot;csvlog&quot;.
+</code></pre>
+<p>Get pod logs filtered by fields with values and join them separated by <code>|</code> running:</p>
+<pre><code class="language-shell">kubectl logs -n &lt;NAMESPACE&gt; &lt;CLUSTER&gt;-&lt;N&gt; | \
+  jq -r '[.level, .ts, .logger, .msg] | join(&quot; | &quot;)'
+</code></pre>
+<p>Output:</p>
+<pre><code class="language-shell">info | 1636380469.5728037 | wal-archive | Backup not configured, skip WAL archiving
+info | 1636383566.0664876 | postgres | record
+</code></pre>
+<h2 id="backup-information">Backup information</h2>
+<p>You can list the backups that have been created for a named cluster with:</p>
+<pre><code class="language-shell">kubectl get backup -l cnpg.io/cluster=&lt;CLUSTER&gt;
+</code></pre>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Backup labelling has been introduced in version 1.10.0 of CloudNativePG.
+So only those resources that have been created with that version or
+a higher one will contain such a label.</p>
+</div>
+<h2 id="storage-information">Storage information</h2>
+<p>Sometimes is useful to double-check the StorageClass used by the cluster to have
+some more context during investigations or troubleshooting, like this:</p>
+<pre><code class="language-shell">STORAGECLASS=$(kubectl get pvc &lt;POD&gt; -o jsonpath='{.spec.storageClassName}')
+kubectl get storageclasses $STORAGECLASS -o yaml
+</code></pre>
+<p>We are taking the StorageClass from one of the cluster pod here since often
+clusters are created using the default StorageClass.</p>
+<h2 id="node-information">Node information</h2>
+<p>Kubernetes nodes is where ultimately PostgreSQL pods will be running. It's
+strategically important to know as much as we can about them.</p>
+<p>You can get the list of nodes in your Kubernetes cluster with:</p>
+<pre><code class="language-shell"># look at the worker nodes and their status
+kubectl get nodes -o wide
+</code></pre>
+<p>Additionally, you can gather the list of nodes where the pods of a given
+cluster are running with:</p>
+<pre><code class="language-shell">kubectl get pod -l cnpg.io/clusterName=&lt;CLUSTER&gt; \
+  -L role -n &lt;NAMESPACE&gt; -o wide
+</code></pre>
+<p>The latter is important to understand where your pods are distributed - very
+useful if you are using <a href="../scheduling/">affinity/anti-affinity rules and/or tolerations</a>.</p>
+<h2 id="conditions">Conditions</h2>
+<p>Like many native kubernetes
+objects <a href="https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#pod-conditions">like here</a>, 
+Cluster exposes <code>status.conditions</code> as well. This allows one to 'wait' for a particular 
+event to occur instead of relying on the overall cluster health state. Available conditions as of now are:</p>
+<ul>
+<li>LastBackupSucceeded</li>
+<li>ContinuousArchiving</li>
+</ul>
+<h3 id="how-to-wait-for-a-particular-condition">How to wait for a particular condition</h3>
+<ul>
+<li>Backup:</li>
+</ul>
+<pre><code class="language-bash">$ kubectl wait --for=condition=LastBackupSucceeded cluster/&lt;CLUSTER-NAME&gt; -n &lt;NAMESPACE&gt;
+</code></pre>
+<ul>
+<li>ContinuousArchiving:</li>
+</ul>
+<pre><code class="language-bash">$ kubectl wait --for=condition=ContinuousArchiving cluster/&lt;CLUSTER-NAME&gt; -n &lt;NAMESPACE&gt;
+</code></pre>
+<p>Below is a snippet of a <code>cluster.status</code> that contains a failing condition.</p>
+<pre><code class="language-bash">$ kubectl get cluster/&lt;cluster-name&gt; -o yaml
+.
+.
+.
+  status:
+    conditions:
+    - message: 'unexpected failure invoking barman-cloud-wal-archive: exit status
+        2'
+      reason: Continuous Archiving is Failing
+      status: &quot;False&quot;
+      type: ContinuousArchiving
+
+    - message: exit status 2
+      reason: Backup is failed
+      status: &quot;False&quot;
+      type: LastBackupSucceeded
+</code></pre>
+<h2 id="some-common-issues">Some common issues</h2>
+<h3 id="storage-is-full">Storage is full</h3>
+<p>If one or more pods in the cluster are in <code>CrashloopBackoff</code> and logs
+suggest this could be due to a full disk, you probably have to increase the
+size of the instance's <code>PersistentVolumeClaim</code>. Please look at the
+<a href="../storage/#volume-expansion">"Volume expansion" section</a> in the documentation.</p>
+<h3 id="pods-are-stuck-in-pending-state">Pods are stuck in <code>Pending</code> state</h3>
+<p>In case a Cluster's instance is stuck in the <code>Pending</code> phase, you should check
+the pod's <code>Events</code> section to get an idea of the reasons behind this:</p>
+<pre><code class="language-shell">kubectl describe pod -n &lt;NAMESPACE&gt; &lt;POD&gt;
+</code></pre>
+<p>Some of the possible causes for this are:</p>
+<ul>
+<li>No nodes are matching the <code>nodeSelector</code></li>
+<li>Tolerations are not correctly configured to match the nodes' taints</li>
+<li>No nodes are available at all: this could also be related to
+  <code>cluster-autoscaler</code> hitting some limits, or having some temporary issues</li>
+</ul>
+<p>In this case, it could also be useful to check events in the namespace:</p>
+<pre><code class="language-shell">kubectl get events -n &lt;NAMESPACE&gt;
+# list events in chronological order
+kubectl get events -n &lt;NAMESPACE&gt; --sort-by=.metadata.creationTimestamp
+</code></pre>
+<h3 id="replicas-out-of-sync-when-no-backup-is-configured">Replicas out of sync when no backup is configured</h3>
+<p>Sometimes replicas might be switched off for a bit of time due to maintenance
+reasons (think of when a Kubernetes nodes is drained). In case your cluster
+does not have backup configured, when replicas come back up, they might
+require a WAL file that is not present anymore on the primary (having been
+already recycled according to the WAL management policies as mentioned in
+<a href="../postgresql_conf/#the-postgresql-section">"The <code>postgresql</code> section"</a>), and
+fall out of synchronization.</p>
+<p>Similarly, when <code>pg_rewind</code> might require a WAL file that is not present
+anymore in the former primary, reporting <code>pg_rewind: error: could not open file</code>.</p>
+<p>In these cases, pods cannot become ready anymore, and you are required to delete
+the PVC and let the operator rebuild the replica.</p>
+<p>If you rely on dynamically provisioned Persistent Volumes, and you are confident
+in deleting the PV itself, you can do so with:</p>
+<pre><code class="language-shell">PODNAME=&lt;POD&gt;
+VOLNAME=$(kubectl get pv -o json | \
+  jq -r '.items[]|select(.spec.claimRef.name=='\&quot;$PODNAME\&quot;')|.metadata.name')
+
+kubectl delete pod/$PODNAME pvc/$PODNAME pv/$VOLNAME
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../failover/" class="btn btn-neutral float-left" title="Automated failover"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../fencing/" class="btn btn-neutral float-right" title="Fencing">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../failover/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../fencing/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
