@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="The CloudNativePG Contributors" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Postgres instance manager - CloudNativePG</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Postgres instance manager";
+        var mkdocs_page_input_path = "instance_manager.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> CloudNativePG
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">CloudNativePG</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../before_you_start/">Before You Start</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../use_cases/">Use cases</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../architecture/">Architecture</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../installation_upgrade/">Installation and upgrades</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../quickstart/">Quickstart</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../bootstrap/">Bootstrap</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../security/">Security</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Postgres instance manager</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#liveness-and-readiness-probes">Liveness and readiness probes</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#shutdown-control">Shutdown control</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#shutdown-of-the-primary-during-a-switchover">Shutdown of the primary during a switchover</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#failover">Failover</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../scheduling/">Scheduling</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../resource_management/">Resource management</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../failure_modes/">Failure Modes</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../rolling_update/">Rolling Updates</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../replication/">Replication</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../backup_recovery/">Backup and Recovery</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../postgresql_conf/">PostgreSQL Configuration</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../operator_conf/">Operator configuration</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../storage/">Storage</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../labels_annotations/">Labels and annotations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../monitoring/">Monitoring</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../logging/">Logging</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../certificates/">Certificates</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../ssl_connections/">Client TLS/SSL Connections</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../applications/">Connecting from an application</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../connection_pooling/">Connection Pooling</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../kubernetes_upgrade/">Kubernetes Upgrade</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../expose_pg_services/">Exposing Postgres Services</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../cnpg-plugin/">CloudNativePG Plugin</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../failover/">Automated failover</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../troubleshooting/">Troubleshooting</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../fencing/">Fencing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../e2e/">End-to-End Tests</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../container_images/">Container Image Requirements</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../operator_capability_levels/">Operator Capability Levels</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../samples/">Configuration Samples</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../commercial_support/">Commercial support</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../api_reference/">API Reference</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../supported_releases/">Supported releases</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../release_notes/">Release notes</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">CloudNativePG</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li><li>Postgres instance manager</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="postgres-instance-manager">Postgres instance manager</h1>
+<p>CloudNativePG does not rely on an external tool for failover management.
+It simply relies on the Kubernetes API server and a native key component called:
+the <strong>Postgres instance manager</strong>.</p>
+<p>The instance manager takes care of the entire lifecycle of the PostgreSQL
+leading process (also known as <code>postmaster</code>).</p>
+<p>When you create a new cluster, the operator makes a Pod per instance.
+The field <code>.spec.instances</code> specifies how many instances to create.</p>
+<p>Each Pod will start the instance manager as the parent process (PID 1) for the
+main container, which in turn runs the PostgreSQL instance. During the lifetime
+of the Pod, the instance manager acts as a backend to handle the <a href="https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#container-probes">liveness and
+readiness probes</a>.</p>
+<h2 id="liveness-and-readiness-probes">Liveness and readiness probes</h2>
+<p>The liveness probe relies on <code>pg_isready</code>, while the readiness probe checks if
+the database is up and able to accept connections using the superuser
+credentials.
+The readiness probe is positive when the Pod is ready to accept traffic.
+The liveness probe controls when to restart the container.</p>
+<blockquote>
+<p>The two probes will report a failure if the probe command fails 3 times with a 10 seconds interval between each check.</p>
+</blockquote>
+<p>For now, the operator doesn't configure a <code>startupProbe</code> on the Pods, since
+startup probes have been introduced only in Kubernetes 1.17.</p>
+<p>The liveness probe is used to detect if the PostgreSQL instance is in a
+broken state and needs to be restarted. The value in <code>startDelay</code> is used
+to delay the probe's execution, which is used to prevent an
+instance with a long startup time from being restarted.</p>
+<p>The number of seconds after the Pod has started before the liveness
+probe starts working is expressed in the <code>.spec.startDelay</code> parameter,
+which defaults to 30 seconds. The correct value for your cluster is
+related to the time needed by PostgreSQL to start.</p>
+<p>If <code>.spec.startDelay</code> is too low, the liveness probe will start working
+before the PostgreSQL startup, and the Pod could be restarted
+inappropriately.</p>
+<h2 id="shutdown-control">Shutdown control</h2>
+<p>When a Pod running Postgres is deleted, either manually or by Kubernetes
+following a node drain operation, the kubelet will send a termination signal to the
+instance manager, and the instance manager will take care of shutting down
+PostgreSQL in an appropriate way.
+The <code>.spec.stopDelay</code>, expressed in seconds, is the amount of time
+given to PostgreSQL to shut down. The value defaults to 30 seconds.</p>
+<p>The shutdown procedure is composed of two steps:</p>
+<ol>
+<li>
+<p>The instance manager requests a <strong>smart</strong> shut down, disallowing any
+new connection to PostgreSQL. This step will last for half of the
+time set in <code>.spec.stopDelay</code>.</p>
+</li>
+<li>
+<p>If PostgreSQL is still up, the instance manager requests a <strong>fast</strong>
+shut down, terminating any existing connection and exiting promptly.
+If the instance is archiving and/or streaming WAL files, the process
+will wait for up to the remaining half of the time set in <code>.spec.stopDelay</code>
+to complete the operation and then forcibly shut down.</p>
+</li>
+</ol>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>In order to avoid any data loss in the Postgres cluster, which impacts
+the database RPO, don't delete the Pod where the primary instance is running.
+In this case, perform a switchover to another instance first.</p>
+</div>
+<h3 id="shutdown-of-the-primary-during-a-switchover">Shutdown of the primary during a switchover</h3>
+<p>During a switchover, the shutdown procedure is slightly different from the
+general case. Indeed, the operator requires the former primary to issue a
+<strong>fast</strong> shut down before the selected new primary can be promoted,
+in order to ensure that all the data are available on the new primary.</p>
+<p>For this reason, the <code>.spec.switchoverDelay</code>, expressed in seconds, controls
+the  time given to the former primary to shut down gracefully and archive all 
+the WAL files.
+During this time frame, the primary instance does not accept connections.
+The value defaults is greater than one year in seconds, big enough to simulate
+an infinite delay and therefore preserve data durability.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The <code>.spec.switchoverDelay</code> option affects the RPO and RTO of your
+PostgreSQL database. Setting it to a low value, might favor RTO over RPO
+but lead to data loss at cluster level and/or backup level. On the contrary,
+setting it to a high value, might remove the risk of data loss while leaving
+the cluster without an active primary for a longer time during the switchover.</p>
+</div>
+<h2 id="failover">Failover</h2>
+<p>In case of primary pod failure, the cluster will go into failover mode.
+Please refer to the <a href="../failover/">"Failover" section</a> for details.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../security/" class="btn btn-neutral float-left" title="Security"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../scheduling/" class="btn btn-neutral float-right" title="Scheduling">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../security/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../scheduling/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="The CloudNativePG Contributors" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Architecture - CloudNativePG</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Architecture";
+        var mkdocs_page_input_path = "architecture.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> CloudNativePG
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">CloudNativePG</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../before_you_start/">Before You Start</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../use_cases/">Use cases</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Architecture</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#read-write-workloads">Read-write workloads</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#read-only-workloads">Read-only workloads</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#multi-cluster-deployments">Multi-cluster deployments</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../installation_upgrade/">Installation and upgrades</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../quickstart/">Quickstart</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../bootstrap/">Bootstrap</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../security/">Security</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../instance_manager/">Postgres instance manager</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../scheduling/">Scheduling</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../resource_management/">Resource management</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../failure_modes/">Failure Modes</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../rolling_update/">Rolling Updates</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../replication/">Replication</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../backup_recovery/">Backup and Recovery</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../postgresql_conf/">PostgreSQL Configuration</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../operator_conf/">Operator configuration</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../storage/">Storage</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../labels_annotations/">Labels and annotations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../monitoring/">Monitoring</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../logging/">Logging</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../certificates/">Certificates</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../ssl_connections/">Client TLS/SSL Connections</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../applications/">Connecting from an application</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../connection_pooling/">Connection Pooling</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../kubernetes_upgrade/">Kubernetes Upgrade</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../expose_pg_services/">Exposing Postgres Services</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../cnpg-plugin/">CloudNativePG Plugin</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../failover/">Automated failover</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../troubleshooting/">Troubleshooting</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../fencing/">Fencing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../e2e/">End-to-End Tests</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../container_images/">Container Image Requirements</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../operator_capability_levels/">Operator Capability Levels</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../samples/">Configuration Samples</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../commercial_support/">Commercial support</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../api_reference/">API Reference</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../supported_releases/">Supported releases</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../release_notes/">Release notes</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">CloudNativePG</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li><li>Architecture</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="architecture">Architecture</h1>
+<p>For High Availability and Scalability goals, the PostgreSQL database management
+system provides administrators with built-in <strong>physical replication</strong>
+capabilities based on <strong>Write Ahead Log (WAL) shipping</strong>.</p>
+<p>PostgreSQL supports both asynchronous and synchronous streaming replication
+over the network, as well as asynchronous file-based log shipping (normally
+used as a fallback option, for example, to store WAL files in an object store).
+Replicas are usually called <em>standby servers</em> and can also be used for
+read-only workloads, thanks to the <em>Hot Standby</em> feature.</p>
+<p>CloudNativePG supports clusters based on asynchronous and synchronous
+streaming replication to manage multiple hot standby replicas within the same
+Kubernetes cluster, with the following specifications:</p>
+<ul>
+<li>One primary, with optional multiple hot standby replicas for High Availability</li>
+<li>Available services for applications:<ul>
+<li><code>-rw</code>: applications connect to the only primary instance of the cluster</li>
+<li><code>-ro</code>: applications connect to the only hot standby replicas for read-only-workloads</li>
+<li><code>-r</code>: applications connect to any of the instances for read-only workloads</li>
+</ul>
+</li>
+<li>Shared-nothing architecture recommended for better resilience of the PostgreSQL cluster:<ul>
+<li>PostgreSQL instances should reside on different Kubernetes worker nodes
+  and share only the network</li>
+<li>PostgreSQL instances can reside in different
+  availability zones in the same region</li>
+<li>All nodes of a PostgreSQL cluster should reside in the same region</li>
+</ul>
+</li>
+</ul>
+<div class="admonition seealso">
+<p class="admonition-title">Replication</p>
+<p>Please refer to the <a href="../replication/">"Replication" section</a> for more
+information about how CloudNativePG relies on PostgreSQL replication,
+including synchronous settings.</p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">Connecting from an application</p>
+<p>Please refer to the <a href="../applications/">"Connecting from an application" section</a> for
+information about how to connect to CloudNativePG from a stateless
+application within the same Kubernetes cluster.</p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">Connection Pooling</p>
+<p>Please refer to the <a href="../connection_pooling/">"Connection Pooling" section</a> for
+information about how to take advantage of PgBouncer as a connection pooler,
+and create an access layer between your applications and the PostgreSQL clusters.</p>
+</div>
+<h2 id="read-write-workloads">Read-write workloads</h2>
+<p>Applications can decide to connect to the PostgreSQL instance elected as
+<em>current primary</em> by the Kubernetes operator, as depicted in the following
+diagram:</p>
+<p><img alt="Applications writing to the single primary" src="../images/architecture-rw.png" /></p>
+<p>Applications can use the <code>-rw</code> suffix service.</p>
+<p>In case of temporary or permanent unavailability of the primary, Kubernetes
+will move the <code>-rw</code> service to another instance of the cluster for high availability
+purposes.</p>
+<h2 id="read-only-workloads">Read-only workloads</h2>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Applications must be aware of the limitations that
+<a href="https://www.postgresql.org/docs/current/hot-standby.html">Hot Standby</a>
+presents and familiar with the way PostgreSQL operates when dealing with
+these workloads.</p>
+</div>
+<p>Applications can access hot standby replicas through the <code>-ro</code> service made available
+by the operator. This service enables the application to offload read-only queries from the
+primary node.</p>
+<p>The following diagram shows the architecture:</p>
+<p><img alt="Applications reading from hot standby replicas in round robin" src="../images/architecture-read-only.png" /></p>
+<p>Applications can also access any PostgreSQL instance through the
+<code>-r</code> service.</p>
+<h2 id="multi-cluster-deployments">Multi-cluster deployments</h2>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>CloudNativePG supports deploying PostgreSQL across multiple
+Kubernetes clusters through a feature called <strong>Replica Cluster</strong>,
+which is described in this section.</p>
+</div>
+<p>In a distributed PostgreSQL cluster there can only be a single PostgreSQL
+instance acting as a primary at all times. This means that applications can
+only write inside a single Kubernetes cluster, at any time.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If you are interested in a PostgreSQL architecture where all instances accept writes, 
+please take a look at  <a href="https://www.enterprisedb.com/docs/bdr/latest/">BDR (Bi-Directional Replication) by EDB</a>. 
+For Kubernetes, BDR will have its own Operator, expected later in 2022.</p>
+</div>
+<p>However, for business continuity objectives it is fundamental to:</p>
+<ul>
+<li>reduce global <strong>recovery point objectives</strong> (RPO) by storing PostgreSQL backup data
+  in multiple locations, regions and possibly using different providers
+  (<strong>Disaster Recovery</strong>)</li>
+<li>reduce global <strong>recovery time objectives</strong> (RTO) by taking advantage of PostgreSQL
+  replication beyond the primary Kubernetes cluster (<strong>High Availability</strong>)</li>
+</ul>
+<p>In order to address the above concerns, CloudNativePG introduces the
+concept of a <em>PostgreSQL Replica Cluster</em>. Replica clusters are the
+CloudNativePG way to enable multi-cluster deployments in private, public,
+hybrid, and multi-cloud contexts.</p>
+<p>A replica cluster is a separate <code>Cluster</code> resource:</p>
+<ol>
+<li>having either <code>pg_basebackup</code> or full <code>recovery</code> as the <code>bootstrap</code>
+   option from a defined external source cluster</li>
+<li>having the <code>replica.enabled</code> option set to <code>true</code></li>
+<li>replicating from a defined external cluster identified by <code>replica.source</code>,
+   normally located outside the Kubernetes cluster</li>
+<li>replaying WAL information received from the recovery object store
+   (using PostgreSQL's <code>restore_command</code> parameter), or via streaming
+   replication (using PostgreSQL's <code>primary_conninfo</code> parameter), or any of
+   the two (in case both the <code>barmanObjectStore</code> and <code>connectionParameters</code>
+   are defined in the external cluster)</li>
+<li>accepting only read connections, as supported by PostgreSQL's Hot Standby</li>
+</ol>
+<div class="admonition seealso">
+<p class="admonition-title">Seealso</p>
+<p>Please refer to the <a href="../bootstrap/">"Bootstrap" section</a> for more information
+about cloning a PostgreSQL cluster from another one (defined in the
+<code>externalClusters</code> section).</p>
+</div>
+<p>The diagram below depicts a PostgreSQL cluster spanning over two different
+Kubernetes clusters, where the primary cluster is in the first Kubernetes
+cluster and the replica cluster is in the second. The second Kubernetes cluster
+acts as the company's disaster recovery cluster, ready to be activated in case
+of disaster and unavailability of the first one.</p>
+<p><img alt="An example of multi-cluster deployment with a primary and a replica cluster" src="../images/multi-cluster.png" /></p>
+<p>A replica cluster can have the same architecture of the primary cluster. In
+place of the primary instance, a replica cluster has a <strong>designated primary</strong>
+instance, which is a standby server with an arbitrary number of cascading
+standby servers in streaming replication (symmetric architecture).</p>
+<p>The designated primary can be promoted at any time, making the replica cluster
+a primary cluster capable of accepting write connections.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>CloudNativePG does not perform any cross-cluster switchover
+or failover at the moment. Such operation must be performed manually
+or delegated to a multi-cluster/federated cluster aware authority.
+Each PostgreSQL cluster is independent from any other.</p>
+</div>
+<p>The designated primary in the above example is fed via WAL streaming
+(<code>primary_conninfo</code>), with fallback option for file-based WAL shipping through
+the <code>restore_command</code> and <code>barman-cloud-wal-restore</code>.</p>
+<p>CloudNativePG allows you to define multiple replica clusters.
+You can also define replica clusters with a lower number of replicas, and then
+increase this number when the cluster is promoted to primary.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../use_cases/" class="btn btn-neutral float-left" title="Use cases"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../installation_upgrade/" class="btn btn-neutral float-right" title="Installation and upgrades">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../use_cases/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../installation_upgrade/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

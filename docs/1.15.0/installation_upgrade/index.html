@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="The CloudNativePG Contributors" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Installation and upgrades - CloudNativePG</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Installation and upgrades";
+        var mkdocs_page_input_path = "installation_upgrade.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> CloudNativePG
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">CloudNativePG</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../before_you_start/">Before You Start</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../use_cases/">Use cases</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../architecture/">Architecture</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Installation and upgrades</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#installation-on-kubernetes">Installation on Kubernetes</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#directly-using-the-operator-manifest">Directly using the operator manifest</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#using-the-helm-chart">Using the Helm Chart</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#details-about-the-deployment">Details about the deployment</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#upgrades">Upgrades</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#in-place-updates-of-the-instance-manager">In-place updates of the instance manager</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#compatibility-among-versions">Compatibility among versions</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../quickstart/">Quickstart</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../bootstrap/">Bootstrap</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../security/">Security</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../instance_manager/">Postgres instance manager</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../scheduling/">Scheduling</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../resource_management/">Resource management</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../failure_modes/">Failure Modes</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../rolling_update/">Rolling Updates</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../replication/">Replication</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../backup_recovery/">Backup and Recovery</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../postgresql_conf/">PostgreSQL Configuration</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../operator_conf/">Operator configuration</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../storage/">Storage</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../labels_annotations/">Labels and annotations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../monitoring/">Monitoring</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../logging/">Logging</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../certificates/">Certificates</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../ssl_connections/">Client TLS/SSL Connections</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../applications/">Connecting from an application</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../connection_pooling/">Connection Pooling</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../kubernetes_upgrade/">Kubernetes Upgrade</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../expose_pg_services/">Exposing Postgres Services</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../cnpg-plugin/">CloudNativePG Plugin</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../failover/">Automated failover</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../troubleshooting/">Troubleshooting</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../fencing/">Fencing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../e2e/">End-to-End Tests</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../container_images/">Container Image Requirements</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../operator_capability_levels/">Operator Capability Levels</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../samples/">Configuration Samples</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../commercial_support/">Commercial support</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../api_reference/">API Reference</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../supported_releases/">Supported releases</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../release_notes/">Release notes</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">CloudNativePG</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li><li>Installation and upgrades</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="installation-and-upgrades">Installation and upgrades</h1>
+<h2 id="installation-on-kubernetes">Installation on Kubernetes</h2>
+<h3 id="directly-using-the-operator-manifest">Directly using the operator manifest</h3>
+<p>The operator can be installed like any other resource in Kubernetes,
+through a YAML manifest applied via <code>kubectl</code>.</p>
+<p>You can install the <a href="https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/main/releases/cnpg-1.15.0.yaml">latest operator manifest</a>
+as follows:</p>
+<pre><code class="language-sh">kubectl apply -f \
+  https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/main/releases/cnpg-1.15.0.yaml
+</code></pre>
+<p>Once you have run the <code>kubectl</code> command, CloudNativePG will be installed in your Kubernetes cluster.</p>
+<p>You can verify that with:</p>
+<pre><code class="language-sh">kubectl get deploy -n cnpg-system cnpg-controller-manager
+</code></pre>
+<h3 id="using-the-helm-chart">Using the Helm Chart</h3>
+<p>The operator can be installed using the provided <a href="https://github.com/cloudnative-pg/cloudnative-pg-helm">Helm chart</a>.</p>
+<h2 id="details-about-the-deployment">Details about the deployment</h2>
+<p>In Kubernetes, the operator is by default installed in the <code>cnpg-system</code> namespace as a Kubernetes
+<code>Deployment</code> called <code>cnpg-controller-manager</code>. You can get more information by running:</p>
+<pre><code class="language-sh">kubectl describe deploy \
+  -n cnpg-system \
+  cnpg-controller-manager
+</code></pre>
+<p>As with any Deployment, it sits on top of a ReplicaSet and supports rolling
+upgrades. The default configuration of the CloudNativePG operator
+comes with a Deployment of a single replica, which is suitable for most
+installations. In case the node where the pod is running is not reachable
+anymore, the pod will be rescheduled on another node.</p>
+<p>If you require high availability at the operator level, it is possible to
+specify multiple replicas in the Deployment configuration - given that the
+operator supports leader election. Also, you can take advantage of taints and
+tolerations to make sure that the operator does not run on the same nodes where
+the actual PostgreSQL clusters are running (this might even include the control
+plane for self-managed Kubernetes installations).</p>
+<div class="admonition seealso">
+<p class="admonition-title">Operator configuration</p>
+<p>You can change the default behavior of the operator by overriding
+some default options. For more information, please refer to the
+<a href="../operator_conf/">"Operator configuration"</a> section.</p>
+</div>
+<h2 id="upgrades">Upgrades</h2>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Please carefully read the <a href="../release_notes/">release notes</a>
+before performing an upgrade as some versions might require
+extra steps.</p>
+</div>
+<p>Upgrading CloudNativePG operator is a two-step process:</p>
+<ol>
+<li>upgrade the controller and the related Kubernetes resources</li>
+<li>upgrade the instance manager running in every PostgreSQL pod</li>
+</ol>
+<p>Unless differently stated in the release notes, the first step is normally done
+by applying the manifest of the newer version for plain Kubernetes
+installations, or using the native package manager of the used distribution
+(please follow the instructions in the above sections).</p>
+<p>The second step is automatically executed after having updated the controller,
+by default triggering a rolling update of every deployed PostgreSQL instance to
+use the new instance manager. The rolling update procedure culminates with a
+switchover, which is controlled by the <code>primaryUpdateStrategy</code> option, by
+default set to <code>unsupervised</code>. When set to <code>supervised</code>, users need to complete
+the rolling update by manually promoting a new instance through the <code>cnpg</code>
+plugin for <code>kubectl</code>.</p>
+<div class="admonition seealso">
+<p class="admonition-title">Rolling updates</p>
+<p>This process is discussed in-depth on the <a href="../rolling_update/">Rolling Updates</a> page.</p>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>In case <code>primaryUpdateStrategy</code> is set to the default value of <code>unsupervised</code>,
+an upgrade of the operator will trigger a switchover on your PostgreSQL cluster,
+causing a (normally negligible) downtime.</p>
+</div>
+<p>Since version 1.10.0, the rolling update behavior can be replaced with in-place
+updates of the instance manager. The latter don't require a restart of the
+PostgreSQL instance and, as a result, a switchover in the cluster.
+This behavior, which is disabled by default, is described below.</p>
+<h3 id="in-place-updates-of-the-instance-manager">In-place updates of the instance manager</h3>
+<p>By default, CloudNativePG issues a rolling update of the cluster
+every time the operator is updated. The new instance manager shipped with the
+operator is added to each PostgreSQL pod via an init container.</p>
+<p>However, this behavior can be changed via configuration to enable in-place
+updates of the instance manager, which is the PID 1 process that keeps the
+container alive.</p>
+<p>Internally, any instance manager from version 1.10 of CloudNativePG
+supports injection of a new executable that will replace the existing one,
+once the integrity verification phase is completed, as well as graceful
+termination of all the internal processes. When the new instance manager
+restarts using the new binary, it adopts the already running <em>postmaster</em>.</p>
+<p>As a result, the PostgreSQL process is unaffected by the update, refraining
+from the need to perform a switchover. The other side of the coin, is that
+the Pod is changed after the start, breaking the pure concept of immutability.</p>
+<p>You can enable this feature by setting the <code>ENABLE_INSTANCE_MANAGER_INPLACE_UPDATES</code>
+environment variable to <code>'true'</code> in the
+<a href="../operator_conf/#available-options">operator configuration</a>.</p>
+<p>The in-place upgrade process will not change the init container image inside the
+Pods. Therefore, the Pod definition will not reflect the current version of the
+operator.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>This feature requires that all pods (operators and operands) run on the
+same platform/architecture (for example, all <code>linux/amd64</code>).</p>
+</div>
+<h3 id="compatibility-among-versions">Compatibility among versions</h3>
+<p>CloudNativePG follows semantic versioning. Every release of the
+operator within the same API version is compatible with the previous one.
+The current API version is v1, corresponding to versions 1.x.y of the operator.</p>
+<p>In addition to new features, new versions of the operator contain bug fixes and
+stability enhancements. Because of this, <strong>we strongly encourage users to upgrade
+to the latest version of the operator</strong>, as each version is released in order to
+maintain the most secure and stable Postgres environment.</p>
+<p>CloudNativePG currently releases new versions of the operator at
+least monthly. If you are unable to apply updates as each version becomes
+available, we recommend upgrading through each version in sequential order to
+come current periodically and not skipping versions.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>In 2022, EDB plans an LTS release for CloudNativePG in
+environments where frequent online updates are not possible.</p>
+</div>
+<p>The <a href="../release_notes/">release notes</a> page contains a detailed list of the
+changes introduced in every released version of CloudNativePG,
+and it must be read before upgrading to a newer version of the software.</p>
+<p>Most versions are directly upgradable and in that case, applying the newer
+manifest for plain Kubernetes installations or using the native package
+manager of the chosen distribution is enough.</p>
+<p>When versions are not directly upgradable, the old version needs to be
+removed before installing the new one. This won't affect user data but
+only the operator itself.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../architecture/" class="btn btn-neutral float-left" title="Architecture"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../quickstart/" class="btn btn-neutral float-right" title="Quickstart">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../architecture/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../quickstart/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="The CloudNativePG Contributors" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>CloudNativePG Plugin - CloudNativePG</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "CloudNativePG Plugin";
+        var mkdocs_page_input_path = "cnpg-plugin.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> CloudNativePG
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">CloudNativePG</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../before_you_start/">Before You Start</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../use_cases/">Use cases</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../architecture/">Architecture</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../installation_upgrade/">Installation and upgrades</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../quickstart/">Quickstart</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../bootstrap/">Bootstrap</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../security/">Security</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../instance_manager/">Postgres instance manager</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../scheduling/">Scheduling</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../resource_management/">Resource management</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../failure_modes/">Failure Modes</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../rolling_update/">Rolling Updates</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../replication/">Replication</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../backup_recovery/">Backup and Recovery</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../postgresql_conf/">PostgreSQL Configuration</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../operator_conf/">Operator configuration</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../storage/">Storage</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../labels_annotations/">Labels and annotations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../monitoring/">Monitoring</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../logging/">Logging</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../certificates/">Certificates</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../ssl_connections/">Client TLS/SSL Connections</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../applications/">Connecting from an application</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../connection_pooling/">Connection Pooling</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../kubernetes_upgrade/">Kubernetes Upgrade</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../expose_pg_services/">Exposing Postgres Services</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">CloudNativePG Plugin</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#install">Install</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#supported-architectures">Supported Architectures</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#use">Use</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#status">Status</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#promote">Promote</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#certificates">Certificates</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#restart">Restart</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#reload">Reload</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#maintenance">Maintenance</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#report">Report</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#report-operator">report Operator</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#report-cluster">report Cluster</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../failover/">Automated failover</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../troubleshooting/">Troubleshooting</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../fencing/">Fencing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../e2e/">End-to-End Tests</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../container_images/">Container Image Requirements</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../operator_capability_levels/">Operator Capability Levels</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../samples/">Configuration Samples</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../commercial_support/">Commercial support</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../api_reference/">API Reference</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../supported_releases/">Supported releases</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../release_notes/">Release notes</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">CloudNativePG</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li><li>CloudNativePG Plugin</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="cloudnativepg-plugin">CloudNativePG Plugin</h1>
+<p>CloudNativePG provides a plugin for <code>kubectl</code> to manage a cluster in Kubernetes.</p>
+<h2 id="install">Install</h2>
+<p>You can install the plugin in your system with:</p>
+<pre><code class="language-sh">curl -sSfL \
+  https://github.com/cloudnative-pg/cloudnative-pg/raw/main/hack/install-cnpg-plugin.sh | \
+  sudo sh -s -- -b /usr/local/bin
+</code></pre>
+<h3 id="supported-architectures">Supported Architectures</h3>
+<p>CloudNativePG Plugin is currently build for the following
+operating system and architectures:</p>
+<ul>
+<li>Linux</li>
+<li>amd64</li>
+<li>arm 5/6/7</li>
+<li>arm64</li>
+<li>s390x</li>
+<li>ppc64le</li>
+<li>macOS</li>
+<li>amd64</li>
+<li>arm64</li>
+<li>Windows</li>
+<li>386</li>
+<li>amd64</li>
+<li>arm 5/6/7</li>
+<li>arm64</li>
+</ul>
+<h2 id="use">Use</h2>
+<p>Once the plugin was installed and deployed, you can start using it like this:</p>
+<pre><code class="language-shell">kubectl cnpg &lt;command&gt; &lt;args...&gt;
+</code></pre>
+<h3 id="status">Status</h3>
+<p>The <code>status</code> command provides an overview of the current status of your
+cluster, including:</p>
+<ul>
+<li><strong>general information</strong>: name of the cluster, PostgreSQL's system ID, number of
+  instances, current timeline and position in the WAL</li>
+<li><strong>backup</strong>: point of recoverability, and WAL archiving status as returned by
+  the <code>pg_stat_archiver</code> view from the primary - or designated primary in the
+  case of a replica cluster</li>
+<li><strong>streaming replication</strong>: information taken directly from the <code>pg_stat_replication</code>
+  view on the primary instance</li>
+<li><strong>instances</strong>: information about each Postgres instance, taken directly by each
+  instance manager; in the case of a standby, the <code>Current LSN</code> field corresponds
+  to the latest write-ahead log location that has been replayed during recovery
+  (replay LSN).</li>
+</ul>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>The status information above is taken at different times and at different
+locations, resulting in slightly inconsistent returned values. For example,
+the <code>Current Write LSN</code> location in the main header, might be different
+from the <code>Current LSN</code> field in the instances status as it is taken at
+two different time intervals.</p>
+</div>
+<pre><code class="language-shell">kubectl cnpg status sandbox
+</code></pre>
+<pre><code class="language-shell">Cluster in healthy state
+Name:               sandbox
+Namespace:          default
+System ID:          7039966298120953877
+PostgreSQL Image:   ghcr.io/cloudnative-pg/postgresql:14.2
+Primary instance:   sandbox-2
+Instances:          3
+Ready instances:    3
+Current Write LSN:  3AF/EAFA6168 (Timeline: 8 - WAL File: 00000008000003AF00000075)
+
+Continuous Backup status
+First Point of Recoverability:  Not Available
+Working WAL archiving:          OK
+Last Archived WAL:              00000008000003AE00000079   @   2021-12-14T10:16:29.340047Z
+Last Failed WAL: -
+
+Certificates Status
+Certificate Name             Expiration Date                Days Left Until Expiration
+----------------             ---------------                --------------------------
+cluster-example-ca           2022-05-05 15:02:42 +0000 UTC  87.23
+cluster-example-replication  2022-05-05 15:02:42 +0000 UTC  87.23
+cluster-example-server       2022-05-05 15:02:42 +0000 UTC  87.23
+
+Streaming Replication status
+Name       Sent LSN      Write LSN     Flush LSN     Replay LSN    Write Lag        Flush Lag        Replay Lag       State      Sync State  Sync Priority
+----       --------      ---------     ---------     ----------    ---------        ---------        ----------       -----      ----------  -------------
+sandbox-1  3AF/EB0524F0  3AF/EB011760  3AF/EAFEDE50  3AF/EAFEDE50  00:00:00.004461  00:00:00.007901  00:00:00.007901  streaming  quorum      1
+sandbox-3  3AF/EB0524F0  3AF/EB030B00  3AF/EB030B00  3AF/EB011760  00:00:00.000977  00:00:00.004194  00:00:00.008252  streaming  quorum      1
+
+Instances status
+Name       Database Size  Current LSN   Replication role  Status  QoS         Manager Version
+----       -------------  -----------   ----------------  ------  ---         ---------------
+sandbox-1  302 GB         3AF/E9FFFFE0  Standby (sync)    OK      Guaranteed  1.11.0
+sandbox-2  302 GB         3AF/EAFA6168  Primary           OK      Guaranteed  1.11.0
+sandbox-3  302 GB         3AF/EBAD5D18  Standby (sync)    OK      Guaranteed  1.11.0
+</code></pre>
+<p>You can also get a more verbose version of the status by adding
+<code>--verbose</code> or just <code>-v</code></p>
+<pre><code class="language-shell">kubectl cnpg status sandbox --verbose
+</code></pre>
+<pre><code class="language-shell">Cluster in healthy state
+Name:               sandbox
+Namespace:          default
+System ID:          7039966298120953877
+PostgreSQL Image:   ghcr.io/cloudnative-pg/postgresql:14.2
+Primary instance:   sandbox-2
+Instances:          3
+Ready instances:    3
+Current Write LSN:  3B1/61DE3158 (Timeline: 8 - WAL File: 00000008000003B100000030)
+
+PostgreSQL Configuration
+archive_command = '/controller/manager wal-archive --log-destination /controller/log/postgres.json %p'
+archive_mode = 'on'
+archive_timeout = '5min'
+checkpoint_completion_target = '0.9'
+checkpoint_timeout = '900s'
+cluster_name = 'sandbox'
+dynamic_shared_memory_type = 'sysv'
+full_page_writes = 'on'
+hot_standby = 'true'
+jit = 'on'
+listen_addresses = '*'
+log_autovacuum_min_duration = '1s'
+log_checkpoints = 'on'
+log_destination = 'csvlog'
+log_directory = '/controller/log'
+log_filename = 'postgres'
+log_lock_waits = 'on'
+log_min_duration_statement = '1000'
+log_rotation_age = '0'
+log_rotation_size = '0'
+log_statement = 'ddl'
+log_temp_files = '1024'
+log_truncate_on_rotation = 'false'
+logging_collector = 'on'
+maintenance_work_mem = '2GB'
+max_connections = '1000'
+max_parallel_workers = '32'
+max_replication_slots = '32'
+max_wal_size = '15GB'
+max_worker_processes = '32'
+pg_stat_statements.max = '10000'
+pg_stat_statements.track = 'all'
+port = '5432'
+shared_buffers = '16GB'
+shared_memory_type = 'sysv'
+shared_preload_libraries = 'pg_stat_statements'
+ssl = 'on'
+ssl_ca_file = '/controller/certificates/client-ca.crt'
+ssl_cert_file = '/controller/certificates/server.crt'
+ssl_key_file = '/controller/certificates/server.key'
+synchronous_standby_names = 'ANY 1 (&quot;sandbox-1&quot;,&quot;sandbox-3&quot;)'
+unix_socket_directories = '/controller/run'
+wal_keep_size = '512MB'
+wal_level = 'logical'
+wal_log_hints = 'on'
+cnpg.config_sha256 = '3cfa683e23fe513afaee7c97b50ce0628e0cc634bca8b096517538a9a4428efc'
+
+PostgreSQL HBA Rules
+
+# Grant local access
+local all all peer map=local
+
+# Require client certificate authentication for the streaming_replica user
+hostssl postgres streaming_replica all cert
+hostssl replication streaming_replica all cert
+hostssl all cnpg_pooler_pgbouncer all cert
+
+# Otherwise use the default authentication method
+host all all all scram-sha-256
+
+
+Continuous Backup status
+First Point of Recoverability:  Not Available
+Working WAL archiving:          OK
+Last Archived WAL:              00000008000003B00000001D   @   2021-12-14T10:20:42.272815Z
+Last Failed WAL: -
+
+Streaming Replication status
+Name       Sent LSN      Write LSN     Flush LSN     Replay LSN    Write Lag        Flush Lag        Replay Lag       State      Sync State  Sync Priority
+----       --------      ---------     ---------     ----------    ---------        ---------        ----------       -----      ----------  -------------
+sandbox-1  3B1/61E26448  3B1/61DF82F0  3B1/61DF82F0  3B1/61DF82F0  00:00:00.000333  00:00:00.000333  00:00:00.005484  streaming  quorum      1
+sandbox-3  3B1/61E26448  3B1/61E26448  3B1/61DF82F0  3B1/61DF82F0  00:00:00.000756  00:00:00.000756  00:00:00.000756  streaming  quorum      1
+
+Instances status
+Name       Database Size  Current LSN   Replication role  Status  QoS         Manager Version
+----       -------------  -----------   ----------------  ------  ---         ---------------
+sandbox-1                 3B1/610204B8  Standby (sync)    OK      Guaranteed  1.11.0
+sandbox-2                 3B1/61DE3158  Primary           OK      Guaranteed  1.11.0
+sandbox-3                 3B1/62618470  Standby (sync)    OK      Guaranteed  1.11.0
+</code></pre>
+<p>The command also supports output in <code>yaml</code> and <code>json</code> format.</p>
+<h3 id="promote">Promote</h3>
+<p>The meaning of this command is to <code>promote</code> a pod in the cluster to primary, so you
+can start with maintenance work or test a switch-over situation in your cluster</p>
+<pre><code class="language-shell">kubectl cnpg promote cluster-example cluster-example-2
+</code></pre>
+<p>Or you can use the instance node number to promote</p>
+<pre><code class="language-shell">kubectl cnpgg promote cluster-example 2
+</code></pre>
+<h3 id="certificates">Certificates</h3>
+<p>Clusters created using the CloudNativePG operator work with a CA to sign
+a TLS authentication certificate.</p>
+<p>To get a certificate, you need to provide a name for the secret to store
+the credentials, the cluster name, and a user for this certificate</p>
+<pre><code class="language-shell">kubectl cnpg certificate cluster-cert --cnpg-cluster cluster-example --cnpg-user appuser
+</code></pre>
+<p>After the secrete it's created, you can get it using <code>kubectl</code></p>
+<pre><code class="language-shell">kubectl get secret cluster-cert
+</code></pre>
+<p>And the content of the same in plain text using the following commands:</p>
+<pre><code class="language-shell">kubectl get secret cluster-cert -o json | jq -r '.data | map(@base64d) | .[]'
+</code></pre>
+<h3 id="restart">Restart</h3>
+<p>The <code>kubectl cnpg restart</code> command can be used in two cases:</p>
+<ul>
+<li>
+<p>requesting the operator to orchestrate a rollout restart
+  for a certain cluster. This is useful to apply
+  configuration changes to cluster dependent objects, such as ConfigMaps
+  containing custom monitoring queries.</p>
+</li>
+<li>
+<p>request a single instance restart, either in-place if the instance is
+  the cluster's primary or deleting and recreating the pod if
+  it is a replica.</p>
+</li>
+</ul>
+<pre><code class="language-shell"># this command will restart a whole cluster in a rollout fashion
+kubectl cnpg restart [clusterName]
+
+# this command will restart a single instance, according to the policy above
+kubectl cnpg restart [clusterName] [pod]
+</code></pre>
+<p>If the in-place restart is requested but the change cannot be applied without
+a switchover, the switchover will take precedence over the in-place restart. A
+common case for this will be a minor upgrade of PostgreSQL image.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you want ConfigMaps and Secrets to be <strong>automatically</strong> reloaded
+by instances, you can add a label with key <code>cnpg.io/reload</code> to it.</p>
+</div>
+<h3 id="reload">Reload</h3>
+<p>The <code>kubectl cnpg reload</code> command requests the operator to trigger a reconciliation
+loop for a certain cluster. This is useful to apply configuration changes
+to cluster dependent objects, such as ConfigMaps containing custom monitoring queries.</p>
+<p>The following command will reload all configurations for a given cluster:</p>
+<pre><code class="language-shell">kubectl cnpg reload [cluster_name]
+</code></pre>
+<h3 id="maintenance">Maintenance</h3>
+<p>The <code>kubectl cnpg maintenance</code> command helps to modify one or more clusters
+across namespaces and set the maintenance window values, it will change
+the following fields:</p>
+<ul>
+<li>.spec.nodeMaintenanceWindow.inProgress</li>
+<li>.spec.nodeMaintenanceWindow.reusePVC</li>
+</ul>
+<p>Accepts as argument <code>set</code> and <code>unset</code> using this to set the
+<code>inProgress</code> to <code>true</code> in case <code>set</code>and to <code>false</code> in case of <code>unset</code>.</p>
+<p>By default, <code>reusePVC</code> is always set to <code>false</code> unless the <code>--reusePVC</code> flag is passed.</p>
+<p>The plugin will ask for a confirmation with a list of the cluster to modify
+and their new values, if this is accepted this action will be applied to
+all the cluster in the list.</p>
+<p>If you want to set in maintenance all the PostgreSQL in your Kubernetes cluster,
+just need to write the following command:</p>
+<pre><code class="language-shell">kubectl cnpg maintenance set --all-namespaces
+</code></pre>
+<p>And you'll have the list of all the cluster to update</p>
+<pre><code class="language-shell">The following are the new values for the clusters
+Namespace  Cluster Name     Maintenance  reusePVC
+---------  ------------     -----------  --------
+default    cluster-example  true         false
+default    pg-backup        true         false
+test       cluster-example  true         false
+Do you want to proceed? [y/n]: y
+</code></pre>
+<h3 id="report">Report</h3>
+<p>The <code>kubectl cnpg report</code> command bundles various pieces
+of information into a ZIP file.
+It aims to provide the needed context to debug problems
+with clusters in production.</p>
+<p>It has two sub-commands: <code>operator</code> and <code>cluster</code>.</p>
+<h4 id="report-operator">report Operator</h4>
+<p>The <code>operator</code> sub-command requests the operator to provide information
+regarding the operator deployment, configuration and events.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>All confidential information in Secrets and ConfigMaps is REDACTED.
+The Data map will show the <strong>keys</strong> but the values will be empty.
+The flag <code>-S</code> / <code>--stopRedaction</code> will defeat the redaction and show the
+values. Use only at your own risk, this will share private data.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>By default, operator logs are not collected, but you can enable operator
+log collection with the <code>--logs</code> flag</p>
+</div>
+<ul>
+<li><strong>deployment information</strong>: the operator Deployment and operator Pod</li>
+<li><strong>configuration</strong>: the Secrets and ConfigMaps in the operator namespace</li>
+<li><strong>events</strong>: the Events in the operator namespace</li>
+<li><strong>webhook configuration</strong>: the mutating and validating webhook configurations</li>
+<li><strong>webhook service</strong>: the webhook service</li>
+<li><strong>logs</strong>: logs for the operator Pod (optional, off by default) in JSON-lines format</li>
+</ul>
+<p>The command will generate a ZIP file containing various manifest in YAML format
+(by default, but settable to JSON with the <code>-o</code> flag).
+Use the <code>-f</code> flag to name a result file explicitly. If the <code>-f</code> flag is not used, a
+default time-stamped filename is created for the zip file.</p>
+<pre><code class="language-shell">kubectl cnpg report operator
+</code></pre>
+<p>results in</p>
+<pre><code class="language-shell">Successfully written report to &quot;report_operator_&lt;TIMESTAMP&gt;.zip&quot; (format: &quot;yaml&quot;)
+</code></pre>
+<p>With the <code>-f</code> flag set:</p>
+<pre><code class="language-shell">kubectl cnpg report operator -f reportRedacted.zip
+</code></pre>
+<p>Unzipping the file will produce a time-stamped top-level folder to keep the
+directory tidy:</p>
+<pre><code class="language-shell">unzip reportRedacted.zip
+</code></pre>
+<p>will result in:</p>
+<pre><code class="language-shell">Archive:  reportRedacted.zip
+   creating: report_operator_&lt;TIMESTAMP&gt;/
+   creating: report_operator_&lt;TIMESTAMP&gt;/manifests/
+  inflating: report_operator_&lt;TIMESTAMP&gt;/manifests/deployment.yaml  
+  inflating: report_operator_&lt;TIMESTAMP&gt;/manifests/operator-pod.yaml  
+  inflating: report_operator_&lt;TIMESTAMP&gt;/manifests/events.yaml  
+  inflating: report_operator_&lt;TIMESTAMP&gt;/manifests/validating-webhook-configuration.yaml  
+  inflating: report_operator_&lt;TIMESTAMP&gt;/manifests/mutating-webhook-configuration.yaml  
+  inflating: report_operator_&lt;TIMESTAMP&gt;/manifests/webhook-service.yaml  
+  inflating: report_operator_&lt;TIMESTAMP&gt;/manifests/cnpg-ca-secret.yaml
+  inflating: report_operator_&lt;TIMESTAMP&gt;/manifests/cnpg-webhook-cert.yaml
+</code></pre>
+<p>You can verify that the confidential information is REDACTED:</p>
+<pre><code class="language-shell">cd report_operator_&lt;TIMESTAMP&gt;/manifests/
+head cnpg-ca-secret.yaml
+</code></pre>
+<pre><code class="language-yaml">data:
+  ca.crt: &quot;&quot;
+  ca.key: &quot;&quot;
+metadata:
+  creationTimestamp: &quot;2022-03-22T10:42:28Z&quot;
+  managedFields:
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+</code></pre>
+<p>With the <code>-S</code> (<code>--stopRedaction</code>) option activated, secrets are shown:</p>
+<pre><code class="language-shell">kubectl cnpg report operator -f reportNonRedacted.zip -S
+</code></pre>
+<p>You'll get a reminder that you're about to view confidential information:</p>
+<pre><code class="language-shell">WARNING: secret Redaction is OFF. Use it with caution
+Successfully written report to &quot;reportNonRedacted.zip&quot; (format: &quot;yaml&quot;)
+</code></pre>
+<pre><code class="language-shell">unzip reportNonRedacted.zip
+head cnpg-ca-secret.yaml
+</code></pre>
+<pre><code class="language-yaml">data:
+  ca.crt: LS0tLS1CRUdJTiBD…
+  ca.key: LS0tLS1CRUdJTiBF…
+metadata:
+  creationTimestamp: &quot;2022-03-22T10:42:28Z&quot;
+  managedFields:
+  - apiVersion: v1
+    fieldsType: FieldsV1
+</code></pre>
+<h4 id="report-cluster">report Cluster</h4>
+<p>The <code>cluster</code> sub-command gathers the following:</p>
+<ul>
+<li><strong>cluster resources</strong>: the cluster information, same as <code>kubectl get cluster -o yaml</code></li>
+<li><strong>cluster pods</strong>: pods in the cluster namespace matching the cluster name</li>
+<li><strong>cluster jobs</strong>: jobs, if any, in the cluster namespace matching the cluster name</li>
+<li><strong>events</strong>: events in the cluster namespace</li>
+<li><strong>pod logs</strong>: logs for the cluster Pods (optional, off by default) in JSON-lines format</li>
+<li><strong>job logs</strong>: logs for the Pods created by jobs (optional, off by default) in JSON-lines format</li>
+</ul>
+<p>The <code>cluster</code> sub-command accepts the <code>-f</code> and <code>-o</code> flags, as the <code>operator</code> does.
+If the <code>-f</code> flag is not used, a default timestamped report name will be used.
+Note that the cluster information does not contain configuration Secrets / ConfigMaps,
+so the <code>-S</code> is disabled.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>By default, cluster logs are not collected, but you can enable cluster
+log collection with the <code>--logs</code> flag</p>
+</div>
+<p>Usage:</p>
+<pre><code class="language-shell">kubectl-cnpg report cluster [clusterName] -f &lt;filename.zip&gt; [flags]
+</code></pre>
+<p>Note that, unlike the <code>operator</code> sub-command, for the <code>cluster</code> sub-command you
+need to provide the cluster name, and very likely the namespace, unless the cluster
+is in the default one.</p>
+<pre><code class="language-shell">kubectl cnpg report cluster cluster-example-full -f report.zip -n example2
+</code></pre>
+<p>and then:</p>
+<pre><code class="language-shell">unzip report.zip
+</code></pre>
+<pre><code class="language-shell">Archive:  report.zip
+   creating: report_cluster_&lt;TIMESTAMP&gt;/
+   creating: report_cluster_&lt;TIMESTAMP&gt;/manifests/
+  inflating: report_cluster_&lt;TIMESTAMP&gt;/manifests/cluster.yaml  
+  inflating: report_cluster_&lt;TIMESTAMP&gt;/manifests/cluster-pods.yaml  
+  inflating: report_cluster_&lt;TIMESTAMP&gt;/manifests/cluster-jobs.yaml  
+  inflating: report_cluster_&lt;TIMESTAMP&gt;/manifests/events.yaml
+</code></pre>
+<p>Remember that you can use the <code>--logs</code> flag to add the pod and job logs to the ZIP.</p>
+<pre><code class="language-shell">kubectl cnpg report cluster cluster-example-full -n example2 --logs
+</code></pre>
+<p>will result in:</p>
+<pre><code class="language-shell">Successfully written report to &quot;report_cluster_&lt;TIMESTAMP&gt;.zip&quot; (format: &quot;yaml&quot;)
+</code></pre>
+<pre><code class="language-shell">unzip report_cluster_&lt;TIMESTAMP&gt;.zip
+</code></pre>
+<pre><code class="language-shell">Archive:  report_cluster_&lt;TIMESTAMP&gt;.zip
+   creating: report_cluster_&lt;TIMESTAMP&gt;/
+   creating: report_cluster_&lt;TIMESTAMP&gt;/manifests/
+  inflating: report_cluster_&lt;TIMESTAMP&gt;/manifests/cluster.yaml  
+  inflating: report_cluster_&lt;TIMESTAMP&gt;/manifests/cluster-pods.yaml  
+  inflating: report_cluster_&lt;TIMESTAMP&gt;/manifests/cluster-jobs.yaml  
+  inflating: report_cluster_&lt;TIMESTAMP&gt;/manifests/events.yaml  
+   creating: report_cluster_&lt;TIMESTAMP&gt;/logs/
+  inflating: report_cluster_&lt;TIMESTAMP&gt;/logs/cluster-example-full-1.jsonl  
+   creating: report_cluster_&lt;TIMESTAMP&gt;/job-logs/
+  inflating: report_cluster_&lt;TIMESTAMP&gt;/job-logs/cluster-example-full-1-initdb-qnnvw.jsonl  
+  inflating: report_cluster_&lt;TIMESTAMP&gt;/job-logs/cluster-example-full-2-join-tvj8r.jsonl 
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../expose_pg_services/" class="btn btn-neutral float-left" title="Exposing Postgres Services"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../failover/" class="btn btn-neutral float-right" title="Automated failover">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../expose_pg_services/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../failover/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

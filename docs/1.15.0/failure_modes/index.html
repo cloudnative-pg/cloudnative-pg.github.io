@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="The CloudNativePG Contributors" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Failure Modes - CloudNativePG</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Failure Modes";
+        var mkdocs_page_input_path = "failure_modes.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> CloudNativePG
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">CloudNativePG</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../before_you_start/">Before You Start</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../use_cases/">Use cases</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../architecture/">Architecture</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../installation_upgrade/">Installation and upgrades</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../quickstart/">Quickstart</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../bootstrap/">Bootstrap</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../security/">Security</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../instance_manager/">Postgres instance manager</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../scheduling/">Scheduling</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../resource_management/">Resource management</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Failure Modes</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#storage-space-usage">Storage space usage</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#failure-modes_1">Failure modes</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#pod-deleted-by-the-user">Pod deleted by the user</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#readiness-probe-failure">Readiness probe failure</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#liveness-probe-failure">Liveness probe failure</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#worker-node-drained">Worker node drained</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#worker-node-failure">Worker node failure</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#self-healing">Self-healing</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#manual-intervention">Manual intervention</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../rolling_update/">Rolling Updates</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../replication/">Replication</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../backup_recovery/">Backup and Recovery</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../postgresql_conf/">PostgreSQL Configuration</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../operator_conf/">Operator configuration</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../storage/">Storage</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../labels_annotations/">Labels and annotations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../monitoring/">Monitoring</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../logging/">Logging</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../certificates/">Certificates</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../ssl_connections/">Client TLS/SSL Connections</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../applications/">Connecting from an application</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../connection_pooling/">Connection Pooling</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../kubernetes_upgrade/">Kubernetes Upgrade</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../expose_pg_services/">Exposing Postgres Services</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../cnpg-plugin/">CloudNativePG Plugin</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../failover/">Automated failover</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../troubleshooting/">Troubleshooting</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../fencing/">Fencing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../e2e/">End-to-End Tests</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../container_images/">Container Image Requirements</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../operator_capability_levels/">Operator Capability Levels</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../samples/">Configuration Samples</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../commercial_support/">Commercial support</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../api_reference/">API Reference</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../supported_releases/">Supported releases</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../release_notes/">Release notes</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">CloudNativePG</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li><li>Failure Modes</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="failure-modes">Failure Modes</h1>
+<p>This section provides an overview of the major failure scenarios that
+PostgreSQL can face on a Kubernetes cluster during its lifetime.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>In case the failure scenario you are experiencing is not covered by this
+section, please immediately contact EDB for support and assistance.</p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">Postgres instance manager</p>
+<p>Please refer to the <a href="../instance_manager/">"Postgres instance manager" section</a>
+for more information the liveness and readiness probes implemented by
+CloudNativePG.</p>
+</div>
+<h2 id="storage-space-usage">Storage space usage</h2>
+<p>The operator will instantiate one PVC for every PostgreSQL instance to store the <code>PGDATA</code> content.</p>
+<p>Such storage space is set for reuse in two cases:</p>
+<ul>
+<li>when the corresponding Pod is deleted by the user (and a new Pod will be recreated)</li>
+<li>when the corresponding Pod is evicted and scheduled on another node</li>
+</ul>
+<p>If you want to prevent the operator from reusing a certain PVC you need to
+remove the PVC before deleting the Pod. For this purpose, you can use the
+following command:</p>
+<pre><code class="language-sh">kubectl delete -n [namespace] pvc/[cluster-name]-[serial] pod/[cluster-name]-[serial]
+</code></pre>
+<p>For example:</p>
+<pre><code class="language-sh">$ kubectl delete -n default pvc/cluster-example-1 pod/cluster-example-1
+persistentvolumeclaim &quot;cluster-example-1&quot; deleted
+pod &quot;cluster-example-1&quot; deleted
+</code></pre>
+<h2 id="failure-modes_1">Failure modes</h2>
+<p>A pod belonging to a <code>Cluster</code> can fail in the following ways:</p>
+<ul>
+<li>the pod is explicitly deleted by the user;</li>
+<li>the readiness probe on its <code>postgres</code> container fails;</li>
+<li>the liveness probe on its <code>postgres</code> container fails;</li>
+<li>the Kubernetes worker node is drained;</li>
+<li>the Kubernetes worker node where the pod is scheduled fails.</li>
+</ul>
+<p>Each one of these failures has different effects on the <code>Cluster</code> and the
+services managed by the operator.</p>
+<h3 id="pod-deleted-by-the-user">Pod deleted by the user</h3>
+<p>The operator is notified of the deletion. A new pod belonging to the
+<code>Cluster</code> will be automatically created reusing the existing PVC, if available,
+or starting from a physical backup of the <em>primary</em> otherwise.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>In case of deliberate deletion of a pod, <code>PodDisruptionBudget</code> policies
+will not be enforced.</p>
+</div>
+<p>Self-healing will happen as soon as the <em>apiserver</em> is notified.</p>
+<h3 id="readiness-probe-failure">Readiness probe failure</h3>
+<p>After 3 failures, the pod will be considered <em>not ready</em>. The pod will still
+be part of the <code>Cluster</code>, no new pod will be created.</p>
+<p>If the cause of the failure can't be fixed, it is possible to delete the pod
+manually. Otherwise, the pod will resume the previous role when the failure
+is solved.</p>
+<p>Self-healing will happen after three failures of the probe.</p>
+<h3 id="liveness-probe-failure">Liveness probe failure</h3>
+<p>After 3 failures, the <code>postgres</code> container will be considered failed. The
+pod will still be part of the <code>Cluster</code>, and the <em>kubelet</em> will try to restart
+the container. If the cause of the failure can't be fixed, it is possible
+to delete the pod manually.</p>
+<p>Self-healing will happen after three failures of the probe.</p>
+<h3 id="worker-node-drained">Worker node drained</h3>
+<p>The pod will be evicted from the worker node and removed from the service. A
+new pod will be created on a different worker node from a physical backup of the
+<em>primary</em> if the <code>reusePVC</code> option of the <code>nodeMaintenanceWindow</code> parameter
+is set to <code>off</code> (default: <code>on</code> during maintenance windows, <code>off</code> otherwise).</p>
+<p>The <code>PodDisruptionBudget</code> may prevent the pod from being evicted if there
+is at least another pod that is not ready.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Single instance clusters prevent node drain when <code>reusePVC</code> is
+set to <code>false</code>. Refer to the <a href="../kubernetes_upgrade/">Kubernetes Upgrade section</a>.</p>
+</div>
+<p>Self-healing will happen as soon as the <em>apiserver</em> is notified.</p>
+<h3 id="worker-node-failure">Worker node failure</h3>
+<p>Since the node is failed, the <em>kubelet</em> won't execute the liveness and
+the readiness probes. The pod will be marked for deletion after the
+toleration seconds configured by the Kubernetes cluster administrator for
+that specific failure cause. Based on how the Kubernetes cluster is configured,
+the pod might be removed from the service earlier.</p>
+<p>A new pod will be created on a different worker node from a physical backup
+of the <em>primary</em>. The default value for that parameter in a Kubernetes
+cluster is 5 minutes.</p>
+<p>Self-healing will happen after <code>tolerationSeconds</code>.</p>
+<h2 id="self-healing">Self-healing</h2>
+<p>If the failed pod is a standby, the pod is removed from the <code>-r</code> service
+and from the <code>-ro</code> service.
+The pod is then restarted using its PVC if available; otherwise, a new
+pod will be created from a backup of the current primary. The pod
+will be added again to the <code>-r</code> service and to the <code>-ro</code> service when ready.</p>
+<p>If the failed pod is the primary, the operator will promote the active pod
+with status ready and the lowest replication lag, then point the <code>-rw</code> service
+to it. The failed pod will be removed from the <code>-r</code> service and from the
+<code>-rw</code> service.
+Other standbys will start replicating from the new primary. The former
+primary will use <code>pg_rewind</code> to synchronize itself with the new one if its
+PVC is available; otherwise, a new standby will be created from a backup of the
+current primary.</p>
+<h2 id="manual-intervention">Manual intervention</h2>
+<p>In the case of undocumented failure, it might be necessary to intervene
+to solve the problem manually.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>In such cases, please do not perform any manual operation without the
+support and assistance of EDB engineering team.</p>
+</div>
+<p>From version 1.11.0 of the operator, you can use the
+<code>cnpg.io/reconciliationLoop</code> annotation to temporarily disable the
+reconciliation loop on a selected PostgreSQL cluster, as follows:</p>
+<pre><code class="language-yaml">metadata:
+  name: cluster-example-no-reconcile
+  annotations:
+    cnpg.io/reconciliationLoop: &quot;disabled&quot;
+spec:
+  # ...
+</code></pre>
+<p>The <code>cnpg.io/reconciliationLoop</code> must be used with extreme care
+and for the sole duration of the extraordinary/emergency operation.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Please make sure that you use this annotation only for a limited period of
+time and you remove it when the emergency has finished. Leaving this annotation
+in a cluster will prevent the operator from issuing any self-healing operation,
+such as a failover.</p>
+</div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../resource_management/" class="btn btn-neutral float-left" title="Resource management"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../rolling_update/" class="btn btn-neutral float-right" title="Rolling Updates">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../resource_management/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../rolling_update/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
