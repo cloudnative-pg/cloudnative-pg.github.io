@@ -3,4 +3,8 @@ title: Postgres Operations
 order: 50
 icon: icons/info/postgres-operations.svg
 ---
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egestas turpis urna nullam pellentesque. Aliquam malesuada elit nunc malesuada quis nisi sed. Netus egestas venenatis, orci, orci. Nibh odio sed gravida blandit.
+Most Postgres related operations can be done in a declarative way, including
+management of superuser credentials, application user, and application
+database. Declarative configuration also covers Postgres configuration and some
+common extensions like `pg_stat_statements`.
+

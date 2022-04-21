@@ -3,4 +3,8 @@ title: High Availability
 order: 20
 icon: icons/info/high-availability.svg
 ---
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egestas turpis urna nullam pellentesque. Aliquam malesuada elit nunc malesuada quis nisi sed. Netus egestas venenatis, orci, orci. Nibh odio sed gravida blandit.
+PostgreSQL has a reliable foundation for high availability that is built on
+physical replication. CloudNativePG leverages streaming replication and a
+file-based one as a fallback method. You can tune synchronous replication to
+obtain zero data loss replicas.
+
