@@ -160,7 +160,7 @@
     letter-spacing: -0.0025em;
 }
 
-.h1 {
+h1 {
     font-family: 'Supreme';
     font-style: normal;
     font-weight: 700;
@@ -169,7 +169,7 @@
     letter-spacing: -0.015em;
 }
 
-.h2 {
+h2 {
     font-family: 'Supreme';
     font-style: normal;
     font-weight: 700;
@@ -178,12 +178,21 @@
     letter-spacing: -0.005em;
 }
 
-.h3 {
+h3 {
     font-family: 'Supreme';
     font-style: normal;
     font-weight: 700;
     font-size: 34px;
     line-height: 46px;
+}
+
+p {
+    font-family: 'Supreme';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 170%;
+    letter-spacing: -0.0025em;
 }
 
 .p-large {
@@ -215,4 +224,10 @@
 
 .bg-docs-banner {
     background: linear-gradient(180deg, #40218B 0%, #141749 100%);
+}
+
+pre {
+    margin-top: 24px;
+    margin-bottom: 24px;
+    padding: 16px;
 }
