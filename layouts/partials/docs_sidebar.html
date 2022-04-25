@@ -1,0 +1,19 @@
+<ul>
+    {{range .Pages}}
+    <li>
+        <a href="{{ .RelPermalink }}">{{ index (split .Content "\n") 0 | plainify }}</a>
+    </li>
+    {{ end }}
+</ul>
+<hr>
+{{ with (.Site.GetPage "/docs")}}
+<p>Documention by version</p>
+<ul>
+    {{ range .Sections.Reverse }}
+    <li>
+        <a href="{{ .RelPermalink }}">{{ index (split .Content "\n") 0 | plainify }} {{ index (split .RelPermalink "/" )
+            2 }}</a>
+    </li>
+    {{ end }}
+</ul>
+{{ end }}

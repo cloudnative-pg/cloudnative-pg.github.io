@@ -1,0 +1,55 @@
+{{ range (.Site.GetPage "/blog").Pages}}
+<div class="space-y-10 w-2/6 pt-10 pl-5">
+    <!--Search
+        <div>
+            <input type="text" placeholder="Search blog..." class="border-2 border-slate-200 p-2.5 w-full">
+        </div>
+        -->
+
+    <!--Categories-->
+    {{/* TODO: this needs to be a taxonomy <div class="">
+        <h3 class="text-xl font-bold mb-6">Categories</h3>
+        <div class="text-xs space-y-1.5 mb-14">
+            <p class="bg-charcoal-opacity-10 py-1 px-2.5 w-fit uppercase text-sm">{{ .Params.tags }}</p>
+        </div>
+    </div> */}}
+    <!--Categories-->
+
+    <!--Popular Posts-->
+    <div>
+        <h3 class="text-xl font-bold pb-6">Popular Posts</h3>
+        <div class="space-y-10">
+            <!--card 1 starts here-->
+            <div class="p-8 bg-white drop-shadow-md rounded-md border-2 border-slate-50">
+                <!--User profile-->
+                <div class="flex gap-3 mb-2.5">
+                    <div class="my-auto">
+                        <img src="{{ .RelPermalink }}/{{ .Params.avatar.image }}" class="w-10 h-10 rounded-full" alt="">
+                    </div>
+                    <div class="my-auto">
+                        <h1 class="text-base charcoal font-bold">
+                            {{.Params.author}}
+                        </h1>
+                    </div>
+                </div>
+                <!--User profile-->
+                <a href="{{ .RelPermalink }}">
+                    <!--Blog image and content preview-->
+                    <div>
+                        <img src="{{ .RelPermalink }}/{{ .Params.image.url }}" class="object-fill w-full h-36"
+                            alt="Blog image">
+                    </div>
+                    <div class="charcoal">
+                        <h2 class="text-lg my-2.5 font-bold">{{.Title}}</h2>
+                    </div>
+                    <!--Blog image and content preview-->
+
+                    {{ partial "blog_datetime.html" .}}
+                </a>
+            </div>
+            <!--card 1 ends here-->
+        </div>
+    </div>
+    <!--Popular Posts-->
+</div>
+{{ end }}

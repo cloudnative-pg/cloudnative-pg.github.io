@@ -6,11 +6,12 @@ image:
     url: ali-kazal-h5VjkUqMCsc-unsplash.jpg
     attribution: Photo by <a href="https://unsplash.com/@lureofadventure?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Ali Kazal</a> on <a href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 author: "Gabriele"
-time: 6 min read
-tags: security
+tags:
+- security
+- kubernetes
 draft: true
-avatar: 
-  image: avatar_G.svg 
+avatar:
+  image: avatar_G.svg
 summary: How should you securely deploy PostgreSQL (and other tools) to Kubernetes?
 ---
 

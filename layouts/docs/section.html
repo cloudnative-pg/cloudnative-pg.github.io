@@ -1,13 +1,11 @@
 {{ define "main" }}
-<h2 class="text-xl">{{.Title}}</h2>
-<p>{{.Content}}</p>
-<p>Documention by version</p>
-<ul>
-    {{ range .Sections.Reverse }}
-    <li>
-        <a href="{{ .RelPermalink }}">{{ index (split .Content "\n") 0 | plainify }} {{ index (split .RelPermalink "/" )
-            2 }}</a>
-    </li>
-    {{ end }}
-</ul>
+<div class="px-56 pt-20 flex">
+    <div class="w-2/6 pl-5">
+        {{ partial "docs_sidebar.html" . }}
+    </div>
+    <div class="w-4/6 pr-20">
+        <h1 class="text-xl">{{.Title}}</h1>
+        <p>{{.Content}}</p>
+    </div>
+</div>
 {{ end }}

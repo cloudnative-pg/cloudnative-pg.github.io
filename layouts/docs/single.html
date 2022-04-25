@@ -1,4 +1,13 @@
 {{ define "main" }}
-<h2 class="text-2xl">{{.Title}}</h2>
-{{ .Content }}
+<p>SINGLE PAGE</p>
+<div class="px-56 pt-20 flex">
+    <div class="w-2/6 pl-5">
+        {{ partial "docs_sidebar.html" . }}
+    </div>
+    <div class="w-4/6 pr-20">
+        <h1 class="text-xl">{{.Title}}</h1>
+        <p>{{.Content}}</p>
+    </div>
+
+</div>
 {{ end }}
