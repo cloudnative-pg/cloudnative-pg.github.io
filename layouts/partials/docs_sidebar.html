@@ -1,18 +1,34 @@
+{{ $docs := .Site.GetPage "/docs" }}
 <ul>
-    {{range .Pages}}
+    {{range .Pages }}
+    {{ if ne .Parent $docs }}
     <li>
         <a href="{{ .RelPermalink }}">{{ index (split .Content "\n") 0 | plainify }}</a>
     </li>
     {{ end }}
+    {{ end }}
+    {{ if ne ( .Params.toplevel | default false) true }}
+    {{ range .Parent.Pages }}
+    {{ if ne .Parent $docs }}
+    <li>
+        <a href="{{ .RelPermalink }}">{{ index (split .Content "\n") 0 | plainify }}</a>
+    </li>
+    {{ end }}
+    {{ end }}
+    {{ end }}
 </ul>
+{{ if ne ( .Params.toplevel | default false) true }}
 <hr class="w-1/2">
-{{ with (.Site.GetPage "/docs")}}
+{{ end }}
+{{ with $docs }}
 <p>Documention by version</p>
 <ul>
     {{ range .Sections.Reverse }}
     <li>
-        <a href="{{ .RelPermalink }}">{{ index (split .Content "\n") 0 | plainify }} {{ index (split .RelPermalink "/" )
-            2 }}</a>
+        <a href="{{ .RelPermalink }}">
+            {{ index (split .Content "\n") 0 | plainify }}
+            {{ index (split .RelPermalink "/" ) 2 }}
+        </a>
     </li>
     {{ end }}
 </ul>

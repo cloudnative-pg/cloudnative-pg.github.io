@@ -1,7 +1,7 @@
 {{ define "main" }}
 
 <div class="mx-auto w-1/2">
-    <h1 class="text-xxl">{{.Title}}</h1>
+    <h1 class="text-xl">{{.Title}}</h1>
     <p>{{.Content}}</p>
 
     {{ $ps := .Paginate (union .Pages .Sections) }}
