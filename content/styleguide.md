@@ -1,5 +1,5 @@
 ---
-title: Example content for styleguide
+title: Styleguide
 layout: styleguide
 type: page
 ---

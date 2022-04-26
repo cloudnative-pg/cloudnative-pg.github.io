@@ -2,14 +2,14 @@
   <div class="py-16">
     <div class="flex flex-row px-56 justify-between">
       <div class="w-1/2">
-        <h1 class="text-6xl font-bold text-slate-900">{{.Title}}</h1>
-        <h1 class="text-6xl font-bold text-rose-600 pt-2.5">{{.Params.subtitle}}</h1>
-        <p class=" text-slate-600 text-2xl font-light leading-10 py-5 container tracking-wider">
+        <h1 class="text-6xl font-bold cnp-blue">{{.Title}}</h1>
+        <h1 class="text-6xl font-bold red-1 pt-2.5">{{.Params.subtitle}}</h1>
+        <p class=" gray-4 text-2xl font-light leading-10 py-5 container tracking-wider">
           {{ .Content | plainify }}
         </p>
         <div class="pt-7">
           <a href="{{.Params.cta.url}}"
-            class="bg-rose-600 py-4 px-12 rounded-full text-white text-3xl">{{.Params.cta.content| plainify}}</a>
+            class="bg-red-1 py-4 px-12 rounded-full text-white text-3xl">{{.Params.cta.content| plainify}}</a>
         </div>
       </div>
       <div class="ml-8">
