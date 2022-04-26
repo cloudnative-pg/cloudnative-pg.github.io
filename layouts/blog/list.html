@@ -6,7 +6,6 @@
         {{ range .Pages }}
         <!--List item starts here-->
         <div class="pb-24">
-
             <!--User profile starts here-->
             <div class="flex gap-3 my-5">
                 <div class="my-auto">
@@ -20,7 +19,7 @@
                         </h1>
                     </div>
 
-                    {{ partial "blog_datetime.html" .}}
+                    {{ partial "blog_datetime.html" . }}
                 </div>
             </div>
             <!--User profile ends here-->
@@ -36,9 +35,9 @@
                     <dl>
                         <dt class="text-3xl my-5 font-bold">{{ .Title }}</dt>
                         <div class="flex text-xs gap-1.5">
-                            <ul class="bg-charcoal-opacity-10 py-1 px-2.5 uppercase text-sm">
+                            <ul class="uppercase text-sm">
                                 {{ range .Params.tags }}
-                                <li class="inline-block mr-4">{{ . }}</li>
+                                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2">{{ . }}</li>
                                 {{ end }}
                             </ul>
                         </div>

@@ -1,4 +1,3 @@
-{{ range (.Site.GetPage "/blog").Pages}}
 <div class="space-y-10 w-2/6 pt-10 pl-5">
     <!--Search
         <div>
@@ -7,12 +6,18 @@
         -->
 
     <!--Categories-->
-    {{/* TODO: this needs to be a taxonomy <div class="">
+    <div class="">
         <h3 class="text-xl font-bold mb-6">Categories</h3>
         <div class="text-xs space-y-1.5 mb-14">
-            <p class="bg-charcoal-opacity-10 py-1 px-2.5 w-fit uppercase text-sm">{{ .Params.tags }}</p>
+            <ul class="uppercase text-sm">
+                {{ range .Site.Taxonomies.tags }}
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2"><a href="{{ .Page.Permalink }}"
+                        class="mr-2">{{.Page.Title }}</a></li>
+                {{ end }}
+            </ul>
+
         </div>
-    </div> */}}
+    </div>
     <!--Categories-->
 
     <!--Popular Posts-->
@@ -20,6 +25,7 @@
         <h3 class="text-xl font-bold pb-6">Popular Posts</h3>
         <div class="space-y-10">
             <!--card 1 starts here-->
+            {{ range (.Site.GetPage "/blog").Pages}}
             <div class="p-8 bg-white drop-shadow-md rounded-md border-2 border-slate-50">
                 <!--User profile-->
                 <div class="flex gap-3 mb-2.5">
@@ -47,9 +53,9 @@
                     {{ partial "blog_datetime.html" .}}
                 </a>
             </div>
+            {{ end }}
             <!--card 1 ends here-->
         </div>
     </div>
     <!--Popular Posts-->
 </div>
-{{ end }}

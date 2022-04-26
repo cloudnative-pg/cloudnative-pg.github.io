@@ -1,9 +1,12 @@
 {{ define "main" }}
-<h2 class="text-xl">{{.Title}}</h2>
-<p>{{.Content}}</p>
 
-{{ $ps := .Paginate (union .Pages .Sections) }}
-{{ range $ps.Pages }}
-<a href="{{ .RelPermalink }}">{{ .Title }}</a>
-{{ end }}
+<div class="mx-auto w-1/2">
+    <h1 class="text-xxl">{{.Title}}</h1>
+    <p>{{.Content}}</p>
+
+    {{ $ps := .Paginate (union .Pages .Sections) }}
+    {{ range $ps.Pages }}
+    <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+    {{ end }}
+</div>
 {{ end }}

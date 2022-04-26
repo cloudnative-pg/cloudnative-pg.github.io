@@ -246,3 +246,8 @@ pre {
     margin-bottom: 24px;
     padding: 16px;
 }
+
+hr {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
