@@ -1,10 +1,10 @@
 {{ define "main" }}
+<base href="..">
 <div class="px-56 pt-20 flex">
-    <div class="w-2/6 pl-5">
+    <div class="w-1/4 px-5 bg-purple-2 pt-14 leading-9">
         {{ partial "docs_sidebar.html" . }}
     </div>
-    <div class="w-4/6 pr-20">
-        <h1 class="text-xl">{{.Title}}</h1>
+    <div class="w-4/6 pr-20 ml-10 well">
         <p>{{.Content}}</p>
     </div>
 </div>
