@@ -12,13 +12,8 @@
                     {{ .Params.author }}
                 </h1>
             </div>
-            <div class="flex gap-2 text-sm charcoal opacity-75">
-                <ul class="flex gap-2 text-sm charcoal">
-                    <li>{{ .PublishDate.Format "January 2, 2006" }}</li>
-                    <li>•</li>
-                    <li>{{ .Params.time }}</li>
-                </ul>
-            </div>
+            
+            {{ partial "blog_datetime.html" . }}
         </div>
     </div>
     <!--User profile-->
