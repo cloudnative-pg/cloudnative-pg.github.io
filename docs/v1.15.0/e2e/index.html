@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+
+
+
+
+<html lang="en">
+
+<head>
+  <title>CloudNative PG</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <meta name="description" content="CloudNativePG is the Kubernetes operator that covers the full lifecycle of a highly available PostgreSQL database cluster with a primary/standby architecture, using native streaming replication." />
+  <meta name="keywords" content="" />
+  <link rel="preload" href="/css/Supreme-Variable.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet" />
+  <link href="/main.min.css" rel="stylesheet" />
+  <link rel="favicon" href="/favicon/favicon.ico">
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+</head>
+
+<body>
+  <div class="h-screen w-screen">
+    
+<main>
+  <header>
+    <div class="flex flex-row px-16 justify-between py-5">
+      <div>
+        
+        <a href="/"><img src="/logo/large_logo.svg" class="h-14" alt="Cloud Native Postgres Logo"></a>
+      </div>
+      <div>
+        <ul class="flex gap-14 text-2xl medium-gray my-5">
+          <li><a href="/docs/1.15.0/" target="_blank">Documentation</a></li>
+          <li>Blog</li>
+          <li><a href="/support">Support</a></li>
+          <li><a href="/end_users">End Users</a></li>
+        </ul>
+      </div>
+      <div class="flex gap-5 my-4 fill-cnp-blue">
+       <a class="github-button" href="https://github.com/cloudnative-pg/cloudnative-pg"
+            data-color-scheme="no-preference: light; light: light; dark: dark;"
+            data-size="large" data-show-count="true"
+            aria-label="Star cloudnative-pg/cloudnative-pg on GitHub">Star</a>
+        <a href="https://join.slack.com/t/cloudnativepg/shared_invite/zt-17culux7k-P_UsVOOR9teUYi4dGhDSBQ">
+          <img src="/icons/Slack.svg" alt="Slack" title="Join our Slack channel now!">
+        </a>
+        <a href="https://twitter.com/CloudNativePg">
+          <img src="/icons/Twitter.svg" alt="Twitter">
+        </a>
+        <a href="https://www.youtube.com/channel/UCTGH88W1BiuRRPTzJUDPJyA">
+          <img src="/icons/YouTube.svg" alt="YouTube">
+        </a>
+      </div>
+    </div>
+  </header>
+</main>
+
+
+    
+<base href="..">
+<div class="px-56 pt-20 flex">
+    <div class="w-1/4 px-5 bg-purple-2 pt-14 leading-9">
+        
+<ul>
+    
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/api_reference/">API Reference</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/applications/">Connecting from an application</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/architecture/">Architecture</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/backup_recovery/">Backup and Recovery</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/before_you_start/">Before You Start</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/bootstrap/">Bootstrap</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/certificates/">Certificates</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/cnpg-plugin/">CloudNativePG Plugin</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/commercial_support/">Commercial support</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/connection_pooling/">Connection Pooling</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/container_images/">Container Image Requirements</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/e2e/">End-to-End Tests</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/expose_pg_services/">Exposing Postgres Services</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/failover/">Automated failover</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/failure_modes/">Failure Modes</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/fencing/">Fencing</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/installation_upgrade/">Installation and upgrades</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/instance_manager/">Postgres instance manager</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/kubernetes_upgrade/">Kubernetes Upgrade</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/labels_annotations/">Labels and annotations</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/logging/">Logging</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/monitoring/">Monitoring</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/operator_capability_levels/">Operator Capability Levels</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/operator_conf/">Operator configuration</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/postgresql_conf/">PostgreSQL Configuration</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/quickstart/">Quickstart</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/release_notes/">Release notes</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/replication/">Replication</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/resource_management/">Resource management</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/rolling_update/">Rolling Updates</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/samples/">Configuration Samples</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/scheduling/">Scheduling</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/security/">Security</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/ssl_connections/">Client TLS/SSL Connections</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/storage/">Storage</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/supported_releases/">Supported releases</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/troubleshooting/">Troubleshooting</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/use_cases/">Use cases</a>
+    </li>
+    
+    
+    
+</ul>
+
+<hr class="w-1/2">
+
+
+<p>Documention by version</p>
+<ul>
+    
+    <li>
+        <a href="/docs/v1.15.0/">
+            CloudNativePG
+            v1.15.0
+        </a>
+    </li>
+    
+</ul>
+
+    </div>
+    <div class="w-4/6 pr-20 ml-10 well">
+        <p><h1 id="end-to-end-tests">End-to-End Tests</h1>
+<p>CloudNativePG operator is automatically tested after each
+commit via a suite of <strong>End-to-end (E2E) tests</strong>. It ensures that
+the operator correctly deploys and manages the PostgreSQL clusters.</p>
+<p>Moreover, the following Kubernetes versions are tested for each commit,
+ensuring failure and bugs detection at an early stage of the development
+process:</p>
+<ul>
+<li>1.23</li>
+<li>1.22</li>
+<li>1.21</li>
+<li>1.20</li>
+<li>1.19</li>
+</ul>
+<p>The following PostgreSQL versions are tested:</p>
+<ul>
+<li>PostgreSQL 14</li>
+<li>PostgreSQL 13</li>
+<li>PostgreSQL 12</li>
+<li>PostgreSQL 11</li>
+<li>PostgreSQL 10</li>
+</ul>
+<p>For each tested version of Kubernetes and PostgreSQL, a Kubernetes
+cluster is created using <a href="https://kind.sigs.k8s.io/">kind</a>,
+and the following suite of E2E tests are performed on that cluster:</p>
+<ul>
+<li>Installation of the operator;</li>
+<li>Creation of a <code>Cluster</code>;</li>
+<li>Usage of a persistent volume for data storage;</li>
+<li>Connection via services, including read-only;</li>
+<li>Connection via user-provided server and/or client certificates;</li>
+<li>Scale-up and scale-down of a <code>Cluster</code>;</li>
+<li>Failover;</li>
+<li>Switchover;</li>
+<li>Manage PostgreSQL configuration changes;</li>
+<li>Rolling updates when changing PostgreSQL images;</li>
+<li>Backup and ScheduledBackups execution;</li>
+<li>Backup and ScheduledBackups execution using Barman Cloud on Azure blob storage;</li>
+<li>Synchronous replication;</li>
+<li>Restore from backup;</li>
+<li>Restore from backup using Barman Cloud on Azure blob storage;</li>
+<li>Pod affinity using <code>NodeSelector</code>;</li>
+<li>Metrics collection;</li>
+<li>JSON log format;</li>
+<li>Operator configuration via ConfigMap;</li>
+<li>Operator pod deletion;</li>
+<li>Operator pod eviction;</li>
+<li>Operator upgrade;</li>
+<li>Operator High Availability;</li>
+<li>Node drain;</li>
+<li>Primary endpoint switch in case of failover in less than 10 seconds;</li>
+<li>Primary endpoint switch in case of switchover in less than 20 seconds;</li>
+<li>Recover from a degraded state in less than 60 seconds;</li>
+<li>Physical replica clusters;</li>
+<li>Storage expansion;</li>
+<li>Data corruption;</li>
+</ul>
+</p>
+    </div>
+</div>
+
+
+    <footer class="text-center pb-24">
+    <p class="text-sm charcoal w-1/2 mx-auto pt-10">&copy; 2019-2022 The CloudNativePG Contributors. All rights
+        reserved. The Linux Foundation has registered trademarks and uses trademarks.
+        For a list of trademarks of The Linux Foundation, please see our <a href="#" class="red-1">Trademark Usage
+            page</a>.</p>
+</footer>
+  </div>
+  
+  <script src="https://cdn.usefathom.com/script.js" data-site="GSMQCVAJ" defer></script>
+  
+</body>
+
+</html>

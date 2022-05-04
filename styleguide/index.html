@@ -6,15 +6,17 @@
 <html lang="en">
 
 <head>
-  <title>Example content for styleguide | CloudNative PG</title>
+  <title>Styleguide | CloudNative PG</title>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <meta name="description" content="CloudNativePG is the Kubernetes operator that covers the full lifecycle of a highly available PostgreSQL database cluster with a primary/standby architecture, using native streaming replication." />
   <meta name="keywords" content="" />
+  <link rel="preload" href="/css/Supreme-Variable.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet" />
   <link href="/main.min.css" rel="stylesheet" />
   <link rel="favicon" href="/favicon/favicon.ico">
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
 </head>
 
 <body>
@@ -28,19 +30,20 @@
         <a href="/"><img src="/logo/large_logo.svg" class="h-14" alt="Cloud Native Postgres Logo"></a>
       </div>
       <div>
-        <ul class="flex gap-14 text-2xl text-slate-400 my-5">
+        <ul class="flex gap-14 text-2xl medium-gray my-5">
           <li><a href="/docs/1.15.0/" target="_blank">Documentation</a></li>
-          <li>Support</li>
-          <li>End users</li>
           <li>Blog</li>
+          <li><a href="/support">Support</a></li>
+          <li><a href="/end_users">End Users</a></li>
         </ul>
       </div>
-      <div class="flex gap-5 my-4">
-        <a href="https://github.com/cloudnative-pg/cloudnative-pg">
-          <img src="/icons/Git.svg" alt="Github">
-        </a>
-        <a href="https://cloudnativepg.slack.com/">
-          <img src="/icons/Slack.svg" alt="Slack">
+      <div class="flex gap-5 my-4 fill-cnp-blue">
+       <a class="github-button" href="https://github.com/cloudnative-pg/cloudnative-pg"
+            data-color-scheme="no-preference: light; light: light; dark: dark;"
+            data-size="large" data-show-count="true"
+            aria-label="Star cloudnative-pg/cloudnative-pg on GitHub">Star</a>
+        <a href="https://join.slack.com/t/cloudnativepg/shared_invite/zt-17culux7k-P_UsVOOR9teUYi4dGhDSBQ">
+          <img src="/icons/Slack.svg" alt="Slack" title="Join our Slack channel now!">
         </a>
         <a href="https://twitter.com/CloudNativePg">
           <img src="/icons/Twitter.svg" alt="Twitter">
@@ -55,45 +58,190 @@
 
 
     
-<h1>This is H1</h1>
-<h2>This is H2</h2>
-
-<hr>
-
-<h1>Example content for styleguide</h1>
-<h2 id="lorem-ipsum-dolor-sit-amet-consectetur-adipiscing-elit">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
-<p>Sed id nibh et sapien maximus tincidunt eu lobortis nisi. Etiam diam nibh, dapibus at pellentesque non, lobortis eu elit. Aliquam <strong>tristique</strong> a ligula vel pretium. <em>Vestibulum congue id odio id mattis. Sed nunc nisi, convallis ut nisl a, blandit ultrices eros.</em> Interdum et malesuada fames ac ante ipsum primis in faucibus. Quisque rutrum quam at scelerisque sodales. Fusce ac sem sit amet urna blandit dignissim. Nullam at velit finibus, lacinia massa sed, aliquet enim. Morbi hendrerit faucibus tellus, ut egestas libero dapibus at. Vestibulum non libero egestas, eleifend enim at, consequat risus. Duis et quam vulputate, vehicula erat id, tincidunt dui. Aenean egestas nisi ac ipsum elementum gravida sed a eros. Vestibulum venenatis turpis ac tellus molestie, ac placerat ex molestie. In mollis nisi at vulputate venenatis. Cras quis convallis velit.</p>
-<h2 id="sed-ullamcorper-ullamcorper-suscipit">Sed ullamcorper ullamcorper suscipit.</h2>
-<p>Donec ullamcorper nec neque et dictum. Nullam consequat porttitor risus, non tempus odio. Suspendisse potenti. Nulla sed elementum tortor, vel posuere libero. Duis interdum tristique tortor, at ullamcorper urna luctus eget. Sed quis arcu porta, ultricies lectus a, pharetra risus. Nam ipsum est, suscipit in commodo in, rhoncus eget arcu.</p>
-<pre tabindex="0"><code>Proin dictum turpis id sapien cursus, sed dapibus sapien molestie.
-Vivamus ornare orci id ipsum congue, nec tincidunt neque hendrerit.
-Sed id orci ullamcorper, fermentum urna sed, commodo velit.
-Vestibulum purus libero, convallis vitae magna ut, consectetur placerat diam.
-Sed elementum, risus ac facilisis maximus, lectus est fermentum enim, vel luctus ante arcu non velit.
-Cras tristique sollicitudin sollicitudin.
-In aliquet bibendum mauris, a laoreet dolor.
-Sed tempus commodo mi, a rutrum ipsum elementum et.
-Quisque egestas pellentesque tellus, in elementum enim bibendum nec.
-Nam dictum, risus sed malesuada venenatis, est dui euismod augue, sit amet ultricies eros nunc sit amet mi.
-</code></pre><h2 id="donec-orci-erat-tristique-sed-gravida-et-ultrices-ultricies-lectus">Donec orci erat, tristique sed gravida et, ultrices ultricies lectus.</h2>
-<p>Integer pulvinar justo metus, ac pretium lacus sollicitudin id. Nulla facilisi. Quisque cursus felis placerat rutrum volutpat. Interdum et malesuada fames ac ante ipsum primis in faucibus. Praesent ac porttitor risus, sed accumsan tortor. Pellentesque facilisis egestas massa, et ultricies enim tincidunt quis.</p>
-<h3 id="nullam-sed-ullamcorper-nisl">Nullam sed ullamcorper nisl.</h3>
-<p>Maecenas sit amet nisi ac lectus feugiat porta at ac dui. Morbi dignissim diam orci, ut ullamcorper quam dignissim sit amet. Aenean a libero sollicitudin, malesuada orci vitae, euismod felis. Proin commodo viverra ex, vitae porta dolor tincidunt quis. Fusce et lectus at sem lobortis auctor in sed augue. Praesent vel ultrices lacus, in tincidunt nisi. Phasellus rutrum dui vitae ultricies porta. Aliquam eget elementum ante, eget interdum velit. Etiam elementum mauris id nulla tristique cursus. Aliquam lacinia ligula ut nibh auctor laoreet. Nullam eu efficitur mauris, eget pharetra enim. Vestibulum fringilla ut arcu in semper. Pellentesque dui mauris, euismod facilisis libero in, luctus lobortis quam. Suspendisse potenti. Fusce venenatis placerat purus.</p>
-
-
-
-
-    <footer class="text-center p-24">
-    <div>
-        <a href="#" class="bg-rose-600 py-4 px-12 rounded-full text-white text-xl">View on GitHub</a>
+<div class="px-56 space-y-32 pt-16">
+    
+    <div class="space-y-16">
+        <h1 class="h2 cnp-blue">Color Palette</h1>
+        <div class="space-y-16">
+            
+            <div class="flex space-x-9">
+             
+                <div class="p-4 bg-white drop-shadow-md rounded-md border-2 border-slate-50 w-36">
+                    <div>
+                        <div class="bg-red-1 w-28 h-32 rounded-lg"></div>
+                        <div class="pt-2"><h1>Red 1 - #E63054</h1></div>
+                    </div>
+                </div>
+             
+    
+             
+                <div class="p-4 bg-white drop-shadow-md rounded-md border-2 border-slate-50 w-36">
+                    <div>
+                     <div class="bg-red-2 w-28 h-32 rounded-lg"></div>
+                     <div class="pt-2"><h1>Red 2 - #EF7890</h1></div>
+                    </div>
+                </div>
+             
+    
+             
+                <div class="p-4 bg-white drop-shadow-md rounded-md border-2 border-slate-50 w-36">
+                    <div>
+                        <div class="bg-red-3 w-28 h-32 rounded-lg"></div>
+                        <div class="pt-2"><h1>Red 3 - #FCE4E9</h1></div>
+                    </div>
+                </div>
+             
+    
+             
+                <div class="p-4 bg-white drop-shadow-md rounded-md border-2 border-slate-50 w-36">
+                    <div>
+                        <div class="bg-cnp-blue w-28 h-32 rounded-lg"></div>
+                        <div class="pt-2"><h1>CNP Blue -#121646</h1></div>
+                    </div>
+                </div>
+             
+    
+             
+                <div class="p-4 bg-white drop-shadow-md rounded-md border-2 border-slate-50 w-36">
+                    <div>
+                        <div class="bg-purple-1 w-28 h-32 rounded-lg"></div>
+                        <div class="pt-2"><h1>Purple 1 -#40228C</h1></div>
+                    </div>
+                </div>
+             
+    
+             
+                <div class="p-4 bg-white drop-shadow-md rounded-md border-2 border-slate-50 w-36">
+                    <div>
+                        <div class="bg-purple-2 w-28 h-32 rounded-lg"></div>
+                        <div class="pt-2"><h1>Purple 2 -#F7F6FA</h1></div>
+                    </div>
+                </div>
+             
+            </div>
+            
+            
+            <div class="flex space-x-9">
+                
+                   <div class="p-4 bg-white drop-shadow-md rounded-md border-2 border-slate-50 w-36">
+                       <div>
+                           <div class="bg-gray-5 w-28 h-32 rounded-lg"></div>
+                           <div class="pt-2"><h1>Gray 5 -#222222</h1></div>
+                       </div>
+                   </div>
+                
+       
+                
+                   <div class="p-4 bg-white drop-shadow-md rounded-md border-2 border-slate-50 w-36">
+                       <div>
+                        <div class="bg-gray-4 w-28 h-32 rounded-lg"></div>
+                        <div class="pt-2"><h1>Gray 4 -#212C31</h1></div>
+                       </div>
+                   </div>
+                
+       
+                
+                   <div class="p-4 bg-white drop-shadow-md rounded-md border-2 border-slate-50 w-36">
+                       <div>
+                           <div class="bg-gray-3 w-28 h-32 rounded-lg"></div>
+                           <div class="pt-2"><h1>Gray 3 -#ACADBE</h1></div>
+                       </div>
+                   </div>
+                
+       
+                
+                   <div class="p-4 bg-white drop-shadow-md rounded-md border-2 border-slate-50 w-36">
+                       <div>
+                           <div class="bg-gray-2 w-28 h-32 rounded-lg"></div>
+                           <div class="pt-2"><h1>Gray 2 -#DFDFE3</h1></div>
+                       </div>
+                   </div>
+                
+       
+                
+                   <div class="p-4 bg-white drop-shadow-md rounded-md border-2 border-slate-50 w-36">
+                       <div>
+                           <div class="bg-gray-1 w-28 h-32 rounded-lg"></div>
+                           <div class="pt-2"><h1>Gray 1 -#F6F6F6</h1></div>
+                       </div>
+                   </div>
+                
+            </div>
+                    
+        </div>
     </div>
-    <p class="text-sm text-slate-600 w-1/2 mx-auto pt-10">&copy; 2019-2022 The CloudNativePG Contributors<br/>
-    The Linux Foundation has registered trademarks and uses trademarks. 
-    For a list of trademarks of The Linux Foundation, please see our <a href="https://www.linuxfoundation.org/trademark-usage/" class="text-rose-600">Trademark Usage page</a>.<br/>
-    Postgres, PostgreSQL and the Slonik Logo are trademarks or registered trademarks of the PostgreSQL Community Association of Canada, and used with their permission.
-    </p>
-</footer>
+    
+    
+    
+    <div class="space-y-16 pb-24">
+        <h2 class="h2 cnp-blue">Typography</h2>
+        <div class="space-y-16">
+            
+            <div class="flex space-x-16">
+                <h2 class="gray-5 w-80">Header 1</h2>
+                <h2 class="h1 pl-16 cnp-blue">Header 1</h2>
+            </div>
+            
+            
+            <div class="flex space-x-16">
+                <h2 class="gray-5 w-80">Header 2</h2>
+                <h2 class="h2 pl-16 cnp-blue">Header 2</h2>
+            </div>
+            
+            
+            <div class="flex space-x-16">
+                <h2 class="gray-5 w-80">Header 3</h2>
+                <h2 class="h3 pl-16 cnp-blue">Header 3</h2>
+            </div>
+            
+            
+            <div class="flex space-x-16">
+                <h2 class="gray-5 w-80">Paragraph Large</h2>
+                <h2 class="cnp-blue pl-16 p-large w-1/2">Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.</h2>
+            </div>
+            
+            
+            <div class="flex space-x-16">
+                <h2 class="gray-5 w-80">Paragraph Medium</h2>
+                <h2 class="cnp-blue pl-16 p-medium w-1/2">Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.</h2>
+            </div>
+            
+            
+            <div class="flex space-x-16">
+                <h2 class="gray-5 w-80">Paragraph Small</h2>
+                <h2 class="cnp-blue pl-16 p-small w-1/2">Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.</h2>
+            </div>
+            
+            
+            <div class="flex space-x-16">
+                <h2 class="gray-5 w-80">Button Large</h2>
+                <h2 class="cnp-blue pl-16 button-large">Button Large</h2>
+            </div>
+            
+            
+            <div class="flex">
+                <h2 class="gray-5 w-80">Button Medium</h2>
+                <h2 class="cnp-blue ml-16 button-medium">Button Medium</h2>
+            </div>
+            
+            
+            <div class="flex space-x-16">
+                <h2 class="gray-5 w-80">Button Link</h2>
+                <h2 class="cnp-blue pl-16 button-link">Button Link</h2>
+            </div>
+            
+        </div>
+    </div>
+    
+</div>
 
+
+    <footer class="text-center pb-24">
+    <p class="text-sm charcoal w-1/2 mx-auto pt-10">&copy; 2019-2022 The CloudNativePG Contributors. All rights
+        reserved. The Linux Foundation has registered trademarks and uses trademarks.
+        For a list of trademarks of The Linux Foundation, please see our <a href="#" class="red-1">Trademark Usage
+            page</a>.</p>
+</footer>
   </div>
   
   <script src="https://cdn.usefathom.com/script.js" data-site="GSMQCVAJ" defer></script>

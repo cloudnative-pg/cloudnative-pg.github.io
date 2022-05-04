@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Commercial Support on CloudNative PG</title>
+    <link>https://cloudnative-pg.io/support/</link>
+    <description>Recent content in Commercial Support on CloudNative PG</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language><atom:link href="https://cloudnative-pg.io/support/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>EDB</title>
+      <link>https://cloudnative-pg.io/support/edb/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://cloudnative-pg.io/support/edb/</guid>
+      <description>EDB is the largest contributor to the PostgreSQL open source database, and it is the original creator of CloudNativePG. EDB provides commercial 24/7 support on CloudNativePG, as well as long term support, an OpenShift certified operator, Oracle Compatibility layer with EDB Postgres Advanced, and multi-master replication with BDR.</description>
+    </item>
+    
+  </channel>
+</rss>

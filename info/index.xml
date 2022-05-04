@@ -39,7 +39,7 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://cloudnative-pg.io/info/high-availability/</guid>
-      <description>PostgreSQL has a reliable foundation for high availability that is built on physical replication. CloudNativePG leverages streaming replication and a file-based one as a fallback method. You can tune synchronous replication to obtain zero data loss replicas.</description>
+      <description>PostgreSQL has a reliable foundation for high availability that is built on physical replication. CloudNativePG leverages streaming replication and a file-based one as a fallback method. You can tune synchronous replication to</description>
     </item>
     
     <item>

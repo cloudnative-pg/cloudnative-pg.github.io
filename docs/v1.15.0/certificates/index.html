@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+
+
+
+
+<html lang="en">
+
+<head>
+  <title>CloudNative PG</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <meta name="description" content="CloudNativePG is the Kubernetes operator that covers the full lifecycle of a highly available PostgreSQL database cluster with a primary/standby architecture, using native streaming replication." />
+  <meta name="keywords" content="" />
+  <link rel="preload" href="/css/Supreme-Variable.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet" />
+  <link href="/main.min.css" rel="stylesheet" />
+  <link rel="favicon" href="/favicon/favicon.ico">
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+</head>
+
+<body>
+  <div class="h-screen w-screen">
+    
+<main>
+  <header>
+    <div class="flex flex-row px-16 justify-between py-5">
+      <div>
+        
+        <a href="/"><img src="/logo/large_logo.svg" class="h-14" alt="Cloud Native Postgres Logo"></a>
+      </div>
+      <div>
+        <ul class="flex gap-14 text-2xl medium-gray my-5">
+          <li><a href="/docs/1.15.0/" target="_blank">Documentation</a></li>
+          <li>Blog</li>
+          <li><a href="/support">Support</a></li>
+          <li><a href="/end_users">End Users</a></li>
+        </ul>
+      </div>
+      <div class="flex gap-5 my-4 fill-cnp-blue">
+       <a class="github-button" href="https://github.com/cloudnative-pg/cloudnative-pg"
+            data-color-scheme="no-preference: light; light: light; dark: dark;"
+            data-size="large" data-show-count="true"
+            aria-label="Star cloudnative-pg/cloudnative-pg on GitHub">Star</a>
+        <a href="https://join.slack.com/t/cloudnativepg/shared_invite/zt-17culux7k-P_UsVOOR9teUYi4dGhDSBQ">
+          <img src="/icons/Slack.svg" alt="Slack" title="Join our Slack channel now!">
+        </a>
+        <a href="https://twitter.com/CloudNativePg">
+          <img src="/icons/Twitter.svg" alt="Twitter">
+        </a>
+        <a href="https://www.youtube.com/channel/UCTGH88W1BiuRRPTzJUDPJyA">
+          <img src="/icons/YouTube.svg" alt="YouTube">
+        </a>
+      </div>
+    </div>
+  </header>
+</main>
+
+
+    
+<base href="..">
+<div class="px-56 pt-20 flex">
+    <div class="w-1/4 px-5 bg-purple-2 pt-14 leading-9">
+        
+<ul>
+    
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/api_reference/">API Reference</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/applications/">Connecting from an application</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/architecture/">Architecture</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/backup_recovery/">Backup and Recovery</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/before_you_start/">Before You Start</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/bootstrap/">Bootstrap</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/certificates/">Certificates</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/cnpg-plugin/">CloudNativePG Plugin</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/commercial_support/">Commercial support</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/connection_pooling/">Connection Pooling</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/container_images/">Container Image Requirements</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/e2e/">End-to-End Tests</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/expose_pg_services/">Exposing Postgres Services</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/failover/">Automated failover</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/failure_modes/">Failure Modes</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/fencing/">Fencing</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/installation_upgrade/">Installation and upgrades</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/instance_manager/">Postgres instance manager</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/kubernetes_upgrade/">Kubernetes Upgrade</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/labels_annotations/">Labels and annotations</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/logging/">Logging</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/monitoring/">Monitoring</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/operator_capability_levels/">Operator Capability Levels</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/operator_conf/">Operator configuration</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/postgresql_conf/">PostgreSQL Configuration</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/quickstart/">Quickstart</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/release_notes/">Release notes</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/replication/">Replication</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/resource_management/">Resource management</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/rolling_update/">Rolling Updates</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/samples/">Configuration Samples</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/scheduling/">Scheduling</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/security/">Security</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/ssl_connections/">Client TLS/SSL Connections</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/storage/">Storage</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/supported_releases/">Supported releases</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/troubleshooting/">Troubleshooting</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/use_cases/">Use cases</a>
+    </li>
+    
+    
+    
+</ul>
+
+<hr class="w-1/2">
+
+
+<p>Documention by version</p>
+<ul>
+    
+    <li>
+        <a href="/docs/v1.15.0/">
+            CloudNativePG
+            v1.15.0
+        </a>
+    </li>
+    
+</ul>
+
+    </div>
+    <div class="w-4/6 pr-20 ml-10 well">
+        <p><h1 id="certificates">Certificates</h1>
+<p>CloudNativePG has been designed to natively support TLS certificates.
+In order to set up a <code>Cluster</code>, the operator requires:</p>
+<ul>
+<li>a server Certification Authority (CA) certificate</li>
+<li>a server TLS certificate signed by the server Certification Authority</li>
+<li>a client Certification Authority certificate</li>
+<li>a streaming replication client certificate generated by the client Certification Authority</li>
+</ul>
+<p>!!! Note
+You can find all the secrets used by the cluster and their expiration dates
+in the cluster&rsquo;s status.</p>
+<p>CloudNativePG is very flexible when it comes to TLS certificates, and
+primarily operates in two modes:</p>
+<ol>
+<li><a href="#operator-managed-mode"><strong>operator managed</strong></a>: certificates are internally
+managed by the operator in a fully automated way, and signed using a CA created
+by CloudNativePG</li>
+<li><a href="#user-provided-certificates-mode"><strong>user provided</strong></a>: certificates are
+generated outside the operator and imported in the cluster definition as
+secrets - CloudNativePG integrates itself with cert-manager (see
+examples below)</li>
+</ol>
+<p>You can also choose a hybrid approach, where only part of the certificates is
+generated outside CNPG.</p>
+<h2 id="operator-managed-mode">Operator managed mode</h2>
+<p>By default, the operator generates a single Certification Authority and uses it
+for both client and server certificates, which are then managed and renewed
+automatically.</p>
+<h3 id="server-certificates">Server Certificates</h3>
+<h4 id="server-ca-secret">Server CA Secret</h4>
+<p>The operator generates a self-signed CA and stores it in a generic secret
+containing the following keys:</p>
+<ul>
+<li><code>ca.crt</code>: CA certificate used to validate the server certificate, used as <code>sslrootcert</code> in clients&rsquo; connection strings.</li>
+<li><code>ca.key</code>: the key used to sign Server SSL certificate automatically</li>
+</ul>
+<h4 id="server-tls-secret">Server TLS Secret</h4>
+<p>The operator uses the generated self-signed CA to sign a server TLS
+certificate, stored in a Secret of type <code>kubernetes.io/tls</code> and configured to
+be used as <code>ssl_cert_file</code> and <code>ssl_key_file</code> by the instances so that clients
+can verify their identity and connect securely.</p>
+<h4 id="server-alternative-dns-names">Server alternative DNS names</h4>
+<p>You can specify DNS server alternative names that will be part of the
+generated server TLS secret in addition to the default ones.</p>
+<h3 id="client-certificates">Client Certificates</h3>
+<h4 id="client-ca-secret">Client CA Secret</h4>
+<p>The same self-signed CA as the Server CA is used by default. The public part
+will be passed as <code>ssl_ca_file</code> to all the instances in order to be able to verify
+client certificates it signed. The private key will be stored in the same secret and
+used to sign Client certificates generated by the <code>kubectl cnpg</code> plugin.</p>
+<h4 id="client-streaming_replica-certificate">Client streaming_replica Certificate</h4>
+<p>The operator uses the generated self-signed CA to sign a client certificate for
+the user <code>streaming_replica</code>, storing it in a Secret of type <code>kubernetes.io/tls</code>.
+This certificate will be passed as <code>sslcert</code> and <code>sslkey</code> in replicas&rsquo; connection strings,
+to allow securely connecting to the primary instance.</p>
+<h2 id="user-provided-certificates-mode">User-provided certificates mode</h2>
+<h3 id="server-certificates-1">Server Certificates</h3>
+<p>If required, you can also provide the two server certificates, generating them
+using a separate component such as <a href="https://cert-manager.io/">cert-manager</a>. In
+order to use a custom server TLS certificate for a Cluster, you must specify
+the following parameters:</p>
+<ul>
+<li><code>serverTLSSecret</code>: the name of a Secret of type <code>kubernetes.io/tls</code>,
+containing the server TLS certificate.  It must contain both the standard
+<code>tls.crt</code> and <code>tls.key</code> keys.</li>
+<li><code>serverCASecret</code>: the name of a Secret containing the <code>ca.crt</code> key.</li>
+</ul>
+<p>!!! Note
+The operator will still create and manage the two secrets related to client
+certificates.</p>
+<p>!!! Note
+If you want ConfigMaps and Secrets to be <strong>automatically</strong> reloaded by instances, you can
+add a label with key <code>cnpg.io/reload</code> to it, otherwise you will have to reload
+the instances using the <code>kubectl cnpg reload</code> subcommand.</p>
+<p>See below for a complete example.</p>
+<h4 id="example">Example</h4>
+<p>Given the following files:</p>
+<ul>
+<li><code>server-ca.crt</code>: the certificate of the CA that signed the server TLS certificate.</li>
+<li><code>server.crt</code>: the certificate of the server TLS certificate.</li>
+<li><code>server.key</code>: the private key of the server TLS certificate.</li>
+</ul>
+<p>Create a secret containing the CA certificate:</p>
+<pre tabindex="0"><code>kubectl create secret generic my-postgresql-server-ca \
+  --from-file=ca.crt=./server-ca.crt
+</code></pre><p>Create a secret with the TLS certificate:</p>
+<pre tabindex="0"><code>kubectl create secret tls my-postgresql-server \
+  --cert=./server.crt --key=./server.key
+</code></pre><p>Create a <code>Cluster</code> referencing those secrets:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>kubectl apply -f - <span style="color:#e6db74">&lt;&lt;EOF
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">apiVersion: postgresql.cnpg.io/v1
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">kind: Cluster
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">metadata:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  name: cluster-example
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">spec:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  instances: 3
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  certificates:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    serverCASecret: my-postgresql-server-ca
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    serverTLSSecret: my-postgresql-server
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  storage:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    storageClass: standard
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    size: 1Gi
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">EOF</span>
+</span></span></code></pre></div><p>The new cluster will use the provided server certificates for TLS connections.</p>
+<h4 id="cert-manager-example">Cert-manager Example</h4>
+<p>Here is a simple example about how to use <a href="https://cert-manager.io/">cert-manager</a> to set up a self-signed CA and generate
+the needed TLS server certificate:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">cert-manager.io/v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Issuer</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">selfsigned-issuer</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">selfSigned</span>: {}
+</span></span><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Secret</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">my-postgres-server-cert</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">labels</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">cnpg.io/reload</span>: <span style="color:#e6db74">&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">cert-manager.io/v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Certificate</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">my-postgres-server-cert</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">secretName</span>: <span style="color:#ae81ff">my-postgres-server-cert</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">usages</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">server auth</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">dnsNames</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">cluster-example-lb.internal.mydomain.net</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">cluster-example-rw</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">cluster-example-rw.default</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">cluster-example-rw.default.svc</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">cluster-example-r</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">cluster-example-r.default</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">cluster-example-r.default.svc</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">cluster-example-ro</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">cluster-example-ro.default</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">cluster-example-ro.default.svc</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">issuerRef</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">name</span>: <span style="color:#ae81ff">selfsigned-issuer</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Issuer</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">group</span>: <span style="color:#ae81ff">cert-manager.io</span>
+</span></span></code></pre></div><p>A Secret named <code>my-postgres-server-cert</code> is created by cert-manager, containing all the needed files and can be referenced
+from a Cluster as follows:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">postgresql.cnpg.io/v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Cluster</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">cluster-example</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">instances</span>: <span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">certificates</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">serverTLSSecret</span>: <span style="color:#ae81ff">my-postgres-server-cert</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">serverCASecret</span>: <span style="color:#ae81ff">my-postgres-server-cert</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">storage</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">size</span>: <span style="color:#ae81ff">1Gi</span>
+</span></span></code></pre></div><p>You can find a complete example using cert-manager to manage both server and client CA and certificates in
+the <a href="samples/cluster-example-cert-manager.yaml">cluster-example-cert-manager.yaml</a> deployment manifest.</p>
+<h3 id="client-certificate">Client Certificate</h3>
+<p>If required, you can also provide the two client certificates, generating them
+using a separate component such as <a href="https://cert-manager.io/">cert-manager</a> or
+<a href="https://www.vaultproject.io/docs/secrets/pki">hashicorp vault</a>. In order to
+use a custom CA to verify client certificates for a Cluster, you must specify
+the following parameters:</p>
+<ul>
+<li><code>replicationTLSSecret</code>: the name of a Secret of type <code>kubernetes.io/tls</code>,
+containing the client certificate for user <code>streaming_replica</code>. It must contain
+both the standard <code>tls.crt</code> and <code>tls.key</code> keys.</li>
+<li><code>clientCASecret</code>: the name of a Secret containing the <code>ca.crt</code> key of the CA
+that should be used to verify client certificate.</li>
+</ul>
+<p>!!! Note
+The operator will still create and manage the two secrets related to server
+certificates.</p>
+<p>!!! Note
+As the Cluster is not in control of the client CA secret key, client certificates
+can not be generated using <code>kubectl cnpg certificate</code> anymore.</p>
+<p>!!! Note
+If you want ConfigMaps and Secrets to be <strong>automatically</strong> reloaded by instances, you can
+add a label with key <code>cnpg.io/reload</code> to it, otherwise you will have to reload
+the instances using the <code>kubectl cnpg reload</code> subcommand.</p>
+<h4 id="cert-manager-example-1">Cert-manager Example</h4>
+<p>Here a simple example about how to use <a href="https://cert-manager.io/">cert-manager</a> to set up a self-signed CA and generate
+the needed TLS server certificate:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">cert-manager.io/v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Issuer</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">selfsigned-issuer</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">selfSigned</span>: {}
+</span></span><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Secret</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">my-postgres-client-cert</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">labels</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">cnpg.io/reload</span>: <span style="color:#e6db74">&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">cert-manager.io/v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Certificate</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">my-postgres-client-cert</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">secretName</span>: <span style="color:#ae81ff">my-postgres-client-cert</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">usages</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">client auth</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">commonName</span>: <span style="color:#ae81ff">streaming_replica</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">issuerRef</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">name</span>: <span style="color:#ae81ff">selfsigned-issuer</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Issuer</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">group</span>: <span style="color:#ae81ff">cert-manager.io</span>
+</span></span></code></pre></div><p>A Secret named <code>my-postgres-client-cert</code> is created by cert-manager, containing all the needed files and can be referenced
+from a Cluster as follows:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">postgresql.cnpg.io/v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Cluster</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">cluster-example</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">instances</span>: <span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">certificates</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">clientCASecret</span>: <span style="color:#ae81ff">my-postgres-client-cert</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">replicationTLSSecret</span>: <span style="color:#ae81ff">my-postgres-client-cert</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">storage</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">size</span>: <span style="color:#ae81ff">1Gi</span>
+</span></span></code></pre></div><p>You can find a complete example using cert-manager to manage both server and client CA and certificates in
+the <a href="samples/cluster-example-cert-manager.yaml">cluster-example-cert-manager.yaml</a> deployment manifest.</p>
+</p>
+    </div>
+</div>
+
+
+    <footer class="text-center pb-24">
+    <p class="text-sm charcoal w-1/2 mx-auto pt-10">&copy; 2019-2022 The CloudNativePG Contributors. All rights
+        reserved. The Linux Foundation has registered trademarks and uses trademarks.
+        For a list of trademarks of The Linux Foundation, please see our <a href="#" class="red-1">Trademark Usage
+            page</a>.</p>
+</footer>
+  </div>
+  
+  <script src="https://cdn.usefathom.com/script.js" data-site="GSMQCVAJ" defer></script>
+  
+</body>
+
+</html>

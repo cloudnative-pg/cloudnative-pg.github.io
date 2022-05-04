@@ -4,159 +4,91 @@
   <url>
     <loc>https://cloudnative-pg.io/</loc>
   </url><url>
-    <loc>https://cloudnative-pg.io/docs/v1.13.0/</loc>
+    <loc>https://cloudnative-pg.io/docs/v1.15.0/</loc>
   </url><url>
-    <loc>https://cloudnative-pg.io/docs/v1.13.0/api_reference/</loc>
+    <loc>https://cloudnative-pg.io/docs/v1.15.0/api_reference/</loc>
   </url><url>
-    <loc>https://cloudnative-pg.io/docs/v1.13.0/applications/</loc>
+    <loc>https://cloudnative-pg.io/docs/v1.15.0/applications/</loc>
   </url><url>
-    <loc>https://cloudnative-pg.io/docs/v1.13.0/architecture/</loc>
+    <loc>https://cloudnative-pg.io/docs/v1.15.0/architecture/</loc>
   </url><url>
-    <loc>https://cloudnative-pg.io/docs/v1.13.0/backup_recovery/</loc>
+    <loc>https://cloudnative-pg.io/docs/v1.15.0/backup_recovery/</loc>
   </url><url>
-    <loc>https://cloudnative-pg.io/docs/v1.13.0/before_you_start/</loc>
+    <loc>https://cloudnative-pg.io/docs/v1.15.0/before_you_start/</loc>
   </url><url>
-    <loc>https://cloudnative-pg.io/docs/v1.13.0/bootstrap/</loc>
+    <loc>https://cloudnative-pg.io/docs/v1.15.0/bootstrap/</loc>
   </url><url>
-    <loc>https://cloudnative-pg.io/docs/v1.13.0/certificates/</loc>
+    <loc>https://cloudnative-pg.io/docs/v1.15.0/certificates/</loc>
   </url><url>
-    <loc>https://cloudnative-pg.io/docs/v1.13.0/cnp-plugin/</loc>
+    <loc>https://cloudnative-pg.io/docs/v1.15.0/cnpg-plugin/</loc>
   </url><url>
-    <loc>https://cloudnative-pg.io/docs/v1.13.0/connection_pooling/</loc>
+    <loc>https://cloudnative-pg.io/docs/v1.15.0/commercial_support/</loc>
   </url><url>
-    <loc>https://cloudnative-pg.io/docs/v1.13.0/container_images/</loc>
+    <loc>https://cloudnative-pg.io/docs/v1.15.0/connection_pooling/</loc>
   </url><url>
-    <loc>https://cloudnative-pg.io/docs/v1.13.0/e2e/</loc>
+    <loc>https://cloudnative-pg.io/docs/v1.15.0/container_images/</loc>
   </url><url>
-    <loc>https://cloudnative-pg.io/docs/v1.13.0/expose_pg_services/</loc>
+    <loc>https://cloudnative-pg.io/docs/v1.15.0/e2e/</loc>
   </url><url>
-    <loc>https://cloudnative-pg.io/docs/v1.13.0/failover/</loc>
+    <loc>https://cloudnative-pg.io/docs/v1.15.0/expose_pg_services/</loc>
   </url><url>
-    <loc>https://cloudnative-pg.io/docs/v1.13.0/failure_modes/</loc>
+    <loc>https://cloudnative-pg.io/docs/v1.15.0/failover/</loc>
   </url><url>
-    <loc>https://cloudnative-pg.io/docs/v1.13.0/installation_upgrade/</loc>
+    <loc>https://cloudnative-pg.io/docs/v1.15.0/failure_modes/</loc>
   </url><url>
-    <loc>https://cloudnative-pg.io/docs/v1.13.0/instance_manager/</loc>
+    <loc>https://cloudnative-pg.io/docs/v1.15.0/fencing/</loc>
   </url><url>
-    <loc>https://cloudnative-pg.io/docs/v1.13.0/kubernetes_upgrade/</loc>
+    <loc>https://cloudnative-pg.io/docs/v1.15.0/installation_upgrade/</loc>
   </url><url>
-    <loc>https://cloudnative-pg.io/docs/v1.13.0/labels_annotations/</loc>
+    <loc>https://cloudnative-pg.io/docs/v1.15.0/instance_manager/</loc>
   </url><url>
-    <loc>https://cloudnative-pg.io/docs/v1.13.0/logging/</loc>
+    <loc>https://cloudnative-pg.io/docs/v1.15.0/kubernetes_upgrade/</loc>
   </url><url>
-    <loc>https://cloudnative-pg.io/docs/v1.13.0/monitoring/</loc>
+    <loc>https://cloudnative-pg.io/docs/v1.15.0/labels_annotations/</loc>
   </url><url>
-    <loc>https://cloudnative-pg.io/docs/v1.13.0/openshift/</loc>
+    <loc>https://cloudnative-pg.io/docs/v1.15.0/logging/</loc>
   </url><url>
-    <loc>https://cloudnative-pg.io/docs/v1.13.0/operator_capability_levels/</loc>
+    <loc>https://cloudnative-pg.io/docs/v1.15.0/monitoring/</loc>
   </url><url>
-    <loc>https://cloudnative-pg.io/docs/v1.13.0/operator_conf/</loc>
+    <loc>https://cloudnative-pg.io/docs/v1.15.0/operator_capability_levels/</loc>
   </url><url>
-    <loc>https://cloudnative-pg.io/docs/v1.13.0/postgresql_conf/</loc>
+    <loc>https://cloudnative-pg.io/docs/v1.15.0/operator_conf/</loc>
   </url><url>
-    <loc>https://cloudnative-pg.io/docs/v1.13.0/quickstart/</loc>
+    <loc>https://cloudnative-pg.io/docs/v1.15.0/postgresql_conf/</loc>
   </url><url>
-    <loc>https://cloudnative-pg.io/docs/v1.13.0/release_notes/</loc>
+    <loc>https://cloudnative-pg.io/docs/v1.15.0/quickstart/</loc>
   </url><url>
-    <loc>https://cloudnative-pg.io/docs/v1.13.0/replication/</loc>
+    <loc>https://cloudnative-pg.io/docs/v1.15.0/release_notes/</loc>
   </url><url>
-    <loc>https://cloudnative-pg.io/docs/v1.13.0/resource_management/</loc>
+    <loc>https://cloudnative-pg.io/docs/v1.15.0/replication/</loc>
   </url><url>
-    <loc>https://cloudnative-pg.io/docs/v1.13.0/rolling_update/</loc>
+    <loc>https://cloudnative-pg.io/docs/v1.15.0/resource_management/</loc>
   </url><url>
-    <loc>https://cloudnative-pg.io/docs/v1.13.0/samples/</loc>
+    <loc>https://cloudnative-pg.io/docs/v1.15.0/rolling_update/</loc>
   </url><url>
-    <loc>https://cloudnative-pg.io/docs/v1.13.0/scheduling/</loc>
+    <loc>https://cloudnative-pg.io/docs/v1.15.0/samples/</loc>
   </url><url>
-    <loc>https://cloudnative-pg.io/docs/v1.13.0/security/</loc>
+    <loc>https://cloudnative-pg.io/docs/v1.15.0/scheduling/</loc>
   </url><url>
-    <loc>https://cloudnative-pg.io/docs/v1.13.0/ssl_connections/</loc>
+    <loc>https://cloudnative-pg.io/docs/v1.15.0/security/</loc>
   </url><url>
-    <loc>https://cloudnative-pg.io/docs/v1.13.0/storage/</loc>
+    <loc>https://cloudnative-pg.io/docs/v1.15.0/ssl_connections/</loc>
   </url><url>
-    <loc>https://cloudnative-pg.io/docs/v1.13.0/troubleshooting/</loc>
+    <loc>https://cloudnative-pg.io/docs/v1.15.0/storage/</loc>
   </url><url>
-    <loc>https://cloudnative-pg.io/docs/v1.13.0/use_cases/</loc>
+    <loc>https://cloudnative-pg.io/docs/v1.15.0/supported_releases/</loc>
   </url><url>
-    <loc>https://cloudnative-pg.io/docs/v1.14.0/</loc>
+    <loc>https://cloudnative-pg.io/docs/v1.15.0/troubleshooting/</loc>
   </url><url>
-    <loc>https://cloudnative-pg.io/docs/v1.14.0/api_reference/</loc>
-  </url><url>
-    <loc>https://cloudnative-pg.io/docs/v1.14.0/applications/</loc>
-  </url><url>
-    <loc>https://cloudnative-pg.io/docs/v1.14.0/architecture/</loc>
-  </url><url>
-    <loc>https://cloudnative-pg.io/docs/v1.14.0/backup_recovery/</loc>
-  </url><url>
-    <loc>https://cloudnative-pg.io/docs/v1.14.0/before_you_start/</loc>
-  </url><url>
-    <loc>https://cloudnative-pg.io/docs/v1.14.0/bootstrap/</loc>
-  </url><url>
-    <loc>https://cloudnative-pg.io/docs/v1.14.0/certificates/</loc>
-  </url><url>
-    <loc>https://cloudnative-pg.io/docs/v1.14.0/cnp-plugin/</loc>
-  </url><url>
-    <loc>https://cloudnative-pg.io/docs/v1.14.0/connection_pooling/</loc>
-  </url><url>
-    <loc>https://cloudnative-pg.io/docs/v1.14.0/container_images/</loc>
-  </url><url>
-    <loc>https://cloudnative-pg.io/docs/v1.14.0/e2e/</loc>
-  </url><url>
-    <loc>https://cloudnative-pg.io/docs/v1.14.0/expose_pg_services/</loc>
-  </url><url>
-    <loc>https://cloudnative-pg.io/docs/v1.14.0/failover/</loc>
-  </url><url>
-    <loc>https://cloudnative-pg.io/docs/v1.14.0/failure_modes/</loc>
-  </url><url>
-    <loc>https://cloudnative-pg.io/docs/v1.14.0/installation_upgrade/</loc>
-  </url><url>
-    <loc>https://cloudnative-pg.io/docs/v1.14.0/instance_manager/</loc>
-  </url><url>
-    <loc>https://cloudnative-pg.io/docs/v1.14.0/kubernetes_upgrade/</loc>
-  </url><url>
-    <loc>https://cloudnative-pg.io/docs/v1.14.0/labels_annotations/</loc>
-  </url><url>
-    <loc>https://cloudnative-pg.io/docs/v1.14.0/logging/</loc>
-  </url><url>
-    <loc>https://cloudnative-pg.io/docs/v1.14.0/monitoring/</loc>
-  </url><url>
-    <loc>https://cloudnative-pg.io/docs/v1.14.0/openshift/</loc>
-  </url><url>
-    <loc>https://cloudnative-pg.io/docs/v1.14.0/operator_capability_levels/</loc>
-  </url><url>
-    <loc>https://cloudnative-pg.io/docs/v1.14.0/operator_conf/</loc>
-  </url><url>
-    <loc>https://cloudnative-pg.io/docs/v1.14.0/postgresql_conf/</loc>
-  </url><url>
-    <loc>https://cloudnative-pg.io/docs/v1.14.0/quickstart/</loc>
-  </url><url>
-    <loc>https://cloudnative-pg.io/docs/v1.14.0/release_notes/</loc>
-  </url><url>
-    <loc>https://cloudnative-pg.io/docs/v1.14.0/replication/</loc>
-  </url><url>
-    <loc>https://cloudnative-pg.io/docs/v1.14.0/resource_management/</loc>
-  </url><url>
-    <loc>https://cloudnative-pg.io/docs/v1.14.0/rolling_update/</loc>
-  </url><url>
-    <loc>https://cloudnative-pg.io/docs/v1.14.0/samples/</loc>
-  </url><url>
-    <loc>https://cloudnative-pg.io/docs/v1.14.0/scheduling/</loc>
-  </url><url>
-    <loc>https://cloudnative-pg.io/docs/v1.14.0/security/</loc>
-  </url><url>
-    <loc>https://cloudnative-pg.io/docs/v1.14.0/ssl_connections/</loc>
-  </url><url>
-    <loc>https://cloudnative-pg.io/docs/v1.14.0/storage/</loc>
-  </url><url>
-    <loc>https://cloudnative-pg.io/docs/v1.14.0/troubleshooting/</loc>
-  </url><url>
-    <loc>https://cloudnative-pg.io/docs/v1.14.0/use_cases/</loc>
+    <loc>https://cloudnative-pg.io/docs/v1.15.0/use_cases/</loc>
   </url><url>
     <loc>https://cloudnative-pg.io/footer/footer/</loc>
   </url><url>
     <loc>https://cloudnative-pg.io/info/advanced-architectures/</loc>
   </url><url>
     <loc>https://cloudnative-pg.io/cards/automated/</loc>
+  </url><url>
+    <loc>https://cloudnative-pg.io/end_users/biganimal/</loc>
   </url><url>
     <loc>https://cloudnative-pg.io/blog/</loc>
   </url><url>
@@ -166,6 +98,8 @@
   </url><url>
     <loc>https://cloudnative-pg.io/info/cloud-native/</loc>
   </url><url>
+    <loc>https://cloudnative-pg.io/support/</loc>
+  </url><url>
     <loc>https://cloudnative-pg.io/cards/data_persistence/</loc>
   </url><url>
     <loc>https://cloudnative-pg.io/cards/integrated/</loc>
@@ -174,7 +108,9 @@
   </url><url>
     <loc>https://cloudnative-pg.io/docs/</loc>
   </url><url>
-    <loc>https://cloudnative-pg.io/styleguide/</loc>
+    <loc>https://cloudnative-pg.io/support/edb/</loc>
+  </url><url>
+    <loc>https://cloudnative-pg.io/end_users/</loc>
   </url><url>
     <loc>https://cloudnative-pg.io/footer/</loc>
   </url><url>
@@ -189,6 +125,8 @@
     <loc>https://cloudnative-pg.io/hero/</loc>
   </url><url>
     <loc>https://cloudnative-pg.io/info/security/</loc>
+  </url><url>
+    <loc>https://cloudnative-pg.io/styleguide/</loc>
   </url><url>
     <loc>https://cloudnative-pg.io/tags/</loc>
   </url>
