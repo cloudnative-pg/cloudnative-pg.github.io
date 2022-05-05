@@ -26,7 +26,6 @@
           <li><a href="/end_users">End Users</a></li>
         </ul>
       </div>
-
       <!--For hamburger click-->
       <div class="py-4 bg-gray-1 mt-5 hidden" id="navi-list">
         <ul class="md:flex gap-14 text-2xl md:medium-gray charcoal">
@@ -53,11 +52,12 @@
       <!--For hamburger click -->
 
       <div class="flex gap-5 my-4 fill-cnp-blue hidden md:flex">
-        <a href="https://github.com/cloudnative-pg/cloudnative-pg">
-          <img src="/icons/Git.svg" alt="Github">
-        </a>
-        <a href="https://cloudnativepg.slack.com/">
-          <img src="/icons/Slack.svg" alt="Slack">
+       <a class="github-button" href="https://github.com/cloudnative-pg/cloudnative-pg"
+            data-color-scheme="no-preference: light; light: light; dark: dark;"
+            data-size="large" data-show-count="true"
+            aria-label="Star cloudnative-pg/cloudnative-pg on GitHub">Star</a>
+        <a href="https://join.slack.com/t/cloudnativepg/shared_invite/zt-17culux7k-P_UsVOOR9teUYi4dGhDSBQ">
+          <img src="/icons/Slack.svg" alt="Slack" title="Join our Slack channel now!">
         </a>
         <a href="https://twitter.com/CloudNativePg">
           <img src="/icons/Twitter.svg" alt="Twitter">
@@ -69,7 +69,6 @@
     </div>
   </header>
 </main>
-
 <script>
   const toggleButton = document.getElementById('toggle-button')
   const naviList = document.getElementById('navi-list')
