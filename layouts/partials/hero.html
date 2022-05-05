@@ -1,20 +1,20 @@
 <section>
   <div class="py-16">
-    <div class="flex flex-row px-56 justify-between">
-      <div class="w-1/2">
-        <h1 class="text-6xl font-bold cnp-blue">{{.Title}}</h1>
-        <h1 class="text-6xl font-bold red-1 pt-2.5">{{.Params.subtitle}}</h1>
-        <p class=" gray-4 text-2xl font-light leading-10 py-5 container tracking-wider">
+    <div class="md:flex md:flex-row px-4 md:px-56 md:justify-between place-content-center">
+      <div class="md:w-1/2">
+        <h1 class="md:text-6xl font-bold cnp-blue text-3xl md:text-left text-center">{{.Title}}</h1>
+        <h1 class="md:text-6xl font-bold red-1 pt-2.5 text-3xl md:text-left text-center">{{.Params.subtitle}}</h1>
+        <p class=" gray-4 text-xl md:text-2xl font-light leading-10 py-5 container md:tracking-wider">
           {{ .Content | plainify }}
         </p>
-        <div class="pt-7">
+        <div class="pt-7 md:text-left text-center">
           <a href="{{.Params.cta.url}}"
-            class="bg-red-1 py-4 px-12 rounded-full text-white text-3xl">{{.Params.cta.content| plainify}}</a>
+            class="md:text-3xl bg-red-1 py-4 px-12 rounded-full text-white text-xl">{{.Params.cta.content| plainify}}</a>
         </div>
       </div>
-      <div class="ml-8">
+      <div class="md:ml-8 hidden md:block">
         {{ $image := resources.Get "images/hero_image.svg" }}
-        <img src="{{ $image.RelPermalink }}" alt="hero image">
+        <img src="{{ $image.RelPermalink }}" alt="hero image" class="mx-auto">
       </div>
     </div>
 </section>
