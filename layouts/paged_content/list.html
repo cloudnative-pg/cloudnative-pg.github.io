@@ -1,7 +1,7 @@
 {{ define "main" }}
 
-<div class="mx-auto w-1/2">
-    <h1 class="text-xl">{{.Title}}</h1>
+<div class="mx-auto md:w-1/2 px-4 well">
+    <h2 class="text-xl mt-6">{{.Title}}</h2>
     <p>{{.Content}}</p>
 
     {{ $ps := .Paginate (union .Pages .Sections) }}
@@ -9,13 +9,13 @@
     <hr>
     {{ if .Params.image }}
     <a href="{{ .Params.homepage }}">
-        <img src="{{.Params.image }}" alt="{{.Title}}" />
+        <img src="{{.Params.image }}" alt="{{.Title}}" class="py-4" />
     </a>
     {{ else }}
     <h2><a href="{{ .Params.homepage }}">{{ .Title }}</a></h2>
     {{ end }}
     {{.Content}}
-    For more information visit <a href="{{ .Params.homepage }}">{{ .Title }}</a>.
+    <p> For more information visit <a href="{{ .Params.homepage }}">{{ .Title }}</a>.</p>
     {{ end }}
 </div>
 {{ end }}

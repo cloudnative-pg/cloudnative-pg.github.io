@@ -211,7 +211,9 @@ h2 {
 
 h3 {
     font-size: 34px;
-    line-height: 200%;
+    line-height: 130%;
+    padding-top:16px;
+    padding-bottom:16px;
 }
 
 h4 {
