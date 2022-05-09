@@ -1,6 +1,6 @@
 ---
 title: BigAnimal
-image: logo/biganimal.png
+image: logo/biganimal.svg
 homepage: https://biganimal.com
 ---
 

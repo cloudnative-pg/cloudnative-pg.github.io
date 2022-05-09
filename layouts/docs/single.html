@@ -1,11 +1,33 @@
 {{ define "main" }}
 <base href="..">
-<div class="px-56 pt-20 flex">
-    <div class="w-1/4 px-5 bg-purple-2 pt-14 leading-9">
+<div class="md:px-56 md:pt-20 md:flex">
+    <div class="w-1/4 px-4 bg-purple-2 pt-14 leading-9 md:block hidden">
         {{ partial "docs_sidebar.html" . }}
     </div>
-    <div class="w-4/6 pr-20 ml-10 well">
+    <div class="w-4/6 pr-20 ml-10 well hidden md:block">
         <p>{{.Content}}</p>
     </div>
+    <!--Mobile content and sidebar-->
+    <div class="sticky top-0 px-4 bg-purple-2 leading-9 hidden md:hidden py-4" id="menu-list">
+        {{ partial "docs_sidebar.html" . }}
+    </div>
+    <div class="px-4 well md:hidden">
+        <p>{{.Content}}</p>
+    </div>
+    <!--Mobile content and sidebar-->
 </div>
+<!--Documentation menu fold -->
+<div class="flex gap-3 bg-gray-1 px-4 py-4 cnp-blue md:hidden fixed bottom-0 w-full" id="menu-toggle">
+    <img src="/icons/menu-unfold-outlined.svg" alt="">
+    <h4 class="text-lg">Documentation</h4>
+</div>
+<!--Documentation menu fold -->
+<script>
+    const menuToggle = document.getElementById('menu-toggle')
+    const menuList = document.getElementById('menu-list')
+  
+    menuToggle.addEventListener('click', () => {
+      menuList.classList.toggle('hidden');
+    })
+</script>
 {{ end }}

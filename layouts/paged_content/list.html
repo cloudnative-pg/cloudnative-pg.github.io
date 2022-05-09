@@ -1,28 +1,21 @@
 {{ define "main" }}
 
-<div class="mx-auto w-1/2">
-    <h1 class="text-xl">{{.Title}}</h1>
+<div class="mx-auto md:w-1/2 px-4 well">
+    <h2 class="text-xl mt-6">{{.Title}}</h2>
     <p>{{.Content}}</p>
 
     {{ $ps := .Paginate (union .Pages .Sections) }}
     {{ range sort $ps.Pages "Title" }}
     <hr>
-    <div class="w-full flex flex-auto">
-        {{ if .Params.image }}
-        <div class="w-64 px-4">
-            <a href="{{ .Params.homepage }}">
-                <img class="w-full" src="{{.Params.image }}" alt="{{.Title}}" />
-            </a>
-        </div>
-        <div>
-            {{ else }}
-            <div>
-                <h2><a href="{{ .Params.homepage }}">{{ .Title }}</a></h2>
-                {{ end }}
-                {{.Content}}
-                For more information visit <a href="{{ .Params.homepage }}">{{ .Title }}</a>.
-            </div>
-        </div>
-        {{ end }}
-    </div>
+    {{ if .Params.image }}
+    <a href="{{ .Params.homepage }}">
+        <img src="{{.Params.image }}" alt="{{.Title}}" class="py-4" />
+    </a>
+    {{ else }}
+    <h2><a href="{{ .Params.homepage }}">{{ .Title }}</a></h2>
     {{ end }}
+    {{.Content}}
+    <p> For more information visit <a href="{{ .Params.homepage }}">{{ .Title }}</a>.</p>
+    {{ end }}
+</div>
+{{ end }}
