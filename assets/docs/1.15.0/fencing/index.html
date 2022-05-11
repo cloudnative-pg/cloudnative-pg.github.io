@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="The CloudNativePG Contributors" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Fencing - CloudNativePG</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Fencing";
+        var mkdocs_page_input_path = "fencing.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> CloudNativePG
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">CloudNativePG</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../before_you_start/">Before You Start</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../use_cases/">Use cases</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../architecture/">Architecture</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../installation_upgrade/">Installation and upgrades</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../quickstart/">Quickstart</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../bootstrap/">Bootstrap</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../security/">Security</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../instance_manager/">Postgres instance manager</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../scheduling/">Scheduling</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../resource_management/">Resource management</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../failure_modes/">Failure Modes</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../rolling_update/">Rolling Updates</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../replication/">Replication</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../backup_recovery/">Backup and Recovery</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../postgresql_conf/">PostgreSQL Configuration</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../operator_conf/">Operator configuration</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../storage/">Storage</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../labels_annotations/">Labels and annotations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../monitoring/">Monitoring</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../logging/">Logging</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../certificates/">Certificates</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../ssl_connections/">Client TLS/SSL Connections</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../applications/">Connecting from an application</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../connection_pooling/">Connection Pooling</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../kubernetes_upgrade/">Kubernetes Upgrade</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../expose_pg_services/">Exposing Postgres Services</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../cnpg-plugin/">CloudNativePG Plugin</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../failover/">Automated failover</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../troubleshooting/">Troubleshooting</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Fencing</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#how-to-fence-instances">How to fence instances</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#how-to-lift-fencing">How to lift fencing</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#how-fencing-works">How fencing works</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../e2e/">End-to-End Tests</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../container_images/">Container Image Requirements</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../operator_capability_levels/">Operator Capability Levels</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../samples/">Configuration Samples</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../commercial_support/">Commercial support</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../api_reference/">API Reference</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../supported_releases/">Supported releases</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../release_notes/">Release notes</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">CloudNativePG</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li><li>Fencing</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="fencing">Fencing</h1>
+<p>Fencing in CloudNativePG is the ultimate process of protecting the
+data in one, more, or even all instances of a PostgreSQL cluster when they
+appear to be malfunctioning. When an instance is fenced, the PostgreSQL server
+process (<code>postmaster</code>) is guaranteed to be shut down, while the pod is kept running.
+This makes sure that, until the fence is lifted, data on the pod is not modified by
+PostgreSQL and that the file system can be investigated for debugging and
+troubleshooting purposes.</p>
+<h2 id="how-to-fence-instances">How to fence instances</h2>
+<p>In CloudNativePG you can fence:</p>
+<ul>
+<li>a specific instance</li>
+<li>a list of instances</li>
+<li>an entire Postgres <code>Cluster</code></li>
+</ul>
+<p>Fencing is controlled through the content of the <code>cnpg.io/fencedInstances</code>
+annotation, which expects a JSON formatted list of instance names.
+If the annotation is set to <code>'["*"]'</code>, a singleton list with a wildcard, the
+whole cluster is fenced.
+If the annotation is set to an empty JSON list, the operator behaves as if the
+annotation was not set.</p>
+<p>For example:</p>
+<ul>
+<li>
+<p><code>cnpg.io/fencedInstances: '["cluster-example-1"]'</code> will fence just
+  the <code>cluster-example-1</code> instance</p>
+</li>
+<li>
+<p><code>cnpg.io/fencedInstances: '["cluster-example-1","cluster-example-2"]'</code>
+  will fence the <code>cluster-example-1</code> and <code>cluster-example-2</code> instances</p>
+</li>
+<li>
+<p><code>cnpg.io/fencedInstances: '["*"]'</code> will fence every instance in
+  the cluster.</p>
+</li>
+</ul>
+<p>The annotation can be manually set on the Kubernetes object, for example via
+the <code>kubectl annotate</code> command, or in a transparent way using the
+<code>kubectl cnpg fencing on</code> subcommand:</p>
+<pre><code class="language-shell"># to fence only one instance
+kubectl cnpg fencing on cluster-example 1
+
+# to fence all the instances in a Cluster
+kubectl cnpg fencing on cluster-example &quot;*&quot;
+</code></pre>
+<p>Here is an example of a <code>Cluster</code> with an instance that was previously fenced:</p>
+<pre><code class="language-yaml">apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+    annotations:
+      cnpg.io/fencedInstances: '[&quot;cluster-example-1&quot;]'
+[...]
+</code></pre>
+<h2 id="how-to-lift-fencing">How to lift fencing</h2>
+<p>Fencing can be lifted by clearing the annotation, or set it to a different value.</p>
+<p>As for fencing, this can be done either manually with <code>kubectl annotate</code>, or
+using the <code>kubectl cnpg fencing</code> subcommand as follows:</p>
+<pre><code class="language-shell"># to lift the fencing only for one instance
+# N.B.: at the moment this won't work if the whole cluster was fenced previously,
+#       in that case you will have to manually set the annotation as explained above
+kubectl cnpg fencing off cluster-example 1
+
+# to lift the fencing for all the instances in a Cluster
+kubectl cnpg fencing off cluster-example &quot;*&quot;
+</code></pre>
+<h2 id="how-fencing-works">How fencing works</h2>
+<p>Once an instance is set for fencing, the procedure to shut down the
+<code>postmaster</code> process is initiated. This consists of an initial smart shutdown
+with a timeout set to <code>.spec.stopDelay</code>, followed by a fast shutdown if
+required. Then:</p>
+<ul>
+<li>
+<p>the Pod will be kept alive</p>
+</li>
+<li>
+<p>the Pod won't be marked as <em>Ready</em></p>
+</li>
+<li>
+<p>all the changes that don't require the Postgres instance to be up will be
+  reconciled, including:</p>
+<ul>
+<li>configuration files</li>
+<li>certificates and all the cryptographic material</li>
+</ul>
+</li>
+<li>
+<p>metrics will not be collected, except <code>cnpg_collector_fencing_on</code> which will be
+  set to 1</p>
+</li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>When at least one instance in a <code>Cluster</code> is fenced, failovers/switchovers for that
+<code>Cluster</code> will be blocked until the fence is lifted, as the status of the <code>Cluster</code>
+cannot be considered stable.</p>
+<p>In particular, if a <strong>primary instance</strong> will be fenced, the postmaster process
+will be shut down but no failover will happen, interrupting the operativity of
+the applications. When the fence will be lifted, the primary instance will be
+started up again without any failover happening.</p>
+<p>Given that, we advise the user to fence only replica instances when possible.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If the primary is the only fenced instance in a <code>Cluster</code> and the pod is deleted, a
+failover will be performed. When the fence on the old primary is lifted, that instance
+is restarted as a standby (follower of the new primary).</p>
+</div>
+<p>If a fenced instance is deleted, the pod will be recreated normally, but the
+postmaster won't be started. This can be extremely helpful when instances
+are <code>Crashlooping</code>.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../troubleshooting/" class="btn btn-neutral float-left" title="Troubleshooting"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../e2e/" class="btn btn-neutral float-right" title="End-to-End Tests">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../troubleshooting/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../e2e/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="The CloudNativePG Contributors" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Release notes - CloudNativePG</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Release notes";
+        var mkdocs_page_input_path = "release_notes.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> CloudNativePG
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">CloudNativePG</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../before_you_start/">Before You Start</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../use_cases/">Use cases</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../architecture/">Architecture</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../installation_upgrade/">Installation and upgrades</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../quickstart/">Quickstart</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../bootstrap/">Bootstrap</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../security/">Security</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../instance_manager/">Postgres instance manager</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../scheduling/">Scheduling</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../resource_management/">Resource management</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../failure_modes/">Failure Modes</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../rolling_update/">Rolling Updates</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../replication/">Replication</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../backup_recovery/">Backup and Recovery</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../postgresql_conf/">PostgreSQL Configuration</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../operator_conf/">Operator configuration</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../storage/">Storage</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../labels_annotations/">Labels and annotations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../monitoring/">Monitoring</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../logging/">Logging</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../certificates/">Certificates</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../ssl_connections/">Client TLS/SSL Connections</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../applications/">Connecting from an application</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../connection_pooling/">Connection Pooling</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../kubernetes_upgrade/">Kubernetes Upgrade</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../expose_pg_services/">Exposing Postgres Services</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../cnpg-plugin/">CloudNativePG Plugin</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../failover/">Automated failover</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../troubleshooting/">Troubleshooting</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../fencing/">Fencing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../e2e/">End-to-End Tests</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../container_images/">Container Image Requirements</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../operator_capability_levels/">Operator Capability Levels</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../samples/">Configuration Samples</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../commercial_support/">Commercial support</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../api_reference/">API Reference</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../supported_releases/">Supported releases</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Release notes</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#version-1150">Version 1.15.0</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#version-1140">Version 1.14.0</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#version-1130">Version 1.13.0</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#version-1120">Version 1.12.0</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#version-1110">Version 1.11.0</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#version-1100">Version 1.10.0</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#version-192">Version 1.9.2</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#version-191">Version 1.9.1</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#version-190">Version 1.9.0</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#version-180">Version 1.8.0</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#version-171">Version 1.7.1</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#version-170">Version 1.7.0</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#version-160">Version 1.6.0</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#version-151">Version 1.5.1</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#version-150">Version 1.5.0</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#version-140">Version 1.4.0</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#version-130">Version 1.3.0</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#version-121">Version 1.2.1</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#version-120">Version 1.2.0</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#version-110">Version 1.1.0</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#version-100">Version 1.0.0</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">CloudNativePG</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li><li>Release notes</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="release-notes">Release notes</h1>
+<p>History of user-visible changes for CloudNativePG.</p>
+<h2 id="version-1150">Version 1.15.0</h2>
+<p><strong>Release date:</strong> 21 April 2022</p>
+<p>Features:</p>
+<ul>
+<li><strong>Fencing:</strong> Introduction of the fencing capability for a cluster or a given
+  set of PostgreSQL instances through the <code>cnpg.io/fencedInstances</code>
+  annotation, which, if not empty, disables switchover/failovers in the cluster;
+  fenced instances are shut down and the pod is kept running (while considered
+  not ready) for inspection and emergencies</li>
+<li><strong>LDAP authentication:</strong> Allow LDAP Simple Bind and Search+Bind configuration
+  options in the <code>pg_hba.conf</code> to be defined in the Postgres cluster spec
+  declaratively, enabling the optional use of Kubernetes secrets for sensitive
+  options such as <code>ldapbindpasswd</code></li>
+<li>Introduction of the <code>primaryUpdateMethod</code> option, accepting the values of
+  <code>switchover</code> (default) and <code>restart</code>, to be used in case of unsupervised
+  <code>primaryUpdateStrategy</code>; this method controls what happens to the primary
+  instance during the rolling update procedure</li>
+<li>New <code>report</code> command in the <code>kubectl cnp</code> plugin for better diagnosis and
+  more effective troubleshooting of both the operator and a specific Postgres
+  cluster</li>
+<li>Prune those <code>Backup</code> objects that are no longer in the backup object store</li>
+<li>Specification of target timeline and <code>LSN</code> in Point-In-Time Recovery
+  bootstrap method</li>
+<li>Support for the <code>AWS_SESSION_TOKEN</code> authentication token in AWS S3 through
+  the <code>sessionToken</code> option</li>
+<li>Default image name for PgBouncer in <code>Pooler</code> pods set to
+  <code>quay.io/enterprisedb/pgbouncer:1.17.0</code></li>
+</ul>
+<p>Fixes:</p>
+<ul>
+<li>Base backup detection for Point-In-Time Recovery via <code>targetTime</code> correctly
+  works now, as previously a target prior to the latest available backup was
+  not possible (the detection algorithm was always wrong by selecting the last
+  backup as a starting point)</li>
+<li>Improved resilience of hot standby sensitive parameters by relying on the
+  values the operator collects from <code>pg_controldata</code></li>
+<li>Intermediate certificates handling has been improved by properly discarding invalid entries,
+  instead of throwing an invalid certificate error</li>
+<li>Prometheus exporter metric collection queries in the databases are now
+  committed instead of rolled back (this might result in a change in the number
+  of rolled back transactions that are visible from downstream dashboards,
+  where applicable)</li>
+</ul>
+<h2 id="version-1140">Version 1.14.0</h2>
+<p><strong>Release date:</strong> 25 March 2022</p>
+<p>Features:</p>
+<ul>
+<li>Natively support Google Cloud Storage for backup and recovery, by taking
+  advantage of the features introduced in Barman Cloud 2.19</li>
+<li>Improved observability of backups through the introduction of the
+  <code>LastBackupSucceeded</code> condition for the <code>Cluster</code> object</li>
+<li>Support update of Hot Standby sensitive parameters: <code>max_connections</code>,
+  <code>max_prepared_transactions</code>, <code>max_locks_per_transaction</code>, <code>max_wal_senders</code>,
+  <code>max_worker_processes</code></li>
+<li>Add the <code>Online upgrade in progress</code> phase in the <code>Cluster</code> object to show
+  when an online upgrade of the operator is in progress</li>
+<li>Ability to inherit an AWS IAM Role as an alternative way to provide
+  credentials for the S3 object storage</li>
+<li>Support for Opaque secrets for Pooler’s authQuerySecret and certificates</li>
+<li>Updated default PostgreSQL version to 14.2</li>
+<li>Add a new command to <code>kubectl cnp</code> plugin named <code>maintenance</code> to set
+  maintenance window to cluster(s) in one or all namespaces across the Kubernetes
+  cluster</li>
+</ul>
+<p>Container Images:</p>
+<ul>
+<li>Latest PostgreSQL containers include Barman Cloud 2.19</li>
+</ul>
+<p>Security Enhancements:</p>
+<ul>
+<li>Stronger RBAC enforcement for namespaced operator installations with Operator
+  Lifecycle Manager, including OpenShift. OpenShift users are recommended to
+  update to this version.</li>
+</ul>
+<p>Fixes:</p>
+<ul>
+<li>Allow the instance manager to retry an interrupted <code>pg_rewind</code> by preserving a
+  copy of the original <code>pg_control</code> file</li>
+<li>Clean up stale PID files before running <code>pg_rewind</code></li>
+<li>Force sorting by key in <code>primary_conninfo</code> to avoid random restarts with
+  PostgreSQL versions prior to 13</li>
+<li>Preserve <code>ServiceAccount</code> changes (e.g., labels, annotations) upon
+  reconciliation</li>
+<li>Disable enforcement of the imagePullPolicy default value</li>
+<li>Improve initDB validation for WAL segment size</li>
+<li>Properly handle the <code>targetLSN</code> option when recovering a cluster with the LSN
+  specified</li>
+<li>Fix custom TLS certificates validation by allowing a certificates chain both
+  in the server and CA certificates</li>
+</ul>
+<h2 id="version-1130">Version 1.13.0</h2>
+<p><strong>Release date:</strong> 17 February 2022</p>
+<p>Features:</p>
+<ul>
+<li>Support for Snappy compression. Snappy is a fast compression option for backups that increase
+  the speed of uploads to the object store using a lower compression ratio</li>
+<li>Support for tagging files uploaded to the Barman object store. This feature requires
+  Barman 2.18 in the operand image.
+  of backups after Cluster deletion</li>
+<li>Extension of the status of a Cluster with <code>status.conditions</code>. The condition <code>ContinuousArchiving</code>
+  indicates that the Cluster has started to archive WAL files</li>
+<li>Improve the status command of the <code>cnp</code> plugin for <code>kubectl</code> with additional information:
+  add a <code>Cluster Summary</code> section showing the status of the Cluster and a <code>Certificates Status</code>
+  section including the status of the certificates used in the Cluster along
+  with the time left to expire</li>
+<li>Support the new <code>barman-cloud-check-wal-archive</code> command to detect a non-empty backup destination
+  when creating a new cluster</li>
+<li>Add support for using a <code>Secret</code> to add default monitoring queries through
+  <code>MONITORING_QUERIES_SECRET</code> configuration variable.</li>
+<li>Allow the user to restrict container’s permissions using AppArmor (on Kubernetes clusters deployed
+  with AppArmor support)</li>
+<li>Add Windows platform support to <code>cnp</code> plugin for <code>kubectl</code>, now the plugin is available
+  on Windows x86 and ARM</li>
+<li>Drop support for Kubernetes 1.18 and deprecated API versions</li>
+</ul>
+<p>Container Images:</p>
+<ul>
+<li>PostgreSQL containers include Barman 2.18</li>
+</ul>
+<p>Security Fix:</p>
+<ul>
+<li>Add coherence check of username field inside owner and superuser secrets;
+  previously, a malicious user could have used the secrets to change the password
+  of any PostgreSQL user</li>
+</ul>
+<p>Fixes:</p>
+<ul>
+<li>Fix a memory leak in code fetching status from Postgres pods</li>
+<li>Disable PostgreSQL self-restart after a crash. The instance controller handles
+  the lifecycle of the PostgreSQL instance</li>
+<li>Prevent modification of <code>spec.postgresUID</code> and <code>spec.postgresGID</code> fields
+  in validation webhook. Changing these fields after Cluster creation makes PostgreSQL unable to start</li>
+<li>Reduce the log verbosity from the backup and WAL archiving handling code</li>
+<li>Correct a bug resulting in a Cluster being marked as <code>Healthy</code> when not initialized yet</li>
+<li>Allows standby servers in clusters with a very high WAL production rate to switch to streaming
+  once they are aligned</li>
+<li>Fix a race condition during the startup of a PostgreSQL pod that could seldom lead to a crash</li>
+<li>Fix a race condition that could lead to a failure initializing the first PVC in a Cluster</li>
+<li>Remove an extra restart of a just demoted primary Pod before joining the Cluster as a replica</li>
+<li>Correctly handle replication-sensitive PostgreSQL configuration parameters when recovering
+  from a backup</li>
+<li>Fix missing validation of PostgreSQL configurations during Cluster creation</li>
+</ul>
+<h2 id="version-1120">Version 1.12.0</h2>
+<p><strong>Release date:</strong> 11 January 2022</p>
+<p>Features:</p>
+<ul>
+<li>Add Kubernetes 1.23 to the list of supported Kubernetes distributions and remove end-to-end tests for 1.17,<br />
+  which ended support by the Kubernetes project in Dec 2020</li>
+<li>Improve the responsiveness of pod status checks in case of network issues
+  by adding a connection timeout of 2 seconds and a communication timeout
+  of 30 seconds. This change sets a limit on the time the operator waits for
+  a pod to report its status before declaring it as failed, enhancing
+  the robustness and predictability of a failover operation</li>
+<li>Introduce the <code>.spec.inheritedMetadata</code> field to the Cluster allowing the user
+  to specify labels and annotations that will apply to all objects generated
+  by the Cluster</li>
+<li>Reduce the number of queries executed when calculating the status
+  of an instance</li>
+<li>Add a readiness probe for PgBouncer</li>
+<li>Add support for custom Certification Authority of the endpoint of Barman’s
+  backup object store when using Azure protocol</li>
+</ul>
+<p>Fixes:</p>
+<ul>
+<li>During a failover, wait to select a new primary until all the WAL streaming
+  connections are closed. The operator now sets by default <code>wal_sender_timeout</code>
+  and <code>wal_receiver_timeout</code> to 5 seconds to make sure standby nodes will
+  quickly notice if the primary has network issues</li>
+<li>Change WAL archiving strategy in replica clusters to fix rolling updates
+  by setting "archive_mode" to "always" for any PostgreSQL instance in
+  a replica cluster. We then restrict the upload of the WAL only from
+  the current and target designated primary. A WAL may be uploaded twice
+  during switchovers, which is not an issue</li>
+<li>Fix support for custom Certification Authority of the endpoint of Barman’s
+  backup object store in replica clusters source</li>
+<li>Use a fixed name for default monitoring config map in the cluster namespace</li>
+<li>If the defaulting webhook is not working for any reason, the operator now
+  updates the Cluster with the defaults also during the reconciliation cycle</li>
+<li>Fix the comparison of resource requests and limits to fix a rare issue
+  leading to an update of all the pods on every reconciliation cycle</li>
+<li>Improve log messages from webhooks to also include the object namespace</li>
+<li>Stop logging a “default” message at the start of every reconciliation loop</li>
+<li>Stop logging a PodMonitor deletion on every reconciliation cycle
+  if <code>enablePodMonitor</code> is false</li>
+<li>Do not complain about possible architecture mismatch if a pod is not
+  reachable</li>
+</ul>
+<h2 id="version-1110">Version 1.11.0</h2>
+<p><strong>Release date:</strong> 15 December 2021</p>
+<p>Features:</p>
+<ul>
+<li><strong>Parallel WAL archiving and restore:</strong> allow the database to keep up with WAL
+  generation on high write systems by introducing the
+  <code>backupObjectStore.maxParallel</code> option to set the maximum number of parallel
+  jobs to be executed during both WAL archiving (by PostgreSQL’s
+  <code>archive_command</code>) and WAL restore (by <code>restore_command</code>). Using parallel
+  restore option can allow newly promoted Standbys to get to a ready state faster
+  by fetching needed WAL files to replay in parallel rather than sequentially</li>
+<li><strong>Default set of metrics for monitoring:</strong> a new <code>ConfigMap</code> called
+  <code>default-monitoring</code> is automatically deployed in the same namespace of the
+  operator and, by default, added to any existing Postgres cluster. Such behavior
+  can be changed globally by setting the <code>MONITORING_QUERIES_CONFIGMAP</code> parameter
+  in the operator’s configuration, or at cluster level through the
+  <code>.spec.monitoring.disableDefaultQueries</code> option (by default set to <code>false</code>)</li>
+<li>Introduce the <code>enablePodMonitor</code> option in the monitoring section of a
+  cluster to automatically manage a <code>PodMonitor</code> resource and seamlessly
+  integrate with Prometheus</li>
+<li>Improve the PostgreSQL shutdown procedure by trying to execute a smart
+  shutdown for the first half of the desired <code>stopDelay</code> time, and a fast
+  shutdown for the remaining half, before the pod is killed by Kubernetes</li>
+<li>Add the <code>switchoverDelay</code> option to control the time given to the former
+  primary to shut down gracefully and archive all the WAL files before
+  promoting the new primary (by default, CloudNativePG waits
+  indefinitely to privilege data durability)</li>
+<li>Handle changes to resource requests and limits for a PostgreSQL <code>Cluster</code> by
+  issuing a rolling update</li>
+<li>Improve the <code>status</code> command of the <code>cnp</code> plugin for <code>kubectl</code> with
+  additional information: streaming replication status, total size of the
+  database, role of an instance in the cluster</li>
+<li>Enhance support of workloads with many parallel workers by enabling
+  configuration of the <code>dynamic_shared_memory_type</code> and <code>shared_memory_type</code>
+  parameters for PostgreSQL’s management of shared memory</li>
+<li>Propagate labels and annotations defined at cluster level to the
+  associated resources, including pods (deletions are not supported)</li>
+<li>Automatically remove pods that have been evicted by the Kubelet</li>
+<li>Manage automated resizing of persistent volumes in Azure through the
+  <code>ENABLE_AZURE_PVC_UPDATES</code> operator configuration option, by issuing a
+  rolling update of the cluster if needed (disabled by default)</li>
+<li>Introduce the<code>cnpg.io/reconciliationLoop</code> annotation that, when
+  set to <code>disabled</code> on a given Postgres cluster, prevents the reconciliation
+  loop from running</li>
+<li>Introduce the <code>postInitApplicationSQL</code> option as part of the <code>initdb</code>
+  bootstrap method to specify a list of SQL queries to be executed on the main
+  application database as a superuser immediately after the cluster has been
+  created</li>
+</ul>
+<p>Fixes:</p>
+<ul>
+<li>Liveness probe now correctly handles the startup process of a PostgreSQL
+  server. This fixes an issue reported by a few customers and affects a
+  restarted standby server that needs to recover WAL files to reach a consistent
+  state, but it was not able to do it before the timeout of liveness probe would
+  kick in, leaving the pods in <code>CrashLoopBackOff</code> status.</li>
+<li>Liveness probe now correctly handles the case of a former primary that needs
+  to use <code>pg_rewind</code> to re-align with the current primary after a timeline
+  diversion. This fixes the pod of the new standby from repeatedly being killed
+  by Kubernetes.</li>
+<li>Reduce client-side throttling from Postgres pods (e.g. <code>Waited for
+  1.182388649s due to client-side throttling, not priority and fairness,
+  request: GET</code>)</li>
+<li>Disable Public Key Infrastructure (PKI) initialization on OpenShift and OLM
+  installations, by using the provided one</li>
+<li>When changing configuration parameters that require a restart, always leave
+  the primary as last</li>
+<li>Mark a PVC to be ready only after a job has been completed successfully,
+  preventing a race condition in PVC initialization</li>
+<li>Use the correct public key when renewing the expired webhook TLS secret.</li>
+<li>Fix an overflow when parsing an LSN</li>
+<li>Remove stale PID files at startup</li>
+<li>Let the <code>Pooler</code> resource inherit the <code>imagePullSecret</code> defined in the
+  operator, if exists</li>
+</ul>
+<h2 id="version-1100">Version 1.10.0</h2>
+<p><strong>Release date:</strong> 11 November 2021</p>
+<p>Features:</p>
+<ul>
+<li><strong>Connection Pooling with PgBouncer</strong>: introduce the <code>Pooler</code> resource and
+  controller to automatically manage a PgBouncer deployment to be used as a
+  connection pooler for a local PostgreSQL <code>Cluster</code>. The feature includes TLS
+  client/server connections, password authentication, High Availability, pod
+  templates support, configuration of key PgBouncer parameters, <code>PAUSE</code>/<code>RESUME</code>,
+  logging in JSON format, Prometheus exporter for stats, pools, and lists</li>
+<li><strong>Backup Retention Policies</strong>: support definition of recovery window retention
+  policies for backups (e.g. ‘30d’ to ensure a recovery window of 30 days)</li>
+<li><strong>In-Place updates of the operator</strong>: introduce an in-place online update of the
+  instance manager, which removes the need to perform a rolling update of the
+  entire cluster following an update of the operator. By default this option is
+  disabled (please refer to the
+  <a href="../installation_upgrade/#in-place-updates-of-the-instance-manager">documentation for more detailed information</a>)</li>
+<li>Limit the list of options that can be customized in the <code>initdb</code> bootstrap
+  method to <code>dataChecksums</code>, <code>encoding</code>,  <code>localeCollate</code>, <code>localeCType</code>,
+  <code>walSegmentSize</code>. This makes the <code>options</code> array obsolete and planned to be
+  removed in the v2 API</li>
+<li>Introduce the <code>postInitTemplateSQL</code> option as part of the <code>initdb</code> bootstrap
+  method to specify a list of SQL queries to be executed on the <code>template1</code>
+  database as a superuser immediately after the cluster has been created. This
+  feature allows you to include default objects in all application databases
+  created in the cluster</li>
+<li>New default metrics added to the instance Prometheus exporter: Postgres
+  version, cluster name, and first point of recoverability according to the
+  backup catalog</li>
+<li>Retry taking a backup after a failure</li>
+<li>Build awareness about Barman Cloud capabilities in order to prevent the
+  operator from invoking recently introduced features (such as retention
+  policies, or Azure Blob Container storage) that are not present in operand
+  images that are not frequently updated</li>
+<li>Integrate the output of the <code>status</code> command of the <code>cnp</code> plugin with information
+  about the backup</li>
+<li>Introduce a new annotation that reports the status of a PVC (being
+  initialized or ready)</li>
+<li>Set the cluster name in the <code>cnpg.io/cluster</code> label for every
+  object generated in a <code>Cluster</code>, including <code>Backup</code> objects</li>
+<li>Drop support for deprecated API version
+  <code>postgresql.cnpg.io/v1alpha1</code> on the <code>Cluster</code>, <code>Backup</code>, and
+  <code>ScheduledBackup</code> kinds</li>
+<li>Set default operand image to PostgreSQL 14.2</li>
+</ul>
+<p>Security:</p>
+<ul>
+<li>Set allowPrivilegeEscalation to <code>false</code> for the operator containers
+  securityContext</li>
+</ul>
+<p>Fixes:</p>
+<ul>
+<li>Disable primary PodDisruptionBudget during maintenance in single-instance
+  clusters</li>
+<li>Use the correct certificate certification authority (CA) during recovery
+  operations</li>
+<li>Prevent Postgres connection leaking when checking WAL archiving status before
+  taking a backup</li>
+<li>Let WAL archive/restore sleep for 100ms following transient errors that would
+  flood logs otherwise</li>
+</ul>
+<h2 id="version-192">Version 1.9.2</h2>
+<p><strong>Release date:</strong> 15 October 2021</p>
+<p>Features:</p>
+<ul>
+<li>Enhance JSON log with two new loggers: <code>wal-archive</code> for PostgreSQL's
+  <code>archive_command</code>, and <code>wal-restore</code> for <code>restore_command</code> in a standby</li>
+</ul>
+<p>Fixes:</p>
+<ul>
+<li>Enable WAL archiving during the standby promotion (prevented <code>.history</code> files
+  from being archived)</li>
+<li>Pass the <code>--cloud-provider</code> option to Barman Cloud tools only when using
+  Barman 2.13 or higher to avoid errors with older operands</li>
+<li>Wait for the pod of the primary to be ready before triggering a backup</li>
+</ul>
+<h2 id="version-191">Version 1.9.1</h2>
+<p><strong>Release date:</strong> 30 September 2021</p>
+<p><em>This release is to celebrate the launch of
+<a href="https://www.postgresql.org/about/news/postgresql-14-released-2318/">PostgreSQL 14</a>
+by making it the default major version when a new <code>Cluster</code> is created without
+defining a specific image name.</em></p>
+<p>Fixes:</p>
+<ul>
+<li>Fix issue causing <code>Error while getting barman endpoint CA secret</code> message to
+  appear in the logs of the primary pod, which prevented the backup to work
+  correctly</li>
+<li>Properly retry requesting a new backup in case of temporary communication
+  issues with the instance manager</li>
+</ul>
+<h2 id="version-190">Version 1.9.0</h2>
+<p><strong>Release date:</strong> 28 September 2021</p>
+<p><em>Version 1.9.0 is not available on OpenShift due to delays with the
+release process and the subsequent release of version 1.9.1.</em></p>
+<p>Features:</p>
+<ul>
+<li>Add Kubernetes 1.22 to the list of supported Kubernetes distributions, and
+  remove 1.16</li>
+<li>Introduce support for the <code>--restore-target-wal</code> option in <code>pg_rewind</code>, in
+  order to fetch WAL files from the backup archive, if necessary (available
+  only with PostgreSQL 13+)</li>
+<li>Expose a default metric for the Prometheus exporter that estimates the number
+  of pages in the <code>pg_catalog.pg_largeobject</code> table in each database</li>
+<li>Enhance the performance of WAL archiving and fetching, through local in-memory
+  cache</li>
+</ul>
+<p>Fixes:</p>
+<ul>
+<li>Explicitly set the <code>postgres</code> user when invoking <code>pg_isready</code> - required by
+  restricted SCC in OpenShift</li>
+<li>Properly update the <code>FirstRecoverabilityPoint</code> in the status</li>
+<li>Set <code>archive_mode = always</code> on the designated primary if backup is requested</li>
+<li>Minor bug fixes</li>
+</ul>
+<h2 id="version-180">Version 1.8.0</h2>
+<p><strong>Release date:</strong> 13 September 2021</p>
+<p>Features:</p>
+<ul>
+<li>Bootstrap a new cluster via full or Point-In-Time Recovery directly from an
+  object store defined in the external cluster section, eliminating the
+  previous requirement to have a Backup CR defined</li>
+<li>Introduce the <code>immediate</code> option in scheduled backups to request a backup
+  immediately after the first Postgres instance running, adding the capability
+  to rewind to the very beginning of a cluster when Point-In-Time Recovery is
+  configured</li>
+<li>Add the <code>firstRecoverabilityPoint</code> in the cluster status to report the oldest
+  consistent point in time to request a recovery based on the backup object
+  store’s content</li>
+<li>
+<p>Enhance the default Prometheus exporter for a PostgreSQL instance by exposing
+  the following new metrics:</p>
+<ol>
+<li>number of WAL files and computed total size on disk</li>
+<li>number of <code>.ready</code> and <code>.done</code> files in the archive status folder</li>
+<li>flag for replica mode</li>
+<li>number of requested minimum/maximum synchronous replicas, as well as
+   the expected and actually observed ones</li>
+</ol>
+</li>
+<li>
+<p>Add support for the <code>runonserver</code> option when defining custom metrics in the
+  Prometheus exporter to limit the collection of a metric to a range of
+  PostgreSQL versions</p>
+</li>
+<li>Natively support Azure Blob Storage for backup and recovery, by taking
+  advantage of the feature introduced in Barman 2.13 for Barman Cloud</li>
+<li>Rely on <code>pg_isready</code> for the liveness probe</li>
+<li>Support RFC3339 format for timestamp specification in recovery target times</li>
+<li>Introduce <code>.spec.imagePullPolicy</code> to control the pull policy of image
+  containers for all pods and jobs created for a cluster</li>
+<li>Add support for OpenShift 4.8, which replaces OpenShift 4.5</li>
+<li>Support PostgreSQL 14 (beta)</li>
+<li>Enhance the replica cluster feature with cross-cluster replication from an
+  object store defined in an external cluster section, without requiring a
+  streaming connection (experimental)</li>
+<li>Introduce <code>logLevel</code> option to the cluster's spec to specify one of the
+  following levels: error, info, debug or trace</li>
+</ul>
+<p>Security Enhancements:</p>
+<ul>
+<li>Introduce <code>.spec.enableSuperuserAccess</code> to enable/disable network access with the
+  <code>postgres</code> user through password authentication</li>
+</ul>
+<p>Fixes:</p>
+<ul>
+<li>Properly inform users when a cluster enters an unrecoverable state and
+  requires human intervention</li>
+</ul>
+<h2 id="version-171">Version 1.7.1</h2>
+<p><strong>Release date:</strong> 11 August 2021</p>
+<p>Features:</p>
+<ul>
+<li>Prefer self-healing over configuration with regards to synchronous
+  replication, empowering the operator to temporarily override
+  <code>minSyncReplicas</code> and <code>maxSyncReplicas</code> settings in case the cluster is not
+  able to meet the requirements during self-healing operations</li>
+<li>Introduce the <code>postInitSQL</code> option as part of the <code>initdb</code> bootstrap method
+  to specify a list of SQL queries to be executed as a superuser immediately
+  after the cluster has been created</li>
+</ul>
+<p>Fixes:</p>
+<ul>
+<li>Allow the operator to failover when the primary is not ready (bug introduced in 1.7.0)</li>
+<li>Execute administrative queries using the <code>LOCAL</code> synchronous commit level</li>
+<li>Correctly parse multi-line log entries in PGAudit</li>
+</ul>
+<h2 id="version-170">Version 1.7.0</h2>
+<p><strong>Release date:</strong> 28 July 2021</p>
+<p>Features:</p>
+<ul>
+<li>Add native support to PGAudit with a new type of <code>logger</code> called <code>pgaudit</code>
+  directly available in the JSON output</li>
+<li>
+<p>Enhance monitoring and observability capabilities through:</p>
+<ul>
+<li>Native support for the <code>pg_stat_statements</code> and <code>auto_explain</code> extensions</li>
+<li>The <code>target_databases</code> option in the Prometheus exporter to run a
+  user-defined metric query on one or more databases (including
+  auto-discovery of databases through shell-like pattern matching)</li>
+<li>Exposure of the <code>manual_switchover_required</code> metric to promptly report
+  whether a cluster with <code>primaryUpdateStrategy</code> set to <code>supervised</code>
+  requires a manual switchover</li>
+</ul>
+</li>
+<li>
+<p>Transparently handle <code>shared_preload_libraries</code> for <code>pg_audit</code>,
+  <code>auto_explain</code> and <code>pg_stat_statements</code></p>
+<ul>
+<li>Automatic configuration of <code>shared_preload_libraries</code> for PostgreSQL when
+  <code>pg_stat_statements</code>, <code>pgaudit</code> or <code>auto_explain</code> options are added to
+  the <code>postgresql</code> parameters section</li>
+</ul>
+</li>
+<li>
+<p>Support the <code>cnpg.io/reload</code> label to finely control the
+  automated reload of config maps and secrets, including those used for custom
+  monitoring/alerting metrics in the Prometheus exporter or to store certificates</p>
+</li>
+<li>Add the <code>reload</code> command to the <code>cnp</code> plugin for <code>kubectl</code> to trigger a
+  reconciliation loop on the instances</li>
+<li>Improve control of pod affinity and anti-affinity configurations through
+  <code>additionalPodAffinity</code> and <code>additionalPodAntiAffinity</code></li>
+<li>Introduce a separate <code>PodDisruptionBudget</code> for primary instances, by
+  requiring at least a primary instance to run at any time</li>
+</ul>
+<p>Security Enhancements:</p>
+<ul>
+<li>Add the <code>.spec.certificates.clientCASecret</code> and
+  <code>spec.certificates.replicationTLSSecret</code> options to define custom client
+  Certification Authority and certificate for the PostgreSQL server, to be used
+  to authenticate client certificates and secure communication between PostgreSQL
+  nodes</li>
+<li>Add the <code>.spec.backup.barmanObjectStore.endpointCA</code> option to define the
+  custom Certification Authority bundle of the endpoint of Barman’s backup
+  object store</li>
+</ul>
+<p>Fixes:</p>
+<ul>
+<li>Correctly parse histograms in the Prometheus exporter</li>
+<li>Reconcile services created by the operator for a cluster</li>
+</ul>
+<h2 id="version-160">Version 1.6.0</h2>
+<p><strong>Release date:</strong> 12 July 2021</p>
+<p>Features:</p>
+<ul>
+<li>Replica mode (<strong>EXPERIMENTAL</strong>): allow a cluster to be created as a replica
+  of a source cluster. A replica cluster has a <em>designated primary</em> and any
+  number of standbys.</li>
+<li>Add the <code>.spec.postgresql.promotionTimeout</code> parameter to specify the maximum amount of
+  seconds to wait when promoting an instance to primary, defaulting to 40000000 seconds.</li>
+<li>Add the <code>.spec.affinity.podAntiAffinityType</code> parameter. It can be set to
+  <code>preferred</code> (default), resulting in
+  <code>preferredDuringSchedulingIgnoredDuringExecution</code> being used, or to
+  <code>required</code>,   resulting in <code>requiredDuringSchedulingIgnoredDuringExecution</code>.</li>
+</ul>
+<p>Changes:</p>
+<ul>
+<li>Fixed a race condition when deleting a PVC and a pod which prevented the
+  operator from creating a new pod.</li>
+<li>Fixed a race condition preventing the manager from detecting the need for
+  a PostgreSQL restart on a configuration change.</li>
+<li>Fixed a panic in <code>kubectl-cnp</code> on clusters without annotations.</li>
+<li>Lowered the level of some log messages to <code>debug</code>.</li>
+<li>E2E tests for server CA and TLS injection.</li>
+</ul>
+<h2 id="version-151">Version 1.5.1</h2>
+<p><strong>Release date:</strong> 17 June 2021</p>
+<p>Change: </p>
+<ul>
+<li>Fix a bug with CRD validation preventing auto-update with Operator Deployments on Red Hat OpenShift</li>
+<li>Allow passing operator's configuration using a Secret.</li>
+</ul>
+<h2 id="version-150">Version 1.5.0</h2>
+<p><strong>Release date:</strong> 11 June 2021</p>
+<p>Features:</p>
+<ul>
+<li>Introduce the <code>pg_basebackup</code> bootstrap method to create a new PostgreSQL
+  cluster as a copy of an existing PostgreSQL instance of the same major
+  version, even outside Kubernetes</li>
+<li>Add support for Kubernetes’ tolerations in the <code>Affinity</code> section of the
+  <code>Cluster</code> resource, allowing users to distribute PostgreSQL instances on
+  Kubernetes nodes with the required taint</li>
+<li>Enable specification of a digest to an image name, through the
+  <code>&lt;image&gt;:&lt;tag&gt;@sha256:&lt;digestValue&gt;</code> format, for more deterministic and
+  repeatable deployments</li>
+</ul>
+<p>Security Enhancements:</p>
+<ul>
+<li>Customize TLS certificates to authenticate the PostgreSQL server by defining
+  secrets for the server certificate and the related Certification Authority
+  that signed it</li>
+<li>Raise the <code>sslmode</code> for the WAL receiver process of internal and
+  automatically managed streaming replicas from <code>require</code> to <code>verify-ca</code></li>
+</ul>
+<p>Changes:</p>
+<ul>
+<li>Enhance the <code>promote</code> subcommand of the <code>cnp</code> plugin for <code>kubectl</code> to accept
+  just the node number rather than the whole name of the pod</li>
+<li>Adopt DNS-1035 validation scheme for cluster names (from which service names
+  are inherited)</li>
+<li>Enforce streaming replication connection when cloning a standby instance or
+  when bootstrapping using the <code>pg_basebackup</code> method</li>
+<li>Integrate the <code>Backup</code> resource with <code>beginWal</code>, <code>endWal</code>, <code>beginLSN</code>,
+  <code>endLSN</code>, <code>startedAt</code> and <code>stoppedAt</code> regarding the physical base backup</li>
+<li>Documentation improvements:<ul>
+<li>Provide a list of ports exposed by the operator and the operand container</li>
+<li>Introduce the <code>cnp-bench</code> helm charts and guidelines for benchmarking the
+  storage and PostgreSQL for database workloads</li>
+</ul>
+</li>
+<li>E2E tests enhancements:<ul>
+<li>Test Kubernetes 1.21</li>
+<li>Add test for High Availability of the operator</li>
+<li>Add test for node draining</li>
+</ul>
+</li>
+<li>Minor bug fixes, including:<ul>
+<li>Timeout to pg_ctl start during recovery operations too short</li>
+<li>Operator not watching over direct events on PVCs</li>
+<li>Fix handling of <code>immediateCheckpoint</code> and <code>jobs</code> parameter in
+  <code>barmanObjectStore</code> backups</li>
+<li>Empty logs when recovering from a backup</li>
+</ul>
+</li>
+</ul>
+<h2 id="version-140">Version 1.4.0</h2>
+<p><strong>Release date:</strong> 18 May 2021</p>
+<p>Features:</p>
+<ul>
+<li>Standard output logging of PostgreSQL error messages in JSON format</li>
+<li>Provide a basic set of PostgreSQL metrics for the Prometheus exporter</li>
+<li>Add the <code>restart</code> command to the <code>cnp</code> plugin for <code>kubectl</code> to restart
+  the pods of a given PostgreSQL cluster in a rollout fashion</li>
+</ul>
+<p>Security Enhancements:</p>
+<ul>
+<li>Set <code>readOnlyRootFilesystem</code> security context for pods</li>
+</ul>
+<p>Changes:</p>
+<ul>
+<li><strong>IMPORTANT:</strong> If you have previously deployed the CloudNativePG
+  operator using the YAML manifest, you must delete the existing operator
+  deployment before installing the new version. This is required to avoid
+  conflicts with other Kubernetes API's due to a change in labels
+  and label selectors being directly managed by the operator. Please refer to
+  the CloudNativePG documentation for additional detail on upgrading
+  to 1.4.0</li>
+<li>Fix the labels that are automatically defined by the operator, renaming them
+  from <code>control-plane: controller-manager</code> to
+  <code>app.kubernetes.io/name: cloudnative-pg</code></li>
+<li>Assign the <code>metrics</code> name to the TCP port for the Prometheus exporter</li>
+<li>Set <code>cnp_metrics_exporter</code> as the <code>application_name</code> to the metrics exporter
+  connection in PostgreSQL</li>
+<li>When available, use the application database for monitoring queries of the
+  Prometheus exporter instead of the <code>postgres</code> database</li>
+<li>Documentation improvements:<ul>
+<li>Customization of monitoring queries</li>
+<li>Operator upgrade instructions</li>
+</ul>
+</li>
+<li>E2E tests enhancements</li>
+<li>Minor bug fixes, including:<ul>
+<li>Avoid using <code>-R</code> when calling <code>pg_basebackup</code></li>
+<li>Remove stack trace from error log when getting the status</li>
+</ul>
+</li>
+</ul>
+<h2 id="version-130">Version 1.3.0</h2>
+<p><strong>Release date:</strong> 23 Apr 2021</p>
+<p>Features:</p>
+<ul>
+<li>Inheritance of labels and annotations</li>
+<li>Set resource limits for every container</li>
+</ul>
+<p>Security Enhancements:</p>
+<ul>
+<li>Support for restricted security context constraint on Red Hat OpenShift to
+  limit pod execution to a namespace allocated UID and SELinux context</li>
+<li>Pod security contexts explicitly defined by the operator to run as
+  non-root, non-privileged and without privilege escalation</li>
+</ul>
+<p>Changes:</p>
+<ul>
+<li>Prometheus exporter endpoint listening on port 9187 (port 8000 is now
+  reserved to instance coordination with API server)</li>
+<li>Documentation improvements</li>
+<li>E2E tests enhancements, including GKE environment</li>
+<li>Minor bug fixes</li>
+</ul>
+<h2 id="version-121">Version 1.2.1</h2>
+<p><strong>Release date:</strong> 6 Apr 2021</p>
+<ul>
+<li>ScheduledBackup are no longer owners of the Backups, meaning that backups
+  are not removed when ScheduledBackup objects are deleted</li>
+<li>Update on ubi8-minimal image to solve RHSA-2021:1024 (Security Advisory: Important)</li>
+</ul>
+<h2 id="version-120">Version 1.2.0</h2>
+<p><strong>Release date:</strong> 31 Mar 2021</p>
+<ul>
+<li>Introduce experimental support for custom monitoring queries as ConfigMap and
+  Secret objects using a compatible syntax with <code>postgres_exporter</code> for Prometheus</li>
+<li>Support Operator Lifecycle Manager (OLM) deployments, with the subsequent
+  presence on OperatorHub.io</li>
+<li>Enhance container security by applying guidelines from the US Department of
+  Defense (DoD)'s Defense Information Systems Agency (DISA) and the Center for
+  Internet Security (CIS) and verifying them directly in the pipeline with
+  Dockle</li>
+<li>Improve E2E tests on AKS</li>
+<li>Minor bug fixes</li>
+</ul>
+<h2 id="version-110">Version 1.1.0</h2>
+<p><strong>Release date:</strong> 3 Mar 2021</p>
+<ul>
+<li>Add <code>kubectl cnp status</code> to pretty-print the status of a cluster, including
+  JSON and YAML output</li>
+<li>Add <code>kubectl cnp certificate</code> to enable TLS authentication for client applications</li>
+<li>Add the <code>-ro</code> service to route connections to the available hot
+  standby replicas only, enabling offload of read-only queries from
+  the cluster's primary instance</li>
+<li>Rollback scaling down a cluster to a value lower than <code>maxSyncReplicas</code></li>
+<li>Request a checkpoint before demoting a former primary</li>
+<li>Send <code>SIGINT</code> signal (fast shutdown) to PostgreSQL process on <code>SIGTERM</code></li>
+<li>Minor bug fixes</li>
+</ul>
+<h2 id="version-100">Version 1.0.0</h2>
+<p><strong>Release date:</strong> 4 Feb 2021</p>
+<p>The first major stable release of CloudNativePG implements <code>Cluster</code>,
+<code>Backup</code> and <code>ScheduledBackup</code> in the API group <code>postgresql.cnpg.io/v1</code>.
+It uses these resources to create and manage PostgreSQL clusters inside
+Kubernetes with the following main capabilities:</p>
+<ul>
+<li>Direct integration with Kubernetes API server for High Availability, without
+  requiring an external tool</li>
+<li>Self-Healing capability, through:<ul>
+<li>failover of the primary instance by promoting the most aligned replica</li>
+<li>automated recreation of a replica</li>
+</ul>
+</li>
+<li>Planned switchover of the primary instance by promoting a selected replica</li>
+<li>Scale up/down capabilities</li>
+<li>Definition of an arbitrary number of instances (minimum 1 - one primary server)</li>
+<li>Definition of the <em>read-write</em> service to connect your applications to the
+  only primary server of the cluster</li>
+<li>Definition of the <em>read</em> service to connect your applications to any of the
+  instances for reading workloads</li>
+<li>Support for Local Persistent Volumes with PVC templates</li>
+<li>Reuse of Persistent Volumes storage in Pods</li>
+<li>Rolling updates for PostgreSQL minor versions and operator upgrades</li>
+<li>TLS connections and client certificate authentication</li>
+<li>Continuous backup to an S3 compatible object store</li>
+<li>Full recovery and point-in-time recovery from an S3 compatible object store backup</li>
+<li>Support for synchronous replicas</li>
+<li>Support for node affinity via <code>nodeSelector</code> property</li>
+<li>Standard output logging of PostgreSQL error messages</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../supported_releases/" class="btn btn-neutral float-left" title="Supported releases"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../supported_releases/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

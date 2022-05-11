@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="The CloudNativePG Contributors" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Bootstrap - CloudNativePG</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Bootstrap";
+        var mkdocs_page_input_path = "bootstrap.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> CloudNativePG
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">CloudNativePG</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../before_you_start/">Before You Start</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../use_cases/">Use cases</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../architecture/">Architecture</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../installation_upgrade/">Installation and upgrades</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../quickstart/">Quickstart</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Bootstrap</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#the-bootstrap-section">The bootstrap section</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#the-externalclusters-section">The externalClusters section</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#bootstrap-an-empty-cluster-initdb">Bootstrap an empty cluster (initdb)</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#bootstrap-from-another-cluster">Bootstrap from another cluster</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#bootstrap-from-a-backup-recovery">Bootstrap from a backup (recovery)</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#recovery-from-an-object-store">Recovery from an object store</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#recovery-from-a-backup-object">Recovery from a Backup object</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#additional-considerations">Additional considerations</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#point-in-time-recovery-pitr">Point in time recovery (PITR)</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#bootstrap-from-a-live-cluster-pg_basebackup">Bootstrap from a live cluster (pg_basebackup)</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#requirements">Requirements</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#about-the-replication-user">About the replication user</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#usernamepassword-authentication">Username/Password authentication</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#tls-certificate-authentication">TLS certificate authentication</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#current-limitations">Current limitations</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../security/">Security</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../instance_manager/">Postgres instance manager</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../scheduling/">Scheduling</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../resource_management/">Resource management</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../failure_modes/">Failure Modes</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../rolling_update/">Rolling Updates</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../replication/">Replication</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../backup_recovery/">Backup and Recovery</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../postgresql_conf/">PostgreSQL Configuration</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../operator_conf/">Operator configuration</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../storage/">Storage</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../labels_annotations/">Labels and annotations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../monitoring/">Monitoring</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../logging/">Logging</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../certificates/">Certificates</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../ssl_connections/">Client TLS/SSL Connections</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../applications/">Connecting from an application</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../connection_pooling/">Connection Pooling</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../kubernetes_upgrade/">Kubernetes Upgrade</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../expose_pg_services/">Exposing Postgres Services</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../cnpg-plugin/">CloudNativePG Plugin</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../failover/">Automated failover</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../troubleshooting/">Troubleshooting</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../fencing/">Fencing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../e2e/">End-to-End Tests</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../container_images/">Container Image Requirements</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../operator_capability_levels/">Operator Capability Levels</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../samples/">Configuration Samples</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../commercial_support/">Commercial support</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../api_reference/">API Reference</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../supported_releases/">Supported releases</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../release_notes/">Release notes</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">CloudNativePG</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li><li>Bootstrap</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="bootstrap">Bootstrap</h1>
+<p>This section describes the options you have to create a new
+PostgreSQL cluster and the design rationale behind them.
+There are primarily two ways to bootstrap a new cluster:</p>
+<ul>
+<li>from scratch (<code>initdb</code>)</li>
+<li>from an existing PostgreSQL cluster, either directly (<code>pg_basebackup</code>)
+  or indirectly (<code>recovery</code>)</li>
+</ul>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Bootstrapping from an existing cluster opens up the possibility
+to create a <strong>replica cluster</strong>, that is an independent PostgreSQL
+cluster which is in continuous recovery, synchronized with the source
+and that accepts read-only connections.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>CloudNativePG requires both the <code>postgres</code> user and database to
+always exists. Using the local Unix Domain Socket, it needs to connect
+as <code>postgres</code> user to the <code>postgres</code> database via <code>peer</code> authentication in
+order to perform administrative tasks on the cluster.<br />
+<strong>DO NOT DELETE</strong> the <code>postgres</code> user or the <code>postgres</code> database!!!</p>
+</div>
+<h2 id="the-bootstrap-section">The <code>bootstrap</code> section</h2>
+<p>The <em>bootstrap</em> method can be defined in the <code>bootstrap</code> section of the cluster
+specification.
+CloudNativePG currently supports the following bootstrap methods:</p>
+<ul>
+<li><code>initdb</code>: initialize an empty PostgreSQL cluster (default)</li>
+<li><code>recovery</code>: create a PostgreSQL cluster by restoring from an existing cluster
+  via a backup object store, and replaying all the available WAL files or up to
+  a given <em>point in time</em></li>
+<li><code>pg_basebackup</code>: create a PostgreSQL cluster by cloning an existing one of
+  the same major version using <code>pg_basebackup</code> via streaming replication protocol -
+  useful if you want to migrate databases to CloudNativePG, even
+  from outside Kubernetes.</li>
+</ul>
+<p>Differently from the <code>initdb</code> method, both <code>recovery</code> and <code>pg_basebackup</code>
+create a new cluster based on another one (either offline or online) and can be
+used to spin up replica clusters. They both rely on the definition of external
+clusters.</p>
+<div class="admonition seealso">
+<p class="admonition-title">API reference</p>
+<p>Please refer to the <a href="../api_reference/#BootstrapConfiguration">"API reference for the <code>bootstrap</code> section</a>
+for more information.</p>
+</div>
+<h2 id="the-externalclusters-section">The <code>externalClusters</code> section</h2>
+<p>The <code>externalClusters</code> section allows you to define one or more PostgreSQL
+clusters that are somehow related to the current one. While in the future
+this section will enable more complex scenarios, it is currently intended
+to define a cross-region PostgreSQL cluster based on physical replication,
+and spanning over different Kubernetes clusters or even traditional VM/bare-metal
+environments.</p>
+<p>As far as bootstrapping is concerned, <code>externalClusters</code> can be used
+to define the source PostgreSQL cluster for either the <code>pg_basebackup</code>
+method or the <code>recovery</code> one. An external cluster needs to have:</p>
+<ul>
+<li>a name that identifies the origin cluster, to be used as a reference via the
+  <code>source</code> option</li>
+<li>
+<p>at least one of the following:</p>
+<ul>
+<li>information about streaming connection</li>
+<li>information about the <strong>recovery object store</strong>, which is a Barman Cloud
+  compatible object store that contains the backup files of the source
+  cluster - that is, base backups and WAL archives.</li>
+</ul>
+</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A recovery object store is normally an AWS S3, or an Azure Blob Storage,
+or a Google Cloud Storage source that is managed by Barman Cloud.</p>
+</div>
+<p>When only the streaming connection is defined, the source can be used for the
+<code>pg_basebackup</code> method. When only the recovery object store is defined, the
+source can be used for the <code>recovery</code> method. When both are defined, any of the
+two bootstrap methods can be chosen.</p>
+<p>Furthermore, in case of <code>pg_basebackup</code> or full <code>recovery</code>point in time), the
+cluster is eligible for replica cluster mode. This means that the cluster is
+continuously fed from the source, either via streaming, via WAL shipping
+through the PostgreSQL's <code>restore_command</code>, or any of the two.</p>
+<div class="admonition seealso">
+<p class="admonition-title">API reference</p>
+<p>Please refer to the <a href="../api_reference/#ExternalCluster">"API reference for the <code>externalClusters</code> section</a>
+for more information.</p>
+</div>
+<h2 id="bootstrap-an-empty-cluster-initdb">Bootstrap an empty cluster (<code>initdb</code>)</h2>
+<p>The <code>initdb</code> bootstrap method is used to create a new PostgreSQL cluster from
+scratch. It is the default one unless specified differently.</p>
+<p>The following example contains the full structure of the <code>initdb</code> configuration:</p>
+<pre><code class="language-yaml">apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: cluster-example-initdb
+spec:
+  instances: 3
+
+  superuserSecret:
+    name: superuser-secret
+
+  bootstrap:
+    initdb:
+      database: app
+      owner: app
+      secret:
+        name: app-secret
+
+  storage:
+    size: 1Gi
+</code></pre>
+<p>The above example of bootstrap will:</p>
+<ol>
+<li>create a new <code>PGDATA</code> folder using PostgreSQL's native <code>initdb</code> command</li>
+<li>set a password for the <code>postgres</code> <em>superuser</em> from the secret named <code>superuser-secret</code></li>
+<li>create an <em>unprivileged</em> user named <code>app</code></li>
+<li>set the password of the latter (<code>app</code>) using the one in the <code>app-secret</code>
+   secret (make sure that <code>username</code> matches the same name of the <code>owner</code>)</li>
+<li>create a database called <code>app</code> owned by the <code>app</code> user.</li>
+</ol>
+<p>Thanks to the <em>convention over configuration paradigm</em>, you can let the
+operator choose a default database name (<code>app</code>) and a default application
+user name (same as the database name), as well as randomly generate a
+secure password for both the superuser and the application user in
+PostgreSQL.</p>
+<p>Alternatively, you can generate your passwords, store them as secrets,
+and use them in the PostgreSQL cluster - as described in the above example.</p>
+<p>The supplied secrets must comply with the specifications of the
+<a href="https://kubernetes.io/docs/concepts/configuration/secret/#basic-authentication-secret"><code>kubernetes.io/basic-auth</code> type</a>.
+As a result, the <code>username</code> in the secret must match the one of the <code>owner</code>
+(for the application secret) and <code>postgres</code> for the superuser one.</p>
+<p>The following is an example of a <code>basic-auth</code> secret:</p>
+<pre><code class="language-yaml">apiVersion: v1
+data:
+  username: YXBw
+  password: cGFzc3dvcmQ=
+kind: Secret
+metadata:
+  name: app-secret
+type: kubernetes.io/basic-auth
+</code></pre>
+<p>The application database is the one that should be used to store application
+data. Applications should connect to the cluster with the user that owns
+the application database.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Future implementations of the operator might allow you to create
+additional users in a declarative configuration fashion.</p>
+</div>
+<p>The <code>postgres</code> superuser and the <code>postgres</code> database are supposed to be used
+only by the operator to configure the cluster.</p>
+<p>In case you don't supply any database name, the operator will proceed
+by convention and create the <code>app</code> database, and adds it to the cluster
+definition using a <em>defaulting webhook</em>.
+The user that owns the database defaults to the database name instead.</p>
+<p>The application user is not used internally by the operator, which instead
+relies on the superuser to reconcile the cluster with the desired status.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>For now, changes to the name of the superuser secret are not applied
+to the cluster.</p>
+</div>
+<p>The actual PostgreSQL data directory is created via an invocation of the
+<code>initdb</code> PostgreSQL command. If you need to add custom options to that command
+(i.e., to change the <code>locale</code> used for the template databases or to add data
+checksums), you can use the following parameters:</p>
+<dl>
+<dt>dataChecksums</dt>
+<dd>When <code>dataChecksums</code> is set to <code>true</code>, CNPG invokes the <code>-k</code> option in
+<code>initdb</code> to enable checksums on data pages and help detect corruption by the
+I/O system - that would otherwise be silent (default: <code>false</code>).</dd>
+<dt>encoding</dt>
+<dd>When <code>encoding</code> set to a value, CNPG passes it to the <code>--encoding</code> option in <code>initdb</code>,
+which selects the encoding of the template database (default: <code>UTF8</code>).</dd>
+<dt>localeCollate</dt>
+<dd>When <code>localeCollate</code> is set to a value, CNPG passes it to the <code>--lc-collate</code>
+option in <code>initdb</code>. This option controls the collation order (<code>LC_COLLATE</code>
+subcategory), as defined in <a href="https://www.postgresql.org/docs/current/locale.html">"Locale Support"</a>
+from the PostgreSQL documentation (default: <code>C</code>).</dd>
+<dt>localeCType</dt>
+<dd>When <code>localeCType</code> is set to a value, CNPG passes it to the <code>--lc-ctype</code> option in
+<code>initdb</code>. This option controls the collation order (<code>LC_CTYPE</code> subcategory), as
+defined in <a href="https://www.postgresql.org/docs/current/locale.html">"Locale Support"</a>
+from the PostgreSQL documentation (default: <code>C</code>).</dd>
+<dt>walSegmentSize</dt>
+<dd>When <code>walSegmentSize</code> is set to a value, CNPG passes it to the <code>--wal-segsize</code>
+option in <code>initdb</code> (default: not set - defined by PostgreSQL as 16 megabytes).</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The only two locale options that CloudNativePG implements during
+the <code>initdb</code> bootstrap refer to the <code>LC_COLLATE</code> and <code>LC_TYPE</code> subcategories.
+The remaining locale subcategories can be configured directly in the PostgreSQL
+configuration, using the <code>lc_messages</code>, <code>lc_monetary</code>, <code>lc_numeric</code>, and
+<code>lc_time</code> parameters.</p>
+</div>
+<p>The following example enables data checksums and sets the default encoding to
+<code>LATIN1</code>:</p>
+<pre><code class="language-yaml">apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: cluster-example-initdb
+spec:
+  instances: 3
+
+  bootstrap:
+    initdb:
+      database: app
+      owner: app
+      dataChecksums: true
+      encoding: 'LATIN1'
+  storage:
+    size: 1Gi
+</code></pre>
+<p>CloudNativePG supports another way to customize the behaviour of the
+<code>initdb</code> invocation, using the <code>options</code> subsection. However, given that there
+are options that can break the behaviour of the operator (such as <code>--auth</code> or
+<code>-d</code>), this technique is deprecated and will be removed from future versions of
+the API.</p>
+<p>You can also specify a custom list of queries that will be executed
+once, just after the database is created and configured. These queries will
+be executed as the <em>superuser</em> (<code>postgres</code>), connected to the <code>postgres</code>
+database:</p>
+<pre><code class="language-yaml">apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: cluster-example-initdb
+spec:
+  instances: 3
+
+  bootstrap:
+    initdb:
+      database: app
+      owner: app
+      dataChecksums: true
+      localeCollate: 'en_US'
+      localeCType: 'en_US'
+      postInitSQL:
+        - CREATE ROLE angus
+        - CREATE ROLE malcolm
+  storage:
+    size: 1Gi
+</code></pre>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Please use the <code>postInitSQL</code>, <code>postInitApplicationSQL</code> and <code>postInitTemplateSQL</code> options with extreme care,
+as queries are run as a superuser and can disrupt the entire cluster.
+An error in any of those queries interrupts the bootstrap phase, leaving the cluster incomplete.</p>
+</div>
+<h2 id="bootstrap-from-another-cluster">Bootstrap from another cluster</h2>
+<p>CloudNativePG enables the bootstrap of a cluster starting from
+another one of the same major version.
+This operation can happen by connecting directly to the source cluster via
+streaming replication (<code>pg_basebackup</code>), or indirectly via a <em>recovery object
+store</em> (<code>recovery</code>).</p>
+<p>The source cluster must be defined in the <code>externalClusters</code> section, identified
+by <code>name</code> (our recommendation is to use the same <code>name</code> of the origin cluster).</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>By default the <code>recovery</code> method strictly uses the <code>name</code> of the
+cluster in the <code>externalClusters</code> section to locate the main folder
+of the backup data within the object store, which is normally reserved
+for the name of the server. You can specify a different one with the
+<code>backupObjectStore.serverName</code> property (by default assigned to the
+value of <code>name</code> in the external cluster definition).</p>
+</div>
+<h3 id="bootstrap-from-a-backup-recovery">Bootstrap from a backup (<code>recovery</code>)</h3>
+<p>The <code>recovery</code> bootstrap mode lets you create a new cluster from
+an existing backup, namely a <em>recovery object store</em>.</p>
+<p>There are two ways to achieve this result in CloudNativePG:</p>
+<ul>
+<li>using a recovery object store, that is a backup of another cluster
+  created by Barman Cloud and defined via the <code>barmanObjectStore</code> option
+  in the <code>externalClusters</code> section (<em>recommended</em>)</li>
+<li>using an existing <code>Backup</code> object in the same namespace (this was the
+  only option available before version 1.8.0).</li>
+</ul>
+<p>Both recovery methods enable either full recovery (up to the last
+available WAL) or up to a <a href="#point-in-time-recovery">point in time</a>.
+When performing a full recovery, the cluster can also be started
+in replica mode.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You can find more information about backup and recovery of a running cluster
+in the <a href="../backup_recovery/">"Backup and recovery" page</a>.</p>
+</div>
+<h4 id="recovery-from-an-object-store">Recovery from an object store</h4>
+<p>You can recover from a backup created by Barman Cloud and stored on a supported
+object storage. Once you have defined the external cluster, including all the
+required configuration in the <code>barmanObjectStore</code> section, you need to
+reference it in the <code>.spec.recovery.source</code> option. The following example
+defines a recovery object store in a blob container in Azure:</p>
+<pre><code class="language-yaml">apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: cluster-restore
+spec:
+  [...]
+
+  superuserSecret:
+    name: superuser-secret
+
+  bootstrap:
+    recovery:
+      source: clusterBackup
+
+  externalClusters:
+    - name: clusterBackup
+      barmanObjectStore:
+        destinationPath: https://STORAGEACCOUNTNAME.blob.core.windows.net/CONTAINERNAME/
+        azureCredentials:
+          storageAccount:
+            name: recovery-object-store-secret
+            key: storage_account_name
+          storageKey:
+            name: recovery-object-store-secret
+            key: storage_account_key
+        wal:
+          maxParallel: 8
+</code></pre>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>By default the <code>recovery</code> method strictly uses the <code>name</code> of the
+cluster in the <code>externalClusters</code> section to locate the main folder
+of the backup data within the object store, which is normally reserved
+for the name of the server. You can specify a different one with the
+<code>backupObjectStore.serverName</code> property (by default assigned to the
+value of <code>name</code> in the external clusters definition).</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In the above example we are taking advantage of the parallel WAL restore
+feature, dedicating up to 8 jobs to concurrently fetch the required WAL
+files from the archive. This feature can sensibly reduce the recovery time.
+Make sure that you plan ahead for this scenario and correctly tune the
+value of this parameter for your environment. It will certainly make a
+difference <strong>when</strong> (not if) you'll need it.</p>
+</div>
+<h4 id="recovery-from-a-backup-object">Recovery from a <code>Backup</code> object</h4>
+<p>In case a Backup resource is already available in the namespace in which the
+cluster should be created, you can specify its name through
+<code>.spec.bootstrap.recovery.backup.name</code>, as in the following example:</p>
+<pre><code class="language-yaml">apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: cluster-example-initdb
+spec:
+  instances: 3
+
+  superuserSecret:
+    name: superuser-secret
+
+  bootstrap:
+    recovery:
+      backup:
+        name: backup-example
+
+  storage:
+    size: 1Gi
+</code></pre>
+<p>This bootstrap method allows you to specify just a reference to the
+backup that needs to be restored.</p>
+<h4 id="additional-considerations">Additional considerations</h4>
+<p>Whether you recover from a recovery object store or an existing <code>Backup</code>
+resource, the following considerations apply:</p>
+<ul>
+<li>The application database name and the application database user are preserved
+from the backup that is being restored. The operator does not currently attempt
+to back up the underlying secrets, as this is part of the usual maintenance
+activity of the Kubernetes cluster itself.</li>
+<li>In case you don't supply any <code>superuserSecret</code>, a new one is automatically
+generated with a secure and random password. The secret is then used to
+reset the password for the <code>postgres</code> user of the cluster.</li>
+<li>By default, the recovery will continue up to the latest
+available WAL on the default target timeline (<code>current</code> for PostgreSQL up to
+11, <code>latest</code> for version 12 and above).
+You can optionally specify a <code>recoveryTarget</code> to perform a point in time
+recovery (see the <a href="#point-in-time-recovery">"Point in time recovery" section</a>).</li>
+</ul>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Consider using the <code>barmanObjectStore.wal.maxParallel</code> option to speed
+up WAL fetching from the archive by concurrently download the transaction
+logs from the recovery object store.</p>
+</div>
+<h4 id="point-in-time-recovery-pitr">Point in time recovery (PITR)</h4>
+<p>Instead of replaying all the WALs up to the latest one, we can ask PostgreSQL
+to stop replaying WALs at any given point in time, after having extracted a
+base backup. PostgreSQL uses this technique to achieve <em>point-in-time</em> recovery
+(PITR).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>PITR is available from recovery object stores as well as <code>Backup</code> objects.</p>
+</div>
+<p>The operator will generate the configuration parameters required for this
+feature to work in case a recovery target is specified, like in the following
+example that uses a recovery object stored in Azure:</p>
+<pre><code class="language-yaml">apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: cluster-restore-pitr
+spec:
+  instances: 3
+
+  storage:
+    size: 5Gi
+
+  bootstrap:
+    recovery:
+      source: clusterBackup
+      recoveryTarget:
+        targetTime: &quot;2020-11-26 15:22:00.00000+00&quot;
+
+  externalClusters:
+    - name: clusterBackup
+      barmanObjectStore:
+        destinationPath: https://STORAGEACCOUNTNAME.blob.core.windows.net/CONTAINERNAME/
+        azureCredentials:
+          storageAccount:
+            name: recovery-object-store-secret
+            key: storage_account_name
+          storageKey:
+            name: recovery-object-store-secret
+            key: storage_account_key
+        wal:
+          maxParallel: 8
+</code></pre>
+<p>Besides <code>targetTime</code>, you can use the following criteria to stop the recovery:</p>
+<ul>
+<li>
+<p><code>targetXID</code> specify a transaction ID up to which recovery will proceed</p>
+</li>
+<li>
+<p><code>targetName</code> specify a restore point (created with <code>pg_create_restore_point</code>
+  to which recovery will proceed)</p>
+</li>
+<li>
+<p><code>targetLSN</code> specify the LSN of the write-ahead log location up to which
+  recovery will proceed</p>
+</li>
+<li>
+<p><code>targetImmediate</code> specify to stop as soon as a consistent state is
+  reached</p>
+</li>
+</ul>
+<p>You can choose only a single one among the targets above in each
+<code>recoveryTarget</code> configuration.</p>
+<p>Additionally, you can specify <code>targetTLI</code> force recovery to a specific
+timeline.</p>
+<p>By default, the previous parameters are considered to be exclusive, stopping
+just before the recovery target. You can request inclusive behavior,
+stopping right after the recovery target, setting the <code>exclusive</code> parameter to
+<code>false</code> like in the following example relying on a blob container in Azure:</p>
+<pre><code class="language-yaml">apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: cluster-restore-pitr
+spec:
+  instances: 3
+
+  storage:
+    size: 5Gi
+
+  bootstrap:
+    recovery:
+      source: clusterBackup
+      recoveryTarget:
+        targetName: &quot;maintenance-activity&quot;
+        exclusive: false
+
+  externalClusters:
+    - name: clusterBackup
+      barmanObjectStore:
+        destinationPath: https://STORAGEACCOUNTNAME.blob.core.windows.net/CONTAINERNAME/
+        azureCredentials:
+          storageAccount:
+            name: recovery-object-store-secret
+            key: storage_account_name
+          storageKey:
+            name: recovery-object-store-secret
+            key: storage_account_key
+        wal:
+          maxParallel: 8
+</code></pre>
+<h3 id="bootstrap-from-a-live-cluster-pg_basebackup">Bootstrap from a live cluster (<code>pg_basebackup</code>)</h3>
+<p>The <code>pg_basebackup</code> bootstrap mode lets you create a new cluster (<em>target</em>) as
+an exact physical copy of an existing and <strong>binary compatible</strong> PostgreSQL
+instance (<em>source</em>), through a valid <em>streaming replication</em> connection.
+The source instance can be either a primary or a standby PostgreSQL server.</p>
+<p>The primary use case for this method is represented by <strong>migrations</strong> to CloudNativePG,
+either from outside Kubernetes or within Kubernetes (e.g., from another operator).</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The current implementation creates a <em>snapshot</em> of the origin PostgreSQL
+instance when the cloning process terminates and immediately starts
+the created cluster. See <a href="#current-limitations">"Current limitations"</a> below for details.</p>
+</div>
+<p>Similar to the case of the <code>recovery</code> bootstrap method, once the clone operation
+completes, the operator will take ownership of the target cluster, starting from
+the first instance. This includes overriding some configuration parameters, as
+required by CloudNativePG, resetting the superuser password, creating
+the <code>streaming_replica</code> user, managing the replicas, and so on. The resulting
+cluster will be completely independent of the source instance.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Configuring the network between the target instance and the source instance
+goes beyond the scope of CloudNativePG documentation, as it depends
+on the actual context and environment.</p>
+</div>
+<p>The streaming replication client on the target instance, which will be
+transparently managed by <code>pg_basebackup</code>, can authenticate itself on the source
+instance in any of the following ways:</p>
+<ol>
+<li>via <a href="#usernamepassword-authentication">username/password</a></li>
+<li>via <a href="#tls-certificate-authentication">TLS client certificate</a></li>
+</ol>
+<p>The latter is the recommended one if you connect to a source managed
+by CloudNativePG or configured for TLS authentication.
+The first option is, however, the most common form of authentication to a
+PostgreSQL server in general, and might be the easiest way if the source
+instance is on a traditional environment outside Kubernetes.
+Both cases are explained below.</p>
+<h4 id="requirements">Requirements</h4>
+<p>The following requirements apply to the <code>pg_basebackup</code> bootstrap method:</p>
+<ul>
+<li>target and source must have the same hardware architecture</li>
+<li>target and source must have the same major PostgreSQL version</li>
+<li>source must not have any tablespace defined (see <a href="#current-limitations">"Current limitations"</a> below)</li>
+<li>source must be configured with enough <code>max_wal_senders</code> to grant
+  access from the target for this one-off operation by providing at least
+  one <em>walsender</em> for the backup plus one for WAL streaming</li>
+<li>the network between source and target must be configured to enable the target
+  instance to connect to the PostgreSQL port on the source instance</li>
+<li>source must have a role with <code>REPLICATION LOGIN</code> privileges and must accept
+  connections from the target instance for this role in <code>pg_hba.conf</code>, preferably
+  via TLS (see <a href="#about-the-replication-user">"About the replication user"</a> below)</li>
+<li>target must be able to successfully connect to the source PostgreSQL instance
+  using a role with <code>REPLICATION LOGIN</code> privileges</li>
+</ul>
+<div class="admonition seealso">
+<p class="admonition-title">Seealso</p>
+<p>For further information, please refer to the
+<a href="https://www.postgresql.org/docs/current/warm-standby.html#STANDBY-PLANNING">"Planning" section for Warm Standby</a>,
+the
+<a href="https://www.postgresql.org/docs/current/app-pgbasebackup.html"><code>pg_basebackup</code> page</a>
+and the
+<a href="https://www.postgresql.org/docs/current/high-availability.html">"High Availability, Load Balancing, and Replication" chapter</a>
+in the PostgreSQL documentation.</p>
+</div>
+<h4 id="about-the-replication-user">About the replication user</h4>
+<p>As explained in the requirements section, you need to have a user
+with either the <code>SUPERUSER</code> or, preferably, just the <code>REPLICATION</code>
+privilege in the source instance.</p>
+<p>If the source database is created with CloudNativePG, you
+can reuse the <code>streaming_replica</code> user and take advantage of client
+TLS certificates authentication (which, by default, is the only allowed
+connection method for <code>streaming_replica</code>).</p>
+<p>For all other cases, including outside Kubernetes, please verify that
+you already have a user with the <code>REPLICATION</code> privilege, or create
+a new one by following the instructions below.</p>
+<p>As <code>postgres</code> user on the source system, please run:</p>
+<pre><code class="language-console">createuser -P --replication streaming_replica
+</code></pre>
+<p>Enter the password at the prompt and save it for later, as you
+will need to add it to a secret in the target instance.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Although the name is not important, we will use <code>streaming_replica</code>
+for the sake of simplicity. Feel free to change it as you like,
+provided you adapt the instructions in the following sections.</p>
+</div>
+<h4 id="usernamepassword-authentication">Username/Password authentication</h4>
+<p>The first authentication method supported by CloudNativePG
+with the <code>pg_basebackup</code> bootstrap is based on username and password matching.</p>
+<p>Make sure you have the following information before you start the procedure:</p>
+<ul>
+<li>location of the source instance, identified by a hostname or an IP address
+  and a TCP port</li>
+<li>replication username (<code>streaming_replica</code> for simplicity)</li>
+<li>password</li>
+</ul>
+<p>You might need to add a line similar to the following to the <code>pg_hba.conf</code>
+file on the source PostgreSQL instance:</p>
+<pre><code># A more restrictive rule for TLS and IP of origin is recommended
+host replication streaming_replica all md5
+</code></pre>
+<p>The following manifest creates a new PostgreSQL 14.2 cluster,
+called <code>target-db</code>, using the <code>pg_basebackup</code> bootstrap method
+to clone an external PostgreSQL cluster defined as <code>source-db</code>
+(in the <code>externalClusters</code> array). As you can see, the <code>source-db</code>
+definition points to the <code>source-db.foo.com</code> host and connects as
+the <code>streaming_replica</code> user, whose password is stored in the
+<code>password</code> key of the <code>source-db-replica-user</code> secret.</p>
+<pre><code class="language-yaml">apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: target-db
+spec:
+  instances: 3
+  imageName: ghcr.io/cloudnative-pg/postgresql:14.2
+
+  bootstrap:
+    pg_basebackup:
+      source: source-db
+
+  storage:
+    size: 1Gi
+
+  externalClusters:
+  - name: source-db
+    connectionParameters:
+      host: source-db.foo.com
+      user: streaming_replica
+    password:
+      name: source-db-replica-user
+      key: password
+</code></pre>
+<p>All the requirements must be met for the clone operation to work, including
+the same PostgreSQL version (in our case 14.2).</p>
+<h4 id="tls-certificate-authentication">TLS certificate authentication</h4>
+<p>The second authentication method supported by CloudNativePG
+with the <code>pg_basebackup</code> bootstrap is based on TLS client certificates.
+This is the recommended approach from a security standpoint.</p>
+<p>The following example clones an existing PostgreSQL cluster (<code>cluster-example</code>)
+in the same Kubernetes cluster.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This example can be easily adapted to cover an instance that resides
+outside the Kubernetes cluster.</p>
+</div>
+<p>The manifest defines a new PostgreSQL 14.2 cluster called <code>cluster-clone-tls</code>,
+which is bootstrapped using the <code>pg_basebackup</code> method from the <code>cluster-example</code>
+external cluster. The host is identified by the read/write service
+in the same cluster, while the <code>streaming_replica</code> user is authenticated
+thanks to the provided keys, certificate, and certification authority
+information (respectively in the <code>cluster-example-replication</code> and
+<code>cluster-example-ca</code> secrets).</p>
+<pre><code class="language-yaml">apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: cluster-clone-tls
+spec:
+  instances: 3
+  imageName: ghcr.io/cloudnative-pg/postgresql:14.2
+
+  bootstrap:
+    pg_basebackup:
+      source: cluster-example
+
+  storage:
+    size: 1Gi
+
+  externalClusters:
+  - name: cluster-example
+    connectionParameters:
+      host: cluster-example-rw.default.svc
+      user: streaming_replica
+      sslmode: verify-full
+    sslKey:
+      name: cluster-example-replication
+      key: tls.key
+    sslCert:
+      name: cluster-example-replication
+      key: tls.crt
+    sslRootCert:
+      name: cluster-example-ca
+      key: ca.crt
+</code></pre>
+<h4 id="current-limitations">Current limitations</h4>
+<h5 id="missing-tablespace-support">Missing tablespace support</h5>
+<p>CloudNativePG does not currently include full declarative management
+of PostgreSQL global objects, namely roles, databases, and tablespaces.
+While roles and databases are copied from the source instance to the target
+cluster, tablespaces require a capability that this version of
+CloudNativePG is missing: definition and management of additional
+persistent volumes. When dealing with base backup and tablespaces, PostgreSQL
+itself requires that the exact mount points in the source instance
+must also exist in the target instance, in our case, the pods in Kubernetes
+that CloudNativePG manages. For this reason, you cannot directly
+migrate in CloudNativePG a PostgreSQL instance that takes advantage
+of tablespaces (you first need to remove them from the source or, if your
+organization requires this feature, contact EDB to prioritize it).</p>
+<h5 id="snapshot-copy">Snapshot copy</h5>
+<p>The <code>pg_basebackup</code> method takes a snapshot of the source instance in the form of
+a PostgreSQL base backup. All transactions written from the start of
+the backup to the correct termination of the backup will be streamed to the target
+instance using a second connection (see the <code>--wal-method=stream</code> option for
+<code>pg_basebackup</code>).</p>
+<p>Once the backup is completed, the new instance will be started on a new timeline
+and diverge from the source.
+For this reason, it is advised to stop all write operations to the source database
+before migrating to the target database in Kubernetes.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Before you attempt a migration, you must test both the procedure
+and the applications. In particular, it is fundamental that you run the migration
+procedure as many times as needed to systematically measure the downtime of your
+applications in production. Feel free to contact EDB for assistance.</p>
+</div>
+<p>Future versions of CloudNativePG will enable users to control
+PostgreSQL's continuous recovery mechanism via Write-Ahead Log (WAL) shipping
+by creating a new cluster that is a replica of another PostgreSQL instance.
+This will open up two main use cases:</p>
+<ul>
+<li>replication over different Kubernetes clusters in CloudNativePG</li>
+<li><em>0 cutover time</em> migrations to CloudNativePG with the <code>pg_basebackup</code>
+  bootstrap method</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../quickstart/" class="btn btn-neutral float-left" title="Quickstart"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../security/" class="btn btn-neutral float-right" title="Security">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../quickstart/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../security/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="The CloudNativePG Contributors" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Supported releases - CloudNativePG</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Supported releases";
+        var mkdocs_page_input_path = "supported_releases.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> CloudNativePG
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">CloudNativePG</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../before_you_start/">Before You Start</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../use_cases/">Use cases</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../architecture/">Architecture</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../installation_upgrade/">Installation and upgrades</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../quickstart/">Quickstart</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../bootstrap/">Bootstrap</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../security/">Security</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../instance_manager/">Postgres instance manager</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../scheduling/">Scheduling</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../resource_management/">Resource management</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../failure_modes/">Failure Modes</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../rolling_update/">Rolling Updates</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../replication/">Replication</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../backup_recovery/">Backup and Recovery</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../postgresql_conf/">PostgreSQL Configuration</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../operator_conf/">Operator configuration</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../storage/">Storage</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../labels_annotations/">Labels and annotations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../monitoring/">Monitoring</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../logging/">Logging</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../certificates/">Certificates</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../ssl_connections/">Client TLS/SSL Connections</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../applications/">Connecting from an application</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../connection_pooling/">Connection Pooling</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../kubernetes_upgrade/">Kubernetes Upgrade</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../expose_pg_services/">Exposing Postgres Services</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../cnpg-plugin/">CloudNativePG Plugin</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../failover/">Automated failover</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../troubleshooting/">Troubleshooting</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../fencing/">Fencing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../e2e/">End-to-End Tests</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../container_images/">Container Image Requirements</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../operator_capability_levels/">Operator Capability Levels</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../samples/">Configuration Samples</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../commercial_support/">Commercial support</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../api_reference/">API Reference</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Supported releases</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#support-policy">Support policy</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#naming-scheme">Naming scheme</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#support-status-of-cloudnativepg-releases">Support status of CloudNativePG releases</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#upcoming-release">Upcoming release</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../release_notes/">Release notes</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">CloudNativePG</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li><li>Supported releases</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="supported-releases">Supported releases</h1>
+<!-- Inspired by https://raw.githubusercontent.com/istio/istio.io/master/content/en/docs/releases/supported-releases/index.md wokeignore:rule=master -->
+
+<p>This page lists the status, timeline and policy for currently supported releases of CloudNativePG.</p>
+<p>Supported releases of CloudNativePG include releases that are in the active
+maintenance window and are patched for security and bug fixes.</p>
+<p>Subsequent patch releases on a minor release do not contain backward
+incompatible changes.</p>
+<ul>
+<li><a href="#support-policy">Support Policy</a></li>
+<li><a href="#naming-scheme">Naming scheme</a></li>
+<li><a href="#support-status-of-cloudnativepg-releases">Support status of CloudNativePG releases</a></li>
+</ul>
+<h2 id="support-policy">Support policy</h2>
+<p>We produce new builds of CloudNativePG for each commit.</p>
+<p>Roughly every two months, we build a minor release and run through several
+additional tests as well as release qualification. We release patch versions
+for issues found in minor releases.</p>
+<p>The various types of releases represent a different product quality level and
+level of assistance from the CloudNativePG community.</p>
+<p>In this context, <em>support</em> means that the community will produce patch releases
+for critical issues and offer technical assistance.</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Support Level</th>
+<th>Quality and Recommended Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Development Build</td>
+<td>No support</td>
+<td>Dangerous, may not be fully reliable. Useful to experiment with.</td>
+</tr>
+<tr>
+<td>Minor Release</td>
+<td>Support provided until 1 month after the N+2 minor release (ex. 1.15 supported until 1 month after 1.17.0 is released)</td>
+<td></td>
+</tr>
+<tr>
+<td>Patch</td>
+<td>Same as the corresponding Minor release</td>
+<td>Users are encouraged to adopt patch releases as soon as they are available for a given release.</td>
+</tr>
+<tr>
+<td>Security Patch</td>
+<td>Same as a Patch, however, it will not contain any additional code other than the security fix from the previous patch</td>
+<td>Given the nature of security fixes, users are <strong>strongly</strong> encouraged to adopt security patches after release.</td>
+</tr>
+</tbody>
+</table>
+<p>You can find available releases on the <a href="https://github.com/cloudnative-pg/cloudnative-pg/releases">releases page</a>.</p>
+<p>You can find high-level more information for each minor and patch release in the <a href="../release_notes/">release notes</a>.</p>
+<h2 id="naming-scheme">Naming scheme</h2>
+<p>Our naming scheme is based on <a href="https://semver.org/">Semantic Versioning 2.0.0</a>
+as follows:</p>
+<pre><code>&lt;major&gt;.&lt;minor&gt;.&lt;patch&gt;
+</code></pre>
+<p>where <code>&lt;minor&gt;</code> is increased for each release, and <code>&lt;patch&gt;</code> counts the number of patches for the
+current <code>&lt;minor&gt;</code> release. A patch is usually a small change relative to the <code>&lt;minor&gt;</code> release.</p>
+<p>Git tags for versions are prepended with <code>v</code>.</p>
+<h2 id="support-status-of-cloudnativepg-releases">Support status of CloudNativePG releases</h2>
+<table>
+<thead>
+<tr>
+<th>Version</th>
+<th>Currently Supported</th>
+<th>Release Date</th>
+<th>End of Life</th>
+<th>Supported Kubernetes Versions</th>
+<th>Tested, but not supported</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>main</td>
+<td>No, development only</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>1.15.0</td>
+<td>Yes</td>
+<td>April 21, 2022</td>
+<td>October 1, 2022</td>
+<td>1.21, 1.22, 1.23</td>
+<td>1.19, 1.20</td>
+</tr>
+</tbody>
+</table>
+<p>The list of supported Kubernetes versions in the above table depends on what
+the CloudNativePG maintainers think is reasonable to support and to test.</p>
+<h2 id="upcoming-release">Upcoming release</h2>
+<table>
+<thead>
+<tr>
+<th>Version</th>
+<th>Release Date</th>
+<th>End of Life</th>
+<th>Supported Kubernetes Versions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.16.0</td>
+<td>June 23, 2022</td>
+<td>~ November 23, 2022</td>
+<td>1.21, 1.22, 1.23</td>
+</tr>
+<tr>
+<td>1.17.0</td>
+<td>September 1, 2022</td>
+<td>~ February 1, 2023</td>
+<td>1.21, 1.22, 1.23</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Dates in the future are uncertain and might change.</p>
+</div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../api_reference/" class="btn btn-neutral float-left" title="API Reference"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../release_notes/" class="btn btn-neutral float-right" title="Release notes">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../api_reference/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../release_notes/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

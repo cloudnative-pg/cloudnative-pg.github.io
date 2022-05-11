@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="The CloudNativePG Contributors" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Storage - CloudNativePG</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Storage";
+        var mkdocs_page_input_path = "storage.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> CloudNativePG
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">CloudNativePG</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../before_you_start/">Before You Start</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../use_cases/">Use cases</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../architecture/">Architecture</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../installation_upgrade/">Installation and upgrades</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../quickstart/">Quickstart</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../bootstrap/">Bootstrap</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../security/">Security</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../instance_manager/">Postgres instance manager</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../scheduling/">Scheduling</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../resource_management/">Resource management</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../failure_modes/">Failure Modes</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../rolling_update/">Rolling Updates</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../replication/">Replication</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../backup_recovery/">Backup and Recovery</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../postgresql_conf/">PostgreSQL Configuration</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../operator_conf/">Operator configuration</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Storage</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#benchmarking-cloudnativepg">Benchmarking CloudNativePG</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#persistent-volume-claim">Persistent Volume Claim</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#configuration-via-a-storage-class">Configuration via a storage class</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#configuration-via-a-pvc-template">Configuration via a PVC template</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#volume-expansion">Volume expansion</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#using-the-volume-expansion-kubernetes-feature">Using the volume expansion Kubernetes feature</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#expanding-pvc-volumes-on-aks">Expanding PVC volumes on AKS</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#workaround-for-volume-expansion-on-aks">Workaround for volume expansion on AKS</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#recreating-storage">Recreating storage</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../labels_annotations/">Labels and annotations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../monitoring/">Monitoring</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../logging/">Logging</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../certificates/">Certificates</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../ssl_connections/">Client TLS/SSL Connections</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../applications/">Connecting from an application</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../connection_pooling/">Connection Pooling</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../kubernetes_upgrade/">Kubernetes Upgrade</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../expose_pg_services/">Exposing Postgres Services</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../cnpg-plugin/">CloudNativePG Plugin</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../failover/">Automated failover</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../troubleshooting/">Troubleshooting</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../fencing/">Fencing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../e2e/">End-to-End Tests</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../container_images/">Container Image Requirements</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../operator_capability_levels/">Operator Capability Levels</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../samples/">Configuration Samples</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../commercial_support/">Commercial support</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../api_reference/">API Reference</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../supported_releases/">Supported releases</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../release_notes/">Release notes</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">CloudNativePG</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li><li>Storage</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="storage">Storage</h1>
+<p><strong>Storage is the most critical component in a database workload</strong>.
+Storage should be always available, scale, perform well,
+and guarantee consistency and durability. The same expectations and
+requirements that apply to traditional environments, such as virtual machines
+and bare metal, are also valid in container contexts managed by Kubernetes.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Kubernetes has its own specificities, when it comes to dynamically
+provisioned storage. These include <em>storage classes</em>, <em>persistent
+volumes</em>, and <em>persistent volume claims</em>. You need to own these
+concepts, on top of all the valuable knowledge you have built over
+the years in terms of storage for database workloads on VMs and
+physical servers.</p>
+</div>
+<p>There are two primary methods of access to storage:</p>
+<ul>
+<li><strong>network</strong>: either directly or indirectly (think of an NFS volume locally mounted on a host running Kubernetes)</li>
+<li><strong>local</strong>: directly attached to the node where a Pod is running (this also includes directly attached disks on bare metal installations of Kubernetes)</li>
+</ul>
+<p>Network storage, which is the most common usage pattern in Kubernetes,
+presents the same issues of throughput and latency that you can
+experience in a traditional environment. These can be accentuated in
+a shared environment, where I/O contention with several applications
+increases the variability of performance results.</p>
+<p>Local storage enables shared-nothing architectures, which is more suitable
+for high transactional and Very Large DataBase (VLDB) workloads, as it
+guarantees higher and more predictable performance.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Before you deploy a PostgreSQL cluster with CloudNativePG,
+ensure that the storage you are using is recommended for database
+workloads. Our advice is to clearly set performance expectations by
+first benchmarking the storage using tools such as <a href="https://fio.readthedocs.io/en/latest/fio_doc.html">fio</a>,
+and then the database using <a href="https://www.postgresql.org/docs/current/pgbench.html">pgbench</a>.</p>
+</div>
+<h2 id="benchmarking-cloudnativepg">Benchmarking CloudNativePG</h2>
+<p>EDB maintains <a href="https://github.com/EnterpriseDB/cnp-bench">cnp-bench</a>,
+an open source set of guidelines and Helm charts for benchmarking CloudNativePG
+in a controlled Kubernetes environment, before deploying the database in production.</p>
+<p>Briefly, <code>cnp-bench</code> is designed to operate at two levels:</p>
+<ul>
+<li>measuring the performance of the underlying storage using <code>fio</code>, with relevant
+  metrics for database workloads such as throughput for sequential reads, sequential
+  writes, random reads and random writes</li>
+<li>measuring the performance of the database using the default benchmarking tool
+  distributed along with PostgreSQL: <code>pgbench</code></li>
+</ul>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Measuring both the storage and database performance is an activity that
+must be done <strong>before the database goes in production</strong>. However, such results
+are extremely valuable not only in the planning phase (e.g., capacity planning),
+but also in the production lifecycle, especially in emergency situations
+(when we don't have the luxury anymore to run this kind of tests). Databases indeed
+change and evolve over time, so does the distribution of data, potentially affecting
+performance: knowing the theoretical maximum throughput of sequential reads or
+writes will turn out to be extremely useful in those situations. Especially in
+shared-nothing contexts, where results do not vary due to the influence of external workloads.
+<strong>Know your system, benchmark it.</strong></p>
+</div>
+<h2 id="persistent-volume-claim">Persistent Volume Claim</h2>
+<p>The operator creates a persistent volume claim (PVC) for each PostgreSQL
+instance, with the goal to store the <code>PGDATA</code>, and then mounts it into each Pod.</p>
+<h2 id="configuration-via-a-storage-class">Configuration via a storage class</h2>
+<p>The easier way to configure the storage for a PostgreSQL class is to just
+request storage of a certain size, like in the following example:</p>
+<pre><code class="language-yaml">apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: postgresql-storage-class
+spec:
+  instances: 3
+  storage:
+    size: 1Gi
+</code></pre>
+<p>Using the previous configuration, the generated PVCs will be satisfied by the default storage
+class. If the target Kubernetes cluster has no default storage class, or even if you need your PVCs
+to be satisfied by a known storage class, you can set it into the custom resource:</p>
+<pre><code class="language-yaml">apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: postgresql-storage-class
+spec:
+  instances: 3
+  storage:
+    storageClass: standard
+    size: 1Gi
+</code></pre>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>CloudNativePG has been designed to be storage class agnostic.
+As usual, our recommendation is to properly benchmark the storage class
+in a controlled environment, before hitting production.</p>
+</div>
+<h2 id="configuration-via-a-pvc-template">Configuration via a PVC template</h2>
+<p>To further customize the generated PVCs, you can provide a PVC template inside the Custom Resource,
+like in the following example:</p>
+<pre><code class="language-yaml">apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: postgresql-pvc-template
+spec:
+  instances: 3
+
+  storage:
+    pvcTemplate:
+      accessModes:
+        - ReadWriteOnce
+      resources:
+        requests:
+          storage: 1Gi
+      storageClassName: standard
+      volumeMode: Filesystem
+</code></pre>
+<h2 id="volume-expansion">Volume expansion</h2>
+<p>Kubernetes exposes an API allowing <a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/#expanding-persistent-volumes-claims">expanding PVCs</a>
+that is enabled by default but needs to be supported by the underlying <code>StorageClass</code>.</p>
+<p>To check if a certain <code>StorageClass</code> supports volume expansion, you can read the <code>allowVolumeExpansion</code>
+field for your storage class:</p>
+<pre><code>$ kubectl get storageclass -o jsonpath='{$.allowVolumeExpansion}' premium-storage
+true
+</code></pre>
+<h3 id="using-the-volume-expansion-kubernetes-feature">Using the volume expansion Kubernetes feature</h3>
+<p>Given the storage class supports volume expansion, you can change the size requirement
+of the <code>Cluster</code>, and the operator will apply the change to every PVC.</p>
+<p>If the <code>StorageClass</code> supports <a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/#resizing-an-in-use-persistentvolumeclaim">online volume resizing</a>
+the change is immediately applied to the Pods. If the underlying Storage Class doesn't support
+that, you will need to delete the Pod to trigger the resize.</p>
+<p>The best way to proceed is to delete one Pod at a time, starting from replicas and waiting
+for each Pod to be back up.</p>
+<h3 id="expanding-pvc-volumes-on-aks">Expanding PVC volumes on AKS</h3>
+<p>At the moment, <a href="https://github.com/Azure/AKS/issues/1477">Azure is not able to resize the PVC's volume without restarting the pod</a>.
+CloudNativePG has overcome this limitation through the
+<code>ENABLE_AZURE_PVC_UPDATES</code> environment variable in the
+<a href="../operator_conf/#available-options">operator configuration</a>.
+When set to <code>'true'</code>, CloudNativePG triggers a rolling update of the
+Postgres cluster.</p>
+<p>Alternatively, you can follow the workaround below to manually resize the
+volume in AKS.</p>
+<h4 id="workaround-for-volume-expansion-on-aks">Workaround for volume expansion on AKS</h4>
+<p>You can manually resize a PVC on AKS by following these procedures.
+As an example, let's suppose you have a cluster with 3 replicas:</p>
+<pre><code>$ kubectl get pods
+NAME                READY   STATUS    RESTARTS   AGE
+cluster-example-1   1/1     Running   0          2m37s
+cluster-example-2   1/1     Running   0          2m22s
+cluster-example-3   1/1     Running   0          2m10s
+</code></pre>
+<p>An Azure disk can only be expanded while in "unattached" state, as described in the
+<a href="https://github.com/kubernetes-sigs/azuredisk-csi-driver/blob/master/docs/known-issues/sizegrow.md">docs</a>.  <!-- wokeignore:rule=master -->
+This means, that to resize a disk used by a PostgreSQL cluster, you will need to perform a manual rollout,
+first cordoning the node that hosts the Pod using the PVC bound to the disk. This will prevent the Operator
+to recreate the Pod and immediately reattach it to its PVC before the background disk resizing has been completed.</p>
+<p>First step is to edit the cluster definition applying the new size, let's say "2Gi", as follows:</p>
+<pre><code>apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: cluster-example
+spec:
+  instances: 3
+
+  storage:
+    storageClass: default
+    size: 2Gi
+</code></pre>
+<p>Assuming the <code>cluster-example-1</code> Pod is the cluster's primary, we can proceed with the replicas first.
+For example start with cordoning the kubernetes node that hosts the <code>cluster-example-3</code> Pod:</p>
+<pre><code>kubectl cordon &lt;node of cluster-example-3&gt;
+</code></pre>
+<p>Then delete the <code>cluster-example-3</code> Pod:</p>
+<pre><code>$ kubectl delete pod/cluster-example-3
+</code></pre>
+<p>Run the following command:</p>
+<pre><code>kubectl get pvc -w -o=jsonpath='{.status.conditions[].message}' cluster-example-3
+</code></pre>
+<p>Wait until you see the following output:</p>
+<pre><code>Waiting for user to (re-)start a Pod to finish file system resize of volume on node.
+</code></pre>
+<p>Then, you can uncordon the node:</p>
+<pre><code>kubectl uncordon &lt;node of cluster-example-3&gt;
+</code></pre>
+<p>Wait for the Pod to be recreated correctly and get in Running and Ready state:</p>
+<pre><code>kubectl get pods -w cluster-example-3
+cluster-example-3   0/1     Init:0/1   0          12m
+cluster-example-3   1/1     Running   0          12m
+</code></pre>
+<p>Now verify the PVC expansion by running the following command, which should return "2Gi" as configured:</p>
+<pre><code>kubectl get pvc cluster-example-3 -o=jsonpath='{.status.capacity.storage}'
+</code></pre>
+<p>So, you can repeat these steps for the remaining Pods.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Please leave the resizing of the disk associated with the primary instance as last disk,
+after promoting through a switchover a new resized Pod, using <code>kubectl cnpg promote</code>
+(e.g. <code>kubectl cnpg promote cluster-example 3</code> to promote <code>cluster-example-3</code> to primary).</p>
+</div>
+<h3 id="recreating-storage">Recreating storage</h3>
+<p>If the storage class does not support volume expansion, you can still regenerate your cluster
+on different PVCs, by allocating new PVCs with increased storage and then move the
+database there. This operation is feasible only when the cluster contains more than one node.</p>
+<p>While you do that, you need to prevent the operator from changing the existing PVC
+by disabling the <code>resizeInUseVolumes</code> flag, like in the following example:</p>
+<pre><code class="language-yaml">apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: postgresql-pvc-template
+spec:
+  instances: 3
+
+  storage:
+    storageClass: standard
+    size: 1Gi
+    resizeInUseVolumes: False
+</code></pre>
+<p>In order to move the entire cluster to a different storage area, you need to recreate all the PVCs and
+all the Pods. Let's suppose you have a cluster with three replicas like in the following
+example:</p>
+<pre><code>$ kubectl get pods
+NAME                READY   STATUS    RESTARTS   AGE
+cluster-example-1   1/1     Running   0          2m37s
+cluster-example-2   1/1     Running   0          2m22s
+cluster-example-3   1/1     Running   0          2m10s
+</code></pre>
+<p>To recreate the cluster using different PVCs, you can edit the cluster definition to disable
+<code>resizeInUseVolumes</code>, and then recreate every instance in a different PVC.</p>
+<p>As an example, to recreate the storage for <code>cluster-example-3</code> you can:</p>
+<pre><code>$ kubectl delete pvc/cluster-example-3 pod/cluster-example-3
+</code></pre>
+<p>Having done that, the operator will orchestrate the creation of another replica with a
+resized PVC:</p>
+<pre><code>$ kubectl get pods
+NAME                           READY   STATUS      RESTARTS   AGE
+cluster-example-1              1/1     Running     0          5m58s
+cluster-example-2              1/1     Running     0          5m43s
+cluster-example-4-join-v2bfg   0/1     Completed   0          17s
+cluster-example-4              1/1     Running     0          10s
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../operator_conf/" class="btn btn-neutral float-left" title="Operator configuration"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../labels_annotations/" class="btn btn-neutral float-right" title="Labels and annotations">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../operator_conf/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../labels_annotations/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

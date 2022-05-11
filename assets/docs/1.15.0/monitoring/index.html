@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="The CloudNativePG Contributors" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Monitoring - CloudNativePG</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Monitoring";
+        var mkdocs_page_input_path = "monitoring.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> CloudNativePG
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">CloudNativePG</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../before_you_start/">Before You Start</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../use_cases/">Use cases</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../architecture/">Architecture</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../installation_upgrade/">Installation and upgrades</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../quickstart/">Quickstart</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../bootstrap/">Bootstrap</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../security/">Security</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../instance_manager/">Postgres instance manager</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../scheduling/">Scheduling</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../resource_management/">Resource management</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../failure_modes/">Failure Modes</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../rolling_update/">Rolling Updates</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../replication/">Replication</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../backup_recovery/">Backup and Recovery</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../postgresql_conf/">PostgreSQL Configuration</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../operator_conf/">Operator configuration</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../storage/">Storage</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../labels_annotations/">Labels and annotations</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Monitoring</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#monitoring-instances">Monitoring Instances</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#prometheus-operator-example">Prometheus Operator example</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#predefined-set-of-metrics">Predefined set of metrics</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#user-defined-metrics">User defined metrics</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#example-of-a-user-defined-metric">Example of a user defined metric</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#example-of-a-user-defined-metric-running-on-multiple-databases">Example of a user defined metric running on multiple databases</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#structure-of-a-user-defined-metric">Structure of a user defined metric</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#output-of-a-user-defined-metric">Output of a user defined metric</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#default-set-of-metrics">Default set of metrics</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#differences-with-the-prometheus-postgres-exporter">Differences with the Prometheus Postgres exporter</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#monitoring-the-operator">Monitoring the operator</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#prometheus-operator-example_1">Prometheus Operator example</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../logging/">Logging</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../certificates/">Certificates</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../ssl_connections/">Client TLS/SSL Connections</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../applications/">Connecting from an application</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../connection_pooling/">Connection Pooling</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../kubernetes_upgrade/">Kubernetes Upgrade</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../expose_pg_services/">Exposing Postgres Services</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../cnpg-plugin/">CloudNativePG Plugin</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../failover/">Automated failover</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../troubleshooting/">Troubleshooting</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../fencing/">Fencing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../e2e/">End-to-End Tests</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../container_images/">Container Image Requirements</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../operator_capability_levels/">Operator Capability Levels</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../samples/">Configuration Samples</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../commercial_support/">Commercial support</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../api_reference/">API Reference</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../supported_releases/">Supported releases</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../release_notes/">Release notes</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">CloudNativePG</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li><li>Monitoring</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="monitoring">Monitoring</h1>
+<h2 id="monitoring-instances">Monitoring Instances</h2>
+<p>For each PostgreSQL instance, the operator provides an exporter of metrics for
+<a href="https://prometheus.io/">Prometheus</a> via HTTP, on port 9187, named <code>metrics</code>.
+The operator comes with a <a href="#predefined-set-of-metrics">predefined set of metrics</a>, as well as a highly
+configurable and customizable system to define additional queries via one or
+more <code>ConfigMap</code> or <code>Secret</code> resources (see the
+<a href="#user-defined-metrics">"User defined metrics" section</a> below for details).</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Starting from version 1.11, CloudNativePG already installs
+<a href="#default-set-of-metrics">by default a set of predefined metrics</a> in
+a <code>ConfigMap</code> called <code>default-monitoring</code>.</p>
+</div>
+<p>Metrics can be accessed as follows:</p>
+<pre><code class="language-shell">curl http://&lt;pod_ip&gt;:9187/metrics
+</code></pre>
+<p>All monitoring queries that are performed on PostgreSQL are:</p>
+<ul>
+<li>transactionally atomic (one transaction per query)</li>
+<li>executed with the <code>pg_monitor</code> role</li>
+<li>executed with <code>application_name</code> set to <code>cnpg_metrics_exporter</code></li>
+<li>executed as user <code>postgres</code></li>
+</ul>
+<p>Please refer to the "Default roles" section in PostgreSQL
+<a href="https://www.postgresql.org/docs/current/default-roles.html">documentation</a>
+for details on the <code>pg_monitor</code> role.</p>
+<p>Queries, by default, are run against the <em>main database</em>, as defined by
+the specified <code>bootstrap</code> method of the <code>Cluster</code> resource, according
+to the following logic:</p>
+<ul>
+<li>using <code>initdb</code>: queries will be run against the specified database by default, so the
+  value passed as <code>initdb.database</code> or defaulting to <code>app</code> if not specified.</li>
+<li>not using <code>initdb</code>: queries will run against the <code>postgres</code> database, by default.</li>
+</ul>
+<p>The default database can always be overridden for a given user-defined metric,
+by specifying a list of one or more databases in the <code>target_databases</code> option.</p>
+<div class="admonition seealso">
+<p class="admonition-title">Prometheus/Grafana</p>
+<p>If you are interested in evaluating the integration of CloudNativePG
+with Prometheus and Grafana, please look at <a href="https://github.com/EnterpriseDB/cnp-sandbox">cnp-sandbox</a>.</p>
+</div>
+<h3 id="prometheus-operator-example">Prometheus Operator example</h3>
+<p>A specific PostgreSQL cluster can be monitored using the
+<a href="https://github.com/prometheus-operator/prometheus-operator">Prometheus Operator's</a> resource 
+<a href="https://github.com/prometheus-operator/prometheus-operator/blob/v0.47.1/Documentation/api.md#podmonitor">PodMonitor</a>.
+A PodMonitor correctly pointing to a Cluster can be automatically created by the operator by setting
+<code>.spec.monitoring.enablePodMonitor</code> to <code>true</code> in the Cluster resource itself (default: false).</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Any change to the <code>PodMonitor</code> created automatically will be overridden by the Operator at the next reconciliation
+cycle, in case you need to customize it, you can do so as described below.</p>
+</div>
+<p>To deploy a <code>PodMonitor</code> for a specific Cluster manually, you can just define it as follows, changing it as needed:</p>
+<pre><code class="language-yaml">apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  name: cluster-example
+spec:
+  selector:
+    matchLabels:
+      postgresql: cluster-example
+  podMetricsEndpoints:
+  - port: metrics
+</code></pre>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Make sure you modify the example above with a unique name as well as the
+correct cluster's namespace and labels (we are using <code>cluster-example</code>).</p>
+</div>
+<h3 id="predefined-set-of-metrics">Predefined set of metrics</h3>
+<p>Every PostgreSQL instance exporter automatically exposes a set of predefined
+metrics, which can be classified in two major categories:</p>
+<ul>
+<li>
+<p>PostgreSQL related metrics, starting with <code>cnpg_collector_*</code>, including:</p>
+<ul>
+<li>number of WAL files and total size on disk</li>
+<li>number of <code>.ready</code> and <code>.done</code> files in the archive status folder</li>
+<li>requested minimum and maximum number of synchronous replicas, as well as
+  the expected and actually observed values</li>
+<li>flag indicating if replica cluster mode is enabled or disabled</li>
+<li>flag indicating if a manual switchover is required</li>
+</ul>
+</li>
+<li>
+<p>Go runtime related metrics, starting with <code>go_*</code></p>
+</li>
+</ul>
+<p>Below is a sample of the metrics returned by the <code>localhost:9187/metrics</code>
+endpoint of an instance. As you can see, the Prometheus format is
+self-documenting:</p>
+<pre><code class="language-text"># HELP cnpg_collector_collection_duration_seconds Collection time duration in seconds
+# TYPE cnpg_collector_collection_duration_seconds gauge
+cnpg_collector_collection_duration_seconds{collector=&quot;Collect.up&quot;} 0.0031393
+
+# HELP cnpg_collector_collections_total Total number of times PostgreSQL was accessed for metrics.
+# TYPE cnpg_collector_collections_total counter
+cnpg_collector_collections_total 2
+
+# HELP cnpg_collector_last_collection_error 1 if the last collection ended with error, 0 otherwise.
+# TYPE cnpg_collector_last_collection_error gauge
+cnpg_collector_last_collection_error 0
+
+# HELP cnpg_collector_manual_switchover_required 1 if a manual switchover is required, 0 otherwise
+# TYPE cnpg_collector_manual_switchover_required gauge
+cnpg_collector_manual_switchover_required 0
+
+# HELP cnpg_collector_pg_wal Total size in bytes of WAL segments in the '/var/lib/postgresql/data/pgdata/pg_wal' directory  computed as (wal_segment_size * count)
+# TYPE cnpg_collector_pg_wal gauge
+cnpg_collector_pg_wal{value=&quot;count&quot;} 7
+cnpg_collector_pg_wal{value=&quot;size&quot;} 1.17440512e+08
+
+# HELP cnpg_collector_pg_wal_archive_status Number of WAL segments in the '/var/lib/postgresql/data/pgdata/pg_wal/archive_status' directory (ready, done)
+# TYPE cnpg_collector_pg_wal_archive_status gauge
+cnpg_collector_pg_wal_archive_status{value=&quot;done&quot;} 6
+cnpg_collector_pg_wal_archive_status{value=&quot;ready&quot;} 0
+
+# HELP cnpg_collector_replica_mode 1 if the cluster is in replica mode, 0 otherwise
+# TYPE cnpg_collector_replica_mode gauge
+cnpg_collector_replica_mode 0
+
+# HELP cnpg_collector_sync_replicas Number of requested synchronous replicas (synchronous_standby_names)
+# TYPE cnpg_collector_sync_replicas gauge
+cnpg_collector_sync_replicas{value=&quot;expected&quot;} 0
+cnpg_collector_sync_replicas{value=&quot;max&quot;} 0
+cnpg_collector_sync_replicas{value=&quot;min&quot;} 0
+cnpg_collector_sync_replicas{value=&quot;observed&quot;} 0
+
+# HELP cnpg_collector_up 1 if PostgreSQL is up, 0 otherwise.
+# TYPE cnpg_collector_up gauge
+cnpg_collector_up{cluster=&quot;cluster-example&quot;} 1
+
+# HELP cnpg_collector_postgres_version Postgres version
+# TYPE cnpg_collector_postgres_version gauge
+cnpg_collector_postgres_version{cluster=&quot;cluster-example&quot;,full=&quot;13.4.0&quot;} 13.4
+
+# HELP cnpg_collector_first_recoverability_point The first point of recoverability for the cluster as a unix timestamp
+# TYPE cnpg_collector_first_recoverability_point gauge
+cnpg_collector_first_recoverability_point 1.63238406e+09
+
+# HELP cnpg_collector_lo_pages Estimated number of pages in the pg_largeobject table
+# TYPE cnpg_collector_lo_pages gauge
+cnpg_collector_lo_pages{datname=&quot;app&quot;} 0
+cnpg_collector_lo_pages{datname=&quot;postgres&quot;} 78
+
+# HELP go_gc_duration_seconds A summary of the pause duration of garbage collection cycles.
+# TYPE go_gc_duration_seconds summary
+go_gc_duration_seconds{quantile=&quot;0&quot;} 5.01e-05
+go_gc_duration_seconds{quantile=&quot;0.25&quot;} 7.27e-05
+go_gc_duration_seconds{quantile=&quot;0.5&quot;} 0.0001748
+go_gc_duration_seconds{quantile=&quot;0.75&quot;} 0.0002959
+go_gc_duration_seconds{quantile=&quot;1&quot;} 0.0012776
+go_gc_duration_seconds_sum 0.0035741
+go_gc_duration_seconds_count 13
+
+# HELP go_goroutines Number of goroutines that currently exist.
+# TYPE go_goroutines gauge
+go_goroutines 25
+
+# HELP go_info Information about the Go environment.
+# TYPE go_info gauge
+go_info{version=&quot;go1.17.1&quot;} 1
+
+# HELP go_memstats_alloc_bytes Number of bytes allocated and still in use.
+# TYPE go_memstats_alloc_bytes gauge
+go_memstats_alloc_bytes 4.493744e+06
+
+# HELP go_memstats_alloc_bytes_total Total number of bytes allocated, even if freed.
+# TYPE go_memstats_alloc_bytes_total counter
+go_memstats_alloc_bytes_total 2.1698216e+07
+
+# HELP go_memstats_buck_hash_sys_bytes Number of bytes used by the profiling bucket hash table.
+# TYPE go_memstats_buck_hash_sys_bytes gauge
+go_memstats_buck_hash_sys_bytes 1.456234e+06
+
+# HELP go_memstats_frees_total Total number of frees.
+# TYPE go_memstats_frees_total counter
+go_memstats_frees_total 172118
+
+# HELP go_memstats_gc_cpu_fraction The fraction of this program's available CPU time used by the GC since the program started.
+# TYPE go_memstats_gc_cpu_fraction gauge
+go_memstats_gc_cpu_fraction 1.0749468700447189e-05
+
+# HELP go_memstats_gc_sys_bytes Number of bytes used for garbage collection system metadata.
+# TYPE go_memstats_gc_sys_bytes gauge
+go_memstats_gc_sys_bytes 5.530048e+06
+
+# HELP go_memstats_heap_alloc_bytes Number of heap bytes allocated and still in use.
+# TYPE go_memstats_heap_alloc_bytes gauge
+go_memstats_heap_alloc_bytes 4.493744e+06
+
+# HELP go_memstats_heap_idle_bytes Number of heap bytes waiting to be used.
+# TYPE go_memstats_heap_idle_bytes gauge
+go_memstats_heap_idle_bytes 5.8236928e+07
+
+# HELP go_memstats_heap_inuse_bytes Number of heap bytes that are in use.
+# TYPE go_memstats_heap_inuse_bytes gauge
+go_memstats_heap_inuse_bytes 7.528448e+06
+
+# HELP go_memstats_heap_objects Number of allocated objects.
+# TYPE go_memstats_heap_objects gauge
+go_memstats_heap_objects 26306
+
+# HELP go_memstats_heap_released_bytes Number of heap bytes released to OS.
+# TYPE go_memstats_heap_released_bytes gauge
+go_memstats_heap_released_bytes 5.7401344e+07
+
+# HELP go_memstats_heap_sys_bytes Number of heap bytes obtained from system.
+# TYPE go_memstats_heap_sys_bytes gauge
+go_memstats_heap_sys_bytes 6.5765376e+07
+
+# HELP go_memstats_last_gc_time_seconds Number of seconds since 1970 of last garbage collection.
+# TYPE go_memstats_last_gc_time_seconds gauge
+go_memstats_last_gc_time_seconds 1.6311727586032727e+09
+
+# HELP go_memstats_lookups_total Total number of pointer lookups.
+# TYPE go_memstats_lookups_total counter
+go_memstats_lookups_total 0
+
+# HELP go_memstats_mallocs_total Total number of mallocs.
+# TYPE go_memstats_mallocs_total counter
+go_memstats_mallocs_total 198424
+
+# HELP go_memstats_mcache_inuse_bytes Number of bytes in use by mcache structures.
+# TYPE go_memstats_mcache_inuse_bytes gauge
+go_memstats_mcache_inuse_bytes 14400
+
+# HELP go_memstats_mcache_sys_bytes Number of bytes used for mcache structures obtained from system.
+# TYPE go_memstats_mcache_sys_bytes gauge
+go_memstats_mcache_sys_bytes 16384
+
+# HELP go_memstats_mspan_inuse_bytes Number of bytes in use by mspan structures.
+# TYPE go_memstats_mspan_inuse_bytes gauge
+go_memstats_mspan_inuse_bytes 191896
+
+# HELP go_memstats_mspan_sys_bytes Number of bytes used for mspan structures obtained from system.
+# TYPE go_memstats_mspan_sys_bytes gauge
+go_memstats_mspan_sys_bytes 212992
+
+# HELP go_memstats_next_gc_bytes Number of heap bytes when next garbage collection will take place.
+# TYPE go_memstats_next_gc_bytes gauge
+go_memstats_next_gc_bytes 8.689632e+06
+
+# HELP go_memstats_other_sys_bytes Number of bytes used for other system allocations.
+# TYPE go_memstats_other_sys_bytes gauge
+go_memstats_other_sys_bytes 2.566622e+06
+
+# HELP go_memstats_stack_inuse_bytes Number of bytes in use by the stack allocator.
+# TYPE go_memstats_stack_inuse_bytes gauge
+go_memstats_stack_inuse_bytes 1.343488e+06
+
+# HELP go_memstats_stack_sys_bytes Number of bytes obtained from system for stack allocator.
+# TYPE go_memstats_stack_sys_bytes gauge
+go_memstats_stack_sys_bytes 1.343488e+06
+
+# HELP go_memstats_sys_bytes Number of bytes obtained from system.
+# TYPE go_memstats_sys_bytes gauge
+go_memstats_sys_bytes 7.6891144e+07
+
+# HELP go_threads Number of OS threads created.
+# TYPE go_threads gauge
+go_threads 18
+</code></pre>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code>cnpg_collector_postgres_version</code> is a GaugeVec metric containing
+the <code>Major.Minor</code> version of PostgreSQL. The full semantic version
+<code>Major.Minor.Patch</code> can be found inside one of its label field
+named <code>full</code>.</p>
+</div>
+<h3 id="user-defined-metrics">User defined metrics</h3>
+<p>This feature is currently in <em>beta</em> state and the format is inspired by the
+<a href="https://github.com/prometheus-community/postgres_exporter/blob/master/queries.yaml">queries.yaml file</a> <!-- wokeignore:rule=master -->
+of the PostgreSQL Prometheus Exporter.</p>
+<p>Custom metrics can be defined by users by referring to the created <code>Configmap</code>/<code>Secret</code> in a <code>Cluster</code> definition
+under the <code>.spec.monitoring.customQueriesConfigMap</code> or <code>customQueriesSecret</code> section as in the following example:</p>
+<pre><code class="language-yaml">apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: cluster-example
+  namespace: test
+spec:
+  instances: 3
+
+  storage:
+    size: 1Gi
+
+  monitoring:
+    customQueriesConfigMap:
+      - name: example-monitoring
+        key: custom-queries
+</code></pre>
+<p>The <code>customQueriesConfigMap</code>/<code>customQueriesSecret</code> sections contain a list of
+<code>ConfigMap</code>/<code>Secret</code> references specifying the key in which the custom queries are defined.
+Take care that the referred resources have to be created <strong>in the same namespace as the Cluster</strong> resource.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you want ConfigMaps and Secrets to be <strong>automatically</strong> reloaded by instances, you can
+add a label with key <code>cnpg.io/reload</code> to it, otherwise you will have to reload
+the instances using the <code>kubectl cnpg reload</code> subcommand.</p>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>When a user defined metric overwrites an already existing metric the instance manager prints a json warning log,
+containing the message:<code>Query with the same name already found. Overwriting the existing one.</code>
+and a key <code>queryName</code> containing the overwritten query name.</p>
+</div>
+<h4 id="example-of-a-user-defined-metric">Example of a user defined metric</h4>
+<p>Here you can see an example of a <code>ConfigMap</code> containing a single custom query,
+referenced by the <code>Cluster</code> example above:</p>
+<pre><code class="language-yaml">apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: example-monitoring
+  namespace: test
+  labels:
+    cnpg.io/reload: &quot;&quot;
+data:
+  custom-queries: |
+    pg_replication:
+      query: &quot;SELECT CASE WHEN NOT pg_is_in_recovery()
+              THEN 0
+              ELSE GREATEST (0,
+                EXTRACT(EPOCH FROM (now() - pg_last_xact_replay_timestamp())))
+              END AS lag,
+              pg_is_in_recovery() AS in_recovery,
+              EXISTS (TABLE pg_stat_wal_receiver) AS is_wal_receiver_up,
+              (SELECT count(*) FROM pg_stat_replication) AS streaming_replicas&quot;
+
+      metrics:
+        - lag:
+            usage: &quot;GAUGE&quot;
+            description: &quot;Replication lag behind primary in seconds&quot;
+        - in_recovery:
+            usage: &quot;GAUGE&quot;
+            description: &quot;Whether the instance is in recovery&quot;
+        - is_wal_receiver_up:
+            usage: &quot;GAUGE&quot;
+            description: &quot;Whether the instance wal_receiver is up&quot;
+        - streaming_replicas:
+            usage: &quot;GAUGE&quot;
+            description: &quot;Number of streaming replicas connected to the instance&quot;
+</code></pre>
+<p>A list of basic monitoring queries can be found in the <a href="../samples/cnpg-basic-monitoring.yaml"><code>cnpg-basic-monitoring.yaml</code> file</a>.</p>
+<h4 id="example-of-a-user-defined-metric-running-on-multiple-databases">Example of a user defined metric running on multiple databases</h4>
+<p>If the <code>target_databases</code> option lists more than one database
+the metric is collected from each of them.</p>
+<p>Database auto-discovery can be enabled for a specific query by specifying a
+<em>shell-like pattern</em> (i.e., containing <code>*</code>, <code>?</code> or <code>[]</code>) in the list of
+<code>target_databases</code>. If provided, the operator will expand the list of target
+databases by adding all the databases returned by the execution of <code>SELECT
+datname FROM pg_database WHERE datallowconn AND NOT datistemplate</code> and matching
+the pattern according to <a href="https://pkg.go.dev/path#Match">path.Match()</a> rules.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code>*</code> character has a <a href="https://yaml.org/spec/1.2/spec.html#id2786448">special meaning</a> in yaml,
+so you need to quote (<code>"*"</code>) the <code>target_databases</code> value when it includes such a pattern.</p>
+</div>
+<p>It is recommended that you always include the name of the database
+in the returned labels, for example using the <code>current_database()</code> function
+as in the following example:</p>
+<pre><code class="language-yaml">some_query:
+  query: |
+    SELECT
+     current_database() as datname,
+     count(*) as rows
+    FROM some_table
+  metrics:
+    - datname:
+        usage: &quot;LABEL&quot;
+        description: &quot;Name of current database&quot;
+    - rows:
+        usage: &quot;GAUGE&quot;
+        description: &quot;number of rows&quot;
+  target_databases:
+    - albert
+    - bb
+    - freddie
+</code></pre>
+<p>This will produce in the following metric being exposed:</p>
+<pre><code class="language-text">cnpg_some_query_rows{datname=&quot;albert&quot;} 2
+cnpg_some_query_rows{datname=&quot;bb&quot;} 5
+cnpg_some_query_rows{datname=&quot;freddie&quot;} 10
+</code></pre>
+<p>Here is an example of a query with auto-discovery enabled which also
+runs on the <code>template1</code> database (otherwise not returned by the
+aforementioned query):</p>
+<pre><code class="language-yaml">some_query:
+  query: |
+    SELECT
+     current_database() as datname,
+     count(*) as rows
+    FROM some_table
+  metrics:
+    - datname:
+        usage: &quot;LABEL&quot;
+        description: &quot;Name of current database&quot;
+    - rows:
+        usage: &quot;GAUGE&quot;
+        description: &quot;number of rows&quot;
+  target_databases:
+    - &quot;*&quot;
+    - &quot;template1&quot;
+</code></pre>
+<p>The above example will produce the following metrics (provided the databases exist):</p>
+<pre><code class="language-text">cnpg_some_query_rows{datname=&quot;albert&quot;} 2
+cnpg_some_query_rows{datname=&quot;bb&quot;} 5
+cnpg_some_query_rows{datname=&quot;freddie&quot;} 10
+cnpg_some_query_rows{datname=&quot;template1&quot;} 7
+cnpg_some_query_rows{datname=&quot;postgres&quot;} 42
+</code></pre>
+<h3 id="structure-of-a-user-defined-metric">Structure of a user defined metric</h3>
+<p>Every custom query has the following basic structure:</p>
+<pre><code class="language-yaml">&lt;MetricName&gt;:
+      query: &quot;&lt;SQLQuery&gt;&quot;
+      metrics:
+        - &lt;ColumnName&gt;:
+            usage: &quot;&lt;MetricType&gt;&quot;
+            description: &quot;&lt;MetricDescription&gt;&quot;
+</code></pre>
+<p>Here is a short description of all the available fields:</p>
+<ul>
+<li><code>&lt;MetricName&gt;</code>: the name of the Prometheus metric<ul>
+<li><code>query</code>: the SQL query to run on the target database to generate the metrics</li>
+<li><code>primary</code>: whether to run the query only on the primary instance <!-- wokeignore:rule=master --></li>
+<li><code>master</code>: same as <code>primary</code> (for compatibility with the Prometheus PostgreSQL exporter's syntax - deprecated) <!-- wokeignore:rule=master --></li>
+<li><code>runonserver</code>: a semantic version range to limit the versions of PostgreSQL the query should run on
+   (e.g. <code>"&gt;=10.0.0"</code> or <code>"&gt;=12.0.0 &lt;=14.2.0"</code>)</li>
+<li><code>target_databases</code>: a list of databases to run the <code>query</code> against,
+  or a <a href="#example-of-a-user-defined-metric-running-on-multiple-databases">shell-like pattern</a>
+  to enable auto discovery. Overwrites the default database if provided.</li>
+<li><code>metrics</code>: section containing a list of all exported columns, defined as follows:</li>
+<li><code>&lt;ColumnName&gt;</code>: the name of the column returned by the query<ul>
+<li><code>usage</code>: one of the values described below</li>
+<li><code>description</code>: the metric's description</li>
+<li><code>metrics_mapping</code>: the optional column mapping when <code>usage</code> is set to <code>MAPPEDMETRIC</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>The possible values for <code>usage</code> are:</p>
+<table>
+<thead>
+<tr>
+<th align="left">Column Usage Label</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><code>DISCARD</code></td>
+<td align="left">this column should be ignored</td>
+</tr>
+<tr>
+<td align="left"><code>LABEL</code></td>
+<td align="left">use this column as a label</td>
+</tr>
+<tr>
+<td align="left"><code>COUNTER</code></td>
+<td align="left">use this column as a counter</td>
+</tr>
+<tr>
+<td align="left"><code>GAUGE</code></td>
+<td align="left">use this column as a gauge</td>
+</tr>
+<tr>
+<td align="left"><code>MAPPEDMETRIC</code></td>
+<td align="left">use this column with the supplied mapping of text values</td>
+</tr>
+<tr>
+<td align="left"><code>DURATION</code></td>
+<td align="left">use this column as a text duration (in milliseconds)</td>
+</tr>
+<tr>
+<td align="left"><code>HISTOGRAM</code></td>
+<td align="left">use this column as a histogram</td>
+</tr>
+</tbody>
+</table>
+<p>Please visit the <a href="https://prometheus.io/docs/concepts/metric_types/">"Metric Types" page</a>
+from the Prometheus documentation for more information.</p>
+<h3 id="output-of-a-user-defined-metric">Output of a user defined metric</h3>
+<p>Custom defined metrics are returned by the Prometheus exporter endpoint (<code>:9187/metrics</code>)
+with the following format:</p>
+<pre><code class="language-text">cnpg_&lt;MetricName&gt;_&lt;ColumnName&gt;{&lt;LabelColumnName&gt;=&lt;LabelColumnValue&gt; ... } &lt;ColumnValue&gt;
+</code></pre>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code>LabelColumnName</code> are metrics with <code>usage</code> set to <code>LABEL</code> and their <code>Value</code></p>
+</div>
+<p>Considering the <code>pg_replication</code> example above, the exporter's endpoint would
+return the following output when invoked:</p>
+<pre><code class="language-text"># HELP cnpg_pg_replication_in_recovery Whether the instance is in recovery
+# TYPE cnpg_pg_replication_in_recovery gauge
+cnpg_pg_replication_in_recovery 0
+# HELP cnpg_pg_replication_lag Replication lag behind primary in seconds
+# TYPE cnpg_pg_replication_lag gauge
+cnpg_pg_replication_lag 0
+# HELP cnpg_pg_replication_streaming_replicas Number of streaming replicas connected to the instance
+# TYPE cnpg_pg_replication_streaming_replicas gauge
+cnpg_pg_replication_streaming_replicas 2
+# HELP cnpg_pg_replication_is_wal_receiver_up Whether the instance wal_receiver is up
+# TYPE cnpg_pg_replication_is_wal_receiver_up gauge
+cnpg_pg_replication_is_wal_receiver_up 0
+</code></pre>
+<h3 id="default-set-of-metrics">Default set of metrics</h3>
+<p>The operator can be configured to automatically inject in a Cluster a set of 
+monitoring queries defined in a ConfigMap or a Secret, inside the operator's namespace.
+You have to set the <code>MONITORING_QUERIES_CONFIGMAP</code> or
+<code>MONITORING_QUERIES_SECRET</code> key in the <a href="../operator_conf/">"operator configuration"</a>,
+respectively to the name of the ConfigMap or the Secret;
+the operator will then use the content of the <code>queries</code> key.</p>
+<p>Any change to the <code>queries</code> content will be immediately reflected on all the
+deployed Clusters using it.</p>
+<p>The operator installation manifests come with a predefined ConfigMap, 
+called <code>cnpg-default-monitoring</code>, to be used by all Clusters.
+<code>MONITORING_QUERIES_CONFIGMAP</code> is by default set to <code>cnpg-default-monitoring</code> in the operator configuration.</p>
+<p>If you want to disable the default set of metrics, you can:
+- disable it at operator level: set the <code>MONITORING_QUERIES_CONFIGMAP</code>/<code>MONITORING_QUERIES_SECRET</code> key to <code>""</code>
+  (empty string), in the operator ConfigMap. Changes to operator ConfigMap require an operator restart.
+- disable it for a specific Cluster: set <code>.spec.monitoring.disableDefaultQueries</code> to <code>true</code> in the Cluster.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>The ConfigMap or Secret specified via <code>MONITORING_QUERIES_CONFIGMAP</code>/<code>MONITORING_QUERIES_SECRET</code>
+will always be copied to the Cluster's namespace with a fixed name: <code>cnpg-default-monitoring</code>.
+So that, if you intend to have default metrics, you should not create a ConfigMap with this name in the cluster's namespace.</p>
+</div>
+<h3 id="differences-with-the-prometheus-postgres-exporter">Differences with the Prometheus Postgres exporter</h3>
+<p>CloudNativePG is inspired by the PostgreSQL Prometheus Exporter, but
+presents some differences. In particular, the <code>cache_seconds</code> field is not implemented
+in CloudNativePG's exporter.</p>
+<h2 id="monitoring-the-operator">Monitoring the operator</h2>
+<p>The operator internally exposes <a href="https://prometheus.io/">Prometheus</a> metrics
+via HTTP on port 8080, named <code>metrics</code>.</p>
+<p>Metrics can be accessed as follows:</p>
+<pre><code class="language-shell">curl http://&lt;pod_ip&gt;:8080/metrics
+</code></pre>
+<p>Currently, the operator exposes default <code>kubebuilder</code> metrics, see
+<a href="https://book.kubebuilder.io/reference/metrics.html">kubebuilder documentation</a> for more details.</p>
+<h3 id="prometheus-operator-example_1">Prometheus Operator example</h3>
+<p>The operator deployment can be monitored using the
+<a href="https://github.com/prometheus-operator/prometheus-operator">Prometheus Operator</a> by defining the following
+<a href="https://github.com/prometheus-operator/prometheus-operator/blob/v0.47.1/Documentation/api.md#podmonitor">PodMonitor</a>
+resource:</p>
+<pre><code class="language-yaml">apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  name: cnpg-controller-manager
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: cloudnative-pg
+  podMetricsEndpoints:
+    - port: metrics
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../labels_annotations/" class="btn btn-neutral float-left" title="Labels and annotations"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../logging/" class="btn btn-neutral float-right" title="Logging">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../labels_annotations/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../logging/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

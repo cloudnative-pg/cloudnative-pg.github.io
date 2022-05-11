@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="The CloudNativePG Contributors" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Before You Start - CloudNativePG</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Before You Start";
+        var mkdocs_page_input_path = "before_you_start.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> CloudNativePG
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">CloudNativePG</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Before You Start</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#kubernetes-terminology">Kubernetes terminology</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#postgresql-terminology">PostgreSQL terminology</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#cloud-terminology">Cloud terminology</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#what-to-do-next">What to do next</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../use_cases/">Use cases</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../architecture/">Architecture</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../installation_upgrade/">Installation and upgrades</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../quickstart/">Quickstart</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../bootstrap/">Bootstrap</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../security/">Security</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../instance_manager/">Postgres instance manager</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../scheduling/">Scheduling</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../resource_management/">Resource management</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../failure_modes/">Failure Modes</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../rolling_update/">Rolling Updates</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../replication/">Replication</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../backup_recovery/">Backup and Recovery</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../postgresql_conf/">PostgreSQL Configuration</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../operator_conf/">Operator configuration</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../storage/">Storage</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../labels_annotations/">Labels and annotations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../monitoring/">Monitoring</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../logging/">Logging</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../certificates/">Certificates</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../ssl_connections/">Client TLS/SSL Connections</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../applications/">Connecting from an application</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../connection_pooling/">Connection Pooling</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../kubernetes_upgrade/">Kubernetes Upgrade</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../expose_pg_services/">Exposing Postgres Services</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../cnpg-plugin/">CloudNativePG Plugin</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../failover/">Automated failover</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../troubleshooting/">Troubleshooting</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../fencing/">Fencing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../e2e/">End-to-End Tests</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../container_images/">Container Image Requirements</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../operator_capability_levels/">Operator Capability Levels</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../samples/">Configuration Samples</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../commercial_support/">Commercial support</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../api_reference/">API Reference</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../supported_releases/">Supported releases</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../release_notes/">Release notes</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">CloudNativePG</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li><li>Before You Start</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="before-you-start">Before You Start</h1>
+<p>Before we get started, it is essential to go over some terminology that is
+specific to Kubernetes and PostgreSQL.</p>
+<h2 id="kubernetes-terminology">Kubernetes terminology</h2>
+<table>
+<thead>
+<tr>
+<th>Resource</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://kubernetes.io/docs/concepts/architecture/nodes/">Node</a></td>
+<td>A <em>node</em> is a worker machine in Kubernetes, either virtual or physical, where all services necessary to run pods are managed by the control plane node(s).</td>
+</tr>
+<tr>
+<td><a href="https://kubernetes.io/docs/concepts/workloads/pods/pod/">Pod</a></td>
+<td>A <em>pod</em> is the smallest computing unit that can be deployed in a Kubernetes cluster and is composed of one or more containers that share network and storage.</td>
+</tr>
+<tr>
+<td><a href="https://kubernetes.io/docs/concepts/services-networking/service/">Service</a></td>
+<td>A <em>service</em> is an abstraction that exposes as a network service an application that runs on a group of pods and standardizes important features such as service discovery across applications, load balancing, failover, and so on.</td>
+</tr>
+<tr>
+<td><a href="https://kubernetes.io/docs/concepts/configuration/secret/">Secret</a></td>
+<td>A <em>secret</em> is an object that is designed to store small amounts of sensitive data such as passwords, access keys, or tokens, and use them in pods.</td>
+</tr>
+<tr>
+<td><a href="https://kubernetes.io/docs/concepts/storage/storage-classes/">Storage Class</a></td>
+<td>A <em>storage class</em> allows an administrator to define the classes of storage in a cluster, including provisioner (such as AWS EBS), reclaim policies, mount options, volume expansion, and so on.</td>
+</tr>
+<tr>
+<td><a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/">Persistent Volume</a></td>
+<td>A <em>persistent volume</em> (PV) is a resource in a Kubernetes cluster that represents storage that has been either manually provisioned by an administrator or dynamically provisioned by a <em>storage class</em> controller. A PV is associated with a pod using a <em>persistent volume claim</em> and its lifecycle is independent of any pod that uses it. Normally, a PV is a network volume, especially in the public cloud. A <a href="https://kubernetes.io/docs/concepts/storage/volumes/#local"><em>local persistent volume</em> (LPV)</a> is a persistent volume that exists only on the particular node where the pod that uses it is running.</td>
+</tr>
+<tr>
+<td><a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistentvolumeclaims">Persistent Volume Claim</a></td>
+<td>A <em>persistent volume claim</em> (PVC) represents a request for storage, which might include size, access mode, or a particular storage class. Similar to how a pod consumes node resources, a PVC consumes the resources of a PV.</td>
+</tr>
+<tr>
+<td><a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/">Namespace</a></td>
+<td>A <em>namespace</em> is a logical and isolated subset of a Kubernetes cluster and can be seen as a <em>virtual cluster</em> within the wider physical cluster. Namespaces allow administrators to create separated environments based on projects, departments, teams, and so on.</td>
+</tr>
+<tr>
+<td><a href="https://kubernetes.io/docs/reference/access-authn-authz/rbac/">RBAC</a></td>
+<td><em>Role Based Access Control</em> (RBAC), also known as <em>role-based security</em>, is a method used in computer systems security to restrict access to the network and resources of a system to authorized users only. Kubernetes has a native API to control roles at the namespace and cluster level and associate them with specific resources and individuals.</td>
+</tr>
+<tr>
+<td><a href="https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/">CRD</a></td>
+<td>A <em>custom resource definition</em> (CRD) is an extension of the Kubernetes API and allows developers to create new data types and objects, <em>called custom resources</em>.</td>
+</tr>
+<tr>
+<td><a href="https://kubernetes.io/docs/concepts/extend-kubernetes/operator/">Operator</a></td>
+<td>An <em>operator</em> is a custom resource that automates those steps that are normally performed by a human operator when managing one or more applications or given services. An operator assists Kubernetes in making sure that the resource's defined state always matches the observed one.</td>
+</tr>
+<tr>
+<td><a href="https://kubernetes.io/docs/reference/kubectl/overview/">kubectl</a></td>
+<td><code>kubectl</code> is the command-line tool used to manage a Kubernetes cluster.</td>
+</tr>
+</tbody>
+</table>
+<p>CloudNativePG requires Kubernetes 1.19 or higher.</p>
+<h2 id="postgresql-terminology">PostgreSQL terminology</h2>
+<table>
+<thead>
+<tr>
+<th>Resource</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Instance</td>
+<td>A Postgres server process running and listening on a pair "IP address(es)" and "TCP port" (usually 5432).</td>
+</tr>
+<tr>
+<td>Primary</td>
+<td>A PostgreSQL instance that can accept both read and write operations.</td>
+</tr>
+<tr>
+<td>Replica</td>
+<td>A PostgreSQL instance replicating from the only primary instance in a cluster and is kept updated by reading a stream of Write-Ahead Log (WAL) records. A replica is also known as <em>standby</em> or <em>secondary</em> server. PostgreSQL relies on physical streaming replication (async/sync) and file-based log shipping (async).</td>
+</tr>
+<tr>
+<td>Hot Standby</td>
+<td>PostgreSQL feature that allows a <em>replica</em> to accept read-only workloads.</td>
+</tr>
+<tr>
+<td>Cluster</td>
+<td>To be intended as High Availability (HA) Cluster: a set of PostgreSQL instances made up by a single primary and an optional arbitrary number of replicas.</td>
+</tr>
+<tr>
+<td>Replica Cluster</td>
+<td>A CloudNativePG <code>Cluster</code> that is in continuous recovery mode from a selected PostgreSQL cluster, normally residing outside the Kubernetes cluster. It is a feature that enables multi-cluster deployments in private, public, hybrid, and multi-cloud contexts.</td>
+</tr>
+<tr>
+<td>Designated Primary</td>
+<td>A PostgreSQL standby instance in a replica cluster that is in continuous recovery from another PostgreSQL cluster and that is designated to become primary in case the replica cluster becomes primary.</td>
+</tr>
+<tr>
+<td>Superuser</td>
+<td>In PostgreSQL a <em>superuser</em> is any role with both <code>LOGIN</code> and <code>SUPERUSER</code> privileges. For security reasons, CloudNativePG performs administrative tasks by connecting to the <code>postgres</code> database as the <code>postgres</code> user via <code>peer</code> authentication over the local Unix Domain Socket.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="cloud-terminology">Cloud terminology</h2>
+<table>
+<thead>
+<tr>
+<th>Resource</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Region</td>
+<td>A <em>region</em> in the Cloud is an isolated and independent geographic area organized in <em>availability zones</em>. Zones within a region have very little round-trip network latency.</td>
+</tr>
+<tr>
+<td>Zone</td>
+<td>An <em>availability zone</em> in the Cloud (also known as <em>zone</em>) is an area in a region where resources can be deployed. Usually, an availability zone corresponds to a data center or an isolated building of the same data center.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="what-to-do-next">What to do next</h2>
+<p>Now that you have familiarized with the terminology, you can decide to
+<a href="../quickstart/">test CloudNativePG on your laptop using a local cluster</a> before deploying the operator in your selected cloud environment.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href=".." class="btn btn-neutral float-left" title="CloudNativePG"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../use_cases/" class="btn btn-neutral float-right" title="Use cases">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href=".." style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../use_cases/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

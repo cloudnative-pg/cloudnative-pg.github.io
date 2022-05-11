@@ -1,0 +1,2593 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="The CloudNativePG Contributors" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>API Reference - CloudNativePG</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "API Reference";
+        var mkdocs_page_input_path = "api_reference.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> CloudNativePG
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">CloudNativePG</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../before_you_start/">Before You Start</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../use_cases/">Use cases</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../architecture/">Architecture</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../installation_upgrade/">Installation and upgrades</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../quickstart/">Quickstart</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../bootstrap/">Bootstrap</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../security/">Security</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../instance_manager/">Postgres instance manager</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../scheduling/">Scheduling</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../resource_management/">Resource management</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../failure_modes/">Failure Modes</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../rolling_update/">Rolling Updates</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../replication/">Replication</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../backup_recovery/">Backup and Recovery</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../postgresql_conf/">PostgreSQL Configuration</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../operator_conf/">Operator configuration</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../storage/">Storage</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../labels_annotations/">Labels and annotations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../monitoring/">Monitoring</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../logging/">Logging</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../certificates/">Certificates</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../ssl_connections/">Client TLS/SSL Connections</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../applications/">Connecting from an application</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../connection_pooling/">Connection Pooling</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../kubernetes_upgrade/">Kubernetes Upgrade</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../expose_pg_services/">Exposing Postgres Services</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../cnpg-plugin/">CloudNativePG Plugin</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../failover/">Automated failover</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../troubleshooting/">Troubleshooting</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../fencing/">Fencing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../e2e/">End-to-End Tests</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../container_images/">Container Image Requirements</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../operator_capability_levels/">Operator Capability Levels</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../samples/">Configuration Samples</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../commercial_support/">Commercial support</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">API Reference</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#affinityconfiguration">AffinityConfiguration</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#azurecredentials">AzureCredentials</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#backup">Backup</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#backupconfiguration">BackupConfiguration</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#backuplist">BackupList</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#backupsource">BackupSource</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#backupspec">BackupSpec</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#backupstatus">BackupStatus</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#barmanobjectstoreconfiguration">BarmanObjectStoreConfiguration</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#bootstrapconfiguration">BootstrapConfiguration</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#bootstrapinitdb">BootstrapInitDB</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#bootstrappgbasebackup">BootstrapPgBaseBackup</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#bootstraprecovery">BootstrapRecovery</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#certificatesconfiguration">CertificatesConfiguration</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#certificatesstatus">CertificatesStatus</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#cluster">Cluster</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#clustercondition">ClusterCondition</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#clusterlist">ClusterList</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#clusterspec">ClusterSpec</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#clusterstatus">ClusterStatus</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#configmapkeyselector">ConfigMapKeySelector</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#configmapresourceversion">ConfigMapResourceVersion</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#databackupconfiguration">DataBackupConfiguration</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#embeddedobjectmetadata">EmbeddedObjectMetadata</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#externalcluster">ExternalCluster</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#googlecredentials">GoogleCredentials</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#instanceid">InstanceID</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#ldapbindasauth">LDAPBindAsAuth</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#ldapbindsearchauth">LDAPBindSearchAuth</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#ldapconfig">LDAPConfig</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#localobjectreference">LocalObjectReference</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#monitoringconfiguration">MonitoringConfiguration</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#nodemaintenancewindow">NodeMaintenanceWindow</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pgbouncerintegrationstatus">PgBouncerIntegrationStatus</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pgbouncersecrets">PgBouncerSecrets</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pgbouncerspec">PgBouncerSpec</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#podmeta">PodMeta</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#podtemplatespec">PodTemplateSpec</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pooler">Pooler</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#poolerintegrations">PoolerIntegrations</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#poolerlist">PoolerList</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#poolersecrets">PoolerSecrets</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#poolerspec">PoolerSpec</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#poolerstatus">PoolerStatus</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#postgresconfiguration">PostgresConfiguration</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#recoverytarget">RecoveryTarget</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#replicaclusterconfiguration">ReplicaClusterConfiguration</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#rollingupdatestatus">RollingUpdateStatus</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#s3credentials">S3Credentials</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#scheduledbackup">ScheduledBackup</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#scheduledbackuplist">ScheduledBackupList</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#scheduledbackupspec">ScheduledBackupSpec</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#scheduledbackupstatus">ScheduledBackupStatus</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#secretkeyselector">SecretKeySelector</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#secretversion">SecretVersion</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#secretsresourceversion">SecretsResourceVersion</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#storageconfiguration">StorageConfiguration</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#walbackupconfiguration">WalBackupConfiguration</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../supported_releases/">Supported releases</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../release_notes/">Release notes</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">CloudNativePG</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li><li>API Reference</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="api-reference">API Reference</h1>
+<p>CloudNativePG extends the Kubernetes API defining the following
+custom resources:</p>
+<ul>
+<li><a href="#backup">Backup</a></li>
+<li><a href="#cluster">Cluster</a></li>
+<li><a href="#pooler">Pooler</a></li>
+<li><a href="#scheduledbackup">ScheduledBackup</a></li>
+</ul>
+<p>All the resources are defined in the <code>postgresql.cnpg.io/v1</code>
+API.</p>
+<p>Please refer to the <a href="../samples/">"Configuration Samples" page</a>" of the
+documentation for examples of usage.</p>
+<p>Below you will find a description of the defined resources:</p>
+<!-- Everything from now on is generated via `make apidoc` -->
+
+<ul>
+<li><a href="#AffinityConfiguration">AffinityConfiguration</a></li>
+<li><a href="#AzureCredentials">AzureCredentials</a></li>
+<li><a href="#Backup">Backup</a></li>
+<li><a href="#BackupConfiguration">BackupConfiguration</a></li>
+<li><a href="#BackupList">BackupList</a></li>
+<li><a href="#BackupSource">BackupSource</a></li>
+<li><a href="#BackupSpec">BackupSpec</a></li>
+<li><a href="#BackupStatus">BackupStatus</a></li>
+<li><a href="#BarmanObjectStoreConfiguration">BarmanObjectStoreConfiguration</a></li>
+<li><a href="#BootstrapConfiguration">BootstrapConfiguration</a></li>
+<li><a href="#BootstrapInitDB">BootstrapInitDB</a></li>
+<li><a href="#BootstrapPgBaseBackup">BootstrapPgBaseBackup</a></li>
+<li><a href="#BootstrapRecovery">BootstrapRecovery</a></li>
+<li><a href="#CertificatesConfiguration">CertificatesConfiguration</a></li>
+<li><a href="#CertificatesStatus">CertificatesStatus</a></li>
+<li><a href="#Cluster">Cluster</a></li>
+<li><a href="#ClusterCondition">ClusterCondition</a></li>
+<li><a href="#ClusterList">ClusterList</a></li>
+<li><a href="#ClusterSpec">ClusterSpec</a></li>
+<li><a href="#ClusterStatus">ClusterStatus</a></li>
+<li><a href="#ConfigMapKeySelector">ConfigMapKeySelector</a></li>
+<li><a href="#ConfigMapResourceVersion">ConfigMapResourceVersion</a></li>
+<li><a href="#DataBackupConfiguration">DataBackupConfiguration</a></li>
+<li><a href="#EmbeddedObjectMetadata">EmbeddedObjectMetadata</a></li>
+<li><a href="#ExternalCluster">ExternalCluster</a></li>
+<li><a href="#GoogleCredentials">GoogleCredentials</a></li>
+<li><a href="#InstanceID">InstanceID</a></li>
+<li><a href="#LDAPBindAsAuth">LDAPBindAsAuth</a></li>
+<li><a href="#LDAPBindSearchAuth">LDAPBindSearchAuth</a></li>
+<li><a href="#LDAPConfig">LDAPConfig</a></li>
+<li><a href="#LocalObjectReference">LocalObjectReference</a></li>
+<li><a href="#MonitoringConfiguration">MonitoringConfiguration</a></li>
+<li><a href="#NodeMaintenanceWindow">NodeMaintenanceWindow</a></li>
+<li><a href="#PgBouncerIntegrationStatus">PgBouncerIntegrationStatus</a></li>
+<li><a href="#PgBouncerSecrets">PgBouncerSecrets</a></li>
+<li><a href="#PgBouncerSpec">PgBouncerSpec</a></li>
+<li><a href="#PodMeta">PodMeta</a></li>
+<li><a href="#PodTemplateSpec">PodTemplateSpec</a></li>
+<li><a href="#Pooler">Pooler</a></li>
+<li><a href="#PoolerIntegrations">PoolerIntegrations</a></li>
+<li><a href="#PoolerList">PoolerList</a></li>
+<li><a href="#PoolerSecrets">PoolerSecrets</a></li>
+<li><a href="#PoolerSpec">PoolerSpec</a></li>
+<li><a href="#PoolerStatus">PoolerStatus</a></li>
+<li><a href="#PostgresConfiguration">PostgresConfiguration</a></li>
+<li><a href="#RecoveryTarget">RecoveryTarget</a></li>
+<li><a href="#ReplicaClusterConfiguration">ReplicaClusterConfiguration</a></li>
+<li><a href="#RollingUpdateStatus">RollingUpdateStatus</a></li>
+<li><a href="#S3Credentials">S3Credentials</a></li>
+<li><a href="#ScheduledBackup">ScheduledBackup</a></li>
+<li><a href="#ScheduledBackupList">ScheduledBackupList</a></li>
+<li><a href="#ScheduledBackupSpec">ScheduledBackupSpec</a></li>
+<li><a href="#ScheduledBackupStatus">ScheduledBackupStatus</a></li>
+<li><a href="#SecretKeySelector">SecretKeySelector</a></li>
+<li><a href="#SecretVersion">SecretVersion</a></li>
+<li><a href="#SecretsResourceVersion">SecretsResourceVersion</a></li>
+<li><a href="#StorageConfiguration">StorageConfiguration</a></li>
+<li><a href="#WalBackupConfiguration">WalBackupConfiguration</a></li>
+</ul>
+<p><a id='AffinityConfiguration'></a></p>
+<h2 id="affinityconfiguration">AffinityConfiguration</h2>
+<p>AffinityConfiguration contains the info we need to create the affinity rules for Pods</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>enablePodAntiAffinity</code></td>
+<td>Activates anti-affinity for the pods. The operator will define pods anti-affinity unless this field is explicitly set to false</td>
+<td>*bool</td>
+</tr>
+<tr>
+<td><code>topologyKey</code></td>
+<td>TopologyKey to use for anti-affinity configuration. See k8s documentation for more info on that                                                                                                                                                                                                                                                                                                                                                                                                                                                     - <em>mandatory</em></td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>nodeSelector</code></td>
+<td>NodeSelector is map of key-value pairs used to define the nodes on which the pods can run. More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/</td>
+<td>map[string]string</td>
+</tr>
+<tr>
+<td><code>tolerations</code></td>
+<td>Tolerations is a list of Tolerations that should be set for all the pods, in order to allow them to run on tainted nodes. More info: https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/</td>
+<td>[]corev1.Toleration</td>
+</tr>
+<tr>
+<td><code>podAntiAffinityType</code></td>
+<td>PodAntiAffinityType allows the user to decide whether pod anti-affinity between cluster instance has to be considered a strong requirement during scheduling or not. Allowed values are: "preferred" (default if empty) or "required". Setting it to "required", could lead to instances remaining pending until new kubernetes nodes are added if all the existing nodes don't match the required pod anti-affinity rule. More info: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#inter-pod-affinity-and-anti-affinity</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>additionalPodAntiAffinity</code></td>
+<td>AdditionalPodAntiAffinity allows to specify pod anti-affinity terms to be added to the ones generated by the operator if EnablePodAntiAffinity is set to true (default) or to be used exclusively if set to false.</td>
+<td>*corev1.PodAntiAffinity</td>
+</tr>
+<tr>
+<td><code>additionalPodAffinity</code></td>
+<td>AdditionalPodAffinity allows to specify pod affinity terms to be passed to all the cluster's pods.</td>
+<td>*corev1.PodAffinity</td>
+</tr>
+</tbody>
+</table>
+<p><a id='AzureCredentials'></a></p>
+<h2 id="azurecredentials">AzureCredentials</h2>
+<p>AzureCredentials is the type for the credentials to be used to upload files to Azure Blob Storage. The connection string contains every needed information. If the connection string is not specified, we'll need the storage account name and also one (and only one) of:</p>
+<ul>
+<li>storageKey - storageSasToken</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>connectionString</code></td>
+<td>The connection string to be used</td>
+<td><a href="#SecretKeySelector">*SecretKeySelector</a></td>
+</tr>
+<tr>
+<td><code>storageAccount</code></td>
+<td>The storage account where to upload data</td>
+<td><a href="#SecretKeySelector">*SecretKeySelector</a></td>
+</tr>
+<tr>
+<td><code>storageKey</code></td>
+<td>The storage account key to be used in conjunction with the storage account name</td>
+<td><a href="#SecretKeySelector">*SecretKeySelector</a></td>
+</tr>
+<tr>
+<td><code>storageSasToken</code></td>
+<td>A shared-access-signature to be used in conjunction with the storage account name</td>
+<td><a href="#SecretKeySelector">*SecretKeySelector</a></td>
+</tr>
+</tbody>
+</table>
+<p><a id='Backup'></a></p>
+<h2 id="backup">Backup</h2>
+<p>Backup is the Schema for the backups API</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>metadata</code></td>
+<td></td>
+<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.21/#objectmeta-v1-meta">metav1.ObjectMeta</a></td>
+</tr>
+<tr>
+<td><code>spec</code></td>
+<td>Specification of the desired behavior of the backup. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status</td>
+<td><a href="#BackupSpec">BackupSpec</a></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td>Most recently observed status of the backup. This data may not be up to date. Populated by the system. Read-only. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status</td>
+<td><a href="#BackupStatus">BackupStatus</a></td>
+</tr>
+</tbody>
+</table>
+<p><a id='BackupConfiguration'></a></p>
+<h2 id="backupconfiguration">BackupConfiguration</h2>
+<p>BackupConfiguration defines how the backup of the cluster are taken. Currently the only supported backup method is barmanObjectStore. For details and examples refer to the Backup and Recovery section of the documentation</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>barmanObjectStore</code></td>
+<td>The configuration for the barman-cloud tool suite</td>
+<td><a href="#BarmanObjectStoreConfiguration">*BarmanObjectStoreConfiguration</a></td>
+</tr>
+<tr>
+<td><code>retentionPolicy</code></td>
+<td>RetentionPolicy is the retention policy to be used for backups and WALs (i.e. '60d'). The retention policy is expressed in the form of <code>XXu</code> where <code>XX</code> is a positive integer and <code>u</code> is in <code>[dwm]</code> - days, weeks, months.</td>
+<td>string</td>
+</tr>
+</tbody>
+</table>
+<p><a id='BackupList'></a></p>
+<h2 id="backuplist">BackupList</h2>
+<p>BackupList contains a list of Backup</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>metadata</code></td>
+<td>Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds</td>
+<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.21/#listmeta-v1-meta">metav1.ListMeta</a></td>
+</tr>
+<tr>
+<td><code>items</code></td>
+<td>List of backups                                                                                                                    - <em>mandatory</em></td>
+<td><a href="#Backup">[]Backup</a></td>
+</tr>
+</tbody>
+</table>
+<p><a id='BackupSource'></a></p>
+<h2 id="backupsource">BackupSource</h2>
+<p>BackupSource contains the backup we need to restore from, plus some information that could be needed to correctly restore it.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>endpointCA</code></td>
+<td>EndpointCA store the CA bundle of the barman endpoint. Useful when using self-signed certificates to avoid errors with certificate issuer and barman-cloud-wal-archive.</td>
+<td><a href="#SecretKeySelector">*SecretKeySelector</a></td>
+</tr>
+</tbody>
+</table>
+<p><a id='BackupSpec'></a></p>
+<h2 id="backupspec">BackupSpec</h2>
+<p>BackupSpec defines the desired state of Backup</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>cluster</code></td>
+<td>The cluster to backup</td>
+<td><a href="#LocalObjectReference">LocalObjectReference</a></td>
+</tr>
+</tbody>
+</table>
+<p><a id='BackupStatus'></a></p>
+<h2 id="backupstatus">BackupStatus</h2>
+<p>BackupStatus defines the observed state of Backup</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>s3Credentials</code></td>
+<td>The credentials to be used to upload data to S3</td>
+<td><a href="#S3Credentials">*S3Credentials</a></td>
+</tr>
+<tr>
+<td><code>azureCredentials</code></td>
+<td>The credentials to be used to upload data to Azure Blob Storage</td>
+<td><a href="#AzureCredentials">*AzureCredentials</a></td>
+</tr>
+<tr>
+<td><code>googleCredentials</code></td>
+<td>The credentials to use to upload data to Google Cloud Storage</td>
+<td><a href="#GoogleCredentials">*GoogleCredentials</a></td>
+</tr>
+<tr>
+<td><code>endpointCA</code></td>
+<td>EndpointCA store the CA bundle of the barman endpoint. Useful when using self-signed certificates to avoid errors with certificate issuer and barman-cloud-wal-archive.</td>
+<td><a href="#SecretKeySelector">*SecretKeySelector</a></td>
+</tr>
+<tr>
+<td><code>endpointURL</code></td>
+<td>Endpoint to be used to upload data to the cloud, overriding the automatic endpoint discovery</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>destinationPath</code></td>
+<td>The path where to store the backup (i.e. s3://bucket/path/to/folder) this path, with different destination folders, will be used for WALs and for data                  - <em>mandatory</em></td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>serverName</code></td>
+<td>The server name on S3, the cluster name is used if this parameter is omitted</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>encryption</code></td>
+<td>Encryption method required to S3 API</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>backupId</code></td>
+<td>The ID of the Barman backup</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>phase</code></td>
+<td>The last backup status</td>
+<td>BackupPhase</td>
+</tr>
+<tr>
+<td><code>startedAt</code></td>
+<td>When the backup was started</td>
+<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.21/#time-v1-meta">*metav1.Time</a></td>
+</tr>
+<tr>
+<td><code>stoppedAt</code></td>
+<td>When the backup was terminated</td>
+<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.21/#time-v1-meta">*metav1.Time</a></td>
+</tr>
+<tr>
+<td><code>beginWal</code></td>
+<td>The starting WAL</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>endWal</code></td>
+<td>The ending WAL</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>beginLSN</code></td>
+<td>The starting xlog</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>endLSN</code></td>
+<td>The ending xlog</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>error</code></td>
+<td>The detected error</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>commandOutput</code></td>
+<td>Unused. Retained for compatibility with old versions.</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>commandError</code></td>
+<td>The backup command output in case of error</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>instanceID</code></td>
+<td>Information to identify the instance where the backup has been taken from</td>
+<td><a href="#InstanceID">*InstanceID</a></td>
+</tr>
+</tbody>
+</table>
+<p><a id='BarmanObjectStoreConfiguration'></a></p>
+<h2 id="barmanobjectstoreconfiguration">BarmanObjectStoreConfiguration</h2>
+<p>BarmanObjectStoreConfiguration contains the backup configuration using Barman against an S3-compatible object storage</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>s3Credentials</code></td>
+<td>The credentials to use to upload data to S3</td>
+<td><a href="#S3Credentials">*S3Credentials</a></td>
+</tr>
+<tr>
+<td><code>azureCredentials</code></td>
+<td>The credentials to use to upload data to Azure Blob Storage</td>
+<td><a href="#AzureCredentials">*AzureCredentials</a></td>
+</tr>
+<tr>
+<td><code>googleCredentials</code></td>
+<td>The credentials to use to upload data to Google Cloud Storage</td>
+<td><a href="#GoogleCredentials">*GoogleCredentials</a></td>
+</tr>
+<tr>
+<td><code>endpointURL</code></td>
+<td>Endpoint to be used to upload data to the cloud, overriding the automatic endpoint discovery</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>endpointCA</code></td>
+<td>EndpointCA store the CA bundle of the barman endpoint. Useful when using self-signed certificates to avoid errors with certificate issuer and barman-cloud-wal-archive</td>
+<td><a href="#SecretKeySelector">*SecretKeySelector</a></td>
+</tr>
+<tr>
+<td><code>destinationPath</code></td>
+<td>The path where to store the backup (i.e. s3://bucket/path/to/folder) this path, with different destination folders, will be used for WALs and for data                                                     - <em>mandatory</em></td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>serverName</code></td>
+<td>The server name on S3, the cluster name is used if this parameter is omitted</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>wal</code></td>
+<td>The configuration for the backup of the WAL stream. When not defined, WAL files will be stored uncompressed and may be unencrypted in the object store, according to the bucket default policy.</td>
+<td><a href="#WalBackupConfiguration">*WalBackupConfiguration</a></td>
+</tr>
+<tr>
+<td><code>data</code></td>
+<td>The configuration to be used to backup the data files When not defined, base backups files will be stored uncompressed and may be unencrypted in the object store, according to the bucket default policy.</td>
+<td><a href="#DataBackupConfiguration">*DataBackupConfiguration</a></td>
+</tr>
+<tr>
+<td><code>tags</code></td>
+<td>Tags is a list of key value pairs that will be passed to the Barman --tags option.</td>
+<td>map[string]string</td>
+</tr>
+<tr>
+<td><code>historyTags</code></td>
+<td>HistoryTags is a list of key value pairs that will be passed to the Barman --history-tags option.</td>
+<td>map[string]string</td>
+</tr>
+</tbody>
+</table>
+<p><a id='BootstrapConfiguration'></a></p>
+<h2 id="bootstrapconfiguration">BootstrapConfiguration</h2>
+<p>BootstrapConfiguration contains information about how to create the PostgreSQL cluster. Only a single bootstrap method can be defined among the supported ones. <code>initdb</code> will be used as the bootstrap method if left unspecified. Refer to the Bootstrap page of the documentation for more information.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>initdb</code></td>
+<td>Bootstrap the cluster via initdb</td>
+<td><a href="#BootstrapInitDB">*BootstrapInitDB</a></td>
+</tr>
+<tr>
+<td><code>recovery</code></td>
+<td>Bootstrap the cluster from a backup</td>
+<td><a href="#BootstrapRecovery">*BootstrapRecovery</a></td>
+</tr>
+<tr>
+<td><code>pg_basebackup</code></td>
+<td>Bootstrap the cluster taking a physical backup of another compatible PostgreSQL instance</td>
+<td><a href="#BootstrapPgBaseBackup">*BootstrapPgBaseBackup</a></td>
+</tr>
+</tbody>
+</table>
+<p><a id='BootstrapInitDB'></a></p>
+<h2 id="bootstrapinitdb">BootstrapInitDB</h2>
+<p>BootstrapInitDB is the configuration of the bootstrap process when initdb is used Refer to the Bootstrap page of the documentation for more information.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>database</code></td>
+<td>Name of the database used by the application. Default: <code>app</code>.                                                                                                                                                                              - <em>mandatory</em></td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>owner</code></td>
+<td>Name of the owner of the database in the instance to be used by applications. Defaults to the value of the <code>database</code> key.                                                                                                                 - <em>mandatory</em></td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>secret</code></td>
+<td>Name of the secret containing the initial credentials for the owner of the user database. If empty a new secret will be created from scratch</td>
+<td><a href="#LocalObjectReference">*LocalObjectReference</a></td>
+</tr>
+<tr>
+<td><code>options</code></td>
+<td>The list of options that must be passed to initdb when creating the cluster. Deprecated: This could lead to inconsistent configurations, please use the explicit provided parameters instead. If defined, explicit values will be ignored.</td>
+<td>[]string</td>
+</tr>
+<tr>
+<td><code>dataChecksums</code></td>
+<td>Whether the <code>-k</code> option should be passed to initdb, enabling checksums on data pages (default: <code>false</code>)</td>
+<td>*bool</td>
+</tr>
+<tr>
+<td><code>encoding</code></td>
+<td>The value to be passed as option <code>--encoding</code> for initdb (default:<code>UTF8</code>)</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>localeCollate</code></td>
+<td>The value to be passed as option <code>--lc-collate</code> for initdb (default:<code>C</code>)</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>localeCType</code></td>
+<td>The value to be passed as option <code>--lc-ctype</code> for initdb (default:<code>C</code>)</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>walSegmentSize</code></td>
+<td>The value in megabytes (1 to 1024) to be passed to the <code>--wal-segsize</code> option for initdb (default: empty, resulting in PostgreSQL default: 16MB)</td>
+<td>int</td>
+</tr>
+<tr>
+<td><code>postInitSQL</code></td>
+<td>List of SQL queries to be executed as a superuser immediately after the cluster has been created - to be used with extreme care (by default empty)</td>
+<td>[]string</td>
+</tr>
+<tr>
+<td><code>postInitApplicationSQL</code></td>
+<td>List of SQL queries to be executed as a superuser in the application database right after is created - to be used with extreme care (by default empty)</td>
+<td>[]string</td>
+</tr>
+<tr>
+<td><code>postInitTemplateSQL</code></td>
+<td>List of SQL queries to be executed as a superuser in the <code>template1</code> after the cluster has been created - to be used with extreme care (by default empty)</td>
+<td>[]string</td>
+</tr>
+</tbody>
+</table>
+<p><a id='BootstrapPgBaseBackup'></a></p>
+<h2 id="bootstrappgbasebackup">BootstrapPgBaseBackup</h2>
+<p>BootstrapPgBaseBackup contains the configuration required to take a physical backup of an existing PostgreSQL cluster</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>source</code></td>
+<td>The name of the server of which we need to take a physical backup - <em>mandatory</em></td>
+<td>string</td>
+</tr>
+</tbody>
+</table>
+<p><a id='BootstrapRecovery'></a></p>
+<h2 id="bootstraprecovery">BootstrapRecovery</h2>
+<p>BootstrapRecovery contains the configuration required to restore the backup with the specified name and, after having changed the password with the one chosen for the superuser, will use it to bootstrap a full cluster cloning all the instances from the restored primary. Refer to the Bootstrap page of the documentation for more information.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>backup</code></td>
+<td>The backup we need to restore</td>
+<td><a href="#BackupSource">*BackupSource</a></td>
+</tr>
+<tr>
+<td><code>source</code></td>
+<td>The external cluster whose backup we will restore. This is also used as the name of the folder under which the backup is stored, so it must be set to the name of the source cluster</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>recoveryTarget</code></td>
+<td>By default, the recovery process applies all the available WAL files in the archive (full recovery). However, you can also end the recovery as soon as a consistent state is reached or recover to a point-in-time (PITR) by specifying a <code>RecoveryTarget</code> object, as expected by PostgreSQL (i.e., timestamp, transaction Id, LSN, ...). More info: https://www.postgresql.org/docs/current/runtime-config-wal.html#RUNTIME-CONFIG-WAL-RECOVERY-TARGET</td>
+<td><a href="#RecoveryTarget">*RecoveryTarget</a></td>
+</tr>
+</tbody>
+</table>
+<p><a id='CertificatesConfiguration'></a></p>
+<h2 id="certificatesconfiguration">CertificatesConfiguration</h2>
+<p>CertificatesConfiguration contains the needed configurations to handle server certificates.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>serverCASecret</code></td>
+<td>The secret containing the Server CA certificate. If not defined, a new secret will be created with a self-signed CA and will be used to generate the TLS certificate ServerTLSSecret.<br /> <br /> Contains:<br /> <br /> - <code>ca.crt</code>: CA that should be used to validate the server certificate, used as <code>sslrootcert</code> in client connection strings.<br /> - <code>ca.key</code>: key used to generate Server SSL certs, if ServerTLSSecret is provided, this can be omitted.<br /></td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>serverTLSSecret</code></td>
+<td>The secret of type kubernetes.io/tls containing the server TLS certificate and key that will be set as <code>ssl_cert_file</code> and <code>ssl_key_file</code> so that clients can connect to postgres securely. If not defined, ServerCASecret must provide also <code>ca.key</code> and a new secret will be created using the provided CA.</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>replicationTLSSecret</code></td>
+<td>The secret of type kubernetes.io/tls containing the client certificate to authenticate as the <code>streaming_replica</code> user. If not defined, ClientCASecret must provide also <code>ca.key</code>, and a new secret will be created using the provided CA.</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>clientCASecret</code></td>
+<td>The secret containing the Client CA certificate. If not defined, a new secret will be created with a self-signed CA and will be used to generate all the client certificates.<br /> <br /> Contains:<br /> <br /> - <code>ca.crt</code>: CA that should be used to validate the client certificates, used as <code>ssl_ca_file</code> of all the instances.<br /> - <code>ca.key</code>: key used to generate client certificates, if ReplicationTLSSecret is provided, this can be omitted.<br /></td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>serverAltDNSNames</code></td>
+<td>The list of the server alternative DNS names to be added to the generated server TLS certificates, when required.</td>
+<td>[]string</td>
+</tr>
+</tbody>
+</table>
+<p><a id='CertificatesStatus'></a></p>
+<h2 id="certificatesstatus">CertificatesStatus</h2>
+<p>CertificatesStatus contains configuration certificates and related expiration dates.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>expirations</code></td>
+<td>Expiration dates for all certificates.</td>
+<td>map[string]string</td>
+</tr>
+</tbody>
+</table>
+<p><a id='Cluster'></a></p>
+<h2 id="cluster">Cluster</h2>
+<p>Cluster is the Schema for the PostgreSQL API</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>metadata</code></td>
+<td></td>
+<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.21/#objectmeta-v1-meta">metav1.ObjectMeta</a></td>
+</tr>
+<tr>
+<td><code>spec</code></td>
+<td>Specification of the desired behavior of the cluster. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status</td>
+<td><a href="#ClusterSpec">ClusterSpec</a></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td>Most recently observed status of the cluster. This data may not be up to date. Populated by the system. Read-only. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status</td>
+<td><a href="#ClusterStatus">ClusterStatus</a></td>
+</tr>
+</tbody>
+</table>
+<p><a id='ClusterCondition'></a></p>
+<h2 id="clustercondition">ClusterCondition</h2>
+<p>ClusterCondition describes the state of a cluster object at a certain point</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>type</code></td>
+<td>Type of the condition.</td>
+<td>ClusterConditionType</td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td>Status of the condition, one of True, False, Unknown.</td>
+<td>ConditionStatus</td>
+</tr>
+<tr>
+<td><code>lastTransitionTime</code></td>
+<td>Last time the condition transitioned from one status to another.</td>
+<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.21/#time-v1-meta">*metav1.Time</a></td>
+</tr>
+<tr>
+<td><code>reason</code></td>
+<td>The reason for the condition's last transition.</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td>A human readable message indicating details about the transition.</td>
+<td>string</td>
+</tr>
+</tbody>
+</table>
+<p><a id='ClusterList'></a></p>
+<h2 id="clusterlist">ClusterList</h2>
+<p>ClusterList contains a list of Cluster</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>metadata</code></td>
+<td>Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds</td>
+<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.21/#listmeta-v1-meta">metav1.ListMeta</a></td>
+</tr>
+<tr>
+<td><code>items</code></td>
+<td>List of clusters                                                                                                                   - <em>mandatory</em></td>
+<td><a href="#Cluster">[]Cluster</a></td>
+</tr>
+</tbody>
+</table>
+<p><a id='ClusterSpec'></a></p>
+<h2 id="clusterspec">ClusterSpec</h2>
+<p>ClusterSpec defines the desired state of Cluster</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>description</code></td>
+<td>Description of this PostgreSQL cluster</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>inheritedMetadata</code></td>
+<td>Metadata that will be inherited by all objects related to the Cluster</td>
+<td><a href="#EmbeddedObjectMetadata">*EmbeddedObjectMetadata</a></td>
+</tr>
+<tr>
+<td><code>imageName</code></td>
+<td>Name of the container image, supporting both tags (<code>&lt;image&gt;:&lt;tag&gt;</code>) and digests for deterministic and repeatable deployments (<code>&lt;image&gt;:&lt;tag&gt;@sha256:&lt;digestValue&gt;</code>)</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>imagePullPolicy</code></td>
+<td>Image pull policy. One of <code>Always</code>, <code>Never</code> or <code>IfNotPresent</code>. If not defined, it defaults to <code>IfNotPresent</code>. Cannot be updated. More info: https://kubernetes.io/docs/concepts/containers/images#updating-images</td>
+<td>corev1.PullPolicy</td>
+</tr>
+<tr>
+<td><code>postgresUID</code></td>
+<td>The UID of the <code>postgres</code> user inside the image, defaults to <code>26</code></td>
+<td>int64</td>
+</tr>
+<tr>
+<td><code>postgresGID</code></td>
+<td>The GID of the <code>postgres</code> user inside the image, defaults to <code>26</code></td>
+<td>int64</td>
+</tr>
+<tr>
+<td><code>instances</code></td>
+<td>Number of instances required in the cluster                                                                                                                                                                                                                                                                                                                                                                             - <em>mandatory</em></td>
+<td>int32</td>
+</tr>
+<tr>
+<td><code>minSyncReplicas</code></td>
+<td>Minimum number of instances required in synchronous replication with the primary. Undefined or 0 allow writes to complete when no standby is available.</td>
+<td>int32</td>
+</tr>
+<tr>
+<td><code>maxSyncReplicas</code></td>
+<td>The target value for the synchronous replication quorum, that can be decreased if the number of ready standbys is lower than this. Undefined or 0 disable synchronous replication.</td>
+<td>int32</td>
+</tr>
+<tr>
+<td><code>postgresql</code></td>
+<td>Configuration of the PostgreSQL server</td>
+<td><a href="#PostgresConfiguration">PostgresConfiguration</a></td>
+</tr>
+<tr>
+<td><code>bootstrap</code></td>
+<td>Instructions to bootstrap this cluster</td>
+<td><a href="#BootstrapConfiguration">*BootstrapConfiguration</a></td>
+</tr>
+<tr>
+<td><code>replica</code></td>
+<td>Replica cluster configuration</td>
+<td><a href="#ReplicaClusterConfiguration">*ReplicaClusterConfiguration</a></td>
+</tr>
+<tr>
+<td><code>superuserSecret</code></td>
+<td>The secret containing the superuser password. If not defined a new secret will be created with a randomly generated password</td>
+<td><a href="#LocalObjectReference">*LocalObjectReference</a></td>
+</tr>
+<tr>
+<td><code>enableSuperuserAccess</code></td>
+<td>When this option is enabled, the operator will use the <code>SuperuserSecret</code> to update the <code>postgres</code> user password (if the secret is not present, the operator will automatically create one). When this option is disabled, the operator will ignore the <code>SuperuserSecret</code> content, delete it when automatically created, and then blank the password of the <code>postgres</code> user by setting it to <code>NULL</code>. Enabled by default.</td>
+<td>*bool</td>
+</tr>
+<tr>
+<td><code>certificates</code></td>
+<td>The configuration for the CA and related certificates</td>
+<td><a href="#CertificatesConfiguration">*CertificatesConfiguration</a></td>
+</tr>
+<tr>
+<td><code>imagePullSecrets</code></td>
+<td>The list of pull secrets to be used to pull the images</td>
+<td><a href="#LocalObjectReference">[]LocalObjectReference</a></td>
+</tr>
+<tr>
+<td><code>storage</code></td>
+<td>Configuration of the storage of the instances</td>
+<td><a href="#StorageConfiguration">StorageConfiguration</a></td>
+</tr>
+<tr>
+<td><code>startDelay</code></td>
+<td>The time in seconds that is allowed for a PostgreSQL instance to successfully start up (default 30)</td>
+<td>int32</td>
+</tr>
+<tr>
+<td><code>stopDelay</code></td>
+<td>The time in seconds that is allowed for a PostgreSQL instance to gracefully shutdown (default 30)</td>
+<td>int32</td>
+</tr>
+<tr>
+<td><code>switchoverDelay</code></td>
+<td>The time in seconds that is allowed for a primary PostgreSQL instance to gracefully shutdown during a switchover. Default value is 40000000, greater than one year in seconds, big enough to simulate an infinite delay</td>
+<td>int32</td>
+</tr>
+<tr>
+<td><code>affinity</code></td>
+<td>Affinity/Anti-affinity rules for Pods</td>
+<td><a href="#AffinityConfiguration">AffinityConfiguration</a></td>
+</tr>
+<tr>
+<td><code>resources</code></td>
+<td>Resources requirements of every generated Pod. Please refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ for more information.</td>
+<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.21/#resourcerequirements-v1-core">corev1.ResourceRequirements</a></td>
+</tr>
+<tr>
+<td><code>primaryUpdateStrategy</code></td>
+<td>Strategy to follow to upgrade the primary server during a rolling update procedure, after all replicas have been successfully updated: it can be automated (<code>unsupervised</code> - default) or manual (<code>supervised</code>)</td>
+<td>PrimaryUpdateStrategy</td>
+</tr>
+<tr>
+<td><code>primaryUpdateMethod</code></td>
+<td>Method to follow to upgrade the primary server during a rolling update procedure, after all replicas have been successfully updated: it can be with a switchover (<code>switchover</code> - default) or in-place (<code>restart</code>)</td>
+<td>PrimaryUpdateMethod</td>
+</tr>
+<tr>
+<td><code>backup</code></td>
+<td>The configuration to be used for backups</td>
+<td><a href="#BackupConfiguration">*BackupConfiguration</a></td>
+</tr>
+<tr>
+<td><code>nodeMaintenanceWindow</code></td>
+<td>Define a maintenance window for the Kubernetes nodes</td>
+<td><a href="#NodeMaintenanceWindow">*NodeMaintenanceWindow</a></td>
+</tr>
+<tr>
+<td><code>monitoring</code></td>
+<td>The configuration of the monitoring infrastructure of this cluster</td>
+<td><a href="#MonitoringConfiguration">*MonitoringConfiguration</a></td>
+</tr>
+<tr>
+<td><code>externalClusters</code></td>
+<td>The list of external clusters which are used in the configuration</td>
+<td><a href="#ExternalCluster">[]ExternalCluster</a></td>
+</tr>
+<tr>
+<td><code>logLevel</code></td>
+<td>The instances' log level, one of the following values: error, warning, info (default), debug, trace</td>
+<td>string</td>
+</tr>
+</tbody>
+</table>
+<p><a id='ClusterStatus'></a></p>
+<h2 id="clusterstatus">ClusterStatus</h2>
+<p>ClusterStatus defines the observed state of Cluster</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>instances</code></td>
+<td>Total number of instances in the cluster</td>
+<td>int32</td>
+</tr>
+<tr>
+<td><code>readyInstances</code></td>
+<td>Total number of ready instances in the cluster</td>
+<td>int32</td>
+</tr>
+<tr>
+<td><code>instancesStatus</code></td>
+<td>Instances status</td>
+<td>map[utils.PodStatus][]string</td>
+</tr>
+<tr>
+<td><code>latestGeneratedNode</code></td>
+<td>ID of the latest generated node (used to avoid node name clashing)</td>
+<td>int32</td>
+</tr>
+<tr>
+<td><code>currentPrimary</code></td>
+<td>Current primary instance</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>targetPrimary</code></td>
+<td>Target primary instance, this is different from the previous one during a switchover or a failover</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>pvcCount</code></td>
+<td>How many PVCs have been created by this cluster</td>
+<td>int32</td>
+</tr>
+<tr>
+<td><code>jobCount</code></td>
+<td>How many Jobs have been created by this cluster</td>
+<td>int32</td>
+</tr>
+<tr>
+<td><code>danglingPVC</code></td>
+<td>List of all the PVCs created by this cluster and still available which are not attached to a Pod</td>
+<td>[]string</td>
+</tr>
+<tr>
+<td><code>resizingPVC</code></td>
+<td>List of all the PVCs that have ResizingPVC condition.</td>
+<td>[]string</td>
+</tr>
+<tr>
+<td><code>initializingPVC</code></td>
+<td>List of all the PVCs that are being initialized by this cluster</td>
+<td>[]string</td>
+</tr>
+<tr>
+<td><code>healthyPVC</code></td>
+<td>List of all the PVCs not dangling nor initializing</td>
+<td>[]string</td>
+</tr>
+<tr>
+<td><code>writeService</code></td>
+<td>Current write pod</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>readService</code></td>
+<td>Current list of read pods</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>phase</code></td>
+<td>Current phase of the cluster</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>phaseReason</code></td>
+<td>Reason for the current phase</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>secretsResourceVersion</code></td>
+<td>The list of resource versions of the secrets managed by the operator. Every change here is done in the interest of the instance manager, which will refresh the secret data</td>
+<td><a href="#SecretsResourceVersion">SecretsResourceVersion</a></td>
+</tr>
+<tr>
+<td><code>configMapResourceVersion</code></td>
+<td>The list of resource versions of the configmaps, managed by the operator. Every change here is done in the interest of the instance manager, which will refresh the configmap data</td>
+<td><a href="#ConfigMapResourceVersion">ConfigMapResourceVersion</a></td>
+</tr>
+<tr>
+<td><code>certificates</code></td>
+<td>The configuration for the CA and related certificates, initialized with defaults.</td>
+<td><a href="#CertificatesStatus">CertificatesStatus</a></td>
+</tr>
+<tr>
+<td><code>firstRecoverabilityPoint</code></td>
+<td>The first recoverability point, stored as a date in RFC3339 format</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>cloudNativePGCommitHash</code></td>
+<td>The commit hash number of which this operator running</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>currentPrimaryTimestamp</code></td>
+<td>The timestamp when the last actual promotion to primary has occurred</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>targetPrimaryTimestamp</code></td>
+<td>The timestamp when the last request for a new primary has occurred</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>poolerIntegrations</code></td>
+<td>The integration needed by poolers referencing the cluster</td>
+<td><a href="#PoolerIntegrations">*PoolerIntegrations</a></td>
+</tr>
+<tr>
+<td><code>cloudNativePGOperatorHash</code></td>
+<td>The hash of the binary of the operator</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>onlineUpdateEnabled</code></td>
+<td>OnlineUpdateEnabled shows if the online upgrade is enabled inside the cluster</td>
+<td>bool</td>
+</tr>
+<tr>
+<td><code>azurePVCUpdateEnabled</code></td>
+<td>AzurePVCUpdateEnabled shows if the PVC online upgrade is enabled for this cluster</td>
+<td>bool</td>
+</tr>
+<tr>
+<td><code>conditions</code></td>
+<td>Conditions for cluster object</td>
+<td><a href="#ClusterCondition">[]ClusterCondition</a></td>
+</tr>
+</tbody>
+</table>
+<p><a id='ConfigMapKeySelector'></a></p>
+<h2 id="configmapkeyselector">ConfigMapKeySelector</h2>
+<p>ConfigMapKeySelector contains enough information to let you locate the key of a ConfigMap</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>key</code></td>
+<td>The key to select - <em>mandatory</em></td>
+<td>string</td>
+</tr>
+</tbody>
+</table>
+<p><a id='ConfigMapResourceVersion'></a></p>
+<h2 id="configmapresourceversion">ConfigMapResourceVersion</h2>
+<p>ConfigMapResourceVersion is the resource versions of the secrets managed by the operator</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>metrics</code></td>
+<td>A map with the versions of all the config maps used to pass metrics. Map keys are the config map names, map values are the versions</td>
+<td>map[string]string</td>
+</tr>
+</tbody>
+</table>
+<p><a id='DataBackupConfiguration'></a></p>
+<h2 id="databackupconfiguration">DataBackupConfiguration</h2>
+<p>DataBackupConfiguration is the configuration of the backup of the data directory</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>compression</code></td>
+<td>Compress a backup file (a tar file per tablespace) while streaming it to the object store. Available options are empty string (no compression, default), <code>gzip</code>, <code>bzip2</code> or <code>snappy</code>.</td>
+<td>CompressionType</td>
+</tr>
+<tr>
+<td><code>encryption</code></td>
+<td>Whenever to force the encryption of files (if the bucket is not already configured for that). Allowed options are empty string (use the bucket policy, default), <code>AES256</code> and <code>aws:kms</code></td>
+<td>EncryptionType</td>
+</tr>
+<tr>
+<td><code>immediateCheckpoint</code></td>
+<td>Control whether the I/O workload for the backup initial checkpoint will be limited, according to the <code>checkpoint_completion_target</code> setting on the PostgreSQL server. If set to true, an immediate checkpoint will be used, meaning PostgreSQL will complete the checkpoint as soon as possible. <code>false</code> by default.</td>
+<td>bool</td>
+</tr>
+<tr>
+<td><code>jobs</code></td>
+<td>The number of parallel jobs to be used to upload the backup, defaults to 2</td>
+<td>*int32</td>
+</tr>
+</tbody>
+</table>
+<p><a id='EmbeddedObjectMetadata'></a></p>
+<h2 id="embeddedobjectmetadata">EmbeddedObjectMetadata</h2>
+<p>EmbeddedObjectMetadata contains metadata to be inherited by all resources related to a Cluster</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>labels</code></td>
+<td></td>
+<td>map[string]string</td>
+</tr>
+<tr>
+<td><code>annotations</code></td>
+<td></td>
+<td>map[string]string</td>
+</tr>
+</tbody>
+</table>
+<p><a id='ExternalCluster'></a></p>
+<h2 id="externalcluster">ExternalCluster</h2>
+<p>ExternalCluster represents the connection parameters to an external cluster which is used in the other sections of the configuration</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+<td>The server name, required                                                    - <em>mandatory</em></td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>connectionParameters</code></td>
+<td>The list of connection parameters, such as dbname, host, username, etc</td>
+<td>map[string]string</td>
+</tr>
+<tr>
+<td><code>sslCert</code></td>
+<td>The reference to an SSL certificate to be used to connect to this instance</td>
+<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.21/#secretkeyselector-v1-core">*corev1.SecretKeySelector</a></td>
+</tr>
+<tr>
+<td><code>sslKey</code></td>
+<td>The reference to an SSL private key to be used to connect to this instance</td>
+<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.21/#secretkeyselector-v1-core">*corev1.SecretKeySelector</a></td>
+</tr>
+<tr>
+<td><code>sslRootCert</code></td>
+<td>The reference to an SSL CA public key to be used to connect to this instance</td>
+<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.21/#secretkeyselector-v1-core">*corev1.SecretKeySelector</a></td>
+</tr>
+<tr>
+<td><code>password</code></td>
+<td>The reference to the password to be used to connect to the server</td>
+<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.21/#secretkeyselector-v1-core">*corev1.SecretKeySelector</a></td>
+</tr>
+<tr>
+<td><code>barmanObjectStore</code></td>
+<td>The configuration for the barman-cloud tool suite</td>
+<td><a href="#BarmanObjectStoreConfiguration">*BarmanObjectStoreConfiguration</a></td>
+</tr>
+</tbody>
+</table>
+<p><a id='GoogleCredentials'></a></p>
+<h2 id="googlecredentials">GoogleCredentials</h2>
+<p>GoogleCredentials is the type for the Google Cloud Storage credentials. This needs to be specified even if we run inside a GKE environment.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>gkeEnvironment</code></td>
+<td>If set to true, will presume that it's running inside a GKE environment, default to false. - <em>mandatory</em></td>
+<td>bool</td>
+</tr>
+<tr>
+<td><code>applicationCredentials</code></td>
+<td>The secret containing the Google Cloud Storage JSON file with the credentials</td>
+<td><a href="#SecretKeySelector">*SecretKeySelector</a></td>
+</tr>
+</tbody>
+</table>
+<p><a id='InstanceID'></a></p>
+<h2 id="instanceid">InstanceID</h2>
+<p>InstanceID contains the information to identify an instance</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>podName</code></td>
+<td>The pod name</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>ContainerID</code></td>
+<td>The container ID</td>
+<td>string</td>
+</tr>
+</tbody>
+</table>
+<p><a id='LDAPBindAsAuth'></a></p>
+<h2 id="ldapbindasauth">LDAPBindAsAuth</h2>
+<p>LDAPBindAsAuth provides the required fields to use the bind authentication for LDAP</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>prefix</code></td>
+<td>Prefix for the bind authentication option</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>suffix</code></td>
+<td>Suffix for the bind authentication option</td>
+<td>string</td>
+</tr>
+</tbody>
+</table>
+<p><a id='LDAPBindSearchAuth'></a></p>
+<h2 id="ldapbindsearchauth">LDAPBindSearchAuth</h2>
+<p>LDAPBindSearchAuth provides the required fields to use the bind+search LDAP authentication process</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>baseDN</code></td>
+<td>Root DN to begin the user search</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>bindDN</code></td>
+<td>DN of the user to bind to the directory</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>bindPassword</code></td>
+<td>Secret with the password for the user to bind to the directory</td>
+<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.21/#secretkeyselector-v1-core">*corev1.SecretKeySelector</a></td>
+</tr>
+<tr>
+<td><code>searchAttribute</code></td>
+<td>Attribute to match against the username</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>searchFilter</code></td>
+<td>Search filter to use when doing the search+bind authentication</td>
+<td>string</td>
+</tr>
+</tbody>
+</table>
+<p><a id='LDAPConfig'></a></p>
+<h2 id="ldapconfig">LDAPConfig</h2>
+<p>LDAPConfig contains the parameters needed for LDAP authentication</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>server</code></td>
+<td>LDAP hostname or IP address</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>port</code></td>
+<td>LDAP server port</td>
+<td>int</td>
+</tr>
+<tr>
+<td><code>scheme</code></td>
+<td>LDAP schema to be used, possible options are <code>ldap</code> and <code>ldaps</code></td>
+<td>LDAPScheme</td>
+</tr>
+<tr>
+<td><code>tls</code></td>
+<td>Set to 1 to enable LDAP over TLS</td>
+<td>bool</td>
+</tr>
+<tr>
+<td><code>bindAsAuth</code></td>
+<td>Bind as authentication configuration</td>
+<td><a href="#LDAPBindAsAuth">*LDAPBindAsAuth</a></td>
+</tr>
+<tr>
+<td><code>bindSearchAuth</code></td>
+<td>Bind+Search authentication configuration</td>
+<td><a href="#LDAPBindSearchAuth">*LDAPBindSearchAuth</a></td>
+</tr>
+</tbody>
+</table>
+<p><a id='LocalObjectReference'></a></p>
+<h2 id="localobjectreference">LocalObjectReference</h2>
+<p>LocalObjectReference contains enough information to let you locate a local object with a known type inside the same namespace</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+<td>Name of the referent. - <em>mandatory</em></td>
+<td>string</td>
+</tr>
+</tbody>
+</table>
+<p><a id='MonitoringConfiguration'></a></p>
+<h2 id="monitoringconfiguration">MonitoringConfiguration</h2>
+<p>MonitoringConfiguration is the type containing all the monitoring configuration for a certain cluster</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>disableDefaultQueries</code></td>
+<td>Whether the default queries should be injected. Set it to <code>true</code> if you don't want to inject default queries into the cluster. Default: false.</td>
+<td>*bool</td>
+</tr>
+<tr>
+<td><code>customQueriesConfigMap</code></td>
+<td>The list of config maps containing the custom queries</td>
+<td><a href="#ConfigMapKeySelector">[]ConfigMapKeySelector</a></td>
+</tr>
+<tr>
+<td><code>customQueriesSecret</code></td>
+<td>The list of secrets containing the custom queries</td>
+<td><a href="#SecretKeySelector">[]SecretKeySelector</a></td>
+</tr>
+<tr>
+<td><code>enablePodMonitor</code></td>
+<td>Enable or disable the <code>PodMonitor</code></td>
+<td>bool</td>
+</tr>
+</tbody>
+</table>
+<p><a id='NodeMaintenanceWindow'></a></p>
+<h2 id="nodemaintenancewindow">NodeMaintenanceWindow</h2>
+<p>NodeMaintenanceWindow contains information that the operator will use while upgrading the underlying node.</p>
+<p>This option is only useful when the chosen storage prevents the Pods from being freely moved across nodes.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>inProgress</code></td>
+<td>Is there a node maintenance activity in progress?                                                                - <em>mandatory</em></td>
+<td>bool</td>
+</tr>
+<tr>
+<td><code>reusePVC</code></td>
+<td>Reuse the existing PVC (wait for the node to come up again) or not (recreate it elsewhere - when <code>instances</code> &gt;1) - <em>mandatory</em></td>
+<td>*bool</td>
+</tr>
+</tbody>
+</table>
+<p><a id='PgBouncerIntegrationStatus'></a></p>
+<h2 id="pgbouncerintegrationstatus">PgBouncerIntegrationStatus</h2>
+<p>PgBouncerIntegrationStatus encapsulates the needed integration for the pgbouncer poolers referencing the cluster</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>secrets</code></td>
+<td></td>
+<td>[]string</td>
+</tr>
+</tbody>
+</table>
+<p><a id='PgBouncerSecrets'></a></p>
+<h2 id="pgbouncersecrets">PgBouncerSecrets</h2>
+<p>PgBouncerSecrets contains the versions of the secrets used by pgbouncer</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>authQuery</code></td>
+<td>The auth query secret version</td>
+<td><a href="#SecretVersion">SecretVersion</a></td>
+</tr>
+</tbody>
+</table>
+<p><a id='PgBouncerSpec'></a></p>
+<h2 id="pgbouncerspec">PgBouncerSpec</h2>
+<p>PgBouncerSpec defines how to configure PgBouncer</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>poolMode</code></td>
+<td>The pool mode                                                                                                                                                                                                                                                                     - <em>mandatory</em></td>
+<td>PgBouncerPoolMode</td>
+</tr>
+<tr>
+<td><code>authQuerySecret</code></td>
+<td>The credentials of the user that need to be used for the authentication query. In case it is specified, also an AuthQuery (e.g. "SELECT usename, passwd FROM pg_shadow WHERE usename=$1") has to be specified and no automatic CNPG Cluster integration will be triggered.</td>
+<td><a href="#LocalObjectReference">*LocalObjectReference</a></td>
+</tr>
+<tr>
+<td><code>authQuery</code></td>
+<td>The query that will be used to download the hash of the password of a certain user. Default: "SELECT usename, passwd FROM user_search($1)". In case it is specified, also an AuthQuerySecret has to be specified and no automatic CNPG Cluster integration will be triggered.</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>parameters</code></td>
+<td>Additional parameters to be passed to PgBouncer - please check the CNPG documentation for a list of options you can configure</td>
+<td>map[string]string</td>
+</tr>
+<tr>
+<td><code>paused</code></td>
+<td>When set to <code>true</code>, PgBouncer will disconnect from the PostgreSQL server, first waiting for all queries to complete, and pause all new client connections until this value is set to <code>false</code> (default). Internally, the operator calls PgBouncer's <code>PAUSE</code> and <code>RESUME</code> commands.</td>
+<td>*bool</td>
+</tr>
+</tbody>
+</table>
+<p><a id='PodMeta'></a></p>
+<h2 id="podmeta">PodMeta</h2>
+<p>PodMeta is a structure similar to the metav1.ObjectMeta, but still parseable by controller-gen to create a suitable CRD for the user. The comment of PodTemplateSpec has an explanation of why we are not using the core data types.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>labels</code></td>
+<td>Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels</td>
+<td>map[string]string</td>
+</tr>
+<tr>
+<td><code>annotations</code></td>
+<td>Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations</td>
+<td>map[string]string</td>
+</tr>
+</tbody>
+</table>
+<p><a id='PodTemplateSpec'></a></p>
+<h2 id="podtemplatespec">PodTemplateSpec</h2>
+<p>PodTemplateSpec is a structure allowing the user to set a template for Pod generation.</p>
+<p>Unfortunately we can't use the corev1.PodTemplateSpec type because the generated CRD won't have the field for the metadata section.</p>
+<p>References: https://github.com/kubernetes-sigs/controller-tools/issues/385 https://github.com/kubernetes-sigs/controller-tools/issues/448 https://github.com/prometheus-operator/prometheus-operator/issues/3041</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>metadata</code></td>
+<td>Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata</td>
+<td><a href="#PodMeta">PodMeta</a></td>
+</tr>
+<tr>
+<td><code>spec</code></td>
+<td>Specification of the desired behavior of the pod. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status</td>
+<td>corev1.PodSpec</td>
+</tr>
+</tbody>
+</table>
+<p><a id='Pooler'></a></p>
+<h2 id="pooler">Pooler</h2>
+<p>Pooler is the Schema for the poolers API</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>metadata</code></td>
+<td></td>
+<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.21/#objectmeta-v1-meta">metav1.ObjectMeta</a></td>
+</tr>
+<tr>
+<td><code>spec</code></td>
+<td></td>
+<td><a href="#PoolerSpec">PoolerSpec</a></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td></td>
+<td><a href="#PoolerStatus">PoolerStatus</a></td>
+</tr>
+</tbody>
+</table>
+<p><a id='PoolerIntegrations'></a></p>
+<h2 id="poolerintegrations">PoolerIntegrations</h2>
+<p>PoolerIntegrations encapsulates the needed integration for the poolers referencing the cluster</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>pgBouncerIntegration</code></td>
+<td></td>
+<td><a href="#PgBouncerIntegrationStatus">PgBouncerIntegrationStatus</a></td>
+</tr>
+</tbody>
+</table>
+<p><a id='PoolerList'></a></p>
+<h2 id="poolerlist">PoolerList</h2>
+<p>PoolerList contains a list of Pooler</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>metadata</code></td>
+<td></td>
+<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.21/#listmeta-v1-meta">metav1.ListMeta</a></td>
+</tr>
+<tr>
+<td><code>items</code></td>
+<td>- <em>mandatory</em></td>
+<td><a href="#Pooler">[]Pooler</a></td>
+</tr>
+</tbody>
+</table>
+<p><a id='PoolerSecrets'></a></p>
+<h2 id="poolersecrets">PoolerSecrets</h2>
+<p>PoolerSecrets contains the versions of all the secrets used</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>serverTLS</code></td>
+<td>The server TLS secret version</td>
+<td><a href="#SecretVersion">SecretVersion</a></td>
+</tr>
+<tr>
+<td><code>serverCA</code></td>
+<td>The server CA secret version</td>
+<td><a href="#SecretVersion">SecretVersion</a></td>
+</tr>
+<tr>
+<td><code>clientCA</code></td>
+<td>The client CA secret version</td>
+<td><a href="#SecretVersion">SecretVersion</a></td>
+</tr>
+<tr>
+<td><code>pgBouncerSecrets</code></td>
+<td>The version of the secrets used by PgBouncer</td>
+<td><a href="#PgBouncerSecrets">*PgBouncerSecrets</a></td>
+</tr>
+</tbody>
+</table>
+<p><a id='PoolerSpec'></a></p>
+<h2 id="poolerspec">PoolerSpec</h2>
+<p>PoolerSpec defines the desired state of Pooler</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>cluster</code></td>
+<td>This is the cluster reference on which the Pooler will work. Pooler name should never match with any cluster name within the same namespace. - <em>mandatory</em></td>
+<td><a href="#LocalObjectReference">LocalObjectReference</a></td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td>Which instances we must forward traffic to?                                                                                                  - <em>mandatory</em></td>
+<td>PoolerType</td>
+</tr>
+<tr>
+<td><code>instances</code></td>
+<td>The number of replicas we want                                                                                                               - <em>mandatory</em></td>
+<td>int32</td>
+</tr>
+<tr>
+<td><code>template</code></td>
+<td>The template of the Pod to be created</td>
+<td><a href="#PodTemplateSpec">*PodTemplateSpec</a></td>
+</tr>
+<tr>
+<td><code>pgbouncer</code></td>
+<td>The PgBouncer configuration                                                                                                                  - <em>mandatory</em></td>
+<td><a href="#PgBouncerSpec">*PgBouncerSpec</a></td>
+</tr>
+</tbody>
+</table>
+<p><a id='PoolerStatus'></a></p>
+<h2 id="poolerstatus">PoolerStatus</h2>
+<p>PoolerStatus defines the observed state of Pooler</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>secrets</code></td>
+<td>The resource version of the config object</td>
+<td><a href="#PoolerSecrets">*PoolerSecrets</a></td>
+</tr>
+<tr>
+<td><code>instances</code></td>
+<td>The number of pods trying to be scheduled</td>
+<td>int32</td>
+</tr>
+</tbody>
+</table>
+<p><a id='PostgresConfiguration'></a></p>
+<h2 id="postgresconfiguration">PostgresConfiguration</h2>
+<p>PostgresConfiguration defines the PostgreSQL configuration</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>parameters</code></td>
+<td>PostgreSQL configuration options (postgresql.conf)</td>
+<td>map[string]string</td>
+</tr>
+<tr>
+<td><code>pg_hba</code></td>
+<td>PostgreSQL Host Based Authentication rules (lines to be appended to the pg_hba.conf file)</td>
+<td>[]string</td>
+</tr>
+<tr>
+<td><code>promotionTimeout</code></td>
+<td>Specifies the maximum number of seconds to wait when promoting an instance to primary. Default value is 40000000, greater than one year in seconds, big enough to simulate an infinite timeout</td>
+<td>int32</td>
+</tr>
+<tr>
+<td><code>shared_preload_libraries</code></td>
+<td>Lists of shared preload libraries to add to the default ones</td>
+<td>[]string</td>
+</tr>
+<tr>
+<td><code>ldap</code></td>
+<td>Options to specify LDAP configuration</td>
+<td><a href="#LDAPConfig">*LDAPConfig</a></td>
+</tr>
+</tbody>
+</table>
+<p><a id='RecoveryTarget'></a></p>
+<h2 id="recoverytarget">RecoveryTarget</h2>
+<p>RecoveryTarget allows to configure the moment where the recovery process will stop. All the target options except TargetTLI are mutually exclusive.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>targetTLI</code></td>
+<td>The target timeline ("latest" or a positive integer)</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>targetXID</code></td>
+<td>The target transaction ID</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>targetName</code></td>
+<td>The target name (to be previously created with <code>pg_create_restore_point</code>)</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>targetLSN</code></td>
+<td>The target LSN (Log Sequence Number)</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>targetTime</code></td>
+<td>The target time, in any unambiguous representation allowed by PostgreSQL</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>targetImmediate</code></td>
+<td>End recovery as soon as a consistent state is reached</td>
+<td>*bool</td>
+</tr>
+<tr>
+<td><code>exclusive</code></td>
+<td>Set the target to be exclusive (defaults to true)</td>
+<td>*bool</td>
+</tr>
+</tbody>
+</table>
+<p><a id='ReplicaClusterConfiguration'></a></p>
+<h2 id="replicaclusterconfiguration">ReplicaClusterConfiguration</h2>
+<p>ReplicaClusterConfiguration encapsulates the configuration of a replica cluster</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>enabled</code></td>
+<td>If replica mode is enabled, this cluster will be a replica of an existing cluster. Replica cluster can be created from a recovery object store or via streaming through pg_basebackup. Refer to the Replication page of the documentation for more information. - <em>mandatory</em></td>
+<td>bool</td>
+</tr>
+<tr>
+<td><code>source</code></td>
+<td>The name of the external cluster which is the replication origin                                                                                                                                                                                                - <em>mandatory</em></td>
+<td>string</td>
+</tr>
+</tbody>
+</table>
+<p><a id='RollingUpdateStatus'></a></p>
+<h2 id="rollingupdatestatus">RollingUpdateStatus</h2>
+<p>RollingUpdateStatus contains the information about an instance which is being updated</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>imageName</code></td>
+<td>The image which we put into the Pod - <em>mandatory</em></td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>startedAt</code></td>
+<td>When the update has been started</td>
+<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.21/#time-v1-meta">metav1.Time</a></td>
+</tr>
+</tbody>
+</table>
+<p><a id='S3Credentials'></a></p>
+<h2 id="s3credentials">S3Credentials</h2>
+<p>S3Credentials is the type for the credentials to be used to upload files to S3. It can be provided in two alternative ways:</p>
+<ul>
+<li>
+<p>explicitly passing accessKeyId and secretAccessKey</p>
+</li>
+<li>
+<p>inheriting the role from the pod environment by setting inheritFromIAMRole to true</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>accessKeyId</code></td>
+<td>The reference to the access key id</td>
+<td><a href="#SecretKeySelector">*SecretKeySelector</a></td>
+</tr>
+<tr>
+<td><code>secretAccessKey</code></td>
+<td>The reference to the secret access key</td>
+<td><a href="#SecretKeySelector">*SecretKeySelector</a></td>
+</tr>
+<tr>
+<td><code>sessionToken</code></td>
+<td>The references to the session key</td>
+<td><a href="#SecretKeySelector">*SecretKeySelector</a></td>
+</tr>
+<tr>
+<td><code>inheritFromIAMRole</code></td>
+<td>Use the role based authentication without providing explicitly the keys. - <em>mandatory</em></td>
+<td>bool</td>
+</tr>
+</tbody>
+</table>
+<p><a id='ScheduledBackup'></a></p>
+<h2 id="scheduledbackup">ScheduledBackup</h2>
+<p>ScheduledBackup is the Schema for the scheduledbackups API</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>metadata</code></td>
+<td></td>
+<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.21/#objectmeta-v1-meta">metav1.ObjectMeta</a></td>
+</tr>
+<tr>
+<td><code>spec</code></td>
+<td>Specification of the desired behavior of the ScheduledBackup. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status</td>
+<td><a href="#ScheduledBackupSpec">ScheduledBackupSpec</a></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td>Most recently observed status of the ScheduledBackup. This data may not be up to date. Populated by the system. Read-only. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status</td>
+<td><a href="#ScheduledBackupStatus">ScheduledBackupStatus</a></td>
+</tr>
+</tbody>
+</table>
+<p><a id='ScheduledBackupList'></a></p>
+<h2 id="scheduledbackuplist">ScheduledBackupList</h2>
+<p>ScheduledBackupList contains a list of ScheduledBackup</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>metadata</code></td>
+<td>Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds</td>
+<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.21/#listmeta-v1-meta">metav1.ListMeta</a></td>
+</tr>
+<tr>
+<td><code>items</code></td>
+<td>List of clusters                                                                                                                   - <em>mandatory</em></td>
+<td><a href="#ScheduledBackup">[]ScheduledBackup</a></td>
+</tr>
+</tbody>
+</table>
+<p><a id='ScheduledBackupSpec'></a></p>
+<h2 id="scheduledbackupspec">ScheduledBackupSpec</h2>
+<p>ScheduledBackupSpec defines the desired state of ScheduledBackup</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>suspend</code></td>
+<td>If this backup is suspended or not</td>
+<td>*bool</td>
+</tr>
+<tr>
+<td><code>immediate</code></td>
+<td>If the first backup has to be immediately start after creation or not</td>
+<td>*bool</td>
+</tr>
+<tr>
+<td><code>schedule</code></td>
+<td>The schedule follows the same format used in Kubernetes CronJobs, see https://pkg.go.dev/github.com/robfig/cron#hdr-CRON_Expression_Format - <em>mandatory</em></td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>cluster</code></td>
+<td>The cluster to backup</td>
+<td><a href="#LocalObjectReference">LocalObjectReference</a></td>
+</tr>
+</tbody>
+</table>
+<p><a id='ScheduledBackupStatus'></a></p>
+<h2 id="scheduledbackupstatus">ScheduledBackupStatus</h2>
+<p>ScheduledBackupStatus defines the observed state of ScheduledBackup</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>lastCheckTime</code></td>
+<td>The latest time the schedule</td>
+<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.21/#time-v1-meta">*metav1.Time</a></td>
+</tr>
+<tr>
+<td><code>lastScheduleTime</code></td>
+<td>Information when was the last time that backup was successfully scheduled.</td>
+<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.21/#time-v1-meta">*metav1.Time</a></td>
+</tr>
+<tr>
+<td><code>nextScheduleTime</code></td>
+<td>Next time we will run a backup</td>
+<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.21/#time-v1-meta">*metav1.Time</a></td>
+</tr>
+</tbody>
+</table>
+<p><a id='SecretKeySelector'></a></p>
+<h2 id="secretkeyselector">SecretKeySelector</h2>
+<p>SecretKeySelector contains enough information to let you locate the key of a Secret</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>key</code></td>
+<td>The key to select - <em>mandatory</em></td>
+<td>string</td>
+</tr>
+</tbody>
+</table>
+<p><a id='SecretVersion'></a></p>
+<h2 id="secretversion">SecretVersion</h2>
+<p>SecretVersion contains a secret name and its ResourceVersion</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+<td>The name of the secret</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>version</code></td>
+<td>The ResourceVersion of the secret</td>
+<td>string</td>
+</tr>
+</tbody>
+</table>
+<p><a id='SecretsResourceVersion'></a></p>
+<h2 id="secretsresourceversion">SecretsResourceVersion</h2>
+<p>SecretsResourceVersion is the resource versions of the secrets managed by the operator</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>superuserSecretVersion</code></td>
+<td>The resource version of the "postgres" user secret</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>replicationSecretVersion</code></td>
+<td>The resource version of the "streaming_replica" user secret</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>applicationSecretVersion</code></td>
+<td>The resource version of the "app" user secret</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>caSecretVersion</code></td>
+<td>Unused. Retained for compatibility with old versions.</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>clientCaSecretVersion</code></td>
+<td>The resource version of the PostgreSQL client-side CA secret version</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>serverCaSecretVersion</code></td>
+<td>The resource version of the PostgreSQL server-side CA secret version</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>serverSecretVersion</code></td>
+<td>The resource version of the PostgreSQL server-side secret version</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>barmanEndpointCA</code></td>
+<td>The resource version of the Barman Endpoint CA if provided</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>metrics</code></td>
+<td>A map with the versions of all the secrets used to pass metrics. Map keys are the secret names, map values are the versions</td>
+<td>map[string]string</td>
+</tr>
+</tbody>
+</table>
+<p><a id='StorageConfiguration'></a></p>
+<h2 id="storageconfiguration">StorageConfiguration</h2>
+<p>StorageConfiguration is the configuration of the storage of the PostgreSQL instances</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>storageClass</code></td>
+<td>StorageClass to use for database data (<code>PGDATA</code>). Applied after evaluating the PVC template, if available. If not specified, generated PVCs will be satisfied by the default storage class</td>
+<td>*string</td>
+</tr>
+<tr>
+<td><code>size</code></td>
+<td>Size of the storage. Required if not already specified in the PVC template. Changes to this field are automatically reapplied to the created PVCs. Size cannot be decreased.               - <em>mandatory</em></td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>resizeInUseVolumes</code></td>
+<td>Resize existent PVCs, defaults to true</td>
+<td>*bool</td>
+</tr>
+<tr>
+<td><code>pvcTemplate</code></td>
+<td>Template to be used to generate the Persistent Volume Claim</td>
+<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.21/#persistentvolumeclaim-v1-core">*corev1.PersistentVolumeClaimSpec</a></td>
+</tr>
+</tbody>
+</table>
+<p><a id='WalBackupConfiguration'></a></p>
+<h2 id="walbackupconfiguration">WalBackupConfiguration</h2>
+<p>WalBackupConfiguration is the configuration of the backup of the WAL stream</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>compression</code></td>
+<td>Compress a WAL file before sending it to the object store. Available options are empty string (no compression, default), <code>gzip</code>, <code>bzip2</code> or <code>snappy</code>.</td>
+<td>CompressionType</td>
+</tr>
+<tr>
+<td><code>encryption</code></td>
+<td>Whenever to force the encryption of files (if the bucket is not already configured for that). Allowed options are empty string (use the bucket policy, default), <code>AES256</code> and <code>aws:kms</code></td>
+<td>EncryptionType</td>
+</tr>
+<tr>
+<td><code>maxParallel</code></td>
+<td>Number of WAL files to be either archived in parallel (when the PostgreSQL instance is archiving to a backup object store) or restored in parallel (when a PostgreSQL standby is fetching WAL files from a recovery object store). If not specified, WAL files will be processed one at a time. It accepts a positive integer as a value - with 1 being the minimum accepted value.</td>
+<td>int</td>
+</tr>
+</tbody>
+</table>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../commercial_support/" class="btn btn-neutral float-left" title="Commercial support"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../supported_releases/" class="btn btn-neutral float-right" title="Supported releases">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../commercial_support/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../supported_releases/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

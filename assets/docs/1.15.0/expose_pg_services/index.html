@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="The CloudNativePG Contributors" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Exposing Postgres Services - CloudNativePG</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Exposing Postgres Services";
+        var mkdocs_page_input_path = "expose_pg_services.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> CloudNativePG
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">CloudNativePG</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../before_you_start/">Before You Start</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../use_cases/">Use cases</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../architecture/">Architecture</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../installation_upgrade/">Installation and upgrades</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../quickstart/">Quickstart</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../bootstrap/">Bootstrap</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../security/">Security</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../instance_manager/">Postgres instance manager</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../scheduling/">Scheduling</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../resource_management/">Resource management</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../failure_modes/">Failure Modes</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../rolling_update/">Rolling Updates</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../replication/">Replication</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../backup_recovery/">Backup and Recovery</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../postgresql_conf/">PostgreSQL Configuration</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../operator_conf/">Operator configuration</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../storage/">Storage</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../labels_annotations/">Labels and annotations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../monitoring/">Monitoring</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../logging/">Logging</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../certificates/">Certificates</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../ssl_connections/">Client TLS/SSL Connections</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../applications/">Connecting from an application</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../connection_pooling/">Connection Pooling</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../kubernetes_upgrade/">Kubernetes Upgrade</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Exposing Postgres Services</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#testing-on-minikube">Testing on Minikube</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../cnpg-plugin/">CloudNativePG Plugin</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../failover/">Automated failover</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../troubleshooting/">Troubleshooting</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../fencing/">Fencing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../e2e/">End-to-End Tests</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../container_images/">Container Image Requirements</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../operator_capability_levels/">Operator Capability Levels</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../samples/">Configuration Samples</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../commercial_support/">Commercial support</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../api_reference/">API Reference</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../supported_releases/">Supported releases</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../release_notes/">Release notes</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">CloudNativePG</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li><li>Exposing Postgres Services</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="exposing-postgres-services">Exposing Postgres Services</h1>
+<p>This section explains how to expose a PostgreSQL service externally, allowing access
+to your PostgreSQL database <strong>from outside your Kubernetes cluster</strong> using
+NGINX Ingress Controller.</p>
+<p>If you followed the <a href="../quickstart/">QuickStart</a>, you should have by now
+a database that can be accessed inside the cluster via the
+<code>cluster-example-rw</code> (primary) and <code>cluster-example-r</code> (read-only)
+services in the <code>default</code> namespace. Both services use port <code>5432</code>.</p>
+<p>Let's assume that you want to make the primary instance accessible from external
+accesses on port <code>5432</code>. A typical use case, when moving to a Kubernetes
+infrastructure, is indeed the one represented by <strong>legacy applications</strong>
+that cannot be easily or sustainably "containerized". A sensible workaround
+is to allow those applications that most likely reside in a virtual machine
+or a physical server, to access a PostgreSQL database inside a Kubernetes cluster
+in the same network.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Allowing access to a database from the public network could expose
+your database to potential attacks from malicious users. Ensure you
+secure your database before granting external access or that your
+Kubernetes cluster is only reachable from a private network.</p>
+</div>
+<p>For this example, you will use <a href="https://kubernetes.github.io/ingress-nginx/">NGINX Ingress Controller</a>,
+since it is maintained directly by the Kubernetes project and can be set up
+on every Kubernetes cluster. Many other controllers are available (see the
+<a href="https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/">Kubernetes documentation</a>
+for a comprehensive list).</p>
+<p>We assume that:</p>
+<ul>
+<li>the NGINX Ingress controller has been deployed and works correctly</li>
+<li>it is possible to create a service of type <code>LoadBalancer</code> in your cluster</li>
+</ul>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Ingresses are only required to expose HTTP and HTTPS traffic. While the NGINX
+Ingress controller can, not all Ingress objects can expose arbitrary ports or
+protocols.</p>
+</div>
+<p>The first step is to create a <code>tcp-services</code> <code>ConfigMap</code> whose data field
+contains info on the externally exposed port and the namespace, service and
+port to point to internally.</p>
+<pre><code class="language-yaml">apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: tcp-services
+  namespace: ingress-nginx
+data:
+  5432: default/cluster-example-rw:5432
+</code></pre>
+<p>Then, if you've installed NGINX Ingress Controller as suggested in their
+documentation, you should have an <code>ingress-nginx</code> service. You'll have to add
+the 5432 port to the <code>ingress-nginx</code> service to expose it.
+The ingress will redirect incoming connections on port 5432 to your database.</p>
+<pre><code class="language-yaml">apiVersion: v1
+kind: Service
+metadata:
+  name: ingress-nginx
+  namespace: ingress-nginx
+  labels:
+    app.kubernetes.io/name: ingress-nginx
+    app.kubernetes.io/part-of: ingress-nginx
+spec:
+  type: LoadBalancer
+  ports:
+    - name: http
+      port: 80
+      targetPort: 80
+      protocol: TCP
+    - name: https
+      port: 443
+      targetPort: 443
+      protocol: TCP
+    - name: postgres
+      port: 5432
+      targetPort: 5432
+      protocol: TCP
+  selector:
+    app.kubernetes.io/name: ingress-nginx
+    app.kubernetes.io/part-of: ingress-nginx
+</code></pre>
+<p>You can use <a href="../samples/cluster-expose-service.yaml"><code>cluster-expose-service.yaml</code></a>  and apply it
+using <code>kubectl</code>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If you apply this file directly, you will overwrite any previous change
+in your <code>ConfigMap</code> and <code>Service</code> of the Ingress</p>
+</div>
+<p>Now you will be able to reach the PostgreSQL Cluster from outside your Kubernetes cluster.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Make sure you configure <code>pg_hba</code> to allow connections from the Ingress.</p>
+</div>
+<h2 id="testing-on-minikube">Testing on Minikube</h2>
+<p>On Minikube you can setup the ingress controller running:</p>
+<pre><code class="language-sh">minikube addons enable ingress
+</code></pre>
+<p>Then, patch the <code>tcp-service</code> ConfigMap to redirect to the primary the
+connections on port 5432 of the Ingress:</p>
+<pre><code class="language-sh">kubectl patch configmap tcp-services -n kube-system \
+  --patch '{&quot;data&quot;:{&quot;5432&quot;:&quot;default/cluster-example-rw:5432&quot;}}'
+</code></pre>
+<p>You can then patch the deployment to allow access on port 5432.
+Create a file called <code>patch.yaml</code> with the following content:</p>
+<pre><code class="language-yaml">spec:
+  template:
+    spec:
+      containers:
+      - name: nginx-ingress-controller
+        ports:
+         - containerPort: 5432
+           hostPort: 5432
+</code></pre>
+<p>and apply it to the <code>nginx-ingress-controller deployment</code>:</p>
+<pre><code class="language-sh">kubectl patch deployment nginx-ingress-controller --patch &quot;$(cat patch.yaml)&quot; -n kube-system
+</code></pre>
+<p>You can access the primary from your machine running:</p>
+<pre><code class="language-sh">psql -h $(minikube ip) -p 5432 -U postgres
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../kubernetes_upgrade/" class="btn btn-neutral float-left" title="Kubernetes Upgrade"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../cnpg-plugin/" class="btn btn-neutral float-right" title="CloudNativePG Plugin">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../kubernetes_upgrade/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../cnpg-plugin/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

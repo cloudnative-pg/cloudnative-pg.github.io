@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="The CloudNativePG Contributors" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Logging - CloudNativePG</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Logging";
+        var mkdocs_page_input_path = "logging.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> CloudNativePG
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">CloudNativePG</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../before_you_start/">Before You Start</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../use_cases/">Use cases</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../architecture/">Architecture</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../installation_upgrade/">Installation and upgrades</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../quickstart/">Quickstart</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../bootstrap/">Bootstrap</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../security/">Security</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../instance_manager/">Postgres instance manager</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../scheduling/">Scheduling</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../resource_management/">Resource management</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../failure_modes/">Failure Modes</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../rolling_update/">Rolling Updates</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../replication/">Replication</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../backup_recovery/">Backup and Recovery</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../postgresql_conf/">PostgreSQL Configuration</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../operator_conf/">Operator configuration</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../storage/">Storage</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../labels_annotations/">Labels and annotations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../monitoring/">Monitoring</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Logging</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#operator-log">Operator log</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#postgresql-log">PostgreSQL log</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pgaudit-logs">PGAudit logs</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#other-logs">Other logs</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../certificates/">Certificates</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../ssl_connections/">Client TLS/SSL Connections</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../applications/">Connecting from an application</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../connection_pooling/">Connection Pooling</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../kubernetes_upgrade/">Kubernetes Upgrade</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../expose_pg_services/">Exposing Postgres Services</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../cnpg-plugin/">CloudNativePG Plugin</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../failover/">Automated failover</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../troubleshooting/">Troubleshooting</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../fencing/">Fencing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../e2e/">End-to-End Tests</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../container_images/">Container Image Requirements</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../operator_capability_levels/">Operator Capability Levels</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../samples/">Configuration Samples</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../commercial_support/">Commercial support</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../api_reference/">API Reference</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../supported_releases/">Supported releases</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../release_notes/">Release notes</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">CloudNativePG</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li><li>Logging</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="logging">Logging</h1>
+<p>The operator is designed to log in JSON format directly to standard output,
+including PostgreSQL logs.</p>
+<p>Each log entry has the following fields:</p>
+<ul>
+<li><code>level</code>: log level (<code>info</code>, <code>notice</code>, ...)</li>
+<li><code>ts</code>: the timestamp (epoch with microseconds)</li>
+<li><code>logger</code>: the type of the record (e.g. <code>postgres</code> or <code>pg_controldata</code>)</li>
+<li><code>msg</code>: the actual message or the keyword <code>record</code> in case the message is parsed in JSON format</li>
+<li><code>record</code>: the actual record (with structure that varies depending on the
+  <code>logger</code> type)</li>
+<li><code>logging_podName</code>: the pod where the log was created generated</li>
+</ul>
+<h2 id="operator-log">Operator log</h2>
+<p>A log level can be specified in the cluster spec with the option <code>logLevel</code> and
+can be set to any of <code>error</code>, <code>warning</code>, <code>info</code>(default), <code>debug</code> or <code>trace</code>.</p>
+<p>At the moment, the log level can only be set when an instance starts and can not be
+changed at runtime. If the value is changed in the cluster spec after the cluster
+was started, this will take effect only in the new pods and not the old ones.</p>
+<h2 id="postgresql-log">PostgreSQL log</h2>
+<p>Each entry in the PostgreSQL log is a JSON object having the <code>logger</code> key set
+to <code>postgres</code> and the structure described in the following example:</p>
+<pre><code class="language-json">{
+  &quot;level&quot;: &quot;info&quot;,
+  &quot;ts&quot;: 1619781249.7188137,
+  &quot;logger&quot;: &quot;postgres&quot;,
+  &quot;msg&quot;: &quot;record&quot;,
+  &quot;record&quot;: {
+    &quot;log_time&quot;: &quot;2021-04-30 11:14:09.718 UTC&quot;,
+    &quot;user_name&quot;: &quot;&quot;,
+    &quot;database_name&quot;: &quot;&quot;,
+    &quot;process_id&quot;: &quot;25&quot;,
+    &quot;connection_from&quot;: &quot;&quot;,
+    &quot;session_id&quot;: &quot;608be681.19&quot;,
+    &quot;session_line_num&quot;: &quot;1&quot;,
+    &quot;command_tag&quot;: &quot;&quot;,
+    &quot;session_start_time&quot;: &quot;2021-04-30 11:14:09 UTC&quot;,
+    &quot;virtual_transaction_id&quot;: &quot;&quot;,
+    &quot;transaction_id&quot;: &quot;0&quot;,
+    &quot;error_severity&quot;: &quot;LOG&quot;,
+    &quot;sql_state_code&quot;: &quot;00000&quot;,
+    &quot;message&quot;: &quot;database system was interrupted; last known up at 2021-04-30 11:14:07 UTC&quot;,
+    &quot;detail&quot;: &quot;&quot;,
+    &quot;hint&quot;: &quot;&quot;,
+    &quot;internal_query&quot;: &quot;&quot;,
+    &quot;internal_query_pos&quot;: &quot;&quot;,
+    &quot;context&quot;: &quot;&quot;,
+    &quot;query&quot;: &quot;&quot;,
+    &quot;query_pos&quot;: &quot;&quot;,
+    &quot;location&quot;: &quot;&quot;,
+    &quot;application_name&quot;: &quot;&quot;,
+    &quot;backend_type&quot;: &quot;startup&quot;
+  },
+  &quot;logging_pod&quot;: &quot;cluster-example-1&quot;,
+}
+</code></pre>
+<p>Internally, the operator relies on the PostgreSQL CSV log format. Please refer
+to the PostgreSQL documentation for more information about the <a href="https://www.postgresql.org/docs/current/runtime-config-logging.html">CSV log
+format</a>.</p>
+<h2 id="pgaudit-logs">PGAudit logs</h2>
+<p>CloudNativePG has transparent and native support for
+<a href="https://www.pgaudit.org/">PGAudit</a> on PostgreSQL clusters.</p>
+<p>All you need to do is add the required <code>pgaudit</code> parameters to the <code>postgresql</code>
+section in the configuration of the cluster.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>It is unnecessary to add the PGAudit library to <code>shared_preload_libraries</code>.
+The library will be added automatically by CloudNativePG based on the
+presence of <code>pgaudit.*</code> parameters in the postgresql configuration.
+The operator will detect and manage the addition and removal of the
+library from <code>shared_preload_libraries</code>.</p>
+</div>
+<p>The operator also takes care of creating and removing the extension from all
+the available databases in the cluster.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>CloudNativePG runs the <code>CREATE EXTENSION</code> and
+<code>DROP EXTENSION</code> command in all databases in the cluster that accept
+connections.</p>
+</div>
+<p>Here is an example of a PostgreSQL 13 <code>Cluster</code> deployment which will result in
+<code>pgaudit</code> being enabled with the requested configuration:</p>
+<pre><code class="language-yaml">apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: cluster-example
+spec:
+  instances: 3
+  imageName: ghcr.io/cloudnative-pg/postgresql:13
+
+  postgresql:
+    parameters:
+      &quot;pgaudit.log&quot;: &quot;all, -misc&quot;
+      &quot;pgaudit.log_catalog&quot;: &quot;off&quot;
+      &quot;pgaudit.log_parameter&quot;: &quot;on&quot;
+      &quot;pgaudit.log_relation&quot;: &quot;on&quot;
+
+  storage:
+    size: 1Gi
+</code></pre>
+<p>The audit CSV logs entries returned by PGAudit are then parsed and routed to
+stdout in JSON format, similarly to all the remaining logs:</p>
+<ul>
+<li><code>.logger</code> is set to <code>pgaudit</code></li>
+<li><code>.msg</code> is set to <code>record</code></li>
+<li><code>.record</code> contains the whole parsed record as a JSON object, similar to
+  <code>logging_collector</code> logs - except for <code>.record.audit</code>, which contains the
+  PGAudit CSV message formatted as a JSON object</li>
+</ul>
+<p>See the example below:</p>
+<pre><code class="language-json">{
+  &quot;level&quot;: &quot;info&quot;,
+  &quot;ts&quot;: 1627394507.8814096,
+  &quot;logger&quot;: &quot;pgaudit&quot;,
+  &quot;msg&quot;: &quot;record&quot;,
+  &quot;record&quot;: {
+    &quot;log_time&quot;: &quot;2021-07-27 14:01:47.881 UTC&quot;,
+    &quot;user_name&quot;: &quot;postgres&quot;,
+    &quot;database_name&quot;: &quot;postgres&quot;,
+    &quot;process_id&quot;: &quot;203&quot;,
+    &quot;connection_from&quot;: &quot;[local]&quot;,
+    &quot;session_id&quot;: &quot;610011cb.cb&quot;,
+    &quot;session_line_num&quot;: &quot;1&quot;,
+    &quot;command_tag&quot;: &quot;SELECT&quot;,
+    &quot;session_start_time&quot;: &quot;2021-07-27 14:01:47 UTC&quot;,
+    &quot;virtual_transaction_id&quot;: &quot;3/336&quot;,
+    &quot;transaction_id&quot;: &quot;0&quot;,
+    &quot;error_severity&quot;: &quot;LOG&quot;,
+    &quot;sql_state_code&quot;: &quot;00000&quot;,
+    &quot;backend_type&quot;: &quot;client backend&quot;,
+    &quot;audit&quot;: {
+      &quot;audit_type&quot;: &quot;SESSION&quot;,
+      &quot;statement_id&quot;: &quot;1&quot;,
+      &quot;substatement_id&quot;: &quot;1&quot;,
+      &quot;class&quot;: &quot;READ&quot;,
+      &quot;command&quot;: &quot;SELECT FOR KEY SHARE&quot;,
+      &quot;statement&quot;: &quot;SELECT pg_current_wal_lsn()&quot;,
+      &quot;parameter&quot;: &quot;&lt;none&gt;&quot;
+    }
+  },
+  &quot;logging_pod&quot;: &quot;cluster-example-1&quot;,
+}
+</code></pre>
+<p>Please refer to the
+<a href="https://github.com/pgaudit/pgaudit/blob/master/README.md#format">PGAudit documentation</a> <!-- wokeignore:rule=master -->
+for more details about each field in a record.</p>
+<h2 id="other-logs">Other logs</h2>
+<p>All logs that are produced by the operator and its instances are in JSON
+format, with <code>logger</code> set accordingly to the process that produced them.
+Therefore, all the possible <code>logger</code> values are the following ones:</p>
+<ul>
+<li><code>barman-cloud-wal-archive</code>: from <code>barman-cloud-wal-archive</code> directly</li>
+<li><code>barman-cloud-wal-restore</code>: from <code>barman-cloud-wal-restore</code> directly</li>
+<li><code>initdb</code>: from running <code>initdb</code></li>
+<li><code>pg_basebackup</code>: from running <code>pg_basebackup</code></li>
+<li><code>pg_controldata</code>: from running <code>pg_controldata</code></li>
+<li><code>pg_ctl</code>: from running any <code>pg_ctl</code> subcommand</li>
+<li><code>pg_rewind</code>: from running <code>pg_rewind</code></li>
+<li><code>pgaudit</code>: from PGAudit extension</li>
+<li><code>postgres</code>: from the <code>postgres</code> instance (having <code>msg</code> different than <code>record</code>)</li>
+<li><code>wal-archive</code>: from the <code>wal-archive</code> subcommand of the instance manager</li>
+<li><code>wal-restore</code>: from the <code>wal-restore</code> subcommand of the instance manager</li>
+</ul>
+<p>Except for <code>postgres</code> that has the aforementioned structures,
+all other possible values just have <code>msg</code> set to the escaped message that is
+logged.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../monitoring/" class="btn btn-neutral float-left" title="Monitoring"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../certificates/" class="btn btn-neutral float-right" title="Certificates">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../monitoring/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../certificates/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
