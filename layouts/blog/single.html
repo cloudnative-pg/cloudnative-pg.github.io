@@ -1,21 +1,9 @@
 {{ define "main" }}
-<h1 class="text-center mx-auto md:w-3/5 md:text-5xl text-3xl px-4 pt-6">{{.Title}}</h1>
-<div class="md:w-3/5 mx-auto">
-    <div class="px-4"> 
-        <!--User profile-->
-    <div class="flex gap-3 md:my-10 mx-auto flex justify-center my-5">
-        <div class="my-auto">
-            <img src="{{ .Params.avatar.image }}" class="w-10 h-10 rounded-full" alt="">
-        </div>
-        <div>
-            <div>
-                <h1 class="text-lg charcoal font-bold">
-                    {{ .Params.author }}
-                </h1>
-            </div>
-            
-            {{ partial "blog_datetime.html" . }}
-        </div>
+<h1 class="h1 text-center mx-auto w-3/5">{{.Title}}</h1>
+<div class="w-3/5 mx-auto">
+    <!--User profile-->
+    <div class="flex gap-3 my-10 mx-auto flex justify-center">
+        {{ partial "author.html" . }}
     </div>
     <!--User profile-->
 
