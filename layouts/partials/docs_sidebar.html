@@ -23,7 +23,7 @@
 {{ with $docs }}
 <p>Documention by version</p>
 <ul>
-    {{ range .Sections.Reverse }}
+    {{ range .Pages.Reverse }}
     <li>
         <a href="{{ .RelPermalink }}">
             {{ index (split .Content "\n") 0 | plainify }}
