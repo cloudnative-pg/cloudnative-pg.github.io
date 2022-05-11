@@ -1,4 +1,7 @@
 ---
 title: Blog posts
 ---
-Blog posts will go here. We'll use tags as a taxonomy to find stuff. Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis, lectus magna fringilla urna, porttitor rhoncus dolor purus non.
+
+Welcome to the blog for CloudNativePG. In here you will find articles
+written by the CloudNativePG community members about anything related
+to the project and running PostgreSQL in Kubernetes.
