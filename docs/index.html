@@ -6,7 +6,7 @@
 <html lang="en">
 
 <head>
-  <title>Docs | CloudNative PG</title>
+  <title>Documentation | CloudNative PG</title>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
@@ -43,8 +43,8 @@
       
       <div class="hidden md:block">
         <ul class="md:flex gap-14 text-2xl medium-gray my-5">
-          <li><a href="/docs/1.15.0/" target="_blank">Documentation</a></li>
-          <li>Blog</li>
+          <li><a href="/docs">Documentation</a></li>
+          <li><a href="/blog">Blog</a></li>
           <li><a href="/support">Support</a></li>
           <li><a href="/end_users">End Users</a></li>
         </ul>
@@ -104,76 +104,15 @@
 
     
 <base href="..">
-<div class="px-56 pt-20 flex">
-    <div class="w-1/4 px-5 bg-purple-2 pt-14 leading-9">
+<div class="md:px-56 md:pt-20 md:flex">
+    <div class="w-1/4 px-4 bg-purple-2 pt-14 leading-9 md:block hidden">
         
 <ul>
     
     
     
     
-    
-    
-    <li>
-        <a href="/blog/">Blog posts will go here. We&amp;rsquo;ll use tags as a taxonomy to find stuff. Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis, lectus magna fringilla urna, porttitor rhoncus dolor purus non.
-</a>
-    </li>
-    
-    
-    
-    <li>
-        <a href="/cards/"></a>
-    </li>
-    
-    
-    
-    <li>
-        <a href="/support/">CloudNativePG is an independent open source project and, as a result, it</a>
-    </li>
-    
-    
-    
-    <li>
-        <a href="/docs/"></a>
-    </li>
-    
-    
-    
-    <li>
-        <a href="/end_users/">CNCF defines end users as follows:
-</a>
-    </li>
-    
-    
-    
-    <li>
-        <a href="/footer/"></a>
-    </li>
-    
-    
-    
-    <li>
-        <a href="/info/"></a>
-    </li>
-    
-    
-    
-    <li>
-        <a href="/hero/">CloudNativePG is the Kubernetes operator that covers the full lifecycle of a highly available PostgreSQL database cluster with a primary/standby architecture, using native streaming replication.
-</a>
-    </li>
-    
-    
-    
-    <li>
-        <a href="/styleguide/">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a>
-    </li>
-    
-    
-    
 </ul>
-
-<hr class="w-1/2">
 
 
 <p>Documention by version</p>
@@ -189,18 +128,73 @@
 </ul>
 
     </div>
-    <div class="w-4/6 pr-20 ml-10 well">
-        <p></p>
+    <div class="w-4/6 pr-20 ml-10 well hidden md:block">
+        <p><p>These documentation pages are built from the <a href="https://github.com/cloudnative-pg/cloudnative-pg">operators source code</a> and are versioned along side tags/releases of the operator. Please <a href="https://github.com/cloudnative-pg/cloudnative-pg.github.io/issues">report any dificiencies via the projects issue tracker</a>.</p>
+</p>
     </div>
+    
+    <div class="sticky top-0 px-4 bg-purple-2 leading-9 hidden md:hidden py-4" id="menu-list">
+        
+<ul>
+    
+    
+    
+    
+</ul>
+
+
+<p>Documention by version</p>
+<ul>
+    
+    <li>
+        <a href="/docs/v1.15.0/">
+            CloudNativePG
+            v1.15.0
+        </a>
+    </li>
+    
+</ul>
+
+    </div>
+    <div class="px-4 well md:hidden">
+        <p><p>These documentation pages are built from the <a href="https://github.com/cloudnative-pg/cloudnative-pg">operators source code</a> and are versioned along side tags/releases of the operator. Please <a href="https://github.com/cloudnative-pg/cloudnative-pg.github.io/issues">report any dificiencies via the projects issue tracker</a>.</p>
+</p>
+    </div>
+    
 </div>
+
+<div class="flex gap-3 bg-gray-1 px-4 py-4 cnp-blue md:hidden fixed bottom-0 w-full" id="menu-toggle">
+    <img src="/icons/menu-unfold-outlined.svg" alt="">
+    <h4 class="text-lg">Documentation</h4>
+</div>
+
+<script>
+    const menuToggle = document.getElementById('menu-toggle');
+    const menuList = document.getElementById('menu-list');
+    
+    menuToggle.addEventListener('click', () => {
+      menuList.classList.toggle('hidden');
+    })
+</script>
 
 
     <footer class="text-center pb-24">
-    <p class="text-sm charcoal md:w-1/2 mx-auto md:pt-10 px-6 pt-12">&copy; 2019-2022 The CloudNativePG Contributors. All rights
-        reserved. The Linux Foundation has registered trademarks and uses trademarks.
-        For a list of trademarks of The Linux Foundation, please see our <a href="#" class="red-1">Trademark Usage
-            page</a>.</p>
+    <p class="text-sm charcoal md:w-1/2 mx-auto md:pt-10 px-6 pt-12">
+
+      &copy; The CloudNativePG Contributors.<br />
+
+      <a href="https://www.linuxfoundation.org/trademark-usage/"
+        class="red-1">The Linux Foundation has registered trademarks and uses
+        trademarks</a>.<br />
+
+      <a href="https://www.postgresql.org/about/policies/trademarks"
+        class="red-1">Postgres, PostgreSQL and the Slonik Logo are trademarks or
+        registered trademarks of the PostgreSQL Community Association of Canada, and
+        used with their permission</a>.
+
+    </p>
 </footer>
+
   </div>
   
   <script src="https://cdn.usefathom.com/script.js" data-site="GSMQCVAJ" defer></script>

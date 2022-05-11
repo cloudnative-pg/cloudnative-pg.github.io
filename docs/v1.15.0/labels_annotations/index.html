@@ -43,8 +43,8 @@
       
       <div class="hidden md:block">
         <ul class="md:flex gap-14 text-2xl medium-gray my-5">
-          <li><a href="/docs/1.15.0/" target="_blank">Documentation</a></li>
-          <li>Blog</li>
+          <li><a href="/docs">Documentation</a></li>
+          <li><a href="/blog">Blog</a></li>
           <li><a href="/support">Support</a></li>
           <li><a href="/end_users">End Users</a></li>
         </ul>
@@ -104,8 +104,8 @@
 
     
 <base href="..">
-<div class="px-56 pt-20 flex">
-    <div class="w-1/4 px-5 bg-purple-2 pt-14 leading-9">
+<div class="md:px-56 md:pt-20 md:flex">
+    <div class="w-1/4 px-4 bg-purple-2 pt-14 leading-9 md:block hidden">
         
 <ul>
     
@@ -358,7 +358,7 @@
 </ul>
 
     </div>
-    <div class="w-4/6 pr-20 ml-10 well">
+    <div class="w-4/6 pr-20 ml-10 well hidden md:block">
         <p><h1 id="labels-and-annotations">Labels and annotations</h1>
 <p>Resources in Kubernetes are organized in a flat structure, with no hierarchical
 information or relationship between them. However, such resources and objects
@@ -422,15 +422,359 @@ a Cluster, which was previously propagated to the underlying pods, the operator
 will not automatically remove it on the associated resources.</p>
 </p>
     </div>
+    
+    <div class="sticky top-0 px-4 bg-purple-2 leading-9 hidden md:hidden py-4" id="menu-list">
+        
+<ul>
+    
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/api_reference/">API Reference</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/applications/">Connecting from an application</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/architecture/">Architecture</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/backup_recovery/">Backup and Recovery</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/before_you_start/">Before You Start</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/bootstrap/">Bootstrap</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/certificates/">Certificates</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/cnpg-plugin/">CloudNativePG Plugin</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/commercial_support/">Commercial support</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/connection_pooling/">Connection Pooling</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/container_images/">Container Image Requirements</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/e2e/">End-to-End Tests</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/expose_pg_services/">Exposing Postgres Services</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/failover/">Automated failover</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/failure_modes/">Failure Modes</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/fencing/">Fencing</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/installation_upgrade/">Installation and upgrades</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/instance_manager/">Postgres instance manager</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/kubernetes_upgrade/">Kubernetes Upgrade</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/labels_annotations/">Labels and annotations</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/logging/">Logging</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/monitoring/">Monitoring</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/operator_capability_levels/">Operator Capability Levels</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/operator_conf/">Operator configuration</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/postgresql_conf/">PostgreSQL Configuration</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/quickstart/">Quickstart</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/release_notes/">Release notes</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/replication/">Replication</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/resource_management/">Resource management</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/rolling_update/">Rolling Updates</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/samples/">Configuration Samples</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/scheduling/">Scheduling</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/security/">Security</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/ssl_connections/">Client TLS/SSL Connections</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/storage/">Storage</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/supported_releases/">Supported releases</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/troubleshooting/">Troubleshooting</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/use_cases/">Use cases</a>
+    </li>
+    
+    
+    
+</ul>
+
+<hr class="w-1/2">
+
+
+<p>Documention by version</p>
+<ul>
+    
+    <li>
+        <a href="/docs/v1.15.0/">
+            CloudNativePG
+            v1.15.0
+        </a>
+    </li>
+    
+</ul>
+
+    </div>
+    <div class="px-4 well md:hidden">
+        <p><h1 id="labels-and-annotations">Labels and annotations</h1>
+<p>Resources in Kubernetes are organized in a flat structure, with no hierarchical
+information or relationship between them. However, such resources and objects
+can be linked together and put in relationship through <strong>labels</strong> and
+<strong>annotations</strong>.</p>
+<p>!!! info
+For more information, please refer to the Kubernetes documentation on
+<a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/">annotations</a> and
+<a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/">labels</a>.</p>
+<p>In short:</p>
+<ul>
+<li>an annotation is used to assign additional non-identifying information to
+resources with the goal to facilitate integration with external tools</li>
+<li>a label is used to group objects and query them through Kubernetes&rsquo; native
+selector capability</li>
+</ul>
+<p>You can select one or more labels and/or annotations you will use
+in your CloudNativePG deployments. Then you need to configure the operator
+so that when you define these labels and/or annotations in a cluster&rsquo;s metadata,
+they are automatically inherited by all resources created by it (including pods).</p>
+<p>!!! Note
+Label and annotation inheritance is the technique adopted by CloudNativePG
+in lieu of alternative approaches such as pod templates.</p>
+<h2 id="pre-requisites">Pre-requisites</h2>
+<p>By default, no label or annotation defined in the cluster&rsquo;s metadata is
+inherited by the associated resources.
+In order to enable label/annotation inheritance, you need to follow the
+instructions provided in the <a href="operator_conf.md">&ldquo;Operator configuration&rdquo;</a> section.</p>
+<p>Below we will continue on that example and limit it to the following:</p>
+<ul>
+<li>annotations: <code>categories</code></li>
+<li>labels: <code>app</code>, <code>environment</code>, and <code>workload</code></li>
+</ul>
+<p>!!! Note
+Feel free to select the names that most suit your context for both
+annotations and labels. Remember that you can also use wildcards
+in naming and adopt strategies like <code>mycompany/*</code> for all labels
+or annotations starting with <code>mycompany/</code> to be inherited.</p>
+<h2 id="defining-clusters-metadata">Defining cluster&rsquo;s metadata</h2>
+<p>When defining the cluster, <strong>before</strong> any resource is deployed, you can
+properly set the metadata as follows:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">postgresql.cnpg.io/v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Cluster</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">cluster-example</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">annotations</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">categories</span>: <span style="color:#ae81ff">database</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">labels</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment</span>: <span style="color:#ae81ff">production</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">workload</span>: <span style="color:#ae81ff">database</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">app</span>: <span style="color:#ae81ff">sso</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>     <span style="color:#75715e"># ... &lt;snip&gt;</span>
+</span></span></code></pre></div><p>Once the cluster is deployed, you can verify, for example, that the labels
+have been correctly set in the pods with:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>kubectl get pods --show-labels
+</span></span></code></pre></div><h2 id="current-limitations">Current limitations</h2>
+<p>Currently, CloudNativePG does not automatically propagate labels or
+annotations deletions. Therefore, when an annotation or label is removed from
+a Cluster, which was previously propagated to the underlying pods, the operator
+will not automatically remove it on the associated resources.</p>
+</p>
+    </div>
+    
 </div>
+
+<div class="flex gap-3 bg-gray-1 px-4 py-4 cnp-blue md:hidden fixed bottom-0 w-full" id="menu-toggle">
+    <img src="/icons/menu-unfold-outlined.svg" alt="">
+    <h4 class="text-lg">Documentation</h4>
+</div>
+
+<script>
+    const menuToggle = document.getElementById('menu-toggle')
+    const menuList = document.getElementById('menu-list')
+  
+    menuToggle.addEventListener('click', () => {
+      menuList.classList.toggle('hidden');
+    })
+</script>
 
 
     <footer class="text-center pb-24">
-    <p class="text-sm charcoal md:w-1/2 mx-auto md:pt-10 px-6 pt-12">&copy; 2019-2022 The CloudNativePG Contributors. All rights
-        reserved. The Linux Foundation has registered trademarks and uses trademarks.
-        For a list of trademarks of The Linux Foundation, please see our <a href="#" class="red-1">Trademark Usage
-            page</a>.</p>
+    <p class="text-sm charcoal md:w-1/2 mx-auto md:pt-10 px-6 pt-12">
+
+      &copy; The CloudNativePG Contributors.<br />
+
+      <a href="https://www.linuxfoundation.org/trademark-usage/"
+        class="red-1">The Linux Foundation has registered trademarks and uses
+        trademarks</a>.<br />
+
+      <a href="https://www.postgresql.org/about/policies/trademarks"
+        class="red-1">Postgres, PostgreSQL and the Slonik Logo are trademarks or
+        registered trademarks of the PostgreSQL Community Association of Canada, and
+        used with their permission</a>.
+
+    </p>
 </footer>
+
   </div>
   
   <script src="https://cdn.usefathom.com/script.js" data-site="GSMQCVAJ" defer></script>

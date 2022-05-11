@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+
+
+
+
+<html lang="en">
+
+<head>
+  <title>Running PostgreSQL the Kubernetes Way | CloudNative PG</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <meta name="description" content="CloudNativePG is the Kubernetes operator that covers the full lifecycle of a highly available PostgreSQL database cluster with a primary/standby architecture, using native streaming replication." />
+  <meta name="keywords" content="" />
+  <link rel="preload" href="/css/Supreme-Variable.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet" />
+  <link href="/main.min.css" rel="stylesheet" />
+  <link rel="favicon" href="/favicon/favicon.ico">
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+</head>
+
+<body>
+  <div class="h-screen w-screen">
+    
+<main>
+  <header>
+    <div class="md:flex md:flex-row md:px-16 md:justify-between py-5">
+      <div class="flex justify-between px-4 md:hidden">
+        <div>
+          
+          <a href="/"><img src="/logo/large_logo.svg" class="md:h-14 h-9" alt="Cloud Native Postgres Logo"></a>
+        </div>
+        <div class="h-6 my-auto" id="toggle-button">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </div>
+      </div>
+      <div class="md:block hidden">
+        
+        <a href="/"><img src="/logo/large_logo.svg" class="h-14" alt="Cloud Native Postgres Logo"></a>
+      </div>
+      
+      <div class="hidden md:block">
+        <ul class="md:flex gap-14 text-2xl medium-gray my-5">
+          <li><a href="/docs">Documentation</a></li>
+          <li><a href="/blog">Blog</a></li>
+          <li><a href="/support">Support</a></li>
+          <li><a href="/end_users">End Users</a></li>
+        </ul>
+      </div>
+      
+      <div class="py-4 bg-gray-1 mt-5 hidden" id="navi-list">
+        <ul class="md:flex gap-14 text-2xl md:medium-gray charcoal">
+          <li class="text-center py-4"><a href="/docs">Documentation</a></li>
+          <li class="text-center py-4"><a href="/blog">Blog</a></li>
+          <li class="text-center py-4"><a href="/support">Support</a></li>
+          <li class="text-center py-4"><a href="/end_users">End Users</a></li>
+        </ul>
+        <div class="flex gap-3 py-4 justify-center bg-gray-1 fill-cnp-blue">
+          <a href="https://github.com/cloudnative-pg/cloudnative-pg">
+            <img src="/icons/Git.svg" alt="Github">
+          </a>
+          <a href="https://cloudnativepg.slack.com/">
+            <img src="/icons/Slack.svg" alt="Slack">
+          </a>
+          <a href="https://twitter.com/CloudNativePg">
+            <img src="/icons/Twitter.svg" alt="Twitter">
+          </a>
+          <a href="https://www.youtube.com/channel/UCTGH88W1BiuRRPTzJUDPJyA">
+            <img src="/icons/YouTube.svg" alt="YouTube">
+          </a>
+        </div>
+      </div>
+      
+
+      <div class="flex gap-5 my-4 fill-cnp-blue hidden md:flex">
+       <a class="github-button" href="https://github.com/cloudnative-pg/cloudnative-pg"
+            data-color-scheme="no-preference: light; light: light; dark: dark;"
+            data-size="large" data-show-count="true"
+            aria-label="Star cloudnative-pg/cloudnative-pg on GitHub">Star</a>
+        <a href="https://join.slack.com/t/cloudnativepg/shared_invite/zt-17culux7k-P_UsVOOR9teUYi4dGhDSBQ">
+          <img src="/icons/Slack.svg" alt="Slack" title="Join our Slack channel now!">
+        </a>
+        <a href="https://twitter.com/CloudNativePg">
+          <img src="/icons/Twitter.svg" alt="Twitter">
+        </a>
+        <a href="https://www.youtube.com/channel/UCTGH88W1BiuRRPTzJUDPJyA">
+          <img src="/icons/YouTube.svg" alt="YouTube">
+        </a>
+      </div>
+    </div>
+  </header>
+</main>
+<script>
+  const toggleButton = document.getElementById('toggle-button')
+  const naviList = document.getElementById('navi-list')
+
+  toggleButton.addEventListener('click', () => {
+    naviList.classList.toggle('hidden');
+  })
+</script>
+
+
+    
+<h1 class="h1 text-center mx-auto w-3/5">Running PostgreSQL the Kubernetes Way</h1>
+<div class="w-3/5 mx-auto">
+    <div class="px-4">
+        
+        <div class="flex gap-3 my-10 mx-auto flex justify-center">
+            
+<div class="my-auto">
+    <img src="/authors/gbartolini//gb.png" class="w-10 h-10 rounded-full"
+        alt="Gabriele Bartolini">
+</div>
+<div>
+    <div>
+        <h1 class="text-lg charcoal font-bold">
+            Gabriele Bartolini
+        </h1>
+    </div>
+    <div class="flex gap-2 text-sm charcoal opacity-75">
+    <p class="flex gap-2 text-sm charcoal">
+        May 11, 2022
+        •
+        2 minutes
+    </p>
+</div>
+</div>
+        </div>
+        
+
+        
+        <div>
+            <img src="30385097358_6728a49544_c.jpg" alt="blog image" class="h-80 mx-auto w-full">
+        </div>
+        
+
+        
+        <div class="mx-auto my-10">
+            <p>CloudNativePG is now a public open source project, distributed under the
+Apache License 2.0, owned and <a href="https://github.com/cloudnative-pg/cloudnative-pg/blob/main/GOVERNANCE.md">governed by a newly formed
+community</a>
+of contributors to the project, founded on solid principles and values
+inspired by the <a href="https://www.cncf.io/">Cloud Native Computing Foundation (CNCF)</a>.</p>
+<p>Our goal as a community is to enable students, end users, vendors, and
+organizations all over the world to run PostgreSQL workloads in
+Kubernetes, alongside applications.</p>
+<p>We&rsquo;ve made the first step: we set the foundations for a prosperous and
+healthy community and committed ourselves to go through the CNCF
+graduation process, having officially submitted our request to join the
+Sandbox - the first PostgreSQL project to ever do so.</p>
+<p>The next step is yours. If you love PostgreSQL and Kubernetes like us,
+join this community, and contribute at all levels. Read the code of
+conduct and the
+<a href="https://github.com/cloudnative-pg/cloudnative-pg/blob/main/CONTRIBUTING.md">CONTRIBUTING</a>
+section to start with, or, if you want to contribute to the source code, read
+the <a href="https://github.com/cloudnative-pg/cloudnative-pg/blob/main/contribute/README.md">developer&rsquo;s contribution guide</a>.</p>
+<p>The source code for CloudNativePG is available in GitHub at
+<a href="https://github.com/cloudnative-pg/cloudnative-pg">github.com/cloudnative-pg/cloudnative-pg</a>.</p>
+<p>The first available version of CloudNativePG is 1.15.0, not 1.0, as the project
+is derived from EDB Cloud Native Postgres, a product that&rsquo;s been widely
+deployed in production over the past one and a half years. For this reason, the
+repository contains a history of over 1400 commits.</p>
+<p>CloudNativePG is designed with Kubernetes in mind and it is entirely
+declarative, following the convention over configuration paradigm. As a
+result, you can easily install CloudNativePG 1.15.0 in your Kubernetes cluster
+(even with <code>kind</code> on your local machine) with:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>kubectl apply -f <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/main/releases/cnpg-1.15.0.yaml
+</span></span></code></pre></div><p>Once the operator is deployed with the <code>cnpg-controller-manager</code> name in
+the <code>cnpg-system</code> namespace, you can now create your PostgreSQL cluster with a
+primary instance and two read replicas, each with 1GB volume from the default
+storage class, with the following YAML file (<code>angus.yaml</code>):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">postgresql.cnpg.io/v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Cluster</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span><span style="color:#f92672">name</span>: <span style="color:#ae81ff">angus</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">instances</span>: <span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">storage</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">size</span>: <span style="color:#ae81ff">1Gi</span>
+</span></span></code></pre></div><p>You can install it with <code>kubectl apply -f angus.yaml</code>, as with any other
+Kubernetes manifest.</p>
+<p>For more information, please refer to the <a href="https://cloudnative-pg.io/docs/1.15.0/">documentation for version 1.15.0</a>.
+Alternatively, reach out to us on <a href="https://join.slack.com/t/cloudnativepg/shared_invite/zt-17culux7k-P_UsVOOR9teUYi4dGhDSBQ">Slack</a>
+or use <a href="https://github.com/cloudnative-pg/cloudnative-pg/discussions">GitHub discussions</a>.</p>
+<p>If you are physically in Valencia for KubeCon Europe 2022, come and say hello to us!</p>
+<p>Don&rsquo;t forget to start following us on <a href="https://twitter.com/CloudNativePg">Twitter</a>
+and &hellip; <a href="https://github.com/cloudnative-pg/cloudnative-pg">add a star to the project now!</a>
+Thank you!</p>
+
+        </div>
+        
+    </div>
+
+    
+    <div class="space-y-10 md:w-2/6 md:pt-10">
+    
+
+    
+    <div class="px-4">
+        <h3 class="text-xl font-bold mb-6">Categories</h3>
+        <div class="text-xs space-y-1.5 mb-14">
+            <ul class="uppercase text-sm">
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2"><a href="https://cloudnative-pg.io/tags/blog/"
+                        class="mr-2">blog</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2"><a href="https://cloudnative-pg.io/tags/cloudnativepg/"
+                        class="mr-2">cloudnativepg</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2"><a href="https://cloudnative-pg.io/tags/cncf/"
+                        class="mr-2">cncf</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2"><a href="https://cloudnative-pg.io/tags/failover/"
+                        class="mr-2">failover</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2"><a href="https://cloudnative-pg.io/tags/k8s/"
+                        class="mr-2">k8s</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2"><a href="https://cloudnative-pg.io/tags/kubernetes/"
+                        class="mr-2">kubernetes</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2"><a href="https://cloudnative-pg.io/tags/operator/"
+                        class="mr-2">operator</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2"><a href="https://cloudnative-pg.io/tags/postgres/"
+                        class="mr-2">postgres</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2"><a href="https://cloudnative-pg.io/tags/postgresql/"
+                        class="mr-2">postgresql</a></li>
+                
+            </ul>
+
+        </div>
+    </div>
+    
+
+    
+    <div>
+        <h3 class="text-xl font-bold pb-6 px-4">Popular Posts</h3>
+        <div class="space-y-10 px-4">
+            
+            
+            <div class="p-8 bg-white drop-shadow-md rounded-md border-2 border-slate-50">
+                
+                <div class="flex gap-3 mb-2.5">
+                    
+<div class="my-auto">
+    <img src="/authors/gbartolini//gb.png" class="w-10 h-10 rounded-full"
+        alt="Gabriele Bartolini">
+</div>
+<div>
+    <div>
+        <h1 class="text-lg charcoal font-bold">
+            Gabriele Bartolini
+        </h1>
+    </div>
+</div>
+                </div>
+                
+                <a href="/blog/running-postgresql-the-kubernetes-way/">
+                    
+                    <div>
+                        <img src="/blog/running-postgresql-the-kubernetes-way//30385097358_6728a49544_c.jpg" class="object-fill w-full h-36"
+                            alt="Blog image">
+                    </div>
+                    <div class="charcoal">
+                        <h2 class="text-lg my-2.5 font-bold">Running PostgreSQL the Kubernetes Way</h2>
+                    </div>
+                    
+
+                    <div class="flex gap-2 text-sm charcoal opacity-75">
+    <p class="flex gap-2 text-sm charcoal">
+        May 11, 2022
+        •
+        2 minutes
+    </p>
+</div>
+                </a>
+            </div>
+            
+            
+        </div>
+    </div>
+    
+</div>
+    
+</div>
+
+
+    <footer class="text-center pb-24">
+    <p class="text-sm charcoal md:w-1/2 mx-auto md:pt-10 px-6 pt-12">
+
+      &copy; The CloudNativePG Contributors.<br />
+
+      <a href="https://www.linuxfoundation.org/trademark-usage/"
+        class="red-1">The Linux Foundation has registered trademarks and uses
+        trademarks</a>.<br />
+
+      <a href="https://www.postgresql.org/about/policies/trademarks"
+        class="red-1">Postgres, PostgreSQL and the Slonik Logo are trademarks or
+        registered trademarks of the PostgreSQL Community Association of Canada, and
+        used with their permission</a>.
+
+    </p>
+</footer>
+
+  </div>
+  
+  <script src="https://cdn.usefathom.com/script.js" data-site="GSMQCVAJ" defer></script>
+  
+</body>
+
+</html>

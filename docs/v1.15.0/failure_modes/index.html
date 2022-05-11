@@ -43,8 +43,8 @@
       
       <div class="hidden md:block">
         <ul class="md:flex gap-14 text-2xl medium-gray my-5">
-          <li><a href="/docs/1.15.0/" target="_blank">Documentation</a></li>
-          <li>Blog</li>
+          <li><a href="/docs">Documentation</a></li>
+          <li><a href="/blog">Blog</a></li>
           <li><a href="/support">Support</a></li>
           <li><a href="/end_users">End Users</a></li>
         </ul>
@@ -104,8 +104,8 @@
 
     
 <base href="..">
-<div class="px-56 pt-20 flex">
-    <div class="w-1/4 px-5 bg-purple-2 pt-14 leading-9">
+<div class="md:px-56 md:pt-20 md:flex">
+    <div class="w-1/4 px-4 bg-purple-2 pt-14 leading-9 md:block hidden">
         
 <ul>
     
@@ -358,7 +358,7 @@
 </ul>
 
     </div>
-    <div class="w-4/6 pr-20 ml-10 well">
+    <div class="w-4/6 pr-20 ml-10 well hidden md:block">
         <p><h1 id="failure-modes">Failure Modes</h1>
 <p>This section provides an overview of the major failure scenarios that
 PostgreSQL can face on a Kubernetes cluster during its lifetime.</p>
@@ -475,15 +475,412 @@ in a cluster will prevent the operator from issuing any self-healing operation,
 such as a failover.</p>
 </p>
     </div>
+    
+    <div class="sticky top-0 px-4 bg-purple-2 leading-9 hidden md:hidden py-4" id="menu-list">
+        
+<ul>
+    
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/api_reference/">API Reference</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/applications/">Connecting from an application</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/architecture/">Architecture</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/backup_recovery/">Backup and Recovery</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/before_you_start/">Before You Start</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/bootstrap/">Bootstrap</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/certificates/">Certificates</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/cnpg-plugin/">CloudNativePG Plugin</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/commercial_support/">Commercial support</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/connection_pooling/">Connection Pooling</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/container_images/">Container Image Requirements</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/e2e/">End-to-End Tests</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/expose_pg_services/">Exposing Postgres Services</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/failover/">Automated failover</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/failure_modes/">Failure Modes</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/fencing/">Fencing</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/installation_upgrade/">Installation and upgrades</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/instance_manager/">Postgres instance manager</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/kubernetes_upgrade/">Kubernetes Upgrade</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/labels_annotations/">Labels and annotations</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/logging/">Logging</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/monitoring/">Monitoring</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/operator_capability_levels/">Operator Capability Levels</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/operator_conf/">Operator configuration</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/postgresql_conf/">PostgreSQL Configuration</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/quickstart/">Quickstart</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/release_notes/">Release notes</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/replication/">Replication</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/resource_management/">Resource management</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/rolling_update/">Rolling Updates</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/samples/">Configuration Samples</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/scheduling/">Scheduling</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/security/">Security</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/ssl_connections/">Client TLS/SSL Connections</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/storage/">Storage</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/supported_releases/">Supported releases</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/troubleshooting/">Troubleshooting</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/use_cases/">Use cases</a>
+    </li>
+    
+    
+    
+</ul>
+
+<hr class="w-1/2">
+
+
+<p>Documention by version</p>
+<ul>
+    
+    <li>
+        <a href="/docs/v1.15.0/">
+            CloudNativePG
+            v1.15.0
+        </a>
+    </li>
+    
+</ul>
+
+    </div>
+    <div class="px-4 well md:hidden">
+        <p><h1 id="failure-modes">Failure Modes</h1>
+<p>This section provides an overview of the major failure scenarios that
+PostgreSQL can face on a Kubernetes cluster during its lifetime.</p>
+<p>!!! Important
+In case the failure scenario you are experiencing is not covered by this
+section, please immediately contact EDB for support and assistance.</p>
+<p>!!! Seealso &ldquo;Postgres instance manager&rdquo;
+Please refer to the <a href="instance_manager.md">&ldquo;Postgres instance manager&rdquo; section</a>
+for more information the liveness and readiness probes implemented by
+CloudNativePG.</p>
+<h2 id="storage-space-usage">Storage space usage</h2>
+<p>The operator will instantiate one PVC for every PostgreSQL instance to store the <code>PGDATA</code> content.</p>
+<p>Such storage space is set for reuse in two cases:</p>
+<ul>
+<li>when the corresponding Pod is deleted by the user (and a new Pod will be recreated)</li>
+<li>when the corresponding Pod is evicted and scheduled on another node</li>
+</ul>
+<p>If you want to prevent the operator from reusing a certain PVC you need to
+remove the PVC before deleting the Pod. For this purpose, you can use the
+following command:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>kubectl delete -n <span style="color:#f92672">[</span>namespace<span style="color:#f92672">]</span> pvc/<span style="color:#f92672">[</span>cluster-name<span style="color:#f92672">]</span>-<span style="color:#f92672">[</span>serial<span style="color:#f92672">]</span> pod/<span style="color:#f92672">[</span>cluster-name<span style="color:#f92672">]</span>-<span style="color:#f92672">[</span>serial<span style="color:#f92672">]</span>
+</span></span></code></pre></div><p>For example:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ kubectl delete -n default pvc/cluster-example-1 pod/cluster-example-1
+</span></span><span style="display:flex;"><span>persistentvolumeclaim <span style="color:#e6db74">&#34;cluster-example-1&#34;</span> deleted
+</span></span><span style="display:flex;"><span>pod <span style="color:#e6db74">&#34;cluster-example-1&#34;</span> deleted
+</span></span></code></pre></div><h2 id="failure-modes-1">Failure modes</h2>
+<p>A pod belonging to a <code>Cluster</code> can fail in the following ways:</p>
+<ul>
+<li>the pod is explicitly deleted by the user;</li>
+<li>the readiness probe on its <code>postgres</code> container fails;</li>
+<li>the liveness probe on its <code>postgres</code> container fails;</li>
+<li>the Kubernetes worker node is drained;</li>
+<li>the Kubernetes worker node where the pod is scheduled fails.</li>
+</ul>
+<p>Each one of these failures has different effects on the <code>Cluster</code> and the
+services managed by the operator.</p>
+<h3 id="pod-deleted-by-the-user">Pod deleted by the user</h3>
+<p>The operator is notified of the deletion. A new pod belonging to the
+<code>Cluster</code> will be automatically created reusing the existing PVC, if available,
+or starting from a physical backup of the <em>primary</em> otherwise.</p>
+<p>!!! Important
+In case of deliberate deletion of a pod, <code>PodDisruptionBudget</code> policies
+will not be enforced.</p>
+<p>Self-healing will happen as soon as the <em>apiserver</em> is notified.</p>
+<h3 id="readiness-probe-failure">Readiness probe failure</h3>
+<p>After 3 failures, the pod will be considered <em>not ready</em>. The pod will still
+be part of the <code>Cluster</code>, no new pod will be created.</p>
+<p>If the cause of the failure can&rsquo;t be fixed, it is possible to delete the pod
+manually. Otherwise, the pod will resume the previous role when the failure
+is solved.</p>
+<p>Self-healing will happen after three failures of the probe.</p>
+<h3 id="liveness-probe-failure">Liveness probe failure</h3>
+<p>After 3 failures, the <code>postgres</code> container will be considered failed. The
+pod will still be part of the <code>Cluster</code>, and the <em>kubelet</em> will try to restart
+the container. If the cause of the failure can&rsquo;t be fixed, it is possible
+to delete the pod manually.</p>
+<p>Self-healing will happen after three failures of the probe.</p>
+<h3 id="worker-node-drained">Worker node drained</h3>
+<p>The pod will be evicted from the worker node and removed from the service. A
+new pod will be created on a different worker node from a physical backup of the
+<em>primary</em> if the <code>reusePVC</code> option of the <code>nodeMaintenanceWindow</code> parameter
+is set to <code>off</code> (default: <code>on</code> during maintenance windows, <code>off</code> otherwise).</p>
+<p>The <code>PodDisruptionBudget</code> may prevent the pod from being evicted if there
+is at least another pod that is not ready.</p>
+<p>!!! Note
+Single instance clusters prevent node drain when <code>reusePVC</code> is
+set to <code>false</code>. Refer to the <a href="kubernetes_upgrade.md">Kubernetes Upgrade section</a>.</p>
+<p>Self-healing will happen as soon as the <em>apiserver</em> is notified.</p>
+<h3 id="worker-node-failure">Worker node failure</h3>
+<p>Since the node is failed, the <em>kubelet</em> won&rsquo;t execute the liveness and
+the readiness probes. The pod will be marked for deletion after the
+toleration seconds configured by the Kubernetes cluster administrator for
+that specific failure cause. Based on how the Kubernetes cluster is configured,
+the pod might be removed from the service earlier.</p>
+<p>A new pod will be created on a different worker node from a physical backup
+of the <em>primary</em>. The default value for that parameter in a Kubernetes
+cluster is 5 minutes.</p>
+<p>Self-healing will happen after <code>tolerationSeconds</code>.</p>
+<h2 id="self-healing">Self-healing</h2>
+<p>If the failed pod is a standby, the pod is removed from the <code>-r</code> service
+and from the <code>-ro</code> service.
+The pod is then restarted using its PVC if available; otherwise, a new
+pod will be created from a backup of the current primary. The pod
+will be added again to the <code>-r</code> service and to the <code>-ro</code> service when ready.</p>
+<p>If the failed pod is the primary, the operator will promote the active pod
+with status ready and the lowest replication lag, then point the <code>-rw</code> service
+to it. The failed pod will be removed from the <code>-r</code> service and from the
+<code>-rw</code> service.
+Other standbys will start replicating from the new primary. The former
+primary will use <code>pg_rewind</code> to synchronize itself with the new one if its
+PVC is available; otherwise, a new standby will be created from a backup of the
+current primary.</p>
+<h2 id="manual-intervention">Manual intervention</h2>
+<p>In the case of undocumented failure, it might be necessary to intervene
+to solve the problem manually.</p>
+<p>!!! Important
+In such cases, please do not perform any manual operation without the
+support and assistance of EDB engineering team.</p>
+<p>From version 1.11.0 of the operator, you can use the
+<code>cnpg.io/reconciliationLoop</code> annotation to temporarily disable the
+reconciliation loop on a selected PostgreSQL cluster, as follows:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">cluster-example-no-reconcile</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">annotations</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">cnpg.io/reconciliationLoop</span>: <span style="color:#e6db74">&#34;disabled&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># ...</span>
+</span></span></code></pre></div><p>The <code>cnpg.io/reconciliationLoop</code> must be used with extreme care
+and for the sole duration of the extraordinary/emergency operation.</p>
+<p>!!! Warning
+Please make sure that you use this annotation only for a limited period of
+time and you remove it when the emergency has finished. Leaving this annotation
+in a cluster will prevent the operator from issuing any self-healing operation,
+such as a failover.</p>
+</p>
+    </div>
+    
 </div>
+
+<div class="flex gap-3 bg-gray-1 px-4 py-4 cnp-blue md:hidden fixed bottom-0 w-full" id="menu-toggle">
+    <img src="/icons/menu-unfold-outlined.svg" alt="">
+    <h4 class="text-lg">Documentation</h4>
+</div>
+
+<script>
+    const menuToggle = document.getElementById('menu-toggle')
+    const menuList = document.getElementById('menu-list')
+  
+    menuToggle.addEventListener('click', () => {
+      menuList.classList.toggle('hidden');
+    })
+</script>
 
 
     <footer class="text-center pb-24">
-    <p class="text-sm charcoal md:w-1/2 mx-auto md:pt-10 px-6 pt-12">&copy; 2019-2022 The CloudNativePG Contributors. All rights
-        reserved. The Linux Foundation has registered trademarks and uses trademarks.
-        For a list of trademarks of The Linux Foundation, please see our <a href="#" class="red-1">Trademark Usage
-            page</a>.</p>
+    <p class="text-sm charcoal md:w-1/2 mx-auto md:pt-10 px-6 pt-12">
+
+      &copy; The CloudNativePG Contributors.<br />
+
+      <a href="https://www.linuxfoundation.org/trademark-usage/"
+        class="red-1">The Linux Foundation has registered trademarks and uses
+        trademarks</a>.<br />
+
+      <a href="https://www.postgresql.org/about/policies/trademarks"
+        class="red-1">Postgres, PostgreSQL and the Slonik Logo are trademarks or
+        registered trademarks of the PostgreSQL Community Association of Canada, and
+        used with their permission</a>.
+
+    </p>
 </footer>
+
   </div>
   
   <script src="https://cdn.usefathom.com/script.js" data-site="GSMQCVAJ" defer></script>

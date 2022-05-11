@@ -43,8 +43,8 @@
       
       <div class="hidden md:block">
         <ul class="md:flex gap-14 text-2xl medium-gray my-5">
-          <li><a href="/docs/1.15.0/" target="_blank">Documentation</a></li>
-          <li>Blog</li>
+          <li><a href="/docs">Documentation</a></li>
+          <li><a href="/blog">Blog</a></li>
           <li><a href="/support">Support</a></li>
           <li><a href="/end_users">End Users</a></li>
         </ul>
@@ -104,8 +104,8 @@
 
     
 <base href="..">
-<div class="px-56 pt-20 flex">
-    <div class="w-1/4 px-5 bg-purple-2 pt-14 leading-9">
+<div class="md:px-56 md:pt-20 md:flex">
+    <div class="w-1/4 px-4 bg-purple-2 pt-14 leading-9 md:block hidden">
         
 <ul>
     
@@ -358,7 +358,7 @@
 </ul>
 
     </div>
-    <div class="w-4/6 pr-20 ml-10 well">
+    <div class="w-4/6 pr-20 ml-10 well hidden md:block">
         <p><h1 id="replication">Replication</h1>
 <p>Physical replication is one of the strengths of PostgreSQL and one of the
 reasons why some of the largest organizations in the world have chosen
@@ -602,15 +602,539 @@ replica cluster and the source cluster will become two independent clusters
 definitively.</p>
 </p>
     </div>
+    
+    <div class="sticky top-0 px-4 bg-purple-2 leading-9 hidden md:hidden py-4" id="menu-list">
+        
+<ul>
+    
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/api_reference/">API Reference</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/applications/">Connecting from an application</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/architecture/">Architecture</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/backup_recovery/">Backup and Recovery</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/before_you_start/">Before You Start</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/bootstrap/">Bootstrap</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/certificates/">Certificates</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/cnpg-plugin/">CloudNativePG Plugin</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/commercial_support/">Commercial support</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/connection_pooling/">Connection Pooling</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/container_images/">Container Image Requirements</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/e2e/">End-to-End Tests</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/expose_pg_services/">Exposing Postgres Services</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/failover/">Automated failover</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/failure_modes/">Failure Modes</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/fencing/">Fencing</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/installation_upgrade/">Installation and upgrades</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/instance_manager/">Postgres instance manager</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/kubernetes_upgrade/">Kubernetes Upgrade</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/labels_annotations/">Labels and annotations</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/logging/">Logging</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/monitoring/">Monitoring</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/operator_capability_levels/">Operator Capability Levels</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/operator_conf/">Operator configuration</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/postgresql_conf/">PostgreSQL Configuration</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/quickstart/">Quickstart</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/release_notes/">Release notes</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/replication/">Replication</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/resource_management/">Resource management</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/rolling_update/">Rolling Updates</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/samples/">Configuration Samples</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/scheduling/">Scheduling</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/security/">Security</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/ssl_connections/">Client TLS/SSL Connections</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/storage/">Storage</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/supported_releases/">Supported releases</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/troubleshooting/">Troubleshooting</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/use_cases/">Use cases</a>
+    </li>
+    
+    
+    
+</ul>
+
+<hr class="w-1/2">
+
+
+<p>Documention by version</p>
+<ul>
+    
+    <li>
+        <a href="/docs/v1.15.0/">
+            CloudNativePG
+            v1.15.0
+        </a>
+    </li>
+    
+</ul>
+
+    </div>
+    <div class="px-4 well md:hidden">
+        <p><h1 id="replication">Replication</h1>
+<p>Physical replication is one of the strengths of PostgreSQL and one of the
+reasons why some of the largest organizations in the world have chosen
+it for the management of their data in business continuity contexts.
+Primarily used to achieve high availability, physical replication also allows
+scale-out of read-only workloads and offloading some work from the primary.</p>
+<h2 id="application-level-replication">Application-level replication</h2>
+<p>Having contributed throughout the years to the replication feature in PostgreSQL,
+we have decided to build high availability in CloudNativePG on top of
+the native physical replication technology, and integrate it
+directly in the Kubernetes API.</p>
+<p>In Kubernetes terms, this is referred to as <strong>application-level replication</strong>, in
+contrast with <em>storage-level replication</em>.</p>
+<h2 id="a-very-mature-technology">A very mature technology</h2>
+<p>PostgreSQL has a very robust and mature native framework for replicating data
+from the primary instance to one or more replicas, built around the
+concept of transactional changes continuously stored in the WAL (Write Ahead Log).</p>
+<p>Started as the evolution of crash recovery and point in time recovery
+technologies, physical replication was first introduced in PostgreSQL 8.2
+(2006) through WAL shipping from the primary to a warm standby in
+continuous recovery.</p>
+<p>PostgreSQL 9.0 (2010) enhanced it with WAL streaming and read-only replicas via
+<em>hot standby</em>, while 9.1 (2011) introduced synchronous replication at the
+transaction level (for RPO=0 clusters). Cascading replication was released with
+PostgreSQL 9.2 (2012). The foundations of logical replication were laid in
+PostgreSQL 9.4, while version 10 (2017) introduced native support for the
+publisher/subscriber pattern to replicate data from an origin to a destination.</p>
+<h2 id="replication-within-a-postgresql-cluster">Replication within a PostgreSQL cluster</h2>
+<h3 id="streaming-replication-support">Streaming replication support</h3>
+<p>At the moment, CloudNativePG natively and transparently manages
+physical streaming replicas within a cluster in a declarative way, based on
+the number of provided <code>instances</code> in the <code>spec</code>:</p>
+<pre tabindex="0"><code>replicas = instances - 1 (where  instances &gt; 0)
+</code></pre><p>Immediately after the initialization of a cluster, the operator creates a user
+called <code>streaming_replica</code> as follows:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">USER</span> streaming_replica <span style="color:#66d9ef">WITH</span> REPLICATION;
+</span></span><span style="display:flex;"><span>   <span style="color:#75715e">-- NOSUPERUSER INHERIT NOCREATEROLE NOCREATEDB NOBYPASSRLS
+</span></span></span></code></pre></div><p>!!! Note
+Due to a <code>pg_rewind</code> requirement, in PostgreSQL 10 the <code>streaming_replica</code>
+user is created with <code>SUPERUSER</code> privileges.</p>
+<p>Out of the box, the operator automatically sets up streaming replication within
+the cluster over an encrypted channel and enforces TLS client certificate
+authentication for the <code>streaming_replica</code> user - as highlighted by the following
+excerpt taken from <code>pg_hba.conf</code>:</p>
+<pre tabindex="0"><code># Require client certificate authentication for the streaming_replica user
+hostssl postgres streaming_replica all cert
+hostssl replication streaming_replica all cert
+</code></pre><p>!!! Seealso &ldquo;Certificates&rdquo;
+For details on how CloudNativePG manages certificates, please refer
+to the <a href="certificates.md#client-streaming_replica-certificate">&ldquo;Certificates&rdquo; section</a>
+in the documentation.</p>
+<h3 id="continuous-backup-integration">Continuous backup integration</h3>
+<p>In case continuous backup is configured in the cluster, CloudNativePG
+transparently configures replicas to take advantage of <code>restore_command</code> when
+in continuous recovery. As a result, PostgreSQL is able to use the WAL archive
+as a fallback option whenever pulling WALs via streaming replication fails.</p>
+<h3 id="synchronous-replication">Synchronous replication</h3>
+<p>CloudNativePG supports configuration of <strong>quorum-based synchronous
+streaming replication</strong> via two configuration options called <code>minSyncReplicas</code>
+and <code>maxSyncReplicas</code> which are the minimum and maximum number of expected
+synchronous standby replicas available at any time.
+For self-healing purposes, the operator always compares these two values with
+the number of available replicas in order to determine the quorum.</p>
+<p>Synchronous replication is disabled by default (<code>minSyncReplicas</code> and
+<code>maxSyncReplicas</code> are not defined).
+In case both <code>minSyncReplicas</code> and <code>maxSyncReplicas</code> are set, CloudNativePG
+automatically updates the <code>synchronous_standby_names</code> option in
+PostgreSQL to the following value:</p>
+<pre tabindex="0"><code>ANY q (pod1, pod2, ...)
+</code></pre><p>Where:</p>
+<ul>
+<li><code>q</code> is an integer automatically calculated by the operator to be:<br>
+<code>1 &lt;= minSyncReplicas &lt;= q &lt;= maxSyncReplicas &lt;= readyReplicas</code></li>
+<li><code>pod1, pod2, ...</code> is the list of all PostgreSQL pods in the cluster</li>
+</ul>
+<p>!!! Warning
+To provide self-healing capabilities, the operator has the power
+to ignore <code>minSyncReplicas</code> in case such value is higher than the currently
+available number of replicas. Synchronous replication is automatically disabled
+when <code>readyReplicas</code> is <code>0</code>.</p>
+<p>As stated in the
+<a href="https://www.postgresql.org/docs/current/warm-standby.html#SYNCHRONOUS-REPLICATION">PostgreSQL documentation</a>,
+the <em>method <code>ANY</code> specifies a quorum-based synchronous replication and makes
+transaction commits wait until their WAL records are replicated to at least the
+requested number of synchronous standbys in the list</em>.</p>
+<p>!!! Important
+Even though the operator chooses self-healing over enforcement of
+synchronous replication settings, our recommendation is to plan for
+synchronous replication only in clusters with 3+ instances or,
+more generally, when <code>maxSyncReplicas &lt; (instances - 1)</code>.</p>
+<h2 id="replication-from-an-external-postgresql-cluster">Replication from an external PostgreSQL cluster</h2>
+<p>CloudNativePG relies on the foundations of the PostgreSQL replication
+framework even when a PostgreSQL cluster is created from an existing one (source)
+and kept synchronized through the
+<a href="architecture.md#multi-cluster-deployments">replica cluster</a> feature. The source
+can be a primary cluster or another replica cluster (cascading replica cluster).</p>
+<p>The available options in terms of replication, both at bootstrap and continuous
+recovery level, are:</p>
+<ul>
+<li>use streaming replication between the replica cluster and the source
+(this will certainly require some administrative and security related
+work to be done to make sure that the network connection between the
+two clusters is correctly setup)</li>
+<li>use a Barman Cloud object store for recovery of the base backups and
+the WAL files that are regularly shipped from the source to the object
+store and pulled by <code>barman-cloud-wal-restore</code> in the replica cluster</li>
+<li>any of the two</li>
+</ul>
+<p>All you have to do is actually define an external cluster.
+Please refer to the <a href="bootstrap.md#bootstrap-from-another-cluster">&ldquo;Bootstrap&rdquo; section</a>
+for information on how to clone a PostgreSQL server using either
+<code>pg_basebackup</code> (streaming) or <code>recovery</code> (object store).</p>
+<p>If the external cluster contains a <code>barmanObjectStore</code> section:</p>
+<ul>
+<li>you&rsquo;ll be able to bootstrap the replica cluster from an object store
+using the <code>recovery</code> section</li>
+<li>CloudNativePG will automatically set the <code>restore_command</code>
+in the designated primary instance</li>
+</ul>
+<p>If the external cluster contains a <code>connectionParameters</code> section:</p>
+<ul>
+<li>you&rsquo;ll be able to bootstrap the replica cluster via streaming replication
+using the <code>pg_basebackup</code> section</li>
+<li>CloudNativePG will automatically set the <code>primary_conninfo</code>
+option in the designated primary instance, so that a WAL receiver
+process is started to connect to the source cluster and receive data</li>
+</ul>
+<p>The created replica cluster can perform backups in a reserved object store from
+the designated primary, enabling symmetric architectures in a distributed
+fashion.</p>
+<p>You have full flexibility and freedom to decide your favourite
+distributed architecture for a PostgreSQL database, by choosing:</p>
+<ul>
+<li>a private cloud spanning over multiple Kubernetes clusters in different data
+centers</li>
+<li>a public cloud spanning over multiple Kubernetes clusters in different
+regions</li>
+<li>a mix of the previous two (hybrid)</li>
+<li>a public cloud spanning over multiple Kubernetes clusters in different
+regions and on different Cloud Service Providers</li>
+</ul>
+<h3 id="setting-up-a-replica-cluster">Setting up a replica cluster</h3>
+<p>To setup a replica cluster from a source cluster, we need to create a cluster yaml
+file and define the following parts accordingly:</p>
+<ul>
+<li>define the <code>externalClusters</code> section in the replica cluster</li>
+<li>define the bootstrap part for the replica cluster. We can either bootstrap via
+streaming using the <code>pg_basebackup</code> section, or bootstrap from an object store
+using the <code>recovery</code> section</li>
+<li>define the continuous recovery part (<code>spec.replica</code>) in the replica cluster. All
+we need to do is to enable the replica mode through option <code>spec.replica.enabled</code>
+and set the <code>externalClusters</code> name in option <code>spec.replica.source</code></li>
+</ul>
+<p>This <strong>first example</strong> defines a replica cluster using streaming replication in
+both bootstrap and continuous recovery. The replica cluster connects to the
+source cluster using TLS authentication.</p>
+<p>You can check the <a href="samples/cluster-example-replica-streaming.yaml">sample YAML</a>
+in the <code>samples/</code> subdirectory.</p>
+<p>Note the <code>bootstrap</code> and <code>replica</code> sections pointing to the source cluster.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>  <span style="color:#f92672">bootstrap</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">pg_basebackup</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">source</span>: <span style="color:#ae81ff">cluster-example</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">replica</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">enabled</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">source</span>: <span style="color:#ae81ff">cluster-example</span>
+</span></span></code></pre></div><p>In the <code>externalClusters</code> section, remember to use the right namespace for the
+host in the <code>connectionParameters</code> sub-section.
+The <code>-replication</code> and <code>-ca</code> secrets should have been copied over if necessary,
+in case the replica cluster is in a separate namespace.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>  <span style="color:#f92672">externalClusters</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">&lt;MAIN-CLUSTER&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">connectionParameters</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">host</span>: <span style="color:#ae81ff">&lt;MAIN-CLUSTER&gt;-rw.&lt;NAMESPACE&gt;.svc</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">user</span>: <span style="color:#ae81ff">streaming_replica</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">sslmode</span>: <span style="color:#ae81ff">verify-full</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">dbname</span>: <span style="color:#ae81ff">postgres</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">sslKey</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">name</span>: <span style="color:#ae81ff">&lt;MAIN-CLUSTER&gt;-replication</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">key</span>: <span style="color:#ae81ff">tls.key</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">sslCert</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">name</span>: <span style="color:#ae81ff">&lt;MAIN-CLUSTER&gt;-replication</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">key</span>: <span style="color:#ae81ff">tls.crt</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">sslRootCert</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">name</span>: <span style="color:#ae81ff">&lt;MAIN-CLUSTER&gt;-ca</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">key</span>: <span style="color:#ae81ff">ca.crt</span>
+</span></span></code></pre></div><p>The <strong>second example</strong> defines a replica cluster which bootstraps from an object
+store using the <code>recovery</code> section, and continuous recovery using both streaming
+replication and the given object store. For streaming replication, the replica
+cluster connects to the source cluster using basic authentication.</p>
+<p>You can check the <a href="samples/cluster-example-replica-from-backup.yaml">sample YAML</a>
+for it in the <code>samples/</code> subdirectory.</p>
+<p>Note the <code>bootstrap</code> and <code>replica</code> sections pointing to the source cluster.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>  <span style="color:#f92672">bootstrap</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">recovery</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">source</span>: <span style="color:#ae81ff">cluster-example</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">replica</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">enabled</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">source</span>: <span style="color:#ae81ff">cluster-example</span>
+</span></span></code></pre></div><p>In the <code>externalClusters</code> section, take care to use the right namespace in the
+<code>endpointURL</code> and the <code>connectionParameters.host</code>.
+And do ensure that the necessary secrets have been copied if necessary, and that
+a backup of the source cluster has been created already.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>  <span style="color:#f92672">externalClusters</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">&lt;MAIN-CLUSTER&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">barmanObjectStore</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">destinationPath</span>: <span style="color:#ae81ff">s3://backups/</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">endpointURL</span>: <span style="color:#ae81ff">http://minio:9000</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">s3Credentials</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#ae81ff">…</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">connectionParameters</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">host</span>: <span style="color:#ae81ff">&lt;MAIN-CLUSTER&gt;-rw.default.svc</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">user</span>: <span style="color:#ae81ff">postgres</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">dbname</span>: <span style="color:#ae81ff">postgres</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">password</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">name</span>: <span style="color:#ae81ff">&lt;MAIN-CLUSTER&gt;-superuser</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">key</span>: <span style="color:#ae81ff">password</span>
+</span></span></code></pre></div><p>!!! Note
+To use streaming replication between the source cluster and the replica
+cluster, we need to make sure there is network connectivity between the two
+clusters, and that all the necessary secrets which hold passwords or
+certificates are properly created in advance.</p>
+<h3 id="promoting-the-designated-primary-in-the-replica-cluster">Promoting the designated primary in the replica cluster</h3>
+<p>To promote the <strong>designated primary</strong> to <strong>primary</strong>, all we need to do is to
+disable the replica mode in the replica cluster through the option
+<code>spec.replica.enabled</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span> <span style="color:#f92672">replica</span>:
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">enabled</span>: <span style="color:#66d9ef">false</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">source</span>: <span style="color:#ae81ff">cluster-example</span>
+</span></span></code></pre></div><p>Once the replica mode is disabled, the replica cluster and the source cluster
+will become two separate clusters, and the <strong>designated primary</strong> in the replica
+cluster will be promoted to be that cluster&rsquo;s <strong>primary</strong>. We can verify the role
+change using the cnpg plugin, checking the status of the cluster which was
+previously the replica:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>kubectl cnpg -n &lt;cluster-name-space&gt; status cluster-replica-example
+</span></span></code></pre></div><p>!!! Note
+Disabling replication is an <strong>irreversible</strong> operation: once replication is
+disabled and the <strong>designated primary</strong> is promoted to <strong>primary</strong>, the
+replica cluster and the source cluster will become two independent clusters
+definitively.</p>
+</p>
+    </div>
+    
 </div>
+
+<div class="flex gap-3 bg-gray-1 px-4 py-4 cnp-blue md:hidden fixed bottom-0 w-full" id="menu-toggle">
+    <img src="/icons/menu-unfold-outlined.svg" alt="">
+    <h4 class="text-lg">Documentation</h4>
+</div>
+
+<script>
+    const menuToggle = document.getElementById('menu-toggle')
+    const menuList = document.getElementById('menu-list')
+  
+    menuToggle.addEventListener('click', () => {
+      menuList.classList.toggle('hidden');
+    })
+</script>
 
 
     <footer class="text-center pb-24">
-    <p class="text-sm charcoal md:w-1/2 mx-auto md:pt-10 px-6 pt-12">&copy; 2019-2022 The CloudNativePG Contributors. All rights
-        reserved. The Linux Foundation has registered trademarks and uses trademarks.
-        For a list of trademarks of The Linux Foundation, please see our <a href="#" class="red-1">Trademark Usage
-            page</a>.</p>
+    <p class="text-sm charcoal md:w-1/2 mx-auto md:pt-10 px-6 pt-12">
+
+      &copy; The CloudNativePG Contributors.<br />
+
+      <a href="https://www.linuxfoundation.org/trademark-usage/"
+        class="red-1">The Linux Foundation has registered trademarks and uses
+        trademarks</a>.<br />
+
+      <a href="https://www.postgresql.org/about/policies/trademarks"
+        class="red-1">Postgres, PostgreSQL and the Slonik Logo are trademarks or
+        registered trademarks of the PostgreSQL Community Association of Canada, and
+        used with their permission</a>.
+
+    </p>
 </footer>
+
   </div>
   
   <script src="https://cdn.usefathom.com/script.js" data-site="GSMQCVAJ" defer></script>

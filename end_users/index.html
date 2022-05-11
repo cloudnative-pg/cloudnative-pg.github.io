@@ -43,8 +43,8 @@
       
       <div class="hidden md:block">
         <ul class="md:flex gap-14 text-2xl medium-gray my-5">
-          <li><a href="/docs/1.15.0/" target="_blank">Documentation</a></li>
-          <li>Blog</li>
+          <li><a href="/docs">Documentation</a></li>
+          <li><a href="/blog">Blog</a></li>
           <li><a href="/support">Support</a></li>
           <li><a href="/end_users">End Users</a></li>
         </ul>
@@ -104,8 +104,8 @@
 
     
 
-<div class="mx-auto w-1/2">
-    <h1 class="text-xl">End Users</h1>
+<div class="mx-auto md:w-1/2 px-4 well">
+    <h2 class="text-xl mt-6">End Users</h2>
     <p><p>CNCF defines end users as follows:</p>
 <blockquote>
 <p>End users are organizations that use cloud native technologies internally and
@@ -122,7 +122,7 @@ consultancies, training partners, telcos.</p>
     <hr>
     
     <a href="https://biganimal.com">
-        <img src="logo/biganimal.png" alt="BigAnimal" />
+        <img src="logo/biganimal.svg" alt="BigAnimal" class="py-4" />
     </a>
     
     <p>BigAnimal is a fully managed database-as-a-service with built-in Oracle
@@ -132,17 +132,28 @@ Provision <a href="https://www.enterprisedb.com/docs/supported-open-source/postg
 or <a href="https://www.enterprisedb.com/docs/epas/latest/">EDB Postgres Advanced Server</a>
 with Oracle compatibility.</p>
 
-    For more information visit <a href="https://biganimal.com">BigAnimal</a>.
+    <p> For more information visit <a href="https://biganimal.com">BigAnimal</a>.</p>
     
 </div>
 
 
     <footer class="text-center pb-24">
-    <p class="text-sm charcoal md:w-1/2 mx-auto md:pt-10 px-6 pt-12">&copy; 2019-2022 The CloudNativePG Contributors. All rights
-        reserved. The Linux Foundation has registered trademarks and uses trademarks.
-        For a list of trademarks of The Linux Foundation, please see our <a href="#" class="red-1">Trademark Usage
-            page</a>.</p>
+    <p class="text-sm charcoal md:w-1/2 mx-auto md:pt-10 px-6 pt-12">
+
+      &copy; The CloudNativePG Contributors.<br />
+
+      <a href="https://www.linuxfoundation.org/trademark-usage/"
+        class="red-1">The Linux Foundation has registered trademarks and uses
+        trademarks</a>.<br />
+
+      <a href="https://www.postgresql.org/about/policies/trademarks"
+        class="red-1">Postgres, PostgreSQL and the Slonik Logo are trademarks or
+        registered trademarks of the PostgreSQL Community Association of Canada, and
+        used with their permission</a>.
+
+    </p>
 </footer>
+
   </div>
   
   <script src="https://cdn.usefathom.com/script.js" data-site="GSMQCVAJ" defer></script>

@@ -43,8 +43,8 @@
       
       <div class="hidden md:block">
         <ul class="md:flex gap-14 text-2xl medium-gray my-5">
-          <li><a href="/docs/1.15.0/" target="_blank">Documentation</a></li>
-          <li>Blog</li>
+          <li><a href="/docs">Documentation</a></li>
+          <li><a href="/blog">Blog</a></li>
           <li><a href="/support">Support</a></li>
           <li><a href="/end_users">End Users</a></li>
         </ul>
@@ -104,8 +104,8 @@
 
     
 <base href="..">
-<div class="px-56 pt-20 flex">
-    <div class="w-1/4 px-5 bg-purple-2 pt-14 leading-9">
+<div class="md:px-56 md:pt-20 md:flex">
+    <div class="w-1/4 px-4 bg-purple-2 pt-14 leading-9 md:block hidden">
         
 <ul>
     
@@ -358,7 +358,7 @@
 </ul>
 
     </div>
-    <div class="w-4/6 pr-20 ml-10 well">
+    <div class="w-4/6 pr-20 ml-10 well hidden md:block">
         <p><h1 id="installation-and-upgrades">Installation and upgrades</h1>
 <h2 id="installation-on-kubernetes">Installation on Kubernetes</h2>
 <h3 id="directly-using-the-operator-manifest">Directly using the operator manifest</h3>
@@ -475,15 +475,412 @@ removed before installing the new one. This won&rsquo;t affect user data but
 only the operator itself.</p>
 </p>
     </div>
+    
+    <div class="sticky top-0 px-4 bg-purple-2 leading-9 hidden md:hidden py-4" id="menu-list">
+        
+<ul>
+    
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/api_reference/">API Reference</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/applications/">Connecting from an application</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/architecture/">Architecture</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/backup_recovery/">Backup and Recovery</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/before_you_start/">Before You Start</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/bootstrap/">Bootstrap</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/certificates/">Certificates</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/cnpg-plugin/">CloudNativePG Plugin</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/commercial_support/">Commercial support</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/connection_pooling/">Connection Pooling</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/container_images/">Container Image Requirements</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/e2e/">End-to-End Tests</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/expose_pg_services/">Exposing Postgres Services</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/failover/">Automated failover</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/failure_modes/">Failure Modes</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/fencing/">Fencing</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/installation_upgrade/">Installation and upgrades</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/instance_manager/">Postgres instance manager</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/kubernetes_upgrade/">Kubernetes Upgrade</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/labels_annotations/">Labels and annotations</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/logging/">Logging</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/monitoring/">Monitoring</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/operator_capability_levels/">Operator Capability Levels</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/operator_conf/">Operator configuration</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/postgresql_conf/">PostgreSQL Configuration</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/quickstart/">Quickstart</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/release_notes/">Release notes</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/replication/">Replication</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/resource_management/">Resource management</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/rolling_update/">Rolling Updates</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/samples/">Configuration Samples</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/scheduling/">Scheduling</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/security/">Security</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/ssl_connections/">Client TLS/SSL Connections</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/storage/">Storage</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/supported_releases/">Supported releases</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/troubleshooting/">Troubleshooting</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/use_cases/">Use cases</a>
+    </li>
+    
+    
+    
+</ul>
+
+<hr class="w-1/2">
+
+
+<p>Documention by version</p>
+<ul>
+    
+    <li>
+        <a href="/docs/v1.15.0/">
+            CloudNativePG
+            v1.15.0
+        </a>
+    </li>
+    
+</ul>
+
+    </div>
+    <div class="px-4 well md:hidden">
+        <p><h1 id="installation-and-upgrades">Installation and upgrades</h1>
+<h2 id="installation-on-kubernetes">Installation on Kubernetes</h2>
+<h3 id="directly-using-the-operator-manifest">Directly using the operator manifest</h3>
+<p>The operator can be installed like any other resource in Kubernetes,
+through a YAML manifest applied via <code>kubectl</code>.</p>
+<p>You can install the <a href="https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/main/releases/cnpg-1.15.0.yaml">latest operator manifest</a>
+as follows:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>kubectl apply -f <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/main/releases/cnpg-1.15.0.yaml
+</span></span></code></pre></div><p>Once you have run the <code>kubectl</code> command, CloudNativePG will be installed in your Kubernetes cluster.</p>
+<p>You can verify that with:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>kubectl get deploy -n cnpg-system cnpg-controller-manager
+</span></span></code></pre></div><h3 id="using-the-helm-chart">Using the Helm Chart</h3>
+<p>The operator can be installed using the provided <a href="https://github.com/cloudnative-pg/cloudnative-pg-helm">Helm chart</a>.</p>
+<h2 id="details-about-the-deployment">Details about the deployment</h2>
+<p>In Kubernetes, the operator is by default installed in the <code>cnpg-system</code> namespace as a Kubernetes
+<code>Deployment</code> called <code>cnpg-controller-manager</code>. You can get more information by running:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>kubectl describe deploy <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  -n cnpg-system <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  cnpg-controller-manager
+</span></span></code></pre></div><p>As with any Deployment, it sits on top of a ReplicaSet and supports rolling
+upgrades. The default configuration of the CloudNativePG operator
+comes with a Deployment of a single replica, which is suitable for most
+installations. In case the node where the pod is running is not reachable
+anymore, the pod will be rescheduled on another node.</p>
+<p>If you require high availability at the operator level, it is possible to
+specify multiple replicas in the Deployment configuration - given that the
+operator supports leader election. Also, you can take advantage of taints and
+tolerations to make sure that the operator does not run on the same nodes where
+the actual PostgreSQL clusters are running (this might even include the control
+plane for self-managed Kubernetes installations).</p>
+<p>!!! Seealso &ldquo;Operator configuration&rdquo;
+You can change the default behavior of the operator by overriding
+some default options. For more information, please refer to the
+<a href="operator_conf.md">&ldquo;Operator configuration&rdquo;</a> section.</p>
+<h2 id="upgrades">Upgrades</h2>
+<p>!!! Important
+Please carefully read the <a href="release_notes.md">release notes</a>
+before performing an upgrade as some versions might require
+extra steps.</p>
+<p>Upgrading CloudNativePG operator is a two-step process:</p>
+<ol>
+<li>upgrade the controller and the related Kubernetes resources</li>
+<li>upgrade the instance manager running in every PostgreSQL pod</li>
+</ol>
+<p>Unless differently stated in the release notes, the first step is normally done
+by applying the manifest of the newer version for plain Kubernetes
+installations, or using the native package manager of the used distribution
+(please follow the instructions in the above sections).</p>
+<p>The second step is automatically executed after having updated the controller,
+by default triggering a rolling update of every deployed PostgreSQL instance to
+use the new instance manager. The rolling update procedure culminates with a
+switchover, which is controlled by the <code>primaryUpdateStrategy</code> option, by
+default set to <code>unsupervised</code>. When set to <code>supervised</code>, users need to complete
+the rolling update by manually promoting a new instance through the <code>cnpg</code>
+plugin for <code>kubectl</code>.</p>
+<p>!!! Seealso &ldquo;Rolling updates&rdquo;
+This process is discussed in-depth on the <a href="rolling_update.md">Rolling Updates</a> page.</p>
+<p>!!! Important
+In case <code>primaryUpdateStrategy</code> is set to the default value of <code>unsupervised</code>,
+an upgrade of the operator will trigger a switchover on your PostgreSQL cluster,
+causing a (normally negligible) downtime.</p>
+<p>Since version 1.10.0, the rolling update behavior can be replaced with in-place
+updates of the instance manager. The latter don&rsquo;t require a restart of the
+PostgreSQL instance and, as a result, a switchover in the cluster.
+This behavior, which is disabled by default, is described below.</p>
+<h3 id="in-place-updates-of-the-instance-manager">In-place updates of the instance manager</h3>
+<p>By default, CloudNativePG issues a rolling update of the cluster
+every time the operator is updated. The new instance manager shipped with the
+operator is added to each PostgreSQL pod via an init container.</p>
+<p>However, this behavior can be changed via configuration to enable in-place
+updates of the instance manager, which is the PID 1 process that keeps the
+container alive.</p>
+<p>Internally, any instance manager from version 1.10 of CloudNativePG
+supports injection of a new executable that will replace the existing one,
+once the integrity verification phase is completed, as well as graceful
+termination of all the internal processes. When the new instance manager
+restarts using the new binary, it adopts the already running <em>postmaster</em>.</p>
+<p>As a result, the PostgreSQL process is unaffected by the update, refraining
+from the need to perform a switchover. The other side of the coin, is that
+the Pod is changed after the start, breaking the pure concept of immutability.</p>
+<p>You can enable this feature by setting the <code>ENABLE_INSTANCE_MANAGER_INPLACE_UPDATES</code>
+environment variable to <code>'true'</code> in the
+<a href="operator_conf.md#available-options">operator configuration</a>.</p>
+<p>The in-place upgrade process will not change the init container image inside the
+Pods. Therefore, the Pod definition will not reflect the current version of the
+operator.</p>
+<p>!!! Important
+This feature requires that all pods (operators and operands) run on the
+same platform/architecture (for example, all <code>linux/amd64</code>).</p>
+<h3 id="compatibility-among-versions">Compatibility among versions</h3>
+<p>CloudNativePG follows semantic versioning. Every release of the
+operator within the same API version is compatible with the previous one.
+The current API version is v1, corresponding to versions 1.x.y of the operator.</p>
+<p>In addition to new features, new versions of the operator contain bug fixes and
+stability enhancements. Because of this, <strong>we strongly encourage users to upgrade
+to the latest version of the operator</strong>, as each version is released in order to
+maintain the most secure and stable Postgres environment.</p>
+<p>CloudNativePG currently releases new versions of the operator at
+least monthly. If you are unable to apply updates as each version becomes
+available, we recommend upgrading through each version in sequential order to
+come current periodically and not skipping versions.</p>
+<p>!!! Important
+In 2022, EDB plans an LTS release for CloudNativePG in
+environments where frequent online updates are not possible.</p>
+<p>The <a href="release_notes.md">release notes</a> page contains a detailed list of the
+changes introduced in every released version of CloudNativePG,
+and it must be read before upgrading to a newer version of the software.</p>
+<p>Most versions are directly upgradable and in that case, applying the newer
+manifest for plain Kubernetes installations or using the native package
+manager of the chosen distribution is enough.</p>
+<p>When versions are not directly upgradable, the old version needs to be
+removed before installing the new one. This won&rsquo;t affect user data but
+only the operator itself.</p>
+</p>
+    </div>
+    
 </div>
+
+<div class="flex gap-3 bg-gray-1 px-4 py-4 cnp-blue md:hidden fixed bottom-0 w-full" id="menu-toggle">
+    <img src="/icons/menu-unfold-outlined.svg" alt="">
+    <h4 class="text-lg">Documentation</h4>
+</div>
+
+<script>
+    const menuToggle = document.getElementById('menu-toggle')
+    const menuList = document.getElementById('menu-list')
+  
+    menuToggle.addEventListener('click', () => {
+      menuList.classList.toggle('hidden');
+    })
+</script>
 
 
     <footer class="text-center pb-24">
-    <p class="text-sm charcoal md:w-1/2 mx-auto md:pt-10 px-6 pt-12">&copy; 2019-2022 The CloudNativePG Contributors. All rights
-        reserved. The Linux Foundation has registered trademarks and uses trademarks.
-        For a list of trademarks of The Linux Foundation, please see our <a href="#" class="red-1">Trademark Usage
-            page</a>.</p>
+    <p class="text-sm charcoal md:w-1/2 mx-auto md:pt-10 px-6 pt-12">
+
+      &copy; The CloudNativePG Contributors.<br />
+
+      <a href="https://www.linuxfoundation.org/trademark-usage/"
+        class="red-1">The Linux Foundation has registered trademarks and uses
+        trademarks</a>.<br />
+
+      <a href="https://www.postgresql.org/about/policies/trademarks"
+        class="red-1">Postgres, PostgreSQL and the Slonik Logo are trademarks or
+        registered trademarks of the PostgreSQL Community Association of Canada, and
+        used with their permission</a>.
+
+    </p>
 </footer>
+
   </div>
   
   <script src="https://cdn.usefathom.com/script.js" data-site="GSMQCVAJ" defer></script>

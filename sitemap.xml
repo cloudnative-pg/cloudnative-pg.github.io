@@ -3,6 +3,45 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://cloudnative-pg.io/</loc>
+    <lastmod>2022-05-11T14:13:20+02:00</lastmod>
+  </url><url>
+    <loc>https://cloudnative-pg.io/tags/blog/</loc>
+    <lastmod>2022-05-11T14:13:20+02:00</lastmod>
+  </url><url>
+    <loc>https://cloudnative-pg.io/blog/</loc>
+    <lastmod>2022-05-11T14:13:20+02:00</lastmod>
+  </url><url>
+    <loc>https://cloudnative-pg.io/tags/cloudnativepg/</loc>
+    <lastmod>2022-05-11T14:13:20+02:00</lastmod>
+  </url><url>
+    <loc>https://cloudnative-pg.io/tags/cncf/</loc>
+    <lastmod>2022-05-11T14:13:20+02:00</lastmod>
+  </url><url>
+    <loc>https://cloudnative-pg.io/tags/failover/</loc>
+    <lastmod>2022-05-11T14:13:20+02:00</lastmod>
+  </url><url>
+    <loc>https://cloudnative-pg.io/tags/k8s/</loc>
+    <lastmod>2022-05-11T14:13:20+02:00</lastmod>
+  </url><url>
+    <loc>https://cloudnative-pg.io/tags/kubernetes/</loc>
+    <lastmod>2022-05-11T14:13:20+02:00</lastmod>
+  </url><url>
+    <loc>https://cloudnative-pg.io/tags/operator/</loc>
+    <lastmod>2022-05-11T14:13:20+02:00</lastmod>
+  </url><url>
+    <loc>https://cloudnative-pg.io/tags/postgres/</loc>
+    <lastmod>2022-05-11T14:13:20+02:00</lastmod>
+  </url><url>
+    <loc>https://cloudnative-pg.io/tags/postgresql/</loc>
+    <lastmod>2022-05-11T14:13:20+02:00</lastmod>
+  </url><url>
+    <loc>https://cloudnative-pg.io/blog/running-postgresql-the-kubernetes-way/</loc>
+    <lastmod>2022-05-11T14:13:20+02:00</lastmod>
+  </url><url>
+    <loc>https://cloudnative-pg.io/tags/</loc>
+    <lastmod>2022-05-11T14:13:20+02:00</lastmod>
+  </url><url>
+    <loc>https://cloudnative-pg.io/authors/gbartolini/</loc>
   </url><url>
     <loc>https://cloudnative-pg.io/docs/v1.15.0/</loc>
   </url><url>
@@ -86,11 +125,11 @@
   </url><url>
     <loc>https://cloudnative-pg.io/info/advanced-architectures/</loc>
   </url><url>
+    <loc>https://cloudnative-pg.io/authors/</loc>
+  </url><url>
     <loc>https://cloudnative-pg.io/cards/automated/</loc>
   </url><url>
     <loc>https://cloudnative-pg.io/end_users/biganimal/</loc>
-  </url><url>
-    <loc>https://cloudnative-pg.io/blog/</loc>
   </url><url>
     <loc>https://cloudnative-pg.io/cards/</loc>
   </url><url>
@@ -127,7 +166,5 @@
     <loc>https://cloudnative-pg.io/info/security/</loc>
   </url><url>
     <loc>https://cloudnative-pg.io/styleguide/</loc>
-  </url><url>
-    <loc>https://cloudnative-pg.io/tags/</loc>
   </url>
 </urlset>

@@ -43,8 +43,8 @@
       
       <div class="hidden md:block">
         <ul class="md:flex gap-14 text-2xl medium-gray my-5">
-          <li><a href="/docs/1.15.0/" target="_blank">Documentation</a></li>
-          <li>Blog</li>
+          <li><a href="/docs">Documentation</a></li>
+          <li><a href="/blog">Blog</a></li>
           <li><a href="/support">Support</a></li>
           <li><a href="/end_users">End Users</a></li>
         </ul>
@@ -104,8 +104,8 @@
 
     
 <base href="..">
-<div class="px-56 pt-20 flex">
-    <div class="w-1/4 px-5 bg-purple-2 pt-14 leading-9">
+<div class="md:px-56 md:pt-20 md:flex">
+    <div class="w-1/4 px-4 bg-purple-2 pt-14 leading-9 md:block hidden">
         
 <ul>
     
@@ -358,7 +358,7 @@
 </ul>
 
     </div>
-    <div class="w-4/6 pr-20 ml-10 well">
+    <div class="w-4/6 pr-20 ml-10 well hidden md:block">
         <p><h1 id="backup-and-recovery">Backup and Recovery</h1>
 <p>The operator can orchestrate a continuous backup infrastructure
 that is based on the <a href="https://pgbarman.org">Barman</a> tool. Instead
@@ -949,15 +949,886 @@ feature:</p>
 </span></span><span style="display:flex;"><span>        <span style="color:#f92672">backupRetentionPolicy</span>: <span style="color:#e6db74">&#34;keep&#34;</span>
 </span></span></code></pre></div></p>
     </div>
+    
+    <div class="sticky top-0 px-4 bg-purple-2 leading-9 hidden md:hidden py-4" id="menu-list">
+        
+<ul>
+    
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/api_reference/">API Reference</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/applications/">Connecting from an application</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/architecture/">Architecture</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/backup_recovery/">Backup and Recovery</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/before_you_start/">Before You Start</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/bootstrap/">Bootstrap</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/certificates/">Certificates</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/cnpg-plugin/">CloudNativePG Plugin</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/commercial_support/">Commercial support</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/connection_pooling/">Connection Pooling</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/container_images/">Container Image Requirements</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/e2e/">End-to-End Tests</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/expose_pg_services/">Exposing Postgres Services</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/failover/">Automated failover</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/failure_modes/">Failure Modes</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/fencing/">Fencing</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/installation_upgrade/">Installation and upgrades</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/instance_manager/">Postgres instance manager</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/kubernetes_upgrade/">Kubernetes Upgrade</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/labels_annotations/">Labels and annotations</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/logging/">Logging</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/monitoring/">Monitoring</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/operator_capability_levels/">Operator Capability Levels</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/operator_conf/">Operator configuration</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/postgresql_conf/">PostgreSQL Configuration</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/quickstart/">Quickstart</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/release_notes/">Release notes</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/replication/">Replication</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/resource_management/">Resource management</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/rolling_update/">Rolling Updates</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/samples/">Configuration Samples</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/scheduling/">Scheduling</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/security/">Security</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/ssl_connections/">Client TLS/SSL Connections</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/storage/">Storage</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/supported_releases/">Supported releases</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/troubleshooting/">Troubleshooting</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/use_cases/">Use cases</a>
+    </li>
+    
+    
+    
+</ul>
+
+<hr class="w-1/2">
+
+
+<p>Documention by version</p>
+<ul>
+    
+    <li>
+        <a href="/docs/v1.15.0/">
+            CloudNativePG
+            v1.15.0
+        </a>
+    </li>
+    
+</ul>
+
+    </div>
+    <div class="px-4 well md:hidden">
+        <p><h1 id="backup-and-recovery">Backup and Recovery</h1>
+<p>The operator can orchestrate a continuous backup infrastructure
+that is based on the <a href="https://pgbarman.org">Barman</a> tool. Instead
+of using the classical architecture with a Barman server, which
+backs up many PostgreSQL instances, the operator relies on the
+<code>barman-cloud-wal-archive</code>, <code>barman-cloud-check-wal-archive</code>,
+<code>barman-cloud-backup</code>, <code>barman-cloud-backup-list</code>, and
+<code>barman-cloud-backup-delete</code> tools. As a result, base backups will
+be <em>tarballs</em>. Both base backups and WAL files can be compressed
+and encrypted.</p>
+<p>For this, it is required an image with <code>barman-cli-cloud</code> installed.
+You can use the image <code>ghcr.io/cloudnative-pg/postgresql</code> for this scope,
+as it is composed of a community PostgreSQL image and the latest
+<code>barman-cli-cloud</code> package.</p>
+<p>!!! Important
+Always ensure that you are running the latest version of the operands
+in your system to take advantage of the improvements introduced in
+Barman cloud (as well as improve the security aspects of your cluster).</p>
+<p>A backup is performed from a primary or a designated primary instance in a
+<code>Cluster</code> (please refer to
+<a href="replication.md#replication-from-an-external-postgresql-cluster">replica clusters</a>
+for more information about designated primary instances).</p>
+<h2 id="cloud-provider-support">Cloud provider support</h2>
+<p>You can archive the backup files in any service that is supported
+by the Barman Cloud infrastructure. That is:</p>
+<ul>
+<li><a href="https://aws.amazon.com/s3/">AWS S3</a></li>
+<li><a href="https://azure.microsoft.com/en-us/services/storage/blobs/">Microsoft Azure Blob Storage</a></li>
+<li><a href="https://cloud.google.com/storage/">Google Cloud Storage</a></li>
+</ul>
+<p>You can also use any compatible implementation of the
+supported services.</p>
+<p>The required setup depends on the chosen storage provider and is
+discussed in the following sections.</p>
+<h3 id="s3">S3</h3>
+<p>You will need the following information about your environment:</p>
+<ul>
+<li>
+<p><code>ACCESS_KEY_ID</code>: the ID of the access key that will be used
+to upload files in S3</p>
+</li>
+<li>
+<p><code>ACCESS_SECRET_KEY</code>: the secret part of the previous access key</p>
+</li>
+<li>
+<p><code>ACCESS_SESSION_TOKEN</code>: the optional session token in case it is required</p>
+</li>
+</ul>
+<p>The access key used must have permission to upload files in
+the bucket. Given that, you must create a k8s secret with the
+credentials, and you can do that with the following command:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>kubectl create secret generic aws-creds <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --from-literal<span style="color:#f92672">=</span>ACCESS_KEY_ID<span style="color:#f92672">=</span>&lt;access key here&gt; <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --from-literal<span style="color:#f92672">=</span>ACCESS_SECRET_KEY<span style="color:#f92672">=</span>&lt;secret key here&gt;
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># --from-literal=ACCESS_SESSION_TOKEN=&lt;session token here&gt; # if required</span>
+</span></span></code></pre></div><p>The credentials will be stored inside Kubernetes and will be encrypted
+if encryption at rest is configured in your installation.</p>
+<p>Given that secret, you can configure your cluster like in
+the following example:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">postgresql.cnpg.io/v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Cluster</span>
+</span></span><span style="display:flex;"><span>[<span style="color:#ae81ff">...]</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">backup</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">barmanObjectStore</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">destinationPath</span>: <span style="color:#e6db74">&#34;&lt;destination path here&gt;&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">s3Credentials</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">accessKeyId</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">name</span>: <span style="color:#ae81ff">aws-creds</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">key</span>: <span style="color:#ae81ff">ACCESS_KEY_ID</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">secretAccessKey</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">name</span>: <span style="color:#ae81ff">aws-creds</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">key</span>: <span style="color:#ae81ff">ACCESS_SECRET_KEY</span>
+</span></span></code></pre></div><p>The destination path can be every URL pointing to a folder where
+the instance can upload the WAL files, e.g.
+<code>s3://BUCKET_NAME/path/to/folder</code>.</p>
+<h3 id="other-s3-compatible-object-storages-providers">Other S3-compatible Object Storages providers</h3>
+<p>In case you&rsquo;re using S3-compatible object storage, like MinIO or
+Linode Object Storage, you can specify an endpoint instead of using the
+default S3 one.</p>
+<p>In this example, it will use the <code>bucket</code> bucket of Linode in the region
+<code>us-east1</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">postgresql.cnpg.io/v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Cluster</span>
+</span></span><span style="display:flex;"><span>[<span style="color:#ae81ff">...]</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">backup</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">barmanObjectStore</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">destinationPath</span>: <span style="color:#e6db74">&#34;&lt;destination path here&gt;&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">endpointURL</span>: <span style="color:#ae81ff">bucket.us-east1.linodeobjects.com</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">s3Credentials</span>:
+</span></span><span style="display:flex;"><span>        [<span style="color:#ae81ff">...]</span>
+</span></span></code></pre></div><p>!!! Important
+Suppose you configure an Object Storage provider which uses a certificate signed with a private CA,
+like when using MinIO via HTTPS. In that case, you need to set the option <code>endpointCA</code>
+referring to a secret containing the CA bundle so that Barman can verify the certificate correctly.</p>
+<p>!!! Note
+If you want ConfigMaps and Secrets to be <strong>automatically</strong> reloaded by instances, you can
+add a label with key <code>cnpg.io/reload</code> to it, otherwise you will have to reload
+the instances using the <code>kubectl cnpg reload</code> subcommand.</p>
+<h3 id="minio-gateway">MinIO Gateway</h3>
+<p>Optionally, you can use MinIO Gateway as a common interface which
+relays backup objects to other cloud storage solutions, like S3 or GCS.
+For more information, please refer to <a href="https://docs.min.io/">MinIO official documentation</a>.</p>
+<p>Specifically, the CloudNativePG cluster can directly point to a local
+MinIO Gateway as an endpoint, using previously created credentials and service.</p>
+<p>MinIO secrets will be used by both the PostgreSQL cluster and the MinIO instance.
+Therefore you must create them in the same namespace:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>kubectl create secret generic minio-creds <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --from-literal<span style="color:#f92672">=</span>MINIO_ACCESS_KEY<span style="color:#f92672">=</span>&lt;minio access key here&gt; <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --from-literal<span style="color:#f92672">=</span>MINIO_SECRET_KEY<span style="color:#f92672">=</span>&lt;minio secret key here&gt;
+</span></span></code></pre></div><p>!!! Note
+Cloud Object Storage credentials will be used only by MinIO Gateway in this case.</p>
+<p>!!! Important
+In order to allow PostgreSQL to reach MinIO Gateway, it is necessary to create a
+<code>ClusterIP</code> service on port <code>9000</code> bound to the MinIO Gateway instance.</p>
+<p>For example:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Service</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">minio-gateway-service</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">type</span>: <span style="color:#ae81ff">ClusterIP</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">ports</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">port</span>: <span style="color:#ae81ff">9000</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">targetPort</span>: <span style="color:#ae81ff">9000</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">protocol</span>: <span style="color:#ae81ff">TCP</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">selector</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">app</span>: <span style="color:#ae81ff">minio</span>
+</span></span></code></pre></div><p>!!! Warning
+At the time of writing this documentation, the official <a href="https://github.com/minio/minio-operator/issues/71">MinIO Operator</a>
+for Kubernetes does not support the gateway feature. As such, we will use a
+<code>deployment</code> instead.</p>
+<p>The MinIO deployment will use cloud storage credentials to upload objects to the
+remote bucket and relay backup files to different locations.</p>
+<p>Here is an example using AWS S3 as Cloud Object Storage:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">apps/v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Deployment</span>
+</span></span><span style="display:flex;"><span>[<span style="color:#ae81ff">...]</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">containers</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">minio</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">minio/minio:RELEASE.2020-06-03T22-13-49Z</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">args</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">gateway</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">s3</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">env</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># MinIO access key and secret key</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">MINIO_ACCESS_KEY</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">valueFrom</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">secretKeyRef</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">name</span>: <span style="color:#ae81ff">minio-creds</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">key</span>: <span style="color:#ae81ff">MINIO_ACCESS_KEY</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">MINIO_SECRET_KEY</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">valueFrom</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">secretKeyRef</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">name</span>: <span style="color:#ae81ff">minio-creds</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">key</span>: <span style="color:#ae81ff">MINIO_SECRET_KEY</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># AWS credentials</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">AWS_ACCESS_KEY_ID</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">valueFrom</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">secretKeyRef</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">name</span>: <span style="color:#ae81ff">aws-creds</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">key</span>: <span style="color:#ae81ff">ACCESS_KEY_ID</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">AWS_SECRET_ACCESS_KEY</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">valueFrom</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">secretKeyRef</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">name</span>: <span style="color:#ae81ff">aws-creds</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">key</span>: <span style="color:#ae81ff">ACCESS_SECRET_KEY</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Uncomment the below section if session token is required</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#   - name: AWS_SESSION_TOKEN</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#     valueFrom:</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#       secretKeyRef:</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#         name: aws-creds</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#         key: ACCESS_SESSION_TOKEN</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">ports</span>:
+</span></span><span style="display:flex;"><span>        - <span style="color:#f92672">containerPort</span>: <span style="color:#ae81ff">9000</span>
+</span></span></code></pre></div><p>Proceed by configuring MinIO Gateway service as the <code>endpointURL</code> in the <code>Cluster</code>
+definition, then choose a bucket name to replace <code>BUCKET_NAME</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">postgresql.cnpg.io/v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Cluster</span>
+</span></span><span style="display:flex;"><span>[<span style="color:#ae81ff">...]</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">backup</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">barmanObjectStore</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">destinationPath</span>: <span style="color:#ae81ff">s3://BUCKET_NAME/</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">endpointURL</span>: <span style="color:#ae81ff">http://minio-gateway-service:9000</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">s3Credentials</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">accessKeyId</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">name</span>: <span style="color:#ae81ff">minio-creds</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">key</span>: <span style="color:#ae81ff">MINIO_ACCESS_KEY</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">secretAccessKey</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">name</span>: <span style="color:#ae81ff">minio-creds</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">key</span>: <span style="color:#ae81ff">MINIO_SECRET_KEY</span>
+</span></span><span style="display:flex;"><span>    [<span style="color:#ae81ff">...]</span>
+</span></span></code></pre></div><p>Verify on <code>s3://BUCKET_NAME/</code> the presence of archived WAL files before
+proceeding with a backup.</p>
+<h3 id="azure-blob-storage">Azure Blob Storage</h3>
+<p>In order to access your storage account, you will need one of the following combinations
+of credentials:</p>
+<ul>
+<li><a href="https://docs.microsoft.com/en-us/azure/storage/common/storage-configure-connection-string#configure-a-connection-string-for-an-azure-storage-account"><strong>Connection String</strong></a></li>
+<li><strong>Storage account name</strong> and <a href="https://docs.microsoft.com/en-us/azure/storage/common/storage-account-keys-manage"><strong>Storage account access key</strong></a></li>
+<li><strong>Storage account name</strong> and <a href="https://docs.microsoft.com/en-us/azure/storage/blobs/sas-service-create"><strong>Storage account SAS Token</strong></a>.</li>
+</ul>
+<p>The credentials need to be stored inside a Kubernetes Secret, adding data entries only when
+needed. The following command performs that:</p>
+<pre tabindex="0"><code>kubectl create secret generic azure-creds \
+  --from-literal=AZURE_STORAGE_ACCOUNT=&lt;storage account name&gt; \
+  --from-literal=AZURE_STORAGE_KEY=&lt;storage account key&gt; \
+  --from-literal=AZURE_STORAGE_SAS_TOKEN=&lt;SAS token&gt; \
+  --from-literal=AZURE_STORAGE_CONNECTION_STRING=&lt;connection string&gt;
+</code></pre><p>The credentials will be encrypted at rest, if this feature is enabled in the used
+Kubernetes cluster.</p>
+<p>Given the previous secret, the provided credentials can be injected inside the cluster
+configuration:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">postgresql.cnpg.io/v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Cluster</span>
+</span></span><span style="display:flex;"><span>[<span style="color:#ae81ff">...]</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">backup</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">barmanObjectStore</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">destinationPath</span>: <span style="color:#e6db74">&#34;&lt;destination path here&gt;&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">azureCredentials</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">connectionString</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">name</span>: <span style="color:#ae81ff">azure-creds</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">key</span>: <span style="color:#ae81ff">AZURE_CONNECTION_STRING</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">storageAccount</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">name</span>: <span style="color:#ae81ff">azure-creds</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">key</span>: <span style="color:#ae81ff">AZURE_STORAGE_ACCOUNT</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">storageKey</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">name</span>: <span style="color:#ae81ff">azure-creds</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">key</span>: <span style="color:#ae81ff">AZURE_STORAGE_KEY</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">storageSasToken</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">name</span>: <span style="color:#ae81ff">azure-creds</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">key</span>: <span style="color:#ae81ff">AZURE_STORAGE_SAS_TOKEN</span>
+</span></span></code></pre></div><p>When using the Azure Blob Storage, the <code>destinationPath</code> fulfills the following
+structure:</p>
+<pre tabindex="0"><code>&lt;http|https&gt;://&lt;account-name&gt;.&lt;service-name&gt;.core.windows.net/&lt;resource-path&gt;
+</code></pre><p>where <code>&lt;resource-path&gt;</code> is <code>&lt;container&gt;/&lt;blob&gt;</code>. The <strong>account name</strong>,
+which is also called <strong>storage account name</strong>, is included in the used host name.</p>
+<h3 id="other-azure-blob-storage-compatible-providers">Other Azure Blob Storage compatible providers</h3>
+<p>If you are using a different implementation of the Azure Blob Storage APIs,
+the <code>destinationPath</code> will have the following structure:</p>
+<pre tabindex="0"><code>&lt;http|https&gt;://&lt;local-machine-address&gt;:&lt;port&gt;/&lt;account-name&gt;/&lt;resource-path&gt;
+</code></pre><p>In that case, <code>&lt;account-name&gt;</code> is the first component of the path.</p>
+<p>This is required if you are testing the Azure support via the Azure Storage
+Emulator or <a href="https://github.com/Azure/Azurite">Azurite</a>.</p>
+<h3 id="google-cloud-storage">Google Cloud Storage</h3>
+<p>Currently, the operator supports two authentication methods for Google Cloud Storage,
+one assumes the pod is running inside a Google Kubernetes Engine cluster, the other one leverages
+the environment variable <code>GOOGLE_APPLICATION_CREDENTIALS</code>.</p>
+<h4 id="running-inside-google-kubernetes-engine">Running inside Google Kubernetes Engine</h4>
+<p>This could be one of the easiest way to create a backup, and only requires
+the following configuration:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">postgresql.cnpg.io/v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Cluster</span>
+</span></span><span style="display:flex;"><span>[<span style="color:#ae81ff">...]</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">backup</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">barmanObjectStore</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">destinationPath</span>: <span style="color:#e6db74">&#34;gs://&lt;destination path here&gt;&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">googleCredentials</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">gkeEnvironment</span>: <span style="color:#66d9ef">true</span>
+</span></span></code></pre></div><p>This, will tell the operator that the cluster is running inside a Google Kubernetes
+Engine meaning that no credentials are needed to upload the files</p>
+<p>!!! Important
+This method will require carefully defined permissions for cluster
+and pods, which have to be defined by a cluster administrator.</p>
+<h4 id="using-authentication">Using authentication</h4>
+<p>Following the <a href="https://cloud.google.com/docs/authentication/getting-started">instruction from Google</a>
+you will get a JSON file that contains all the required information to authenticate.</p>
+<p>The content of the JSON file must be provided using a <code>Secret</code> that can be created
+with the following command:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>kubectl create secret generic backup-creds --from-file<span style="color:#f92672">=</span>gcsCredentials<span style="color:#f92672">=</span>gcs_credentials_file.json
+</span></span></code></pre></div><p>This will create the <code>Secret</code> with the name <code>backup-creds</code> to be used in the yaml file like this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">postgresql.cnpg.io/v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Cluster</span>
+</span></span><span style="display:flex;"><span>[<span style="color:#ae81ff">...]</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">backup</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">barmanObjectStore</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">destinationPath</span>: <span style="color:#e6db74">&#34;gs://&lt;destination path here&gt;&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">googleCredentials</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">applicationCredentials</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">name</span>: <span style="color:#ae81ff">backup-creds</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">key</span>: <span style="color:#ae81ff">gcsCredentials</span>
+</span></span></code></pre></div><p>Now the operator will use the credentials to authenticate against Google Cloud Storage.</p>
+<p>!!! Important
+This way of authentication will create a JSON file inside the container with all the needed
+information to access your Google Cloud Storage bucket, meaning that if someone gets access to the pod
+will also have write permissions to the bucket.</p>
+<h2 id="on-demand-backups">On-demand backups</h2>
+<p>To request a new backup, you need to create a new Backup resource
+like the following one:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">postgresql.cnpg.io/v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Backup</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">backup-example</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">cluster</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">name</span>: <span style="color:#ae81ff">pg-backup</span>
+</span></span></code></pre></div><p>The operator will start to orchestrate the cluster to take the
+required backup using <code>barman-cloud-backup</code>. You can check
+the backup status using the plain <code>kubectl describe backup &lt;name&gt;</code>
+command:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>Name:         backup-example
+</span></span><span style="display:flex;"><span>Namespace:    default
+</span></span><span style="display:flex;"><span>Labels:       &lt;none&gt;
+</span></span><span style="display:flex;"><span>Annotations:  API Version:  postgresql.cnpg.io/v1
+</span></span><span style="display:flex;"><span>Kind:         Backup
+</span></span><span style="display:flex;"><span>Metadata:
+</span></span><span style="display:flex;"><span>  Creation Timestamp:  2020-10-26T13:57:40Z
+</span></span><span style="display:flex;"><span>  Self Link:         /apis/postgresql.cnpg.io/v1/namespaces/default/backups/backup-example
+</span></span><span style="display:flex;"><span>  UID:               ad5f855c-2ffd-454a-a157-900d5f1f6584
+</span></span><span style="display:flex;"><span>Spec:
+</span></span><span style="display:flex;"><span>  Cluster:
+</span></span><span style="display:flex;"><span>    Name:  pg-backup
+</span></span><span style="display:flex;"><span>Status:
+</span></span><span style="display:flex;"><span>  Phase:       running
+</span></span><span style="display:flex;"><span>  Started At:  2020-10-26T13:57:40Z
+</span></span><span style="display:flex;"><span>Events:        &lt;none&gt;
+</span></span></code></pre></div><p>When the backup has been completed, the phase will be <code>completed</code>
+like in the following example:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>Name:         backup-example
+</span></span><span style="display:flex;"><span>Namespace:    default
+</span></span><span style="display:flex;"><span>Labels:       &lt;none&gt;
+</span></span><span style="display:flex;"><span>Annotations:  API Version:  postgresql.cnpg.io/v1
+</span></span><span style="display:flex;"><span>Kind:         Backup
+</span></span><span style="display:flex;"><span>Metadata:
+</span></span><span style="display:flex;"><span>  Creation Timestamp:  2020-10-26T13:57:40Z
+</span></span><span style="display:flex;"><span>  Self Link:         /apis/postgresql.cnpg.io/v1/namespaces/default/backups/backup-example
+</span></span><span style="display:flex;"><span>  UID:               ad5f855c-2ffd-454a-a157-900d5f1f6584
+</span></span><span style="display:flex;"><span>Spec:
+</span></span><span style="display:flex;"><span>  Cluster:
+</span></span><span style="display:flex;"><span>    Name:  pg-backup
+</span></span><span style="display:flex;"><span>Status:
+</span></span><span style="display:flex;"><span>  Backup Id:         20201026T135740
+</span></span><span style="display:flex;"><span>  Destination Path:  s3://backups/
+</span></span><span style="display:flex;"><span>  Endpoint URL:      http://minio:9000
+</span></span><span style="display:flex;"><span>  Phase:             completed
+</span></span><span style="display:flex;"><span>  s3Credentials:
+</span></span><span style="display:flex;"><span>    Access Key Id:
+</span></span><span style="display:flex;"><span>      Key:   ACCESS_KEY_ID
+</span></span><span style="display:flex;"><span>      Name:  minio
+</span></span><span style="display:flex;"><span>    Secret Access Key:
+</span></span><span style="display:flex;"><span>      Key:      ACCESS_SECRET_KEY
+</span></span><span style="display:flex;"><span>      Name:     minio
+</span></span><span style="display:flex;"><span>  Server Name:  pg-backup
+</span></span><span style="display:flex;"><span>  Started At:   2020-10-26T13:57:40Z
+</span></span><span style="display:flex;"><span>  Stopped At:   2020-10-26T13:57:44Z
+</span></span><span style="display:flex;"><span>Events:         &lt;none&gt;
+</span></span></code></pre></div><p>!!!Important
+This feature will not backup the secrets for the superuser and the
+application user. The secrets are supposed to be backed up as part of
+the standard backup procedures for the Kubernetes cluster.</p>
+<h2 id="scheduled-backups">Scheduled backups</h2>
+<p>You can also schedule your backups periodically by creating a
+resource named <code>ScheduledBackup</code>. The latter is similar to a
+<code>Backup</code> but with an added field, called <code>schedule</code>.</p>
+<p>This field is a <em>cron schedule</em> specification, which follows the same
+<a href="https://pkg.go.dev/github.com/robfig/cron#hdr-CRON_Expression_Format">format used in Kubernetes CronJobs</a>.</p>
+<p>This is an example of a scheduled backup:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">postgresql.cnpg.io/v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">ScheduledBackup</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">backup-example</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">schedule</span>: <span style="color:#e6db74">&#34;0 0 0 * * *&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">cluster</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">name</span>: <span style="color:#ae81ff">pg-backup</span>
+</span></span></code></pre></div><p>The above example will schedule a backup every day at midnight.</p>
+<p>!!! Hint
+Backup frequency might impact your recovery time object (RTO) after a
+disaster which requires a full or Point-In-Time recovery operation. Our
+advice is that you regularly test your backups by recovering them, and then
+measuring the time it takes to recover from scratch so that you can refine
+your RTO predictability. Recovery time is influenced by the size of the
+base backup and the amount of WAL files that need to fetched from the archive
+and replayed during recovery (remember that WAL archiving is what enables
+continuous backup in PostgreSQL!).
+Based on our experience, a weekly base backup is more than enough for most
+cases - while it is extremely rare to schedule backups more frequently than once
+a day.</p>
+<p>ScheduledBackups can be suspended if needed by setting <code>.spec.suspend: true</code>,
+this will stop any new backup to be scheduled as long as the option is set to false.</p>
+<p>In case you want to issue a backup as soon as the ScheduledBackup resource is created
+you can set <code>.spec.immediate: true</code>.</p>
+<h2 id="wal-archiving">WAL archiving</h2>
+<p>WAL archiving is enabled as soon as you choose a destination path
+and you configure your cloud credentials.</p>
+<p>If required, you can choose to compress WAL files as soon as they
+are uploaded and/or encrypt them:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">postgresql.cnpg.io/v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Cluster</span>
+</span></span><span style="display:flex;"><span>[<span style="color:#ae81ff">...]</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">backup</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">barmanObjectStore</span>:
+</span></span><span style="display:flex;"><span>      [<span style="color:#ae81ff">...]</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">wal</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">compression</span>: <span style="color:#ae81ff">gzip</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">encryption</span>: <span style="color:#ae81ff">AES256</span>
+</span></span></code></pre></div><p>You can configure the encryption directly in your bucket, and the operator
+will use it unless you override it in the cluster configuration.</p>
+<p>PostgreSQL implements a sequential archiving scheme, where the
+<code>archive_command</code> will be executed sequentially for every WAL
+segment to be archived.</p>
+<p>When the bandwidth between the PostgreSQL instance and the object
+store allows archiving more than one WAL file in parallel, you
+can use the parallel WAL archiving feature of the instance manager
+like in the following example:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">postgresql.cnpg.io/v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Cluster</span>
+</span></span><span style="display:flex;"><span>[<span style="color:#ae81ff">...]</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">backup</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">barmanObjectStore</span>:
+</span></span><span style="display:flex;"><span>      [<span style="color:#ae81ff">...]</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">wal</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">compression</span>: <span style="color:#ae81ff">gzip</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">maxParallel</span>: <span style="color:#ae81ff">8</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">encryption</span>: <span style="color:#ae81ff">AES256</span>
+</span></span></code></pre></div><p>In the previous example, the instance manager optimizes the WAL
+archiving process by archiving in parallel at most eight ready
+WALs, including the one requested by PostgreSQL.</p>
+<p>When PostgreSQL will request the archiving of a WAL that has
+already been archived by the instance manager as an optimization,
+that archival request will be just dismissed with a positive status.</p>
+<h2 id="recovery">Recovery</h2>
+<p>Cluster restores are not performed &ldquo;in-place&rdquo; on an existing cluster.
+You can use the data uploaded to the object storage to <em>bootstrap</em> a
+new cluster from a previously taken backup.
+The operator will orchestrate the recovery process using the
+<code>barman-cloud-restore</code> tool (for the base backup) and the
+<code>barman-cloud-wal-restore</code> tool (for WAL files, including parallel support, if
+requested).</p>
+<p>For details and instructions on the <code>recovery</code> bootstrap method, please refer
+to the <a href="bootstrap.md#bootstrap-from-a-backup-recovery">&ldquo;Bootstrap from a backup&rdquo; section</a>.</p>
+<p>Under the hood, the operator will inject an init container in the first
+instance of the new cluster, and the init container will start recovering the
+backup from the object storage.</p>
+<p>!!! Important
+The duration of the base backup copy in the new PVC depends on
+the size of the backup, as well as the speed of both the network and the
+storage.</p>
+<p>When the base backup recovery process is completed, the operator starts the
+Postgres instance in recovery mode: in this phase, PostgreSQL is up, albeit not
+being able to accept connections, and the pod is healthy, according to the
+liveness probe. Through the <code>restore_command</code>, PostgreSQL starts fetching WAL
+files from the archive (you can speed up this phase by setting the
+<code>maxParallel</code> option and enable the parallel WAL restore capability).</p>
+<p>This phase terminates when PostgreSQL reaches the target (either the end of the
+WAL or the required target in case of Point-In-Time-Recovery). Indeed, you can
+optionally specify a <code>recoveryTarget</code> to perform a point in time recovery. If
+left unspecified, the recovery will continue up to the latest available WAL on
+the default target timeline (<code>current</code> for PostgreSQL up to 11, <code>latest</code> for
+version 12 and above).</p>
+<p>Once the recovery is complete, the operator will set the required
+superuser password into the instance. The new primary instance will start
+as usual, and the remaining instances will join the cluster as replicas.</p>
+<p>The process is transparent for the user and it is managed by the instance
+manager running in the Pods.</p>
+<h2 id="retention-policies">Retention policies</h2>
+<p>CloudNativePG can manage the automated deletion of backup files from
+the backup object store, using <strong>retention policies</strong> based on recovery window.</p>
+<p>Internally, the retention policy feature uses <code>barman-cloud-backup-delete</code>
+with <code>--retention-policy “RECOVERY WINDOW OF {{ retention policy value }} {{ retention policy unit }}”</code>.</p>
+<p>For example, you can define your backups with a retention policy of 30 days as
+follows:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">postgresql.cnpg.io/v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Cluster</span>
+</span></span><span style="display:flex;"><span>[<span style="color:#ae81ff">...]</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">backup</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">barmanObjectStore</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">destinationPath</span>: <span style="color:#e6db74">&#34;&lt;destination path here&gt;&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">s3Credentials</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">accessKeyId</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">name</span>: <span style="color:#ae81ff">aws-creds</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">key</span>: <span style="color:#ae81ff">ACCESS_KEY_ID</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">secretAccessKey</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">name</span>: <span style="color:#ae81ff">aws-creds</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">key</span>: <span style="color:#ae81ff">ACCESS_SECRET_KEY</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">retentionPolicy</span>: <span style="color:#e6db74">&#34;30d&#34;</span>
+</span></span></code></pre></div><p>!!! Note &ldquo;There&rsquo;s more &hellip;&rdquo;
+The <strong>recovery window retention policy</strong> is focused on the concept of
+<em>Point of Recoverability</em> (<code>PoR</code>), a moving point in time determined by
+<code>current time - recovery window</code>. The <em>first valid backup</em> is the first
+available backup before <code>PoR</code> (in reverse chronological order).
+CloudNativePG must ensure that we can recover the cluster at
+any point in time between <code>PoR</code> and the latest successfully archived WAL
+file, starting from the first valid backup. Base backups that are older
+than the first valid backup will be marked as <em>obsolete</em> and permanently
+removed after the next backup is completed.</p>
+<h2 id="compression-algorithms">Compression algorithms</h2>
+<p>CloudNativePG by default archives backups and WAL files in an
+uncompressed fashion. However, it also supports the following compression
+algorithms via <code>barman-cloud-backup</code> (for backups) and
+<code>barman-cloud-wal-archive</code> (for WAL files):</p>
+<ul>
+<li>bzip2</li>
+<li>gzip</li>
+<li>snappy</li>
+</ul>
+<p>The compression settings for backups and WALs are independent. See the
+<a href="api_reference.md#DataBackupConfiguration">DataBackupConfiguration</a> and
+<a href="api_reference.md#WalBackupConfiguration">WALBackupConfiguration</a> sections in
+the API reference.</p>
+<p>It is important to note that archival time, restore time, and size change
+between the algorithms, so the compression algorithm should be chosen according
+to your use case.</p>
+<p>The Barman team has performed an evaluation of the performance of the supported
+algorithms for Barman Cloud. The following table summarizes a scenario where a
+backup is taken on a local MinIO deployment. The Barman GitHub project includes
+a <a href="https://github.com/EnterpriseDB/barman/issues/344#issuecomment-992547396">deeper analysis</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Compression</th>
+<th>Backup Time (ms)</th>
+<th>Restore Time (ms)</th>
+<th>Uncompressed size (MB)</th>
+<th>Compressed size (MB)</th>
+<th>Approx ratio</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>None</td>
+<td>10927</td>
+<td>7553</td>
+<td>395</td>
+<td>395</td>
+<td>1:1</td>
+</tr>
+<tr>
+<td>bzip2</td>
+<td>25404</td>
+<td>13886</td>
+<td>395</td>
+<td>67</td>
+<td>5.9:1</td>
+</tr>
+<tr>
+<td>gzip</td>
+<td>116281</td>
+<td>3077</td>
+<td>395</td>
+<td>91</td>
+<td>4.3:1</td>
+</tr>
+<tr>
+<td>snappy</td>
+<td>8134</td>
+<td>8341</td>
+<td>395</td>
+<td>166</td>
+<td>2.4:1</td>
+</tr>
+</tbody>
+</table>
+<h2 id="tagging-of-backup-objects">Tagging of backup objects</h2>
+<p>Barman 2.18 introduces support for tagging backup resources when saving them in
+object stores via <code>barman-cloud-backup</code> and <code>barman-cloud-wal-archive</code>. As a
+result, if your PostgreSQL container image includes Barman with version 2.18 or
+higher, CloudNativePG enables you to specify tags as key-value pairs
+for backup objects, namely base backups, WAL files and history files.</p>
+<p>You can use two properties in the <code>.spec.backup.barmanObjectStore</code> definition:</p>
+<ul>
+<li><code>tags</code>: key-value pair tags to be added to backup objects and archived WAL
+file in the backup object store</li>
+<li><code>historyTags</code>: key-value pair tags to be added to archived history files in
+the backup object store</li>
+</ul>
+<p>The excerpt of a YAML manifest below provides an example of usage of this
+feature:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">postgresql.cnpg.io/v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Cluster</span>
+</span></span><span style="display:flex;"><span>[<span style="color:#ae81ff">...]</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">backup</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">barmanObjectStore</span>:
+</span></span><span style="display:flex;"><span>      [<span style="color:#ae81ff">...]</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">tags</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">backupRetentionPolicy</span>: <span style="color:#e6db74">&#34;expire&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">historyTags</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">backupRetentionPolicy</span>: <span style="color:#e6db74">&#34;keep&#34;</span>
+</span></span></code></pre></div></p>
+    </div>
+    
 </div>
+
+<div class="flex gap-3 bg-gray-1 px-4 py-4 cnp-blue md:hidden fixed bottom-0 w-full" id="menu-toggle">
+    <img src="/icons/menu-unfold-outlined.svg" alt="">
+    <h4 class="text-lg">Documentation</h4>
+</div>
+
+<script>
+    const menuToggle = document.getElementById('menu-toggle')
+    const menuList = document.getElementById('menu-list')
+  
+    menuToggle.addEventListener('click', () => {
+      menuList.classList.toggle('hidden');
+    })
+</script>
 
 
     <footer class="text-center pb-24">
-    <p class="text-sm charcoal md:w-1/2 mx-auto md:pt-10 px-6 pt-12">&copy; 2019-2022 The CloudNativePG Contributors. All rights
-        reserved. The Linux Foundation has registered trademarks and uses trademarks.
-        For a list of trademarks of The Linux Foundation, please see our <a href="#" class="red-1">Trademark Usage
-            page</a>.</p>
+    <p class="text-sm charcoal md:w-1/2 mx-auto md:pt-10 px-6 pt-12">
+
+      &copy; The CloudNativePG Contributors.<br />
+
+      <a href="https://www.linuxfoundation.org/trademark-usage/"
+        class="red-1">The Linux Foundation has registered trademarks and uses
+        trademarks</a>.<br />
+
+      <a href="https://www.postgresql.org/about/policies/trademarks"
+        class="red-1">Postgres, PostgreSQL and the Slonik Logo are trademarks or
+        registered trademarks of the PostgreSQL Community Association of Canada, and
+        used with their permission</a>.
+
+    </p>
 </footer>
+
   </div>
   
   <script src="https://cdn.usefathom.com/script.js" data-site="GSMQCVAJ" defer></script>

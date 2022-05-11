@@ -43,8 +43,8 @@
       
       <div class="hidden md:block">
         <ul class="md:flex gap-14 text-2xl medium-gray my-5">
-          <li><a href="/docs/1.15.0/" target="_blank">Documentation</a></li>
-          <li>Blog</li>
+          <li><a href="/docs">Documentation</a></li>
+          <li><a href="/blog">Blog</a></li>
           <li><a href="/support">Support</a></li>
           <li><a href="/end_users">End Users</a></li>
         </ul>
@@ -104,8 +104,8 @@
 
     
 <base href="..">
-<div class="px-56 pt-20 flex">
-    <div class="w-1/4 px-5 bg-purple-2 pt-14 leading-9">
+<div class="md:px-56 md:pt-20 md:flex">
+    <div class="w-1/4 px-4 bg-purple-2 pt-14 leading-9 md:block hidden">
         
 <ul>
     
@@ -358,7 +358,7 @@
 </ul>
 
     </div>
-    <div class="w-4/6 pr-20 ml-10 well">
+    <div class="w-4/6 pr-20 ml-10 well hidden md:block">
         <p><h1 id="resource-management">Resource management</h1>
 <p>In a typical Kubernetes cluster, pods run with unlimited resources. By default,
 they might be allowed to use as much CPU and RAM as needed.</p>
@@ -442,15 +442,379 @@ For more details on resource management, please refer to the
 page from the Kubernetes documentation.</p>
 </p>
     </div>
+    
+    <div class="sticky top-0 px-4 bg-purple-2 leading-9 hidden md:hidden py-4" id="menu-list">
+        
+<ul>
+    
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/api_reference/">API Reference</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/applications/">Connecting from an application</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/architecture/">Architecture</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/backup_recovery/">Backup and Recovery</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/before_you_start/">Before You Start</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/bootstrap/">Bootstrap</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/certificates/">Certificates</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/cnpg-plugin/">CloudNativePG Plugin</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/commercial_support/">Commercial support</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/connection_pooling/">Connection Pooling</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/container_images/">Container Image Requirements</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/e2e/">End-to-End Tests</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/expose_pg_services/">Exposing Postgres Services</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/failover/">Automated failover</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/failure_modes/">Failure Modes</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/fencing/">Fencing</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/installation_upgrade/">Installation and upgrades</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/instance_manager/">Postgres instance manager</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/kubernetes_upgrade/">Kubernetes Upgrade</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/labels_annotations/">Labels and annotations</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/logging/">Logging</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/monitoring/">Monitoring</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/operator_capability_levels/">Operator Capability Levels</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/operator_conf/">Operator configuration</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/postgresql_conf/">PostgreSQL Configuration</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/quickstart/">Quickstart</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/release_notes/">Release notes</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/replication/">Replication</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/resource_management/">Resource management</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/rolling_update/">Rolling Updates</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/samples/">Configuration Samples</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/scheduling/">Scheduling</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/security/">Security</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/ssl_connections/">Client TLS/SSL Connections</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/storage/">Storage</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/supported_releases/">Supported releases</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/troubleshooting/">Troubleshooting</a>
+    </li>
+    
+    
+    
+    <li>
+        <a href="/docs/v1.15.0/use_cases/">Use cases</a>
+    </li>
+    
+    
+    
+</ul>
+
+<hr class="w-1/2">
+
+
+<p>Documention by version</p>
+<ul>
+    
+    <li>
+        <a href="/docs/v1.15.0/">
+            CloudNativePG
+            v1.15.0
+        </a>
+    </li>
+    
+</ul>
+
+    </div>
+    <div class="px-4 well md:hidden">
+        <p><h1 id="resource-management">Resource management</h1>
+<p>In a typical Kubernetes cluster, pods run with unlimited resources. By default,
+they might be allowed to use as much CPU and RAM as needed.</p>
+<p>CloudNativePG allows administrators to control and manage resource usage by the pods of the cluster,
+through the <code>resources</code> section of the manifest, with two knobs:</p>
+<ul>
+<li><code>requests</code>: initial requirement</li>
+<li><code>limits</code>: maximum usage, in case of dynamic increase of resource needs</li>
+</ul>
+<p>For example, you can request an initial amount of RAM of 32MiB (scalable to 128MiB) and 50m of CPU (scalable to 100m)
+as follows:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>  <span style="color:#f92672">resources</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">requests</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">memory</span>: <span style="color:#e6db74">&#34;32Mi&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">cpu</span>: <span style="color:#e6db74">&#34;50m&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">limits</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">memory</span>: <span style="color:#e6db74">&#34;128Mi&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">cpu</span>: <span style="color:#e6db74">&#34;100m&#34;</span>
+</span></span></code></pre></div><p>Memory requests and limits are associated with containers, but it is useful to think of a pod as having a memory request
+and limit. The pod&rsquo;s memory request is the sum of the memory requests for all the containers in the pod.</p>
+<p>Pod scheduling is based on requests and not on limits. A pod is scheduled to run on a Node only if the Node has enough
+available memory to satisfy the pod&rsquo;s memory request.</p>
+<p>For each resource, we divide containers into 3 Quality of Service (QoS) classes, in decreasing order of priority:</p>
+<ul>
+<li><em>Guaranteed</em></li>
+<li><em>Burstable</em></li>
+<li><em>Best-Effort</em></li>
+</ul>
+<p>For more details, please refer to the <a href="https://kubernetes.io/docs/tasks/configure-pod-container/quality-service-pod/#qos-classes">&ldquo;Configure Quality of Service for Pods&rdquo;</a>
+section in the Kubernetes documentation.</p>
+<p>For a PostgreSQL workload it is recommended to set a &ldquo;Guaranteed&rdquo; QoS.</p>
+<p>To avoid resources related issues in Kubernetes, we can refer to the best practices for &ldquo;out of resource&rdquo; handling
+while creating a cluster:</p>
+<ul>
+<li>Specify your required values for memory and CPU in the resources section of the manifest file.
+This way, you can avoid the <code>OOM Killed</code> (where &ldquo;OOM&rdquo; stands for Out Of Memory) and <code>CPU throttle</code> or any other
+resource-related issues on running instances.</li>
+<li>For your cluster&rsquo;s pods to get assigned to the &ldquo;Guaranteed&rdquo; QoS class, you must set limits and requests
+for both memory and CPU to the same value.</li>
+<li>Specify your required PostgreSQL memory parameters consistently with the pod resources (as you would do
+in a VM or physical machine scenario - see below).</li>
+<li>Set up database server pods on a dedicated node using nodeSelector.
+See the &ldquo;nodeSelector&rdquo; and &ldquo;tolerations&rdquo; fields of the
+<a href="api_reference.md#affinityconfiguration">“affinityconfiguration&quot;</a> resource on the API reference page.</li>
+</ul>
+<p>You can refer to the following example manifest:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">postgresql.cnpg.io/v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Cluster</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">postgresql-resources</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">instances</span>: <span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">postgresql</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">parameters</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">shared_buffers</span>: <span style="color:#e6db74">&#34;256MB&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">resources</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">requests</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">memory</span>: <span style="color:#e6db74">&#34;1024Mi&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">cpu</span>: <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">limits</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">memory</span>: <span style="color:#e6db74">&#34;1024Mi&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">cpu</span>: <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">storage</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">size</span>: <span style="color:#ae81ff">1Gi</span>
+</span></span></code></pre></div><p>In the above example, we have specified <code>shared_buffers</code> parameter with a value of <code>256MB</code> - i.e., how much memory is
+dedicated to the PostgreSQL server for caching data (the default value for this parameter is <code>128MB</code> in case
+it&rsquo;s not defined).</p>
+<p>A reasonable starting value for <code>shared_buffers</code> is 25% of the memory in your system.
+For example: if your <code>shared_buffers</code> is 256 MB, then the recommended value for your container memory size is 1 GB,
+which means that within a pod all the containers will have a total of 1 GB memory that Kubernetes will always preserve,
+enabling our containers to work as expected.
+For more details, please refer to the <a href="https://www.postgresql.org/docs/current/runtime-config-resource.html">&ldquo;Resource Consumption&rdquo;</a>
+section in the PostgreSQL documentation.</p>
+<p>!!! Seealso &ldquo;Managing Compute Resources for Containers&rdquo;
+For more details on resource management, please refer to the
+<a href="https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/">&ldquo;Managing Compute Resources for Containers&rdquo;</a>
+page from the Kubernetes documentation.</p>
+</p>
+    </div>
+    
 </div>
+
+<div class="flex gap-3 bg-gray-1 px-4 py-4 cnp-blue md:hidden fixed bottom-0 w-full" id="menu-toggle">
+    <img src="/icons/menu-unfold-outlined.svg" alt="">
+    <h4 class="text-lg">Documentation</h4>
+</div>
+
+<script>
+    const menuToggle = document.getElementById('menu-toggle')
+    const menuList = document.getElementById('menu-list')
+  
+    menuToggle.addEventListener('click', () => {
+      menuList.classList.toggle('hidden');
+    })
+</script>
 
 
     <footer class="text-center pb-24">
-    <p class="text-sm charcoal md:w-1/2 mx-auto md:pt-10 px-6 pt-12">&copy; 2019-2022 The CloudNativePG Contributors. All rights
-        reserved. The Linux Foundation has registered trademarks and uses trademarks.
-        For a list of trademarks of The Linux Foundation, please see our <a href="#" class="red-1">Trademark Usage
-            page</a>.</p>
+    <p class="text-sm charcoal md:w-1/2 mx-auto md:pt-10 px-6 pt-12">
+
+      &copy; The CloudNativePG Contributors.<br />
+
+      <a href="https://www.linuxfoundation.org/trademark-usage/"
+        class="red-1">The Linux Foundation has registered trademarks and uses
+        trademarks</a>.<br />
+
+      <a href="https://www.postgresql.org/about/policies/trademarks"
+        class="red-1">Postgres, PostgreSQL and the Slonik Logo are trademarks or
+        registered trademarks of the PostgreSQL Community Association of Canada, and
+        used with their permission</a>.
+
+    </p>
 </footer>
+
   </div>
   
   <script src="https://cdn.usefathom.com/script.js" data-site="GSMQCVAJ" defer></script>
