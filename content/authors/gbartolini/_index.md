@@ -1,5 +1,5 @@
 ---
 name: Gabriele Bartolini
-avatar: avatar_G.svg
+avatar: gb.png
 github: gbartolini
 ---
