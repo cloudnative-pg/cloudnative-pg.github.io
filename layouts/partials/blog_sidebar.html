@@ -29,14 +29,7 @@
             <div class="p-8 bg-white drop-shadow-md rounded-md border-2 border-slate-50">
                 <!--User profile-->
                 <div class="flex gap-3 mb-2.5">
-                    <div class="my-auto">
-                        <img src="{{ .RelPermalink }}/{{ .Params.avatar.image }}" class="w-10 h-10 rounded-full" alt="">
-                    </div>
-                    <div class="my-auto">
-                        <h1 class="text-base charcoal font-bold">
-                            {{.Params.author}}
-                        </h1>
-                    </div>
+                    {{ partial "author_sidebar.html" . }}
                 </div>
                 <!--User profile-->
                 <a href="{{ .RelPermalink }}">
