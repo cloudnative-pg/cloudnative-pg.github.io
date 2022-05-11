@@ -1,0 +1,13 @@
+{{ $author := $.Site.GetPage (path.Join "authors" .Params.author)}}
+<div class="my-auto">
+    <img src="{{ $author.RelPermalink }}/{{ $author.Params.avatar }}" class="w-10 h-10 rounded-full"
+        alt="{{$author.Params.name}}">
+</div>
+<div>
+    <div>
+        <h1 class="text-lg charcoal font-bold">
+            {{$author.Params.name}}
+        </h1>
+    </div>
+    {{ partial "blog_datetime.html" . }}
+</div>

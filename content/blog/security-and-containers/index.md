@@ -5,7 +5,7 @@ draft: true
 image:
     url: ali-kazal-h5VjkUqMCsc-unsplash.jpg
     attribution: Photo by <a href="https://unsplash.com/@lureofadventure?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Ali Kazal</a> on <a href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
-author: "Gabriele"
+author: gbartolini
 tags:
 - security
 - kubernetes

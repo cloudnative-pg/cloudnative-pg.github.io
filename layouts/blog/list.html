@@ -8,19 +8,7 @@
         <div class="pb-24">
             <!--User profile starts here-->
             <div class="flex gap-3 my-5">
-                <div class="my-auto">
-                    <img src="{{ .RelPermalink }}/{{ .Params.avatar.image }}" class="w-10 h-10 rounded-full" alt="">
-                </div>
-                <div>
-
-                    <div>
-                        <h1 class="text-lg charcoal font-bold">
-                            {{.Params.author}}
-                        </h1>
-                    </div>
-
-                    {{ partial "blog_datetime.html" . }}
-                </div>
+                {{ partial "author.html" . }}
             </div>
             <!--User profile ends here-->
 
