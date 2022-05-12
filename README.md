@@ -31,6 +31,20 @@ CSS is partly built by hugo & partly built outside of hugo by `npm run css`, whi
 
 ### Blogs
 
+Before you write a blog, you should add yourself to the list of authors:
+
+```
+hugo new authors/$your_github_handle
+```
+
+and edit the resulting files (`authors/$your_github_handle/index.md` & `authors/$your_github_handle/temp-avatar.png` - you'll want to replace & rename the avatar image!) to fill in your name.
+
+For example:
+
+```
+hugo new authors/drsm79
+```
+
 Add a draft blog post by running:
 
 ```
