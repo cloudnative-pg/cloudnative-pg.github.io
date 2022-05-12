@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="description" content="None" /><meta name="author" content="The CloudNativePG Contributors" />
+      <link rel="shortcut icon" href="img/favicon.ico" />
+    <title>CloudNativePG</title>
+    <link rel="stylesheet" href="css/theme.css" />
+    <link rel="stylesheet" href="css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "CloudNativePG";
+        var mkdocs_page_input_path = "index.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="." class="icon icon-home"> CloudNativePG
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href=".">CloudNativePG</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#supported-kubernetes-distributions">Supported Kubernetes distributions</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#container-images">Container images</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#main-features">Main features</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#about-this-guide">About this guide</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="before_you_start/">Before You Start</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="use_cases/">Use cases</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="architecture/">Architecture</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="installation_upgrade/">Installation and upgrades</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="quickstart/">Quickstart</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="bootstrap/">Bootstrap</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="security/">Security</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="instance_manager/">Postgres instance manager</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="scheduling/">Scheduling</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="resource_management/">Resource management</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="failure_modes/">Failure Modes</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="rolling_update/">Rolling Updates</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="replication/">Replication</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="backup_recovery/">Backup and Recovery</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="postgresql_conf/">PostgreSQL Configuration</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="operator_conf/">Operator configuration</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="storage/">Storage</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="labels_annotations/">Labels and annotations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="monitoring/">Monitoring</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="logging/">Logging</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="certificates/">Certificates</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="ssl_connections/">Client TLS/SSL Connections</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="applications/">Connecting from an application</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="connection_pooling/">Connection Pooling</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="kubernetes_upgrade/">Kubernetes Upgrade</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="expose_pg_services/">Exposing Postgres Services</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="cnpg-plugin/">CloudNativePG Plugin</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="failover/">Automated failover</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="troubleshooting/">Troubleshooting</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="fencing/">Fencing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="e2e/">End-to-End Tests</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="container_images/">Container Image Requirements</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="operator_capability_levels/">Operator Capability Levels</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="samples/">Configuration Samples</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="commercial_support/">Commercial support</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="api_reference/">API Reference</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="supported_releases/">Supported releases</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="release_notes/">Release notes</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href=".">CloudNativePG</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="." class="icon icon-home" alt="Docs"></a> &raquo;</li><li>CloudNativePG</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="cloudnativepg">CloudNativePG</h1>
+<p><strong>CloudNativePG</strong> is an open source
+<a href="https://kubernetes.io/docs/concepts/extend-kubernetes/operator/">operator</a>
+designed to manage <a href="https://www.postgresql.org/">PostgreSQL</a> workloads on any
+supported <a href="https://kubernetes.io">Kubernetes</a> cluster running in private,
+public, hybrid, or multi-cloud environments.
+CloudNativePG adheres to DevOps principles and concepts such as declarative
+configuration and immutable infrastructure.</p>
+<p>It defines a new Kubernetes resource called <code>Cluster</code> representing a PostgreSQL
+cluster made up of a single primary and an optional number of replicas that co-exist
+in a chosen Kubernetes namespace for High Availability and offloading of
+read-only queries.</p>
+<p>Applications that reside in the same Kubernetes cluster can access the
+PostgreSQL database using a service which is solely managed by the operator,
+without having to worry about changes of the primary role following a failover
+or a switchover. Applications that reside outside the Kubernetes cluster, need
+to configure a Service or Ingress object to expose the Postgres via TCP.
+Web applications can take advantage of the native connection pooler based on PgBouncer.</p>
+<p>CloudNativePG was originally built by <a href="https://www.enterprisedb.com">EDB</a>, then
+released open source under Apache License 2.0 and submitted for CNCF Sandbox in April 2022.
+The <a href="https://github.com/cloudnative-pg/cloudnative-pg">source code repository is in Github</a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Based on the <a href="operator_capability_levels/">Operator Capability Levels model</a>,
+users can expect a <strong>"Level V - Auto Pilot"</strong> set of capabilities from the
+CloudNativePG Operator.</p>
+</div>
+<h2 id="supported-kubernetes-distributions">Supported Kubernetes distributions</h2>
+<p>CloudNativePG requires Kubernetes 1.19 or higher. For more information, please
+refer to the <a href="supported_releases/">"Supported releases"</a> page.</p>
+<h2 id="container-images">Container images</h2>
+<p>The <a href="https://github.com/cloudnative-pg">CloudNativePG community</a>  maintains
+container images for both the operator and the operand, that is PostgreSQL.</p>
+<p>The CloudNativePG operator container images are <a href="https://github.com/GoogleContainerTools/distroless">distroless</a>
+and available on the <a href="https://github.com/cloudnative-pg/cloudnative-pg/pkgs/container/cloudnative-pg"><code>cloudnative-pg</code> project's GitHub Container Registry</a>.</p>
+<p>The PostgreSQL operand container images are available for all the
+<a href="https://www.postgresql.org/">PGDG supported versions of PostgreSQL</a>,
+on multiple architectures, directly from the
+<a href="https://github.com/cloudnative-pg/postgres-containers/pkgs/container/postgresql"><code>postgres-containers</code> project's GitHub Container Registry</a>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>CloudNativePG requires that all nodes in a Kubernetes cluster have the
+same CPU architecture, thus a hybrid CPU architecture Kubernetes cluster is not
+supported.</p>
+</div>
+<h2 id="main-features">Main features</h2>
+<ul>
+<li>Direct integration with Kubernetes API server for High Availability,
+  without requiring an external tool</li>
+<li>Self-Healing capability, through:<ul>
+<li>failover of the primary instance by promoting the most aligned replica</li>
+<li>automated recreation of a replica</li>
+</ul>
+</li>
+<li>Planned switchover of the primary instance by promoting a selected replica</li>
+<li>Scale up/down capabilities</li>
+<li>Definition of an arbitrary number of instances (minimum 1 - one primary server)</li>
+<li>Definition of the <em>read-write</em> service, to connect your applications to the only primary server of the cluster</li>
+<li>Definition of the <em>read-only</em> service, to connect your applications to any of the instances for reading workloads</li>
+<li>Declarative management of PostgreSQL configuration, including certain popular
+  Postgres extensions through the cluster <code>spec</code>: <code>pg_audit</code>, <code>auto_explain</code>,
+  and <code>pg_stat_statements</code></li>
+<li>Support for Local Persistent Volumes with PVC templates</li>
+<li>Reuse of Persistent Volumes storage in Pods</li>
+<li>Rolling updates for PostgreSQL minor versions</li>
+<li>In-place or rolling updates for operator upgrades</li>
+<li>TLS connections and client certificate authentication</li>
+<li>Support for custom TLS certificates (including integration with cert-manager)</li>
+<li>Continuous backup to an object store  (AWS S3 and S3-compatible, Azure Blob Storage, and Google Cloud Storage)</li>
+<li>Backup retention policies (based on recovery window)</li>
+<li>Full recovery and Point-In-Time recovery from an existing backup in an object store</li>
+<li>Parallel WAL archiving and restore to allow the database to keep up with WAL
+  generation on high write systems</li>
+<li>Support tagging backup files uploaded to an object store to enable optional
+  retention management at the object store layer Replica clusters for</li>
+<li>PostgreSQL deployments across multiple Kubernetes
+  clusters, enabling private, public, hybrid, and multi-cloud architectures</li>
+<li>Support for Synchronous Replicas</li>
+<li>Connection pooling with PgBouncer</li>
+<li>Support for node affinity via <code>nodeSelector</code></li>
+<li>Native customizable exporter of user defined metrics for Prometheus through the <code>metrics</code> port (9187)</li>
+<li>Standard output logging of PostgreSQL error messages in JSON format</li>
+<li>Automatically set <code>readOnlyRootFilesystem</code> security context for pods</li>
+<li><code>cnpg</code> plugin for <code>kubectl</code></li>
+<li>Fencing of an entire PostgreSQL cluster, or a subset of the instances</li>
+<li>Simple bind and search+bind LDAP client authentication</li>
+<li>Multi-arch format container images</li>
+</ul>
+<h2 id="about-this-guide">About this guide</h2>
+<p>Follow the instructions in the <a href="quickstart/">"Quickstart"</a> to test CloudNativePG
+on a local Kubernetes cluster using Kind, or Minikube.</p>
+<p>In case you are not familiar with some basic terminology on Kubernetes and PostgreSQL,
+please consult the <a href="before_you_start/">"Before you start" section</a>.</p>
+<p><em><a href="https://www.postgresql.org/about/policies/trademarks/">Postgres, PostgreSQL and the Slonik Logo</a>
+are trademarks or registered trademarks of the PostgreSQL Community Association
+of Canada, and used with their permission.</em></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="before_you_start/" class="btn btn-neutral float-right" title="Before You Start">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+      <span><a href="before_you_start/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '.';</script>
+    <script src="js/theme_extra.js" defer></script>
+    <script src="js/theme.js" defer></script>
+      <script src="search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
+
+<!--
+MkDocs version : 1.3.0
+Build Date UTC : 2022-04-21 13:10:46.261189+00:00
+-->

@@ -527,19 +527,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   position: relative;
 }
 
-.sticky {
-  position: -webkit-sticky;
-  position: sticky;
-}
-
-.top-0 {
-  top: 0px;
-}
-
-.bottom-0 {
-  bottom: 0px;
-}
-
 .float-right {
   float: right;
 }
@@ -589,10 +576,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .mr-2 {
   margin-right: 0.5rem;
-}
-
-.ml-10 {
-  margin-left: 2.5rem;
 }
 
 .ml-16 {
@@ -705,14 +688,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .w-3\/5 {
   width: 60%;
-}
-
-.w-1\/4 {
-  width: 25%;
-}
-
-.w-4\/6 {
-  width: 66.666667%;
 }
 
 .w-36 {
@@ -976,14 +951,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-top: 2.5rem;
 }
 
-.pt-14 {
-  padding-top: 3.5rem;
-}
-
-.pr-20 {
-  padding-right: 5rem;
-}
-
 .pt-16 {
   padding-top: 4rem;
 }
@@ -1069,10 +1036,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .leading-10 {
   line-height: 2.5rem;
-}
-
-.leading-9 {
-  line-height: 2.25rem;
 }
 
 .leading-8 {
@@ -1219,10 +1182,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
   .md\:pt-4 {
     padding-top: 1rem;
-  }
-
-  .md\:pt-20 {
-    padding-top: 5rem;
   }
 
   .md\:pt-10 {

@@ -31,7 +31,8 @@
           <a href="/"><img src="/logo/large_logo.svg" class="md:h-14 h-9" alt="Cloud Native Postgres Logo"></a>
         </div>
         <div class="h-6 my-auto" id="toggle-button">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+            stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
           </svg>
         </div>
@@ -40,10 +41,10 @@
         
         <a href="/"><img src="/logo/large_logo.svg" class="h-14" alt="Cloud Native Postgres Logo"></a>
       </div>
-      
+
       <div class="hidden md:block">
         <ul class="md:flex gap-14 text-2xl medium-gray my-5">
-          <li><a href="/docs/1.15.0">Documentation</a></li>
+          <li><a href="/docs">Documentation</a></li>
           <li><a href="/blog">Blog</a></li>
           <li><a href="/support">Support</a></li>
           <li><a href="/end_users">End Users</a></li>
@@ -75,10 +76,9 @@
       
 
       <div class="flex gap-5 my-4 fill-cnp-blue hidden md:flex">
-       <a class="github-button" href="https://github.com/cloudnative-pg/cloudnative-pg"
-            data-color-scheme="no-preference: light; light: light; dark: dark;"
-            data-size="large" data-show-count="true"
-            aria-label="Star cloudnative-pg/cloudnative-pg on GitHub">Star</a>
+        <a class="github-button" href="https://github.com/cloudnative-pg/cloudnative-pg"
+          data-color-scheme="no-preference: light; light: light; dark: dark;" data-size="large" data-show-count="true"
+          aria-label="Star cloudnative-pg/cloudnative-pg on GitHub">Star</a>
         <a href="https://join.slack.com/t/cloudnativepg/shared_invite/zt-17culux7k-P_UsVOOR9teUYi4dGhDSBQ">
           <img src="/icons/Slack.svg" alt="Slack" title="Join our Slack channel now!">
         </a>
@@ -101,81 +101,25 @@
   })
 </script>
 
+    
+<div class="mx-auto w-1/2">
+    <h1 class="text-xl">Documentation</h1>
+    <p>These documentation pages are built from the <a href="https://github.com/cloudnative-pg/cloudnative-pg">operators source code</a> and are versioned along side tags/releases of the operator. Please <a href="https://github.com/cloudnative-pg/cloudnative-pg.github.io/issues">report any dificiencies via the projects issue tracker</a>.</p>
 
     
-<base href="..">
-<div class="md:px-56 md:pt-20 md:flex">
-    <div class="w-1/4 px-4 bg-purple-2 pt-14 leading-9 md:block hidden">
-        
-<ul>
-    
-    
-    
-    
-</ul>
 
 
 <p>Documention by version</p>
 <ul>
     
     <li>
-        <a href="/docs/v1.15.0/">
-            CloudNativePG
-            v1.15.0
-        </a>
+        <a href="/documentation/1.15.0/">v1.15.0</a> - released on <a
+            href="https://github.com/cloudnative-pg/cloudnative-pg/releases/tag/v1.15.0">21 April 2022</a>
     </li>
     
 </ul>
 
-    </div>
-    <div class="w-4/6 pr-20 ml-10 well hidden md:block">
-        <p><p>These documentation pages are built from the <a href="https://github.com/cloudnative-pg/cloudnative-pg">operators source code</a> and are versioned along side tags/releases of the operator. Please <a href="https://github.com/cloudnative-pg/cloudnative-pg.github.io/issues">report any dificiencies via the projects issue tracker</a>.</p>
-</p>
-    </div>
-    
-    <div class="sticky top-0 px-4 bg-purple-2 leading-9 hidden md:hidden py-4" id="menu-list">
-        
-<ul>
-    
-    
-    
-    
-</ul>
-
-
-<p>Documention by version</p>
-<ul>
-    
-    <li>
-        <a href="/docs/v1.15.0/">
-            CloudNativePG
-            v1.15.0
-        </a>
-    </li>
-    
-</ul>
-
-    </div>
-    <div class="px-4 well md:hidden">
-        <p><p>These documentation pages are built from the <a href="https://github.com/cloudnative-pg/cloudnative-pg">operators source code</a> and are versioned along side tags/releases of the operator. Please <a href="https://github.com/cloudnative-pg/cloudnative-pg.github.io/issues">report any dificiencies via the projects issue tracker</a>.</p>
-</p>
-    </div>
-    
 </div>
-
-<div class="flex gap-3 bg-gray-1 px-4 py-4 cnp-blue md:hidden fixed bottom-0 w-full" id="menu-toggle">
-    <img src="/icons/menu-unfold-outlined.svg" alt="">
-    <h4 class="text-lg">Documentation</h4>
-</div>
-
-<script>
-    const menuToggle = document.getElementById('menu-toggle');
-    const menuList = document.getElementById('menu-list');
-    
-    menuToggle.addEventListener('click', () => {
-      menuList.classList.toggle('hidden');
-    })
-</script>
 
 
     <footer class="text-center pb-24">
