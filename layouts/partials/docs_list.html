@@ -1,13 +1,12 @@
 {{ $docs := .Site.GetPage "/docs" }}
 
 {{ with $docs }}
-<p>Documention by version</p>
-<ul>
-    {{ range .Pages.Reverse }}
-    <li>
-        <a href="{{ .Params.location }}">v{{.Params.release}}</a> - released on <a
-            href="{{.Params.release_notes}}">{{.Params.release_date}}</a>
-    </li>
-    {{ end }}
-</ul>
+<p class="text-sm">Documention by version</p>
+{{ range .Pages.Reverse }}
+<p class="ml-6">
+    <a href="{{ .Params.location }}">v{{.Params.release}}</a> - released on <a
+        href="{{.Params.release_notes}}">{{.Params.release_date}}</a>
+</p>
+{{ end }}
+
 {{ end }}
