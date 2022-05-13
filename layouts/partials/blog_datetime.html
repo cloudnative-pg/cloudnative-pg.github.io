@@ -1,7 +1,7 @@
 <div class="flex gap-2 text-sm charcoal opacity-75">
-    <p class="flex gap-2 text-sm charcoal">
+    <h6 class="flex gap-2 text-sm charcoal">
         {{ .PublishDate.Format "January 2, 2006" }}
         •
         {{ .ReadingTime }} minute{{ if (ne .ReadingTime 1) }}s{{ end }}
-    </p>
+    </h6>
 </div>

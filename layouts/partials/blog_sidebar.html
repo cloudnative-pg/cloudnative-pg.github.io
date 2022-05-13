@@ -11,7 +11,7 @@
         <div class="text-xs space-y-1.5 mb-14">
             <ul class="uppercase text-sm">
                 {{ range .Site.Taxonomies.tags }}
-                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2"><a href="{{ .Page.Permalink }}"
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="{{ .Page.Permalink }}"
                         class="mr-2">{{.Page.Title }}</a></li>
                 {{ end }}
             </ul>
