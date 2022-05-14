@@ -192,7 +192,7 @@ h2,
 h3,
 h4,
 h5,
-h6 {
+{
     font-weight: 700;
 }
 
@@ -326,4 +326,9 @@ table th {
     color: white;
     border-radius: 8px;
     margin-bottom: 48px;
+}
+
+.fix a {
+    margin-top: auto;
+    margin-bottom: auto;
 }
