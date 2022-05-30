@@ -347,3 +347,8 @@ li {
 ul {
     padding-bottom: 24px;
 }
+
+header ul,
+header li {
+    list-style-type: none;
+}
