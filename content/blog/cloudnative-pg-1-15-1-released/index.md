@@ -31,6 +31,7 @@ enhancements, in particular in the backup and recovery area, including:
 - Automated export of the `pg_stat_wal` stats view available from PostgreSQL 14
   onwards
 
+
 We encourage you to update the operator at your earliest possible convenience.
 
 For a complete list of changes, please refer to the

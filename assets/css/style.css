@@ -336,3 +336,14 @@ table th {
     margin-top: auto;
     margin-bottom: auto;
 }
+
+ul,
+li {
+    list-style-type: disc;
+    margin-left: 1em;
+    font-size: 20px;
+}
+
+ul {
+    padding-bottom: 24px;
+}
