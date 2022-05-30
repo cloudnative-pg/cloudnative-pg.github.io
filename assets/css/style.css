@@ -192,7 +192,7 @@ h2,
 h3,
 h4,
 h5,
-{
+h6 {
     font-weight: 700;
 }
 
@@ -212,8 +212,8 @@ h2 {
 h3 {
     font-size: 34px;
     line-height: 130%;
-    padding-top:16px;
-    padding-bottom:16px;
+    padding-top: 16px;
+    padding-bottom: 16px;
 }
 
 h4 {
@@ -272,20 +272,20 @@ table td {
     letter-spacing: -0.0025em;
     padding-bottom: 24px;
     vertical-align: top;
-    padding-right:16px;
-    padding-bottom:16px;
+    padding-right: 16px;
+    padding-bottom: 16px;
     border-bottom: 1px solid #ACADBE;
-    padding-top:16px;
+    padding-top: 16px;
 }
 
 table th {
-    text-align:left;
+    text-align: left;
     border-bottom: 2px solid #ACADBE;
-    padding-bottom:16px;
-    padding-top:16px;
+    padding-bottom: 16px;
+    padding-top: 16px;
 }
 
-.well ul{
+.well ul {
     list-style: disc;
     font-weight: 400;
     font-size: 22px;
