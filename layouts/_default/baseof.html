@@ -19,6 +19,9 @@
   {{- if hugo.IsProduction }}
   {{- $styles = $styles | minify }}
   {{- end }}
+  {{ with .OutputFormats.Get "rss" -}}
+    {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
+  {{ end -}}
   <link href="{{ $styles.RelPermalink }}" rel="stylesheet" />
   <link rel="favicon" href="/favicon/favicon.ico">
   <script async defer src="https://buttons.github.io/buttons.js"></script>
