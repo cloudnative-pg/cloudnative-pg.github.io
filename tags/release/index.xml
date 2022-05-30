@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>release on CloudNative PG</title>
+    <link>https://cloudnative-pg.io/tags/release/</link>
+    <description>Recent content in release on CloudNative PG</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 30 May 2022 13:37:13 +0200</lastBuildDate><atom:link href="https://cloudnative-pg.io/tags/release/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CloudNativePG 1.15.1 Released!</title>
+      <link>https://cloudnative-pg.io/blog/cloudnative-pg-1-15-1-released/</link>
+      <pubDate>Mon, 30 May 2022 13:37:13 +0200</pubDate>
+      
+      <guid>https://cloudnative-pg.io/blog/cloudnative-pg-1-15-1-released/</guid>
+      <description>The CloudNativePG community has released a new update for the supported 1.15.x version of the CloudNativePG operator.</description>
+    </item>
+    
+  </channel>
+</rss>
