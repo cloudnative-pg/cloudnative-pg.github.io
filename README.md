@@ -57,7 +57,8 @@ Edit the file, and once happy remove the `draft: true` - it should now show up f
 
 ### Documentation
 
-Documentation lives [next to the code](https://github.com/cloudnative-pg/cloudnative-pg), and is imported into this repo manually. Once the mkdocs files are placed in `assets/documentation/$version_number` run:
+Documentation lives [next to the code](https://github.com/cloudnative-pg/cloudnative-pg), and is imported into this repo manually (via the `hach/import_docs.sh` hack script).
+Once the mkdocs files are placed in `assets/documentation/$version_number` run:
 
 ```
 hugo new docs/$version_number.md
@@ -66,7 +67,7 @@ hugo new docs/$version_number.md
 to link them into the site. For example, if you were publishing the 1.16.0 release, you would run:
 
 ```
-hugo new docs/1.16.0.md
+hugo new docs/1.16.md
 ```
 
 to make the docs available.
