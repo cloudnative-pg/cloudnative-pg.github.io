@@ -24,20 +24,20 @@ capabilities:
 - anti-affinity rules for synchronous replication based on node labels, providing
   fine-grained control on where to run sync replicas inside a Kubernetes cluster
 
-From this release we are starting our policy to support the last two minor
+We are starting our policy from this release to support the last two minor
 versions of CloudNativePG. This means that the 1.15 minor version will be
 supported by the Community for another month after 1.17.0 is released.
 We are today releasing the patch version 1.15.2 for the 1.15.x branch.
-For details please refer to the
+For details, please refer to the
 ["Supported releases" section](https://cloudnative-pg.io/documentation/1.16/supported_releases/).
 
 Version 1.16.0 also introduces a few enhacements in the backup and recovery
 area, as well as in the fencing mechanism, by removing the existing limitation
 that disables failover when one or more instances are fenced.
 
-It adds support for Kubernetes 1.24, and provides several bug fixes.
+It adds support for Kubernetes 1.24 and provides several bug fixes.
 
-Such fixes have been back-ported to the 1.15 release branch, and included in
+Such fixes have been back-ported to the 1.15 release branch and included in
 the 1.15.2 version.
 
 For a complete list of changes, please refer to the release notes for
@@ -47,6 +47,5 @@ and for
 
 We strongly encourage you to update the operator at your earliest possible convenience.
 You can either jump directly to 1.16.0 and benefit from all the new
-capabilities and enhancements that have been introduced, or stay in the 1.15
+capabilities and enhancements introduced, or stay in the 1.15
 minor release by moving to 1.15.2 with bug fixes only.
-
