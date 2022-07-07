@@ -1,10 +1,10 @@
 baseURL = 'https://cloudnative-pg.io'
 languageCode = 'en-us'
-title = 'CloudNative PG'
+title = 'CloudNativePG - PostgreSQL Operator for Kubernetes'
 staticDir = ['assets']
 
 [build]
   writeStats = true
 
 [project]
-  name = 'CloudNative PG'
+  name = 'CloudNativePG'
