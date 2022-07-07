@@ -6,7 +6,16 @@
     <description>Recent content in k8s on CloudNative PG</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 30 May 2022 13:37:13 +0200</lastBuildDate><atom:link href="https://cloudnative-pg.io/tags/k8s/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 07 Jul 2022 09:00:00 +0200</lastBuildDate><atom:link href="https://cloudnative-pg.io/tags/k8s/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CloudNativePG 1.16.0 and 1.15.2 Released!</title>
+      <link>https://cloudnative-pg.io/blog/cloudnative-pg-1-16-0-released/</link>
+      <pubDate>Thu, 07 Jul 2022 09:00:00 +0200</pubDate>
+      
+      <guid>https://cloudnative-pg.io/blog/cloudnative-pg-1-16-0-released/</guid>
+      <description>The CloudNativePG community has released the new 1.16 minor version and a new update for the supported 1.15 version of the CloudNativePG operator.</description>
+    </item>
+    
     <item>
       <title>CloudNativePG 1.15.1 Released!</title>
       <link>https://cloudnative-pg.io/blog/cloudnative-pg-1-15-1-released/</link>
