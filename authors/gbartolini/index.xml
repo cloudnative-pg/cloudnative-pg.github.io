@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>CloudNative PG</title>
+    <title>CloudNativePG - PostgreSQL Operator for Kubernetes</title>
     <link>https://cloudnative-pg.io/authors/gbartolini/</link>
-    <description>Recent content on CloudNative PG</description>
+    <description>Recent content on CloudNativePG - PostgreSQL Operator for Kubernetes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language><atom:link href="https://cloudnative-pg.io/authors/gbartolini/index.xml" rel="self" type="application/rss+xml" />
   </channel>

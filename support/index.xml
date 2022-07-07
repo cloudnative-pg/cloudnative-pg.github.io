@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Commercial Support on CloudNative PG</title>
+    <title>Commercial Support on CloudNativePG - PostgreSQL Operator for Kubernetes</title>
     <link>https://cloudnative-pg.io/support/</link>
-    <description>Recent content in Commercial Support on CloudNative PG</description>
+    <description>Recent content in Commercial Support on CloudNativePG - PostgreSQL Operator for Kubernetes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language><atom:link href="https://cloudnative-pg.io/support/index.xml" rel="self" type="application/rss+xml" />
     <item>
