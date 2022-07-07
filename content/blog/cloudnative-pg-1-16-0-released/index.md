@@ -31,7 +31,7 @@ We are today releasing the patch version 1.15.2 for the 1.15.x branch.
 For details, please refer to the
 ["Supported releases" section](https://cloudnative-pg.io/documentation/1.16/supported_releases/).
 
-Version 1.16.0 also introduces a few enhacements in the backup and recovery
+Version 1.16.0 also introduces a few enhancements in the backup and recovery
 area, as well as in the fencing mechanism, by removing the existing limitation
 that disables failover when one or more instances are fenced.
 
