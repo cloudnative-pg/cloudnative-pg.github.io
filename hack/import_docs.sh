@@ -26,9 +26,16 @@ git clone --depth 1 --branch release-$release_version git@github.com:cloudnative
 DOCDIR=$REPO_ROOT/assets/documentation/$release_version
 mkdir -p $DOCDIR
 
-cp -r $WORKDIR/cnpg/docs/src/* $DOCDIR
-mv $DOCDIR/index.md  $DOCDIR/_index.md
+pushd $WORKDIR/cnpg/docs
+docker run --rm -v "$(pwd):$(pwd)" -w "$(pwd)" \
+    -v "$DOCDIR:/var/cnpg" \
+    minidocks/mkdocs \
+    mkdocs build -v -d /var/cnpg
+popd
 
 rm -rf $WORKDIR
 
-hugo new docs/$release_version.md
+if [ ! -f content/docs/$release_version.md ]
+then
+  hugo new docs/$release_version.md
+fi
