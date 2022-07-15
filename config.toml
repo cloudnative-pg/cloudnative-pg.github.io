@@ -8,3 +8,8 @@ staticDir = ['assets']
 
 [project]
   name = 'CloudNativePG'
+
+[params]
+  description = 'CloudNativePG - PostgreSQL Operator for Kubernetes'
+  images = ['images/hero_image.svg']
+
