@@ -181,6 +181,10 @@
                 </li>
               </ul>
               <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../postgis/">PostGIS</a>
+                </li>
+              </ul>
+              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../e2e/">End-to-End Tests</a>
                 </li>
               </ul>
@@ -193,7 +197,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../samples/">Configuration Samples</a>
+                <li class="toctree-l1"><a class="reference internal" href="../samples/">Examples</a>
                 </li>
               </ul>
               <ul>
@@ -374,7 +378,8 @@ We'd be interested to hear from you should you experience any issues in this are
 <p>There are a few things you need to be aware of when using the <code>microservice</code> type:</p>
 <ul>
 <li>It requires an <code>externalCluster</code> that points to an existing PostgreSQL
-  instance containing the data to import</li>
+  instance containing the data to import (for more information, please refer to
+  <a href="../bootstrap/#the-externalclusters-section">"The <code>externalClusters</code> section"</a>)</li>
 <li>Traffic must be allowed between the Kubernetes cluster and the
   <code>externalCluster</code> during the operation</li>
 <li>Connection to the source database must be granted with the specified user
@@ -436,6 +441,7 @@ spec:
         host: pg96.local
         user: postgres
         dbname: postgres
+        sslmode: require
       password:
         name: cluster-pg96-superuser
         key: password
@@ -443,9 +449,12 @@ spec:
 <p>There are a few things you need to be aware of when using the <code>monolith</code> type:</p>
 <ul>
 <li>It requires an <code>externalCluster</code> that points to an existing PostgreSQL
-  instance containing the data to import</li>
+  instance containing the data to import (for more information, please refer to
+  <a href="../bootstrap/#the-externalclusters-section">"The <code>externalClusters</code> section"</a>)</li>
 <li>Traffic must be allowed between the Kubernetes cluster and the
   <code>externalCluster</code> during the operation</li>
+<li>You need to specify <code>sslmode: disable</code> in the <code>connectionParameters</code> section
+  if you need to connect to a PostgreSQL instance without SSL</li>
 <li>Connection to the source database must be granted with the specified user
   that needs to run <code>pg_dump</code> and retrieve roles information (<em>superuser</em> is
   OK)</li>

@@ -5,14 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="The CloudNativePG Contributors" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Configuration Samples - CloudNativePG</title>
+    <title>Examples - CloudNativePG</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Configuration Samples";
+        var mkdocs_page_name = "Examples";
         var mkdocs_page_input_path = "samples.md";
         var mkdocs_page_url = null;
       </script>
@@ -173,6 +173,10 @@
                 </li>
               </ul>
               <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../postgis/">PostGIS</a>
+                </li>
+              </ul>
+              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../e2e/">End-to-End Tests</a>
                 </li>
               </ul>
@@ -185,7 +189,7 @@
                 </li>
               </ul>
               <ul class="current">
-                <li class="toctree-l1 current"><a class="reference internal current" href="./">Configuration Samples</a>
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Examples</a>
     <ul class="current">
     </ul>
                 </li>
@@ -223,7 +227,7 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li><li>Configuration Samples</li>
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li><li>Examples</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -233,27 +237,63 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="configuration-samples">Configuration Samples</h1>
-<p>In this section, you can find some examples of configuration files to set up your PostgreSQL <code>Cluster</code>.</p>
-<ul>
-<li><a href="cluster-example.yaml"><code>cluster-example.yaml</code></a>:
-   a basic example of <code>Cluster</code> that uses the default storage class. For demonstration and experimentation purposes
-   on a personal Kubernetes cluster with Minikube or Kind as described in the <a href="../quickstart/">"Quickstart"</a>.</li>
-<li><a href="cluster-example-custom.yaml"><code>cluster-example-custom.yaml</code></a>:
-   a basic example of <code>Cluster</code> that uses the default storage class and custom parameters for <code>postgresql.conf</code> and
-   <code>pg_hba.conf</code> files</li>
-<li><a href="cluster-storage-class.yaml"><code>cluster-storage-class.yaml</code></a>:
-   a basic example of <code>Cluster</code> that uses a specified storage class.</li>
-<li><a href="cluster-pvc-template.yaml"><code>cluster-pvc-template.yaml</code></a>:
-   a basic example of <code>Cluster</code> that uses a persistent volume claim template.</li>
-<li><a href="cluster-example-full.yaml"><code>cluster-example-full.yaml</code></a>:
-   an example of <code>Cluster</code> that sets most of the available options.</li>
-<li><a href="cluster-example-replica-streaming.yaml"><code>cluster-example-replica-streaming.yaml</code></a>:
-   a replica cluster following <code>cluster-example</code>, usable in a different namespace.</li>
-<li><a href="cluster-example-replica-from-backup.yaml"><code>cluster-example-replica-from-backup.yaml</code></a>:
-   a replica cluster following a cluster with backup configured. Usable in
-   a different namespace.</li>
-</ul>
+                <h1 id="examples">Examples</h1>
+<p>In this section, you can find some examples of configuration files to set up
+your PostgreSQL Cluster.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>These are here for demonstration and experimentation
+purposes, and can be executed on a personal Kubernetes cluster with Minikube
+or Kind as described in the <a href="../quickstart/">"Quickstart"</a>.</p>
+</div>
+<dl>
+<dt>Basic cluster</dt>
+<dd><a href="cluster-example.yaml"><code>cluster-example.yaml</code></a>
+   a basic example of  a cluster.</dd>
+<dt>Custom cluster</dt>
+<dd><a href="cluster-example-custom.yaml"><code>cluster-example-custom.yaml</code></a>
+   a basic cluster that uses the default storage class and custom parameters for
+   the <code>postgresql.conf</code> and <code>pg_hba.conf</code> files.</dd>
+<dt>Customized storage class</dt>
+<dd><a href="cluster-storage-class.yaml"><code>cluster-storage-class.yaml</code></a>:
+   a basic cluster that uses a specified storage class of <code>standard</code>.</dd>
+<dt>Customized storage class and backups</dt>
+<dd><strong>Prerequisites</strong>: bucket storage should be available. The sample config is for AWS,
+please change to suit your setup</dd>
+<dd><a href="cluster-storage-class-with-backup.yaml"><code>cluster-storage-class-with-backup.yaml</code></a> a cluster
+   with backups configured</dd>
+<dt>Backup</dt>
+<dd><strong>Prerequisites</strong>: <a href="cluster-storage-class-with-backup.yaml"><code>cluster-storage-class-with-backup.yaml</code></a>
+applied and Healthy</dd>
+<dd><a href="backup-example.yaml"><code>backup-example.yaml</code></a>:
+  an example of a backup that runs against the previous sample</dd>
+<dt>Cluster with PVC (Persistent Volume Claim) configured</dt>
+<dd><a href="cluster-pvc-template.yaml"><code>cluster-pvc-template.yaml</code></a>:
+   a basic cluster that with an explicit persistent volume claim template.</dd>
+<dt>Full example</dt>
+<dd><a href="cluster-example-full.yaml"><code>cluster-example-full.yaml</code></a>:
+   a cluster that sets most of the available options.</dd>
+<dt>PostGIS example</dt>
+<dd><a href="postgis-example.yaml"><code>postgis-example.yaml</code></a>:
+   an example of "PostGIS cluster" (see the <a href="../postgis/">PostGIS section</a> for details.)</dd>
+<dt>Replica cluster via streaming</dt>
+<dd><strong>Prerequisites</strong>: <a href="cluster-example.yaml"><code>cluster-example.yaml</code></a>
+applied and Healthy</dd>
+<dd><a href="cluster-example-replica-streaming.yaml"><code>cluster-example-replica-streaming.yaml</code></a>: a replica cluster following <code>cluster-example</code> with streaming replication.</dd>
+<dt>Simple cluster with backup configured</dt>
+<dd><strong>Prerequisites</strong>: The configuration assumes <code>minio</code> is running and working.
+Please update <code>backup.barmanObjectStore</code> with your <code>minio</code> parameters or your cloud solution</dd>
+<dd><a href="cluster-example-with-backup.yaml"><code>cluster-example-with-backup.yaml</code></a>
+   a basic cluster with backups configured.</dd>
+<dt>Replica cluster via backup</dt>
+<dd><strong>Prerequisites</strong>:
+<a href="cluster-storage-class-with-backup.yaml"><code>cluster-storage-class-with-backup.yaml</code></a> applied and Healthy.
+And a backup
+<a href="cluster-example-trigger-backup.yaml"><code>cluster-example-trigger-backup.yaml</code></a>
+applied and Completed.</dd>
+<dd><a href="cluster-example-replica-from-backup-simple.yaml"><code>cluster-example-replica-from-backup-simple.yaml</code></a>:
+   a replica cluster following a cluster with backup configured.</dd>
+</dl>
 <p>For a list of available options, please refer to the <a href="../api_reference/">"API Reference" page</a>.</p>
               
             </div>

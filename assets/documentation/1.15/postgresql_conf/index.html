@@ -209,6 +209,10 @@
                 </li>
               </ul>
               <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../postgis/">PostGIS</a>
+                </li>
+              </ul>
+              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../e2e/">End-to-End Tests</a>
                 </li>
               </ul>
@@ -221,7 +225,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../samples/">Configuration Samples</a>
+                <li class="toctree-l1"><a class="reference internal" href="../samples/">Examples</a>
                 </li>
               </ul>
               <ul>
@@ -360,7 +364,7 @@ ssl = 'on'
 ssl_ca_file = '/controller/certificates/client-ca.crt'
 ssl_cert_file = '/controller/certificates/server.crt'
 ssl_key_file = '/controller/certificates/server.key'
-unix_socket_directories = '/var/run/postgresql'
+unix_socket_directories = '/controller/run'
 wal_level = 'logical'
 wal_log_hints = 'on'
 </code></pre>
@@ -628,7 +632,6 @@ operator. The operator prevents the user from setting them using a webhook.</p>
 <li><code>full_page_writes</code></li>
 <li><code>hba_file</code></li>
 <li><code>hot_standby</code></li>
-<li><code>huge_pages</code></li>
 <li><code>ident_file</code></li>
 <li><code>jit_provider</code></li>
 <li><code>listen_addresses</code></li>
