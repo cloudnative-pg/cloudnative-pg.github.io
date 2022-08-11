@@ -16,13 +16,13 @@ tags:
 summary: The CloudNativePG community has released a new update for the supported 1.16.x and 1.15.x versions of the CloudNativePG operator.
 ---
 The **CloudNativePG Community** has released a new update for the supported
-1.16.x and 1.15.x version of the **CloudNativePG Operator**.
+1.16.x and 1.15.x versions of the **CloudNativePG Operator**.
 
 **Versions 1.16.1 and 1.15.3** are *patch releases* containing a few bug fixes
 and minor enhancements, including:
 
-- properly manage `stopDelay` and `switchoverDelay` options which were causing
-  in some cases the PostgreSQL restart process to hang
+- properly manage `stopDelay` and `switchoverDelay` options which, in some cases,
+  were causing the PostgreSQL restart process to hang
 - logging of failover and switchover times
 - presence of the PostgreSQL timeline in the cluster status
 - configuration of the `huge_pages` option for PostgreSQL
