@@ -173,6 +173,10 @@
                 </li>
               </ul>
               <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../postgis/">PostGIS</a>
+                </li>
+              </ul>
+              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../e2e/">End-to-End Tests</a>
                 </li>
               </ul>
@@ -185,7 +189,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../samples/">Configuration Samples</a>
+                <li class="toctree-l1"><a class="reference internal" href="../samples/">Examples</a>
                 </li>
               </ul>
               <ul>
@@ -214,6 +218,8 @@
     <li class="toctree-l2"><a class="reference internal" href="#backupspec">BackupSpec</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#backupstatus">BackupStatus</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#barmancredentials">BarmanCredentials</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#barmanobjectstoreconfiguration">BarmanObjectStoreConfiguration</a>
     </li>
@@ -254,6 +260,8 @@
     <li class="toctree-l2"><a class="reference internal" href="#importsource">ImportSource</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#instanceid">InstanceID</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#instancereportedstate">InstanceReportedState</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#ldapbindasauth">LDAPBindAsAuth</a>
     </li>
@@ -380,6 +388,7 @@ documentation for examples of usage.</p>
 <li><a href="#BackupSource">BackupSource</a></li>
 <li><a href="#BackupSpec">BackupSpec</a></li>
 <li><a href="#BackupStatus">BackupStatus</a></li>
+<li><a href="#BarmanCredentials">BarmanCredentials</a></li>
 <li><a href="#BarmanObjectStoreConfiguration">BarmanObjectStoreConfiguration</a></li>
 <li><a href="#BootstrapConfiguration">BootstrapConfiguration</a></li>
 <li><a href="#BootstrapInitDB">BootstrapInitDB</a></li>
@@ -400,6 +409,7 @@ documentation for examples of usage.</p>
 <li><a href="#Import">Import</a></li>
 <li><a href="#ImportSource">ImportSource</a></li>
 <li><a href="#InstanceID">InstanceID</a></li>
+<li><a href="#InstanceReportedState">InstanceReportedState</a></li>
 <li><a href="#LDAPBindAsAuth">LDAPBindAsAuth</a></li>
 <li><a href="#LDAPBindSearchAuth">LDAPBindSearchAuth</a></li>
 <li><a href="#LDAPConfig">LDAPConfig</a></li>
@@ -658,21 +668,6 @@ documentation for examples of usage.</p>
 </thead>
 <tbody>
 <tr>
-<td><code>s3Credentials</code></td>
-<td>The credentials to be used to upload data to S3</td>
-<td><a href="#S3Credentials">*S3Credentials</a></td>
-</tr>
-<tr>
-<td><code>azureCredentials</code></td>
-<td>The credentials to be used to upload data to Azure Blob Storage</td>
-<td><a href="#AzureCredentials">*AzureCredentials</a></td>
-</tr>
-<tr>
-<td><code>googleCredentials</code></td>
-<td>The credentials to use to upload data to Google Cloud Storage</td>
-<td><a href="#GoogleCredentials">*GoogleCredentials</a></td>
-</tr>
-<tr>
 <td><code>endpointCA</code></td>
 <td>EndpointCA store the CA bundle of the barman endpoint. Useful when using self-signed certificates to avoid errors with certificate issuer and barman-cloud-wal-archive.</td>
 <td><a href="#SecretKeySelector">*SecretKeySelector</a></td>
@@ -759,6 +754,35 @@ documentation for examples of usage.</p>
 </tr>
 </tbody>
 </table>
+<p><a id='BarmanCredentials'></a></p>
+<h2 id="barmancredentials">BarmanCredentials</h2>
+<p>BarmanCredentials an object containing the potential credentials for each cloud provider</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>googleCredentials</code></td>
+<td>The credentials to use to upload data to Google Cloud Storage</td>
+<td><a href="#GoogleCredentials">*GoogleCredentials</a></td>
+</tr>
+<tr>
+<td><code>s3Credentials</code></td>
+<td>The credentials to use to upload data to S3</td>
+<td><a href="#S3Credentials">*S3Credentials</a></td>
+</tr>
+<tr>
+<td><code>azureCredentials</code></td>
+<td>The credentials to use to upload data to Azure Blob Storage</td>
+<td><a href="#AzureCredentials">*AzureCredentials</a></td>
+</tr>
+</tbody>
+</table>
 <p><a id='BarmanObjectStoreConfiguration'></a></p>
 <h2 id="barmanobjectstoreconfiguration">BarmanObjectStoreConfiguration</h2>
 <p>BarmanObjectStoreConfiguration contains the backup configuration using Barman against an S3-compatible object storage</p>
@@ -771,21 +795,6 @@ documentation for examples of usage.</p>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td><code>s3Credentials</code></td>
-<td>The credentials to use to upload data to S3</td>
-<td><a href="#S3Credentials">*S3Credentials</a></td>
-</tr>
-<tr>
-<td><code>azureCredentials</code></td>
-<td>The credentials to use to upload data to Azure Blob Storage</td>
-<td><a href="#AzureCredentials">*AzureCredentials</a></td>
-</tr>
-<tr>
-<td><code>googleCredentials</code></td>
-<td>The credentials to use to upload data to Google Cloud Storage</td>
-<td><a href="#GoogleCredentials">*GoogleCredentials</a></td>
-</tr>
 <tr>
 <td><code>endpointURL</code></td>
 <td>Endpoint to be used to upload data to the cloud, overriding the automatic endpoint discovery</td>
@@ -1308,8 +1317,18 @@ documentation for examples of usage.</p>
 </tr>
 <tr>
 <td><code>instancesStatus</code></td>
-<td>Instances status</td>
+<td>InstancesStatus indicates in which status the instances are</td>
 <td>map[utils.PodStatus][]string</td>
+</tr>
+<tr>
+<td><code>instancesReportedState</code></td>
+<td>the reported state of the instances during the last reconciliation loop</td>
+<td><a href="#InstanceReportedState">map[PodName]InstanceReportedState</a></td>
+</tr>
+<tr>
+<td><code>timelineID</code></td>
+<td>The timeline of the Postgres cluster</td>
+<td>int</td>
 </tr>
 <tr>
 <td><code>topology</code></td>
@@ -1691,6 +1710,30 @@ documentation for examples of usage.</p>
 <td><code>ContainerID</code></td>
 <td>The container ID</td>
 <td>string</td>
+</tr>
+</tbody>
+</table>
+<p><a id='InstanceReportedState'></a></p>
+<h2 id="instancereportedstate">InstanceReportedState</h2>
+<p>InstanceReportedState describes the last reported state of an instance during a reconciliation loop</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>isPrimary</code></td>
+<td>indicates if an instance is the primary one   - <em>mandatory</em></td>
+<td>bool</td>
+</tr>
+<tr>
+<td><code>timeLineID</code></td>
+<td>indicates on which TimelineId the instance is</td>
+<td>int</td>
 </tr>
 </tbody>
 </table>

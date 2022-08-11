@@ -169,6 +169,10 @@
                 </li>
               </ul>
               <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../postgis/">PostGIS</a>
+                </li>
+              </ul>
+              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../e2e/">End-to-End Tests</a>
                 </li>
               </ul>
@@ -181,7 +185,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../samples/">Configuration Samples</a>
+                <li class="toctree-l1"><a class="reference internal" href="../samples/">Examples</a>
                 </li>
               </ul>
               <ul>
@@ -468,7 +472,7 @@ major version of Postgres is version 14, which ships out of the box:</p>
 <li>declarative partitioning for horizontal table partitioning, which is
     a very well-known technique in the database area to improve vertical
     scalability on a single instance</li>
-<li>extensibility, with extensions like PostGIS for geographical
+<li>extensibility, with extensions like <a href="../postgis/">PostGIS</a> for geographical
     databases</li>
 <li>parallel queries for vertical scalability</li>
 <li>JSON support, unleashing the multi-model hybrid database for both
@@ -550,7 +554,7 @@ spec:
     size: 1Gi
 </code></pre>
 <p>The time zone can be verified with:</p>
-<pre><code class="language-console">$ k exec -ti pg-italy-1 -c postgres -- psql -x -c &quot;SHOW timezone&quot;
+<pre><code class="language-console">$ kubectl exec -ti pg-italy-1 -c postgres -- psql -x -c &quot;SHOW timezone&quot;
 -[ RECORD 1 ]---------
 TimeZone | Europe/Rome
 </code></pre>
