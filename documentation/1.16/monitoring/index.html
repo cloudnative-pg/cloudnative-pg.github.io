@@ -205,6 +205,10 @@
                 </li>
               </ul>
               <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../postgis/">PostGIS</a>
+                </li>
+              </ul>
+              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../e2e/">End-to-End Tests</a>
                 </li>
               </ul>
@@ -217,7 +221,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../samples/">Configuration Samples</a>
+                <li class="toctree-l1"><a class="reference internal" href="../samples/">Examples</a>
                 </li>
               </ul>
               <ul>
@@ -694,7 +698,7 @@ cnpg_some_query_rows{datname=&quot;postgres&quot;} 42
 <li><code>primary</code>: whether to run the query only on the primary instance <!-- wokeignore:rule=master --></li>
 <li><code>master</code>: same as <code>primary</code> (for compatibility with the Prometheus PostgreSQL exporter's syntax - deprecated) <!-- wokeignore:rule=master --></li>
 <li><code>runonserver</code>: a semantic version range to limit the versions of PostgreSQL the query should run on
-   (e.g. <code>"&gt;=10.0.0"</code> or <code>"&gt;=12.0.0 &lt;=14.4.0"</code>)</li>
+   (e.g. <code>"&gt;=10.0.0"</code> or <code>"&gt;=12.0.0 &lt;=14.5.0"</code>)</li>
 <li><code>target_databases</code>: a list of databases to run the <code>query</code> against,
   or a <a href="#example-of-a-user-defined-metric-running-on-multiple-databases">shell-like pattern</a>
   to enable auto discovery. Overwrites the default database if provided.</li>

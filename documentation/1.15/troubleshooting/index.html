@@ -217,6 +217,10 @@
                 </li>
               </ul>
               <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../postgis/">PostGIS</a>
+                </li>
+              </ul>
+              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../e2e/">End-to-End Tests</a>
                 </li>
               </ul>
@@ -229,7 +233,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../samples/">Configuration Samples</a>
+                <li class="toctree-l1"><a class="reference internal" href="../samples/">Examples</a>
                 </li>
               </ul>
               <ul>
@@ -372,7 +376,7 @@ Those pods are managed by a deployment named <code>cnpg-controller-manager</code
 Name:               cluster-example
 Namespace:          default
 System ID:          7044925089871458324
-PostgreSQL Image:   ghcr.io/cloudnative-pg/postgresql:14.4-3
+PostgreSQL Image:   ghcr.io/cloudnative-pg/postgresql:14.5-3
 Primary instance:   cluster-example-1
 Instances:          3
 Ready instances:    3
@@ -430,7 +434,7 @@ For more information, please see <a href="../cnpg-plugin/"><code>cnpg</code> plu
 <pre><code class="language-shell">kubectl describe cluster &lt;CLUSTER_NAME&gt; -n &lt;NAMESPACE&gt; | grep &quot;Image Name&quot;
 </code></pre>
 <p>Output:</p>
-<pre><code class="language-shell">  Image Name:    ghcr.io/cloudnative-pg/postgresql:14.4-3
+<pre><code class="language-shell">  Image Name:    ghcr.io/cloudnative-pg/postgresql:14.5-3
 </code></pre>
 <div class="admonition note">
 <p class="admonition-title">Note</p>

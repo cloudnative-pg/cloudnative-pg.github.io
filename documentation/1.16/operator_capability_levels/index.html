@@ -173,6 +173,10 @@
                 </li>
               </ul>
               <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../postgis/">PostGIS</a>
+                </li>
+              </ul>
+              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../e2e/">End-to-End Tests</a>
                 </li>
               </ul>
@@ -220,6 +224,8 @@
     <li class="toctree-l3"><a class="reference internal" href="#continuous-configuration-management">Continuous configuration management</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#import-of-existing-postgresql-databases">Import of existing PostgreSQL databases</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#postgis-clusters">PostGIS clusters</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#basic-ldap-authentication-for-postgresql">Basic LDAP authentication for PostgreSQL</a>
     </li>
@@ -295,7 +301,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../samples/">Configuration Samples</a>
+                <li class="toctree-l1"><a class="reference internal" href="../samples/">Examples</a>
                 </li>
               </ul>
               <ul>
@@ -513,6 +519,10 @@ database - which can be accessed via the network through a superuser
 connection. Import is from any supported version of Postgres and relies on
 <code>pg_dump</code> and <code>pg_restore</code> to be executed from the new cluster primary
 for all databases part of the operation and, if requested, for roles.</p>
+<h3 id="postgis-clusters">PostGIS clusters</h3>
+<p>CloudNativePG supports the installation of clusters with the <a href="../postgis/">PostGIS</a>
+open source extension for geographical databases, one of the most popular
+extensions for PostgreSQL.</p>
 <h3 id="basic-ldap-authentication-for-postgresql">Basic LDAP authentication for PostgreSQL</h3>
 <p>The operator allows you to configure LDAP authentication for your PostgreSQL
 clients, using either the <em>simple bind</em> or <em>search+bind</em> mode, as described in
@@ -773,7 +783,7 @@ the procedure to recreate a standby server.</p>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
         <a href="../container_images/" class="btn btn-neutral float-left" title="Container Image Requirements"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../samples/" class="btn btn-neutral float-right" title="Configuration Samples">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../samples/" class="btn btn-neutral float-right" title="Examples">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>

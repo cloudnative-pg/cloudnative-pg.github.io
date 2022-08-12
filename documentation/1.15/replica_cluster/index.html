@@ -177,6 +177,10 @@
                 </li>
               </ul>
               <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../postgis/">PostGIS</a>
+                </li>
+              </ul>
+              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../e2e/">End-to-End Tests</a>
                 </li>
               </ul>
@@ -189,7 +193,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../samples/">Configuration Samples</a>
+                <li class="toctree-l1"><a class="reference internal" href="../samples/">Examples</a>
                 </li>
               </ul>
               <ul>
@@ -349,7 +353,7 @@ in case the replica cluster is in a separate namespace.</p>
 store using the <code>recovery</code> section and continuous recovery using both streaming
 replication and the given object store. For streaming replication, the replica
 cluster connects to the source cluster using basic authentication.</p>
-<p>You can check the <a href="../samples/cluster-example-replica-from-backup.yaml">sample YAML</a>
+<p>You can check the <a href="../samples/cluster-example-replica-from-backup-simple.yaml">sample YAML</a>
 for it in the <code>samples/</code> subdirectory.</p>
 <p>Note the <code>bootstrap</code> and <code>replica</code> sections pointing to the source cluster.</p>
 <pre><code class="language-yaml">  bootstrap:

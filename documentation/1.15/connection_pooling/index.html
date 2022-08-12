@@ -205,6 +205,10 @@
                 </li>
               </ul>
               <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../postgis/">PostGIS</a>
+                </li>
+              </ul>
+              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../e2e/">End-to-End Tests</a>
                 </li>
               </ul>
@@ -217,7 +221,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../samples/">Configuration Samples</a>
+                <li class="toctree-l1"><a class="reference internal" href="../samples/">Examples</a>
                 </li>
               </ul>
               <ul>
@@ -384,25 +388,28 @@ PgBouncer in CloudNativePG.</p>
 <p class="admonition-title">Important</p>
 <p>If you specify your own secrets the operator will not automatically integrate the Pooler.</p>
 </div>
-<p>To manually integrate the Pooler, in the case that you have specified your own secrets, you must run the following queries from inside your cluster.</p>
-<ol>
-<li>Create the role:</li>
-</ol>
-<p><code>sql
-   CREATE ROLE cnpg_pooler_pgbouncer WITH LOGIN;</code></p>
-<ol>
-<li>For each application database, grant the permission for <code>cnpg_pooler_pgbouncer</code> to connect to it:</li>
-</ol>
-<p><code>sql
-   GRANT CONNECT ON DATABASE { database name here } TO cnpg_pooler_pgbouncer;</code></p>
-<ol>
-<li>Connect in each application database, then create the authentication function inside each of the application databases:</li>
-</ol>
-<p>```sql
-   CREATE OR REPLACE FUNCTION user_search(uname TEXT) RETURNS TABLE (usename name, passwd text) as 'SELECT usename, passwd FROM pg_shadow WHERE usename=$1;' LANGUAGE sql SECURITY DEFINER;</p>
-<p>REVOKE ALL ON FUNCTION user_search(text) FROM public;</p>
-<p>GRANT EXECUTE ON FUNCTION user_search(text) TO cnpg_pooler_pgbouncer;
-   ```</p>
+<p>To manually integrate the Pooler, in the case that you have specified your own
+secrets, you must run the following queries from inside your cluster.</p>
+<p>First, you must create the role:</p>
+<pre><code class="language-sql">CREATE ROLE cnpg_pooler_pgbouncer WITH LOGIN;
+</code></pre>
+<p>Then, for each application database, grant the permission for
+<code>cnpg_pooler_pgbouncer</code> to connect to it:</p>
+<pre><code class="language-sql">GRANT CONNECT ON DATABASE { database name here } TO cnpg_pooler_pgbouncer;
+</code></pre>
+<p>Finally, connect in each application database, then create the authentication
+function inside each of the application databases:</p>
+<pre><code class="language-sql">CREATE OR REPLACE FUNCTION user_search(uname TEXT)
+  RETURNS TABLE (usename name, passwd text)
+  LANGUAGE sql SECURITY DEFINER AS
+  'SELECT usename, passwd FROM pg_shadow WHERE usename=$1;';
+
+REVOKE ALL ON FUNCTION user_search(text)
+  FROM public;
+
+GRANT EXECUTE ON FUNCTION user_search(text)
+  TO cnpg_pooler_pgbouncer;
+</code></pre>
 <h2 id="podtemplates">PodTemplates</h2>
 <p>You can take advantage of pod templates specification in the <code>template</code>
 section of a <code>Pooler</code> resource. For details, please refer to <a href="../api_reference/#PoolerSpec"><code>PoolerSpec</code>
