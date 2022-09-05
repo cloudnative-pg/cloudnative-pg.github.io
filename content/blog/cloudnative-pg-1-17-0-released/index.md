@@ -36,7 +36,7 @@ New patch releases are available for all the supported versions, including
 
 With the release of 1.17.0, the 1.15.x minor version will be
 [end of life](https://cloudnative-pg.io/documentation/1.17/supported_releases/#support-status-of-cloudnativepg-releases)
-from 7 October, 2022.
+from 6 October, 2022.
 
 We encourage you to update the operator at your earliest possible convenience.
 
