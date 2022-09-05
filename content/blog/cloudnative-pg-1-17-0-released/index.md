@@ -15,11 +15,11 @@ tags:
  - cloudnativepg
 summary: The CloudNativePG community has released the new 1.17 minor version and a new update for the supported 1.16 and 1.15 versions of the CloudNativePG operator.
 ---
-The **CloudNativePG Community** has released version 1.17.0, a new minor
-version of the **CloudNativePG Operator**, which introduces the possibility to
+The **CloudNativePG Community** has announced version 1.17.0, a new minor
+release of the **CloudNativePG Operator**, which introduces the possibility to
 create a new PostgreSQL cluster with a **dedicated volume for Write-Ahead Log
 (WAL) files**. Separating I/O workloads of database (`PGDATA`) and WAL files
-improves also vertical scalability of PostgreSQL clusters.
+improves vertical scalability of PostgreSQL clusters, among the others.
 
 In this version, a new command, `destroy`, has been added to the `cnpg` plugin
 for `kubectl` to help remove an instance and the associated persistent volume
@@ -31,12 +31,12 @@ by the operator on all persistent volume claims that belong to a cluster.
 Some minor bugs have been fixed, in particular in the in-place operator upgrade
 process.
 
-New patch releases are available for all the supported versions, namely:
+New patch releases are available for all the supported versions, including
+1.16.2 and 1.15.4.
 
-- 1.16.2 for the 1.16 minor release
-- 1.15.4 for the 1.15 minor release
-
-**IMPORTANT:** 1.15.x will be end of life on 7 October, 2022.
+With the release of 1.17.0, the 1.15.x minor version will be
+[end of life](https://cloudnative-pg.io/documentation/1.17/supported_releases/#support-status-of-cloudnativepg-releases)
+from 7 October, 2022.
 
 We encourage you to update the operator at your earliest possible convenience.
 
