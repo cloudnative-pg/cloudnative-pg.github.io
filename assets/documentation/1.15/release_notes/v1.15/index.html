@@ -236,6 +236,30 @@
 <p>For a complete list of changes, please refer to the
 <a href="https://github.com/cloudnative-pg/cloudnative-pg/commits/release-1.15">commits</a>
 on the release branch in GitHub.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>End-of-Life (EOL) date for version 1.15 is October 6, 2022.</p>
+</div>
+<h2 id="version-1154">Version 1.15.4</h2>
+<p><strong>Release date:</strong> Sep 6, 2022</p>
+<p>Enhancements:</p>
+<ul>
+<li>Enable configuration of low-level network TCP settings in the PgBouncer
+  connection pooler implementation (#584)</li>
+<li>Make sure that the <code>cnpg.io/instanceName</code> and the <code>cnpg.io/podRole</code> labels
+  are always present on pods and PVCs (#632 and #680)</li>
+<li>Propagate the <code>role</code> label of an instance to the underlying PVC (#634)</li>
+</ul>
+<p>Fixes:</p>
+<ul>
+<li>Prevent multiple in-place upgrade processes of the operator from running
+  simultaneously by atomically checking whether another one is in progress (#655)</li>
+<li>Avoid using a hardcoded file name to store the newly uploaded instance
+  manager, preventing a possible race condition during online upgrades of the
+  operator (#660)</li>
+<li>Prevent a panic from happening when invoking <code>GetAllAccessibleDatabases</code>
+  (#641)</li>
+</ul>
 <h2 id="version-1153">Version 1.15.3</h2>
 <p><strong>Release date:</strong> Aug 12, 2022</p>
 <p>Enhancements:</p>
