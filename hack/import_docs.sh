@@ -14,7 +14,10 @@ if [ "$#" -ne 1 ]; then
     exit 1
 fi
 
+# Set target directory
 release_version=${1#v}
+DOCDIR=$REPO_ROOT/assets/documentation
+TARGETDIR=$DOCDIR/$release_version
 
 # Create a temporary folder in which to clone the CNPG branch
 WORKDIR=$(mktemp -d)
@@ -23,12 +26,11 @@ mkdir -p $WORKDIR/cnpg
 # Clone the branch
 git clone --depth 1 --branch release-$release_version git@github.com:cloudnative-pg/cloudnative-pg.git $WORKDIR/cnpg
 
-DOCDIR=$REPO_ROOT/assets/documentation/$release_version
-mkdir -p $DOCDIR
+mkdir -p $TARGETDIR
 
 pushd $WORKDIR/cnpg/docs
 docker run --rm -v "$(pwd):$(pwd)" -w "$(pwd)" \
-    -v "$DOCDIR:/var/cnpg" \
+    -v "$TARGETDIR:/var/cnpg" \
     minidocks/mkdocs \
     mkdocs build -v -d /var/cnpg
 popd
@@ -38,4 +40,19 @@ rm -rf $WORKDIR
 if [ ! -f content/docs/$release_version.md ]
 then
   hugo new docs/$release_version.md
+  git add content/docs/$release_version.md
 fi
+
+# Detect the current version (one with the highest release number)
+current_version=$(ls $DOCDIR | sort -n | tail -1)
+if [ -d $DOCDIR/current ]
+then
+    git rm -fr $DOCDIR/current
+fi
+
+# Copy the last available doc folder as 'current'
+# This is a hack as with GH Pages it is not possible
+# to issue server-side redirects
+cp -a $DOCDIR/$current_version $DOCDIR/current
+git add $DOCDIR/current
+git add $TARGETDIR
