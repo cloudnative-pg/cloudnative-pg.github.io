@@ -242,8 +242,35 @@
 on the release branch in GitHub.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>End-of-Life (EOL) date for version 1.15 is October 6, 2022.</p>
+<p>Version 1.15 has reached End-of-Life (EOL). Version 1.15.5 is the last
+that will be released for the 1.15 minor version.</p>
 </div>
+<h2 id="version-1155">Version 1.15.5</h2>
+<p><strong>Release date:</strong> Oct 6, 2022</p>
+<p>Enhancements:</p>
+<ul>
+<li>Introduce <code>leaseDuration</code> and <code>renewDeadline</code> parameters in the controller
+   manager to enhance configuration of the leader election in operator
+   deployments (#759)</li>
+<li>Improve the mechanism that checks that the backup object store is empty
+   before archiving a WAL file for the first time: a new file called
+   <code>.check-empty-wal-archive</code> is placed in the <code>PGDATA</code> immediately after
+   the cluster is bootstrapped and it is then removed after the first WAL
+   file is successfully archived</li>
+</ul>
+<p>Security:</p>
+<ul>
+<li>Explicitly set permissions of the instance manager binary that is copied in
+  the <code>distroless/static:nonroot</code> container image, by using the
+  <code>nonroot:nonroot</code> user (#754)</li>
+</ul>
+<p>Fixes:</p>
+<ul>
+<li>Make the cluster's conditions compatible with <code>metav1.Conditions</code> struct (#720)</li>
+<li>Drop any active connection on a standby after it is promoted to primary (#737)</li>
+<li>Honor <code>MAPPEDMETRIC</code> and <code>DURATION</code> metric types conversion in the native
+  Prometheus exporter  (#765)</li>
+</ul>
 <h2 id="version-1154">Version 1.15.4</h2>
 <p><strong>Release date:</strong> Sep 6, 2022</p>
 <p>Enhancements:</p>

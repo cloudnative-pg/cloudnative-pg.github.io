@@ -149,6 +149,8 @@
     </li>
         </ul>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#how-to-inspect-the-exported-metrics">How to inspect the exported metrics</a>
+    </li>
     </ul>
                 </li>
               </ul>
@@ -277,12 +279,15 @@ more <code>ConfigMap</code> or <code>Secret</code> resources (see the
 <a href="#default-set-of-metrics">by default a set of predefined metrics</a> in
 a <code>ConfigMap</code> called <code>default-monitoring</code>.</p>
 </div>
-<p>Metrics can be accessed as follows:</p>
-<pre><code class="language-shell">curl http://&lt;pod_ip&gt;:9187/metrics
-</code></pre>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>You can inspect the exported metrics by following the instructions in
+the <a href="#how-to-inspect-the-exported-metrics">"How to inspect the exported metrics"</a>
+section below.</p>
+</div>
 <p>All monitoring queries that are performed on PostgreSQL are:</p>
 <ul>
-<li>transactionally atomic (one transaction per query)</li>
+<li>atomic (one transaction per query)</li>
 <li>executed with the <code>pg_monitor</code> role</li>
 <li>executed with <code>application_name</code> set to <code>cnpg_metrics_exporter</code></li>
 <li>executed as user <code>postgres</code></li>
@@ -607,7 +612,9 @@ data:
             usage: &quot;GAUGE&quot;
             description: &quot;Number of streaming replicas connected to the instance&quot;
 </code></pre>
-<p>A list of basic monitoring queries can be found in the <a href="../samples/cnpg-basic-monitoring.yaml"><code>cnpg-basic-monitoring.yaml</code> file</a>.</p>
+<p>A list of basic monitoring queries can be found in the
+<a href="https://github.com/cloudnative-pg/cloudnative-pg/blob/main/config/manager/default-monitoring.yaml"><code>default-monitoring.yaml</code> file</a>
+that is already installed in your CloudNativePG deployment (see <a href="#default-set-of-metrics">"Default set of metrics"</a>).</p>
 <h4 id="example-of-a-user-defined-metric-running-on-multiple-databases">Example of a user defined metric running on multiple databases</h4>
 <p>If the <code>target_databases</code> option lists more than one database
 the metric is collected from each of them.</p>
@@ -799,9 +806,12 @@ in CloudNativePG's exporter.</p>
 <h2 id="monitoring-the-operator">Monitoring the operator</h2>
 <p>The operator internally exposes <a href="https://prometheus.io/">Prometheus</a> metrics
 via HTTP on port 8080, named <code>metrics</code>.</p>
-<p>Metrics can be accessed as follows:</p>
-<pre><code class="language-shell">curl http://&lt;pod_ip&gt;:8080/metrics
-</code></pre>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>You can inspect the exported metrics by following the instructions in
+the <a href="#how-to-inspect-the-exported-metrics">"How to inspect the exported metrics"</a>
+section below.</p>
+</div>
 <p>Currently, the operator exposes default <code>kubebuilder</code> metrics, see
 <a href="https://book.kubebuilder.io/reference/metrics.html">kubebuilder documentation</a> for more details.</p>
 <h3 id="prometheus-operator-example_1">Prometheus Operator example</h3>
@@ -819,6 +829,50 @@ spec:
       app.kubernetes.io/name: cloudnative-pg
   podMetricsEndpoints:
     - port: metrics
+</code></pre>
+<h2 id="how-to-inspect-the-exported-metrics">How to inspect the exported metrics</h2>
+<p>In this section we provide some basic instructions on how to inspect
+the metrics exported by a specific PostgreSQL instance manager (primary
+or replica) or the operator, using a temporary pod running <code>curl</code> in
+the same namespace.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In the example below we assume we are working in the default namespace,
+alongside with the PostgreSQL cluster. Please feel free to adapt
+this example to your use case, by applying basic Kubernetes knowledge.</p>
+</div>
+<p>Create the <code>curl.yaml</code> file with this content:</p>
+<pre><code class="language-yaml">apiVersion: v1
+kind: Pod
+metadata:
+  name: curl
+spec:
+  containers:
+  - name: curl
+    image: curlimages/curl:7.84.0
+    command: ['sleep', '3600']
+</code></pre>
+<p>Then create the pod:</p>
+<pre><code class="language-shell">kubectl apply -f curl.yaml
+</code></pre>
+<p>In case you want to inspect the metrics exported by an instance, you need
+to connect to port 9187 of the target pod. This is the generic command to be
+run (make sure you use the correct IP for the pod):</p>
+<pre><code class="language-shell">kubectl exec -ti curl -- curl -s &lt;pod_ip&gt;:9187/metrics
+</code></pre>
+<p>For example, if your PostgreSQL cluster is called <code>cluster-example</code> and
+you want to retrieve the exported metrics of the first pod in the cluster,
+you can run the following command to programmatically get the IP of
+that pod:</p>
+<pre><code class="language-shell">POD_IP=$(kubectl get pod cluster-example-1 --template '{{.status.podIP}}')
+</code></pre>
+<p>And then run:</p>
+<pre><code class="language-shell">kubectl exec -ti curl -- curl -s ${POD_IP}:9187/metrics
+</code></pre>
+<p>In case you want to access the metrics of the operator, you need to point
+to the pod where the operator is running, and use TCP port 8080 as target.</p>
+<p>At the end of the inspection, please make sure you delete the <code>curl</code> pod:</p>
+<pre><code class="language-shell">kubectl delete -f curl.yaml
 </code></pre>
               
             </div>
