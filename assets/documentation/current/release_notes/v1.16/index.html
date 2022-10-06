@@ -240,6 +240,31 @@
 <p>For a complete list of changes, please refer to the
 <a href="https://github.com/cloudnative-pg/cloudnative-pg/commits/release-1.16">commits</a>
 on the release branch in GitHub.</p>
+<h2 id="version-1163">Version 1.16.3</h2>
+<p><strong>Release date:</strong> Oct 6, 2022</p>
+<p>Enhancements:</p>
+<ul>
+<li>Introduce <code>leaseDuration</code> and <code>renewDeadline</code> parameters in the controller
+   manager to enhance configuration of the leader election in operator
+   deployments (#759)</li>
+<li>Improve the mechanism that checks that the backup object store is empty
+   before archiving a WAL file for the first time: a new file called
+   <code>.check-empty-wal-archive</code> is placed in the <code>PGDATA</code> immediately after
+   the cluster is bootstrapped and it is then removed after the first WAL
+   file is successfully archived</li>
+</ul>
+<p>Security:</p>
+<ul>
+<li>Explicitly set permissions of the instance manager binary that is copied in
+  the <code>distroless/static:nonroot</code> container image, by using the
+  <code>nonroot:nonroot</code> user (#754)</li>
+</ul>
+<p>Fixes:</p>
+<ul>
+<li>Drop any active connection on a standby after it is promoted to primary (#737)</li>
+<li>Honor MAPPEDMETRIC and DURATION metric types conversion in the native
+  Prometheus exporter (#765)</li>
+</ul>
 <h2 id="version-1162">Version 1.16.2</h2>
 <p><strong>Release date:</strong> Sep 6, 2022</p>
 <p>Enhancements:</p>

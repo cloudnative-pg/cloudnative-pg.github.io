@@ -197,6 +197,8 @@
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#running-postgresql-in-kubernetes">Running PostgreSQL in Kubernetes</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#high-availability">High availability</a>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#database-management">Database management</a>
     </li>
     </ul>
@@ -364,10 +366,23 @@ and are able to interact with Kubernetes administrators.</p>
 <p>Our advice is for everyone that wants to fully exploit Cloud Native
 PostgreSQL to acquire the "Certified Kubernetes Administrator (CKA)"
 status from the CNCF certification program.</p>
+<h2 id="high-availability">High availability</h2>
+<p><strong>What happens to the PostgreSQL clusters when the operator pod dies or it is
+not available for a certain amount of time?</strong></p>
+<p>The CloudNativePG operator, among other things, is responsible for self-healing
+capabilities. As such, they might not be available during an outage of the
+operator.</p>
+<p>However, assuming that the outage does not affect the nodes where PostgreSQL
+clusters are running, the database will continue to serve normal operations,
+through the relevant Kubernetes services. Moreover, the <a href="../instance_manager/">instance manager</a>,
+which runs inside each PostgreSQL pod will still work, making sure that the
+database server is up, including accessory services like logging, export of
+metrics, continuous archiving of WAL files, etc.</p>
+<p>To summarize:</p>
+<p>an outage of the operator does not necessarily imply a PostgreSQL
+database outage; it's like running a database without a DBA or system
+administrator.</p>
 <!--
-
-## High availability
-
 What are the reasons behind CloudNativePG not relying on a failover
 management tool like Patroni, repmgr, or Stolon?
 

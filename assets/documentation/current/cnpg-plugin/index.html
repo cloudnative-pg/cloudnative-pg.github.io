@@ -272,10 +272,13 @@
                 <h1 id="cloudnativepg-plugin">CloudNativePG Plugin</h1>
 <p>CloudNativePG provides a plugin for <code>kubectl</code> to manage a cluster in Kubernetes.</p>
 <h2 id="install">Install</h2>
-<p>You can install the plugin in your system with:</p>
+<p>You can install the cnpg plugin system either running the provided install script:</p>
 <pre><code class="language-sh">curl -sSfL \
   https://github.com/cloudnative-pg/cloudnative-pg/raw/main/hack/install-cnpg-plugin.sh | \
   sudo sh -s -- -b /usr/local/bin
+</code></pre>
+<p>Or, if you already have <a href="https://krew.sigs.k8s.io/">Krew</a> installed, you can simply run:</p>
+<pre><code class="language-sh">kubectl krew install cnpg
 </code></pre>
 <h3 id="supported-architectures">Supported Architectures</h3>
 <p>CloudNativePG Plugin is currently build for the following
@@ -598,12 +601,12 @@ directory tidy:</p>
 <pre><code class="language-shell">Archive:  reportRedacted.zip
    creating: report_operator_&lt;TIMESTAMP&gt;/
    creating: report_operator_&lt;TIMESTAMP&gt;/manifests/
-  inflating: report_operator_&lt;TIMESTAMP&gt;/manifests/deployment.yaml  
-  inflating: report_operator_&lt;TIMESTAMP&gt;/manifests/operator-pod.yaml  
-  inflating: report_operator_&lt;TIMESTAMP&gt;/manifests/events.yaml  
-  inflating: report_operator_&lt;TIMESTAMP&gt;/manifests/validating-webhook-configuration.yaml  
-  inflating: report_operator_&lt;TIMESTAMP&gt;/manifests/mutating-webhook-configuration.yaml  
-  inflating: report_operator_&lt;TIMESTAMP&gt;/manifests/webhook-service.yaml  
+  inflating: report_operator_&lt;TIMESTAMP&gt;/manifests/deployment.yaml
+  inflating: report_operator_&lt;TIMESTAMP&gt;/manifests/operator-pod.yaml
+  inflating: report_operator_&lt;TIMESTAMP&gt;/manifests/events.yaml
+  inflating: report_operator_&lt;TIMESTAMP&gt;/manifests/validating-webhook-configuration.yaml
+  inflating: report_operator_&lt;TIMESTAMP&gt;/manifests/mutating-webhook-configuration.yaml
+  inflating: report_operator_&lt;TIMESTAMP&gt;/manifests/webhook-service.yaml
   inflating: report_operator_&lt;TIMESTAMP&gt;/manifests/cnpg-ca-secret.yaml
   inflating: report_operator_&lt;TIMESTAMP&gt;/manifests/cnpg-webhook-cert.yaml
 </code></pre>
