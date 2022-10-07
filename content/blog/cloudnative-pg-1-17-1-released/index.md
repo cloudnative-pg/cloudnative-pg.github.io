@@ -37,7 +37,7 @@ We encourage you to update the operator at your earliest possible convenience.
 
 For a complete list of changes, please refer to:
 
-- [release notes for 1.17.1](https://cloudnative-pg.io/documentation/1.16/release_notes/v1.17/)
+- [release notes for 1.17.1](https://cloudnative-pg.io/documentation/1.17/release_notes/v1.17/)
 - [release notes for 1.16.3](https://cloudnative-pg.io/documentation/1.16/release_notes/v1.16/)
 - [release notes for 1.15.5](https://cloudnative-pg.io/documentation/1.15/release_notes/v1.15/)
 
