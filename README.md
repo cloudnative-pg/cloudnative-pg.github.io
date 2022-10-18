@@ -9,10 +9,10 @@ On macOS with brew type: `brew install hugo node`
 
 ## Branches
 
-The main branches are:
+The most important branches are:
 
 - `main`: trunk
-- `production`: the one visible in Github pages
+- `production`: the one visible in Github Pages
 
 So, if you want to see the changes on cloudnative-pg.io you need to merge them
 in the `production` branch.
@@ -67,12 +67,12 @@ Edit the file, and once happy remove the `draft: true` - it should now show up f
 
 ### Documentation
 
-Documentation lives [alongside the code](https://github.com/cloudnative-pg/cloudnative-pg),
+Documentation lives [alongside the operator code](https://github.com/cloudnative-pg/cloudnative-pg),
 inside the `docs/src` folder. It is written in Markdown using mkdocs.
 
 The website contains a static copy of the HTML files generated from the
 Markdown sources, inside the `assets/documentation/$version_number` folder
-(where $version_number is a minor release of CloudNativePG).
+(where $version_number is a **minor** release of CloudNativePG).
 
 The `hack/import_docs.sh` script has the logic to import the files from a
 release branch, generate the HTML and save the files in the appropriate folder.
@@ -82,7 +82,8 @@ or a patch release.
 
 #### New minor release
 
-Create a new file called `X.Y.md` inside the `content/docs` folder, with the following content:
+Create a new file called `X.Y.md` (X.Y matching the minor release branch in the
+operator repo) inside the `content/docs` folder, with the following content:
 
 ```markdown
 ---
@@ -100,8 +101,9 @@ hack/import_docs.sh X.Y
 ```
 
 This will import all the files under `assets/documentation/X.Y`. Open the
-`index.html` page with your browser and verify everything is OK, then add the
-folder to the Git repo (in a development branch).
+top-level `./assets/documentation/X.Y/index.html` page with your browser and
+verify everything is OK, then add the folder to the Git repo (in a development
+branch).
 
 #### New patch release
 
@@ -117,4 +119,3 @@ hack/import_docs.sh X.Y
 Apply all changes in the development branch and push. If you are adding a new
 patch release to the latest minor version, you will need to update the
 `current` branch (which at the moment is a copy of the folder).
-
