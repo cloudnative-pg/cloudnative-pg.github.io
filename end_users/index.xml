@@ -15,5 +15,14 @@
       <description>BigAnimal is a fully managed database-as-a-service with built-in Oracle compatibility, running in your cloud account and operated by the Postgres experts. BigAnimal makes it easy to set up, manage, and scale your databases. Provision PostgreSQL or EDB Postgres Advanced Server with Oracle compatibility.</description>
     </item>
     
+    <item>
+      <title>Shinkansen</title>
+      <link>https://cloudnative-pg.io/end_users/shinkansen/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://cloudnative-pg.io/end_users/shinkansen/</guid>
+      <description>Shinkansen moves your money at the speed of the internet Our riels move money to your customers, suppliers, banks and traditionals rails (or networks) Our modern API&amp;rsquo;s free your engineers, makes cheaper the transaction cost, and automatize the clearing process. Our platform runs on the cloud using Postgres and CloudNativePG to scale clusters multizone and multiregion</description>
+    </item>
+    
   </channel>
 </rss>
