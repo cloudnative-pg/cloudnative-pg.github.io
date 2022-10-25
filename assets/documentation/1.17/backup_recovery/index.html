@@ -231,6 +231,10 @@
                 </li>
               </ul>
               <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../controller/">Custom Pod Controller</a>
+                </li>
+              </ul>
+              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../samples/">Examples</a>
                 </li>
               </ul>
@@ -823,16 +827,6 @@ manager running in the Pods.</p>
 <p>A manifest for a cluster restore may include a <code>backup</code> section.
 This means that the new cluster, after recovery, will start archiving WAL's and
 taking backups if configured to do so.</p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>It is not allowed to use the same <code>barmanObjectStore</code> object in the <code>backup</code>
-section as in the <code>externalClusters</code> section, for the recovery. While in some
-cases this <em>could</em> work, the operator will prevent recovery into a new
-cluster if using the same backup object as the source cluster. This is to
-guard against edge cases where the source WAL's could be overwritten.
-A cluster with the same <code>barmanObjectStore</code> reused for recovery and backup
-will generate a validation error: <code>spec.backup.barmanObjectStore: Invalid value: …</code></p>
-</div>
 <p>For example, the section below could be part of a manifest for a Cluster
 bootstrapping from Cluster <code>cluster-example-backup</code>, and would create a
 new folder in the storage bucket named <code>recoveredCluster</code> where the base backups
@@ -863,12 +857,12 @@ for different clusters. There could be cases where the existing information
 in the storage buckets could be overwritten by the new cluster.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>The operator now includes a safety check to ensure a cluster will not
+<p>The operator includes a safety check to ensure a cluster will not
 overwrite a storage bucket that contained information. A cluster that would
 overwrite existing storage will remain in state <code>Setting up primary</code> with
 Pods in an Error state.
 The pod logs will show:
-<code>ERROR: WAL archive check failed for server recoveredCluster: Expected empty archive"</code></p>
+<code>ERROR: WAL archive check failed for server recoveredCluster: Expected empty archive</code></p>
 </div>
 <h2 id="retention-policies">Retention policies</h2>
 <p>CloudNativePG can manage the automated deletion of backup files from
