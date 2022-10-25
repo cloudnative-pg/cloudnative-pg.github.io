@@ -197,6 +197,10 @@
                 </li>
               </ul>
               <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../controller/">Custom Pod Controller</a>
+                </li>
+              </ul>
+              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../samples/">Examples</a>
                 </li>
               </ul>
@@ -408,7 +412,7 @@ The operation is performed in the following steps:</p>
 <p><img alt="Example of monolith import type" src="../images/monolith-import.png" /></p>
 <p>For example, the YAML below creates a new 3 instance PostgreSQL cluster (latest
 available major version at the time the operator was released) called
-<code>cluster-microservice</code> that imports the <code>accountant</code> and the <code>bank_user</code> roles,
+<code>cluster-monolith</code> that imports the <code>accountant</code> and the <code>bank_user</code> roles,
 as well as the <code>accounting</code>, <code>banking</code>, <code>resort</code> databases from the
 <code>cluster-pg96</code> cluster (with the unsupported PostgreSQL 9.6), by connecting to
 the <code>postgres</code> database using the <code>postgres</code> user, via the password stored in
