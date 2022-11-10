@@ -75,6 +75,16 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#part-3-deploy-a-postgresql-cluster">Part 3 - Deploy a PostgreSQL cluster</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#part-4-monitor-clusters-with-prometheus-and-grafana">Part 4 - Monitor clusters with Prometheus and Grafana</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#installation">Installation</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#viewing-with-prometheus">Viewing with Prometheus</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#grafana-dashboard">Grafana Dashboard</a>
+    </li>
+        </ul>
+    </li>
     </ul>
                 </li>
               </ul>
@@ -243,13 +253,13 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li><li>Quickstart</li>
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+      <li>Quickstart</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
   <hr/>
 </div>
-
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
@@ -276,6 +286,8 @@ on <a href="https://kubernetes.io/docs/tasks/tools/install-kubectl/">how to inst
 <p>The first part is about installing Minikube or Kind. Please spend some time
 reading about the systems and decide which one to proceed with.
 After setting up one of them, please proceed with part 2.</p>
+<p>We also provide instructions for setting up monitoring with Prometheus and
+Grafana for local testing/evaluation, in <a href="#part-4-monitor-clusters-with-prometheus-and-grafana">part 4</a></p>
 <h3 id="minikube">Minikube</h3>
 <p>Minikube is a tool that makes it easy to run Kubernetes locally. Minikube runs a
 single-node Kubernetes cluster inside a Virtual Machine (VM) on your laptop for
@@ -367,6 +379,125 @@ to the image name, through the <code>&lt;image&gt;:&lt;tag&gt;@sha256:&lt;digest
 <p>There are some examples cluster configurations bundled with the operator.
 Please refer to the <a href="../samples/">"Examples" section</a>.</p>
 </div>
+<h2 id="part-4-monitor-clusters-with-prometheus-and-grafana">Part 4 - Monitor clusters with Prometheus and Grafana</h2>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Installing Prometheus and Grafana is beyond the scope of this project.
+The instructions in this section are provided for experimentation and
+illustration only.</p>
+</div>
+<p>In this section we show how to deploy Prometheus and Grafana for observability,
+and how to create a Grafana Dashboard to monitor CloudNativePG clusters, and a
+set of Prometheus Rules defining alert conditions.</p>
+<p>We leverage the <a href="https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack">Kube-Prometheus stack</a>,
+Helm chart, which is maintained by the <a href="https://github.com/prometheus-community">Prometheus Community</a>.
+Please refer to the project website for additional documentation and background.</p>
+<p>The Kube-Prometheus-stack Helm chart installs the <a href="https://prometheus-operator.dev">Prometheus Operator</a>,
+including the <a href="https://prometheus.io/docs/alerting/latest/alertmanager/">Alert Manager</a>,
+and a <a href="https://grafana.com">Grafana</a> deployment.</p>
+<p>We include a configuration file for the deployment of this Helm chart that will
+provide useful initial settings for observability of CloudNativePG clusters.</p>
+<h3 id="installation">Installation</h3>
+<p>If you don't have <a href="https://helm.sh">Helm</a> installed yet, please follow the
+<a href="https://helm.sh/docs/intro/quickstart/">instructions</a> to install it in your
+system.</p>
+<p>We need to add the <code>prometheus-community</code> helm chart repository, and then
+install the <em>Kube Prometheus stack</em> using the sample configuration we provide:</p>
+<p>We can accomplish this with the following commands:</p>
+<pre><code class="language-sh">helm repo add prometheus-community \
+  https://prometheus-community.github.io/helm-charts
+
+helm upgrade --install \
+  -f https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/main/docs/src/samples/monitoring/kube-stack-config.yaml \
+  prometheus-community \
+  prometheus-community/kube-prometheus-stack
+</code></pre>
+<p>After completion, you will have Prometheus, Grafana and Alert Manager installed with values from the
+<code>kube-stack-config.yaml</code> file:</p>
+<ul>
+<li>From the Prometheus installation, you will have the Prometheus Operator watching for <strong>any</strong> <code>PodMonitor</code>
+  (see <a href="../monitoring/"><em>monitoring</em></a>).</li>
+<li>The Grafana installation will be watching for a Grafana dashboard <code>ConfigMap</code>.</li>
+</ul>
+<div class="admonition seealso">
+<p class="admonition-title">Seealso</p>
+<p>For further information about the above command see the <a href="https://helm.sh/docs/helm/helm_install/">helm install</a> 
+documentation. </p>
+</div>
+<p>You can see several Custom Resources have been created:</p>
+<pre><code class="language-sh">% kubectl get crds
+NAME                                        CREATED AT
+…
+alertmanagers.monitoring.coreos.com         &lt;timestamp&gt;
+…
+prometheuses.monitoring.coreos.com          &lt;timestamp&gt;
+prometheusrules.monitoring.coreos.com       &lt;timestamp&gt;
+…
+</code></pre>
+<p>as well as a series of Services:</p>
+<pre><code class="language-sh">% kubectl get svc     
+NAME                                      TYPE        PORT(S)
+…                                         …           …
+prometheus-community-grafana              ClusterIP   80/TCP
+prometheus-community-kube-alertmanager    ClusterIP   9093/TCP
+prometheus-community-kube-operator        ClusterIP   443/TCP
+prometheus-community-kube-prometheus      ClusterIP   9090/TCP
+</code></pre>
+<h3 id="viewing-with-prometheus">Viewing with Prometheus</h3>
+<p>At this point, a CloudNativePG cluster deployed with Monitoring activated
+would be observable via Prometheus.</p>
+<p>For example, you could deploy a simple cluster with <code>PodMonitor</code> enabled:</p>
+<pre><code class="language-sh">kubectl apply -f - &lt;&lt;EOF
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: cluster-with-metrics
+spec:
+  instances: 3
+
+  storage:
+    size: 1Gi
+
+  monitoring:
+    enablePodMonitor: true
+EOF
+</code></pre>
+<p>To access Prometheus, port-forward the Prometheus service:</p>
+<pre><code class="language-sh">kubectl port-forward svc/prometheus-community-kube-prometheus 9090
+</code></pre>
+<p>Then access the Prometheus console locally at: <a href="http://localhost:9090/"><code>http://localhost:9090/</code></a></p>
+<p>Assuming that the monitoring stack was successfully deployed, and you have a Cluster with <code>enablePodMonitoring: true</code> 
+you should find a series of metrics relating to CloudNativePG clusters. Again, please
+refer to the <a href="../monitoring/"><em>monitoring section</em></a> for more information.</p>
+<p><img alt="local prometheus" src="../images/prometheus-local.png" /></p>
+<p>You can now define some alerts by creating a <code>prometheusRule</code>:</p>
+<pre><code class="language-sh">kubectl apply -f \
+  https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/main/docs/src/samples/monitoring/cnpg-prometheusrule.yaml
+</code></pre>
+<p>You should see the default alerts now:</p>
+<pre><code class="language-sh">% kubectl get prometheusrules                      
+NAME                                                       AGE
+cnpg-default-alerts                                        3m27s
+</code></pre>
+<p>In the Prometheus console, you can click on the <em>Alerts</em> menu to see the alerts
+we just installed.</p>
+<h3 id="grafana-dashboard">Grafana Dashboard</h3>
+<p>In our "plain" installation, Grafana is deployed with no predefined dashboards.</p>
+<p>You can port-forward:</p>
+<pre><code class="language-sh">kubectl port-forward svc/prometheus-community-grafana 3000:80
+</code></pre>
+<p>And access Grafana locally at <a href="http://localhost:3000/"><code>http://localhost:3000/</code></a>
+providing the credentials <code>admin</code> as username, <code>prom-operator</code> as password (defined in <code>kube-stack-config.yaml</code>).</p>
+<p>We can now install our sample Grafana dashboard:</p>
+<pre><code class="language-sh">kubectl apply -f \
+  https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/main/docs/src/samples/monitoring/grafana-configmap.yaml
+</code></pre>
+<p>Which will be picked up by the Grafana page in a few seconds. You should now
+see the <code>CloudNativePG</code> dashboard.</p>
+<p><img alt="local grafana" src="../images/grafana-local.png" /></p>
+<p>Note that in our example setup, both Prometheus and Grafana will pick up
+any other CloudNativePG clusters deployed with Monitoring activated.</p>
               
             </div>
           </div><footer>
