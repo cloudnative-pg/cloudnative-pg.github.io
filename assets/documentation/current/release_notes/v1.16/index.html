@@ -197,6 +197,10 @@
                 </li>
               </ul>
               <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../benchmarking/">Benchmarking</a>
+                </li>
+              </ul>
+              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../../commercial_support/">Commercial support</a>
                 </li>
               </ul>
@@ -229,13 +233,13 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href="../.." class="icon icon-home" alt="Docs"></a> &raquo;</li><li>Release notes for CloudNativePG 1.16</li>
+    <li><a href="../.." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+      <li>Release notes for CloudNativePG 1.16</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
   <hr/>
 </div>
-
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
@@ -244,6 +248,36 @@
 <p>For a complete list of changes, please refer to the
 <a href="https://github.com/cloudnative-pg/cloudnative-pg/commits/release-1.16">commits</a>
 on the release branch in GitHub.</p>
+<h2 id="version-1164">Version 1.16.4</h2>
+<p><strong>Release date:</strong> Nov 10, 2022</p>
+<p>Security:</p>
+<ul>
+<li>Add <code>SeccomProfile</code> to Pods and Containers (#888)</li>
+</ul>
+<p>Enhancements:</p>
+<ul>
+<li><code>status</code> command for the <code>cnpg</code> plugin:</li>
+<li>Clarify display for fenced clusters (#886)</li>
+<li>Improve display for replica clusters (#871)</li>
+<li>Documentation:</li>
+<li>Improve monitoring page, providing instructions on how to evaluate the
+    observability capabilities of CloudNativePG on a local system using
+    Prometheus and Grafana (#968)</li>
+<li>Add page on design reasons for custom controller (#918)</li>
+</ul>
+<p>Fixes:</p>
+<ul>
+<li>Import a database with <code>plpgsql</code> functions (#974)</li>
+<li>Properly find the closest backup when doing Point-in-time recovery (#949)</li>
+<li>Clarify that the <code>ScheduledBackup</code> format does not follow Kubernetes <code>CronJob</code>
+  format (#883)</li>
+<li>Bases the failover logic on the Postgres information from the instance
+  manager, rather than Kubernetes pod readiness, which could be stale (#890)</li>
+<li>Ensure we have a WAL to archive for every newly created cluster. The lack
+  could prevent backups from working (#897)</li>
+<li>Correct YAML key names for <code>barmanObjectStore</code> in documentation (#877)</li>
+<li>Fix <code>krew</code> release (#866)</li>
+</ul>
 <h2 id="version-1163">Version 1.16.3</h2>
 <p><strong>Release date:</strong> Oct 6, 2022</p>
 <p>Enhancements:</p>
