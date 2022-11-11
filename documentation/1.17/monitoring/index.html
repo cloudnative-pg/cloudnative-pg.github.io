@@ -155,6 +155,8 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#how-to-inspect-the-exported-metrics">How to inspect the exported metrics</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#auxiliary-resources">Auxiliary resources</a>
+    </li>
     </ul>
                 </li>
               </ul>
@@ -263,17 +265,24 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li><li>Monitoring</li>
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+      <li>Monitoring</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
   <hr/>
 </div>
-
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
                 <h1 id="monitoring">Monitoring</h1>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Installing Prometheus and Grafana is beyond the scope of this project.
+We assume they are correctly installed in your system. However, for
+experimentation we provide instructions in 
+<a href="../quickstart/#part-4-monitor-clusters-with-prometheus-and-grafana">Part 4 of the Quickstart</a>.</p>
+</div>
 <h2 id="monitoring-instances">Monitoring Instances</h2>
 <p>For each PostgreSQL instance, the operator provides an exporter of metrics for
 <a href="https://prometheus.io/">Prometheus</a> via HTTP, on port 9187, named <code>metrics</code>.
@@ -885,6 +894,38 @@ to the pod where the operator is running, and use TCP port 8080 as target.</p>
 <p>At the end of the inspection, please make sure you delete the <code>curl</code> pod:</p>
 <pre><code class="language-shell">kubectl delete -f curl.yaml
 </code></pre>
+<h2 id="auxiliary-resources">Auxiliary resources</h2>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>These resources are provided for illustration and experimentation, and do
+not represent any kind of recommendation for your production system</p>
+</div>
+<p>In the <a href="https://github.com/cloudnative-pg/cloudnative-pg/tree/main/docs/src/samples/monitoring"><code>doc/src/samples/monitoring/</code></a>
+directory you will find a series of sample files for observability.
+Please refer to <a href="../quickstart/#part-4-monitor-clusters-with-prometheus-and-grafana">Part 4 of the quickstart</a>
+section for context:</p>
+<ul>
+<li><code>kube-stack-config.yaml</code>: a configuration file for the kube-stack helm chart
+  installation. It ensures that Prometheus listens for all PodMonitor resources.</li>
+<li><code>cnpg-prometheusrule.yaml</code>: a <code>PrometheusRule</code> with alerts for CloudNativePG.
+  NOTE: this does not include inter-operation with notification services. Please refer
+  to the <a href="https://prometheus.io/docs/alerting/latest/alertmanager/">Prometheus documentation</a>.</li>
+<li><code>grafana-configmap.yaml</code>: a ConfigMap containing the definition of the sample
+  CloudNativePG Dashboard. Note the labels in the definition, which ensure that
+  the Grafana deployment will find the ConfigMap.</li>
+</ul>
+<p>In addition, we provide the "raw" sources for the Grafana dashboard and the
+Prometheus alert rules, for your reference:</p>
+<ul>
+<li><code>alerts.yaml</code>: Prometheus rules with alerts</li>
+<li><code>grafana-dashboard.json</code>: the CloudNativePG dashboard as a native Grafana JSON.</li>
+</ul>
+<p>Note that, for the configuration of <code>kube-prometheus-stack</code>, other fields and
+settings are available over what we provide in <code>kube-stack-config.yaml</code>.</p>
+<p>You can execute <code>helm show values prometheus-community/kube-prometheus-stack</code>
+to view them. For further information, please refer to the
+<a href="https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack">kube-prometheus-stack</a>
+page.</p>
               
             </div>
           </div><footer>
