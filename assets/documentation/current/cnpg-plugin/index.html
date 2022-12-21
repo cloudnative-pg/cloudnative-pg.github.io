@@ -195,6 +195,8 @@
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#benchmarking-the-database-with-pgbench">Benchmarking the database with pgbench</a>
     </li>
+    <li class="toctree-l3"><a class="reference internal" href="#benchmarking-the-storage-with-fio">Benchmarking the storage with fio</a>
+    </li>
         </ul>
     </li>
     </ul>
@@ -273,13 +275,13 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li><li>CloudNativePG Plugin</li>
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+      <li>CloudNativePG Plugin</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
   <hr/>
 </div>
-
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
@@ -381,7 +383,7 @@ two different time intervals.</p>
 Name:               sandbox
 Namespace:          default
 System ID:          7039966298120953877
-PostgreSQL Image:   ghcr.io/cloudnative-pg/postgresql:15.0
+PostgreSQL Image:   ghcr.io/cloudnative-pg/postgresql:15.1
 Primary instance:   sandbox-2
 Instances:          3
 Ready instances:    3
@@ -421,7 +423,7 @@ sandbox-3  302 GB         3AF/EBAD5D18  Standby (sync)    OK      Guaranteed  1.
 Name:               sandbox
 Namespace:          default
 System ID:          7039966298120953877
-PostgreSQL Image:   ghcr.io/cloudnative-pg/postgresql:15.0
+PostgreSQL Image:   ghcr.io/cloudnative-pg/postgresql:15.1
 Primary instance:   sandbox-2
 Instances:          3
 Ready instances:    3
@@ -810,7 +812,12 @@ That can be done with:</p>
 <p>Pgbench can be ran on an existing PostgreSQL cluster with following command:</p>
 <pre><code>kubectl cnpg pgbench &lt;cluster-name&gt; -- --time 30 --client 1 --jobs 1
 </code></pre>
-<p>Refer to the <a href="../benchmarking/">Benchmarking section</a> for more details.</p>
+<p>Refer to the <a href="../benchmarking/#pgbench">Benchmarking pgbench section</a> for more details.</p>
+<h3 id="benchmarking-the-storage-with-fio">Benchmarking the storage with fio</h3>
+<p>fio can be run on an existing storage class with following command:</p>
+<pre><code>kubectl cnpg fio &lt;fio-job-name&gt; -n &lt;namespace&gt;
+</code></pre>
+<p>Refer to the <a href="../benchmarking/#fio">Benchmarking fio section</a> for more details.</p>
               
             </div>
           </div><footer>
