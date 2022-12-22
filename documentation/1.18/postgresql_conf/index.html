@@ -273,13 +273,13 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li><li>PostgreSQL Configuration</li>
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+      <li>PostgreSQL Configuration</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
   <hr/>
 </div>
-
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
@@ -570,16 +570,15 @@ a secret containing the ldap password. Additionally, in <code>search+bind</code>
 required, however. </p>
 <p>This section filled out for search+bind could look as follows:</p>
 <pre><code class="language-yaml">postgresql:
-  parameters:
-    ldap:
-      server: 'openldap.default.svc.cluster.local'
-      bindSearchAuth:
-        baseDN: 'ou=org,dc=example,dc=com'
-        bindDN: 'cn=admin,dc=example,dc=com'
-        bindPassword:
-          name: 'ldapBindPassword'
-          key: 'data'
-        searchAttribute: 'uid'
+  ldap:
+    server: 'openldap.default.svc.cluster.local'
+    bindSearchAuth:
+      baseDN: 'ou=org,dc=example,dc=com'
+      bindDN: 'cn=admin,dc=example,dc=com'
+      bindPassword:
+        name: 'ldapBindPassword'
+        key: 'data'
+      searchAttribute: 'uid'
 </code></pre>
 <h2 id="changing-configuration">Changing configuration</h2>
 <p>You can apply configuration changes by editing the <code>postgresql</code> section of

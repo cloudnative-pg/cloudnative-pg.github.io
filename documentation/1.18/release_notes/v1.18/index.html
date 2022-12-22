@@ -233,13 +233,13 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href="../.." class="icon icon-home" alt="Docs"></a> &raquo;</li><li>Release notes for CloudNativePG 1.18</li>
+    <li><a href="../.." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+      <li>Release notes for CloudNativePG 1.18</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
   <hr/>
 </div>
-
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
@@ -248,6 +248,65 @@
 <p>For a complete list of changes, please refer to the
 <a href="https://github.com/cloudnative-pg/cloudnative-pg/commits/release-1.18">commits</a>
 on the release branch in GitHub.</p>
+<h2 id="version-1181">Version 1.18.1</h2>
+<p><strong>Release date:</strong> Dec 21, 2022</p>
+<p>Important announcements:</p>
+<ul>
+<li>Alert on the impending deprecation of <code>postgresql</code> as a label to identify the
+  CNPG cluster. In the remote case you have used this label, please start using
+  the <code>cnpg.io/cluster</code> label instead (#1130)</li>
+<li>Recognizing Armando Ruocco (@armru) as a new CloudNativePG maintainer for his
+  consistent and impactful contributions (#1167)</li>
+<li>Remove ARMv7 support (#1092)</li>
+<li>FINAL patch release for 1.16: 1.16.5. Release 1.16 reaches end of life.</li>
+</ul>
+<p>Enhancements:</p>
+<ul>
+<li>Customize labels and annotations for the service account: add a service
+  account template that can be used, for example, to make authentication easier
+  via identity management on GKE or EKS via IRSA (#1105)</li>
+<li>Add <code>nodeAffinity</code> support (#1182) - allows for richer scheduling options</li>
+<li>Improve compatibility with Istio: add support for Istio’s quit endpoint so
+  that jobs with Istio sidecars do not run indefinitely (#967)</li>
+<li>Allow fields remapping in JSON logs: helpful for use cases where the <code>level</code>
+  and <code>ts</code> fields might interfere with the  existing logging (#843)</li>
+<li>Add <code>fio</code> command to the kubectl-cnpg plugin (#1097)</li>
+<li>Add rpm/deb package for kubectl-cnpg plugin (#1008)</li>
+<li>Update default PostgreSQL version for new cluster definitions to 15.1 (#908)</li>
+<li>Documentation</li>
+<li>Remove references to CNPG sandbox (#1120) - the CNPG sandbox has been
+    deprecated, in favor of instructions on monitoring in the Quickstart
+    documentation</li>
+<li>Link to the "Release updates" discussion (#1148) - the release updates
+    discussion will become the default channel for release announcements and
+    discussions</li>
+<li>Document emeritus status for maintainers in GOVERNANCE.md (#1033) - explains
+    how maintainers should proceed if they are not ready to continue
+    contributing</li>
+<li>Improve instructions on creating pull requests (#1132)</li>
+<li>Troubleshooting emergency backup instructions (#1184)</li>
+</ul>
+<p>Fixes:</p>
+<ul>
+<li>Ensure PGDATA permissions on bootstrap are properly set to 750 (#1164)</li>
+<li>Ensure the PVC containing WALs is deleted when scaling down the cluster
+(#1135)</li>
+<li>Fix missing ApiVersion and Kind in the pgbench manifest when using <code>--dry-run</code>
+(#1088)</li>
+<li>Ensure that we create secrets and services only when not found (#1145)</li>
+<li>Respect configured pg-wal when restoring (#1216)</li>
+<li>Filter out replicas from nodeToClusters map (#1194)</li>
+</ul>
+<p>Technical enhancements:</p>
+<ul>
+<li>Use <code>ciclops</code> for test summary (#1064): rely on the ciclops GitHub action to
+  provide summaries of the E2E suite, inheriting improvements from that project</li>
+<li>Add backport pull request workflow (#965) - automatically backport patches to
+  release branches if they are so annotated</li>
+<li>Make the operator log level configurable in e2e test suite (#1094)</li>
+<li>Enable test execution based on labels (#951)</li>
+<li>Update Go version from 1.18 to 1.19 (#1166)</li>
+</ul>
 <h2 id="version-1180">Version 1.18.0</h2>
 <p><strong>Release date:</strong> Nov 10, 2022</p>
 <p>Features:</p>

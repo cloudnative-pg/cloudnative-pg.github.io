@@ -243,13 +243,13 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li><li>Logging</li>
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+      <li>Logging</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
   <hr/>
 </div>
-
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
@@ -273,6 +273,13 @@ and needs to be provided at the level of the Kubernetes installation. Please
 refer to the
 <a href="https://kubernetes.io/docs/concepts/cluster-administration/logging/">Kubernetes Logging Architecture</a>
 documentation.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>The <code>level</code> and <code>ts</code> field names can be renamed via the <code>log-field-level</code> and
+<code>log-field-timestamp</code> flags of the operator controller, should your log ingestion
+system require it. All you have to do is edit the <code>Deployment</code> definition of the
+<code>cloudnative-pg</code> operator.</p>
 </div>
 <h2 id="operator-log">Operator log</h2>
 <p>A log level can be specified in the cluster spec with the option <code>logLevel</code> and
