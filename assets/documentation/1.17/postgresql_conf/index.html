@@ -557,16 +557,15 @@ a secret containing the ldap password. Additionally, in <code>search+bind</code>
 required, however. </p>
 <p>This section filled out for search+bind could look as follows:</p>
 <pre><code class="language-yaml">postgresql:
-  parameters:
-    ldap:
-      server: 'openldap.default.svc.cluster.local'
-      bindSearchAuth:
-        baseDN: 'ou=org,dc=example,dc=com'
-        bindDN: 'cn=admin,dc=example,dc=com'
-        bindPassword:
-          name: 'ldapBindPassword'
-          key: 'data'
-        searchAttribute: 'uid'
+  ldap:
+    server: 'openldap.default.svc.cluster.local'
+    bindSearchAuth:
+      baseDN: 'ou=org,dc=example,dc=com'
+      bindDN: 'cn=admin,dc=example,dc=com'
+      bindPassword:
+        name: 'ldapBindPassword'
+        key: 'data'
+      searchAttribute: 'uid'
 </code></pre>
 <h2 id="changing-configuration">Changing configuration</h2>
 <p>You can apply configuration changes by editing the <code>postgresql</code> section of

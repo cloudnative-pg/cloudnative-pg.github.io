@@ -173,6 +173,10 @@
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#useful-utilities">Useful utilities</a>
     </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#emergency-backup">Emergency backup</a>
+        <ul>
     <li class="toctree-l3"><a class="reference internal" href="#logs">Logs</a>
     </li>
         </ul>
@@ -281,13 +285,13 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li><li>Troubleshooting</li>
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+      <li>Troubleshooting</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
   <hr/>
 </div>
-
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
@@ -312,6 +316,9 @@ clear information about the underlying Kubernetes system.</p>
   class and benchmarks you have done before going into production.</li>
 <li>which relevant Kubernetes applications you are using in your cluster (i.e.
   Prometheus, Grafana, Istio, Certmanager, ...)</li>
+<li>the situation of continuous backup, in particular if it's in place and working
+  correctly: in case it is not, make sure you take an <a href="#emergency-backup">emergency backup</a>
+  before performing any potential disrupting operation</li>
 </ul>
 <h3 id="useful-utilities">Useful utilities</h3>
 <p>On top of the mandatory <code>kubectl</code> utility, for troubleshooting, we recommend the
@@ -324,6 +331,51 @@ following plugins/utilities to be available in your system:</p>
   If you are on Windows OS, you can use <a href="https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/findstr"><code>findstr</code></a> as an alternative to <code>grep</code> or directly use <a href="https://docs.microsoft.com/en-us/windows/wsl/"><code>wsl</code></a>
   and install your preferred *nix distro and use the tools mentioned above.</li>
 </ul>
+<h2 id="emergency-backup">Emergency backup</h2>
+<p>In some emergency situations, you might need to take an emergency logical
+backup of the main <code>app</code> database.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>The instructions you find below must be executed only in emergency situations
+and the temporary backup files kept under the data protection policies
+that are effective in your organization. The dump file is indeed stored
+in the client machine that runs the <code>kubectl</code> command, so make sure that
+all protections are in place and you have enough space to store the
+backup file.</p>
+</div>
+<p>The following example shows how to take a logical backup of the <code>app</code> database
+in the <code>cluster-example</code> Postgres cluster, from the <code>cluster-example-1</code> pod:</p>
+<pre><code class="language-sh">kubectl exec cluster-example-1 -c postgres \
+  -- pg_dump -Fc -d app &gt; app.dump
+</code></pre>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You can easily adapt the above command to backup your cluster, by providing
+the names of the objects you have used in your environment.</p>
+</div>
+<p>The above command issues a <code>pg_dump</code> command in custom format, which is the most
+versatile way to take <a href="https://www.postgresql.org/docs/current/app-pgdump.html">logical backups in PostgreSQL</a>.</p>
+<p>The next step is to restore the database. We assume that you are operating
+on a new PostgreSQL cluster that's been just initialized (so the <code>app</code> database
+is empty).</p>
+<p>The following example shows how to restore the above logical backup in the
+<code>app</code> database of the <code>new-cluster-example</code> Postgres cluster, by connecting to
+the primary (<code>new-cluster-example-1</code> pod):</p>
+<pre><code class="language-sh">kubectl exec -i new-cluster-example-1 -c postgres \
+  -- pg_restore --no-owner --role=app -d app --verbose &lt; app.dump
+</code></pre>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>The example in this section assumes that you have no other global objects
+(databases and roles) to dump and restore, as per our recommendation. In case
+you have multiple roles, make sure you have taken a backup using <code>pg_dumpall -g</code>
+and you manually restore them in the new cluster. In case you have multiple
+databases, you need to repeat the above operation one database at a time, making
+sure you assign the right ownership. If you are not familiar with PostgreSQL,
+we advise that you do these critical operations under the guidance of
+a professional support company.</p>
+</div>
+<p>The above steps might be integrated into the <code>cnpg</code> plugin at some stage in the future.</p>
 <h3 id="logs">Logs</h3>
 <p>Every resource created and controlled by CloudNativePG logs to
 standard output, as expected by Kubernetes, and directly in <a href="../logging/">JSON
@@ -388,7 +440,7 @@ Those pods are managed by a deployment named <code>cnpg-controller-manager</code
 Name:               cluster-example
 Namespace:          default
 System ID:          7044925089871458324
-PostgreSQL Image:   ghcr.io/cloudnative-pg/postgresql:15.0-3
+PostgreSQL Image:   ghcr.io/cloudnative-pg/postgresql:15.1-3
 Primary instance:   cluster-example-1
 Instances:          3
 Ready instances:    3
@@ -446,7 +498,7 @@ For more information, please see <a href="../cnpg-plugin/"><code>cnpg</code> plu
 <pre><code class="language-shell">kubectl describe cluster &lt;CLUSTER_NAME&gt; -n &lt;NAMESPACE&gt; | grep &quot;Image Name&quot;
 </code></pre>
 <p>Output:</p>
-<pre><code class="language-shell">  Image Name:    ghcr.io/cloudnative-pg/postgresql:15.0-3
+<pre><code class="language-shell">  Image Name:    ghcr.io/cloudnative-pg/postgresql:15.1-3
 </code></pre>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -561,7 +613,7 @@ kubectl get nodes -o wide
 </code></pre>
 <p>Additionally, you can gather the list of nodes where the pods of a given
 cluster are running with:</p>
-<pre><code class="language-shell">kubectl get pod -l cnpg.io/clusterName=&lt;CLUSTER&gt; \
+<pre><code class="language-shell">kubectl get pod -l cnpg.io/cluster=&lt;CLUSTER&gt; \
   -L role -n &lt;NAMESPACE&gt; -o wide
 </code></pre>
 <p>The latter is important to understand where your pods are distributed - very

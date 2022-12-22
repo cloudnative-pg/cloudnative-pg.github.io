@@ -269,13 +269,13 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li><li>Monitoring</li>
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+      <li>Monitoring</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
   <hr/>
 </div>
-
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
@@ -332,7 +332,8 @@ by specifying a list of one or more databases in the <code>target_databases</cod
 <div class="admonition seealso">
 <p class="admonition-title">Prometheus/Grafana</p>
 <p>If you are interested in evaluating the integration of CloudNativePG
-with Prometheus and Grafana, please look at <a href="https://github.com/EnterpriseDB/cnp-sandbox">cnp-sandbox</a>.</p>
+with Prometheus and Grafana, you can find a quick setup guide
+in <a href="../quickstart/#part-4-monitor-clusters-with-prometheus-and-grafana">Part 4 of the quickstart</a></p>
 </div>
 <h3 id="prometheus-operator-example">Prometheus Operator example</h3>
 <p>A specific PostgreSQL cluster can be monitored using the
@@ -353,7 +354,7 @@ metadata:
 spec:
   selector:
     matchLabels:
-      postgresql: cluster-example
+      &quot;cnpg.io/cluster&quot;: cluster-example
   podMetricsEndpoints:
   - port: metrics
 </code></pre>
@@ -361,6 +362,12 @@ spec:
 <p class="admonition-title">Important</p>
 <p>Make sure you modify the example above with a unique name as well as the
 correct cluster's namespace and labels (we are using <code>cluster-example</code>).</p>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Label <code>postgresql</code>, used in previous versions of this document, is deprecated
+and will be removed in the future. Please use the label <code>cnpg.io/cluster</code>
+instead to select the instances.</p>
 </div>
 <h3 id="predefined-set-of-metrics">Predefined set of metrics</h3>
 <p>Every PostgreSQL instance exporter automatically exposes a set of predefined

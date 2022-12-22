@@ -275,13 +275,13 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li><li>Bootstrap</li>
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+      <li>Bootstrap</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
   <hr/>
 </div>
-
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
@@ -994,7 +994,7 @@ file on the source PostgreSQL instance:</p>
 <pre><code># A more restrictive rule for TLS and IP of origin is recommended
 host replication streaming_replica all md5
 </code></pre>
-<p>The following manifest creates a new PostgreSQL 15.0 cluster,
+<p>The following manifest creates a new PostgreSQL 15.1 cluster,
 called <code>target-db</code>, using the <code>pg_basebackup</code> bootstrap method
 to clone an external PostgreSQL cluster defined as <code>source-db</code>
 (in the <code>externalClusters</code> array). As you can see, the <code>source-db</code>
@@ -1007,7 +1007,7 @@ metadata:
   name: target-db
 spec:
   instances: 3
-  imageName: ghcr.io/cloudnative-pg/postgresql:15.0
+  imageName: ghcr.io/cloudnative-pg/postgresql:15.1
 
   bootstrap:
     pg_basebackup:
@@ -1026,7 +1026,7 @@ spec:
       key: password
 </code></pre>
 <p>All the requirements must be met for the clone operation to work, including
-the same PostgreSQL version (in our case 15.0).</p>
+the same PostgreSQL version (in our case 15.1).</p>
 <h4 id="tls-certificate-authentication">TLS certificate authentication</h4>
 <p>The second authentication method supported by CloudNativePG
 with the <code>pg_basebackup</code> bootstrap is based on TLS client certificates.
@@ -1038,7 +1038,7 @@ in the same Kubernetes cluster.</p>
 <p>This example can be easily adapted to cover an instance that resides
 outside the Kubernetes cluster.</p>
 </div>
-<p>The manifest defines a new PostgreSQL 15.0 cluster called <code>cluster-clone-tls</code>,
+<p>The manifest defines a new PostgreSQL 15.1 cluster called <code>cluster-clone-tls</code>,
 which is bootstrapped using the <code>pg_basebackup</code> method from the <code>cluster-example</code>
 external cluster. The host is identified by the read/write service
 in the same cluster, while the <code>streaming_replica</code> user is authenticated
@@ -1051,7 +1051,7 @@ metadata:
   name: cluster-clone-tls
 spec:
   instances: 3
-  imageName: ghcr.io/cloudnative-pg/postgresql:15.0
+  imageName: ghcr.io/cloudnative-pg/postgresql:15.1
 
   bootstrap:
     pg_basebackup:
@@ -1141,15 +1141,6 @@ and the applications. In particular, it is fundamental that you run the migratio
 procedure as many times as needed to systematically measure the downtime of your
 applications in production. Feel free to contact EDB for assistance.</p>
 </div>
-<p>Future versions of CloudNativePG will enable users to control
-PostgreSQL's continuous recovery mechanism via Write-Ahead Log (WAL) shipping
-by creating a new cluster that is a replica of another PostgreSQL instance.
-This will open up two main use cases:</p>
-<ul>
-<li>replication over different Kubernetes clusters in CloudNativePG</li>
-<li><em>0 cutover time</em> migrations to CloudNativePG with the <code>pg_basebackup</code>
-  bootstrap method</li>
-</ul>
               
             </div>
           </div><footer>

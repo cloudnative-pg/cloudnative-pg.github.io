@@ -279,6 +279,8 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#localobjectreference">LocalObjectReference</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#metadata">Metadata</a>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#monitoringconfiguration">MonitoringConfiguration</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#nodemaintenancewindow">NodeMaintenanceWindow</a>
@@ -288,8 +290,6 @@
     <li class="toctree-l2"><a class="reference internal" href="#pgbouncersecrets">PgBouncerSecrets</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#pgbouncerspec">PgBouncerSpec</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#podmeta">PodMeta</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#podtemplatespec">PodTemplateSpec</a>
     </li>
@@ -335,6 +335,8 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#secretsresourceversion">SecretsResourceVersion</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#serviceaccounttemplate">ServiceAccountTemplate</a>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#storageconfiguration">StorageConfiguration</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#syncreplicaelectionconstraints">SyncReplicaElectionConstraints</a>
@@ -367,13 +369,13 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li><li>API Reference</li>
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+      <li>API Reference</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
   <hr/>
 </div>
-
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
@@ -428,12 +430,12 @@ documentation for examples of usage.</p>
 <li><a href="#LDAPBindSearchAuth">LDAPBindSearchAuth</a></li>
 <li><a href="#LDAPConfig">LDAPConfig</a></li>
 <li><a href="#LocalObjectReference">LocalObjectReference</a></li>
+<li><a href="#Metadata">Metadata</a></li>
 <li><a href="#MonitoringConfiguration">MonitoringConfiguration</a></li>
 <li><a href="#NodeMaintenanceWindow">NodeMaintenanceWindow</a></li>
 <li><a href="#PgBouncerIntegrationStatus">PgBouncerIntegrationStatus</a></li>
 <li><a href="#PgBouncerSecrets">PgBouncerSecrets</a></li>
 <li><a href="#PgBouncerSpec">PgBouncerSpec</a></li>
-<li><a href="#PodMeta">PodMeta</a></li>
 <li><a href="#PodTemplateSpec">PodTemplateSpec</a></li>
 <li><a href="#Pooler">Pooler</a></li>
 <li><a href="#PoolerIntegrations">PoolerIntegrations</a></li>
@@ -456,6 +458,7 @@ documentation for examples of usage.</p>
 <li><a href="#SecretKeySelector">SecretKeySelector</a></li>
 <li><a href="#SecretVersion">SecretVersion</a></li>
 <li><a href="#SecretsResourceVersion">SecretsResourceVersion</a></li>
+<li><a href="#ServiceAccountTemplate">ServiceAccountTemplate</a></li>
 <li><a href="#StorageConfiguration">StorageConfiguration</a></li>
 <li><a href="#SyncReplicaElectionConstraints">SyncReplicaElectionConstraints</a></li>
 <li><a href="#Topology">Topology</a></li>
@@ -487,6 +490,11 @@ documentation for examples of usage.</p>
 <td><code>nodeSelector</code></td>
 <td>NodeSelector is map of key-value pairs used to define the nodes on which the pods can run. More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/</td>
 <td>map[string]string</td>
+</tr>
+<tr>
+<td><code>nodeAffinity</code></td>
+<td>NodeAffinity describes node affinity scheduling rules for the pod. More info: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#node-affinity</td>
+<td>*corev1.NodeAffinity</td>
 </tr>
 <tr>
 <td><code>tolerations</code></td>
@@ -1259,6 +1267,11 @@ documentation for examples of usage.</p>
 <td><a href="#StorageConfiguration">StorageConfiguration</a></td>
 </tr>
 <tr>
+<td><code>serviceAccountTemplate</code></td>
+<td>Configure the generation of the service account</td>
+<td><a href="#ServiceAccountTemplate">*ServiceAccountTemplate</a></td>
+</tr>
+<tr>
 <td><code>walStorage</code></td>
 <td>Configuration of the storage for PostgreSQL WAL (Write-Ahead Log)</td>
 <td><a href="#StorageConfiguration">*StorageConfiguration</a></td>
@@ -1905,6 +1918,30 @@ documentation for examples of usage.</p>
 </tr>
 </tbody>
 </table>
+<p><a id='Metadata'></a></p>
+<h2 id="metadata">Metadata</h2>
+<p>Metadata is a structure similar to the metav1.ObjectMeta, but still parseable by controller-gen to create a suitable CRD for the user. The comment of PodTemplateSpec has an explanation of why we are not using the core data types.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>labels</code></td>
+<td>Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels</td>
+<td>map[string]string</td>
+</tr>
+<tr>
+<td><code>annotations</code></td>
+<td>Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations</td>
+<td>map[string]string</td>
+</tr>
+</tbody>
+</table>
 <p><a id='MonitoringConfiguration'></a></p>
 <h2 id="monitoringconfiguration">MonitoringConfiguration</h2>
 <p>MonitoringConfiguration is the type containing all the monitoring configuration for a certain cluster</p>
@@ -2041,30 +2078,6 @@ documentation for examples of usage.</p>
 </tr>
 </tbody>
 </table>
-<p><a id='PodMeta'></a></p>
-<h2 id="podmeta">PodMeta</h2>
-<p>PodMeta is a structure similar to the metav1.ObjectMeta, but still parseable by controller-gen to create a suitable CRD for the user. The comment of PodTemplateSpec has an explanation of why we are not using the core data types.</p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Description</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>labels</code></td>
-<td>Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels</td>
-<td>map[string]string</td>
-</tr>
-<tr>
-<td><code>annotations</code></td>
-<td>Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations</td>
-<td>map[string]string</td>
-</tr>
-</tbody>
-</table>
 <p><a id='PodTemplateSpec'></a></p>
 <h2 id="podtemplatespec">PodTemplateSpec</h2>
 <p>PodTemplateSpec is a structure allowing the user to set a template for Pod generation.</p>
@@ -2082,7 +2095,7 @@ documentation for examples of usage.</p>
 <tr>
 <td><code>metadata</code></td>
 <td>Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata</td>
-<td><a href="#PodMeta">PodMeta</a></td>
+<td><a href="#Metadata">Metadata</a></td>
 </tr>
 <tr>
 <td><code>spec</code></td>
@@ -2745,6 +2758,25 @@ documentation for examples of usage.</p>
 <td><code>metrics</code></td>
 <td>A map with the versions of all the secrets used to pass metrics. Map keys are the secret names, map values are the versions</td>
 <td>map[string]string</td>
+</tr>
+</tbody>
+</table>
+<p><a id='ServiceAccountTemplate'></a></p>
+<h2 id="serviceaccounttemplate">ServiceAccountTemplate</h2>
+<p>ServiceAccountTemplate contains the template needed to generate the service accounts</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>metadata</code></td>
+<td>Metadata are the metadata to be used for the generated service account - <em>mandatory</em></td>
+<td><a href="#Metadata">Metadata</a></td>
 </tr>
 </tbody>
 </table>

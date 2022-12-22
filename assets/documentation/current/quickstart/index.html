@@ -257,13 +257,13 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li><li>Quickstart</li>
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+      <li>Quickstart</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
   <hr/>
 </div>
-
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
@@ -355,6 +355,19 @@ to the <a href="../api_reference/">"API Reference" section</a>.</p>
 <p>You can check that the pods are being created with the <code>get pods</code> command:</p>
 <pre><code class="language-sh">kubectl get pods
 </code></pre>
+<p>That will look for pods in the default namespace. To separate your cluster
+from other workloads on your Kubernetes installation, you could always create
+a new namespace to deploy clusters on.
+Alternatively, you can use labels. The operator will apply the <code>cnpg.io/cluster</code>
+label on all objects relevant to a particular cluster. For example:</p>
+<pre><code class="language-sh">kubectl get pods -l cnpg.io/cluster=&lt;CLUSTER&gt;
+</code></pre>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Note that we are using <code>cnpg.io/cluster</code> as the label. In the past you may
+have seen or used <code>postgresql</code>. This label is being deprecated, and
+will be dropped in the future. Please use <code>cngp.io/cluster</code>.</p>
+</div>
 <p>By default, the operator will install the latest available minor version
 of the latest major version of PostgreSQL when the operator was released.
 You can override this by setting the <code>imageName</code> key in the <code>spec</code> section of
