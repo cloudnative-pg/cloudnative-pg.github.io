@@ -3,8 +3,8 @@ title: "Understading CI/CD test results: Introducing Ciclops"
 date: 2023-01-25T13:13:36+01:00
 draft: false
 image:
-    url: wildlife-zoo-mammal-fauna-elephant-sri-lanka-988769-pxhere.com.jpg
-    attribution: from <strong><a href="https://pxhere.com/en/photo/988769?utm_content=clipUser&utm_medium=referral&utm_source=pxhere">PxHere</a></strong>
+    url: 7th_voyage_of_Sinbad_-_Cyclops.png
+    attribution: from <strong><a href="https://commons.wikimedia.org/wiki/File:7th_voyage_of_Sinbad_-_Cyclops.png">Wikimedia Commons</a></strong>
 author: jsilvela
 tags:
  - blog
