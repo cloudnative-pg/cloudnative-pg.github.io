@@ -1,5 +1,5 @@
 ---
-title: "Understading CI/CD test results: Introducing Ciclops"
+title: "Introducing Ciclops, a new GitHub action to better understand CI/CD test results"
 date: 2023-01-25T13:13:36+01:00
 draft: false
 image:
@@ -12,6 +12,9 @@ tags:
  - continuous integration
  - ci/cd
  - testing
+ - github action
+ - devops
+ - continuous delivery
 summary: Introducing Ciclops, a GitHub Action to make sense of Testing
 ---
 At CloudNativePG we take testing seriously; particularly end-to-end testing. The
@@ -45,7 +48,7 @@ noteworthy patterns to the failures?
 
 Investigating test failures becomes a time sink. And 9 branches are not even
 that much; internally at EDB we test more combinations, including the different
-cloud providers, for our closed source operators. It is not uncommon for us to
+cloud providers, for our EDB Postgres for Kubernetes operator. It is not uncommon for us to
 have on the order of 80 matrix branches.
 
 With this much data volume, information gets
@@ -96,7 +99,7 @@ Action.
 
 While the development of CIclops has been guided by our use case of testing a
 Kubernetes operator for PostgreSQL databases, the model is usable more
-generally:
+generally to:
 
 1. get the test execution in each matrix branch to produce a JSON report with
   the results
