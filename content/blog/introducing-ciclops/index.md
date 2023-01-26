@@ -20,6 +20,14 @@ PostgreSQL. We have an extensive test suite (over 100 end-to-end tests) that we
 run on several combinations of versions of Postgres and Kubernetes, as part of
 our Continuous Integration pipeline.
 
+The goal of this initiative is to enhance the continuous delivery posture of our software,
+by building quality directly into the product. Such tests indeed prevent that new features
+developed in separate branches do not introduce any regression, as we need them to
+pass before we merge the commit on the *trunk*. Moreover, each new patch should
+enrich the tests of sets.
+This is what ensures continuous delivery, and at the same time allows us to say that
+the latest snapshot on main is the best version of CloudNativePG so far. Ever.
+
 We are using GitHub Actions in our github repository, and a
 [`strategy: matrix`](https://docs.github.com/en/actions/using-jobs/using-a-matrix-for-your-jobs)
 handles generating jobs for each combination of versions of Kubernetes and
