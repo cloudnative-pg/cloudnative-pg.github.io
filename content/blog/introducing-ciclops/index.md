@@ -23,7 +23,7 @@ PostgreSQL. We have an extensive test suite (over 100 end-to-end tests) that we
 run on several combinations of versions of Postgres and Kubernetes, as part of
 our Continuous Integration pipeline.
 
-The goal of this initiative is to enhance the continuous delivery posture of our software,
+The goal of all this testing is to enhance the continuous delivery posture of our software,
 by building quality directly into the product. Such tests indeed prevent that new features
 developed in separate branches do not introduce any regression, as we need them to
 pass before we merge the commit on the *trunk*. Moreover, each new patch should
