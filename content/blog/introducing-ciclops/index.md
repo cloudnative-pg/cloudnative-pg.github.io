@@ -24,7 +24,7 @@ run on several combinations of versions of Postgres and Kubernetes, as part of
 our Continuous Integration pipeline.
 
 The goal of all this testing is to enhance the continuous delivery posture of our software,
-by building quality directly into the product. Such tests indeed prevent that new features
+by building quality directly into the product. Such tests indeed ensure that new features
 developed in separate branches do not introduce any regression, as we need them to
 pass before we merge the commit on the *trunk*. Moreover, each new patch should
 enrich the tests of sets.
