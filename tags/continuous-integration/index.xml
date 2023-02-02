@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>continuous integration on CloudNativePG - PostgreSQL Operator for Kubernetes</title>
+    <link>https://cloudnative-pg.io/tags/continuous-integration/</link>
+    <description>Recent content in continuous integration on CloudNativePG - PostgreSQL Operator for Kubernetes</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 25 Jan 2023 13:13:36 +0100</lastBuildDate><atom:link href="https://cloudnative-pg.io/tags/continuous-integration/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Introducing Ciclops, a new GitHub action to better understand CI/CD test results</title>
+      <link>https://cloudnative-pg.io/blog/introducing-ciclops/</link>
+      <pubDate>Wed, 25 Jan 2023 13:13:36 +0100</pubDate>
+      
+      <guid>https://cloudnative-pg.io/blog/introducing-ciclops/</guid>
+      <description>Introducing Ciclops, a GitHub Action to make sense of Testing</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -3,10 +3,37 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://cloudnative-pg.io/</loc>
-    <lastmod>2022-12-21T17:58:34+02:00</lastmod>
+    <lastmod>2023-01-25T13:13:36+01:00</lastmod>
+  </url><url>
+    <loc>https://cloudnative-pg.io/tags/blog/</loc>
+    <lastmod>2023-01-25T13:13:36+01:00</lastmod>
   </url><url>
     <loc>https://cloudnative-pg.io/blog/</loc>
-    <lastmod>2022-12-21T17:58:34+02:00</lastmod>
+    <lastmod>2023-01-25T13:13:36+01:00</lastmod>
+  </url><url>
+    <loc>https://cloudnative-pg.io/tags/continuous-delivery/</loc>
+    <lastmod>2023-01-25T13:13:36+01:00</lastmod>
+  </url><url>
+    <loc>https://cloudnative-pg.io/tags/continuous-integration/</loc>
+    <lastmod>2023-01-25T13:13:36+01:00</lastmod>
+  </url><url>
+    <loc>https://cloudnative-pg.io/tags/devops/</loc>
+    <lastmod>2023-01-25T13:13:36+01:00</lastmod>
+  </url><url>
+    <loc>https://cloudnative-pg.io/tags/github-action/</loc>
+    <lastmod>2023-01-25T13:13:36+01:00</lastmod>
+  </url><url>
+    <loc>https://cloudnative-pg.io/tags/information/</loc>
+    <lastmod>2023-01-25T13:13:36+01:00</lastmod>
+  </url><url>
+    <loc>https://cloudnative-pg.io/blog/introducing-ciclops/</loc>
+    <lastmod>2023-01-25T13:13:36+01:00</lastmod>
+  </url><url>
+    <loc>https://cloudnative-pg.io/tags/</loc>
+    <lastmod>2023-01-25T13:13:36+01:00</lastmod>
+  </url><url>
+    <loc>https://cloudnative-pg.io/tags/testing/</loc>
+    <lastmod>2023-01-25T13:13:36+01:00</lastmod>
   </url><url>
     <loc>https://cloudnative-pg.io/tags/cloudnativepg/</loc>
     <lastmod>2022-12-21T17:58:34+02:00</lastmod>
@@ -29,9 +56,6 @@
     <loc>https://cloudnative-pg.io/tags/release/</loc>
     <lastmod>2022-12-21T17:58:34+02:00</lastmod>
   </url><url>
-    <loc>https://cloudnative-pg.io/tags/</loc>
-    <lastmod>2022-12-21T17:58:34+02:00</lastmod>
-  </url><url>
     <loc>https://cloudnative-pg.io/blog/cloudnative-pg-1-18-0-released/</loc>
     <lastmod>2022-11-10T17:45:03+01:00</lastmod>
   </url><url>
@@ -50,9 +74,6 @@
     <loc>https://cloudnative-pg.io/blog/cloudnative-pg-1-15-1-released/</loc>
     <lastmod>2022-05-30T13:37:13+02:00</lastmod>
   </url><url>
-    <loc>https://cloudnative-pg.io/tags/blog/</loc>
-    <lastmod>2022-05-11T14:13:20+02:00</lastmod>
-  </url><url>
     <loc>https://cloudnative-pg.io/tags/cncf/</loc>
     <lastmod>2022-05-11T14:13:20+02:00</lastmod>
   </url><url>
@@ -66,6 +87,8 @@
     <lastmod>2022-05-11T14:13:20+02:00</lastmod>
   </url><url>
     <loc>https://cloudnative-pg.io/authors/gbartolini/</loc>
+  </url><url>
+    <loc>https://cloudnative-pg.io/authors/jsilvela/</loc>
   </url><url>
     <loc>https://cloudnative-pg.io/docs/1.15/</loc>
   </url><url>
@@ -88,6 +111,8 @@
     <loc>https://cloudnative-pg.io/cards/</loc>
   </url><url>
     <loc>https://cloudnative-pg.io/categories/</loc>
+  </url><url>
+    <loc>https://cloudnative-pg.io/tags/ci/cd/</loc>
   </url><url>
     <loc>https://cloudnative-pg.io/info/cloud-native/</loc>
   </url><url>
