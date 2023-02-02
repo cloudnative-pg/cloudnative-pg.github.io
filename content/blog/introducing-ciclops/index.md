@@ -28,7 +28,7 @@ by building quality directly into the product. Such tests indeed prevent that ne
 developed in separate branches do not introduce any regression, as we need them to
 pass before we merge the commit on the *trunk*. Moreover, each new patch should
 enrich the tests of sets.
-This is what ensures continuous delivery, and at the same time allows us to say that
+This is what enables continuous delivery, and at the same time allows us to say that
 the latest snapshot on main is the best version of CloudNativePG so far. Ever.
 
 We are using GitHub Actions in our github repository, and a
