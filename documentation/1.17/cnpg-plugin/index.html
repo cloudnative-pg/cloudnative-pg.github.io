@@ -161,12 +161,26 @@
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#install">Install</a>
         <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#via-the-installation-script">Via the installation script</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#using-the-debian-or-redhat-packages">Using the Debian or RedHat packages</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#debian-packages">Debian packages</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#rpm-packages">RPM packages</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#using-krew">Using Krew</a>
+    </li>
     <li class="toctree-l3"><a class="reference internal" href="#supported-architectures">Supported Architectures</a>
     </li>
         </ul>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#use">Use</a>
         <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#generation-of-installation-manifests">Generation of installation manifests</a>
+    </li>
     <li class="toctree-l3"><a class="reference internal" href="#status">Status</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#promote">Promote</a>
@@ -188,6 +202,12 @@
         </ul>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#destroy">Destroy</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#benchmarking-the-database-with-pgbench">Benchmarking the database with pgbench</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#benchmarking-the-storage-with-fio">Benchmarking the storage with fio</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#requesting-a-new-base-backup">Requesting a new base backup</a>
     </li>
         </ul>
     </li>
@@ -263,29 +283,82 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
-      <li>CloudNativePG Plugin</li>
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li><li>CloudNativePG Plugin</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
   <hr/>
 </div>
+
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
                 <h1 id="cloudnativepg-plugin">CloudNativePG Plugin</h1>
 <p>CloudNativePG provides a plugin for <code>kubectl</code> to manage a cluster in Kubernetes.</p>
 <h2 id="install">Install</h2>
-<p>You can install the cnpg plugin system either running the provided install script:</p>
+<p>You can install the <code>cnpg</code> plugin using a variety of methods.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For air-gapped systems, installation via package managers, using previously
+downloaded files, may be a good option.</p>
+</div>
+<h3 id="via-the-installation-script">Via the installation script</h3>
 <pre><code class="language-sh">curl -sSfL \
   https://github.com/cloudnative-pg/cloudnative-pg/raw/main/hack/install-cnpg-plugin.sh | \
   sudo sh -s -- -b /usr/local/bin
 </code></pre>
-<p>Or, if you already have <a href="https://krew.sigs.k8s.io/">Krew</a> installed, you can simply run:</p>
+<h3 id="using-the-debian-or-redhat-packages">Using the Debian or RedHat packages</h3>
+<p>In the
+<a href="https://github.com/cloudnative-pg/cloudnative-pg/releases">releases section of the GitHub repository</a>,
+you can navigate to any release of interest (pick the same or newer release
+than your CloudNativePG operator), and in it you will find an <strong>Assets</strong>
+section. In that section are pre-built packages for a variety of systems.
+As a result, you can follow standard practices and instructions to install
+them in your systems.</p>
+<h4 id="debian-packages">Debian packages</h4>
+<p>For example, let's install the 1.18.1 release of the plugin, for an Intel based
+64 bit server. First, we download the right <code>.deb</code> file.</p>
+<pre><code class="language-sh">$ wget https://github.com/cloudnative-pg/cloudnative-pg/releases/download/v1.18.1/kubectl-cnpg_1.18.1_linux_x86_64.deb
+</code></pre>
+<p>Then, install from the local file using <code>dpkg</code>:</p>
+<pre><code class="language-sh">$ dpkg -i kubectl-cnpg_1.18.1_linux_x86_64.deb 
+(Reading database ... 16102 files and directories currently installed.)
+Preparing to unpack kubectl-cnpg_1.18.1_linux_x86_64.deb ...
+Unpacking cnpg (1.18.1) over (1.18.1) ...
+Setting up cnpg (1.18.1) ...
+</code></pre>
+<h4 id="rpm-packages">RPM packages</h4>
+<p>As in the example for <code>.deb</code> packages, let's install the 1.18.1 release for an
+Intel 64 bit machine. Note the <code>--output</code> flag to provide a file name.</p>
+<pre><code class="language-sh">curl -L https://github.com/cloudnative-pg/cloudnative-pg/releases/download/v1.18.1/kubectl-cnpg_1.18.1_linux_x86_64.rpm \
+  --output kube-plugin.rpm
+</code></pre>
+<p>Then install with <code>yum</code>, and you're ready to use:</p>
+<pre><code class="language-sh">$ yum --disablerepo=* localinstall kube-plugin.rpm
+yum --disablerepo=* localinstall kube-plugin.rpm    
+Failed to set locale, defaulting to C.UTF-8
+Dependencies resolved.
+====================================================================================================
+ Package            Architecture         Version                   Repository                  Size
+====================================================================================================
+Installing:
+ cnpg               x86_64               1.18.1-1                  @commandline                14 M
+
+Transaction Summary
+====================================================================================================
+Install  1 Package
+
+Total size: 14 M
+Installed size: 43 M
+Is this ok [y/N]: y
+</code></pre>
+<h3 id="using-krew">Using Krew</h3>
+<p>If you already have <a href="https://krew.sigs.k8s.io/">Krew</a> installed, you can simply
+run:</p>
 <pre><code class="language-sh">kubectl krew install cnpg
 </code></pre>
 <h3 id="supported-architectures">Supported Architectures</h3>
-<p>CloudNativePG Plugin is currently build for the following
+<p>CloudNativePG Plugin is currently built for the following
 operating system and architectures:</p>
 <ul>
 <li>Linux</li>
@@ -307,6 +380,40 @@ operating system and architectures:</p>
 <p>Once the plugin was installed and deployed, you can start using it like this:</p>
 <pre><code class="language-shell">kubectl cnpg &lt;command&gt; &lt;args...&gt;
 </code></pre>
+<h3 id="generation-of-installation-manifests">Generation of installation manifests</h3>
+<p>The <code>cnpg</code> plugin can be used to generate the YAML manifest for the
+installation of the operator. This option would typically be used if you want
+to override some default configurations such as number of replicas,
+installation namespace, namespaces to watch, and so on.</p>
+<p>For details and available options, run:</p>
+<pre><code class="language-shell">kubectl cnpg install generate --help
+</code></pre>
+<p>The main options are:</p>
+<ul>
+<li><code>-n</code>: the namespace in which to install the operator (by default: <code>cnpg-system</code>)</li>
+<li><code>--replicas</code>: number of replicas in the deployment</li>
+<li><code>--version</code>: minor version of the operator to be installed, such as <code>1.17</code>.
+  If a minor version is specified, the plugin will install the latest patch
+  version of that minor version. If no version is supplied the plugin will
+  install the latest <code>MAJOR.MINOR.PATCH</code> version of the operator.</li>
+<li><code>--watch-namespace</code>: comma separated string containing the namespaces to
+  watch (by default all namespaces)</li>
+</ul>
+<p>An example of the <code>generate</code> command, which will generate a YAML manifest that
+will install the operator, is as follows:</p>
+<pre><code class="language-shell">kubectl cnpg install generate \
+  -n king \
+  --version 1.17 \
+  --replicas 3 \
+  --watch-namespace &quot;albert, bb, freddie&quot; \
+  &gt; operator.yaml
+</code></pre>
+<p>The flags in the above command have the following meaning:
+- <code>-n king</code> install the CNPG operator into the <code>king</code> namespace
+- <code>--version 1.17</code> install the latest patch version for minor version 1.17
+- <code>--replicas 3</code> install the operator with 3 replicas
+- <code>--watch-namespaces "albert, bb, freddie"</code> have the operator watch for
+  changes in the <code>albert</code>, <code>bb</code> and <code>freddie</code> namespaces only</p>
 <h3 id="status">Status</h3>
 <p>The <code>status</code> command provides an overview of the current status of your
 cluster, including:</p>
@@ -721,6 +828,26 @@ detached PVCs.</p>
 <p>The following example removes the <code>cluster-example-2</code> pod and the associated
 PVCs:</p>
 <pre><code>kubectl cnpg destroy cluster-example 2
+</code></pre>
+<h3 id="benchmarking-the-database-with-pgbench">Benchmarking the database with pgbench</h3>
+<p>Pgbench can be ran on an existing PostgreSQL cluster with following command:</p>
+<pre><code>kubectl cnpg pgbench &lt;cluster-name&gt; -- --time 30 --client 1 --jobs 1
+</code></pre>
+<p>Refer to the <a href="benchmarking.md#pgbench">Benchmarking pgbench section</a> for more details.</p>
+<h3 id="benchmarking-the-storage-with-fio">Benchmarking the storage with fio</h3>
+<p>fio can be run on an existing storage class with following command:</p>
+<pre><code>kubectl cnpg fio &lt;fio-job-name&gt; -n &lt;namespace&gt;
+</code></pre>
+<p>Refer to the <a href="benchmarking.md#fio">Benchmarking fio section</a> for more details.</p>
+<h3 id="requesting-a-new-base-backup">Requesting a new base backup</h3>
+<p>The <code>kubectl cnpg backup</code> command requests a new physical base backup for
+an existing Postgres cluster by creating a new <code>Backup</code> resource.</p>
+<p>The following example requests an on-demand backup for a given cluster:</p>
+<pre><code class="language-shell">kubectl cnpg backup [cluster_name]
+</code></pre>
+<p>The created backup will be named after the request time:</p>
+<pre><code class="language-shell">kubectl cnpg backup cluster-example
+backup/cluster-example-20230121002300 created
 </code></pre>
               
             </div>

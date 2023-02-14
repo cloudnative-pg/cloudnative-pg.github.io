@@ -155,6 +155,10 @@
                 </li>
               </ul>
               <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../cluster_conf/">Instance Pod Configuration</a>
+                </li>
+              </ul>
+              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../storage/">Storage</a>
                 </li>
               </ul>
@@ -275,13 +279,13 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
-      <li>Bootstrap</li>
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li><li>Bootstrap</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
   <hr/>
 </div>
+
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
@@ -603,7 +607,9 @@ an existing backup, namely a <em>recovery object store</em>.</p>
 <p>Both recovery methods enable either full recovery (up to the last
 available WAL) or up to a <a href="#point-in-time-recovery">point in time</a>.
 When performing a full recovery, the cluster can also be started
-in replica mode.</p>
+in replica mode. Also, make sure that the PostgreSQL configuration
+(<code>.spec.postgresql.parameters</code>) of the recovered cluster is
+compatible, from a physical replication standpoint, with the original one.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>You can find more information about backup and recovery of a running cluster

@@ -112,6 +112,10 @@
                 <li class="toctree-l1"><a class="reference internal" href="../operator_conf/">Operator configuration</a>
                 </li>
               </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../cluster_conf/">Instance Pod Configuration</a>
+                </li>
+              </ul>
               <ul class="current">
                 <li class="toctree-l1 current"><a class="reference internal current" href="./">Storage</a>
     <ul class="current">
@@ -259,13 +263,13 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
-      <li>Storage</li>
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li><li>Storage</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
   <hr/>
 </div>
+
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
@@ -336,6 +340,8 @@ instance, with the goal to store the <code>PGDATA</code>, and then mounts it int
 <p>Additionally, it supports the creation of clusters with a separate PVC
 on which to store PostgreSQL Write-Ahead Log (WAL), as explained in the
 <a href="#volume-for-wal">"Volume for WAL" section</a> below.</p>
+<p>In CloudNativePG, the volumes attached to a single PostgreSQL instance
+are defined as <strong>PVC group</strong>.</p>
 <h2 id="configuration-via-a-storage-class">Configuration via a storage class</h2>
 <p>The easier way to configure the storage for a PostgreSQL class is to just
 request storage of a certain size, like in the following example:</p>
@@ -447,7 +453,8 @@ spec:
 </code></pre>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
-<p><code>walStorage</code> initialization is only supported during cluster creation.</p>
+<p>Removing <code>walStorage</code> is not supported: once added, a separate volume for
+WALs cannot be removed from an existing Postgres cluster.</p>
 </div>
 <h2 id="volume-expansion">Volume expansion</h2>
 <p>Kubernetes exposes an API allowing <a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/#expanding-persistent-volumes-claims">expanding PVCs</a>
@@ -585,7 +592,7 @@ cluster-example-4              1/1     Running     0          10s
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../operator_conf/" class="btn btn-neutral float-left" title="Operator configuration"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../cluster_conf/" class="btn btn-neutral float-left" title="Instance Pod Configuration"><span class="icon icon-circle-arrow-left"></span> Previous</a>
         <a href="../labels_annotations/" class="btn btn-neutral float-right" title="Labels and annotations">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
@@ -609,7 +616,7 @@ cluster-example-4              1/1     Running     0          10s
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../operator_conf/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../cluster_conf/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
       <span><a href="../labels_annotations/" style="color: #fcfcfc">Next &raquo;</a></span>

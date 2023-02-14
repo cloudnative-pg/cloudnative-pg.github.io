@@ -6,7 +6,16 @@
     <description>Recent content in Blog posts on CloudNativePG - PostgreSQL Operator for Kubernetes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 25 Jan 2023 13:13:36 +0100</lastBuildDate><atom:link href="https://cloudnative-pg.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 14 Feb 2023 15:53:18 +0100</lastBuildDate><atom:link href="https://cloudnative-pg.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CloudNativePG 1.19.0, 1.18.2 and 1.17.4 Released!</title>
+      <link>https://cloudnative-pg.io/blog/cloudnative-pg-1-19-0-released/</link>
+      <pubDate>Tue, 14 Feb 2023 15:53:18 +0100</pubDate>
+      
+      <guid>https://cloudnative-pg.io/blog/cloudnative-pg-1-19-0-released/</guid>
+      <description>The CloudNativePG community has released the new 1.19 minor version and a new update for the supported 1.18 and 1.17 versions of the CloudNativePG operator.</description>
+    </item>
+    
     <item>
       <title>Introducing Ciclops, a new GitHub action to better understand CI/CD test results</title>
       <link>https://cloudnative-pg.io/blog/introducing-ciclops/</link>
