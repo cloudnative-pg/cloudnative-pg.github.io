@@ -113,6 +113,10 @@
                 </li>
               </ul>
               <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../cluster_conf/">Instance Pod Configuration</a>
+                </li>
+              </ul>
+              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../storage/">Storage</a>
                 </li>
               </ul>
@@ -235,13 +239,13 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
-      <li>Examples</li>
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li><li>Examples</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
   <hr/>
 </div>
+
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
@@ -307,6 +311,9 @@ applied and Completed.</dd>
 <dt>Sample cluster with customized <code>pg_hba</code> configuration</dt>
 <dd><a href="cluster-example-pg-hba.yaml"><code>cluster-example-pg-hba.yaml</code></a>:
   a basic cluster that enables user <code>app</code> to authenticate using certificates.</dd>
+<dt>Sample cluster with Secret and Configmap mounted using projected volume template</dt>
+<dd><a href="cluster-example-projected-volume.yaml"><code>cluster-example-projected-volume.yaml</code></a>
+  a basic cluster with existing Secret and Configmap mounted into Postgres pod using projected volume mount.  </dd>
 </dl>
 <p>For a list of available options, please refer to the <a href="../api_reference/">"API Reference" page</a>.</p>
               

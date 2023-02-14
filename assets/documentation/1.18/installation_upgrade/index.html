@@ -139,6 +139,10 @@
                 </li>
               </ul>
               <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../cluster_conf/">Instance Pod Configuration</a>
+                </li>
+              </ul>
+              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../storage/">Storage</a>
                 </li>
               </ul>
@@ -259,13 +263,13 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
-      <li>Installation and upgrades</li>
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li><li>Installation and upgrades</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
   <hr/>
 </div>
+
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
@@ -274,10 +278,10 @@
 <h3 id="directly-using-the-operator-manifest">Directly using the operator manifest</h3>
 <p>The operator can be installed like any other resource in Kubernetes,
 through a YAML manifest applied via <code>kubectl</code>.</p>
-<p>You can install the <a href="https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/release-1.18/releases/cnpg-1.18.1.yaml">latest operator manifest</a>
+<p>You can install the <a href="https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/release-1.18/releases/cnpg-1.18.2.yaml">latest operator manifest</a>
 for this minor release as follows:</p>
 <pre><code class="language-sh">kubectl apply -f \
-  https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/release-1.18/releases/cnpg-1.18.1.yaml
+  https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/release-1.18/releases/cnpg-1.18.2.yaml
 </code></pre>
 <p>You can verify that with:</p>
 <pre><code class="language-sh">kubectl get deploy -n cnpg-system cnpg-controller-manager
@@ -293,6 +297,19 @@ namespaces to only be a specific namespace, you could run:</p>
 </code></pre>
 <p>Please refer to <a href="../cnpg-plugin/#generation-of-installation-manifests">"<code>cnpg</code> plugin"</a> documentation
 for a more comprehensive example. </p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If you are deploying CloudNativePG on GKE and get an error (<code>... failed to
+call webhook...</code>), be aware that by default traffic between worker nodes
+and control plane is blocked by the firewall except for a few specific
+ports, as explained in the official
+<a href="https://cloud.google.com/kubernetes-engine/docs/how-to/private-clusters#add_firewall_rules">docs</a>
+and by this
+<a href="https://github.com/cloudnative-pg/cloudnative-pg/issues/1360">issue</a>.
+You'll need to either change the <code>targetPort</code> in the webhook service, to be
+one of the allowed ones, or open the webhooks' port (<code>9443</code>) on the
+firewall.</p>
+</div>
 <h4 id="testing-the-latest-development-snapshot">Testing the latest development snapshot</h4>
 <p>If you want to test or evaluate the latest development snapshot of
 CloudNativePG before the next official patch release, you can download the

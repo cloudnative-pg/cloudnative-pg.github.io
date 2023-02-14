@@ -62,6 +62,8 @@
     <li class="toctree-l2"><a class="reference internal" href="#installation-on-kubernetes">Installation on Kubernetes</a>
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#directly-using-the-operator-manifest">Directly using the operator manifest</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#using-the-cnpg-plugin-for-kubectl">Using the cnpg plugin for kubectl</a>
         <ul>
     <li class="toctree-l4"><a class="reference internal" href="#testing-the-latest-development-snapshot">Testing the latest development snapshot</a>
     </li>
@@ -253,13 +255,13 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
-      <li>Installation and upgrades</li>
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li><li>Installation and upgrades</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
   <hr/>
 </div>
+
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
@@ -268,14 +270,38 @@
 <h3 id="directly-using-the-operator-manifest">Directly using the operator manifest</h3>
 <p>The operator can be installed like any other resource in Kubernetes,
 through a YAML manifest applied via <code>kubectl</code>.</p>
-<p>You can install the <a href="https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/release-1.17/releases/cnpg-1.17.3.yaml">latest operator manifest</a>
+<p>You can install the <a href="https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/release-1.17/releases/cnpg-1.17.4.yaml">latest operator manifest</a>
 for this minor release as follows:</p>
 <pre><code class="language-sh">kubectl apply -f \
-  https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/release-1.17/releases/cnpg-1.17.3.yaml
+  https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/release-1.17/releases/cnpg-1.17.4.yaml
 </code></pre>
 <p>You can verify that with:</p>
 <pre><code class="language-sh">kubectl get deploy -n cnpg-system cnpg-controller-manager
 </code></pre>
+<h3 id="using-the-cnpg-plugin-for-kubectl">Using the <code>cnpg</code> plugin for <code>kubectl</code></h3>
+<p>You can use the <code>cnpg</code> plugin to override the default configuration options
+that are in the static manifests. </p>
+<p>For example, to generate the default latest manifest but change the watch
+namespaces to only be a specific namespace, you could run:</p>
+<pre><code class="language-shell">kubectl cnpg install generate \
+  --watch-namespaces &quot;specific-namespace&quot; \
+  &gt; cnpg_for_specific_namespace.yaml
+</code></pre>
+<p>Please refer to <a href="../cnpg-plugin/#generation-of-installation-manifests">"<code>cnpg</code> plugin"</a> documentation
+for a more comprehensive example. </p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If you are deploying CloudNativePG on GKE and get an error (<code>... failed to
+call webhook...</code>), be aware that by default traffic between worker nodes
+and control plane is blocked by the firewall except for a few specific
+ports, as explained in the official
+<a href="https://cloud.google.com/kubernetes-engine/docs/how-to/private-clusters#add_firewall_rules">docs</a>
+and by this
+<a href="https://github.com/cloudnative-pg/cloudnative-pg/issues/1360">issue</a>.
+You'll need to either change the <code>targetPort</code> in the webhook service, to be
+one of the allowed ones, or open the webhooks' port (<code>9443</code>) on the
+firewall.</p>
+</div>
 <h4 id="testing-the-latest-development-snapshot">Testing the latest development snapshot</h4>
 <p>If you want to test or evaluate the latest development snapshot of
 CloudNativePG before the next official patch release, you can download the

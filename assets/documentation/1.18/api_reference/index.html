@@ -113,6 +113,10 @@
                 </li>
               </ul>
               <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../cluster_conf/">Instance Pod Configuration</a>
+                </li>
+              </ul>
+              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../storage/">Storage</a>
                 </li>
               </ul>
@@ -369,13 +373,13 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
-      <li>API Reference</li>
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li><li>API Reference</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
   <hr/>
 </div>
+
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
@@ -580,7 +584,7 @@ documentation for examples of usage.</p>
 <tr>
 <td><code>metadata</code></td>
 <td></td>
-<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.25/#objectmeta-v1-meta">metav1.ObjectMeta</a></td>
+<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.26/#objectmeta-v1-meta">metav1.ObjectMeta</a></td>
 </tr>
 <tr>
 <td><code>spec</code></td>
@@ -633,7 +637,7 @@ documentation for examples of usage.</p>
 <tr>
 <td><code>metadata</code></td>
 <td>Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds</td>
-<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.25/#listmeta-v1-meta">metav1.ListMeta</a></td>
+<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.26/#listmeta-v1-meta">metav1.ListMeta</a></td>
 </tr>
 <tr>
 <td><code>items</code></td>
@@ -730,12 +734,12 @@ documentation for examples of usage.</p>
 <tr>
 <td><code>startedAt</code></td>
 <td>When the backup was started</td>
-<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.25/#time-v1-meta">*metav1.Time</a></td>
+<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.26/#time-v1-meta">*metav1.Time</a></td>
 </tr>
 <tr>
 <td><code>stoppedAt</code></td>
 <td>When the backup was terminated</td>
-<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.25/#time-v1-meta">*metav1.Time</a></td>
+<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.26/#time-v1-meta">*metav1.Time</a></td>
 </tr>
 <tr>
 <td><code>beginWal</code></td>
@@ -1126,7 +1130,7 @@ documentation for examples of usage.</p>
 <tr>
 <td><code>metadata</code></td>
 <td></td>
-<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.25/#objectmeta-v1-meta">metav1.ObjectMeta</a></td>
+<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.26/#objectmeta-v1-meta">metav1.ObjectMeta</a></td>
 </tr>
 <tr>
 <td><code>spec</code></td>
@@ -1155,7 +1159,7 @@ documentation for examples of usage.</p>
 <tr>
 <td><code>metadata</code></td>
 <td>Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds</td>
-<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.25/#listmeta-v1-meta">metav1.ListMeta</a></td>
+<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.26/#listmeta-v1-meta">metav1.ListMeta</a></td>
 </tr>
 <tr>
 <td><code>items</code></td>
@@ -1299,7 +1303,7 @@ documentation for examples of usage.</p>
 <tr>
 <td><code>resources</code></td>
 <td>Resources requirements of every generated Pod. Please refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ for more information.</td>
-<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.25/#resourcerequirements-v1-core">corev1.ResourceRequirements</a></td>
+<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.26/#resourcerequirements-v1-core">corev1.ResourceRequirements</a></td>
 </tr>
 <tr>
 <td><code>primaryUpdateStrategy</code></td>
@@ -1335,6 +1339,21 @@ documentation for examples of usage.</p>
 <td><code>logLevel</code></td>
 <td>The instances' log level, one of the following values: error, warning, info (default), debug, trace</td>
 <td>string</td>
+</tr>
+<tr>
+<td><code>projectedVolumeTemplate</code></td>
+<td>Template to be used to define projected volumes, projected volumes will be mounted under <code>/projected</code> base folder</td>
+<td>*corev1.ProjectedVolumeSource</td>
+</tr>
+<tr>
+<td><code>env</code></td>
+<td>Env follows the Env format to pass environment variables to the pods created in the cluster</td>
+<td>[]corev1.EnvVar</td>
+</tr>
+<tr>
+<td><code>envFrom</code></td>
+<td>EnvFrom follows the EnvFrom format to pass environment variables sources to the pods to be used by Env</td>
+<td>[]corev1.EnvFromSource</td>
 </tr>
 </tbody>
 </table>
@@ -1638,22 +1657,22 @@ documentation for examples of usage.</p>
 <tr>
 <td><code>sslCert</code></td>
 <td>The reference to an SSL certificate to be used to connect to this instance</td>
-<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.25/#secretkeyselector-v1-core">*corev1.SecretKeySelector</a></td>
+<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.26/#secretkeyselector-v1-core">*corev1.SecretKeySelector</a></td>
 </tr>
 <tr>
 <td><code>sslKey</code></td>
 <td>The reference to an SSL private key to be used to connect to this instance</td>
-<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.25/#secretkeyselector-v1-core">*corev1.SecretKeySelector</a></td>
+<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.26/#secretkeyselector-v1-core">*corev1.SecretKeySelector</a></td>
 </tr>
 <tr>
 <td><code>sslRootCert</code></td>
 <td>The reference to an SSL CA public key to be used to connect to this instance</td>
-<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.25/#secretkeyselector-v1-core">*corev1.SecretKeySelector</a></td>
+<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.26/#secretkeyselector-v1-core">*corev1.SecretKeySelector</a></td>
 </tr>
 <tr>
 <td><code>password</code></td>
 <td>The reference to the password to be used to connect to the server</td>
-<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.25/#secretkeyselector-v1-core">*corev1.SecretKeySelector</a></td>
+<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.26/#secretkeyselector-v1-core">*corev1.SecretKeySelector</a></td>
 </tr>
 <tr>
 <td><code>barmanObjectStore</code></td>
@@ -1841,7 +1860,7 @@ documentation for examples of usage.</p>
 <tr>
 <td><code>bindPassword</code></td>
 <td>Secret with the password for the user to bind to the directory</td>
-<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.25/#secretkeyselector-v1-core">*corev1.SecretKeySelector</a></td>
+<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.26/#secretkeyselector-v1-core">*corev1.SecretKeySelector</a></td>
 </tr>
 <tr>
 <td><code>searchAttribute</code></td>
@@ -2119,7 +2138,7 @@ documentation for examples of usage.</p>
 <tr>
 <td><code>metadata</code></td>
 <td></td>
-<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.25/#objectmeta-v1-meta">metav1.ObjectMeta</a></td>
+<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.26/#objectmeta-v1-meta">metav1.ObjectMeta</a></td>
 </tr>
 <tr>
 <td><code>spec</code></td>
@@ -2167,7 +2186,7 @@ documentation for examples of usage.</p>
 <tr>
 <td><code>metadata</code></td>
 <td></td>
-<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.25/#listmeta-v1-meta">metav1.ListMeta</a></td>
+<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.26/#listmeta-v1-meta">metav1.ListMeta</a></td>
 </tr>
 <tr>
 <td><code>items</code></td>
@@ -2487,7 +2506,7 @@ documentation for examples of usage.</p>
 <tr>
 <td><code>startedAt</code></td>
 <td>When the update has been started</td>
-<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.25/#time-v1-meta">metav1.Time</a></td>
+<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.26/#time-v1-meta">metav1.Time</a></td>
 </tr>
 </tbody>
 </table>
@@ -2553,7 +2572,7 @@ documentation for examples of usage.</p>
 <tr>
 <td><code>metadata</code></td>
 <td></td>
-<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.25/#objectmeta-v1-meta">metav1.ObjectMeta</a></td>
+<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.26/#objectmeta-v1-meta">metav1.ObjectMeta</a></td>
 </tr>
 <tr>
 <td><code>spec</code></td>
@@ -2582,7 +2601,7 @@ documentation for examples of usage.</p>
 <tr>
 <td><code>metadata</code></td>
 <td>Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds</td>
-<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.25/#listmeta-v1-meta">metav1.ListMeta</a></td>
+<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.26/#listmeta-v1-meta">metav1.ListMeta</a></td>
 </tr>
 <tr>
 <td><code>items</code></td>
@@ -2645,17 +2664,17 @@ documentation for examples of usage.</p>
 <tr>
 <td><code>lastCheckTime</code></td>
 <td>The latest time the schedule</td>
-<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.25/#time-v1-meta">*metav1.Time</a></td>
+<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.26/#time-v1-meta">*metav1.Time</a></td>
 </tr>
 <tr>
 <td><code>lastScheduleTime</code></td>
 <td>Information when was the last time that backup was successfully scheduled.</td>
-<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.25/#time-v1-meta">*metav1.Time</a></td>
+<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.26/#time-v1-meta">*metav1.Time</a></td>
 </tr>
 <tr>
 <td><code>nextScheduleTime</code></td>
 <td>Next time we will run a backup</td>
-<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.25/#time-v1-meta">*metav1.Time</a></td>
+<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.26/#time-v1-meta">*metav1.Time</a></td>
 </tr>
 </tbody>
 </table>
@@ -2810,7 +2829,7 @@ documentation for examples of usage.</p>
 <tr>
 <td><code>pvcTemplate</code></td>
 <td>Template to be used to generate the Persistent Volume Claim</td>
-<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.25/#persistentvolumeclaim-v1-core">*corev1.PersistentVolumeClaimSpec</a></td>
+<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.26/#persistentvolumeclaim-v1-core">*corev1.PersistentVolumeClaimSpec</a></td>
 </tr>
 </tbody>
 </table>
