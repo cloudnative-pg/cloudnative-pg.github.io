@@ -113,6 +113,10 @@
                 </li>
               </ul>
               <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../cluster_conf/">Instance Pod Configuration</a>
+                </li>
+              </ul>
+              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../storage/">Storage</a>
                 </li>
               </ul>
@@ -247,13 +251,13 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
-      <li>Supported releases</li>
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li><li>Supported releases</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
   <hr/>
 </div>
+
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
@@ -338,24 +342,36 @@ current <code>&lt;minor&gt;</code> release. A patch is usually a small change re
 <th>End of Life</th>
 <th>Supported Kubernetes Versions</th>
 <th>Tested, but not supported</th>
+<th>Supported Postgres Versions</th>
 </tr>
 </thead>
 <tbody>
 <tr>
+<td>1.19.x</td>
+<td>Yes</td>
+<td>February 14, 2023</td>
+<td>~ July 15, 2023</td>
+<td>1.23, 1.24, 1.25, 1.26</td>
+<td>1.22</td>
+<td>11 - 15</td>
+</tr>
+<tr>
 <td>1.18.x</td>
 <td>Yes</td>
 <td>November 10, 2022</td>
-<td>~ April 13, 2023</td>
-<td>1.23, 1.24, 1.25</td>
+<td>~ May 13, 2023</td>
+<td>1.23, 1.24, 1.25, 1.26</td>
 <td>1.22</td>
+<td>10 - 15</td>
 </tr>
 <tr>
 <td>1.17.x</td>
 <td>Yes</td>
 <td>September 6, 2022</td>
-<td>~ February 12, 2023</td>
+<td>~ March 9, 2023</td>
 <td>1.22, 1.23, 1.24</td>
 <td>1.19, 1.20, 1.21</td>
+<td>10 - 15</td>
 </tr>
 <tr>
 <td>main</td>
@@ -364,6 +380,7 @@ current <code>&lt;minor&gt;</code> release. A patch is usually a small change re
 <td></td>
 <td></td>
 <td></td>
+<td>11 - 15</td>
 </tr>
 </tbody>
 </table>
@@ -373,6 +390,9 @@ the CloudNativePG maintainers think is reasonable to support and to test.</p>
 Kubernetes distribution, like Red Hat OpenShift (this might change in the
 future. If it did change, that would be reflected in an official policy written
 by the CloudNativePG maintainers).</p>
+<p>The list of supported Postgres versions in the above table generally depends on
+what PostgreSQL versions were supported by the Community at the time the minor
+version was released.</p>
 <h2 id="upcoming-releases">Upcoming releases</h2>
 <table>
 <thead>
@@ -385,20 +405,14 @@ by the CloudNativePG maintainers).</p>
 </thead>
 <tbody>
 <tr>
-<td>1.19.0</td>
-<td>January 26, 2023</td>
-<td>June 15, 2023</td>
-<td>1.23, 1.24, 1.25</td>
-</tr>
-<tr>
 <td>1.20.0</td>
-<td>March 27, 2023</td>
+<td>April 13, 2023</td>
 <td>-</td>
 <td>-</td>
 </tr>
 <tr>
 <td>1.21.0</td>
-<td>May 29, 2023</td>
+<td>June 15, 2023</td>
 <td>-</td>
 <td>-</td>
 </tr>

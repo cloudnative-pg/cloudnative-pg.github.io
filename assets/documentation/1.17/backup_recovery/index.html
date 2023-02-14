@@ -271,13 +271,13 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
-      <li>Backup and Recovery</li>
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li><li>Backup and Recovery</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
   <hr/>
 </div>
+
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
@@ -362,10 +362,10 @@ spec:
 the instance can upload the WAL files, e.g.
 <code>s3://BUCKET_NAME/path/to/folder</code>.</p>
 <h3 id="other-s3-compatible-object-storages-providers">Other S3-compatible Object Storages providers</h3>
-<p>In case you're using S3-compatible object storage, like MinIO or
-Linode Object Storage, you can specify an endpoint instead of using the
+<p>In case you're using S3-compatible object storage, like <strong>MinIO</strong> or
+<strong>Linode Object Storage</strong>, you can specify an endpoint instead of using the
 default S3 one.</p>
-<p>In this example, it will use the <code>bucket</code> bucket of Linode in the region
+<p>In this example, it will use the <code>bucket</code> of <strong>Linode</strong> in the region
 <code>us-east1</code>.</p>
 <pre><code class="language-yaml">apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
@@ -374,7 +374,20 @@ spec:
   backup:
     barmanObjectStore:
       destinationPath: &quot;&lt;destination path here&gt;&quot;
-      endpointURL: bucket.us-east1.linodeobjects.com
+      endpointURL: &quot;https://bucket.us-east1.linodeobjects.com&quot;
+      s3Credentials:
+        [...]
+</code></pre>
+<p>In case you're using <strong>Digital Ocean Spaces</strong>, you will have to use the Path-style syntax.
+In this example, it will use the <code>bucket</code> from <strong>Digital Ocean Spaces</strong> in the region <code>SFO3</code>.</p>
+<pre><code class="language-yaml">apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+[...]
+spec:
+  backup:
+    barmanObjectStore:
+      destinationPath: &quot;s3://[your-bucket-name]/[your-backup-folder]/&quot;
+      endpointURL: &quot;https://sfo3.digitaloceanspaces.com&quot;
       s3Credentials:
         [...]
 </code></pre>
@@ -797,6 +810,13 @@ The operator will orchestrate the recovery process using the
 requested).</p>
 <p>For details and instructions on the <code>recovery</code> bootstrap method, please refer
 to the <a href="../bootstrap/#bootstrap-from-a-backup-recovery">"Bootstrap from a backup" section</a>.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>If you are not familiar with how <a href="https://www.postgresql.org/docs/current/continuous-archiving.html#BACKUP-PITR-RECOVERY">PostgreSQL PITR</a>
+works, we suggest that you configure the recovery cluster as the original
+one when it comes to <code>.spec.postgresql.parameters</code>. Once the new cluster is
+restored, you can then change the settings as desired.</p>
+</div>
 <p>Under the hood, the operator will inject an init container in the first
 instance of the new cluster, and the init container will start recovering the
 backup from the object storage.</p>

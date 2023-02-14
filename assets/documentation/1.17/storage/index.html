@@ -255,13 +255,13 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
-      <li>Storage</li>
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li><li>Storage</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
   <hr/>
 </div>
+
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
@@ -332,6 +332,8 @@ instance, with the goal to store the <code>PGDATA</code>, and then mounts it int
 <p>Additionally, it supports the creation of clusters with a separate PVC
 on which to store PostgreSQL Write-Ahead Log (WAL), as explained in the
 <a href="#volume-for-wal">"Volume for WAL" section</a> below.</p>
+<p>In CloudNativePG, the volumes attached to a single PostgreSQL instance
+are defined as <strong>PVC group</strong>.</p>
 <h2 id="configuration-via-a-storage-class">Configuration via a storage class</h2>
 <p>The easier way to configure the storage for a PostgreSQL class is to just
 request storage of a certain size, like in the following example:</p>
