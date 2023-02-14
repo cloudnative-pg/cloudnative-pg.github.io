@@ -19,7 +19,7 @@ The **CloudNativePG Community** has announced version 1.19.0, a new minor
 release of the **CloudNativePG Operator**, which introduces support for
 **backup from a standby**, which reduces the I/O impact on the primary, and
 **delayed failover**, which enables you to wait for some amount of time
-after an issue on the primary before triggering an automated failover.
+after a failure on the primary before triggering an automated failover.
 
 Support for separate WAL volumes has been enhanced with the possibility to add
 a separate WAL volume even on an existing PostgreSQL cluster. More metrics for
