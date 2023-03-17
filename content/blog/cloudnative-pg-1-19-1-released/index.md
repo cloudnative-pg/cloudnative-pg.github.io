@@ -1,6 +1,6 @@
 ---
 title: "CloudNativePG 1.19.1, 1.18.3 and 1.17.5 Released!"
-date: 2022-12-21T17:58:34+02:00
+date: 2023-03-17T10:53:18+01:00
 draft: false
 image:
     url: wildlife-zoo-mammal-fauna-elephant-sri-lanka-988769-pxhere.com.jpg
@@ -21,13 +21,13 @@ The **CloudNativePG Community** has released a new update for the supported
 **Versions 1.19.1, 1.18.3 and 1.17.5** are *patch releases* containing a few
 bug fixes and minor enhancements, including:
 
-- override of the default backup target policy for `ScheduledBackup` and
+- enable overriding the default backup target policy for `ScheduledBackup` and
   `Backup` resources
-- additional metrics and information in the status about the last time of
+- additional metrics and information in the status, about the last time of
   success or failure of a backup
-- several improvements in the code responsible of backup execution and management
-- fix when adding WAL storage to an existing cluster made up of a single instance
-- fix with application of `nodeAffinity`
+- several improvements in the code for backup execution and management
+- fixes when adding WAL storage to an existing single-instance cluster
+- fixes with the application of `nodeAffinity`
 
 With this release, version 1.17 has reached End-of-Life (EOL): version 1.17.5
 is the last that will be released for the 1.17 minor version.
