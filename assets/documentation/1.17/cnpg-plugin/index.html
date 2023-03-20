@@ -209,6 +209,8 @@
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#requesting-a-new-base-backup">Requesting a new base backup</a>
     </li>
+    <li class="toctree-l3"><a class="reference internal" href="#launching-psql">Launching psql</a>
+    </li>
         </ul>
     </li>
     </ul>
@@ -444,7 +446,7 @@ two different time intervals.</p>
 Name:               sandbox
 Namespace:          default
 System ID:          7039966298120953877
-PostgreSQL Image:   ghcr.io/cloudnative-pg/postgresql:15.1
+PostgreSQL Image:   ghcr.io/cloudnative-pg/postgresql:15.2
 Primary instance:   sandbox-2
 Instances:          3
 Ready instances:    3
@@ -484,7 +486,7 @@ sandbox-3  302 GB         3AF/EBAD5D18  Standby (sync)    OK      Guaranteed  1.
 Name:               sandbox
 Namespace:          default
 System ID:          7039966298120953877
-PostgreSQL Image:   ghcr.io/cloudnative-pg/postgresql:15.1
+PostgreSQL Image:   ghcr.io/cloudnative-pg/postgresql:15.2
 Primary instance:   sandbox-2
 Instances:          3
 Ready instances:    3
@@ -849,6 +851,39 @@ an existing Postgres cluster by creating a new <code>Backup</code> resource.</p>
 <pre><code class="language-shell">kubectl cnpg backup cluster-example
 backup/cluster-example-20230121002300 created
 </code></pre>
+<h3 id="launching-psql">Launching psql</h3>
+<p>The <code>kubectl cnpg psql</code> command starts a new PostgreSQL interactive front-end
+process (psql) connected to an existing Postgres cluster, as if you were running
+it from the actual pod. This means that you will be using the <code>postgres</code> user.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>As you will be connecting as <code>postgres</code> user, in production environments this
+method should be used with extreme care, by authorized personnel only.</p>
+</div>
+<pre><code class="language-shell">kubectl cnpg psql cluster-example
+
+psql (15.2 (Debian 15.2-1.pgdg110+1))
+Type &quot;help&quot; for help.
+
+postgres=#
+</code></pre>
+<p>By default, the command will connect to the primary instance. The user can
+select to work against a replica by using the <code>--replica</code> option:</p>
+<pre><code class="language-shell">kubectl cnpg psql --replica cluster-example
+psql (15.2 (Debian 15.2-1.pgdg110+1))
+
+Type &quot;help&quot; for help.
+
+postgres=# select pg_is_in_recovery();
+ pg_is_in_recovery
+-------------------
+ t
+(1 row)
+
+postgres=# \q
+</code></pre>
+<p>This command will start <code>kubectl exec</code>, and the <code>kubectl</code> executable must be
+reachable in your <code>PATH</code> variable to correctly work.</p>
               
             </div>
           </div><footer>

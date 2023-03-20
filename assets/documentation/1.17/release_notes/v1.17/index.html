@@ -244,14 +244,33 @@
 <p>For a complete list of changes, please refer to the
 <a href="https://github.com/cloudnative-pg/cloudnative-pg/commits/release-1.17">commits</a>
 on the release branch in GitHub.</p>
-<h2 id="version-1174">Version 1.17.4</h2>
-<p><strong>Release date:</strong> Feb 14, 2023</p>
+<h2 id="version-1175">Version 1.17.5</h2>
+<p><strong>Release date:</strong> March 20, 2023</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>Version 1.17 will reach its End-of-Life (EOL) on March 9, 2023.
-If you haven't done it yet, please start planning an upgrade
-as soon as possible.</p>
+<p>Version 1.17 has reached End-of-Life (EOL). Version 1.17.5 is the last
+that will be released for the 1.17 minor version.</p>
 </div>
+<p>Enhancements:</p>
+<ul>
+<li>Extend the <code>debug</code> cluster's log level to the <code>initdb</code> job (#1503)</li>
+<li>Support IPv6 and custom <code>pg_hba</code> for the PgBouncer pooler (#1395)</li>
+<li>Document API calls from the instance manager (#1641)</li>
+<li>Clarify deployment name via Helm (#1505)</li>
+<li>Add the <code>psql</code> command to the <code>cnpg</code> plugin for <code>kubectl</code> (#1668) allowing
+  the user to start a <code>psql</code> session with a pod (the primary by default)</li>
+</ul>
+<p>Technical enhancements:</p>
+<ul>
+<li>Adopt Renovate for dependency tracking/updating (#1367, #1473)</li>
+</ul>
+<p>Fixes:</p>
+<ul>
+<li>Prevent panic with error handling in the probes (#1716)</li>
+<li>Properly show WAL archiving information with <code>status</code> command of the <code>cnpg</code> plugin (#1666)</li>
+</ul>
+<h2 id="version-1174">Version 1.17.4</h2>
+<p><strong>Release date:</strong> Feb 14, 2023</p>
 <p>Features:</p>
 <ul>
 <li>Support for Kubernetes' projected volumes (#1269)</li>

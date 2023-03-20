@@ -873,6 +873,7 @@ including PITR.</p>
 example below:</p>
 <pre><code class="language-yaml">apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
+metadata:
   [...]
 spec:
   backup:
@@ -883,6 +884,19 @@ available secondary instance, falling back to the primary instance if no other
 instance is available.</p>
 <p>By default, when not specified, target is automatically set to take backups
 from a primary.</p>
+<p>The backup target specified in the <code>Cluster</code> can be overridden in the <code>Backup</code>
+and <code>ScheduledBackup</code> types, like in the following example:</p>
+<pre><code class="language-yaml">apiVersion: postgresql.cnpg.io/v1
+kind: Backup
+metadata:
+  [...]
+spec:
+  cluster:
+    name: [...]
+  target: &quot;primary&quot;
+</code></pre>
+<p>In the previous example, CloudNativePG will invariably choose the primary
+instance even if the <code>Cluster</code> is set to prefer replicas.</p>
 <h2 id="recovery">Recovery</h2>
 <p>Cluster restores are not performed "in-place" on an existing cluster.
 You can use the data uploaded to the object storage to <em>bootstrap</em> a
