@@ -686,7 +686,7 @@ documentation for examples of usage.</p>
 </tr>
 <tr>
 <td><code>destinationPath</code></td>
-<td>The path where to store the backup (i.e. s3://bucket/path/to/folder) this path, with different destination folders, will be used for WALs and for data                  - <em>mandatory</em></td>
+<td>The path where to store the backup (i.e. s3://bucket/path/to/folder) this path, with different destination folders, will be used for WALs and for data. This may not be populated in case of errors.</td>
 <td>string</td>
 </tr>
 <tr>
@@ -2013,6 +2013,11 @@ documentation for examples of usage.</p>
 <td><code>parameters</code></td>
 <td>Additional parameters to be passed to PgBouncer - please check the CNPG documentation for a list of options you can configure</td>
 <td>map[string]string</td>
+</tr>
+<tr>
+<td><code>pg_hba</code></td>
+<td>PostgreSQL Host Based Authentication rules (lines to be appended to the pg_hba.conf file)</td>
+<td>[]string</td>
 </tr>
 <tr>
 <td><code>paused</code></td>

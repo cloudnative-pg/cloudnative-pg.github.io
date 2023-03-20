@@ -83,6 +83,8 @@
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#role-based-access-control-rbac">Role Based Access Control (RBAC)</a>
     </li>
+    <li class="toctree-l3"><a class="reference internal" href="#calls-to-the-api-server-made-by-the-instance-manager">Calls to the API server made by the instance manager</a>
+    </li>
     <li class="toctree-l3"><a class="reference internal" href="#pod-security-policies">Pod Security Policies</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#restricting-pod-access-using-apparmor">Restricting Pod access using AppArmor</a>
@@ -387,6 +389,66 @@ namespaced resources.</p>
 </dl>
 <p>To see all the permissions required by the operator, you can run <code>kubectl
 describe clusterrole cnpg-manager</code>.</p>
+<h3 id="calls-to-the-api-server-made-by-the-instance-manager">Calls to the API server made by the instance manager</h3>
+<p>The instance manager, which is the entry point of the operand container, needs
+to make some calls to the Kubernetes API server to ensure that the status of
+some resources is correctly updated and to access the config maps and secrets
+that are associated with that Postgres cluster. Such calls are performed through
+a dedicated <code>ServiceAccount</code> created by the operator that shares the same
+PostgreSQL <code>Cluster</code> resource name.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>The operand can only access a specific and limited subset of resources
+through the API server. A service account is the
+<a href="https://kubernetes.io/docs/tasks/run-application/access-api-from-pod/">recommended way to access the API server from within a Pod</a>.</p>
+</div>
+<p>For transparency, the permissions associated with the service account are defined in the
+<a href="https://github.com/cloudnative-pg/cloudnative-pg/blob/main/pkg/specs/roles.go">roles.go</a>
+file. For example, to retrieve the permissions of a generic <code>mypg</code> cluster in the
+<code>myns</code> namespace, you can type the following command:</p>
+<pre><code class="language-bash">kubectl get role -n myns mypg -o yaml
+</code></pre>
+<p>Then verify that the role is bound to the service account:</p>
+<pre><code class="language-bash">kubectl get rolebinding -n myns mypg -o yaml
+</code></pre>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Remember that <strong>roles are limited to a given namespace</strong>.</p>
+</div>
+<p>Below we provide a quick summary of the permissions associated with the service
+account for generic Kubernetes resources.</p>
+<dl>
+<dt><code>configmaps</code></dt>
+<dd>The instance manager can only read config maps that are related to the same
+  cluster, such as custom monitoring queries</dd>
+<dt><code>secrets</code></dt>
+<dd>The instance manager can only read secrets that are related to the same
+  cluster, namely: streaming replication user, application user, super user,
+  LDAP authentication user, client CA, server CA, server certificate, backup
+  credentials, custom monitoring queries</dd>
+<dt><code>events</code></dt>
+<dd>The instance manager can create an event for the cluster, informing the
+  API server about a particular aspect of the PostgreSQL instance lifecycle</dd>
+</dl>
+<p>Here instead, we provide the same summary for resources specific to
+CloudNativePG.</p>
+<dl>
+<dt><code>clusters</code></dt>
+<dd>The instance manager requires read-only permissions, namely <code>get</code>, <code>list</code> and
+  <code>watch</code>, just for its own <code>Cluster</code> resource</dd>
+<dt><code>clusters/status</code></dt>
+<dd>The instance manager requires to <code>update</code> and <code>patch</code> the status of just its
+  own <code>Cluster</code> resource</dd>
+<dt><code>backups</code></dt>
+<dd>The instance manager requires <code>get</code> and <code>list</code> permissions to read any
+  <code>Backup</code> resource in the namespace. Additionally, it requires the <code>delete</code>
+  permission to clean up the Kubernetes cluster by removing the <code>Backup</code> objects
+  that do not have a counterpart in the object store - typically because of
+  retention policies</dd>
+<dt><code>backups/status</code></dt>
+<dd>The instance manager requires to <code>update</code> and <code>patch</code> the status of any
+  <code>Backup</code> resource in the namespace</dd>
+</dl>
 <h3 id="pod-security-policies">Pod Security Policies</h3>
 <p>A <a href="https://kubernetes.io/docs/concepts/policy/pod-security-policy/">Pod Security Policy</a>
 is the Kubernetes way to define security rules and specifications that a pod needs to meet
