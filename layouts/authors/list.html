@@ -3,7 +3,6 @@
 <div class="md:px-56 pt-7 md:flex gap-20">
     <!--Col 1 starts here-->
     <div class="space-y-28 md:w-4/6 px-4">
-        {{ .Pages }}
         {{ range .Pages }}
         <!--List item starts here-->
         <div class="pb-24">
@@ -36,7 +35,9 @@
     </div>
     <!--Col 1 ends here-->
     <!--Col 2 starts here-->
-    {{ partial "blog_sidebar.html" . }}
+    <div class="space-y-10 md:w-2/6 md:pt-10">
+        {{ partial "blog_sidebar.html" . }}
+    </div>
     <!--Col 2 ends here-->
 </div>
 {{ end }}
