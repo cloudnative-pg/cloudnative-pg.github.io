@@ -1,0 +1,21 @@
+{{ define "main" }}
+<h1 class="h1 text-center mx-auto w-3/5">{{.Title}}</h1>
+<div class="w-3/5 mx-auto">
+    <div class="px-4">
+        <div>
+            <img src="{{ .Params.avatar }}" alt="blog image" class="h-80 mx-auto">
+        </div>
+        <!--author image-->
+
+        <div class="mx-auto my-10">
+            <h3><a href="https://github.com/{{ .Params.github }}">{{ .Params.name }}</a></h3>
+
+            {{ .Content }}
+        </div>
+    </div>
+
+    <!--Col 2 starts here-->
+    {{ partial "blog_sidebar.html" . }}
+    <!--Col 2 ends here-->
+</div>
+{{ end }}

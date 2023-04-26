@@ -3,6 +3,7 @@
 <div class="md:px-56 pt-7 md:flex gap-20">
     <!--Col 1 starts here-->
     <div class="space-y-28 md:w-4/6 px-4">
+        {{ .Pages }}
         {{ range .Pages }}
         <!--List item starts here-->
         <div class="pb-24">
@@ -16,21 +17,8 @@
 
             <a href="{{ .RelPermalink }}">
                 <div>
-                    <img src="{{ .RelPermalink }}/{{ .Params.image.url }}" class="object-fill w-full h-80"
-                        alt="Blog image">
-                </div>
-                <div class="charcoal">
-                    <dl>
-                        <dt class="text-3xl my-5 font-bold">{{ .Title }}</dt>
-                        <div class="flex text-xs gap-1.5">
-                            <ul class="text-sm">
-                                {{ range .Params.tags }}
-                                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2">{{ . }}</li>
-                                {{ end }}
-                            </ul>
-                        </div>
-                        <dd class="text-2xl my-5">{{ .Params.summary }}</dd>
-                    </dl>
+                    <img src="{{ .RelPermalink }}/{{ .Params.image.url }}" class="object-fill h-80"
+                        alt="Blog image" width="auto" height="auto">
                 </div>
 
                 <!--CTA-->

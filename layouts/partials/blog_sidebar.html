@@ -9,7 +9,7 @@
     <div class="px-4">
         <h3 class="text-xl font-bold mb-6">Categories</h3>
         <div class="text-xs space-y-1.5 mb-14">
-            <ul class="uppercase text-sm">
+            <ul class="text-sm">
                 {{ range .Site.Taxonomies.tags }}
                 <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="{{ .Page.Permalink }}"
                         class="mr-2">{{.Page.Title }}</a></li>
@@ -35,8 +35,8 @@
                 <a href="{{ .RelPermalink }}">
                     <!--Blog image and content preview-->
                     <div>
-                        <img src="{{ .RelPermalink }}/{{ .Params.image.url }}" class="object-fill w-full h-36"
-                            alt="Blog image">
+                        <img src="{{ .RelPermalink }}/{{ .Params.image.url }}" class="object-fill h-36"
+                            alt="Blog image" width="auto" height="auto">
                     </div>
                     <div class="charcoal">
                         <h2 class="text-lg my-2.5 font-bold">{{.Title}}</h2>

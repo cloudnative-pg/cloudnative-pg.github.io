@@ -6,7 +6,7 @@
 <div>
     <div>
         <h1 class="text-lg charcoal font-bold">
-            {{$author.Params.name}}
+            <a href="/authors/{{ .Params.author  }}">{{$author.Params.name}}</a>
         </h1>
     </div>
     {{ partial "blog_datetime.html" . }}
