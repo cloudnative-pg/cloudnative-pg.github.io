@@ -48,7 +48,9 @@
     </div>
     <!--Col 1 ends here-->
     <!--Col 2 starts here-->
-    {{ partial "blog_sidebar.html" . }}
+    <div class="space-y-10 md:w-2/6 md:pt-10">
+        {{ partial "blog_sidebar.html" . }}
+    </div>
     <!--Col 2 ends here-->
 </div>
 {{ end }}
