@@ -201,6 +201,10 @@
                 </li>
               </ul>
               <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../declarative_hibernation/">Declarative hibernation</a>
+                </li>
+              </ul>
+              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../postgis/">PostGIS</a>
                 </li>
               </ul>
@@ -261,13 +265,13 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li><li>Installation and upgrades</li>
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+      <li>Installation and upgrades</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
   <hr/>
 </div>
-
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
@@ -276,10 +280,10 @@
 <h3 id="directly-using-the-operator-manifest">Directly using the operator manifest</h3>
 <p>The operator can be installed like any other resource in Kubernetes,
 through a YAML manifest applied via <code>kubectl</code>.</p>
-<p>You can install the <a href="https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/release-1.19/releases/cnpg-1.19.1.yaml">latest operator manifest</a>
+<p>You can install the <a href="https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/release-1.19/releases/cnpg-1.19.2.yaml">latest operator manifest</a>
 for this minor release as follows:</p>
 <pre><code class="language-sh">kubectl apply -f \
-  https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/release-1.19/releases/cnpg-1.19.1.yaml
+  https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/release-1.19/releases/cnpg-1.19.2.yaml
 </code></pre>
 <p>You can verify that with:</p>
 <pre><code class="language-sh">kubectl get deploy -n cnpg-system cnpg-controller-manager
@@ -440,11 +444,6 @@ maintain the most secure and stable Postgres environment.</p>
 least monthly. If you are unable to apply updates as each version becomes
 available, we recommend upgrading through each version in sequential order to
 come current periodically and not skipping versions.</p>
-<div class="admonition important">
-<p class="admonition-title">Important</p>
-<p>In 2022, EDB plans an LTS release for CloudNativePG in
-environments where frequent online updates are not possible.</p>
-</div>
 <p>The <a href="../release_notes/">release notes</a> page contains a detailed list of the
 changes introduced in every released version of CloudNativePG,
 and it must be read before upgrading to a newer version of the software.</p>

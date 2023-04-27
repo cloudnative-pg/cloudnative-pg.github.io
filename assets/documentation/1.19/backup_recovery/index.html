@@ -227,6 +227,10 @@
                 </li>
               </ul>
               <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../declarative_hibernation/">Declarative hibernation</a>
+                </li>
+              </ul>
+              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../postgis/">PostGIS</a>
                 </li>
               </ul>
@@ -287,13 +291,13 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li><li>Backup and Recovery</li>
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+      <li>Backup and Recovery</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
   <hr/>
 </div>
-
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
@@ -867,7 +871,11 @@ feature which is directly available in PostgreSQL: <strong>backup from a standby
 in the time continuum from the first available backup to the last
 archived WAL this is normally irrelevant. The base backup indeed
 represents the starting point from which to begin a recovery operation,
-including PITR.</p>
+including PITR. Similarly to what happens with
+<a href="https://www.postgresql.org/docs/current/app-pgbasebackup.html"><code>pg_basebackup</code></a>,
+when backing up from a standby we do not force a switch of the WAL on the
+primary. This might produce unexpected results in the short term (before
+<code>archive_timeout</code> kicks in) in deployments with low write activity.</p>
 </div>
 <p>You can use set backup target to <code>prefer-standby</code> as outlined in the
 example below:</p>
