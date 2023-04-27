@@ -6,7 +6,7 @@
 <html lang="en">
 
 <head>
-  <title>CloudNativePG 1.17.1, 1.16.3 and 1.15.5 Released! | CloudNativePG - PostgreSQL Operator for Kubernetes</title>
+  <title>CloudNativePG 1.20.0, 1.19.2 and 1.18.4 Released! | CloudNativePG - PostgreSQL Operator for Kubernetes</title>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
@@ -20,15 +20,15 @@
   <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://cloudnative-pg.io/images/hero_image.png"/>
 
-<meta name="twitter:title" content="CloudNativePG 1.17.1, 1.16.3 and 1.15.5 Released!"/>
-<meta name="twitter:description" content="The CloudNativePG community has released a new update for the supported 1.17, 1.16 and 1.15 versions of the CloudNativePG operator. Version 1.15 has reached End-of-Life (EOL)."/>
+<meta name="twitter:title" content="CloudNativePG 1.20.0, 1.19.2 and 1.18.4 Released!"/>
+<meta name="twitter:description" content="The CloudNativePG community has released the new 1.20 minor version and a new update for the supported 1.19 and 1.18 versions of the CloudNativePG operator."/>
 
-  <meta property="og:title" content="CloudNativePG 1.17.1, 1.16.3 and 1.15.5 Released!" />
-<meta property="og:description" content="The CloudNativePG community has released a new update for the supported 1.17, 1.16 and 1.15 versions of the CloudNativePG operator. Version 1.15 has reached End-of-Life (EOL)." />
+  <meta property="og:title" content="CloudNativePG 1.20.0, 1.19.2 and 1.18.4 Released!" />
+<meta property="og:description" content="The CloudNativePG community has released the new 1.20 minor version and a new update for the supported 1.19 and 1.18 versions of the CloudNativePG operator." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://cloudnative-pg.io/blog/cloudnative-pg-1-17-1-released/" /><meta property="og:image" content="https://cloudnative-pg.io/images/hero_image.png"/><meta property="article:section" content="blog" />
-<meta property="article:published_time" content="2022-10-06T17:58:34+02:00" />
-<meta property="article:modified_time" content="2022-10-06T17:58:34+02:00" />
+<meta property="og:url" content="https://cloudnative-pg.io/blog/cloudnative-pg-1-20-0-released/" /><meta property="og:image" content="https://cloudnative-pg.io/images/hero_image.png"/><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2023-04-27T15:29:36+02:00" />
+<meta property="article:modified_time" content="2023-04-27T15:29:36+02:00" />
 
 
 </head>
@@ -116,7 +116,7 @@
 </script>
 
     
-<h1 class="h1 text-center mx-auto w-3/5">CloudNativePG 1.17.1, 1.16.3 and 1.15.5 Released!</h1>
+<h1 class="h1 text-center mx-auto w-3/5">CloudNativePG 1.20.0, 1.19.2 and 1.18.4 Released!</h1>
 <div class="w-3/5 mx-auto">
     <div class="px-4">
         
@@ -134,7 +134,7 @@
     </div>
     <div class="flex gap-2 text-sm charcoal opacity-75">
     <h6 class="flex gap-2 text-sm charcoal">
-        October 6, 2022
+        April 27, 2023
         •
         1 minute
     </h6>
@@ -151,29 +151,35 @@
 
         
         <div class="mx-auto my-10">
-            <p>The <strong>CloudNativePG Community</strong> has released a new update for the supported
-1.17, 1.16 and 1.15 versions of the <strong>CloudNativePG Operator</strong>.</p>
-<p><strong>Versions 1.17.1, 1.16.3 and 1.15.5</strong> are <em>patch releases</em> containing a few
-bug fixes and minor enhancements, including:</p>
+            <p>The <strong>CloudNativePG Community</strong> has announced version 1.20.0, a new minor
+release of the <strong>CloudNativePG Operator</strong>, which introduces support for
+<strong>declarative role management</strong>, allowing you to manage PostgreSQL
+users and groups via configuration, and <strong>declarative hibernation</strong>,
+which enables you to shut down all running pods in a PostgreSQL cluster
+and keep only the persistent volumes.</p>
+<p>We are also changing the default behavior with the newly created PostgreSQL
+clusters:</p>
 <ul>
-<li>Improve the mechanism that checks that the backup object store is empty
-before archiving a WAL file for the first time</li>
-<li>Explicitly set permissions of the instance manager binary that is copied in
-the <code>distroless/static:nonroot</code> container image, by using the
-<code>nonroot:nonroot</code> user</li>
-<li>Make the cluster&rsquo;s conditions compatible with <code>metav1.Conditions</code> struct (1.15 only)</li>
-<li>Drop any active connection on a standby after it is promoted to primary</li>
-<li>Honor <code>MAPPEDMETRIC</code> and <code>DURATION</code> metric types conversion in the native Prometheus exporter</li>
+<li>automated rolling updates now trigger a restart of the primary instead of a
+switchover</li>
+<li>if replicas are available, backups for Point-In-Time-Recovery are automatically
+taken from a standby</li>
 </ul>
-<p>With this release, version 1.15 has reached End-of-Life (EOL): version 1.15.5
-is the last that will be released for the 1.15 minor version.</p>
+<p>Some minor bugs have also been fixed.</p>
+<p>New patch releases are available for all the supported versions, including
+1.19.2 and 1.18.4.</p>
+<p>With the release of 1.20.0, the 1.18.x minor version will be
+<a href="https://cloudnative-pg.io/documentation/1.20/supported_releases/#support-status-of-cloudnativepg-releases">end of life</a>
+from 27 May, 2023.</p>
 <p>We encourage you to update the operator at your earliest possible convenience.</p>
 <p>For a complete list of changes, please refer to:</p>
 <ul>
-<li><a href="https://cloudnative-pg.io/documentation/1.17/release_notes/v1.17/">release notes for 1.17.1</a></li>
-<li><a href="https://cloudnative-pg.io/documentation/1.16/release_notes/v1.16/">release notes for 1.16.3</a></li>
-<li><a href="https://cloudnative-pg.io/documentation/1.15/release_notes/v1.15/">release notes for 1.15.5</a></li>
+<li><a href="https://cloudnative-pg.io/documentation/1.20/release_notes/v1.20/">release notes for 1.20.0</a></li>
+<li><a href="https://cloudnative-pg.io/documentation/1.19/release_notes/v1.19/">release notes for 1.19.2</a></li>
+<li><a href="https://cloudnative-pg.io/documentation/1.18/release_notes/v1.18/">release notes for 1.18.4</a></li>
 </ul>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <!-- raw HTML omitted -->
 <!-- raw HTML omitted -->
 
