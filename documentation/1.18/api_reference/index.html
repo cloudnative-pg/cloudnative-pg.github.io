@@ -177,6 +177,10 @@
                 </li>
               </ul>
               <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../declarative_hibernation/">Declarative hibernation</a>
+                </li>
+              </ul>
+              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../postgis/">PostGIS</a>
                 </li>
               </ul>
@@ -373,13 +377,13 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li><li>API Reference</li>
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+      <li>API Reference</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
   <hr/>
 </div>
-
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
@@ -1360,6 +1364,11 @@ documentation for examples of usage.</p>
 <td>EnvFrom follows the EnvFrom format to pass environment variables sources to the pods to be used by Env</td>
 <td>[]corev1.EnvFromSource</td>
 </tr>
+<tr>
+<td><code>seccompProfile</code></td>
+<td>The SeccompProfile applied to every Pod and Container. Defaults to: <code>RuntimeDefault</code></td>
+<td>*corev1.SeccompProfile</td>
+</tr>
 </tbody>
 </table>
 <p><a id='ClusterStatus'></a></p>
@@ -1376,12 +1385,12 @@ documentation for examples of usage.</p>
 <tbody>
 <tr>
 <td><code>instances</code></td>
-<td>Total number of instances in the cluster</td>
+<td>The total number of PVC Groups detected in the cluster. It may differ from the number of existing instance pods.</td>
 <td>int</td>
 </tr>
 <tr>
 <td><code>readyInstances</code></td>
-<td>Total number of ready instances in the cluster</td>
+<td>The total number of ready instances in the cluster. It is equal to the number of ready instance pods.</td>
 <td>int</td>
 </tr>
 <tr>
@@ -1391,7 +1400,7 @@ documentation for examples of usage.</p>
 </tr>
 <tr>
 <td><code>instancesReportedState</code></td>
-<td>the reported state of the instances during the last reconciliation loop</td>
+<td>The reported state of the instances during the last reconciliation loop</td>
 <td><a href="#InstanceReportedState">map[PodName]InstanceReportedState</a></td>
 </tr>
 <tr>
@@ -2497,7 +2506,7 @@ documentation for examples of usage.</p>
 <tr>
 <td><code>enabled</code></td>
 <td>If enabled, the operator will automatically manage replication slots on the primary instance and use them in streaming replication connections with all the standby instances that are part of the HA cluster. If disabled (default), the operator will not take advantage of replication slots in streaming connections with the replicas. This feature also controls replication slots in replica cluster, from the designated primary to its cascading replicas. This can only be set at creation time. - <em>mandatory</em></td>
-<td>bool</td>
+<td>*bool</td>
 </tr>
 <tr>
 <td><code>slotPrefix</code></td>

@@ -177,6 +177,10 @@
                 </li>
               </ul>
               <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../declarative_hibernation/">Declarative hibernation</a>
+                </li>
+              </ul>
+              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../../postgis/">PostGIS</a>
                 </li>
               </ul>
@@ -237,13 +241,13 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href="../.." class="icon icon-home" alt="Docs"></a> &raquo;</li><li>Release notes for CloudNativePG 1.19</li>
+    <li><a href="../.." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+      <li>Release notes for CloudNativePG 1.19</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
   <hr/>
 </div>
-
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
@@ -252,6 +256,23 @@
 <p>For a complete list of changes, please refer to the
 <a href="https://github.com/cloudnative-pg/cloudnative-pg/commits/release-1.19">commits</a>
 on the release branch in GitHub.</p>
+<h2 id="version-1192">Version 1.19.2</h2>
+<p><strong>Release date:</strong> April 27, 2023</p>
+<p>Enhancements:</p>
+<ul>
+<li>Improve the <code>--logs</code> option of the <code>report</code> command of the <code>cnpg</code> plugin for
+  <code>kubectl</code> to also include the previous logs where available (#1811)</li>
+<li>The <code>-any</code> service is now disabled by default (#1755)</li>
+</ul>
+<p>Security:</p>
+<ul>
+<li>Enable customization of <code>SeccompProfile</code> through override via a local file (#1827)</li>
+</ul>
+<p>Fixes:</p>
+<ul>
+<li>Apply the PostgreSQL configuration provided by the user during the <code>initdb</code>
+  bootstrap phase, before the server is started the first time (#1858)</li>
+</ul>
 <h2 id="version-1191">Version 1.19.1</h2>
 <p><strong>Release date:</strong> March 20, 2023</p>
 <p>Enhancements:</p>
@@ -273,7 +294,7 @@ on the release branch in GitHub.</p>
 <li>Inject binaries for all supported architectures in the operator image (#1513)</li>
 <li>Use the backup name to match resources in the backup object store (#1650)
   Leverages the <code>--name</code> option introduced with Barman 3.3 to make the
-  association betwen backups and the object store more robust.</li>
+  association between backups and the object store more robust.</li>
 </ul>
 <p>Fixes:</p>
 <ul>
