@@ -235,6 +235,10 @@
                 </li>
               </ul>
               <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../declarative_hibernation/">Declarative hibernation</a>
+                </li>
+              </ul>
+              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../postgis/">PostGIS</a>
                 </li>
               </ul>
@@ -295,13 +299,13 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li><li>CloudNativePG Plugin</li>
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+      <li>CloudNativePG Plugin</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
   <hr/>
 </div>
-
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
@@ -733,7 +737,31 @@ directory tidy:</p>
   inflating: report_operator_&lt;TIMESTAMP&gt;/manifests/cnpg-ca-secret.yaml
   inflating: report_operator_&lt;TIMESTAMP&gt;/manifests/cnpg-webhook-cert.yaml
 </code></pre>
-<p>You can verify that the confidential information is REDACTED:</p>
+<p>If you activated the <code>--logs</code> option, you'd see an extra subdirectory:</p>
+<pre><code class="language-shell">Archive:  report_operator_&lt;TIMESTAMP&gt;.zip
+  &lt;snipped …&gt;
+  creating: report_operator_&lt;TIMESTAMP&gt;/operator-logs/
+  inflating: report_operator_&lt;TIMESTAMP&gt;/operator-logs/cnpg-controller-manager-66fb98dbc5-pxkmh-logs.jsonl
+</code></pre>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The plugin will try to get the PREVIOUS operator's logs, which is helpful
+when investigating restarted operators.
+In all cases, it will also try to get the CURRENT operator logs. If current
+and previous logs are available, it will show them both.</p>
+</div>
+<pre><code class="language-json">====== Begin of Previous Log =====
+2023-03-28T12:56:41.251711811Z {&quot;level&quot;:&quot;info&quot;,&quot;ts&quot;:&quot;2023-03-28T12:56:41Z&quot;,&quot;logger&quot;:&quot;setup&quot;,&quot;msg&quot;:&quot;Starting CloudNativePG Operator&quot;,&quot;version&quot;:&quot;1.19.1&quot;,&quot;build&quot;:{&quot;Version&quot;:&quot;1.19.0+dev107&quot;,&quot;Commit&quot;:&quot;cc9bab17&quot;,&quot;Date&quot;:&quot;2023-03-28&quot;}}
+2023-03-28T12:56:41.251851909Z {&quot;level&quot;:&quot;info&quot;,&quot;ts&quot;:&quot;2023-03-28T12:56:41Z&quot;,&quot;logger&quot;:&quot;setup&quot;,&quot;msg&quot;:&quot;Starting pprof HTTP server&quot;,&quot;addr&quot;:&quot;0.0.0.0:6060&quot;}
+  &lt;snipped …&gt;
+
+====== End of Previous Log =====
+2023-03-28T12:57:09.854306024Z {&quot;level&quot;:&quot;info&quot;,&quot;ts&quot;:&quot;2023-03-28T12:57:09Z&quot;,&quot;logger&quot;:&quot;setup&quot;,&quot;msg&quot;:&quot;Starting CloudNativePG Operator&quot;,&quot;version&quot;:&quot;1.19.1&quot;,&quot;build&quot;:{&quot;Version&quot;:&quot;1.19.0+dev107&quot;,&quot;Commit&quot;:&quot;cc9bab17&quot;,&quot;Date&quot;:&quot;2023-03-28&quot;}}
+2023-03-28T12:57:09.854363943Z {&quot;level&quot;:&quot;info&quot;,&quot;ts&quot;:&quot;2023-03-28T12:57:09Z&quot;,&quot;logger&quot;:&quot;setup&quot;,&quot;msg&quot;:&quot;Starting pprof HTTP server&quot;,&quot;addr&quot;:&quot;0.0.0.0:6060&quot;}
+</code></pre>
+<p>If the operator hasn't been restarted, you'll still see the <code>====== Begin …</code>
+and  <code>====== End …</code> guards, with no content inside.</p>
+<p>You can verify that the confidential information is REDACTED by default:</p>
 <pre><code class="language-shell">cd report_operator_&lt;TIMESTAMP&gt;/manifests/
 head cnpg-ca-secret.yaml
 </code></pre>

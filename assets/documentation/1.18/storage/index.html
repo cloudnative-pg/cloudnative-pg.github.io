@@ -121,6 +121,8 @@
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#benchmarking-cloudnativepg">Benchmarking CloudNativePG</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#encryption-at-rest">Encryption at rest</a>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#persistent-volume-claim">Persistent Volume Claim</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#configuration-via-a-storage-class">Configuration via a storage class</a>
@@ -203,6 +205,10 @@
                 </li>
               </ul>
               <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../declarative_hibernation/">Declarative hibernation</a>
+                </li>
+              </ul>
+              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../postgis/">PostGIS</a>
                 </li>
               </ul>
@@ -263,13 +269,13 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li><li>Storage</li>
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+      <li>Storage</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
   <hr/>
 </div>
-
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
@@ -309,6 +315,13 @@ workloads. Our advice is to clearly set performance expectations by
 first benchmarking the storage using tools such as <a href="https://fio.readthedocs.io/en/latest/fio_doc.html">fio</a>,
 and then the database using <a href="https://www.postgresql.org/docs/current/pgbench.html">pgbench</a>.</p>
 </div>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>CloudNativePG does not use <code>StatefulSet</code>s for managing data persistence.
+Rather, it manages persistent volume claims (PVCs) directly. If you want
+to know more, please read the
+<a href="../controller/">"Custom Pod Controller"</a> document.</p>
+</div>
 <h2 id="benchmarking-cloudnativepg">Benchmarking CloudNativePG</h2>
 <p>EDB maintains <a href="https://github.com/EnterpriseDB/cnp-bench">cnp-bench</a>,
 an open source set of guidelines and Helm charts for benchmarking CloudNativePG
@@ -334,6 +347,10 @@ writes will turn out to be extremely useful in those situations. Especially in
 shared-nothing contexts, where results do not vary due to the influence of external workloads.
 <strong>Know your system, benchmark it.</strong></p>
 </div>
+<h2 id="encryption-at-rest">Encryption at rest</h2>
+<p>Encryption at rest is possible with CloudNativePG. The operator delegates that
+to the underlying storage class. Please refer to the storage class for
+information about this important security feature.</p>
 <h2 id="persistent-volume-claim">Persistent Volume Claim</h2>
 <p>The operator creates a persistent volume claim (PVC) for each PostgreSQL
 instance, with the goal to store the <code>PGDATA</code>, and then mounts it into each Pod.</p>
@@ -343,6 +360,12 @@ on which to store PostgreSQL Write-Ahead Log (WAL), as explained in the
 <p>In CloudNativePG, the volumes attached to a single PostgreSQL instance
 are defined as <strong>PVC group</strong>.</p>
 <h2 id="configuration-via-a-storage-class">Configuration via a storage class</h2>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>CloudNativePG has been designed to be storage class agnostic.
+As usual, our recommendation is to properly benchmark the storage class
+in a controlled environment, before deploying to production.</p>
+</div>
 <p>The easier way to configure the storage for a PostgreSQL class is to just
 request storage of a certain size, like in the following example:</p>
 <pre><code class="language-yaml">apiVersion: postgresql.cnpg.io/v1
@@ -367,12 +390,6 @@ spec:
     storageClass: standard
     size: 1Gi
 </code></pre>
-<div class="admonition important">
-<p class="admonition-title">Important</p>
-<p>CloudNativePG has been designed to be storage class agnostic.
-As usual, our recommendation is to properly benchmark the storage class
-in a controlled environment, before hitting production.</p>
-</div>
 <h2 id="configuration-via-a-pvc-template">Configuration via a PVC template</h2>
 <p>To further customize the generated PVCs, you can provide a PVC template inside the Custom Resource,
 like in the following example:</p>

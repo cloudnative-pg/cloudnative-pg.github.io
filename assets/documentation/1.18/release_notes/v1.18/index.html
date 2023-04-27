@@ -177,6 +177,10 @@
                 </li>
               </ul>
               <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../declarative_hibernation/">Declarative hibernation</a>
+                </li>
+              </ul>
+              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../../postgis/">PostGIS</a>
                 </li>
               </ul>
@@ -237,13 +241,13 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href="../.." class="icon icon-home" alt="Docs"></a> &raquo;</li><li>Release notes for CloudNativePG 1.18</li>
+    <li><a href="../.." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+      <li>Release notes for CloudNativePG 1.18</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
   <hr/>
 </div>
-
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
@@ -252,6 +256,37 @@
 <p>For a complete list of changes, please refer to the
 <a href="https://github.com/cloudnative-pg/cloudnative-pg/commits/release-1.18">commits</a>
 on the release branch in GitHub.</p>
+<h2 id="version-1184">Version 1.18.4</h2>
+<p><strong>Release date:</strong> April 27, 2023</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><strong>Version 1.18 will reach its End-of-Life (EOL) on May 27, 2023</strong>.
+If you haven't upgraded yet, please start planning an upgrade
+as soon as possible.</p>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>CloudNativePG is dropping support for PostgreSQL 10, as PostgreSQL 10
+reached End-of-Life (EOL) in November 2022. Versions 11 and newer are
+supported. Please plan your migration to PostgreSQL 15 as soon as possible.
+Refer to <a href="https://cloudnative-pg.io/documentation/current/database_import/">"Importing Postgres databases"</a>
+for more information on PostgreSQL major offline upgrades.</p>
+</div>
+<p>Enhancements:</p>
+<ul>
+<li>Improve the <code>--logs</code> option of the <code>report</code> command of the <code>cnpg</code> plugin for
+  <code>kubectl</code> to also include the previous logs where available (#1811)</li>
+<li>The <code>-any</code> service is now disabled by default (#1755)</li>
+</ul>
+<p>Security:</p>
+<ul>
+<li>Enable customization of <code>SeccompProfile</code> through override via a local file (#1827)</li>
+</ul>
+<p>Fixes:</p>
+<ul>
+<li>Apply the PostgreSQL configuration provided by the user during the <code>initdb</code>
+  bootstrap phase, before the server is started the first time (#1858)</li>
+</ul>
 <h2 id="version-1183">Version 1.18.3</h2>
 <p><strong>Release date:</strong> March 20, 2023</p>
 <p>Enhancements:</p>
@@ -271,7 +306,7 @@ on the release branch in GitHub.</p>
 <li>Inject binaries for all supported architectures in the operator image (#1513)</li>
 <li>Use the backup name to match resources in the backup object store (#1650)
   Leverages the <code>--name</code> option introduced with Barman 3.3 to make the
-  association betwen backups and the object store more robust.</li>
+  association between backups and the object store more robust.</li>
 </ul>
 <p>Fixes:</p>
 <ul>
@@ -338,7 +373,7 @@ on the release branch in GitHub.</p>
   account template that can be used, for example, to make authentication easier
   via identity management on GKE or EKS via IRSA (#1105)</li>
 <li>Add <code>nodeAffinity</code> support (#1182) - allows for richer scheduling options</li>
-<li>Improve compatibility with Istio: add support for Istio’s quit endpoint so
+<li>Improve compatibility with Istio: add support for Istio's quit endpoint so
   that jobs with Istio sidecars do not run indefinitely (#967)</li>
 <li>Allow fields remapping in JSON logs: helpful for use cases where the <code>level</code>
   and <code>ts</code> fields might interfere with the  existing logging (#843)</li>

@@ -97,6 +97,8 @@
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#postgresql">PostgreSQL</a>
     </li>
+    <li class="toctree-l3"><a class="reference internal" href="#storage">Storage</a>
+    </li>
         </ul>
     </li>
     </ul>
@@ -203,6 +205,10 @@
                 </li>
               </ul>
               <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../declarative_hibernation/">Declarative hibernation</a>
+                </li>
+              </ul>
+              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../postgis/">PostGIS</a>
                 </li>
               </ul>
@@ -263,13 +269,13 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li><li>Security</li>
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+      <li>Security</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
   <hr/>
 </div>
-
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
@@ -610,6 +616,10 @@ manifest are added to a default <code>pg_hba.conf</code>.</p>
 <p class="admonition-title">Important</p>
 <p>Examples assume that the Kubernetes cluster runs in a private and secure network.</p>
 </div>
+<h3 id="storage">Storage</h3>
+<p>CloudNativePG delegates encryption at rest to the underlying storage class. For
+data protection in production environments, we highly recommend that you choose
+a storage class that supports encryption at rest.</p>
               
             </div>
           </div><footer>

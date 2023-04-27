@@ -189,6 +189,10 @@
                 </li>
               </ul>
               <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../declarative_hibernation/">Declarative hibernation</a>
+                </li>
+              </ul>
+              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../postgis/">PostGIS</a>
                 </li>
               </ul>
@@ -249,13 +253,13 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li><li>Operator configuration</li>
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+      <li>Operator configuration</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
   <hr/>
 </div>
-
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
@@ -327,6 +331,10 @@ As a result, if a parameter is defined in both places, the one in the Secret wil
 <tr>
 <td><code>MONITORING_QUERIES_SECRET</code></td>
 <td>The name of a Secret in the operator's namespace with a set of default queries (to be specified under the key <code>queries</code>) to be applied to all created Clusters</td>
+</tr>
+<tr>
+<td><code>CREATE_ANY_SERVICE</code></td>
+<td>when set to <code>true</code>, will create <code>-any</code> service for the cluster. Default is <code>false</code></td>
 </tr>
 </tbody>
 </table>
