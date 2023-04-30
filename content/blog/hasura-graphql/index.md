@@ -14,77 +14,93 @@ summary: |
   using GraphQL
 ---
 
-CloudNativePG is a production-grade PostgreSQL operator for Kubernetes and a way
-to bootstrap a comfortable development environment.
+CloudNativePG is a production-grade PostgreSQL operator for Kubernetes. It is
+also a good way to bootstrap a comfortable development environment.
 
-In this blog post, we'll create a CloudNative-PG cluster with a few example
-tables, and we'll use Hasura to bootstrap a GraphQL API to be used by your
-application to load and store data efficiently.
+In this blog post, we'll create a CloudNativePG cluster with a few example
+tables, and we'll use [Hasura](https://hasura.io) to bootstrap a
+[GraphQL](https://graphql.org) API that your
+application can use to store and retrieve data efficiently.
 
-A Kubernetes cluster is required to follow this tutorial, and Docker and Kind
-are a great combo if you need to create one on your laptop.
+## Getting set up with Kubernetes and KinD
 
-# Installing CloudNative-PG
+A Kubernetes cluster is required to follow this tutorial.
+You can create a test cluster on your laptop using Docker and
+[KinD](https://kind.sigs.k8s.io/docs/user/quick-start/).
+You will also need the CLI tool `kubectl`. Please refer to
+the [kubernetes guide](https://kubernetes.io/docs/tasks/tools/)
+for details.
 
-To install it, we'll follow the [installation and
+## Installing CloudNativePG
+
+To install CloudNativePG, we'll follow the [installation and
 upgrade](https://cloudnative-pg.io/documentation/latest/installation_upgrade/)
-section of the CloudNative-PG website.
+section of the CloudNativePG website.
 
-At the time of writing this article, the latest version is 1.20:
+At the time of writing, the latest version is 1.20. The following
+command will deploy the CloudNativePG operator on your local Kubernetes cluster:
 
 ```shell
 kubectl apply -f https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/release-1.20/releases/cnpg-1.20.0.yaml
 ```
 
-To be on the safe side, we want to wait until CloudNative-PG is up and running.
-It's enough to wait until the ready column shows `1/1`:
+We should wait until CloudNativePG is up and running.
+It's enough to wait until the READY column shows `1/1`. Should be a few seconds:
 
-```
+``` sh
 $ kubectl get deployments -n cnpg-system
 NAME                      READY   UP-TO-DATE   AVAILABLE   AGE
 cnpg-controller-manager   1/1     1            1           6d16h
 ```
 
-# Creating the PostgreSQL cluster.
+## Creating a PostgreSQL cluster
 
-The minimal CloudNative-PG cluster creates an HA architecture with one primary
-and two replicas. It's enough to quickly create a sandbox:
+The simplest CloudNativePG example cluster creates a High-Availability
+architecture with a primary database node and two replicas. We can simply
+apply the example manifest included with CloudNativePG:
 
-```
+``` sh
 $ kubectl apply -f https://cloudnative-pg.io/documentation/1.20/samples/cluster-example.yaml
 cluster.postgresql.cnpg.io/cluster-example created
 ```
 
 We should now wait for the cluster to be up and running:
 
-```
+``` sh
 $ kubectl wait --for=condition=Ready cluster/cluster-example
 cluster.postgresql.cnpg.io/cluster-example condition met
 ```
 
-# Installing Hasura
+Now we have our sandbox ready for testing.
 
-The Hasura GraphQL GitHub repo [hosts some Kubernetes
+## Installing Hasura
+
+The Hasura GraphQL GitHub repo [includes some Kubernetes
 manifests](https://github.com/hasura/graphql-engine/tree/stable/install-manifests/kubernetes)
-we can start with.
+we can use as a starting point.
 
-The [relative Hasura documentation
-page](https://hasura.io/docs/latest/deployment/deployment-guides/kubernetes/)
-contains more information about them. 
+The [Hasura documentation](https://hasura.io/docs/latest/deployment/deployment-guides/kubernetes/)
+contains more information about the Kubernetes manifests.
 
-We must inject our PostgreSQL credentials into the deployment manifest, and
-we'll do that using the secret automatically created by the operator.
+We must inject our PostgreSQL credentials into the Hasura deployment manifest,
+and we'll do that using the secret automatically created by the CloudNativePG
+operator.
 
 CloudNative-PG creates an unprivileged user called `app` (you can override the
-name) for applications to use. The `cluster-example-app` secret contains its
-credentials.
+name) for applications to use. It uses [*secrets*](https://kubernetes.io/docs/concepts/configuration/secret/)
+to manage user credentials.
+The `cluster-example-app` secret created by the operator contains the
+credentials for the `app` user.
 
-The `cluster-example-rw` service will always target the primary instance, and we
-will use that.
+CloudNativePG creates some [*services*](https://kubernetes.io/docs/concepts/services-networking/service/) to expose and manage the database network
+connections. In particular, given our cluster named `cluster-example`, there
+is a `cluster-example-rw` service always targeting the primary instance. We
+will use the service for connection.
 
 We will:
 
-* Inject the password into the `PGPASSWORD` environment variable
+* Inject the password into the `PGPASSWORD` environment variable in the Hasura
+  manifest
 * Use `cluster-example-app-rw` as a target hostname.
 * Use `app` as the database name.
 
@@ -109,32 +125,63 @@ spec:
               key: password
 ```
 
-The complete manifest can be found in [hasura-deployment.yaml].
+The complete manifest can be found in the file [`hasura-deployment.yaml`](hasura-deployment.yaml).
+
+You can deploy it with:
+
+``` sh
+kubectl apply -f hasura-deployment.yaml
+```
+
+And make sure it came up:
+
+``` sh
+$ kubectl get deployments
+NAME     READY   UP-TO-DATE   AVAILABLE   AGE
+hasura   1/1     1            1           30s
+```
 
 We now need a service for our applications to use. An example can be found in
-[hasura-service.yaml].
+the file [hasura-service.yaml](hasura-service.yaml).
 
-# Play with Hasura's UI
+Again, we can simply apply it:
+
+``` sh
+kubectl apply -f hasura-service.yaml
+```
+
+We should see the hasura service, along with the services CloudNativePG created
+for our database cluster:
+
+``` sh
+$ kubectl get services                
+NAME                 TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE
+…
+cluster-example-rw   ClusterIP   10.96.164.82    <none>        5432/TCP   19m
+hasura               ClusterIP   10.96.57.238    <none>        80/TCP     7s
+```
+
+## Playing with Hasura's UI
 
 Now you can create tables and play with GraphQL using Hasura's UI. All we need
 is to expose Hasura's service to our computer with the following:
 
-```
+``` sh
 $ kubectl port-forward service/hasura 8080:80
 Forwarding from 127.0.0.1:8080 -> 8080
 Forwarding from [::1]:8080 -> 8080
 Handling connection for 8080
-``` 
+```
 
-We can now access Hasura at http://localhost:8080.
+We can now access Hasura as a local website at
+[http://localhost:8080](http://localhost:8080).
 
 ![hasura](hasura.png)
 
-
-# Migrations
+## Migrations
 
 Hasura maps the GraphQL schema to the PostgreSQL tables by storing metadata
-inside the database. Metadata are managed and versioned in an Hasura project
+inside the database. Metadata are managed and versioned in a Hasura project
 which is applied to the database via the Hasura CLI.
 
 The project we're use for this blog article can be found
@@ -142,19 +189,19 @@ The project we're use for this blog article can be found
 
 Hasura projects can be scaffolded with:
 
-```
+``` sh
 $ hasura init
 ```
 
 To create new tables, we need to create a new migration and we can do that with:
 
-```
+``` sh
 $ hasura migrate create init
 ```
 
 Migrations are composed of two SQL files: `up.sql` and `down.sql`.
 
-We'll put the queries creating our tables in `up.sql`:
+We'll put the queries to creat our tables in `up.sql`:
 
 ```sql
 CREATE TABLE authors (
@@ -187,7 +234,7 @@ DROP TABLE authors;
 
 After having created the migration we can apply it with:
 
-```
+``` sh
 $ hasura migrate apply
 ```
 
@@ -195,13 +242,13 @@ $ hasura migrate apply
 commit](https://github.com/leonardoce/hasura-blog/commit/e75cfbb7a262f286d818e471904da314875bef58)
 contains the migrations code.
 
-# Mapping the SQL schema to GraphQL
+## Mapping the SQL schema to GraphQL
 
 We need now to map the tables and the relationship in our database in a GraphQL
 schema.
 
 The easiest way to do this is to use the Hasura GUI you have at
-http://localhost:8080 and:
+[http://localhost:8080](http://localhost:8080) and:
 
 1. click on the `Data` tab, and inside the `default` database choose the
    `public` schema
@@ -224,12 +271,12 @@ $ hasura metadata export
 
 [This commit contains the generated metadata](https://github.com/leonardoce/hasura-blog/commit/32fd8a202f42fb07fe25e2c66c1fbac26cbb2d96)
 
-# Executing our first mutation
+## Executing our first mutation
 
 We can now execute our first GraphQL mutation on this database to create a new
 article and a new author at the same time:
 
-This is the mutatation we need:
+This is the mutation we need:
 
 ```graphql
 mutation AddArticle($title: String, $content: String, $author: String) {
@@ -273,14 +320,14 @@ The result of this mutation will be:
 }
 ```
 
-The easiest way to execute a GraphQL query is to use the GraphiQL instance
+The easiest way to execute a GraphQL query is to use the GraphQL instance
 embedded in the Hasura web interface.
 
-![graphiql](hasura-graphiql.png)
+![graphql](hasura-graphiql.png)
 
-# GraphQL queries
+## GraphQL queries
 
-With the same GraphiQL interface, we can run queries such as:
+With the same GraphQL interface, we can run queries such as:
 
 ```graphql
 {
