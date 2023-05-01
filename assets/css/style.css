@@ -177,7 +177,6 @@ h4,
 h5,
 h6,
 p,
-code,
 ul,
 tr,
 th,
@@ -351,4 +350,16 @@ ul {
 header ul,
 header li {
     list-style-type: none;
+}
+
+code {
+    font-size: 0.85em;
+}
+
+:not(pre) code {
+    color: brown;
+}
+
+pre {
+    overflow: scroll;
 }
