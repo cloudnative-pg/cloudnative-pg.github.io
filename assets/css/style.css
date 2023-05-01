@@ -356,10 +356,14 @@ code {
     font-size: 0.85em;
 }
 
-:not(pre) code {
+code {
     color: brown;
 }
 
 pre {
     overflow: scroll;
+}
+
+pre code {
+    color: white;
 }
