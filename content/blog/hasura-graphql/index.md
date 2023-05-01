@@ -15,7 +15,7 @@ summary: |
 ---
 
 CloudNativePG is a production-grade PostgreSQL operator for Kubernetes. It is
-also a good way to bootstrap a comfortable development environment.
+also a great way to bootstrap a comfortable development environment.
 
 In this blog post, we'll create a CloudNativePG cluster with a few example
 tables, and we'll use [Hasura](https://hasura.io) to bootstrap a
@@ -34,7 +34,7 @@ for details.
 ## Installing CloudNativePG
 
 To install CloudNativePG, we'll follow the [installation and
-upgrade](https://cloudnative-pg.io/documentation/latest/installation_upgrade/)
+upgrade](https://cloudnative-pg.io/documentation/current/installation_upgrade/)
 section of the CloudNativePG website.
 
 At the time of writing, the latest version is 1.20. The following
@@ -78,26 +78,26 @@ Now we have our sandbox ready for testing.
 The Hasura GraphQL GitHub repo [includes some Kubernetes
 manifests](https://github.com/hasura/graphql-engine/tree/stable/install-manifests/kubernetes)
 we can use as a starting point.
-
-The [Hasura documentation](https://hasura.io/docs/latest/deployment/deployment-guides/kubernetes/)
-contains more information about the Kubernetes manifests.
+Please refere to the [Hasura documentation](https://hasura.io/docs/latest/deployment/deployment-guides/kubernetes/)
+for further information about the Kubernetes manifests.
 
 We must inject our PostgreSQL credentials into the Hasura deployment manifest,
 and we'll do that using the secret automatically created by the CloudNativePG
 operator.
 
-CloudNative-PG creates an unprivileged user called `app` (you can override the
+CloudNativePG creates an unprivileged user called `app` (you can override the
 name) for applications to use. It uses [*secrets*](https://kubernetes.io/docs/concepts/configuration/secret/)
 to manage user credentials.
 The `cluster-example-app` secret created by the operator contains the
 credentials for the `app` user.
+A database called `app` is also created, and set as owned by the `app` user.
 
 CloudNativePG creates some [*services*](https://kubernetes.io/docs/concepts/services-networking/service/) to expose and manage the database network
 connections. In particular, given our cluster named `cluster-example`, there
 is a `cluster-example-rw` service always targeting the primary instance. We
 will use the service for connection.
 
-We will:
+To connect our PostgreSQL cluster to the Hasura deployment, then, we will:
 
 * Inject the password into the `PGPASSWORD` environment variable in the Hasura
   manifest
@@ -143,7 +143,6 @@ hasura   1/1     1            1           30s
 
 We now need a service for our applications to use. An example can be found in
 the file [hasura-service.yaml](hasura-service.yaml).
-
 Again, we can simply apply it:
 
 ``` sh
@@ -180,28 +179,50 @@ We can now access Hasura as a local website at
 
 ## Migrations
 
-Hasura maps the GraphQL schema to the PostgreSQL tables by storing metadata
-inside the database. Metadata are managed and versioned in a Hasura project
+Hasura maps GraphQL schemas to PostgreSQL tables by storing metadata
+inside the database. Metadata are managed and versioned in a Hasura project,
 which is applied to the database via the Hasura CLI.
 
-The project we're use for this blog article can be found
+To follow this section, you will need to [install the Hasura CLI](https://hasura.io/docs/latest/hasura-cli/install-hasura-cli/)
+
+The project we're going to use for this blog article can be found
 [here](https://github.com/leonardoce/hasura-blog).
 
-Hasura projects can be scaffolded with:
+Hasura projects can be scaffolded with `init`, which will create a new project
+folder[^1]:
 
 ``` sh
 $ hasura init
+? Name of project directory ? hasura
+INFO directory created. execute the following commands to continue:
+
+  cd hasura
+  hasura console 
 ```
 
-To create new tables, we need to create a new migration and we can do that with:
+To create new tables, we'll need to create a new migration. We can do that with:
 
 ``` sh
 $ hasura migrate create init
+? Select a database to use default
+INFO Created Migrations                           
+INFO Migrations files created                      name=init version=1682932686238
 ```
 
-Migrations are composed of two SQL files: `up.sql` and `down.sql`.
+In the above, we accepted the default `default` database proposed by the CLI.
 
-We'll put the queries to creat our tables in `up.sql`:
+Migrations are composed of two SQL files: `up.sql` and `down.sql`. The command
+above created a new directory called `migrations` inside the project directory,
+with a subdirectory for the database (`default`), and inside it a subdirectory
+for the migration we're about to apply:
+
+``` sh
+$ cd migrations/default/<version-ID>_init
+$ ls
+down.sql  up.sql
+```
+
+We'll add the queries to create our tables in `up.sql`:
 
 ```sql
 CREATE TABLE authors (
@@ -224,7 +245,7 @@ CREATE TABLE comments (
 );
 ```
 
-And the queries deleting them in `down.sql`:
+And the queries deleting the tables in `down.sql`:
 
 ```sql
 DROP TABLE comments;
@@ -246,7 +267,6 @@ contains the migrations code.
 
 We need now to map the tables and the relationship in our database in a GraphQL
 schema.
-
 The easiest way to do this is to use the Hasura GUI you have at
 [http://localhost:8080](http://localhost:8080) and:
 
@@ -262,7 +282,6 @@ The easiest way to do this is to use the Hasura GUI you have at
 ![tracking relationships](hasura-metadata-2.png)
 
 Having done that, we need our Hasura project to reflect what we did..
-
 We can do that with:
 
 ```
@@ -273,10 +292,10 @@ $ hasura metadata export
 
 ## Executing our first mutation
 
-We can now execute our first GraphQL mutation on this database to create a new
+We can now execute our first GraphQL mutation on our database to create a new
 article and a new author at the same time:
 
-This is the mutation we need:
+This is the mutation we would like to apply:
 
 ```graphql
 mutation AddArticle($title: String, $content: String, $author: String) {
@@ -298,7 +317,8 @@ mutation AddArticle($title: String, $content: String, $author: String) {
 }
 ```
 
-We need to feed this JSON variables to our mutation.
+To run the mutation, we will need to supply it with variables. We can do
+that with the following JSON, for example.
 
 ```json
 {
@@ -308,7 +328,7 @@ We need to feed this JSON variables to our mutation.
 }
 ```
 
-The result of this mutation will be:
+The result of the mutation applied to this argument will be:
 
 ```json
 {
@@ -320,14 +340,15 @@ The result of this mutation will be:
 }
 ```
 
-The easiest way to execute a GraphQL query is to use the GraphQL instance
-embedded in the Hasura web interface.
+The easiest way to execute our GraphQL query is to use the GraphQL instance
+embedded in the Hasura web interface, and paste our mutation and the query
+variables into the text areas shown here.
 
 ![graphql](hasura-graphiql.png)
 
 ## GraphQL queries
 
-With the same GraphQL interface, we can run queries such as:
+On the GraphQL interface, we can also run read queries such as:
 
 ```graphql
 {
@@ -338,7 +359,8 @@ With the same GraphQL interface, we can run queries such as:
 }
 ```
 
-having this result:
+similar to before, run by pasting it into the top text area, and leaving the
+*QUERY VARIABLES* text area empty. We should get this result:
 
 ```json
 {
@@ -357,7 +379,8 @@ having this result:
 }
 ```
 
-Or:
+A fuller query will provide us with the list of articles together with their
+authors:
 
 ```graphql
 {
@@ -370,7 +393,7 @@ Or:
 }
 ```
 
-With the following result:
+With a result like:
 
 ```json
   {
@@ -404,3 +427,17 @@ With the following result:
   }
 }
 ```
+
+GraphQL makes for a very interesting model to query your database backend from
+your applications. Getting composite data from several tables so easily, and
+returned in JSON format for easy parsing, can simplify your development.
+
+There is a great multiplier effect when using Kubernetes to deploy your database
+and your application. With CloudNativePG, you got a high-availability running in
+no time, and integrated with Hasura with little effort.
+
+Magic!
+
+[^1]: note that the `hasura` CLI will try to connect to a hasura server
+listening on port 8080, which you have already created with the port-forwarding
+command issued after the deployment
