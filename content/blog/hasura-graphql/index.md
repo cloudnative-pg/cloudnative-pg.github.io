@@ -9,6 +9,7 @@ tags:
  - graphql
  - kubernetes
  - k8s
+ - tutorial
 summary: |
   How to bootstrap a development environment for a modern application
   using GraphQL
