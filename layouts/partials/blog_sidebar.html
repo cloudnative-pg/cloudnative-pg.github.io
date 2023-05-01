@@ -25,8 +25,7 @@
         <div class="space-y-10 px-4">
             <!--card 1 starts here-->
             {{ range first 6  (.Site.GetPage "/blog").Pages}}
-            <div class="p-8 bg-white drop-shadow-md md:w-2/6 rounded-md border-2 border-slate-50"
-              style="display: inline-grid; vertical-align:super; min-width: 300px; max-width: 300px">
+            <div class="p-8 bg-white drop-shadow-md md:w-2/6 rounded-md border-2 border-slate-50 align-super inline-grid min-w-min max-w-xs">
                 <!--User profile-->
                 <div class="flex gap-3 mb-2.5">
                     {{ partial "author_sidebar.html" . }}
