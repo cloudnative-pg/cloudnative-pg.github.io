@@ -2,7 +2,7 @@
 title: "CloudNativePG and Hasura: should we be scared by demons?"
 date: 2023-05-01T09:00:00+02:00
 draft: true
-author: leonardoce
+author: leonardoce, jsilvela
 tags:
  - cloudnativepg
  - hasura
@@ -10,6 +10,9 @@ tags:
  - kubernetes
  - k8s
  - tutorial
+image:
+    url: dream_surreal_composition_elephant_giraffe_auto_island-1339293.jpg
+    attribution: from <strong><a href="https://pxhere.com/en/photo/1339293">PxHere</a></strong>
 summary: |
   How to bootstrap a development environment for a modern application
   using GraphQL
