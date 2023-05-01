@@ -1,6 +1,6 @@
 {{ define "main" }}
-<h1 class="h1 text-center mx-auto w-3/5">{{.Title}}</h1>
-<div class="w-3/5 mx-auto">
+<h1 class="h1 text-center mx-auto md:w-3/5">{{.Title}}</h1>
+<div class="md:w-3/5 mx-auto">
     <div class="px-4">
         <!--User profile-->
         <div class="flex gap-3 my-10 mx-auto flex justify-center">
@@ -10,7 +10,7 @@
 
         <!--Blog image-->
         <div>
-            <img src="{{ .Params.image.url }}" alt="blog image" class="h-80 mx-auto">
+            <img src="{{ .Params.image.url }}" alt="blog image" class="mx-auto">
         </div>
         <!--Blog image-->
 
