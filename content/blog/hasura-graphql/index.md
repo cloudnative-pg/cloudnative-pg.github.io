@@ -79,7 +79,7 @@ Now we have our sandbox ready for testing.
 The Hasura GraphQL GitHub repo [includes some Kubernetes
 manifests](https://github.com/hasura/graphql-engine/tree/stable/install-manifests/kubernetes)
 we can use as a starting point.
-Please refere to the [Hasura documentation](https://hasura.io/docs/latest/deployment/deployment-guides/kubernetes/)
+Please refer to the [Hasura documentation](https://hasura.io/docs/latest/deployment/deployment-guides/kubernetes/)
 for further information about the Kubernetes manifests.
 
 We must inject our PostgreSQL credentials into the Hasura deployment manifest,
