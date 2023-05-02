@@ -8,11 +8,21 @@
     <language>en-us</language><atom:link href="https://cloudnative-pg.io/authors/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title></title>
+      <link>https://cloudnative-pg.io/authors/gbartolini/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://cloudnative-pg.io/authors/gbartolini/</guid>
+      <description>A long time open source programmer and entrepreneur, Gabriele has a degree in Statistics from the University of Florence. After having consistently contributed to the growth of 2ndQuadrant and its members through nurturing a lean and devops culture, he is now leading the Cloud Native initiative at EDB. Gabriele lives in Prato, a small but vibrant city located in the northern part of Tuscany, Italy - known for having hosted the first European PostgreSQL conferences.</description>
+    </item>
+    
+    <item>
+      <title></title>
       <link>https://cloudnative-pg.io/authors/jsilvela/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://cloudnative-pg.io/authors/jsilvela/</guid>
-      <description></description>
+      <description>Jaime Silvela has been around. In a career spanning two decades writing code, he has lived in the US and Europe, worked for big corporations like Amazon and Microsoft, as an early startup employee, in industries including Wall Steet and catastrophe insurance.
+He discovered a fondness for SQL and PostgreSQL in particular years ago. He started using Go professionally in 2014, after having suffered Java, and he is very proud to be able to put his skills to use on CloudNativePG.</description>
     </item>
     
   </channel>
