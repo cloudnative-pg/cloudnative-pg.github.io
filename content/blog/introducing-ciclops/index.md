@@ -9,12 +9,12 @@ author: jsilvela
 tags:
  - blog
  - information
- - continuous integration
+ - continuous-integration
  - ci/cd
  - testing
- - github action
+ - github-action
  - devops
- - continuous delivery
+ - continuous-delivery
 summary: Introducing Ciclops, a GitHub Action to make sense of Testing
 ---
 At CloudNativePG we take testing seriously; particularly end-to-end testing. The

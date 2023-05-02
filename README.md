@@ -22,12 +22,14 @@ in the `production` branch.
 Build locally (once you've installed Hugo & npm):
 
 With drafts:
-```
+
+``` sh
 npm install && npm run dev
 ```
 
 As the GH Action builds (excludes draft content):
-```
+
+``` sh
 npm install && npm run prod
 ```
 
@@ -43,7 +45,7 @@ CSS is partly built by hugo & partly built outside of hugo by `npm run css`, whi
 
 Before you write a blog, you should add yourself to the list of authors:
 
-```
+``` sh
 hugo new authors/$your_github_handle
 ```
 
@@ -51,13 +53,13 @@ and edit the resulting files (`authors/$your_github_handle/index.md` & `authors/
 
 For example:
 
-```
+``` sh
 hugo new authors/drsm79
 ```
 
 Add a draft blog post by running:
 
-```
+``` sh
 hugo new blog/first-post
 ```
 
