@@ -203,20 +203,21 @@ h1 {
     font-size: 2.25rem; /* 36px */
     line-height: 2.5rem; /* 40px */
     letter-spacing: -0.015em;
+    padding-bottom: 1rem; /* 16px */
 }
 
 h2 {
     font-size: 1.875rem; /* 30px */
     line-height: 2.25rem; /* 36px */
     letter-spacing: -0.005em;
-    padding-bottom: 16px;
+    padding-bottom: 1rem; /* 16px */
 }
 
 h3 {
     font-size: 1.5rem; /* 24px */
     line-height: 2rem; /* 32px */
     padding-top: 16px;
-    padding-bottom: 16px;
+    padding-bottom: 1rem; /* 16px */
 }
 
 h4 {
@@ -349,6 +350,7 @@ ul {
 
 header ul,
 header li {
+    margin-left: 0;
     list-style-type: none;
 }
 
