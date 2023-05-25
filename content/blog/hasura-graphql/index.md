@@ -2,7 +2,7 @@
 title: "CloudNativePG and Hasura: should we be scared by demons?"
 date: 2023-05-01T09:00:00+02:00
 draft: true
-author: leonardoce, jsilvela
+author: leonardoce
 tags:
  - cloudnativepg
  - hasura
