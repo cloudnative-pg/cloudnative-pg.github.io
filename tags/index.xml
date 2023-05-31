@@ -6,20 +6,38 @@
     <description>Recent content in Tags on CloudNativePG - PostgreSQL Operator for Kubernetes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 27 Apr 2023 15:29:36 +0200</lastBuildDate><atom:link href="https://cloudnative-pg.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 01 May 2023 09:00:00 +0200</lastBuildDate><atom:link href="https://cloudnative-pg.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>cloudnativepg</title>
       <link>https://cloudnative-pg.io/tags/cloudnativepg/</link>
-      <pubDate>Thu, 27 Apr 2023 15:29:36 +0200</pubDate>
+      <pubDate>Mon, 01 May 2023 09:00:00 +0200</pubDate>
       
       <guid>https://cloudnative-pg.io/tags/cloudnativepg/</guid>
       <description></description>
     </item>
     
     <item>
+      <title>graphql</title>
+      <link>https://cloudnative-pg.io/tags/graphql/</link>
+      <pubDate>Mon, 01 May 2023 09:00:00 +0200</pubDate>
+      
+      <guid>https://cloudnative-pg.io/tags/graphql/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>hasura</title>
+      <link>https://cloudnative-pg.io/tags/hasura/</link>
+      <pubDate>Mon, 01 May 2023 09:00:00 +0200</pubDate>
+      
+      <guid>https://cloudnative-pg.io/tags/hasura/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>k8s</title>
       <link>https://cloudnative-pg.io/tags/k8s/</link>
-      <pubDate>Thu, 27 Apr 2023 15:29:36 +0200</pubDate>
+      <pubDate>Mon, 01 May 2023 09:00:00 +0200</pubDate>
       
       <guid>https://cloudnative-pg.io/tags/k8s/</guid>
       <description></description>
@@ -28,9 +46,18 @@
     <item>
       <title>kubernetes</title>
       <link>https://cloudnative-pg.io/tags/kubernetes/</link>
-      <pubDate>Thu, 27 Apr 2023 15:29:36 +0200</pubDate>
+      <pubDate>Mon, 01 May 2023 09:00:00 +0200</pubDate>
       
       <guid>https://cloudnative-pg.io/tags/kubernetes/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tutorial</title>
+      <link>https://cloudnative-pg.io/tags/tutorial/</link>
+      <pubDate>Mon, 01 May 2023 09:00:00 +0200</pubDate>
+      
+      <guid>https://cloudnative-pg.io/tags/tutorial/</guid>
       <description></description>
     </item>
     

@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+
+
+
+
+<html lang="en">
+
+<head>
+  <title>CloudNativePG and Hasura: should we be scared by demons? | CloudNativePG - PostgreSQL Operator for Kubernetes</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <meta name="description" content="CloudNativePG is the Kubernetes operator that covers the full lifecycle of a highly available PostgreSQL database cluster with a primary/standby architecture, using native streaming replication." />
+  <meta name="keywords" content="" />
+  <link rel="preload" href="/fonts/Supreme-Variable.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet" />
+  <link href="/main.min.css" rel="stylesheet" />
+  <link rel="favicon" href="/favicon/favicon.ico">
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+  <meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://cloudnative-pg.io/images/hero_image.png"/>
+
+<meta name="twitter:title" content="CloudNativePG and Hasura: should we be scared by demons?"/>
+<meta name="twitter:description" content="How to bootstrap a development environment for a modern application
+using GraphQL"/>
+
+  <meta property="og:title" content="CloudNativePG and Hasura: should we be scared by demons?" />
+<meta property="og:description" content="How to bootstrap a development environment for a modern application
+using GraphQL" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://cloudnative-pg.io/blog/hasura-graphql/" /><meta property="og:image" content="https://cloudnative-pg.io/images/hero_image.png"/><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2023-05-01T09:00:00+02:00" />
+<meta property="article:modified_time" content="2023-05-01T09:00:00+02:00" />
+
+
+</head>
+
+<body>
+  <div class="h-screen w-screen">
+    
+<main>
+  <header>
+    <div class="md:flex md:flex-row md:px-16 md:justify-between py-5">
+      <div class="flex justify-between px-4 md:hidden">
+        <div>
+          
+          <a href="/"><img src="/logo/large_logo.svg" class="md:h-14 h-9" alt="Cloud Native Postgres Logo"></a>
+        </div>
+        <div class="h-6 my-auto" id="toggle-button">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+            stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </div>
+      </div>
+      <div class="md:block hidden">
+        
+        <a href="/"><img src="/logo/large_logo.svg" class="h-14" alt="Cloud Native Postgres Logo"></a>
+      </div>
+
+      <div class="hidden md:block">
+        <ul class="md:flex gap-14 text-2xl medium-gray my-5">
+          <li><a href="/docs">Documentation</a></li>
+          <li><a href="/blog">Blog</a></li>
+          <li><a href="/support">Support</a></li>
+          <li><a href="/end_users">End Users</a></li>
+        </ul>
+      </div>
+      
+      <div class="py-4 bg-gray-1 mt-5 hidden" id="navi-list">
+        <ul class="md:flex gap-14 text-2xl md:medium-gray charcoal">
+          <li class="text-center py-4"><a href="/docs">Documentation</a></li>
+          <li class="text-center py-4"><a href="/blog">Blog</a></li>
+          <li class="text-center py-4"><a href="/support">Support</a></li>
+          <li class="text-center py-4"><a href="/end_users">End Users</a></li>
+        </ul>
+        <div class="flex gap-3 py-4 justify-center bg-gray-1 fill-cnp-blue">
+          <a href="https://github.com/cloudnative-pg/cloudnative-pg">
+            <img src="/icons/Git.svg" alt="Github">
+          </a>
+          <a href="https://cloudnativepg.slack.com/">
+            <img src="/icons/Slack.svg" alt="Slack">
+          </a>
+          <a href="https://twitter.com/CloudNativePg">
+            <img src="/icons/Twitter.svg" alt="Twitter">
+          </a>
+          <a href="https://www.youtube.com/channel/UCTGH88W1BiuRRPTzJUDPJyA">
+            <img src="/icons/YouTube.svg" alt="YouTube">
+          </a>
+        </div>
+      </div>
+      
+
+      <div class="flex gap-5 my-4 fill-cnp-blue hidden md:flex">
+        <a class="github-button" href="https://github.com/cloudnative-pg/cloudnative-pg"
+          data-color-scheme="no-preference: light; light: light; dark: dark;" data-size="large" data-show-count="true"
+          aria-label="Star cloudnative-pg/cloudnative-pg on GitHub">Star</a>
+        <a href="https://join.slack.com/t/cloudnativepg/shared_invite/zt-17culux7k-P_UsVOOR9teUYi4dGhDSBQ">
+          <img src="/icons/Slack.svg" alt="Slack" title="Join our Slack channel now!">
+        </a>
+        <a href="https://twitter.com/CloudNativePg">
+          <img src="/icons/Twitter.svg" alt="Twitter">
+        </a>
+        <a href="https://www.youtube.com/channel/UCTGH88W1BiuRRPTzJUDPJyA">
+          <img src="/icons/YouTube.svg" alt="YouTube">
+        </a>
+      </div>
+    </div>
+  </header>
+</main>
+<script>
+  const toggleButton = document.getElementById('toggle-button')
+  const naviList = document.getElementById('navi-list')
+
+  toggleButton.addEventListener('click', () => {
+    naviList.classList.toggle('hidden');
+  })
+</script>
+
+    
+<h1 class="h1 text-center mx-auto md:w-3/5">CloudNativePG and Hasura: should we be scared by demons?</h1>
+<div class="md:w-3/5 mx-auto">
+    <div class="px-4">
+        
+        <div class="flex gap-3 my-10 mx-auto flex justify-center">
+            
+<div class="my-auto">
+    <img src="/authors/leonardoce//leonardoce-gh.jpeg" class="w-10 h-10 rounded-full"
+        alt="Leonardo Cecchi">
+</div>
+<div>
+    <div>
+        <h1 class="text-lg charcoal font-bold">
+            <a href="/authors/leonardoce">Leonardo Cecchi</a>
+        </h1>
+    </div>
+    <div class="flex gap-2 text-sm charcoal opacity-75">
+    <h6 class="flex gap-2 text-sm charcoal">
+        May 1, 2023
+        •
+        7 minutes
+    </h6>
+</div>
+</div>
+        </div>
+        
+
+        
+        <div>
+            <img src="dream_surreal_composition_elephant_giraffe_auto_island-1339293.jpg" alt="blog image" class="mx-auto">
+        </div>
+        
+
+        
+        <div class="mx-auto my-10">
+            <p>CloudNativePG is a production-grade PostgreSQL operator for Kubernetes. It is
+also a great way to bootstrap a comfortable development environment.</p>
+<p>In this blog post, we&rsquo;ll create a CloudNativePG cluster with a few example
+tables, and we&rsquo;ll use <a href="https://hasura.io">Hasura</a> to bootstrap a
+<a href="https://graphql.org">GraphQL</a> API that your
+application can use to store and retrieve data efficiently.</p>
+<h2 id="getting-set-up-with-kubernetes-and-kind">Getting set up with Kubernetes and KinD</h2>
+<p>A Kubernetes cluster is required to follow this tutorial.
+You can create a test cluster on your laptop using Docker and
+<a href="https://kind.sigs.k8s.io/docs/user/quick-start/">KinD</a>.
+You will also need the CLI tool <code>kubectl</code>. Please refer to
+the <a href="https://kubernetes.io/docs/tasks/tools/">kubernetes guide</a>
+for details.</p>
+<h2 id="installing-cloudnativepg">Installing CloudNativePG</h2>
+<p>To install CloudNativePG, we&rsquo;ll follow the <a href="https://cloudnative-pg.io/documentation/current/installation_upgrade/">installation and
+upgrade</a>
+section of the CloudNativePG website.</p>
+<p>At the time of writing, the latest version is 1.20. The following
+command will deploy the CloudNativePG operator on your local Kubernetes cluster:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>kubectl apply -f https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/release-1.20/releases/cnpg-1.20.0.yaml
+</span></span></code></pre></div><p>We should wait until CloudNativePG is up and running.
+It&rsquo;s enough to wait until the READY column shows <code>1/1</code>. Should be a few seconds:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ kubectl get deployments -n cnpg-system
+</span></span><span style="display:flex;"><span>NAME                      READY   UP-TO-DATE   AVAILABLE   AGE
+</span></span><span style="display:flex;"><span>cnpg-controller-manager   1/1     <span style="color:#ae81ff">1</span>            <span style="color:#ae81ff">1</span>           6d16h
+</span></span></code></pre></div><h2 id="creating-a-postgresql-cluster">Creating a PostgreSQL cluster</h2>
+<p>The simplest CloudNativePG example cluster creates a High-Availability
+architecture with a primary database node and two replicas. We can simply
+apply the example manifest included with CloudNativePG:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ kubectl apply -f https://cloudnative-pg.io/documentation/1.20/samples/cluster-example.yaml
+</span></span><span style="display:flex;"><span>cluster.postgresql.cnpg.io/cluster-example created
+</span></span></code></pre></div><p>We should now wait for the cluster to be up and running:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ kubectl wait --for<span style="color:#f92672">=</span>condition<span style="color:#f92672">=</span>Ready cluster/cluster-example
+</span></span><span style="display:flex;"><span>cluster.postgresql.cnpg.io/cluster-example condition met
+</span></span></code></pre></div><p>Now we have our sandbox ready for testing.</p>
+<h2 id="installing-hasura">Installing Hasura</h2>
+<p>The Hasura GraphQL GitHub repo <a href="https://github.com/hasura/graphql-engine/tree/stable/install-manifests/kubernetes">includes some Kubernetes
+manifests</a>
+we can use as a starting point.
+Please refer to the <a href="https://hasura.io/docs/latest/deployment/deployment-guides/kubernetes/">Hasura documentation</a>
+for further information about the Kubernetes manifests.</p>
+<p>We must inject our PostgreSQL credentials into the Hasura deployment manifest,
+and we&rsquo;ll do that using the secret automatically created by the CloudNativePG
+operator.</p>
+<p>CloudNativePG creates an unprivileged user called <code>app</code> (you can override the
+name) for applications to use. It uses <a href="https://kubernetes.io/docs/concepts/configuration/secret/"><em>secrets</em></a>
+to manage user credentials.
+The <code>cluster-example-app</code> secret created by the operator contains the
+credentials for the <code>app</code> user.
+A database called <code>app</code> is also created, and set as owned by the <code>app</code> user.</p>
+<p>CloudNativePG creates some <a href="https://kubernetes.io/docs/concepts/services-networking/service/"><em>services</em></a> to expose and manage the database network
+connections. In particular, given our cluster named <code>cluster-example</code>, there
+is a <code>cluster-example-rw</code> service always targeting the primary instance. We
+will use the service for connection.</p>
+<p>To connect our PostgreSQL cluster to the Hasura deployment, then, we will:</p>
+<ul>
+<li>Inject the password into the <code>PGPASSWORD</code> environment variable in the Hasura
+manifest</li>
+<li>Use <code>cluster-example-app-rw</code> as a target hostname.</li>
+<li>Use <code>app</code> as the database name.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">apps/v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Deployment</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">hasura</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  [<span style="color:#ae81ff">...]</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">template</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">containers</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">hasura</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">env</span>:
+</span></span><span style="display:flex;"><span>        - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">HASURA_GRAPHQL_DATABASE_URL</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">value</span>: <span style="color:#ae81ff">postgres://app@cluster-example-rw</span>
+</span></span><span style="display:flex;"><span>        - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">PGPASSWORD</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">valueFrom</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">secretKeyRef</span>:
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">name</span>: <span style="color:#ae81ff">cluster-example-app</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">key</span>: <span style="color:#ae81ff">password</span>
+</span></span></code></pre></div><p>The complete manifest can be found in the file <a href="hasura-deployment.yaml"><code>hasura-deployment.yaml</code></a>.</p>
+<p>You can deploy it with:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>kubectl apply -f hasura-deployment.yaml
+</span></span></code></pre></div><p>And make sure it came up:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ kubectl get deployments
+</span></span><span style="display:flex;"><span>NAME     READY   UP-TO-DATE   AVAILABLE   AGE
+</span></span><span style="display:flex;"><span>hasura   1/1     <span style="color:#ae81ff">1</span>            <span style="color:#ae81ff">1</span>           30s
+</span></span></code></pre></div><p>We now need a service for our applications to use. An example can be found in
+the file <a href="hasura-service.yaml">hasura-service.yaml</a>.
+Again, we can simply apply it:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>kubectl apply -f hasura-service.yaml
+</span></span></code></pre></div><p>We should see the hasura service, along with the services CloudNativePG created
+for our database cluster:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ kubectl get services                
+</span></span><span style="display:flex;"><span>NAME                 TYPE        CLUSTER-IP      EXTERNAL-IP   PORT<span style="color:#f92672">(</span>S<span style="color:#f92672">)</span>    AGE
+</span></span><span style="display:flex;"><span>…
+</span></span><span style="display:flex;"><span>cluster-example-rw   ClusterIP   10.96.164.82    &lt;none&gt;        5432/TCP   19m
+</span></span><span style="display:flex;"><span>hasura               ClusterIP   10.96.57.238    &lt;none&gt;        80/TCP     7s
+</span></span></code></pre></div><h2 id="playing-with-hasuras-ui">Playing with Hasura&rsquo;s UI</h2>
+<p>Now you can create tables and play with GraphQL using Hasura&rsquo;s UI. All we need
+is to expose Hasura&rsquo;s service to our computer with the following:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ kubectl port-forward service/hasura 8080:80
+</span></span><span style="display:flex;"><span>Forwarding from 127.0.0.1:8080 -&gt; <span style="color:#ae81ff">8080</span>
+</span></span><span style="display:flex;"><span>Forwarding from <span style="color:#f92672">[</span>::1<span style="color:#f92672">]</span>:8080 -&gt; <span style="color:#ae81ff">8080</span>
+</span></span><span style="display:flex;"><span>Handling connection <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">8080</span>
+</span></span></code></pre></div><p>We can now access Hasura as a local website at
+<a href="http://localhost:8080">http://localhost:8080</a>.</p>
+<p><img src="hasura.png" alt="hasura"></p>
+<h2 id="migrations">Migrations</h2>
+<p>Hasura maps GraphQL schemas to PostgreSQL tables by storing metadata
+inside the database. Metadata are managed and versioned in a Hasura project,
+which is applied to the database via the Hasura CLI.</p>
+<p>To follow this section, you will need to <a href="https://hasura.io/docs/latest/hasura-cli/install-hasura-cli/">install the Hasura CLI</a></p>
+<p>The project we&rsquo;re going to use for this blog article can be found
+<a href="https://github.com/leonardoce/hasura-blog">here</a>.</p>
+<p>Hasura projects can be scaffolded with <code>init</code>, which will create a new project
+folder<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ hasura init
+</span></span><span style="display:flex;"><span>? Name of project directory ? hasura
+</span></span><span style="display:flex;"><span>INFO directory created. execute the following commands to <span style="color:#66d9ef">continue</span>:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  cd hasura
+</span></span><span style="display:flex;"><span>  hasura console 
+</span></span></code></pre></div><p>To create new tables, we&rsquo;ll need to create a new migration. We can do that with:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ hasura migrate create init
+</span></span><span style="display:flex;"><span>? Select a database to use default
+</span></span><span style="display:flex;"><span>INFO Created Migrations                           
+</span></span><span style="display:flex;"><span>INFO Migrations files created                      name<span style="color:#f92672">=</span>init version<span style="color:#f92672">=</span><span style="color:#ae81ff">1682932686238</span>
+</span></span></code></pre></div><p>In the above, we accepted the default <code>default</code> database proposed by the CLI.</p>
+<p>Migrations are composed of two SQL files: <code>up.sql</code> and <code>down.sql</code>. The command
+above created a new directory called <code>migrations</code> inside the project directory,
+with a subdirectory for the database (<code>default</code>), and inside it a subdirectory
+for the migration we&rsquo;re about to apply:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ cd migrations/default/&lt;version-ID&gt;_init
+</span></span><span style="display:flex;"><span>$ ls
+</span></span><span style="display:flex;"><span>down.sql  up.sql
+</span></span></code></pre></div><p>We&rsquo;ll add the queries to create our tables in <code>up.sql</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> authors (
+</span></span><span style="display:flex;"><span>    id SERIAL <span style="color:#66d9ef">PRIMARY</span> <span style="color:#66d9ef">KEY</span>,
+</span></span><span style="display:flex;"><span>    name TEXT <span style="color:#66d9ef">UNIQUE</span>
+</span></span><span style="display:flex;"><span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> articles (
+</span></span><span style="display:flex;"><span>    id SERIAL <span style="color:#66d9ef">PRIMARY</span> <span style="color:#66d9ef">KEY</span>,
+</span></span><span style="display:flex;"><span>    author_id INTEGER <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span> <span style="color:#66d9ef">REFERENCES</span> authors (id),
+</span></span><span style="display:flex;"><span>    title TEXT <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>,
+</span></span><span style="display:flex;"><span>    content TEXT <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>
+</span></span><span style="display:flex;"><span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> comments (
+</span></span><span style="display:flex;"><span>    id SERIAL <span style="color:#66d9ef">PRIMARY</span> <span style="color:#66d9ef">KEY</span>,
+</span></span><span style="display:flex;"><span>    author_id INTEGER <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span> <span style="color:#66d9ef">REFERENCES</span> authors (id),
+</span></span><span style="display:flex;"><span>    article_id INTEGER <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span> <span style="color:#66d9ef">REFERENCES</span> articles (id),
+</span></span><span style="display:flex;"><span>    content TEXT <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>
+</span></span><span style="display:flex;"><span>);
+</span></span></code></pre></div><p>And the queries deleting the tables in <code>down.sql</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">DROP</span> <span style="color:#66d9ef">TABLE</span> comments;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">DROP</span> <span style="color:#66d9ef">TABLE</span> articles;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">DROP</span> <span style="color:#66d9ef">TABLE</span> authors;
+</span></span></code></pre></div><p>After having created the migration we can apply it with:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ hasura migrate apply
+</span></span></code></pre></div><p><a href="https://github.com/leonardoce/hasura-blog/commit/e75cfbb7a262f286d818e471904da314875bef58">This
+commit</a>
+contains the migrations code.</p>
+<h2 id="mapping-the-sql-schema-to-graphql">Mapping the SQL schema to GraphQL</h2>
+<p>We need now to map the tables and the relationship in our database in a GraphQL
+schema.
+The easiest way to do this is to use the Hasura GUI you have at
+<a href="http://localhost:8080">http://localhost:8080</a> and:</p>
+<ol>
+<li>
+<p>click on the <code>Data</code> tab, and inside the <code>default</code> database choose the
+<code>public</code> schema</p>
+</li>
+<li>
+<p>track all the tables</p>
+</li>
+<li>
+<p>track all the relationships</p>
+</li>
+</ol>
+<p><img src="hasura-metadata-1.png" alt="tracking tables"></p>
+<p><img src="hasura-metadata-2.png" alt="tracking relationships"></p>
+<p>Having done that, we need our Hasura project to reflect what we did..
+We can do that with:</p>
+<pre tabindex="0"><code>$ hasura metadata export
+</code></pre><p><a href="https://github.com/leonardoce/hasura-blog/commit/32fd8a202f42fb07fe25e2c66c1fbac26cbb2d96">This commit contains the generated metadata</a></p>
+<h2 id="executing-our-first-mutation">Executing our first mutation</h2>
+<p>We can now execute our first GraphQL mutation on our database to create a new
+article and a new author at the same time:</p>
+<p>This is the mutation we would like to apply:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-graphql" data-lang="graphql"><span style="display:flex;"><span><span style="color:#66d9ef">mutation</span> <span style="color:#a6e22e">AddArticle</span>($title: <span style="color:#a6e22e">String</span>, $content: <span style="color:#a6e22e">String</span>, $author: <span style="color:#a6e22e">String</span>) {
+</span></span><span style="display:flex;"><span>	insert_articles_one(object: {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">title</span>: $title,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">content</span>: $content,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">author</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">data</span>: {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">name</span>: $author,
+</span></span><span style="display:flex;"><span>      },
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">on_conflict</span>: {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">constraint</span>: <span style="color:#a6e22e">authors_name_key</span>,
+</span></span><span style="display:flex;"><span>        update_columns: [<span style="color:#a6e22e">name</span>]
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }) {
+</span></span><span style="display:flex;"><span>     id
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>To run the mutation, we will need to supply it with variables. We can do
+that with the following JSON, for example.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;title&#34;</span>: <span style="color:#e6db74">&#34;Hasura is great!&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;content&#34;</span>: <span style="color:#e6db74">&#34;Look! I can insert the author and the comment at the same time&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;author&#34;</span>: <span style="color:#e6db74">&#34;Leonardo Cecchi&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The result of the mutation applied to this argument will be:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;data&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;insert_articles_one&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The easiest way to execute our GraphQL query is to use the GraphQL instance
+embedded in the Hasura web interface, and paste our mutation and the query
+variables into the text areas shown here.</p>
+<p><img src="hasura-graphiql.png" alt="graphql"></p>
+<h2 id="graphql-queries">GraphQL queries</h2>
+<p>On the GraphQL interface, we can also run read queries such as:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-graphql" data-lang="graphql"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  authors {
+</span></span><span style="display:flex;"><span>   	id
+</span></span><span style="display:flex;"><span>    name
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>similar to before, run by pasting it into the top text area, and leaving the
+<em>QUERY VARIABLES</em> text area empty. We should get this result:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;data&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;authors&#34;</span>: [
+</span></span><span style="display:flex;"><span>      {
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#ae81ff">1</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;Leonardo Cecchi&#34;</span>
+</span></span><span style="display:flex;"><span>      },
+</span></span><span style="display:flex;"><span>      {
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#ae81ff">6</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;Jaime Silvela&#34;</span>
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>    ]
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>A fuller query will provide us with the list of articles together with their
+authors:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-graphql" data-lang="graphql"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  articles {
+</span></span><span style="display:flex;"><span>   	title
+</span></span><span style="display:flex;"><span>    author {
+</span></span><span style="display:flex;"><span>      name
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>With a result like:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>  {
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;data&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;articles&#34;</span>: [
+</span></span><span style="display:flex;"><span>      {
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;title&#34;</span>: <span style="color:#e6db74">&#34;Hasura is great!&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;author&#34;</span>: {
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;Leonardo Cecchi&#34;</span>
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>      },
+</span></span><span style="display:flex;"><span>      {
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;title&#34;</span>: <span style="color:#e6db74">&#34;Article from Leonardo&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;author&#34;</span>: {
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;Leonardo Cecchi&#34;</span>
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>      },
+</span></span><span style="display:flex;"><span>      {
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;title&#34;</span>: <span style="color:#e6db74">&#34;Third article from Leonardo&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;author&#34;</span>: {
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;Leonardo Cecchi&#34;</span>
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>      },
+</span></span><span style="display:flex;"><span>      {
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;title&#34;</span>: <span style="color:#e6db74">&#34;Introducing Ciclops&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;author&#34;</span>: {
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;Jaime Silvela&#34;</span>
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>    ]
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>GraphQL makes for a very interesting model to query your database backend from
+your applications. Getting composite data from several tables so easily, and
+returned in JSON format for easy parsing, can simplify your development.</p>
+<p>There is a great multiplier effect when using Kubernetes to deploy your database
+and your application. With CloudNativePG, you got a high-availability running in
+no time, and integrated with Hasura with little effort.</p>
+<p>Magic!</p>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>note that the <code>hasura</code> CLI will try to connect to a hasura server
+listening on port 8080, which you have already created with the port-forwarding
+command issued after the deployment&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+
+        </div>
+        
+    </div>
+
+    <div class="px-4">
+        <h3 class="text-xl font-bold mb-6">Categories in this blog post</h3>
+        <div class="text-xs space-y-1.5 mb-14">
+            <ul class="text-sm">
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/cloudnativepg"
+                        class="mr-2">cloudnativepg</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/hasura"
+                        class="mr-2">hasura</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/graphql"
+                        class="mr-2">graphql</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/kubernetes"
+                        class="mr-2">kubernetes</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/k8s"
+                        class="mr-2">k8s</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/tutorial"
+                        class="mr-2">tutorial</a></li>
+                
+            </ul>
+
+        </div>
+    </div>
+
+    
+    <div class="space-y-10 md:pt-10">
+            
+
+    
+    <div class="px-4">
+        <h3 class="text-xl font-bold mb-6">All categories</h3>
+        <div class="text-xs space-y-1.5 mb-14">
+            <ul class="text-sm">
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/blog/"
+                        class="mr-2">blog</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/ci/cd/"
+                        class="mr-2">ci/cd</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/cloudnativepg/"
+                        class="mr-2">cloudnativepg</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/cncf/"
+                        class="mr-2">cncf</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/continuous-delivery/"
+                        class="mr-2">continuous-delivery</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/continuous-integration/"
+                        class="mr-2">continuous-integration</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/devops/"
+                        class="mr-2">devops</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/failover/"
+                        class="mr-2">failover</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/github-action/"
+                        class="mr-2">github-action</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/graphql/"
+                        class="mr-2">graphql</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/hasura/"
+                        class="mr-2">hasura</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/information/"
+                        class="mr-2">information</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/k8s/"
+                        class="mr-2">k8s</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/kubernetes/"
+                        class="mr-2">kubernetes</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/operator/"
+                        class="mr-2">operator</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/postgres/"
+                        class="mr-2">postgres</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/postgresql/"
+                        class="mr-2">postgresql</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/release/"
+                        class="mr-2">release</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/testing/"
+                        class="mr-2">testing</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/tutorial/"
+                        class="mr-2">tutorial</a></li>
+                
+            </ul>
+
+        </div>
+    </div>
+    
+
+    
+    <div>
+        <h3 class="text-xl font-bold pb-6 px-4">Latest Posts</h3>
+        <div class="space-y-10 px-4">
+            
+            
+            <div class="p-8 bg-white drop-shadow-md md:w-2/6 rounded-md border-2 border-slate-50 align-super inline-grid max-w-xs"
+                style="min-width: 260px;">
+                
+                <div class="flex gap-3 mb-2.5">
+                    
+<div class="my-auto">
+    <img src="/authors/leonardoce//leonardoce-gh.jpeg" class="w-10 h-10 rounded-full"
+        alt="Leonardo Cecchi">
+</div>
+<div class="my-auto">
+    <div>
+        <h1 class="text-lg charcoal font-bold">
+            Leonardo Cecchi
+        </h1>
+    </div>
+</div>
+                </div>
+                
+                <a href="/blog/hasura-graphql/">
+                    
+                    <div>
+                        <img src="/blog/hasura-graphql//dream_surreal_composition_elephant_giraffe_auto_island-1339293.jpg" class="object-fill"
+                            alt="Blog image">
+                    </div>
+                    <div class="charcoal">
+                        <h2 class="text-lg my-2.5 font-bold">CloudNativePG and Hasura: should we be scared by demons?</h2>
+                    </div>
+                    
+
+                    <div class="flex gap-2 text-sm charcoal opacity-75">
+    <h6 class="flex gap-2 text-sm charcoal">
+        May 1, 2023
+        •
+        7 minutes
+    </h6>
+</div>
+                </a>
+            </div>
+            
+            <div class="p-8 bg-white drop-shadow-md md:w-2/6 rounded-md border-2 border-slate-50 align-super inline-grid max-w-xs"
+                style="min-width: 260px;">
+                
+                <div class="flex gap-3 mb-2.5">
+                    
+<div class="my-auto">
+    <img src="/authors/gbartolini//gb.png" class="w-10 h-10 rounded-full"
+        alt="Gabriele Bartolini">
+</div>
+<div class="my-auto">
+    <div>
+        <h1 class="text-lg charcoal font-bold">
+            Gabriele Bartolini
+        </h1>
+    </div>
+</div>
+                </div>
+                
+                <a href="/blog/cloudnative-pg-1-20-0-released/">
+                    
+                    <div>
+                        <img src="/blog/cloudnative-pg-1-20-0-released//wildlife-zoo-mammal-fauna-elephant-sri-lanka-988769-pxhere.com.jpg" class="object-fill"
+                            alt="Blog image">
+                    </div>
+                    <div class="charcoal">
+                        <h2 class="text-lg my-2.5 font-bold">CloudNativePG 1.20.0, 1.19.2 and 1.18.4 Released!</h2>
+                    </div>
+                    
+
+                    <div class="flex gap-2 text-sm charcoal opacity-75">
+    <h6 class="flex gap-2 text-sm charcoal">
+        April 27, 2023
+        •
+        1 minute
+    </h6>
+</div>
+                </a>
+            </div>
+            
+            <div class="p-8 bg-white drop-shadow-md md:w-2/6 rounded-md border-2 border-slate-50 align-super inline-grid max-w-xs"
+                style="min-width: 260px;">
+                
+                <div class="flex gap-3 mb-2.5">
+                    
+<div class="my-auto">
+    <img src="/authors/gbartolini//gb.png" class="w-10 h-10 rounded-full"
+        alt="Gabriele Bartolini">
+</div>
+<div class="my-auto">
+    <div>
+        <h1 class="text-lg charcoal font-bold">
+            Gabriele Bartolini
+        </h1>
+    </div>
+</div>
+                </div>
+                
+                <a href="/blog/cloudnative-pg-1-19-1-released/">
+                    
+                    <div>
+                        <img src="/blog/cloudnative-pg-1-19-1-released//wildlife-zoo-mammal-fauna-elephant-sri-lanka-988769-pxhere.com.jpg" class="object-fill"
+                            alt="Blog image">
+                    </div>
+                    <div class="charcoal">
+                        <h2 class="text-lg my-2.5 font-bold">CloudNativePG 1.19.1, 1.18.3 and 1.17.5 Released!</h2>
+                    </div>
+                    
+
+                    <div class="flex gap-2 text-sm charcoal opacity-75">
+    <h6 class="flex gap-2 text-sm charcoal">
+        March 20, 2023
+        •
+        1 minute
+    </h6>
+</div>
+                </a>
+            </div>
+            
+            <div class="p-8 bg-white drop-shadow-md md:w-2/6 rounded-md border-2 border-slate-50 align-super inline-grid max-w-xs"
+                style="min-width: 260px;">
+                
+                <div class="flex gap-3 mb-2.5">
+                    
+<div class="my-auto">
+    <img src="/authors/gbartolini//gb.png" class="w-10 h-10 rounded-full"
+        alt="Gabriele Bartolini">
+</div>
+<div class="my-auto">
+    <div>
+        <h1 class="text-lg charcoal font-bold">
+            Gabriele Bartolini
+        </h1>
+    </div>
+</div>
+                </div>
+                
+                <a href="/blog/cloudnative-pg-1-19-0-released/">
+                    
+                    <div>
+                        <img src="/blog/cloudnative-pg-1-19-0-released//wildlife-zoo-mammal-fauna-elephant-sri-lanka-988769-pxhere.com.jpg" class="object-fill"
+                            alt="Blog image">
+                    </div>
+                    <div class="charcoal">
+                        <h2 class="text-lg my-2.5 font-bold">CloudNativePG 1.19.0, 1.18.2 and 1.17.4 Released!</h2>
+                    </div>
+                    
+
+                    <div class="flex gap-2 text-sm charcoal opacity-75">
+    <h6 class="flex gap-2 text-sm charcoal">
+        February 14, 2023
+        •
+        1 minute
+    </h6>
+</div>
+                </a>
+            </div>
+            
+            <div class="p-8 bg-white drop-shadow-md md:w-2/6 rounded-md border-2 border-slate-50 align-super inline-grid max-w-xs"
+                style="min-width: 260px;">
+                
+                <div class="flex gap-3 mb-2.5">
+                    
+<div class="my-auto">
+    <img src="/authors/jsilvela//jsilvela-gh.jpeg" class="w-10 h-10 rounded-full"
+        alt="Jaime Silvela">
+</div>
+<div class="my-auto">
+    <div>
+        <h1 class="text-lg charcoal font-bold">
+            Jaime Silvela
+        </h1>
+    </div>
+</div>
+                </div>
+                
+                <a href="/blog/introducing-ciclops/">
+                    
+                    <div>
+                        <img src="/blog/introducing-ciclops//7th_voyage_of_Sinbad_-_Cyclops.png" class="object-fill"
+                            alt="Blog image">
+                    </div>
+                    <div class="charcoal">
+                        <h2 class="text-lg my-2.5 font-bold">Introducing Ciclops, a new GitHub action to better understand CI/CD test results</h2>
+                    </div>
+                    
+
+                    <div class="flex gap-2 text-sm charcoal opacity-75">
+    <h6 class="flex gap-2 text-sm charcoal">
+        January 25, 2023
+        •
+        5 minutes
+    </h6>
+</div>
+                </a>
+            </div>
+            
+            <div class="p-8 bg-white drop-shadow-md md:w-2/6 rounded-md border-2 border-slate-50 align-super inline-grid max-w-xs"
+                style="min-width: 260px;">
+                
+                <div class="flex gap-3 mb-2.5">
+                    
+<div class="my-auto">
+    <img src="/authors/gbartolini//gb.png" class="w-10 h-10 rounded-full"
+        alt="Gabriele Bartolini">
+</div>
+<div class="my-auto">
+    <div>
+        <h1 class="text-lg charcoal font-bold">
+            Gabriele Bartolini
+        </h1>
+    </div>
+</div>
+                </div>
+                
+                <a href="/blog/cloudnative-pg-1-18-1-released/">
+                    
+                    <div>
+                        <img src="/blog/cloudnative-pg-1-18-1-released//wildlife-zoo-mammal-fauna-elephant-sri-lanka-988769-pxhere.com.jpg" class="object-fill"
+                            alt="Blog image">
+                    </div>
+                    <div class="charcoal">
+                        <h2 class="text-lg my-2.5 font-bold">CloudNativePG 1.18.1, 1.17.3 and 1.16.5 Released!</h2>
+                    </div>
+                    
+
+                    <div class="flex gap-2 text-sm charcoal opacity-75">
+    <h6 class="flex gap-2 text-sm charcoal">
+        December 21, 2022
+        •
+        1 minute
+    </h6>
+</div>
+                </a>
+            </div>
+            
+            
+        </div>
+    </div>
+    
+
+    </div>
+    
+</div>
+
+
+    <footer class="text-center pb-24">
+    <p class="text-sm charcoal md:w-1/2 mx-auto md:pt-10 px-6 pt-12">
+
+      &copy; The CloudNativePG Contributors.<br />
+
+      <a href="https://www.linuxfoundation.org/trademark-usage/"
+        class="red-1">The Linux Foundation has registered trademarks and uses
+        trademarks</a>.<br />
+
+      <a href="https://www.postgresql.org/about/policies/trademarks"
+        class="red-1">Postgres, PostgreSQL and the Slonik Logo are trademarks or
+        registered trademarks of the PostgreSQL Community Association of Canada, and
+        used with their permission</a>.
+
+    </p>
+</footer>
+
+  </div>
+  
+  <script src="https://cdn.usefathom.com/script.js" data-site="GSMQCVAJ" defer></script>
+  
+</body>
+
+</html>
