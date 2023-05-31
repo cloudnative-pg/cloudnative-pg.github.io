@@ -25,5 +25,16 @@
 He discovered a fondness for SQL and PostgreSQL in particular years ago. He started using Go professionally in 2014, after having suffered Java, and he is very proud to be able to put his skills to use on CloudNativePG.</description>
     </item>
     
+    <item>
+      <title></title>
+      <link>https://cloudnative-pg.io/authors/leonardoce/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://cloudnative-pg.io/authors/leonardoce/</guid>
+      <description>I’ve been in computer science from the beginning, and programming has always been my obsession. My passion began when I was 6 when my father taught me the rudiments of C programming.
+I’ve been working in 2ndQuadrant since 2016 as a developer and a PostgreSQL consultant. PostgreSQL has always been my choice when working with a DBMS. I’ve been using it since 1998.
+EDB acquired 2ndQuadrant in 2020, and CloudNativePG, the operator I have been working on with my team since 2019, was finally released as OSS in 2022.</description>
+    </item>
+    
   </channel>
 </rss>
