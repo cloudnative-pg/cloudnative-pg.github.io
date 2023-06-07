@@ -6,7 +6,16 @@
     <description>Recent content on CloudNativePG - PostgreSQL Operator for Kubernetes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 01 May 2023 09:00:00 +0200</lastBuildDate><atom:link href="https://cloudnative-pg.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 07 Jun 2023 08:30:33 +0100</lastBuildDate><atom:link href="https://cloudnative-pg.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How to test PostgreSQL 16 beta in your Kubernetes cluster</title>
+      <link>https://cloudnative-pg.io/blog/postgresql-16-beta1/</link>
+      <pubDate>Wed, 07 Jun 2023 08:30:33 +0100</pubDate>
+      
+      <guid>https://cloudnative-pg.io/blog/postgresql-16-beta1/</guid>
+      <description>Participate in the PostgreSQL 16 beta program using Kubernetes and our CloudNativePG operator</description>
+    </item>
+    
     <item>
       <title>CloudNativePG and Hasura: should we be scared by demons?</title>
       <link>https://cloudnative-pg.io/blog/hasura-graphql/</link>

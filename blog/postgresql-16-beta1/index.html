@@ -6,7 +6,7 @@
 <html lang="en">
 
 <head>
-  <title>CloudNativePG 1.15.1 Released! | CloudNativePG - PostgreSQL Operator for Kubernetes</title>
+  <title>How to test PostgreSQL 16 beta in your Kubernetes cluster | CloudNativePG - PostgreSQL Operator for Kubernetes</title>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
@@ -20,15 +20,15 @@
   <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://cloudnative-pg.io/images/hero_image.png"/>
 
-<meta name="twitter:title" content="CloudNativePG 1.15.1 Released!"/>
-<meta name="twitter:description" content="The CloudNativePG community has released a new update for the supported 1.15.x version of the CloudNativePG operator."/>
+<meta name="twitter:title" content="How to test PostgreSQL 16 beta in your Kubernetes cluster"/>
+<meta name="twitter:description" content="Participate in the PostgreSQL 16 beta program using Kubernetes and our CloudNativePG operator"/>
 
-  <meta property="og:title" content="CloudNativePG 1.15.1 Released!" />
-<meta property="og:description" content="The CloudNativePG community has released a new update for the supported 1.15.x version of the CloudNativePG operator." />
+  <meta property="og:title" content="How to test PostgreSQL 16 beta in your Kubernetes cluster" />
+<meta property="og:description" content="Participate in the PostgreSQL 16 beta program using Kubernetes and our CloudNativePG operator" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://cloudnative-pg.io/blog/cloudnative-pg-1-15-1-released/" /><meta property="og:image" content="https://cloudnative-pg.io/images/hero_image.png"/><meta property="article:section" content="blog" />
-<meta property="article:published_time" content="2022-05-30T13:37:13+02:00" />
-<meta property="article:modified_time" content="2022-05-30T13:37:13+02:00" />
+<meta property="og:url" content="https://cloudnative-pg.io/blog/postgresql-16-beta1/" /><meta property="og:image" content="https://cloudnative-pg.io/images/hero_image.png"/><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2023-06-07T08:30:33+01:00" />
+<meta property="article:modified_time" content="2023-06-07T08:30:33+01:00" />
 
 
 </head>
@@ -116,25 +116,25 @@
 </script>
 
     
-<h1 class="h1 text-center mx-auto md:w-3/5">CloudNativePG 1.15.1 Released!</h1>
+<h1 class="h1 text-center mx-auto md:w-3/5">How to test PostgreSQL 16 beta in your Kubernetes cluster</h1>
 <div class="md:w-3/5 mx-auto">
     <div class="px-4">
         
         <div class="flex gap-3 my-10 mx-auto flex justify-center">
             
 <div class="my-auto">
-    <img src="/authors/gbartolini//gb.png" class="w-10 h-10 rounded-full"
-        alt="Gabriele Bartolini">
+    <img src="/" class="w-10 h-10 rounded-full"
+        alt="">
 </div>
 <div>
     <div>
         <h1 class="text-lg charcoal font-bold">
-            <a href="/authors/gbartolini">Gabriele Bartolini</a>
+            <a href="/authors/Gabriele%20Bartolini"></a>
         </h1>
     </div>
     <div class="flex gap-2 text-sm charcoal opacity-75">
     <h6 class="flex gap-2 text-sm charcoal">
-        May 30, 2022
+        June 7, 2023
         •
         1 minute
     </h6>
@@ -145,30 +145,42 @@
 
         
         <div>
-            <img src="wildlife-zoo-mammal-fauna-elephant-sri-lanka-988769-pxhere.com.jpg" alt="blog image" class="mx-auto">
+            <img src="elephant-ship.png" alt="blog image" class="mx-auto">
         </div>
         
 
         
         <div class="mx-auto my-10">
-            <p>The <strong>CloudNativePG Community</strong> has released a new update for the supported 1.15.x
-version of the <strong>CloudNativePG Operator</strong>.</p>
-<p><strong>Version 1.15.1</strong> is a <em>patch release</em> containing a few bug fixes and minor
-enhancements, in particular in the backup and recovery area, including:</p>
-<ul>
-<li>Ownership of Backup objects for finer control of cleanup operations in the
-Kubernetes cluster</li>
-<li>Configurable archive timeout parameter, by default fixed to 5 minutes, which
-is relevant to set the upper limit of the recovery point objective (RPO) of a
-Postgres cluster</li>
-<li>Enhanced verification of backup and recovery object stores to ensure that an
-object store can only be written by one Postgres cluster</li>
-<li>Automated export of the <code>pg_stat_wal</code> stats view available from PostgreSQL 14
-onwards</li>
-</ul>
-<p>We encourage you to update the operator at your earliest possible convenience.</p>
-<p>For a complete list of changes, please refer to the
-<a href="https://cloudnative-pg.io/documentation/1.15.1/release_notes/">release notes</a>.</p>
+            <p><a href="https://www.postgresql.org/about/news/postgresql-16-beta-1-released-2643/">PostgreSQL 16 Beta 1 was recently released</a>
+by the PostgreSQL Global Development Group, containing previews of all features
+that will be available when PostgreSQL 16 is made generally available.</p>
+<p>The CloudNativePG community has made available the operand container images for
+PostgreSQL 16 beta 1 in our
+[<code>postgres-container</code> image registry]https://github.com/cloudnative-pg/postgres-containers/pkgs/container/postgresql)
+to be used with the CloudNativePG operator. The images are tagged with the
+&lsquo;16beta1&rsquo; or &lsquo;16&rsquo; label, and are not intended for production.</p>
+<p>Please join us in testing the new features of PostgreSQL 16 with CloudNativePG,
+and help us diagnose and fix bugs in Postgres before the final launch.</p>
+<p>Here follows a quick example of a 3 instance Postgres 16 &lsquo;Cluster&rsquo; manifest to be
+deployed in your Kubernetes cluster.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">postgresql.cnpg.io/v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Cluster</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span> <span style="color:#f92672">name</span>: <span style="color:#ae81ff">pg16</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span> <span style="color:#f92672">imageName</span>: <span style="color:#ae81ff">ghcr.io/cloudnative-pg/postgresql:16beta1</span>
+</span></span><span style="display:flex;"><span> <span style="color:#f92672">instances</span>: <span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span> <span style="color:#f92672">storage</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">size</span>: <span style="color:#ae81ff">1Gi</span>
+</span></span></code></pre></div><p>Once deployed, you can easily verify the version with:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>kubectl exec -ti pg16-1 -c postgres -- psql -qAt -c <span style="color:#e6db74">&#39;SELECT version()&#39;</span>
+</span></span></code></pre></div><p>Returning:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>PostgreSQL 16beta1 (Debian 16~beta1-2.pgdg110+1) on x86_64-pc-linux-gnu,
+</span></span><span style="display:flex;"><span>  compiled by gcc (Debian 10.2.1-6) 10.2.1 20210110, 64-bit
+</span></span></code></pre></div><p>If you are interested in trying CloudNativePG on your laptop with &lsquo;kind&rsquo;
+(Kubernetes in Docker), follow the instructions you find in the
+<a href="https://cloudnative-pg.io/documentation/current/quickstart/">Quickstart</a>.</p>
 
         </div>
         
@@ -179,23 +191,14 @@ onwards</li>
         <div class="text-xs space-y-1.5 mb-14">
             <ul class="text-sm">
                 
-                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/release"
-                        class="mr-2">release</a></li>
-                
                 <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/postgresql"
                         class="mr-2">postgresql</a></li>
                 
                 <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/postgres"
                         class="mr-2">postgres</a></li>
                 
-                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/kubernetes"
-                        class="mr-2">kubernetes</a></li>
-                
-                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/k8s"
-                        class="mr-2">k8s</a></li>
-                
-                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/cloudnativepg"
-                        class="mr-2">cloudnativepg</a></li>
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/pg16beta1"
+                        class="mr-2">pg16beta1</a></li>
                 
             </ul>
 

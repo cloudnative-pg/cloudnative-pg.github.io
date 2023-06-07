@@ -6,7 +6,16 @@
     <description>Recent content in postgresql on CloudNativePG - PostgreSQL Operator for Kubernetes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 27 Apr 2023 15:29:36 +0200</lastBuildDate><atom:link href="https://cloudnative-pg.io/tags/postgresql/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 07 Jun 2023 08:30:33 +0100</lastBuildDate><atom:link href="https://cloudnative-pg.io/tags/postgresql/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How to test PostgreSQL 16 beta in your Kubernetes cluster</title>
+      <link>https://cloudnative-pg.io/blog/postgresql-16-beta1/</link>
+      <pubDate>Wed, 07 Jun 2023 08:30:33 +0100</pubDate>
+      
+      <guid>https://cloudnative-pg.io/blog/postgresql-16-beta1/</guid>
+      <description>Participate in the PostgreSQL 16 beta program using Kubernetes and our CloudNativePG operator</description>
+    </item>
+    
     <item>
       <title>CloudNativePG 1.20.0, 1.19.2 and 1.18.4 Released!</title>
       <link>https://cloudnative-pg.io/blog/cloudnative-pg-1-20-0-released/</link>

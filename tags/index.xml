@@ -6,7 +6,34 @@
     <description>Recent content in Tags on CloudNativePG - PostgreSQL Operator for Kubernetes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 01 May 2023 09:00:00 +0200</lastBuildDate><atom:link href="https://cloudnative-pg.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 07 Jun 2023 08:30:33 +0100</lastBuildDate><atom:link href="https://cloudnative-pg.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>pg16beta1</title>
+      <link>https://cloudnative-pg.io/tags/pg16beta1/</link>
+      <pubDate>Wed, 07 Jun 2023 08:30:33 +0100</pubDate>
+      
+      <guid>https://cloudnative-pg.io/tags/pg16beta1/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>postgres</title>
+      <link>https://cloudnative-pg.io/tags/postgres/</link>
+      <pubDate>Wed, 07 Jun 2023 08:30:33 +0100</pubDate>
+      
+      <guid>https://cloudnative-pg.io/tags/postgres/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>postgresql</title>
+      <link>https://cloudnative-pg.io/tags/postgresql/</link>
+      <pubDate>Wed, 07 Jun 2023 08:30:33 +0100</pubDate>
+      
+      <guid>https://cloudnative-pg.io/tags/postgresql/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>cloudnativepg</title>
       <link>https://cloudnative-pg.io/tags/cloudnativepg/</link>
@@ -58,24 +85,6 @@
       <pubDate>Mon, 01 May 2023 09:00:00 +0200</pubDate>
       
       <guid>https://cloudnative-pg.io/tags/tutorial/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>postgres</title>
-      <link>https://cloudnative-pg.io/tags/postgres/</link>
-      <pubDate>Thu, 27 Apr 2023 15:29:36 +0200</pubDate>
-      
-      <guid>https://cloudnative-pg.io/tags/postgres/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>postgresql</title>
-      <link>https://cloudnative-pg.io/tags/postgresql/</link>
-      <pubDate>Thu, 27 Apr 2023 15:29:36 +0200</pubDate>
-      
-      <guid>https://cloudnative-pg.io/tags/postgresql/</guid>
       <description></description>
     </item>
     
