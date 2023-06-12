@@ -217,6 +217,8 @@
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#launching-psql">Launching psql</a>
     </li>
+    <li class="toctree-l3"><a class="reference internal" href="#snapshotting-a-postgres-cluster">Snapshotting a Postgres cluster</a>
+    </li>
         </ul>
     </li>
     </ul>
@@ -260,6 +262,10 @@
               </ul>
               <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../samples/">Examples</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../networking/">Networking</a>
                 </li>
               </ul>
               <ul>
@@ -373,6 +379,11 @@ Is this ok [y/N]: y
 run:</p>
 <pre><code class="language-sh">kubectl krew install cnpg
 </code></pre>
+<p>When a new version of the plugin is released, you can update the existing
+installation with:</p>
+<pre><code class="language-sh">kubectl krew update
+kubectl krew upgrade cnpg
+</code></pre>
 <h3 id="supported-architectures">Supported Architectures</h3>
 <p>CloudNativePG Plugin is currently built for the following
 operating system and architectures:</p>
@@ -460,7 +471,7 @@ two different time intervals.</p>
 Name:               sandbox
 Namespace:          default
 System ID:          7039966298120953877
-PostgreSQL Image:   ghcr.io/cloudnative-pg/postgresql:15.2
+PostgreSQL Image:   ghcr.io/cloudnative-pg/postgresql:15.3
 Primary instance:   sandbox-2
 Instances:          3
 Ready instances:    3
@@ -500,7 +511,7 @@ sandbox-3  302 GB         3AF/EBAD5D18  Standby (sync)    OK      Guaranteed  1.
 Name:               sandbox
 Namespace:          default
 System ID:          7039966298120953877
-PostgreSQL Image:   ghcr.io/cloudnative-pg/postgresql:15.2
+PostgreSQL Image:   ghcr.io/cloudnative-pg/postgresql:15.3
 Primary instance:   sandbox-2
 Instances:          3
 Ready instances:    3
@@ -910,10 +921,12 @@ That can be done with:</p>
 <pre><code>kubectl cnpg hibernate status &lt;cluster-name&gt;
 </code></pre>
 <h3 id="benchmarking-the-database-with-pgbench">Benchmarking the database with pgbench</h3>
-<p>Pgbench can be ran on an existing PostgreSQL cluster with following command:</p>
+<p>Pgbench can be run against an existing PostgreSQL cluster with following
+command:</p>
 <pre><code>kubectl cnpg pgbench &lt;cluster-name&gt; -- --time 30 --client 1 --jobs 1
 </code></pre>
-<p>Refer to the <a href="../benchmarking/#pgbench">Benchmarking pgbench section</a> for more details.</p>
+<p>Refer to the <a href="../benchmarking/#pgbench">Benchmarking pgbench section</a> for more
+details.</p>
 <h3 id="benchmarking-the-storage-with-fio">Benchmarking the storage with fio</h3>
 <p>fio can be run on an existing storage class with following command:</p>
 <pre><code>kubectl cnpg fio &lt;fio-job-name&gt; -n &lt;namespace&gt;
@@ -940,7 +953,7 @@ method should be used with extreme care, by authorized personnel only.</p>
 </div>
 <pre><code class="language-shell">kubectl cnpg psql cluster-example
 
-psql (15.2 (Debian 15.2-1.pgdg110+1))
+psql (15.3 (Debian 15.3-1.pgdg110+1))
 Type &quot;help&quot; for help.
 
 postgres=#
@@ -948,7 +961,7 @@ postgres=#
 <p>By default, the command will connect to the primary instance. The user can
 select to work against a replica by using the <code>--replica</code> option:</p>
 <pre><code class="language-shell">kubectl cnpg psql --replica cluster-example
-psql (15.2 (Debian 15.2-1.pgdg110+1))
+psql (15.3 (Debian 15.3-1.pgdg110+1))
 
 Type &quot;help&quot; for help.
 
@@ -962,6 +975,43 @@ postgres=# \q
 </code></pre>
 <p>This command will start <code>kubectl exec</code>, and the <code>kubectl</code> executable must be
 reachable in your <code>PATH</code> variable to correctly work.</p>
+<h3 id="snapshotting-a-postgres-cluster">Snapshotting a Postgres cluster</h3>
+<p>The <code>kubectl cnpg snapshot</code> creates consistent snapshots of a Postgres
+<code>Cluster</code> by:</p>
+<ol>
+<li>choosing a replica Pod to work on</li>
+<li>fencing the replica</li>
+<li>taking the snapshot</li>
+<li>unfencing the replica</li>
+</ol>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>A cluster already having a fenced instance cannot be snapshotted.</p>
+</div>
+<p>At the moment, this command can be used only for clusters having at least one
+replica: that replica will be shut down by the fencing procedure to ensure the
+snapshot to be consistent (cold backup). As the development of
+declarative support for Kubernetes' <code>VolumeSnapshot</code> API continues,
+this limitation will be removed, allowing you to take online backups
+as business continuity requires.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Even if the procedure will shut down a replica, the primary
+Pod will not be involved.</p>
+</div>
+<p>The <code>kubectl cnpg snapshot</code> command requires the cluster name:</p>
+<pre><code class="language-shell">kubectl cnpg snapshot cluster-example
+
+waiting for cluster-example-3 to be fenced
+waiting for VolumeSnapshot cluster-example-3-1682539624 to be ready to use
+unfencing pod cluster-example-3
+</code></pre>
+<p>The <code>VolumeSnapshot</code> resource will be created with an empty
+<code>VolumeSnapshotClass</code> reference. That resource is intended by be used by the
+<code>VolumeSnapshotClass</code> configured as default.</p>
+<p>A specific <code>VolumeSnapshotClass</code> can be requested via the <code>-c</code> option:</p>
+<pre><code class="language-shell">kubectl cnpg snapshot cluster-example -c longhorn
+</code></pre>
               
             </div>
           </div><footer>

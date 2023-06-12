@@ -205,6 +205,10 @@
                 </li>
               </ul>
               <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../networking/">Networking</a>
+                </li>
+              </ul>
+              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../../benchmarking/">Benchmarking</a>
                 </li>
               </ul>
@@ -256,6 +260,53 @@
 <p>For a complete list of changes, please refer to the
 <a href="https://github.com/cloudnative-pg/cloudnative-pg/commits/release-1.18">commits</a>
 on the release branch in GitHub.</p>
+<h2 id="version-1185">Version 1.18.5</h2>
+<p><strong>Release date:</strong> June 12, 2023</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Version 1.18 has reached End-of-Life (EOL). Version 1.18.5 is the last
+that will be released for the 1.18 minor version.</p>
+</div>
+<p>Enhancements:</p>
+<ul>
+<li>Add the <code>snapshot</code> command to the <code>cnpg</code> plugin to create a consistent cold
+  backup of the cluster from a standby using the Kubernetes <code>VolumeSnapshot</code>
+  standard resource (#1960)</li>
+<li>First implementation of recovery from a set of CSI VolumeSnapshot resources
+  via the <code>.spec.bootstrap.recovery.volumeSnapshot</code> stanza (#1960)</li>
+<li>Add <code>pg_failover_slots</code> to managed extensions (#2057)</li>
+<li>Improved Grafana dashboard with updated instructions in the documentation and
+  the quickstart guide (#1916)</li>
+<li>Introduce the <code>schemaOnly</code> option in the <code>import</code> stanza, to avoid exporting
+  and importing data when you bootstrap a new Postgres Cluster from one or more
+  existing databases (#2234)</li>
+<li>Add support for TopologySpreadConstraints to manage scheduling of instance
+  pods (#2202)</li>
+<li>Add <code>PodMonitor</code> support to the <code>Pooler</code>for PgBouncer (#2034)</li>
+<li>Add option to override the default Kubernetes scheduler (#2013)</li>
+<li>Allow configuration of deployment strategy of a <code>Pooler</code> resource (#1983)</li>
+<li>Update default PostgreSQL version to 15.3 (#2022)</li>
+<li>Use PgBouncer 1.19 by default (#2018)</li>
+</ul>
+<p>Technical enhancements:</p>
+<ul>
+<li>Updated k8s kind tested versions (#2054)</li>
+<li>Use separate transactions to reconcile role credentials. Before this patch,
+  the operator would revert the synchronization of all roles if one failed
+  (#2004)</li>
+<li>Ensure fencing is removed during cluster restore (#1987)</li>
+<li>Improve logging when deleting Pods (#2136)</li>
+</ul>
+<p>Fixes:</p>
+<ul>
+<li>Fix unbound variable with k3s engine which could prevent setup on K3’s (#2157)</li>
+<li>Report the correct PG version in the metrics (#2126)</li>
+<li>Use the correct walStorage key in the documentation (#2140)</li>
+<li>Halt reconciliation when the operator cannot connect with the instances, and
+  provide a clear diagnostic on such occasions. This will help clarify cases
+  where network issues obstruct normal operation of CloudNativePG (#2145),
+  (#2233), and (#2242)</li>
+</ul>
 <h2 id="version-1184">Version 1.18.4</h2>
 <p><strong>Release date:</strong> April 27, 2023</p>
 <div class="admonition warning">

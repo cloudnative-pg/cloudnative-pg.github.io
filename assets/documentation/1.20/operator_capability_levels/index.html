@@ -199,7 +199,7 @@
               <ul class="current">
                 <li class="toctree-l1 current"><a class="reference internal current" href="./">Operator Capability Levels</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#level-1-basic-install">Level 1 - Basic Install</a>
+    <li class="toctree-l2"><a class="reference internal" href="#level-1-basic-install">Level 1: Basic Install</a>
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#operator-deployment-via-declarative-configuration">Operator deployment via declarative configuration</a>
     </li>
@@ -222,6 +222,8 @@
     <li class="toctree-l3"><a class="reference internal" href="#pod-security-policies">Pod Security Policies</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#affinity">Affinity</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#topology-spread-constraints">Topology spread constraints</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#command-line-interface">Command line interface</a>
     </li>
@@ -249,7 +251,7 @@
     </li>
         </ul>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#level-2-seamless-upgrades">Level 2 - Seamless Upgrades</a>
+    <li class="toctree-l2"><a class="reference internal" href="#level-2-seamless-upgrades">Level 2: Seamless Upgrades</a>
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#upgrade-of-the-operator">Upgrade of the operator</a>
     </li>
@@ -259,7 +261,7 @@
     </li>
         </ul>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#level-3-full-lifecycle">Level 3 - Full Lifecycle</a>
+    <li class="toctree-l2"><a class="reference internal" href="#level-3-full-lifecycle">Level 3: Full Lifecycle</a>
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#postgresql-hot-backups">PostgreSQL Hot Backups</a>
     </li>
@@ -295,7 +297,7 @@
     </li>
         </ul>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#level-4-deep-insights">Level 4 - Deep Insights</a>
+    <li class="toctree-l2"><a class="reference internal" href="#level-4-deep-insights">Level 4: Deep Insights</a>
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#prometheus-exporter-with-configurable-queries">Prometheus exporter with configurable queries</a>
     </li>
@@ -309,7 +311,7 @@
     </li>
         </ul>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#level-5-auto-pilot">Level 5 - Auto Pilot</a>
+    <li class="toctree-l2"><a class="reference internal" href="#level-5-auto-pilot">Level 5: Auto Pilot</a>
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#automated-failover-for-self-healing">Automated Failover for self-healing</a>
     </li>
@@ -326,6 +328,10 @@
               </ul>
               <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../samples/">Examples</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../networking/">Networking</a>
                 </li>
               </ul>
               <ul>
@@ -399,7 +405,7 @@ CloudNativePG Operator.</p>
 <p class="admonition-title">Note</p>
 <p>We consider this framework as a guide for future work and implementations in the operator.</p>
 </div>
-<h2 id="level-1-basic-install">Level 1 - Basic Install</h2>
+<h2 id="level-1-basic-install">Level 1: Basic Install</h2>
 <p>Capability level 1 involves <strong>installation</strong> and <strong>configuration</strong> of the
 operator. This category includes usability and user experience
 enhancements, such as improvements in how you interact with the
@@ -502,6 +508,10 @@ Kubernetes cluster. In particular, the operator supports:</p>
 <li>node selector</li>
 <li>taints and tolerations</li>
 </ul>
+<h3 id="topology-spread-constraints">Topology spread constraints</h3>
+<p>The cluster's <code>topologySpreadConstraints</code> section enables additional control of
+the scheduling of pods across topologies, enhancing what affinity and
+anti-affinity can offer.</p>
 <h3 id="command-line-interface">Command line interface</h3>
 <p>CloudNativePG does not have its own command line interface.
 It simply relies on the best command line interface for Kubernetes, <code>kubectl</code>,
@@ -576,7 +586,7 @@ also available.</p>
 standard default values while allowing you to override them and customize
 them. You can specify a deployment of a PostgreSQL cluster using
 the <code>Cluster</code> CRD in a couple of YAML code lines.</p>
-<h2 id="level-2-seamless-upgrades">Level 2 - Seamless Upgrades</h2>
+<h2 id="level-2-seamless-upgrades">Level 2: Seamless Upgrades</h2>
 <p>Capability level 2 is about enabling <strong>updates of the operator and the actual
 workload</strong>, in our case PostgreSQL servers. This includes <strong>PostgreSQL minor
 release updates</strong> (security and bug fixes normally) as well as <strong>major online
@@ -608,7 +618,7 @@ minutes based on the actual database workload.</p>
 <p>At any time, convey the cluster's high availability status, for example,
 <code>Setting up primary</code>, <code>Creating a new replica</code>, <code>Cluster in healthy state</code>,
 <code>Switchover in progress</code>, <code>Failing over</code>, <code>Upgrading cluster</code>, etc.</p>
-<h2 id="level-3-full-lifecycle">Level 3 - Full Lifecycle</h2>
+<h2 id="level-3-full-lifecycle">Level 3: Full Lifecycle</h2>
 <p>Capability level 3 requires the operator to manage aspects of <strong>business
 continuity</strong> and <strong>scalability</strong>.
 <strong>Disaster recovery</strong> is a business continuity component that requires
@@ -769,7 +779,7 @@ to access the database which optimizes the query flow towards the instances
 and makes the usage of the underlying PostgreSQL resources more efficient.
 Instead of connecting directly to a PostgreSQL service, applications can now
 connect to the PgBouncer service and start reusing any existing connection.</p>
-<h2 id="level-4-deep-insights">Level 4 - Deep Insights</h2>
+<h2 id="level-4-deep-insights">Level 4: Deep Insights</h2>
 <p>Capability level 4 is about <strong>observability</strong>: in particular, monitoring,
 alerting, trending, log processing. This might involve the use of external tools
 such as Prometheus, Grafana, Fluent Bit, as well as extensions in the
@@ -798,11 +808,15 @@ data type.</p>
 <ul>
 <li>the essential <a href="https://www.postgresql.org/docs/current/pgstatstatements.html"><code>pg_stat_statements</code> extension</a>,
   which enables tracking of planning and execution statistics of all SQL
-  statements executed by a PostgreSQL server.</li>
+  statements executed by a PostgreSQL server;</li>
 <li>the <a href="https://www.postgresql.org/docs/current/auto-explain.html"><code>auto_explain</code> extension</a>,
   which provides a means for logging execution plans of slow statements
   automatically, without having to manually run <code>EXPLAIN</code> (helpful for tracking
-  down un-optimized queries).</li>
+  down un-optimized queries);</li>
+<li>the <a href="https://github.com/EnterpriseDB/pg_failover_slots"><code>pg_failover_slots</code> extension</a>,
+  which makes logical replication slots usable across a physical failover,
+  ensuring resilience in change data capture (CDC) contexts based on PostgreSQL's
+  native logical replication;</li>
 </ul>
 <h3 id="audit">Audit</h3>
 <p>CloudNativePG allows database and security administrators, auditors,
@@ -814,7 +828,7 @@ correct downstream target using common log brokers like Fluentd.</p>
 <p>Record major events as expected by the Kubernetes API, such as creating resources,
 removing nodes, upgrading, and so on. Events can be displayed through
 the <code>kubectl describe</code> and <code>kubectl get events</code> command.</p>
-<h2 id="level-5-auto-pilot">Level 5 - Auto Pilot</h2>
+<h2 id="level-5-auto-pilot">Level 5: Auto Pilot</h2>
 <p>Capability level 5 is focused on <strong>automated scaling</strong>, <strong>healing</strong> and
 <strong>tuning</strong> - through the discovery of anomalies and insights that emerged
 from the observability layer.</p>

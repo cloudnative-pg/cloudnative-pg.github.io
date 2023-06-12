@@ -205,6 +205,10 @@
                 </li>
               </ul>
               <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../networking/">Networking</a>
+                </li>
+              </ul>
+              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../benchmarking/">Benchmarking</a>
                 </li>
               </ul>
@@ -265,6 +269,8 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#databackupconfiguration">DataBackupConfiguration</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#datasource">DataSource</a>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#embeddedobjectmetadata">EmbeddedObjectMetadata</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#externalcluster">ExternalCluster</a>
@@ -306,6 +312,8 @@
     <li class="toctree-l2"><a class="reference internal" href="#poolerintegrations">PoolerIntegrations</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#poolerlist">PoolerList</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#poolermonitoringconfiguration">PoolerMonitoringConfiguration</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#poolersecrets">PoolerSecrets</a>
     </li>
@@ -427,6 +435,7 @@ documentation for examples of usage.</p>
 <li><a href="#ConfigMapKeySelector">ConfigMapKeySelector</a></li>
 <li><a href="#ConfigMapResourceVersion">ConfigMapResourceVersion</a></li>
 <li><a href="#DataBackupConfiguration">DataBackupConfiguration</a></li>
+<li><a href="#DataSource">DataSource</a></li>
 <li><a href="#EmbeddedObjectMetadata">EmbeddedObjectMetadata</a></li>
 <li><a href="#ExternalCluster">ExternalCluster</a></li>
 <li><a href="#GoogleCredentials">GoogleCredentials</a></li>
@@ -448,6 +457,7 @@ documentation for examples of usage.</p>
 <li><a href="#Pooler">Pooler</a></li>
 <li><a href="#PoolerIntegrations">PoolerIntegrations</a></li>
 <li><a href="#PoolerList">PoolerList</a></li>
+<li><a href="#PoolerMonitoringConfiguration">PoolerMonitoringConfiguration</a></li>
 <li><a href="#PoolerSecrets">PoolerSecrets</a></li>
 <li><a href="#PoolerSpec">PoolerSpec</a></li>
 <li><a href="#PoolerStatus">PoolerStatus</a></li>
@@ -1024,7 +1034,7 @@ documentation for examples of usage.</p>
 </table>
 <p><a id='BootstrapRecovery'></a></p>
 <h2 id="bootstraprecovery">BootstrapRecovery</h2>
-<p>BootstrapRecovery contains the configuration required to restore the backup with the specified name and, after having changed the password with the one chosen for the superuser, will use it to bootstrap a full cluster cloning all the instances from the restored primary. Refer to the Bootstrap page of the documentation for more information.</p>
+<p>BootstrapRecovery contains the configuration required to restore from an existing cluster using 3 methodologies: external cluster, volume snapshots or backup objects. Full recovery and Point-In-Time Recovery are supported. The method can be also be used to create clusters in continuous recovery (replica clusters), also supporting cascading replication when <code>instances</code> &gt; 1. Once the cluster exits recovery, the password for the superuser will be changed through the provided secret. Refer to the Bootstrap page of the documentation for more information.</p>
 <table>
 <thead>
 <tr>
@@ -1036,13 +1046,18 @@ documentation for examples of usage.</p>
 <tbody>
 <tr>
 <td><code>backup</code></td>
-<td>The backup we need to restore</td>
+<td>The backup object containing the physical base backup from which to initiate the recovery procedure. Mutually exclusive with <code>source</code> and <code>volumeSnapshots</code>.</td>
 <td><a href="#BackupSource">*BackupSource</a></td>
 </tr>
 <tr>
 <td><code>source</code></td>
-<td>The external cluster whose backup we will restore. This is also used as the name of the folder under which the backup is stored, so it must be set to the name of the source cluster</td>
+<td>The external cluster whose backup we will restore. This is also used as the name of the folder under which the backup is stored, so it must be set to the name of the source cluster Mutually exclusive with <code>backup</code> and <code>volumeSnapshots</code>.</td>
 <td>string</td>
+</tr>
+<tr>
+<td><code>volumeSnapshots</code></td>
+<td>The static PVC data source(s) from which to initiate the recovery procedure. Currently supporting <code>VolumeSnapshot</code> and <code>PersistentVolumeClaim</code> resources that map an existing PVC group, compatible with CloudNativePG, and taken with a cold backup copy on a fenced Postgres instance (limitation which will be removed in the future when online backup will be implemented). Mutually exclusive with <code>backup</code> and <code>source</code>.</td>
+<td><a href="#DataSource">*DataSource</a></td>
 </tr>
 <tr>
 <td><code>recoveryTarget</code></td>
@@ -1210,6 +1225,11 @@ documentation for examples of usage.</p>
 <td>corev1.PullPolicy</td>
 </tr>
 <tr>
+<td><code>schedulerName</code></td>
+<td>If specified, the pod will be dispatched by specified Kubernetes scheduler. If not specified, the pod will be dispatched by the default scheduler. More info: https://kubernetes.io/docs/concepts/scheduling-eviction/kube-scheduler/</td>
+<td>string</td>
+</tr>
+<tr>
 <td><code>postgresUID</code></td>
 <td>The UID of the <code>postgres</code> user inside the image, defaults to <code>26</code></td>
 <td>int64</td>
@@ -1310,13 +1330,18 @@ documentation for examples of usage.</p>
 <td><a href="#AffinityConfiguration">AffinityConfiguration</a></td>
 </tr>
 <tr>
+<td><code>topologySpreadConstraints</code></td>
+<td>TopologySpreadConstraints specifies how to spread matching pods among the given topology. More info: https://kubernetes.io/docs/concepts/scheduling-eviction/topology-spread-constraints/</td>
+<td>[]corev1.TopologySpreadConstraint</td>
+</tr>
+<tr>
 <td><code>resources</code></td>
 <td>Resources requirements of every generated Pod. Please refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ for more information.</td>
 <td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.26/#resourcerequirements-v1-core">corev1.ResourceRequirements</a></td>
 </tr>
 <tr>
 <td><code>primaryUpdateStrategy</code></td>
-<td>Strategy to follow to upgrade the primary server during a rolling update procedure, after all replicas have been successfully updated: it can be automated (<code>unsupervised</code> - default) or manual (<code>supervised</code>)</td>
+<td>Deployment strategy to follow to upgrade the primary server during a rolling update procedure, after all replicas have been successfully updated: it can be automated (<code>unsupervised</code> - default) or manual (<code>supervised</code>)</td>
 <td>PrimaryUpdateStrategy</td>
 </tr>
 <tr>
@@ -1632,6 +1657,30 @@ documentation for examples of usage.</p>
 </tr>
 </tbody>
 </table>
+<p><a id='DataSource'></a></p>
+<h2 id="datasource">DataSource</h2>
+<p>DataSource contains the configuration required to bootstrap a PostgreSQL cluster from an existing storage</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>storage</code></td>
+<td>Configuration of the storage of the instances                     - <em>mandatory</em></td>
+<td>corev1.TypedLocalObjectReference</td>
+</tr>
+<tr>
+<td><code>walStorage</code></td>
+<td>Configuration of the storage for PostgreSQL WAL (Write-Ahead Log)</td>
+<td>*corev1.TypedLocalObjectReference</td>
+</tr>
+</tbody>
+</table>
 <p><a id='EmbeddedObjectMetadata'></a></p>
 <h2 id="embeddedobjectmetadata">EmbeddedObjectMetadata</h2>
 <p>EmbeddedObjectMetadata contains metadata to be inherited by all resources related to a Cluster</p>
@@ -1765,6 +1814,11 @@ documentation for examples of usage.</p>
 <td><code>postImportApplicationSQL</code></td>
 <td>List of SQL queries to be executed as a superuser in the application database right after is imported - to be used with extreme care (by default empty). Only available in microservice type.</td>
 <td>[]string</td>
+</tr>
+<tr>
+<td><code>schemaOnly</code></td>
+<td>When set to true, only the <code>pre-data</code> and <code>post-data</code> sections of <code>pg_restore</code> are invoked, avoiding data import. Default: <code>false</code>.</td>
+<td>bool</td>
 </tr>
 </tbody>
 </table>
@@ -2224,6 +2278,26 @@ documentation for examples of usage.</p>
 </tr>
 </tbody>
 </table>
+<p><a id='PoolerMonitoringConfiguration'></a></p>
+<h2 id="poolermonitoringconfiguration">PoolerMonitoringConfiguration</h2>
+<p>PoolerMonitoringConfiguration is the type containing all the monitoring configuration for a certain Pooler.</p>
+<p>Mirrors the Cluster's MonitoringConfiguration but without the custom queries part for now.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>enablePodMonitor</code></td>
+<td>Enable or disable the <code>PodMonitor</code></td>
+<td>bool</td>
+</tr>
+</tbody>
+</table>
 <p><a id='PoolerSecrets'></a></p>
 <h2 id="poolersecrets">PoolerSecrets</h2>
 <p>PoolerSecrets contains the versions of all the secrets used</p>
@@ -2294,6 +2368,16 @@ documentation for examples of usage.</p>
 <td><code>pgbouncer</code></td>
 <td>The PgBouncer configuration                                                                                                                  - <em>mandatory</em></td>
 <td><a href="#PgBouncerSpec">*PgBouncerSpec</a></td>
+</tr>
+<tr>
+<td><code>deploymentStrategy</code></td>
+<td>The deployment strategy to use for pgbouncer to replace existing pods with new ones</td>
+<td>*appsv1.DeploymentStrategy</td>
+</tr>
+<tr>
+<td><code>monitoring</code></td>
+<td>The configuration of the monitoring infrastructure of this pooler.</td>
+<td><a href="#PoolerMonitoringConfiguration">*PoolerMonitoringConfiguration</a></td>
 </tr>
 </tbody>
 </table>

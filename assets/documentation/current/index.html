@@ -219,6 +219,10 @@
                 </li>
               </ul>
               <ul>
+                <li class="toctree-l1"><a class="reference internal" href="networking/">Networking</a>
+                </li>
+              </ul>
+              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="benchmarking/">Benchmarking</a>
                 </li>
               </ul>
@@ -328,8 +332,8 @@ supported.</p>
 <li>Definition of the <em>read-write</em> service, to connect your applications to the only primary server of the cluster</li>
 <li>Definition of the <em>read-only</em> service, to connect your applications to any of the instances for reading workloads</li>
 <li>Declarative management of PostgreSQL configuration, including certain popular
-  Postgres extensions through the cluster <code>spec</code>: <code>pg_audit</code>, <code>auto_explain</code>,
-  and <code>pg_stat_statements</code></li>
+  Postgres extensions through the cluster <code>spec</code>: <code>pgaudit</code>, <code>auto_explain</code>,
+  <code>pg_stat_statements</code>, and <code>pg_failover_slots</code></li>
 <li>Declarative management of Postgres roles, users and groups</li>
 <li>Support for Local Persistent Volumes with PVC templates</li>
 <li>Reuse of Persistent Volumes storage in Pods</li>
@@ -423,5 +427,5 @@ of Canada, and used with their permission.</em></p>
 
 <!--
 MkDocs version : 1.4.2
-Build Date UTC : 2023-04-27 16:37:16.256604+00:00
+Build Date UTC : 2023-06-12 15:43:51.799147+00:00
 -->

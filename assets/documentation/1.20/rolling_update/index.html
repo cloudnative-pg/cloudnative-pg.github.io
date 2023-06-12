@@ -215,6 +215,10 @@
                 </li>
               </ul>
               <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../networking/">Networking</a>
+                </li>
+              </ul>
+              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../benchmarking/">Benchmarking</a>
                 </li>
               </ul>
@@ -335,7 +339,8 @@ to use <code>restart</code> or <code>switchover</code> as part of the rolling up
 <p>When <code>primaryUpdateStrategy</code> is set to <code>supervised</code>, the rolling update process
 is suspended immediately after all replicas have been upgraded.</p>
 <p>This phase can only be completed with either a manual switchover or an in-place
-restart.</p>
+restart. Keep in mind that image upgrades can not be applied with an in-place restart, 
+so a switchover is required in such cases.</p>
 <p>You can trigger a switchover with:</p>
 <pre><code class="language-bash">kubectl cnpg promote [cluster] [new_primary]
 </code></pre>
