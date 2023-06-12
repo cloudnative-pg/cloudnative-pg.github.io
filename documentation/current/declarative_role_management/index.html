@@ -111,6 +111,8 @@
               <ul class="current">
                 <li class="toctree-l1 current"><a class="reference internal current" href="./">Database Role Management</a>
     <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#password-management">Password management</a>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#unrealizable-role-configurations">Unrealizable role configurations</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#status-of-managed-roles">Status of managed roles</a>
@@ -215,6 +217,10 @@
                 </li>
               </ul>
               <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../networking/">Networking</a>
+                </li>
+              </ul>
+              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../benchmarking/">Benchmarking</a>
                 </li>
               </ul>
@@ -309,6 +315,67 @@ the full list of attributes you can define for each role.</p>
 spec. If a user modifies role attributes directly in the database, the
 CloudNativePG operator will revert those changes during the next reconciliation
 cycle.</p>
+<h2 id="password-management">Password management</h2>
+<p>The declarative role management feature includes reconciling of role passwords.
+Passwords are managed in fundamentally different ways in the Kubernetes world
+and in PostgreSQL, and as a result there are a few things to note.</p>
+<p>Managed role configurations may optionally specify the name of a
+<strong>Secret</strong> where the username and password are stored (encoded in Base64
+as is usual in Kubernetes). For example:</p>
+<pre><code class="language-yaml">  managed:
+    roles:
+    - name: dante
+      ensure: present
+      [… snipped …]
+      passwordSecret:
+        name: cluster-example-dante
+</code></pre>
+<p>This would assume the existence of a Secret called <code>cluster-example-dante</code>,
+containing a username and password. The username should match the role we
+are setting the password for. For example, :</p>
+<pre><code class="language-yaml">apiVersion: v1
+data:
+  username: ZGFudGU=
+  password: ZGFudGU=
+kind: Secret
+metadata:
+  name: cluster-example-dante
+  labels:
+    cnpg.io/reload: &quot;true&quot;
+type: kubernetes.io/basic-auth
+</code></pre>
+<p>If there is no <code>passwordSecret</code> specified for a role, the instance manager will
+not try to CREATE / ALTER the role with a password. This keeps with PostgreSQL
+conventions, where ALTER will not update passwords unless directed to with
+<code>WITH PASSWORD</code>.</p>
+<p>If a role was initially created with a password, and we would like to set the
+password to NULL in PostgreSQL, this necessitates being explicit on the part of
+the user of CloudNativePG.
+To distinguish "no password provided in spec" from "set the password to NULL",
+the field <code>DisablePassword</code> should be used.</p>
+<p>Imagine we decided we would like to have no password on the <code>dante</code> role in the
+database. In such case we would specify the following:</p>
+<pre><code class="language-yaml">  managed:
+    roles:
+    - name: dante
+      ensure: present
+      [… snipped …]
+      disablePassword: true
+</code></pre>
+<p>NOTE: it is considered an error to set both <code>passwordSecret</code> and
+<code>disablePassword</code> on a given role.
+This configuration will be rejected by the validation webhook.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The declarative role management feature has changed behavior since its
+initial version (1.20.0). In 1.20.0, a role without a <code>passwordSecret</code> would
+lead to setting the password to NULL in PostgreSQL.
+In practice there is little difference from 1.20.0.
+New roles created without <code>passwordSecret</code> will have a NULL password.
+The relevant change is when using the managed roles to manage roles that
+had been previously created. In 1.20.0, doing this might inadvertently
+result in setting existing passwords to NULL.</p>
+</div>
 <h2 id="unrealizable-role-configurations">Unrealizable role configurations</h2>
 <p>In PostgreSQL, in some cases, commands cannot be honored by the database and
 will be rejected. Please refer to the

@@ -245,6 +245,10 @@
                 </li>
               </ul>
               <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../networking/">Networking</a>
+                </li>
+              </ul>
+              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../benchmarking/">Benchmarking</a>
                 </li>
               </ul>
@@ -588,6 +592,12 @@ the <code>Major.Minor</code> version of PostgreSQL. The full semantic version
 <code>Major.Minor.Patch</code> can be found inside one of its label field
 named <code>full</code>.</p>
 </div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code>cnpg_collector_first_recoverability_point</code> will be zero until
+your first backup to the object store. This is separate from
+the WAL archival.</p>
+</div>
 <h3 id="user-defined-metrics">User defined metrics</h3>
 <p>This feature is currently in <em>beta</em> state and the format is inspired by the
 <a href="https://github.com/prometheus-community/postgres_exporter/blob/master/queries.yaml">queries.yaml file</a> <!-- wokeignore:rule=master -->
@@ -681,7 +691,7 @@ so you need to quote (<code>"*"</code>) the <code>target_databases</code> value 
 <p>It is recommended that you always include the name of the database
 in the returned labels, for example using the <code>current_database()</code> function
 as in the following example:</p>
-<pre><code class="language-yaml">some_query:
+<pre><code class="language-yaml">some_query: |
   query: |
     SELECT
      current_database() as datname,
@@ -707,7 +717,7 @@ cnpg_some_query_rows{datname=&quot;freddie&quot;} 10
 <p>Here is an example of a query with auto-discovery enabled which also
 runs on the <code>template1</code> database (otherwise not returned by the
 aforementioned query):</p>
-<pre><code class="language-yaml">some_query:
+<pre><code class="language-yaml">some_query: |
   query: |
     SELECT
      current_database() as datname,

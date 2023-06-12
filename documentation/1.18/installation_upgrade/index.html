@@ -229,6 +229,10 @@
                 </li>
               </ul>
               <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../networking/">Networking</a>
+                </li>
+              </ul>
+              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../benchmarking/">Benchmarking</a>
                 </li>
               </ul>
@@ -280,10 +284,10 @@
 <h3 id="directly-using-the-operator-manifest">Directly using the operator manifest</h3>
 <p>The operator can be installed like any other resource in Kubernetes,
 through a YAML manifest applied via <code>kubectl</code>.</p>
-<p>You can install the <a href="https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/release-1.18/releases/cnpg-1.18.4.yaml">latest operator manifest</a>
+<p>You can install the <a href="https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/release-1.18/releases/cnpg-1.18.5.yaml">latest operator manifest</a>
 for this minor release as follows:</p>
 <pre><code class="language-sh">kubectl apply -f \
-  https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/release-1.18/releases/cnpg-1.18.4.yaml
+  https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/release-1.18/releases/cnpg-1.18.5.yaml
 </code></pre>
 <p>You can verify that with:</p>
 <pre><code class="language-sh">kubectl get deploy -n cnpg-system cnpg-controller-manager
@@ -319,8 +323,13 @@ manifests from the
 <a href="https://github.com/cloudnative-pg/artifacts"><code>cloudnative-pg/artifacts</code></a>
 which provides easy access to the current trunk (main) as well as to each
 supported release.</p>
-<p>For example, you can install the latest snapshot of the operator for
-this minor release with:</p>
+<p>For example, you can install the latest snapshot of the operator with:</p>
+<pre><code class="language-sh">curl -sSfL \
+  https://raw.githubusercontent.com/cloudnative-pg/artifacts/release-1.18/manifests/operator-manifest.yaml | \
+  kubectl apply -f -
+</code></pre>
+<p>If you are instead looking for the latest snapshot of the operator for this
+specific minor release, you can just run:</p>
 <pre><code class="language-sh">curl -sSfL \
   https://raw.githubusercontent.com/cloudnative-pg/artifacts/release-1.18/manifests/operator-manifest.yaml | \
   kubectl apply -f -

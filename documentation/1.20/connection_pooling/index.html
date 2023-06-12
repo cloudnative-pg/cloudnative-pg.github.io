@@ -245,6 +245,10 @@
                 </li>
               </ul>
               <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../networking/">Networking</a>
+                </li>
+              </ul>
+              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../benchmarking/">Benchmarking</a>
                 </li>
               </ul>
@@ -758,8 +762,17 @@ cnpg_pgbouncer_stats_total_xact_count{database=&quot;pgbouncer&quot;} 3
 # TYPE cnpg_pgbouncer_stats_total_xact_time gauge
 cnpg_pgbouncer_stats_total_xact_time{database=&quot;pgbouncer&quot;} 0
 </code></pre>
-<p>Like for <code>Clusters</code>, if you are using the <a href="https://github.com/prometheus-operator/prometheus-operator">Prometheus Operator</a>
-you can configure it to scrape a specific Pooler by defining the following <a href="https://github.com/prometheus-operator/prometheus-operator/blob/v0.47.1/Documentation/api.md#podmonitor">PodMonitor</a>:</p>
+<p>Like for <code>Clusters</code>, a specific <code>Pooler</code> can be monitored using the
+<a href="https://github.com/prometheus-operator/prometheus-operator">Prometheus Operator's</a> resource
+<a href="https://github.com/prometheus-operator/prometheus-operator/blob/v0.47.1/Documentation/api.md#podmonitor">PodMonitor</a>.
+A <code>PodMonitor</code> correctly pointing to a <code>Pooler</code> can be automatically created by the operator by setting
+<code>.spec.monitoring.enablePodMonitor</code> to <code>true</code> in the <code>Pooler</code> resource itself (default: false).</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Any change to the <code>PodMonitor</code> created automatically will be overridden by the Operator at the next reconciliation
+cycle, in case you need to customize it, you can do so as described below.</p>
+</div>
+<p>To deploy a <code>PodMonitor</code> for a specific Pooler manually, you can just define it as follows, changing it as needed:</p>
 <pre><code class="language-yaml">apiVersion: monitoring.coreos.com/v1
 kind: PodMonitor
 metadata:

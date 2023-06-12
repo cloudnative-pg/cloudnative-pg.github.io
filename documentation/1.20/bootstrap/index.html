@@ -81,6 +81,8 @@
     </li>
     <li class="toctree-l4"><a class="reference internal" href="#recovery-from-a-backup-object">Recovery from a Backup object</a>
     </li>
+    <li class="toctree-l4"><a class="reference internal" href="#recovery-from-volumesnapshot-objects">Recovery from VolumeSnapshot objects</a>
+    </li>
     <li class="toctree-l4"><a class="reference internal" href="#additional-considerations">Additional considerations</a>
     </li>
     <li class="toctree-l4"><a class="reference internal" href="#point-in-time-recovery-pitr">Point in time recovery (PITR)</a>
@@ -251,6 +253,10 @@
                 </li>
               </ul>
               <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../networking/">Networking</a>
+                </li>
+              </ul>
+              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../benchmarking/">Benchmarking</a>
                 </li>
               </ul>
@@ -326,14 +332,22 @@ as <code>postgres</code> user to the <code>postgres</code> database via <code>pe
 order to perform administrative tasks on the cluster.<br />
 <strong>DO NOT DELETE</strong> the <code>postgres</code> user or the <code>postgres</code> database!!!</p>
 </div>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>CloudNativePG is gradually introducing support for
+<a href="https://github.com/cloudnative-pg/cloudnative-pg/issues/2081">Kubernetes' native <code>VolumeSnapshot</code> API</a>
+for both incremental and differential copy in backup and recovery
+operations - if supported by the underlying storage classes.
+Please see <a href="#recovery-from-volumesnapshot-objects">"Recovery from Volume Snapshot objects"</a>
+for details.</p>
+</div>
 <h2 id="the-bootstrap-section">The <code>bootstrap</code> section</h2>
 <p>The <em>bootstrap</em> method can be defined in the <code>bootstrap</code> section of the cluster
-specification.
-CloudNativePG currently supports the following bootstrap methods:</p>
+specification. CloudNativePG currently supports the following bootstrap methods:</p>
 <ul>
 <li><code>initdb</code>: initialize a new PostgreSQL cluster (default)</li>
-<li><code>recovery</code>: create a PostgreSQL cluster by restoring from an existing cluster
-  via a backup object store, and replaying all the available WAL files or up to
+<li><code>recovery</code>: create a PostgreSQL cluster by restoring from a base backup of an
+  existing cluster, and replaying all the available WAL files or up to
   a given <em>point in time</em></li>
 <li><code>pg_basebackup</code>: create a PostgreSQL cluster by cloning an existing one of
   the same major version using <code>pg_basebackup</code> via streaming replication protocol -
@@ -368,7 +382,7 @@ method or the <code>recovery</code> one. An external cluster needs to have:</p>
 <li>information about streaming connection</li>
 <li>information about the <strong>recovery object store</strong>, which is a Barman Cloud
   compatible object store that contains the backup files of the source
-  cluster - that is, base backups and WAL archives.</li>
+  cluster - that is, WAL archive and base backups.</li>
 </ul>
 </li>
 </ul>
@@ -588,8 +602,8 @@ Errors in any of those SQL files will prevent the bootstrap phase to complete su
 <p>CloudNativePG enables the bootstrap of a cluster starting from
 another one of the same major version.
 This operation can happen by connecting directly to the source cluster via
-streaming replication (<code>pg_basebackup</code>), or indirectly via a <em>recovery object
-store</em> (<code>recovery</code>).</p>
+streaming replication (<code>pg_basebackup</code>), or indirectly via an existing
+physical <em>base backup</em> (<code>recovery</code>).</p>
 <p>The source cluster must be defined in the <code>externalClusters</code> section, identified
 by <code>name</code> (our recommendation is to use the same <code>name</code> of the origin cluster).</p>
 <div class="admonition important">
@@ -602,9 +616,11 @@ for the name of the server. You can specify a different one with the
 value of <code>name</code> in the external cluster definition).</p>
 </div>
 <h3 id="bootstrap-from-a-backup-recovery">Bootstrap from a backup (<code>recovery</code>)</h3>
-<p>The <code>recovery</code> bootstrap mode lets you create a new cluster from
-an existing backup, namely a <em>recovery object store</em>.</p>
-<p>There are two ways to achieve this result in CloudNativePG:</p>
+<p>The <code>recovery</code> bootstrap mode lets you create a new cluster from an existing
+physical base backup, and then reapply the WAL files containing the REDO log
+from the archive. Both base backups and WAL files are pulled from the
+<em>recovery object store</em>.</p>
+<p>Recovery from a <em>recovery object store</em> can be achieved in two ways:</p>
 <ul>
 <li>using a recovery object store, that is a backup of another cluster
   created by Barman Cloud and defined via the <code>barmanObjectStore</code> option
@@ -623,6 +639,18 @@ compatible, from a physical replication standpoint, with the original one.</p>
 <p>You can find more information about backup and recovery of a running cluster
 in the <a href="../backup_recovery/">"Backup and recovery" page</a>.</p>
 </div>
+<p>CloudNativePG is also introducing support for Kubernetes' volume snapshots.
+With the current version of CloudNativePG, you can:</p>
+<ul>
+<li>take a consistent cold backup of the Postgres cluster from a standby through
+  the <code>kubectl cnpg snapshot</code> command - which creates the necessary
+  <code>VolumeSnapshot</code> objects (currently one or two, if you have WALs in a separate
+  volume)</li>
+<li>recover from the above <em>VolumeSnapshot</em> objects through the <code>volumeSnapshots</code>
+  option in the <code>.spec.bootstrap.recovery</code> stanza, as described in
+  <a href="#recovery-from-volumesnapshot-objects">"Recovery from <code>VolumeSnapshot</code> objects"</a>
+  below</li>
+</ul>
 <h4 id="recovery-from-an-object-store">Recovery from an object store</h4>
 <p>You can recover from a backup created by Barman Cloud and stored on a supported
 object storage. Once you have defined the external cluster, including all the
@@ -699,6 +727,57 @@ spec:
 </code></pre>
 <p>This bootstrap method allows you to specify just a reference to the
 backup that needs to be restored.</p>
+<h4 id="recovery-from-volumesnapshot-objects">Recovery from <code>VolumeSnapshot</code> objects</h4>
+<p>CloudNativePG can create a new cluster from a <code>VolumeSnapshot</code> of a PVC of an
+existing <code>Cluster</code> that's been taken with <code>kubectl cnpg snapshot</code>.
+You need to specify the name of the snapshot as in the following example:</p>
+<pre><code class="language-yaml">apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: cluster-restore
+spec:
+  [...]
+
+bootstrap:
+    recovery:
+      volumeSnapshots:
+        storage:
+          name: &lt;snapshot name&gt;
+          kind: VolumeSnapshot
+          apiGroup: snapshot.storage.k8s.io
+</code></pre>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>As the development of declarative support for Kubernetes' <code>VolumeSnapshot</code> API
+progresses, you'll be able to use this technique in conjunction with a WAL
+archive for Point In Time Recovery operations or replica clusters.</p>
+</div>
+<p>In case the backed-up cluster was using a separate PVC to store the WAL files,
+the recovery must include that too:</p>
+<pre><code class="language-yaml">apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: cluster-restore
+spec:
+  [...]
+
+bootstrap:
+    recovery:
+      volumeSnapshots:
+        storage:
+          name: &lt;snapshot name&gt;
+          kind: VolumeSnapshot
+          apiGroup: snapshot.storage.k8s.io
+
+        walStorage:
+          name: &lt;snapshot name&gt;
+          kind: VolumeSnapshot
+          apiGroup: snapshot.storage.k8s.io
+</code></pre>
+<p>The <code>kubectl cnpg snapshot</code> command is able to take consistent snapshots of a
+replica through a technique known as <em>cold backup</em>, by fencing the standby
+before taking a physical copy of the volumes. For details, please refer to
+<a href="#snapshotting-a-postgres-cluster">"Snapshotting a Postgres cluster"</a>.</p>
 <h4 id="additional-considerations">Additional considerations</h4>
 <p>Whether you recover from a recovery object store or an existing <code>Backup</code>
 resource, the following considerations apply:</p>
@@ -1008,7 +1087,7 @@ file on the source PostgreSQL instance:</p>
 <pre><code># A more restrictive rule for TLS and IP of origin is recommended
 host replication streaming_replica all md5
 </code></pre>
-<p>The following manifest creates a new PostgreSQL 15.2 cluster,
+<p>The following manifest creates a new PostgreSQL 15.3 cluster,
 called <code>target-db</code>, using the <code>pg_basebackup</code> bootstrap method
 to clone an external PostgreSQL cluster defined as <code>source-db</code>
 (in the <code>externalClusters</code> array). As you can see, the <code>source-db</code>
@@ -1021,7 +1100,7 @@ metadata:
   name: target-db
 spec:
   instances: 3
-  imageName: ghcr.io/cloudnative-pg/postgresql:15.2
+  imageName: ghcr.io/cloudnative-pg/postgresql:15.3
 
   bootstrap:
     pg_basebackup:
@@ -1040,7 +1119,7 @@ spec:
       key: password
 </code></pre>
 <p>All the requirements must be met for the clone operation to work, including
-the same PostgreSQL version (in our case 15.2).</p>
+the same PostgreSQL version (in our case 15.3).</p>
 <h4 id="tls-certificate-authentication">TLS certificate authentication</h4>
 <p>The second authentication method supported by CloudNativePG
 with the <code>pg_basebackup</code> bootstrap is based on TLS client certificates.
@@ -1052,7 +1131,7 @@ in the same Kubernetes cluster.</p>
 <p>This example can be easily adapted to cover an instance that resides
 outside the Kubernetes cluster.</p>
 </div>
-<p>The manifest defines a new PostgreSQL 15.2 cluster called <code>cluster-clone-tls</code>,
+<p>The manifest defines a new PostgreSQL 15.3 cluster called <code>cluster-clone-tls</code>,
 which is bootstrapped using the <code>pg_basebackup</code> method from the <code>cluster-example</code>
 external cluster. The host is identified by the read/write service
 in the same cluster, while the <code>streaming_replica</code> user is authenticated
@@ -1065,7 +1144,7 @@ metadata:
   name: cluster-clone-tls
 spec:
   instances: 3
-  imageName: ghcr.io/cloudnative-pg/postgresql:15.2
+  imageName: ghcr.io/cloudnative-pg/postgresql:15.3
 
   bootstrap:
     pg_basebackup:
