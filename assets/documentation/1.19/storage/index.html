@@ -145,6 +145,8 @@
     </li>
         </ul>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#static-provisioning-of-persistent-volumes">Static provisioning of persistent volumes</a>
+    </li>
     </ul>
                 </li>
               </ul>
@@ -233,6 +235,10 @@
                 </li>
               </ul>
               <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../networking/">Networking</a>
+                </li>
+              </ul>
+              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../benchmarking/">Benchmarking</a>
                 </li>
               </ul>
@@ -296,8 +302,10 @@ physical servers.</p>
 </div>
 <p>There are two primary methods of access to storage:</p>
 <ul>
-<li><strong>network</strong>: either directly or indirectly (think of an NFS volume locally mounted on a host running Kubernetes)</li>
-<li><strong>local</strong>: directly attached to the node where a Pod is running (this also includes directly attached disks on bare metal installations of Kubernetes)</li>
+<li><strong>network</strong>: either directly or indirectly (think of an NFS volume locally
+  mounted on a host running Kubernetes)</li>
+<li><strong>local</strong>: directly attached to the node where a Pod is running (this also
+  includes directly attached disks on bare metal installations of Kubernetes)</li>
 </ul>
 <p>Network storage, which is the most common usage pattern in Kubernetes,
 presents the same issues of throughput and latency that you can
@@ -605,6 +613,41 @@ cluster-example-2              1/1     Running     0          5m43s
 cluster-example-4-join-v2      0/1     Completed   0          17s
 cluster-example-4              1/1     Running     0          10s
 </code></pre>
+<h2 id="static-provisioning-of-persistent-volumes">Static provisioning of persistent volumes</h2>
+<p>CloudNativePG has been designed to work with dynamic volume provisioning, which
+allows storage volumes to be automatically created on-demand when requested by
+users, via storage classes and persistent volume claim templates as described
+above.</p>
+<p>However, in some cases, Kubernetes administrators prefer to <em>manually</em> create new
+storage volumes, and then create the related <code>PersistentVolume</code> objects for
+their representation inside the Kubernetes cluster. This is also known as
+<strong>pre-provisioning</strong> of volumes.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Our recommendation is to avoid pre-provisioning of volumes as it
+impacts on the high availability and self-healing capabilities
+of the operator, and breaks the fully declarative model on which
+CloudNativePG has been built.</p>
+</div>
+<p>You can use a pre-provisioned volume in CloudNativePG by following these steps:</p>
+<ol>
+<li>Manually create the volume outside Kubernetes</li>
+<li>Create the <code>PersistentVolume</code> object to match the above volume using the
+   correct parameters as required by actual CSI driver (i.e. <code>volumeHandle</code>,
+   <code>fsType</code>, <code>storageClassName</code>, and so on)</li>
+<li>Create the Postgres <code>Cluster</code> using, for each storage section, a coherent
+   <a href="./#configuration-via-a-pvc-template"><code>pvcTemplate</code></a>
+   section that can help Kubernetes match the above <code>PersistentVolume</code>
+   and enable CloudNativePG to create the needed <code>PersistentVolumeClaim</code></li>
+</ol>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>With static provisioning, it is your responsibility to ensure that, based
+on the affinity rules of your cluster, Postgres pods can be correctly scheduled
+by Kubernetes where a pre-provisioned volume exists. Make sure you check
+for any pods stuck in <code>Pending</code> after you have deployed the cluster, and
+if the condition persists investigate why this is happening.</p>
+</div>
               
             </div>
           </div><footer>

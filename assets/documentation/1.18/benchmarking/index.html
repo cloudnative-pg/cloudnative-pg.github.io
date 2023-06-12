@@ -204,6 +204,10 @@
                 <li class="toctree-l1"><a class="reference internal" href="../samples/">Examples</a>
                 </li>
               </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../networking/">Networking</a>
+                </li>
+              </ul>
               <ul class="current">
                 <li class="toctree-l1 current"><a class="reference internal current" href="./">Benchmarking</a>
     <ul class="current">
@@ -261,68 +265,110 @@
 <p>The CNPG kubectl plugin provides an easy way for benchmarking a PostgreSQL deployment in Kubernetes using CloudNativePG.</p>
 <p>Benchmarking is focused on two aspects:</p>
 <ul>
-<li>the <strong>database</strong>, by relying on  <a href="https://www.postgresql.org/docs/current/pgbench.html">pgbench</a></li>
+<li>the <strong>database</strong>, by relying on <a href="https://www.postgresql.org/docs/current/pgbench.html">pgbench</a></li>
 <li>the <strong>storage</strong>, by relying on <a href="https://fio.readthedocs.io/en/latest/fio_doc.html">fio</a></li>
 </ul>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
-<p><code>pgbench</code> and <code>fio</code> must be run in a staging or pre-production environment. Do not use these plugins in a production environment, as it might have catastrophic consequences on your databases and the other workloads/applications that run in the same shared environment.</p>
+<p><code>pgbench</code> and <code>fio</code> must be run in a staging or pre-production environment.
+Do not use these plugins in a production environment, as it might have
+catastrophic consequences on your databases and the other
+workloads/applications that run in the same shared environment.</p>
 </div>
 <h3 id="pgbench">pgbench</h3>
-<p>The kubectl CNPG plugin command <code>pgbench</code> executes a user-defined pgbench job on an existing Postgres Cluster.
-The command also accepts the <code>--dry-run</code> flag, this will output the job manifest without applying it.</p>
-<p>Example usage:</p>
+<p>The <code>kubectl</code> CNPG plugin command <code>pgbench</code> executes a user-defined <code>pgbench</code> job
+against an existing Postgres Cluster.</p>
+<p>Through the <code>--dry-run</code> flag you can generate the manifest of the job for later
+modification/execution.</p>
+<p>A common command structure with <code>pgbench</code> is the following:</p>
 <pre><code class="language-shell">kubectl cnpg pgbench \
   -n &lt;namespace&gt; &lt;cluster-name&gt; \
-  --pgbench-job-name &lt;pgbench-job&gt; \
+  --job-name &lt;pgbench-job&gt; \
   --db-name &lt;db-name&gt; \
-  -- --time 30 --client 1 --jobs 1
+  -- &lt;pgbench options&gt;
 </code></pre>
-<p>Example of how to run <code>pgbench</code> against a <code>Cluster</code> named <code>cluster-example</code> in the <code>pgbench</code> namespace:</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Please refer to the <a href="https://www.postgresql.org/docs/current/pgbench.html"><code>pgbench</code> documentation</a>
+for information about the specific options to be used in your jobs.</p>
+</div>
+<p>This example creates a job called <code>pgbench-init</code> that initializes for <code>pgbench</code>
+OLTP-like purposes the <code>app</code> database in a <code>Cluster</code> named <code>cluster-example</code>,
+using a scale factor of 1000:</p>
 <pre><code class="language-shell">kubectl cnpg pgbench \
-   -n pgbench cluster-example \
-   --pgbench-job-name pgbench-job \
-   -- --time 30 --client 1 --jobs 1
+  --job-name pgbench-init \
+  cluster-example \
+  -- --initialize --scale 1000
+</code></pre>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This will generate a database with 100000000 records, taking approximately 13GB
+of space on disk.</p>
+</div>
+<p>You can see the progress of the job with:</p>
+<p>```shell 
+kubectl logs jobs/pgbench-run</p>
+<pre><code>
+The following example creates a job called `pgbench-run` executing `pgbench`
+against the previously initialized database for 30 seconds, using a single
+connection:
 
-</code></pre>
-<p>Example of how to run <code>pgbench</code> on an existing database by using the <code>--db-name</code> flag and
-the <code>pgbench</code> namespace:</p>
-<pre><code class="language-shell">kubectl cnpg pgbench \
-  -n pgbench cluster-example \
-  --db-name pgbench \
-  --pgbench-job-name pgbench-job \
+```shell
+kubectl cnpg pgbench \
+  --job-name pgbench-run \
+  cluster-example \
   -- --time 30 --client 1 --jobs 1
+</code></pre>
+<p>The next example runs <code>pgbench</code> against an existing database by using the
+<code>--db-name</code> flag and the <code>pgbench</code> namespace:</p>
+<pre><code class="language-shell">kubectl cnpg pgbench \
+  --db-name pgbench \
+  --job-name pgbench-job \
+  cluster-example \
+  -- --time 30 --client 1 --jobs 1
+</code></pre>
+<p>If you want to run a <code>pgbench</code> job on a specific worker node, you can use
+the <code>--node-selector</code> option. Suppose you want to run the previous
+initialization job on a node having the <code>workload=pgbench</code> label, you can run:</p>
+<pre><code class="language-shell">kubectl cnpg pgbench \
+  --db-name pgbench \
+  --job-name pgbench-init \
+  --node-selector workload=pgbench \
+  cluster-example \
+  -- --initialize --scale 1000
 </code></pre>
 <p>The job status can be fetched by running:</p>
 <pre><code>kubectl get job/pgbench-job -n &lt;namespace&gt;
 
-NAME               COMPLETIONS   DURATION   AGE
-pgbench-job-name   1/1           15s        41s
+NAME       COMPLETIONS   DURATION   AGE
+job-name   1/1           15s        41s
 </code></pre>
 <p>Once the job is completed the results can be gathered by executing:</p>
 <pre><code>kubectl logs job/pgbench-job -n &lt;namespace&gt;
 </code></pre>
 <h3 id="fio">fio</h3>
-<p>The kubectl CNPG plugin command <code>fio</code> executes a fio job with default values and read operations.
-The command also accepts a <code>--dry-run</code> flag, this will output the fio manifest without applying it.</p>
+<p>The kubectl CNPG plugin command <code>fio</code> executes a fio job with default values
+and read operations.
+Through the <code>--dry-run</code> flag you can generate the manifest of the job for later
+modification/execution.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The kubectl plugin command <code>fio</code> will create a deployment with predefined fio job values using a ConfigMap.
-If you want to provide custom job values, we recommend generating a manifest using the <code>--dry-run</code> flag
-and providing your custom job values in the generated ConfigMap.</p>
+<p>The kubectl plugin command <code>fio</code> will create a deployment with predefined
+fio job values using a ConfigMap. If you want to provide custom job values, we
+recommend generating a manifest using the <code>--dry-run</code> flag and providing your
+custom job values in the generated ConfigMap.</p>
 </div>
-<p>Example usage:</p>
-<p>default</p>
+<p>Example of default usage:</p>
 <pre><code class="language-shell">kubectl cnpg fio &lt;fio-name&gt;
 </code></pre>
-<p>with values</p>
+<p>Example with custom values:</p>
 <pre><code class="language-shell">kubectl cnpg fio &lt;fio-name&gt; \
   -n &lt;namespace&gt;  \
   --storageClass &lt;name&gt; \
   --pvcSize &lt;size&gt;
 </code></pre>
-<p>Example of how to run the <code>fio</code> command against a <code>StorageClass</code> named <code>standard</code> and <code>pvcSize: 2Gi</code> in the <code>fio</code> 
-namespace:</p>
+<p>Example of how to run the <code>fio</code> command against a <code>StorageClass</code> named
+<code>standard</code> and <code>pvcSize: 2Gi</code> in the <code>fio</code> namespace:</p>
 <pre><code class="language-shell">kubectl cnpg fio fio-job \
   -n fio  \
   --storageClass standard \
@@ -365,7 +411,7 @@ mounted on a dedicated Kubernetes node
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../samples/" class="btn btn-neutral float-left" title="Examples"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../networking/" class="btn btn-neutral float-left" title="Networking"><span class="icon icon-circle-arrow-left"></span> Previous</a>
         <a href="../commercial_support/" class="btn btn-neutral float-right" title="Commercial support">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
@@ -389,7 +435,7 @@ mounted on a dedicated Kubernetes node
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../samples/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../networking/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
       <span><a href="../commercial_support/" style="color: #fcfcfc">Next &raquo;</a></span>
