@@ -6,7 +6,16 @@
     <description>Recent content in k8s on CloudNativePG - PostgreSQL Operator for Kubernetes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 01 May 2023 09:00:00 +0200</lastBuildDate><atom:link href="https://cloudnative-pg.io/tags/k8s/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 12 Jun 2023 17:51:21 +0200</lastBuildDate><atom:link href="https://cloudnative-pg.io/tags/k8s/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CloudNativePG 1.20.1, 1.19.3 and 1.18.5 Released!</title>
+      <link>https://cloudnative-pg.io/blog/cloudnative-pg-1-20-1-released/</link>
+      <pubDate>Mon, 12 Jun 2023 17:51:21 +0200</pubDate>
+      
+      <guid>https://cloudnative-pg.io/blog/cloudnative-pg-1-20-1-released/</guid>
+      <description>The CloudNativePG community has released a new update for the supported 1.20, 1.19 and 1.18 versions of the CloudNativePG operator. Version 1.18 has reached End-of-Life (EOL).</description>
+    </item>
+    
     <item>
       <title>CloudNativePG and Hasura: should we be scared by demons?</title>
       <link>https://cloudnative-pg.io/blog/hasura-graphql/</link>
