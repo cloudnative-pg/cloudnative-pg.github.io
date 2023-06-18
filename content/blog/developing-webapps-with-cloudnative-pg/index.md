@@ -1,10 +1,10 @@
 ---
 title: "Developing Webapps With CloudNativePG, or, Unlocking DevOps"
 date: 2023-06-17T11:29:52+02:00
-draft: true
+draft: false
 image:
-    url: ali-kazal-h5VjkUqMCsc-unsplash.jpg
-    attribution: Photo by <a href="https://unsplash.com/@lureofadventure?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Ali Kazal</a> on <a href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+    url: elephants-spider-web.gif
+    attribution: Image by <a href="https://saintsandspinners.blogspot.com/2009/07/song-of-week-five-elephants-on-one.html">Saints and Spinners</a>
 author: jsilvela
 tags:
  - blog
@@ -15,13 +15,13 @@ summary: Bootstrap a simple webapp developed with PostgreSQL into a scalable app
 ---
 
 In this post I'd like to take you on the full journey moving your app written
-against PostrgreSQL into a containerized, scalable app on a local Kubernetes
+against PostgreSQL into a containerized, scalable app on a local Kubernetes
 cluster running queries against a CloudNativePG database.
-It is surprisingly quick and easy. You should be able to get through this in 15
+It is surprisingly quick and easy. You should be able to get through this in 10
 minutes.
 
-Developing your app on a local Kubernetes cluster? Why do that? There are two
-powerful reasons:
+Why would you want to develop your app on a local Kubernetes cluster?
+There are two powerful reasons:
 
 1. It unlocks DevOps for database-backed applications. One of the tenets of
   DevOps is to blur the line between development and production. A developer
@@ -32,7 +32,8 @@ powerful reasons:
   is very different, with hot standby replicas, availability zones, and
   backup/restore solutions.
   Developing against CloudNativePG, developers can now test the resiliency and
-  responsiveness of their applications in an environment mirroring production.
+  responsiveness of their applications in an environment that mirrors
+  production.
 
 1. It makes available a lot of powerful components built by the Kubernetes
   community. For example, in the
@@ -44,22 +45,15 @@ powerful reasons:
   [GraphQL layer for your CloudNativePG cluster]({{< ref "hasura-graphql">}}).
 
 We're going to be moving a very simple webapp written in Go assuming a
-PostgreSQL database. You can clone it from the
-[project github page](https://github.com/jsilvela/kubecon-webapp-cnpg).
-
-It is a very simple app with two endpoints, one showing a list of stock tickers,
-another updating the listing with new stock values.
+PostgreSQL database. It only has two endpoints, one showing a list of stock
+tickers, another updating the listing with new stock values.
 
 The only change the app need be aware of, once we containerize it and move
 it into our local Kubernetes cluster, is that the DB connection string will use
 the *service* created by CloudNativePG  for the database, rather than a regular
-host name. For example:
+host name.
 
-``` text
-"postgres://myUser:myPass@cluster-example-rw/app?sslmode=require"
-```
-
-Of course, in a [12-factor](https://12factor.net) compliant webapp, the host,
+In a properly written [12-factor](https://12factor.net) webapp, the host,
 user credentials and database names would be injected from environment
 variables (or an injected
 [PGPASSFILE](https://www.postgresql.org/docs/current/libpq-pgpass.html)).
@@ -135,7 +129,7 @@ by running:
 docker build -t myapp .
 ```
 
-You should now be able to see the image `myapp` in the `docker images` listing.
+You should be able to see the image `myapp` in the `docker images` listing.
 Now we'd like to *load* this image into our KinD cluster's nodes.
 
 ``` sh
@@ -144,7 +138,7 @@ kind load docker-image myapp:latest --name webapp-demo
 
 (*) You could have uploaded your dockerfile into a public container registry,
 and used its public handle in the following YAML files, but
-for local development and quick iteration, directly loading may be quicker.
+for local development and quick iteration, directly loading may be preferable.
 
 #### Creating a PostgreSQL cluster
 
@@ -160,8 +154,8 @@ CloudNativePG that show off various features and are ready to deploy.
 You can find out more
 [in the CloudNativePG documentation](https://cloudnative-pg.io/documentation/current/samples/).
 
-In a few seconds, you should have the cluster `cluster-example` up and ready.
-It is a 3-instance cluster, with a primary and two hot-standbys.
+In a few seconds, you should have the PostgreSQL cluster `cluster-example` up
+and ready. It is a 3-instance cluster, with a primary and two hot-standbys.
 
 ``` sh
 % kubectl get clusters
@@ -225,7 +219,7 @@ see two tables:
 
 Note the owner is the superuser `postgres`. This is a bit of an anti-pattern.
 Applications should run database code with a less-privileged user.
-By default, CloudNativePG creates a user called `app`, and a databse owned
+By default, CloudNativePG creates a user called `app`, and a database owned
 by it, also called `app`. This is a very reasonable default, but of course you
 can configure your clusters to fit your needs.
 
@@ -240,16 +234,16 @@ There are 50 stocks in the `stocks` table, and 43300 stock values in
 the `stock_values` table:
 
 ``` sql
-# select * from stock_values;
-  stock   |        date         |      stock_value       
-----------+---------------------+------------------------
- stock_1  | 2020-01-01 00:00:00 |     0.6658041506531942
- stock_2  | 2020-01-01 00:00:00 |       0.99603564595136
- stock_3  | 2020-01-01 00:00:00 |    0.08328438905366786
- stock_4  | 2020-01-01 00:00:00 |     0.1798036377679988
- stock_5  | 2020-01-01 00:00:00 |    0.28340978672269146
- stock_6  | 2020-01-01 00:00:00 |    0.21413451212868462
- stock_7  | 2020-01-01 00:00:00 |    0.19692510776148553
+# select * from stock_values order by date desc;
+
+  stock   |            date            |      stock_value       
+----------+----------------------------+------------------------
+ stock_43 | 2022-05-15 00:00:00        |     0.1512641999535136
+ stock_50 | 2022-05-15 00:00:00        |     0.6586900953813299
+ stock_49 | 2022-05-15 00:00:00        |   0.052571752658662874
+ stock_48 | 2022-05-15 00:00:00        |     0.8326971243933354
+ stock_47 | 2022-05-15 00:00:00        |     0.2769466296850802
+ stock_46 | 2022-05-15 00:00:00        |     0.6096716690131085
  . . .
  . . . snipped
 ```
@@ -313,14 +307,108 @@ You should now be able to see the app in
 
 ![index page](index-page.png)
 
-Cliking on the *latest stock values* link:
+Clicking on the *latest stock values* link:
 
 ![stocks page](stonks.png)
 
-### A few points to consider
+You can also click on the *"Add random stock values"* link, and then go back on
+the stocks page, and you'll see a few changed stock values.
+
+Our webapp is deployed now as promised!
+
+### All in? Partially in?
 
 We mentioned that our web application would use the *service* associated with
-our CloudNativePG cluster.
+our CloudNativePG cluster. In fact, the service `cluster-example-rw` will always
+point to the cluster's primary instance. If there is a failover or a
+switchover, the service will remain unchanged.
+
+Notice there was another service called `cluster-example-ro`, which, you might
+guess, acts as a load-balancer for our read-only replicas.
+
+We glossed over authentication. Our Go app uses environment variables for the
+credentials to the database. In the webapp deployment manifest
+[webapp-deploy.yaml](https://raw.githubusercontent.com/jsilvela/kubecon-webapp-cnpg/main/webapp-deploy.yaml)
+you can find the following section:
+
+``` yaml
+        env:
+        - name: PG_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: cluster-example-app
+              key: password
+        - name: PG_USER
+          valueFrom:
+            secretKeyRef:
+              name: cluster-example-app
+              key: username
+```
+
+This assumes the existence of a
+[Kubernetes secret](https://kubernetes.io/docs/concepts/configuration/secret/)
+called `cluster-example-app`. Secrets are how Kubernetes handles sensitive
+material like passwords or certificates.
+
+By assuming the existence of a secret, and using *convention over
+configuration*, our webapp deployment manifest had no need to decode the
+credentials.
+
+Secrets and Services though, are only available *within* a kubernetes cluster.
+What if we wanted to deploy the database with CloudNativePG inside Kubernetes,
+but run the webapp, or some other components of the system, outside
+kubernetes?
+
+You still can, of course, although you lose part of the convenience. We already
+saw the possibility of doing port-forwarding. Port-forwarding could be used to
+expose one or more of the CloudNativePG services over regular TCP ports.
+Credentials too would be handled without much trouble.
+
+For further information, please refer to the [use cases discussion](https://cloudnative-pg.io/documentation/current/use_cases/).
 
 ### Where to go from here
 
+We've created a replicated webserver running inside a kubernetes cluster, and
+a PostgreSQL cluster with two standbys.
+We mentioned DevOps and blurring the line between development and production.
+
+How about testing some failure scenarios?
+
+We could create load on the webapp, introducing new stock values by repeatedly
+hitting the `/update` endpoint.
+Using the [*hey*](https://github.com/rakyll/hey) load generator:
+
+``` sh
+hey -z 100s -q 1 -c 2  http://localhost:8080/update
+```
+
+And during this time, how about killing the primary instance:
+
+``` sh
+kubectl delete pod cluster-example-1
+```
+
+The webapp might be momentarily unavailable, and you might see
+`pq: the database system is shutting down`.
+Recovery should be no longer than 1-2 seconds, as a replica would be
+promoted by the CloudNativePG operator.
+Since the webapp was written against the service, it will recover once
+the new primary is in place.
+
+But you might think that for read-only endpoints like the page showing
+the latest stock values, the webapp could leverage the `cluster-example-ro`
+service.
+If if did, there would not be an outage when we killed the primary.
+There's a lot of power to experiment and iterate your system design.
+
+We mentioned in the beginning that the
+[quickstart guide](http://localhost:1313/documentation/current/quickstart/)
+takes you through adding Prometheus / Grafana monitoring for your database
+cluster. It would not be difficult to publish Prometheus metrics from your
+webapp too, and have a dashboard for your full system.
+
+The point is that you have at your disposal an environment where you can test
+disaster recovery, realistic loads, scaling, upgrades, and any other day-2
+operations you could want.
+
+It's a good time to be a developer!
