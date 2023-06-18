@@ -37,7 +37,7 @@ There are two powerful reasons:
 
 1. It makes available a lot of powerful components built by the Kubernetes
   community. For example, in the
-  [Quickstart guide](http://localhost:1313/documentation/current/quickstart/)
+  [Quickstart guide](http://cloudnative-pg.io/documentation/current/quickstart/)
   for CloudNativePG you will find a section that takes you through installing
   the [Prometheus Operator](https://prometheus-operator.dev), with a
   [Grafana](https://grafana.com) dashboard to get metrics for your database.
@@ -74,7 +74,7 @@ Here's the game plan:
 ### Hands-on
 
 If you don't yet have a local Kubernetes cluster, please refer to the
-[Quickstart guide](http://localhost:1313/documentation/current/quickstart/).
+[Quickstart guide](http://cloudnative-pg.io/documentation/current/quickstart/).
 You will need `kind` installed, as well as `kubectl` and `docker`.
 If you want to run and compile the webapp locally to kick the tires, you will
 also need the [Go compiler](https://go.dev), though this is not necessary if
@@ -402,7 +402,7 @@ If if did, there would not be an outage when we killed the primary.
 There's a lot of power to experiment and iterate your system design.
 
 We mentioned in the beginning that the
-[quickstart guide](http://localhost:1313/documentation/current/quickstart/)
+[quickstart guide](http://cloudnative-pg.io/documentation/current/quickstart/)
 takes you through adding Prometheus / Grafana monitoring for your database
 cluster. It would not be difficult to publish Prometheus metrics from your
 webapp too, and have a dashboard for your full system.
