@@ -136,7 +136,7 @@ Now we'd like to *load* this image into our KinD cluster's nodes.
 kind load docker-image myapp:latest --name webapp-demo
 ```
 
-(*) You could have uploaded your dockerfile into a public container registry,
+(*) You could have uploaded your Dockerfile into a public container registry,
 and used its public handle in the following YAML files, but
 for local development and quick iteration, directly loading may be preferable.
 
@@ -398,7 +398,7 @@ the new primary is in place.
 But you might think that for read-only endpoints like the page showing
 the latest stock values, the webapp could leverage the `cluster-example-ro`
 service.
-If if did, there would not be an outage when we killed the primary.
+If it did, there would not be an outage when we killed the primary.
 There's a lot of power to experiment and iterate your system design.
 
 We mentioned in the beginning that the
