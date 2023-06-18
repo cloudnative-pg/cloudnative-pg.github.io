@@ -399,6 +399,12 @@ But you might think that for read-only endpoints like the page showing
 the latest stock values, the webapp could leverage the `cluster-example-ro`
 service.
 If it did, there would not be an outage when we killed the primary.
+
+You could add connection pooling. CloudNativePG offers support out of the
+box for [PgBouncer](https://www.pgbouncer.org/) through the `Pooler` resource.
+You can find more information in the
+[connection pooling document](https://cloudnative-pg.io/documentation/current/connection_pooling/).
+
 There's a lot of power to experiment and iterate your system design.
 
 We mentioned in the beginning that the
