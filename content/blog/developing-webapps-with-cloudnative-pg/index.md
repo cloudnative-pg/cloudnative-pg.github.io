@@ -237,7 +237,7 @@ There are 50 stocks in the `stocks` table, and 43300 stock values in
 the `stock_values` table:
 
 ``` sql
-# select * from stock_values order by date desc;
+# SELECT * FROM stock_values ORDER BY date DESC;
 
   stock   |            date            |      stock_value       
 ----------+----------------------------+------------------------
@@ -388,7 +388,7 @@ Using the [*hey*](https://github.com/rakyll/hey) load generator:
 hey -z 100s -q 1 -c 2  http://localhost:8080/update
 ```
 
-And during this time, how about killing the primary instance:
+And during this time, how about killing the primary instance?
 
 ``` sh
 kubectl delete pod cluster-example-1
@@ -412,7 +412,7 @@ box for [PgBouncer](https://www.pgbouncer.org/) through the `Pooler` resource.
 You can find more information in the
 [connection pooling document](https://cloudnative-pg.io/documentation/current/connection_pooling/).
 
-There's a lot of power to experiment and iterate your system design.
+There's a lot of power to experiment and iterate through your system design.
 
 We mentioned in the beginning that the
 [quickstart guide](http://cloudnative-pg.io/documentation/current/quickstart/)
