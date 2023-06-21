@@ -396,7 +396,7 @@ kubectl delete pod cluster-example-1
 
 The webapp might be momentarily unavailable, and you might see
 `pq: the database system is shutting down` in the *latests stocks* page.
-Recovery should be no longer than 1-2 seconds, as a replica would be
+Recovery should take no longer than 1-2 seconds, as a replica would be
 promoted by the CloudNativePG operator.
 Since the webapp was written using the service, it will recover once
 the new primary is in place.
