@@ -41,10 +41,10 @@ There are two powerful reasons:
   for CloudNativePG you will find a section that takes you through installing
   the [Prometheus Operator](https://prometheus-operator.dev), with a
   [Grafana](https://grafana.com) dashboard to get metrics for your database.
-  In a previous post, you can learn how tow deploy Hasura to provide a
+  In a previous post, you can learn how to deploy Hasura to provide a
   [GraphQL layer for your CloudNativePG cluster]({{< ref "hasura-graphql">}}).
 
-We're going to be moving a very simple webapp written in Go assuming a
+We're going to be moving a very simple webapp written in Go that uses a
 PostgreSQL database. It only has two endpoints, one showing a list of stock
 tickers, another updating the listing with new stock values.
 
@@ -63,13 +63,13 @@ to Kubernetes / CloudNativePG.
 Here's the game plan:
 
 1. Follow the quickstart guide to get a local Kubernetes cluster with the
-  CloudNativePG operator deployed.
-1. Containerize the webapp with the provided Dockerfile.
-1. Deploy a PostgreSQL cluster with CloudNativePG.
-1. Populate the database with the initial schema and data.
-1. Install your webapp with the provided Deployment + Service YAML.
+  CloudNativePG operator deployed
+1. Containerize the webapp with the provided Dockerfile
+1. Deploy a PostgreSQL cluster with CloudNativePG
+1. Populate the database with the initial schema and data
+1. Install your webapp with the provided Deployment + Service YAML
 1. Start a port-forwarding so you can view the webapp from your computer's
-  web browser.
+  web browser
 
 ### Hands-on
 
@@ -77,7 +77,7 @@ If you don't yet have a local Kubernetes cluster, please refer to the
 [Quickstart guide](http://cloudnative-pg.io/documentation/current/quickstart/).
 You will need `kind` installed, as well as `kubectl` and `docker`.
 If you want to run and compile the webapp locally to kick the tires, you will
-also need the [Go compiler](https://go.dev), though this is not necessary if
+also need the [Go compiler](https://go.dev) - though this is not necessary if
 you will only run it containerized.
 
 We're going to create a Kubernetes cluster from scratch using
@@ -95,18 +95,19 @@ NAME                        STATUS   ROLES           AGE    VERSION
 webapp-demo-control-plane   Ready    control-plane   114s   v1.27.1
 ```
 
-It is a cluster with only one *node*, but you can easily create clusters with
+It's a cluster with only one *node*, but you can easily create clusters with
 several worker nodes with KinD.
 
 #### CloudNativePG operator
 
 Now let's install the CloudNativePG operator. As explained in the
 [installation document](https://cloudnative-pg.io/documentation/current/installation_upgrade/),
-you can deploy applying the latest manifest.
+you can deploy it by applying the latest manifest.
 At the time of this writing, this is version 1.20.1:
 
 ``` sh
-kubectl apply -f https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/release-1.20/releases/cnpg-1.20.1.yaml
+kubectl apply -f \
+  https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/release-1.20/releases/cnpg-1.20.1.yaml
 ```
 
 The installation should take seconds, and you should find the deployment
@@ -138,7 +139,7 @@ kind load docker-image myapp:latest --name webapp-demo
 
 (*) You could have uploaded your Dockerfile into a public container registry,
 and used its public handle in the following YAML files, but
-for local development and quick iteration, directly loading may be preferable.
+for local development and quick iteration, directly loading it may be preferable.
 
 #### Creating a PostgreSQL cluster
 
@@ -146,7 +147,8 @@ Before we deploy the app, let's create the simplest possible CloudNativePG
 cluster.
 
 ``` sh
-kubectl apply -f https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/main/docs/src/samples/cluster-example.yaml
+kubectl apply -f \
+  https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/main/docs/src/samples/cluster-example.yaml
 ```
 
 This YAML is part of a set of example cluster manifests provided with
@@ -191,7 +193,7 @@ create table stock_values as
     from stocks cross join dates;
 ```
 
-There are some comments there that are relevat for
+There are some comments there that are relevant for
 [*Liquibase*](https://www.liquibase.org). By all means, for development of
 applications, we strongly encourage that you use a **database migration tool**,
 but for this demo we can just push through and apply the changes manually.
@@ -217,6 +219,7 @@ see two tables:
 (2 rows)
 ```
 
+\* What about using `SET role TO app;` in the migration script at the start?
 Note the owner is the superuser `postgres`. This is a bit of an anti-pattern.
 Applications should run database code with a less-privileged user.
 By default, CloudNativePG creates a user called `app`, and a database owned
