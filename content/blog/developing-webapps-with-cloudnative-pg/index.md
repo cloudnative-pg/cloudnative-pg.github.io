@@ -41,7 +41,8 @@ There are two powerful reasons:
   for CloudNativePG you will find a section that takes you through installing
   the [Prometheus Operator](https://prometheus-operator.dev), with a
   [Grafana](https://grafana.com) dashboard to get metrics for your database.
-  In a previous post, you can learn how to deploy Hasura to provide a
+  In a previous post, you can learn how to deploy
+  [Hasura](https://hasura.io) to provide a
   [GraphQL layer for your CloudNativePG cluster]({{< ref "hasura-graphql">}}).
 
 We're going to be moving a very simple webapp written in Go that uses a
@@ -206,31 +207,30 @@ a `psql` terminal on it:
 kubectl exec -ti cluster-example-1 -- psql app
 ```
 
-Once in `psql`, you can simply copy and paste the SQL above. You should now
-see two tables:
-
-``` text
-# \dt
-            List of relations
- Schema |     Name     | Type  |  Owner   
---------+--------------+-------+----------
- public | stock_values | table | postgres
- public | stocks       | table | postgres
-(2 rows)
-```
-
-\* What about using `SET role TO app;` in the migration script at the start?
-Note the owner is the superuser `postgres`. This is a bit of an anti-pattern.
+This will open a session as the `postgres` superuser.
 Applications should run database code with a less-privileged user.
 By default, CloudNativePG creates a user called `app`, and a database owned
 by it, also called `app`. This is a very reasonable default, but of course you
 can configure your clusters to fit your needs.
 
-Let's make `app` the owner of the tables.
+The tables above should be created by the `app` user.
+In our `psql` session, let's switch:
 
 ``` sql
-alter table stock_values owner to app;
-alter table stocks owner to app;
+SET role TO app;
+```
+
+Now you can simply copy and paste the SQL above. You should
+see two tables:
+
+``` text
+app=> \dt
+           List of relations
+ Schema |     Name     | Type  | Owner 
+--------+--------------+-------+-------
+ public | stock_values | table | app
+ public | stocks       | table | app
+(2 rows)
 ```
 
 There are 50 stocks in the `stocks` table, and 43300 stock values in
@@ -297,7 +297,7 @@ mywebapp             LoadBalancer   10.96.128.43    <pending>     8088:30016/TCP
 
 Our webapp is now fully running!
 However, our local Kind cluster is not generally visible to the local network.
-Let's do port forwarding:
+Let's add port forwarding:
 
 ``` sh
 % kubectl port-forward service/mywebapp  8080:8088
@@ -324,7 +324,7 @@ Our webapp is deployed now as promised!
 We mentioned that our web application would use the *service* associated with
 our CloudNativePG cluster. In fact, the service `cluster-example-rw` will always
 point to the cluster's primary instance. If there is a failover or a
-switchover, the service will remain unchanged.
+switchover, the service will point to the new primary.
 
 Notice there was another service called `cluster-example-ro`, which, you might
 guess, acts as a load-balancer for our read-only replicas.
@@ -335,6 +335,7 @@ credentials to the database. In the webapp deployment manifest
 you can find the following section:
 
 ``` yaml
+        ... snipped ...
         env:
         - name: PG_PASSWORD
           valueFrom:
@@ -352,17 +353,19 @@ This assumes the existence of a
 [Kubernetes secret](https://kubernetes.io/docs/concepts/configuration/secret/)
 called `cluster-example-app`. Secrets are how Kubernetes handles sensitive
 material like passwords or certificates.
+The secret `cluster-example-app` was created by default by CloudNativePG,
+(named `<clusterName>-app` for the `app` user).
 
 By assuming the existence of a secret, and using *convention over
 configuration*, our webapp deployment manifest had no need to decode the
 credentials.
 
-Secrets and Services though, are only available *within* a kubernetes cluster.
-What if we wanted to deploy the database with CloudNativePG inside Kubernetes,
+Secrets and Services though, are only available *within* a Kubernetes cluster.
+What if you wanted to deploy the database with CloudNativePG inside Kubernetes,
 but run the webapp, or some other components of the system, outside
-kubernetes?
+Kubernetes?
 
-You still can, of course, although you lose part of the convenience. We already
+You can, of course, although you lose part of the convenience. We already
 saw the possibility of doing port-forwarding. Port-forwarding could be used to
 expose one or more of the CloudNativePG services over regular TCP ports.
 Credentials too would be handled without much trouble.
@@ -372,7 +375,7 @@ For further information, please refer to the [use cases discussion](https://clou
 ### Where to go from here
 
 We've created a replicated webserver running inside a kubernetes cluster, and
-a PostgreSQL cluster with two standbys.
+a PostgreSQL cluster with two standbys, in under 10 minutes.
 We mentioned DevOps and blurring the line between development and production.
 
 How about testing some failure scenarios?
@@ -392,16 +395,17 @@ kubectl delete pod cluster-example-1
 ```
 
 The webapp might be momentarily unavailable, and you might see
-`pq: the database system is shutting down`.
+`pq: the database system is shutting down` in the *latests stocks* page.
 Recovery should be no longer than 1-2 seconds, as a replica would be
 promoted by the CloudNativePG operator.
-Since the webapp was written against the service, it will recover once
+Since the webapp was written using the service, it will recover once
 the new primary is in place.
 
 But you might think that for read-only endpoints like the page showing
 the latest stock values, the webapp could leverage the `cluster-example-ro`
 service.
-If it did, there would not be an outage when we killed the primary.
+If it did, there would not be an outage when we killed the primary. These
+are tradeoffs that you can now explore meaningfully at development time.
 
 You could add connection pooling. CloudNativePG offers support out of the
 box for [PgBouncer](https://www.pgbouncer.org/) through the `Pooler` resource.
@@ -413,8 +417,8 @@ There's a lot of power to experiment and iterate your system design.
 We mentioned in the beginning that the
 [quickstart guide](http://cloudnative-pg.io/documentation/current/quickstart/)
 takes you through adding Prometheus / Grafana monitoring for your database
-cluster. It would not be difficult to publish Prometheus metrics from your
-webapp too, and have a dashboard for your full system.
+cluster. It would not be difficult to publish Prometheus metrics for your
+webserver too, and have a dashboard for your full system.
 
 The point is that you have at your disposal an environment where you can test
 disaster recovery, realistic loads, scaling, upgrades, and any other day-2
