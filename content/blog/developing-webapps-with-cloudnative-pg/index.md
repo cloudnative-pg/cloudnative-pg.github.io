@@ -269,8 +269,8 @@ service/mywebapp created
 deployment.apps/mywebapp created
 ```
 
-Right away you can see the three pods running the web server, as well as the
-three pods running our database:
+Right away you can see the 3 pods running the web server, as well as the
+3 pods running our database:
 
 ``` sh
 % kubectl get pods
@@ -283,7 +283,7 @@ mywebapp-548d97848b-vrv8f   1/1     Running   0          20s
 mywebapp-548d97848b-whnnp   1/1     Running   0          20s
 ```
 
-You can also see the load balancer for our webapp, as well as three services
+You can also see the load balancer for our webapp, as well as 3 services
 for `cluster-example` (we'll say more about them shortly.)
 
 ``` sh
@@ -297,7 +297,7 @@ mywebapp             LoadBalancer   10.96.128.43    <pending>     8088:30016/TCP
 
 Our webapp is now fully running!
 However, our local Kind cluster is not generally visible to the local network.
-Let's add port forwarding:
+Let's add port forwarding of the application port for HTTP:
 
 ``` sh
 % kubectl port-forward service/mywebapp  8080:8088
@@ -374,8 +374,8 @@ For further information, please refer to the [use cases discussion](https://clou
 
 ### Where to go from here
 
-We've created a replicated webserver running inside a kubernetes cluster, and
-a PostgreSQL cluster with two standbys, in under 10 minutes.
+We've created a replicated webserver running inside a Kubernetes cluster, and
+a PostgreSQL cluster with 2 standbys, in under 10 minutes.
 We mentioned DevOps and blurring the line between development and production.
 
 How about testing some failure scenarios?
