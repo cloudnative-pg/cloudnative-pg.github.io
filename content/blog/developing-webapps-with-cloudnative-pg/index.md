@@ -91,7 +91,7 @@ kind create cluster --name webapp-demo
 This should run quickly. You can make sure it's ready:
 
 ``` sh
-% kubectl get nodes   
+% kubectl get nodes
 NAME                        STATUS   ROLES           AGE    VERSION
 webapp-demo-control-plane   Ready    control-plane   114s   v1.27.1
 ```
@@ -115,7 +115,7 @@ The installation should take seconds, and you should find the deployment
 ready:
 
 ``` sh
-% kubectl get deployments -n cnpg-system 
+% kubectl get deployments -n cnpg-system
 NAME                      READY   UP-TO-DATE   AVAILABLE   AGE
 cnpg-controller-manager   1/1     1            1           18s
 ```
@@ -176,7 +176,7 @@ you can find:
 
 ``` sql
 --changeset jaime.silvela:1 labels:kubecon-demo
---comment: let's start off with 50 stocks 
+--comment: let's start off with 50 stocks
 create table stocks as
     select 'stock_' || generate_series as stock
     from generate_series(1, 50);
@@ -226,7 +226,7 @@ see two tables:
 ``` text
 app=> \dt
            List of relations
- Schema |     Name     | Type  | Owner 
+ Schema |     Name     | Type  | Owner
 --------+--------------+-------+-------
  public | stock_values | table | app
  public | stocks       | table | app
@@ -239,7 +239,7 @@ the `stock_values` table:
 ``` sql
 # SELECT * FROM stock_values ORDER BY date DESC;
 
-  stock   |            date            |      stock_value       
+  stock   |            date            |      stock_value
 ----------+----------------------------+------------------------
  stock_43 | 2022-05-15 00:00:00        |     0.1512641999535136
  stock_50 | 2022-05-15 00:00:00        |     0.6586900953813299
@@ -264,7 +264,7 @@ The Service builds a load balancer to route traffic to any of the 3 replicas.
 Simply apply the file:
 
 ```sh
-% kubectl apply -f webapp-deploy.yaml 
+% kubectl apply -f webapp-deploy.yaml
 service/mywebapp created
 deployment.apps/mywebapp created
 ```
@@ -287,7 +287,7 @@ You can also see the load balancer for our webapp, as well as three services
 for `cluster-example` (we'll say more about them shortly.)
 
 ``` sh
-% kubectl get svc 
+% kubectl get svc
 NAME                 TYPE           CLUSTER-IP      EXTERNAL-IP   PORT(S)          AGE
 cluster-example-r    ClusterIP      10.96.103.136   <none>        5432/TCP         29m
 cluster-example-ro   ClusterIP      10.96.252.145   <none>        5432/TCP         29m
