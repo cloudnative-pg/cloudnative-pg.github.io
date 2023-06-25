@@ -91,7 +91,8 @@ kind create cluster --name webapp-demo
 This should run quickly. You can make sure it's ready:
 
 ``` sh
-% kubectl get nodes
+kubectl get nodes
+
 NAME                        STATUS   ROLES           AGE    VERSION
 webapp-demo-control-plane   Ready    control-plane   114s   v1.27.1
 ```
@@ -115,7 +116,8 @@ The installation should take seconds, and you should find the deployment
 ready:
 
 ``` sh
-% kubectl get deployments -n cnpg-system
+kubectl get deployments -n cnpg-system
+
 NAME                      READY   UP-TO-DATE   AVAILABLE   AGE
 cnpg-controller-manager   1/1     1            1           18s
 ```
@@ -161,7 +163,8 @@ In a few seconds, you should have the PostgreSQL cluster `cluster-example` up
 and ready. It is a 3-instance cluster, with a primary and two hot-standbys.
 
 ``` sh
-% kubectl get clusters
+kubectl get clusters
+
 NAME              AGE     INSTANCES   READY   STATUS                     PRIMARY
 cluster-example   2m23s   3           3       Cluster in healthy state   cluster-example-1
 ```
@@ -264,7 +267,8 @@ The Service builds a load balancer to route traffic to any of the 3 replicas.
 Simply apply the file:
 
 ```sh
-% kubectl apply -f webapp-deploy.yaml
+kubectl apply -f webapp-deploy.yaml
+
 service/mywebapp created
 deployment.apps/mywebapp created
 ```
@@ -273,7 +277,8 @@ Right away you can see the 3 pods running the web server, as well as the
 3 pods running our database:
 
 ``` sh
-% kubectl get pods
+kubectl get pods
+
 NAME                        READY   STATUS    RESTARTS   AGE
 cluster-example-1           1/1     Running   0          27m
 cluster-example-2           1/1     Running   0          27m
@@ -287,7 +292,8 @@ You can also see the load balancer for our webapp, as well as 3 services
 for `cluster-example` (we'll say more about them shortly.)
 
 ``` sh
-% kubectl get svc
+kubectl get svc
+
 NAME                 TYPE           CLUSTER-IP      EXTERNAL-IP   PORT(S)          AGE
 cluster-example-r    ClusterIP      10.96.103.136   <none>        5432/TCP         29m
 cluster-example-ro   ClusterIP      10.96.252.145   <none>        5432/TCP         29m
@@ -300,7 +306,8 @@ However, our local Kind cluster is not generally visible to the local network.
 Let's add port forwarding of the application port for HTTP:
 
 ``` sh
-% kubectl port-forward service/mywebapp  8080:8088
+kubectl port-forward service/mywebapp  8080:8088
+
 Forwarding from 127.0.0.1:8080 -> 8080
 Forwarding from [::1]:8080 -> 8080
 ```
