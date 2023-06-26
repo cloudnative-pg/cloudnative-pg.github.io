@@ -6,7 +6,16 @@
     <description>Recent content in devops on CloudNativePG - PostgreSQL Operator for Kubernetes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 25 Jan 2023 13:13:36 +0100</lastBuildDate><atom:link href="https://cloudnative-pg.io/tags/devops/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 17 Jun 2023 11:29:52 +0200</lastBuildDate><atom:link href="https://cloudnative-pg.io/tags/devops/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Developing Webapps With CloudNativePG, or, Unlocking DevOps</title>
+      <link>https://cloudnative-pg.io/blog/developing-webapps-with-cloudnative-pg/</link>
+      <pubDate>Sat, 17 Jun 2023 11:29:52 +0200</pubDate>
+      
+      <guid>https://cloudnative-pg.io/blog/developing-webapps-with-cloudnative-pg/</guid>
+      <description>Bootstrap a simple webapp developed with PostgreSQL into a scalable app with CloudNativePG.</description>
+    </item>
+    
     <item>
       <title>Introducing Ciclops, a new GitHub action to better understand CI/CD test results</title>
       <link>https://cloudnative-pg.io/blog/introducing-ciclops/</link>

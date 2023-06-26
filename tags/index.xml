@@ -6,7 +6,43 @@
     <description>Recent content in Tags on CloudNativePG - PostgreSQL Operator for Kubernetes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 12 Jun 2023 17:51:21 +0200</lastBuildDate><atom:link href="https://cloudnative-pg.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 17 Jun 2023 11:29:52 +0200</lastBuildDate><atom:link href="https://cloudnative-pg.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>applications</title>
+      <link>https://cloudnative-pg.io/tags/applications/</link>
+      <pubDate>Sat, 17 Jun 2023 11:29:52 +0200</pubDate>
+      
+      <guid>https://cloudnative-pg.io/tags/applications/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>blog</title>
+      <link>https://cloudnative-pg.io/tags/blog/</link>
+      <pubDate>Sat, 17 Jun 2023 11:29:52 +0200</pubDate>
+      
+      <guid>https://cloudnative-pg.io/tags/blog/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>devops</title>
+      <link>https://cloudnative-pg.io/tags/devops/</link>
+      <pubDate>Sat, 17 Jun 2023 11:29:52 +0200</pubDate>
+      
+      <guid>https://cloudnative-pg.io/tags/devops/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>information</title>
+      <link>https://cloudnative-pg.io/tags/information/</link>
+      <pubDate>Sat, 17 Jun 2023 11:29:52 +0200</pubDate>
+      
+      <guid>https://cloudnative-pg.io/tags/information/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>cloudnativepg</title>
       <link>https://cloudnative-pg.io/tags/cloudnativepg/</link>
@@ -98,15 +134,6 @@
     </item>
     
     <item>
-      <title>blog</title>
-      <link>https://cloudnative-pg.io/tags/blog/</link>
-      <pubDate>Wed, 25 Jan 2023 13:13:36 +0100</pubDate>
-      
-      <guid>https://cloudnative-pg.io/tags/blog/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>continuous-delivery</title>
       <link>https://cloudnative-pg.io/tags/continuous-delivery/</link>
       <pubDate>Wed, 25 Jan 2023 13:13:36 +0100</pubDate>
@@ -125,29 +152,11 @@
     </item>
     
     <item>
-      <title>devops</title>
-      <link>https://cloudnative-pg.io/tags/devops/</link>
-      <pubDate>Wed, 25 Jan 2023 13:13:36 +0100</pubDate>
-      
-      <guid>https://cloudnative-pg.io/tags/devops/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>github-action</title>
       <link>https://cloudnative-pg.io/tags/github-action/</link>
       <pubDate>Wed, 25 Jan 2023 13:13:36 +0100</pubDate>
       
       <guid>https://cloudnative-pg.io/tags/github-action/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>information</title>
-      <link>https://cloudnative-pg.io/tags/information/</link>
-      <pubDate>Wed, 25 Jan 2023 13:13:36 +0100</pubDate>
-      
-      <guid>https://cloudnative-pg.io/tags/information/</guid>
       <description></description>
     </item>
     
