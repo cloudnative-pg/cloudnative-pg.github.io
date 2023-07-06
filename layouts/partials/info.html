@@ -1,6 +1,6 @@
 {{ if modBool .i 2 }}
 
-<div class="w-full bg-gray-1 py-16 md:px-56 px-4">
+<div class="w-full bg-gray-100 dark:bg-sky-700 py-16 md:px-56 px-4">
   <section class="container mx-auto text-left md:flex md:flex-row md:justify-between">
     <div class="md:block mx-auto my-auto hidden">
       <img src="{{ .context.Params.icon }}" alt="{{.context.Title}}" />
@@ -10,30 +10,30 @@
     </div>
     <div class="md:w-3/5 md:block">
       <h1 class="md:text-3xl py-4 font-medium cnp-blue text-2xl md:text-left text-center">{{ .context.Title }}</h1>
-      <p class="md:text-xl leading-8 gray-4 text-lg">{{ .context.Content }}</p>
+      <p class="md:text-xl leading-8 text-gray-800 dark:text-gray-300  text-lg">{{ .context.Content }}</p>
     </div>
   </section>
 </div>
 {{ else }}
-<div class="md:block hidden w-full  bg-white py-16 md:px-56">
+<div class="md:block hidden w-full  bg-white dark:bg-sky-800 text-black dark:text-neutral-200 py-16 md:px-56">
   <section class="container mx-auto text-left md:flex md:flex-row md:justify-between">
     <div class="md:w-3/5">
       <h1 class="md:text-3xl py-4 font-medium cnp-blue text-2xl">{{ .context.Title }}</h1>
-      <p class="md:text-xl leading-8 gray-4 text-lg">{{ .context.Content }}</p>
+      <p class="md:text-xl leading-8 text-gray-800 dark:text-gray-300  text-lg">{{ .context.Content }}</p>
     </div>
     <div class="items-center my-auto mx-auto">
       <img src="{{ .context.Params.icon }}" alt="{{.context.Title}}" class="mx-auto" />
     </div>
   </section>
 </div>
-<div class="md:hidden w-full  bg-white py-16 px-4">
+<div class="md:hidden w-full  bg-white dark:bg-sky-800 text-black dark:text-neutral-200 py-16 px-4">
   <section class="container text-left md:flex md:flex-row md:justify-between">
     <div class="mx-auto my-auto ">
       <img src="{{ .context.Params.icon }}" alt="{{.context.Title}}" class="h-20 mx-auto" />
     </div>
     <div class="md:w-3/5">
       <h1 class="md:text-3xl py-4 font-medium text-center cnp-blue text-2xl">{{ .context.Title }}</h1>
-      <p class="md:text-xl leading-8 gray-4 text-lg">{{ .context.Content }}</p>
+      <p class="md:text-xl leading-8 text-gray-800 dark:text-gray-300 text-lg">{{ .context.Content }}</p>
     </div>
   </section>
 </div>
