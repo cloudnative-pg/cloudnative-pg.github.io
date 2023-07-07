@@ -16,14 +16,14 @@
         <h3 class="text-xl font-bold mb-6">Posts by {{ .Params.name }}</h3>
         {{ $this_author := .Params.github }}
         {{ range (.Site.GetPage "/blog").Pages}}
-        <ul>
             {{ if eq .Params.author $this_author }}
-            <li><a href="{{ .RelPermalink }}">{{ .Params.title }}</a></li>
+            <div class="column is-half">
+                <a href="{{ .RelPermalink }}">{{ .Params.title}}</a>
+                {{ partial "blog_datetime.html" . }}
+            </div>
             {{ end }}
-        </ul>
         {{ end }}
     </div>
-
 
     <!--Col 2 starts here-->
     <div class="space-y-10 md:pt-10">
