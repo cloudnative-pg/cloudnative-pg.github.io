@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+        <link href="../css/override.css" rel="stylesheet" />
     
       <script>
         // Current page data
@@ -161,7 +162,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../cnpg-plugin/">CloudNativePG Plugin</a>
+                <li class="toctree-l1"><a class="reference internal" href="../kubectl-plugin/">CloudNativePG Plugin</a>
                 </li>
               </ul>
               <ul>
@@ -738,7 +739,7 @@ that, until the fence is lifted, data on the pod is not modified by PostgreSQL
 and that the file system can be investigated for debugging and troubleshooting
 purposes.</p>
 <h3 id="hibernation">Hibernation</h3>
-<p>CloudNativePG supports <a href="../cnpg-plugin/#cluster-hibernation">hibernation of a running PostgreSQL cluster</a>
+<p>CloudNativePG supports <a href="../kubectl-plugin/#cluster-hibernation">hibernation of a running PostgreSQL cluster</a>
 via the <code>cnpg</code> plugin. Hibernation shuts down all Postgres instances in the
 High Availability cluster, and keep a static copy of the PVCs of the primary
 that contain <code>PGDATA</code> and WALs. The plugin enables to exit the hibernation

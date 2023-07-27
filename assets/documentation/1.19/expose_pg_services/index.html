@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+        <link href="../css/override.css" rel="stylesheet" />
     
       <script>
         // Current page data
@@ -165,7 +166,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../cnpg-plugin/">CloudNativePG Plugin</a>
+                <li class="toctree-l1"><a class="reference internal" href="../kubectl-plugin/">CloudNativePG Plugin</a>
                 </li>
               </ul>
               <ul>
@@ -355,24 +356,19 @@ in your <code>ConfigMap</code> and <code>Service</code> of the Ingress</p>
 <p>On Minikube you can setup the ingress controller running:</p>
 <pre><code class="language-sh">minikube addons enable ingress
 </code></pre>
-<p>Then, patch the <code>tcp-service</code> ConfigMap to redirect to the primary the
-connections on port 5432 of the Ingress:</p>
-<pre><code class="language-sh">kubectl patch configmap tcp-services -n kube-system \
-  --patch '{&quot;data&quot;:{&quot;5432&quot;:&quot;default/cluster-example-rw:5432&quot;}}'
-</code></pre>
 <p>You can then patch the deployment to allow access on port 5432.
 Create a file called <code>patch.yaml</code> with the following content:</p>
 <pre><code class="language-yaml">spec:
   template:
     spec:
       containers:
-      - name: nginx-ingress-controller
+      - name: controller
         ports:
          - containerPort: 5432
            hostPort: 5432
 </code></pre>
-<p>and apply it to the <code>nginx-ingress-controller deployment</code>:</p>
-<pre><code class="language-sh">kubectl patch deployment nginx-ingress-controller --patch &quot;$(cat patch.yaml)&quot; -n kube-system
+<p>and apply it to the <code>ingress-nginx-controller</code> deployment:</p>
+<pre><code class="language-sh">kubectl patch deployment ingress-nginx-controller --patch &quot;$(cat patch.yaml)&quot; -n ingress-nginx
 </code></pre>
 <p>You can access the primary from your machine running:</p>
 <pre><code class="language-sh">psql -h $(minikube ip) -p 5432 -U postgres
@@ -382,7 +378,7 @@ Create a file called <code>patch.yaml</code> with the following content:</p>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
         <a href="../kubernetes_upgrade/" class="btn btn-neutral float-left" title="Kubernetes Upgrade"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../cnpg-plugin/" class="btn btn-neutral float-right" title="CloudNativePG Plugin">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../kubectl-plugin/" class="btn btn-neutral float-right" title="CloudNativePG Plugin">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -408,7 +404,7 @@ Create a file called <code>patch.yaml</code> with the following content:</p>
       <span><a href="../kubernetes_upgrade/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../cnpg-plugin/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../kubectl-plugin/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>
