@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+        <link href="../css/override.css" rel="stylesheet" />
     
       <script>
         // Current page data
@@ -165,7 +166,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../cnpg-plugin/">CloudNativePG Plugin</a>
+                <li class="toctree-l1"><a class="reference internal" href="../kubectl-plugin/">CloudNativePG Plugin</a>
                 </li>
               </ul>
               <ul>
@@ -228,6 +229,8 @@
     <li class="toctree-l3"><a class="reference internal" href="#cluster-stuck-in-creating-new-replica">Cluster stuck in Creating new replica</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#networking-is-impaired-by-installed-network-policies">Networking is impaired by installed Network Policies</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#error-while-bootstrapping-the-data-directory">Error while bootstrapping the data directory</a>
     </li>
         </ul>
     </li>
@@ -346,7 +349,7 @@ clear information about the underlying Kubernetes system.</p>
 <p>On top of the mandatory <code>kubectl</code> utility, for troubleshooting, we recommend the
 following plugins/utilities to be available in your system:</p>
 <ul>
-<li><a href="../cnpg-plugin/"><code>cnpg</code> plugin</a> for <code>kubectl</code></li>
+<li><a href="../kubectl-plugin/"><code>cnpg</code> plugin</a> for <code>kubectl</code></li>
 <li><a href="https://stedolan.github.io/jq/"><code>jq</code></a>, a lightweight and flexible command-line JSON processor</li>
 <li><a href="https://www.gnu.org/software/grep/"><code>grep</code></a>, searches one or more input files
   for lines containing a match to a specified pattern. It is already available in most *nix distros.
@@ -514,7 +517,7 @@ Promote a replica.<br />
 Manage certificates.<br />
 Make a rollout restart cluster to apply configuration changes.<br />
 Make a reconciliation loop to reload and apply configuration changes.<br />
-For more information, please see <a href="../cnpg-plugin/"><code>cnpg</code> plugin</a> documentation.</p>
+For more information, please see <a href="../kubectl-plugin/"><code>cnpg</code> plugin</a> documentation.</p>
 </div>
 <p>Get PostgreSQL container image version:</p>
 <pre><code class="language-shell">kubectl describe cluster &lt;CLUSTER_NAME&gt; -n &lt;NAMESPACE&gt; | grep &quot;Image Name&quot;
@@ -793,6 +796,33 @@ spec:
 <p>In the <a href="../networking/">networking page</a> you can find a network policy file
 that you can customize to create a <code>NetworkPolicy</code> explicitly allowing the
 operator to connect cross-namespace to cluster pods.</p>
+<h3 id="error-while-bootstrapping-the-data-directory">Error while bootstrapping the data directory</h3>
+<p>If your Cluster's initialization job crashes with a "Bus error (core dumped)
+child process exited with exit code 135", you likely need to fix the Cluster
+hugepages settings.</p>
+<p>The reason is the incomplete support of hugepages in the cgroup v1 that should
+be fixed in v2. For more information, check the PostgreSQL <a href="https://www.postgresql.org/message-id/17757-dbdfc1f1c954a6db%40postgresql.org">BUG #17757: Not
+honoring huge_pages setting during initdb causes DB crash in
+Kubernetes</a>.</p>
+<p>To check whether hugepages are enabled, run <code>grep HugePages /proc/meminfo</code> on
+the Kubernetes node and check if hugepages are present, their size, and how many
+are free.</p>
+<p>If the hugepages are present, you need to configure how much hugepages memory
+every PostgreSQL pod should have available.</p>
+<p>For example:</p>
+<pre><code class="language-yaml">  postgresql:
+    parameters:
+      shared_buffers: &quot;128MB&quot;
+
+  resources:
+    requests:
+      memory: &quot;512Mi&quot;
+    limits:
+      hugepages-2Mi: &quot;512Mi&quot;
+</code></pre>
+<p>Please remember that you must have enough hugepages memory available to schedule
+every Pod in the Cluster (in the example above, at least 512MiB per Pod must be
+free).</p>
               
             </div>
           </div><footer>

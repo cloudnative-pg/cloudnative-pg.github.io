@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+        <link href="../css/override.css" rel="stylesheet" />
     
       <script>
         // Current page data
@@ -112,6 +113,10 @@
                 <li class="toctree-l1 current"><a class="reference internal current" href="./">Database Role Management</a>
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#password-management">Password management</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#password-expiry-valid-until">Password expiry, VALID UNTIL</a>
+    </li>
+        </ul>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#unrealizable-role-configurations">Unrealizable role configurations</a>
     </li>
@@ -173,7 +178,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../cnpg-plugin/">CloudNativePG Plugin</a>
+                <li class="toctree-l1"><a class="reference internal" href="../kubectl-plugin/">CloudNativePG Plugin</a>
                 </li>
               </ul>
               <ul>
@@ -365,16 +370,41 @@ database. In such case we would specify the following:</p>
 <p>NOTE: it is considered an error to set both <code>passwordSecret</code> and
 <code>disablePassword</code> on a given role.
 This configuration will be rejected by the validation webhook.</p>
+<h3 id="password-expiry-valid-until">Password expiry, <code>VALID UNTIL</code></h3>
+<p>The <code>VALID UNTIL</code> role attribute in PostgreSQL controls password expiry. Roles
+created without <code>VALID UNTIL</code> specified get NULL by default in PostgreSQL,
+meaning that their password will never expire.</p>
+<p>PostgreSQL uses a timestamp type for <code>VALID UNTIL</code>, which includes support for
+the value <code>'infinity'</code> indicating that the password never expires. Please see the
+<a href="https://www.postgresql.org/docs/current/datatype-datetime.html">PostgreSQL documentation</a>
+for reference.</p>
+<p>With declarative role management, the <code>validUntil</code> attribute for managed roles
+controls password expiry. <code>validUntil</code> can only take:</p>
+<ul>
+<li>a Kubernetes timestamp, or</li>
+<li>be omitted (defaulting to <code>null</code>)</li>
+</ul>
+<p>In the first case, the given <code>validUntil</code> timestamp will be set in the database
+as the <code>VALID UNTIL</code> attribute of the role.</p>
+<p>In the second case (omitted <code>validUntil</code>) the operator will ensure password
+never expires, mirroring the behavior of PostgreSQL. Specifically:</p>
+<ul>
+<li>in case of new role, it will omit the <code>VALID UNTIL</code> clause in the role
+  creation statement</li>
+<li>in case of existing role, it will set <code>VALID UNTIL</code> to <code>infinity</code> if <code>VALID
+  UNTIL</code> was not set to <code>NULL</code> in the database (this is due to PostgreSQL not
+  allowing <code>VALID UNTIL NULL</code> in the <code>ALTER ROLE</code> SQL statement)</li>
+</ul>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>The declarative role management feature has changed behavior since its
 initial version (1.20.0). In 1.20.0, a role without a <code>passwordSecret</code> would
 lead to setting the password to NULL in PostgreSQL.
 In practice there is little difference from 1.20.0.
-New roles created without <code>passwordSecret</code> will have a NULL password.
+New roles created without <code>passwordSecret</code> will have a <code>NULL</code> password.
 The relevant change is when using the managed roles to manage roles that
 had been previously created. In 1.20.0, doing this might inadvertently
-result in setting existing passwords to NULL.</p>
+result in setting existing passwords to <code>NULL</code>.</p>
 </div>
 <h2 id="unrealizable-role-configurations">Unrealizable role configurations</h2>
 <p>In PostgreSQL, in some cases, commands cannot be honored by the database and

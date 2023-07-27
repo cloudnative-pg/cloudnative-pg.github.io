@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+        <link href="../css/override.css" rel="stylesheet" />
     
       <script>
         // Current page data
@@ -209,7 +210,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../cnpg-plugin/">CloudNativePG Plugin</a>
+                <li class="toctree-l1"><a class="reference internal" href="../kubectl-plugin/">CloudNativePG Plugin</a>
                 </li>
               </ul>
               <ul>
@@ -793,7 +794,7 @@ reset the password for the <code>postgres</code> user of the cluster.</li>
 available WAL on the default target timeline (<code>current</code> for PostgreSQL up to
 11, <code>latest</code> for version 12 and above).
 You can optionally specify a <code>recoveryTarget</code> to perform a point in time
-recovery (see the <a href="#point-in-time-recovery">"Point in time recovery" section</a>).</li>
+recovery (see the <a href="#point-in-time-recovery-pitr">"Point in time recovery" section</a>).</li>
 </ul>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
@@ -912,10 +913,11 @@ kind: Cluster
 <code>recoveryTarget</code> configuration.</p>
 <p>Additionally, you can specify <code>targetTLI</code> force recovery to a specific
 timeline.</p>
-<p>By default, the previous parameters are considered to be exclusive, stopping
-just before the recovery target. You can request inclusive behavior,
-stopping right after the recovery target, setting the <code>exclusive</code> parameter to
-<code>false</code> like in the following example relying on a blob container in Azure:</p>
+<p>By default, the previous parameters are considered to be inclusive, stopping
+just after the recovery target, matching <a href="https://www.postgresql.org/docs/current/runtime-config-wal.html#GUC-RECOVERY-TARGET-INCLUSIVE">the behavior in PostgreSQL</a>
+You can request exclusive behavior,
+stopping right before the recovery target, by setting the <code>exclusive</code> parameter to
+<code>true</code> like in the following example relying on a blob container in Azure:</p>
 <pre><code class="language-yaml">apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
@@ -932,7 +934,7 @@ spec:
       recoveryTarget:
         backupID: 20220616T142236
         targetName: &quot;maintenance-activity&quot;
-        exclusive: false
+        exclusive: true
 
   externalClusters:
     - name: clusterBackup

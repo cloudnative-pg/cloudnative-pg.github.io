@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+        <link href="../css/override.css" rel="stylesheet" />
     
       <script>
         // Current page data
@@ -171,7 +172,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../cnpg-plugin/">CloudNativePG Plugin</a>
+                <li class="toctree-l1"><a class="reference internal" href="../kubectl-plugin/">CloudNativePG Plugin</a>
                 </li>
               </ul>
               <ul>
@@ -269,139 +270,121 @@
 <p>Before we get started, it is essential to go over some terminology that is
 specific to Kubernetes and PostgreSQL.</p>
 <h2 id="kubernetes-terminology">Kubernetes terminology</h2>
-<table>
-<thead>
-<tr>
-<th>Resource</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="https://kubernetes.io/docs/concepts/architecture/nodes/">Node</a></td>
-<td>A <em>node</em> is a worker machine in Kubernetes, either virtual or physical, where all services necessary to run pods are managed by the control plane node(s).</td>
-</tr>
-<tr>
-<td><a href="https://kubernetes.io/docs/concepts/workloads/pods/pod/">Pod</a></td>
-<td>A <em>pod</em> is the smallest computing unit that can be deployed in a Kubernetes cluster and is composed of one or more containers that share network and storage.</td>
-</tr>
-<tr>
-<td><a href="https://kubernetes.io/docs/concepts/services-networking/service/">Service</a></td>
-<td>A <em>service</em> is an abstraction that exposes as a network service an application that runs on a group of pods and standardizes important features such as service discovery across applications, load balancing, failover, and so on.</td>
-</tr>
-<tr>
-<td><a href="https://kubernetes.io/docs/concepts/configuration/secret/">Secret</a></td>
-<td>A <em>secret</em> is an object that is designed to store small amounts of sensitive data such as passwords, access keys, or tokens, and use them in pods.</td>
-</tr>
-<tr>
-<td><a href="https://kubernetes.io/docs/concepts/storage/storage-classes/">Storage Class</a></td>
-<td>A <em>storage class</em> allows an administrator to define the classes of storage in a cluster, including provisioner (such as AWS EBS), reclaim policies, mount options, volume expansion, and so on.</td>
-</tr>
-<tr>
-<td><a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/">Persistent Volume</a></td>
-<td>A <em>persistent volume</em> (PV) is a resource in a Kubernetes cluster that represents storage that has been either manually provisioned by an administrator or dynamically provisioned by a <em>storage class</em> controller. A PV is associated with a pod using a <em>persistent volume claim</em> and its lifecycle is independent of any pod that uses it. Normally, a PV is a network volume, especially in the public cloud. A <a href="https://kubernetes.io/docs/concepts/storage/volumes/#local"><em>local persistent volume</em> (LPV)</a> is a persistent volume that exists only on the particular node where the pod that uses it is running.</td>
-</tr>
-<tr>
-<td><a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistentvolumeclaims">Persistent Volume Claim</a></td>
-<td>A <em>persistent volume claim</em> (PVC) represents a request for storage, which might include size, access mode, or a particular storage class. Similar to how a pod consumes node resources, a PVC consumes the resources of a PV.</td>
-</tr>
-<tr>
-<td><a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/">Namespace</a></td>
-<td>A <em>namespace</em> is a logical and isolated subset of a Kubernetes cluster and can be seen as a <em>virtual cluster</em> within the wider physical cluster. Namespaces allow administrators to create separated environments based on projects, departments, teams, and so on.</td>
-</tr>
-<tr>
-<td><a href="https://kubernetes.io/docs/reference/access-authn-authz/rbac/">RBAC</a></td>
-<td><em>Role Based Access Control</em> (RBAC), also known as <em>role-based security</em>, is a method used in computer systems security to restrict access to the network and resources of a system to authorized users only. Kubernetes has a native API to control roles at the namespace and cluster level and associate them with specific resources and individuals.</td>
-</tr>
-<tr>
-<td><a href="https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/">CRD</a></td>
-<td>A <em>custom resource definition</em> (CRD) is an extension of the Kubernetes API and allows developers to create new data types and objects, <em>called custom resources</em>.</td>
-</tr>
-<tr>
-<td><a href="https://kubernetes.io/docs/concepts/extend-kubernetes/operator/">Operator</a></td>
-<td>An <em>operator</em> is a custom resource that automates those steps that are normally performed by a human operator when managing one or more applications or given services. An operator assists Kubernetes in making sure that the resource's defined state always matches the observed one.</td>
-</tr>
-<tr>
-<td><a href="https://kubernetes.io/docs/reference/kubectl/overview/">kubectl</a></td>
-<td><code>kubectl</code> is the command-line tool used to manage a Kubernetes cluster.</td>
-</tr>
-</tbody>
-</table>
+<dl>
+<dt><a href="https://kubernetes.io/docs/concepts/architecture/nodes/">Node</a></dt>
+<dd>A <em>node</em> is a worker machine in Kubernetes, either virtual or physical, where
+  all services necessary to run pods are managed by the control plane node(s).</dd>
+<dt><a href="https://kubernetes.io/docs/concepts/workloads/pods/pod/">Pod</a></dt>
+<dd>A <em>pod</em> is the smallest computing unit that can be deployed in a Kubernetes
+  cluster and is composed of one or more containers that share network and
+  storage.</dd>
+<dt><a href="https://kubernetes.io/docs/concepts/services-networking/service/">Service</a></dt>
+<dd>A <em>service</em> is an abstraction that exposes as a network service an
+  application that runs on a group of pods and standardizes important features
+  such as service discovery across applications, load balancing, failover, and so
+  on.</dd>
+<dt><a href="https://kubernetes.io/docs/concepts/configuration/secret/">Secret</a></dt>
+<dd>A <em>secret</em> is an object that is designed to store small amounts of sensitive
+  data such as passwords, access keys, or tokens, and use them in pods.</dd>
+<dt><a href="https://kubernetes.io/docs/concepts/storage/storage-classes/">Storage Class</a></dt>
+<dd>A <em>storage class</em> allows an administrator to define the classes of storage in
+  a cluster, including provisioner (such as AWS EBS), reclaim policies, mount
+  options, volume expansion, and so on.</dd>
+<dt><a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/">Persistent Volume</a></dt>
+<dd>A <em>persistent volume</em> (PV) is a resource in a Kubernetes cluster that
+  represents storage that has been either manually provisioned by an
+  administrator or dynamically provisioned by a <em>storage class</em> controller. A PV
+  is associated with a pod using a <em>persistent volume claim</em> and its lifecycle is
+  independent of any pod that uses it. Normally, a PV is a network volume,
+  especially in the public cloud. A <a href="https://kubernetes.io/docs/concepts/storage/volumes/#local"><em>local persistent volume</em>
+  (LPV)</a> is a
+  persistent volume that exists only on the particular node where the pod that
+  uses it is running.</dd>
+<dt><a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistentvolumeclaims">Persistent Volume Claim</a></dt>
+<dd>A <em>persistent volume claim</em> (PVC) represents a request for storage, which
+  might include size, access mode, or a particular storage class. Similar to how
+  a pod consumes node resources, a PVC consumes the resources of a PV.</dd>
+<dt><a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/">Namespace</a></dt>
+<dd>A <em>namespace</em> is a logical and isolated subset of a Kubernetes cluster and
+  can be seen as a <em>virtual cluster</em> within the wider physical cluster.
+  Namespaces allow administrators to create separated environments based on
+  projects, departments, teams, and so on.</dd>
+<dt><a href="https://kubernetes.io/docs/reference/access-authn-authz/rbac/">RBAC</a></dt>
+<dd><em>Role Based Access Control</em> (RBAC), also known as <em>role-based security</em>, is a
+  method used in computer systems security to restrict access to the network and
+  resources of a system to authorized users only. Kubernetes has a native API to
+  control roles at the namespace and cluster level and associate them with
+  specific resources and individuals.</dd>
+<dt><a href="https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/">CRD</a></dt>
+<dd>A <em>custom resource definition</em> (CRD) is an extension of the Kubernetes API
+  and allows developers to create new data types and objects, <em>called custom
+  resources</em>.</dd>
+<dt><a href="https://kubernetes.io/docs/concepts/extend-kubernetes/operator/">Operator</a></dt>
+<dd>An <em>operator</em> is a custom resource that automates those steps that are
+  normally performed by a human operator when managing one or more applications
+  or given services. An operator assists Kubernetes in making sure that the
+  resource's defined state always matches the observed one.</dd>
+<dt><a href="https://kubernetes.io/docs/reference/kubectl/overview/"><code>kubectl</code></a></dt>
+<dd><code>kubectl</code> is the command-line tool used to manage a Kubernetes cluster.</dd>
+</dl>
 <p>CloudNativePG requires a Kubernetes version supported by the community. Please refer to the
 <a href="../supported_releases/">"Supported releases"</a> page for details.</p>
 <h2 id="postgresql-terminology">PostgreSQL terminology</h2>
-<table>
-<thead>
-<tr>
-<th>Resource</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Instance</td>
-<td>A Postgres server process running and listening on a pair "IP address(es)" and "TCP port" (usually 5432).</td>
-</tr>
-<tr>
-<td>Primary</td>
-<td>A PostgreSQL instance that can accept both read and write operations.</td>
-</tr>
-<tr>
-<td>Replica</td>
-<td>A PostgreSQL instance replicating from the only primary instance in a cluster and is kept updated by reading a stream of Write-Ahead Log (WAL) records. A replica is also known as <em>standby</em> or <em>secondary</em> server. PostgreSQL relies on physical streaming replication (async/sync) and file-based log shipping (async).</td>
-</tr>
-<tr>
-<td>Hot Standby</td>
-<td>PostgreSQL feature that allows a <em>replica</em> to accept read-only workloads.</td>
-</tr>
-<tr>
-<td>Cluster</td>
-<td>To be intended as High Availability (HA) Cluster: a set of PostgreSQL instances made up by a single primary and an optional arbitrary number of replicas.</td>
-</tr>
-<tr>
-<td>Replica Cluster</td>
-<td>A CloudNativePG <code>Cluster</code> that is in continuous recovery mode from a selected PostgreSQL cluster, normally residing outside the Kubernetes cluster. It is a feature that enables multi-cluster deployments in private, public, hybrid, and multi-cloud contexts.</td>
-</tr>
-<tr>
-<td>Designated Primary</td>
-<td>A PostgreSQL standby instance in a replica cluster that is in continuous recovery from another PostgreSQL cluster and that is designated to become primary in case the replica cluster becomes primary.</td>
-</tr>
-<tr>
-<td>Superuser</td>
-<td>In PostgreSQL a <em>superuser</em> is any role with both <code>LOGIN</code> and <code>SUPERUSER</code> privileges. For security reasons, CloudNativePG performs administrative tasks by connecting to the <code>postgres</code> database as the <code>postgres</code> user via <code>peer</code> authentication over the local Unix Domain Socket.</td>
-</tr>
-<tr>
-<td><a href="https://www.postgresql.org/docs/current/wal-intro.html">WAL</a></td>
-<td>Write-Ahead Logging (WAL) is a standard method for ensuring data integrity in database management systems.</td>
-</tr>
-<tr>
-<td>PVC group</td>
-<td>A PVC group in CloudNativePG's terminology is a group of related PVCs belonging to the same PostgreSQL instance, namely the main volume containing the PGDATA (<code>storage</code>) and the volume for WALs (<code>walStorage</code>).</td>
-</tr>
-</tbody>
-</table>
+<dl>
+<dt>Instance</dt>
+<dd>A Postgres server process running and listening on a pair "IP address(es)"
+  and "TCP port" (usually 5432).</dd>
+<dt>Primary</dt>
+<dd>A PostgreSQL instance that can accept both read and write operations.</dd>
+<dt>Replica</dt>
+<dd>A PostgreSQL instance replicating from the only primary instance in a
+  cluster and is kept updated by reading a stream of Write-Ahead Log (WAL)
+  records. A replica is also known as <em>standby</em> or <em>secondary</em> server. PostgreSQL
+  relies on physical streaming replication (async/sync) and file-based log
+  shipping (async).</dd>
+<dt>Hot Standby</dt>
+<dd>PostgreSQL feature that allows a <em>replica</em> to accept read-only workloads.</dd>
+<dt>Cluster</dt>
+<dd>To be intended as High Availability (HA) Cluster: a set of PostgreSQL
+  instances made up by a single primary and an optional arbitrary number of
+  replicas.</dd>
+<dt>Replica Cluster</dt>
+<dd>A CloudNativePG <code>Cluster</code> that is in continuous recovery mode from a selected
+  PostgreSQL cluster, normally residing outside the Kubernetes cluster. It is a
+  feature that enables multi-cluster deployments in private, public, hybrid, and
+  multi-cloud contexts.</dd>
+<dt>Designated Primary</dt>
+<dd>A PostgreSQL standby instance in a replica cluster that is in continuous
+  recovery from another PostgreSQL cluster and that is designated to become
+  primary in case the replica cluster becomes primary.</dd>
+<dt>Superuser</dt>
+<dd>In PostgreSQL a <em>superuser</em> is any role with both <code>LOGIN</code> and <code>SUPERUSER</code>
+  privileges. For security reasons, CloudNativePG performs administrative tasks
+  by connecting to the <code>postgres</code> database as the <code>postgres</code> user via <code>peer</code>
+  authentication over the local Unix Domain Socket.</dd>
+<dt><a href="https://www.postgresql.org/docs/current/wal-intro.html">WAL</a></dt>
+<dd>Write-Ahead Logging (WAL) is a standard method for ensuring data integrity in
+  database management systems.</dd>
+<dt>PVC group</dt>
+<dd>A PVC group in CloudNativePG's terminology is a group of related PVCs
+  belonging to the same PostgreSQL instance, namely the main volume containing
+  the PGDATA (<code>storage</code>) and the volume for WALs (<code>walStorage</code>).|</dd>
+</dl>
 <h2 id="cloud-terminology">Cloud terminology</h2>
-<table>
-<thead>
-<tr>
-<th>Resource</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Region</td>
-<td>A <em>region</em> in the Cloud is an isolated and independent geographic area organized in <em>availability zones</em>. Zones within a region have very little round-trip network latency.</td>
-</tr>
-<tr>
-<td>Zone</td>
-<td>An <em>availability zone</em> in the Cloud (also known as <em>zone</em>) is an area in a region where resources can be deployed. Usually, an availability zone corresponds to a data center or an isolated building of the same data center.</td>
-</tr>
-</tbody>
-</table>
+<dl>
+<dt>Region</dt>
+<dd>A <em>region</em> in the Cloud is an isolated and independent geographic area
+  organized in <em>availability zones</em>. Zones within a region have very little
+  round-trip network latency.</dd>
+<dt>Zone</dt>
+<dd>An <em>availability zone</em> in the Cloud (also known as <em>zone</em>) is an area in a
+  region where resources can be deployed. Usually, an availability zone
+  corresponds to a data center or an isolated building of the same data center.</dd>
+</dl>
 <h2 id="what-to-do-next">What to do next</h2>
 <p>Now that you have familiarized with the terminology, you can decide to
-<a href="../quickstart/">test CloudNativePG on your laptop using a local cluster</a> before deploying the operator in your selected cloud environment.</p>
+<a href="../quickstart/">test CloudNativePG on your laptop using a local cluster</a> before
+deploying the operator in your selected cloud environment.</p>
               
             </div>
           </div><footer>

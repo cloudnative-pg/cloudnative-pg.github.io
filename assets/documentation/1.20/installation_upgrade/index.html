@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+        <link href="../css/override.css" rel="stylesheet" />
     
       <script>
         // Current page data
@@ -199,7 +200,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../cnpg-plugin/">CloudNativePG Plugin</a>
+                <li class="toctree-l1"><a class="reference internal" href="../kubectl-plugin/">CloudNativePG Plugin</a>
                 </li>
               </ul>
               <ul>
@@ -298,10 +299,10 @@
 <h3 id="directly-using-the-operator-manifest">Directly using the operator manifest</h3>
 <p>The operator can be installed like any other resource in Kubernetes,
 through a YAML manifest applied via <code>kubectl</code>.</p>
-<p>You can install the <a href="https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/release-1.20/releases/cnpg-1.20.1.yaml">latest operator manifest</a>
+<p>You can install the <a href="https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/release-1.20/releases/cnpg-1.20.2.yaml">latest operator manifest</a>
 for this minor release as follows:</p>
 <pre><code class="language-sh">kubectl apply -f \
-  https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/release-1.20/releases/cnpg-1.20.1.yaml
+  https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/release-1.20/releases/cnpg-1.20.2.yaml
 </code></pre>
 <p>You can verify that with:</p>
 <pre><code class="language-sh">kubectl get deploy -n cnpg-system cnpg-controller-manager
@@ -315,7 +316,7 @@ namespaces to only be a specific namespace, you could run:</p>
   --watch-namespaces &quot;specific-namespace&quot; \
   &gt; cnpg_for_specific_namespace.yaml
 </code></pre>
-<p>Please refer to <a href="../cnpg-plugin/#generation-of-installation-manifests">"<code>cnpg</code> plugin"</a> documentation
+<p>Please refer to <a href="../kubectl-plugin/#generation-of-installation-manifests">"<code>cnpg</code> plugin"</a> documentation
 for a more comprehensive example. </p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
@@ -339,7 +340,7 @@ which provides easy access to the current trunk (main) as well as to each
 supported release.</p>
 <p>For example, you can install the latest snapshot of the operator with:</p>
 <pre><code class="language-sh">curl -sSfL \
-  https://raw.githubusercontent.com/cloudnative-pg/artifacts/release-1.20/manifests/operator-manifest.yaml | \
+  https://raw.githubusercontent.com/cloudnative-pg/artifacts/main/manifests/operator-manifest.yaml | \
   kubectl apply -f -
 </code></pre>
 <p>If you are instead looking for the latest snapshot of the operator for this

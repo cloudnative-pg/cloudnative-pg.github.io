@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+        <link href="../../css/override.css" rel="stylesheet" />
     
       <script>
         // Current page data
@@ -161,7 +162,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../../cnpg-plugin/">CloudNativePG Plugin</a>
+                <li class="toctree-l1"><a class="reference internal" href="../../kubectl-plugin/">CloudNativePG Plugin</a>
                 </li>
               </ul>
               <ul>
@@ -260,6 +261,41 @@
 <p>For a complete list of changes, please refer to the
 <a href="https://github.com/cloudnative-pg/cloudnative-pg/commits/release-1.19">commits</a>
 on the release branch in GitHub.</p>
+<h2 id="version-1194">Version 1.19.4</h2>
+<p><strong>Release date:</strong> July 27, 2023</p>
+<p>Enhancements:</p>
+<ul>
+<li>New <code>logs</code> command in the kubectl plugin, to retrieve or follow the logs
+  of all pods in a cluster (#2375)</li>
+<li>Add support for specifying priorityClassName in pods, helping Kubernetes
+  make scheduling decisions (#2043)</li>
+<li>Add a metric and status field to monitor node usage by a CloudNativePG cluster (#2257)</li>
+<li>Various enhancements to the documentation:<ul>
+<li>Add troubleshooting instructions relating to hugepages (#1390)</li>
+<li>Extend the FAQs page (#2344)</li>
+</ul>
+</li>
+</ul>
+<p>Technical enhancements:</p>
+<ul>
+<li>Add a check at the start of the restore process to ensure it can proceed; give
+  improved error diagnostics if it cannot (#2419)</li>
+</ul>
+<p>Fixes:</p>
+<ul>
+<li>Ensure the logic of setting the recovery target matches that of Postgres (#2460)</li>
+<li>Prevent taking over service accounts not owned by the cluster, by setting
+  ownerMetadata only during service account creation (#2462)</li>
+<li>Ensure correct permissions of the PGDATA directory for initdb and restore (#2384)</li>
+<li>Prevent a possible crash of the instance manager during the configuration reload (#2393)</li>
+<li>Prevent the LastFailedArchiveTime alert from triggering if a new backup has been
+  successful after the failed ones (#1751)</li>
+<li>Prevent services from targeting non-instance pods (#2336)</li>
+</ul>
+<p>Security:</p>
+<ul>
+<li>Updated all project dependencies to the latest versions</li>
+</ul>
 <h2 id="version-1193">Version 1.19.3</h2>
 <p><strong>Release date:</strong> June 12, 2023</p>
 <p>Enhancements:</p>
