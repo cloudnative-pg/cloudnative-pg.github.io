@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+        <link href="../css/override.css" rel="stylesheet" />
     
       <script>
         // Current page data
@@ -161,7 +162,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../cnpg-plugin/">CloudNativePG Plugin</a>
+                <li class="toctree-l1"><a class="reference internal" href="../kubectl-plugin/">CloudNativePG Plugin</a>
                 </li>
               </ul>
               <ul>
@@ -598,7 +599,7 @@ documentation for examples of usage.</p>
 <tr>
 <td><code>metadata</code></td>
 <td></td>
-<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.26/#objectmeta-v1-meta">metav1.ObjectMeta</a></td>
+<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#objectmeta-v1-meta">metav1.ObjectMeta</a></td>
 </tr>
 <tr>
 <td><code>spec</code></td>
@@ -656,7 +657,7 @@ documentation for examples of usage.</p>
 <tr>
 <td><code>metadata</code></td>
 <td>Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds</td>
-<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.26/#listmeta-v1-meta">metav1.ListMeta</a></td>
+<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#listmeta-v1-meta">metav1.ListMeta</a></td>
 </tr>
 <tr>
 <td><code>items</code></td>
@@ -763,12 +764,12 @@ documentation for examples of usage.</p>
 <tr>
 <td><code>startedAt</code></td>
 <td>When the backup was started</td>
-<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.26/#time-v1-meta">*metav1.Time</a></td>
+<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#time-v1-meta">*metav1.Time</a></td>
 </tr>
 <tr>
 <td><code>stoppedAt</code></td>
 <td>When the backup was terminated</td>
-<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.26/#time-v1-meta">*metav1.Time</a></td>
+<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#time-v1-meta">*metav1.Time</a></td>
 </tr>
 <tr>
 <td><code>beginWal</code></td>
@@ -1164,7 +1165,7 @@ documentation for examples of usage.</p>
 <tr>
 <td><code>metadata</code></td>
 <td></td>
-<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.26/#objectmeta-v1-meta">metav1.ObjectMeta</a></td>
+<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#objectmeta-v1-meta">metav1.ObjectMeta</a></td>
 </tr>
 <tr>
 <td><code>spec</code></td>
@@ -1193,7 +1194,7 @@ documentation for examples of usage.</p>
 <tr>
 <td><code>metadata</code></td>
 <td>Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds</td>
-<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.26/#listmeta-v1-meta">metav1.ListMeta</a></td>
+<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#listmeta-v1-meta">metav1.ListMeta</a></td>
 </tr>
 <tr>
 <td><code>items</code></td>
@@ -1352,7 +1353,12 @@ documentation for examples of usage.</p>
 <tr>
 <td><code>resources</code></td>
 <td>Resources requirements of every generated Pod. Please refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ for more information.</td>
-<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.26/#resourcerequirements-v1-core">corev1.ResourceRequirements</a></td>
+<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#resourcerequirements-v1-core">corev1.ResourceRequirements</a></td>
+</tr>
+<tr>
+<td><code>priorityClassName</code></td>
+<td>Name of the priority class which will be used in every generated Pod, if the PriorityClass specified does not exist, the pod will not be able to schedule.  Please refer to https://kubernetes.io/docs/concepts/scheduling-eviction/pod-priority-preemption/#priorityclass for more information</td>
+<td>string</td>
 </tr>
 <tr>
 <td><code>primaryUpdateStrategy</code></td>
@@ -1750,22 +1756,22 @@ documentation for examples of usage.</p>
 <tr>
 <td><code>sslCert</code></td>
 <td>The reference to an SSL certificate to be used to connect to this instance</td>
-<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.26/#secretkeyselector-v1-core">*corev1.SecretKeySelector</a></td>
+<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#secretkeyselector-v1-core">*corev1.SecretKeySelector</a></td>
 </tr>
 <tr>
 <td><code>sslKey</code></td>
 <td>The reference to an SSL private key to be used to connect to this instance</td>
-<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.26/#secretkeyselector-v1-core">*corev1.SecretKeySelector</a></td>
+<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#secretkeyselector-v1-core">*corev1.SecretKeySelector</a></td>
 </tr>
 <tr>
 <td><code>sslRootCert</code></td>
 <td>The reference to an SSL CA public key to be used to connect to this instance</td>
-<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.26/#secretkeyselector-v1-core">*corev1.SecretKeySelector</a></td>
+<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#secretkeyselector-v1-core">*corev1.SecretKeySelector</a></td>
 </tr>
 <tr>
 <td><code>password</code></td>
 <td>The reference to the password to be used to connect to the server</td>
-<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.26/#secretkeyselector-v1-core">*corev1.SecretKeySelector</a></td>
+<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#secretkeyselector-v1-core">*corev1.SecretKeySelector</a></td>
 </tr>
 <tr>
 <td><code>barmanObjectStore</code></td>
@@ -1958,7 +1964,7 @@ documentation for examples of usage.</p>
 <tr>
 <td><code>bindPassword</code></td>
 <td>Secret with the password for the user to bind to the directory</td>
-<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.26/#secretkeyselector-v1-core">*corev1.SecretKeySelector</a></td>
+<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#secretkeyselector-v1-core">*corev1.SecretKeySelector</a></td>
 </tr>
 <tr>
 <td><code>searchAttribute</code></td>
@@ -2241,7 +2247,7 @@ documentation for examples of usage.</p>
 <tr>
 <td><code>metadata</code></td>
 <td></td>
-<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.26/#objectmeta-v1-meta">metav1.ObjectMeta</a></td>
+<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#objectmeta-v1-meta">metav1.ObjectMeta</a></td>
 </tr>
 <tr>
 <td><code>spec</code></td>
@@ -2289,7 +2295,7 @@ documentation for examples of usage.</p>
 <tr>
 <td><code>metadata</code></td>
 <td></td>
-<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.26/#listmeta-v1-meta">metav1.ListMeta</a></td>
+<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#listmeta-v1-meta">metav1.ListMeta</a></td>
 </tr>
 <tr>
 <td><code>items</code></td>
@@ -2542,7 +2548,7 @@ documentation for examples of usage.</p>
 </tr>
 <tr>
 <td><code>exclusive</code></td>
-<td>Set the target to be exclusive (defaults to true)</td>
+<td>Set the target to be exclusive. If omitted, defaults to false, so that in Postgres, <code>recovery_target_inclusive</code> will be true</td>
 <td>*bool</td>
 </tr>
 </tbody>
@@ -2639,7 +2645,7 @@ documentation for examples of usage.</p>
 <tr>
 <td><code>startedAt</code></td>
 <td>When the update has been started</td>
-<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.26/#time-v1-meta">metav1.Time</a></td>
+<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#time-v1-meta">metav1.Time</a></td>
 </tr>
 </tbody>
 </table>
@@ -2705,7 +2711,7 @@ documentation for examples of usage.</p>
 <tr>
 <td><code>metadata</code></td>
 <td></td>
-<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.26/#objectmeta-v1-meta">metav1.ObjectMeta</a></td>
+<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#objectmeta-v1-meta">metav1.ObjectMeta</a></td>
 </tr>
 <tr>
 <td><code>spec</code></td>
@@ -2734,7 +2740,7 @@ documentation for examples of usage.</p>
 <tr>
 <td><code>metadata</code></td>
 <td>Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds</td>
-<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.26/#listmeta-v1-meta">metav1.ListMeta</a></td>
+<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#listmeta-v1-meta">metav1.ListMeta</a></td>
 </tr>
 <tr>
 <td><code>items</code></td>
@@ -2802,17 +2808,17 @@ documentation for examples of usage.</p>
 <tr>
 <td><code>lastCheckTime</code></td>
 <td>The latest time the schedule</td>
-<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.26/#time-v1-meta">*metav1.Time</a></td>
+<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#time-v1-meta">*metav1.Time</a></td>
 </tr>
 <tr>
 <td><code>lastScheduleTime</code></td>
 <td>Information when was the last time that backup was successfully scheduled.</td>
-<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.26/#time-v1-meta">*metav1.Time</a></td>
+<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#time-v1-meta">*metav1.Time</a></td>
 </tr>
 <tr>
 <td><code>nextScheduleTime</code></td>
 <td>Next time we will run a backup</td>
-<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.26/#time-v1-meta">*metav1.Time</a></td>
+<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#time-v1-meta">*metav1.Time</a></td>
 </tr>
 </tbody>
 </table>
@@ -2967,7 +2973,7 @@ documentation for examples of usage.</p>
 <tr>
 <td><code>pvcTemplate</code></td>
 <td>Template to be used to generate the Persistent Volume Claim</td>
-<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.26/#persistentvolumeclaim-v1-core">*corev1.PersistentVolumeClaimSpec</a></td>
+<td><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#persistentvolumeclaim-v1-core">*corev1.PersistentVolumeClaimSpec</a></td>
 </tr>
 </tbody>
 </table>
@@ -3018,6 +3024,11 @@ documentation for examples of usage.</p>
 <td><code>instances</code></td>
 <td>Instances contains the pod topology of the instances</td>
 <td>map[PodName]PodTopologyLabels</td>
+</tr>
+<tr>
+<td><code>nodesUsed</code></td>
+<td>NodesUsed represents the count of distinct nodes accommodating the instances. A value of '1' suggests that all instances are hosted on a single node, implying the absence of High Availability (HA). Ideally, this value should be the same as the number of instances in the Postgres HA cluster, implying shared nothing architecture on the compute side.</td>
+<td>int32</td>
 </tr>
 </tbody>
 </table>

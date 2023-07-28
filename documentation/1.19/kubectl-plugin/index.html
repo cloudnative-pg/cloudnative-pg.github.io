@@ -9,11 +9,12 @@
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+        <link href="../css/override.css" rel="stylesheet" />
     
       <script>
         // Current page data
         var mkdocs_page_name = "CloudNativePG Plugin";
-        var mkdocs_page_input_path = "cnpg-plugin.md";
+        var mkdocs_page_input_path = "kubectl-plugin.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -106,10 +107,6 @@
               </ul>
               <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../postgresql_conf/">PostgreSQL Configuration</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../declarative_role_management/">Database Role Management</a>
                 </li>
               </ul>
               <ul>
@@ -206,6 +203,12 @@
     <li class="toctree-l4"><a class="reference internal" href="#report-operator">report Operator</a>
     </li>
     <li class="toctree-l4"><a class="reference internal" href="#report-cluster">report Cluster</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#logs">Logs</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#cluster-logs">Cluster logs</a>
     </li>
         </ul>
     </li>
@@ -867,6 +870,64 @@ is in the default one.</p>
    creating: report_cluster_example_&lt;TIMESTAMP&gt;/job-logs/
   inflating: report_cluster_example_&lt;TIMESTAMP&gt;/job-logs/cluster-example-full-1-initdb-qnnvw.jsonl
   inflating: report_cluster_example_&lt;TIMESTAMP&gt;/job-logs/cluster-example-full-2-join-tvj8r.jsonl
+</code></pre>
+<h3 id="logs">Logs</h3>
+<p>The <code>kubectl cnpg logs</code> command allows to follow the logs of a collection
+of pods related to CloudNativePG in a single go.</p>
+<p>It has at the moment one available sub-command: <code>cluster</code>.</p>
+<h4 id="cluster-logs">Cluster logs</h4>
+<p>The <code>cluster</code> sub-command gathers all the pod logs for a cluster in a single
+stream or file.
+This means that you can get all the pod logs in a single terminal window, with a
+single invocation of the command.</p>
+<p>As in all the cnpg plugin sub-commands, you can get instructions and help with
+the <code>-h</code> flag:</p>
+<p><code>kubectl cnpg logs cluster -h</code></p>
+<p>The <code>logs</code> command will display logs in  JSON-lines format, unless the
+<code>--timestamps</code> flag is used, in which case, a human readable timestamp will be
+prepended to each line. In this case, lines will no longer be valid JSON,
+and tools such as <code>jq</code> may not work as desired.</p>
+<p>If the <code>logs cluster</code> sub-command is given the <code>-f</code> flag (aka <code>--follow</code>), it
+will follow the cluster pod logs, and will also watch for any new pods created
+in the cluster after the command has been invoked.
+Any new pods found, including pods that have been restarted or re-created,
+will also have their pods followed.
+The logs will be displayed in the terminal's standard-out.
+This command will only exit when the cluster has no more pods left, or when it
+is interrupted by the user.</p>
+<p>If <code>logs</code> is called without the <code>-f</code> option, it will read the logs from all
+cluster pods until the time of invocation and display them in the terminal's
+standard-out, then exit.
+The <code>-o</code> or <code>--output</code> flag can be provided, to specify the name
+of the file where the logs should be saved, instead of displaying over
+standard-out.
+The <code>--tail</code> flag can be used to specify how many log lines will be retrieved
+from each pod in the cluster. By default, the <code>logs cluster</code> sub-command will
+display all the logs from each pod in the cluster. If combined with the "follow"
+flag <code>-f</code>, the number of logs specified by <code>--tail</code> will be retrieved until the
+current time, and and from then the new logs will be followed.</p>
+<p>NOTE: unlike other <code>cnpg</code> plugin commands, the <code>-f</code> is used to denote "follow"
+rather than specify a file. This keeps with the convention of <code>kubectl logs</code>,
+which takes <code>-f</code> to mean the logs should be followed.</p>
+<p>Usage:</p>
+<pre><code class="language-shell">kubectl cnpg logs cluster &lt;clusterName&gt; [flags]
+</code></pre>
+<p>Using the <code>-f</code> option to follow:</p>
+<pre><code class="language-shell">kubectl cnpg report cluster cluster-example -f
+</code></pre>
+<p>Using <code>--tail</code> option to display 3 lines from each pod and the <code>-f</code> option
+to follow:</p>
+<pre><code class="language-shell">kubectl cnpg report cluster cluster-example -f --tail 3
+</code></pre>
+<pre><code class="language-json">{&quot;level&quot;:&quot;info&quot;,&quot;ts&quot;:&quot;2023-06-30T13:37:33Z&quot;,&quot;logger&quot;:&quot;postgres&quot;,&quot;msg&quot;:&quot;2023-06-30 13:37:33.142 UTC [26] LOG:  ending log output to stderr&quot;,&quot;source&quot;:&quot;/controller/log/postgres&quot;,&quot;logging_pod&quot;:&quot;cluster-example-3&quot;}
+{&quot;level&quot;:&quot;info&quot;,&quot;ts&quot;:&quot;2023-06-30T13:37:33Z&quot;,&quot;logger&quot;:&quot;postgres&quot;,&quot;msg&quot;:&quot;2023-06-30 13:37:33.142 UTC [26] HINT:  Future log output will go to log destination \&quot;csvlog\&quot;.&quot;,&quot;source&quot;:&quot;/controller/log/postgres&quot;,&quot;logging_pod&quot;:&quot;cluster-example-3&quot;}
+…
+…
+</code></pre>
+<p>With the <code>-o</code> option omitted, and with <code>--output</code> specified:</p>
+<pre><code class="language-sh">kubectl-cnpg logs cluster cluster-example --output my-cluster.log
+
+Successfully written logs to &quot;my-cluster.log&quot;
 </code></pre>
 <h3 id="destroy">Destroy</h3>
 <p>The <code>kubectl cnpg destroy</code> command helps remove an instance and all the
