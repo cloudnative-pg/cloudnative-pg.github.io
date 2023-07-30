@@ -3,7 +3,7 @@ title: "Finding holes in structs and reducing memory usage. Part I"
 date: 2023-07-29T11:29:52+02:00
 draft: true
 image:
-    url: 
+    url: elephant-meme.webp
     attribution: 
 author: jgonzalez
 tags:
