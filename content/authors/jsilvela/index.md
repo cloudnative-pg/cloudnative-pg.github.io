@@ -6,7 +6,7 @@ github: jsilvela
 
 Jaime Silvela has been around. In a career spanning two decades writing code,
 he has lived in the US and Europe, worked for big corporations like Amazon and
-Microsoft, as an early startup employee, in industries including Wall Steet and
+Microsoft, as an early startup employee, in industries including Wall Street and
 catastrophe insurance.
 
 He discovered a fondness for SQL and PostgreSQL in particular years ago. He
