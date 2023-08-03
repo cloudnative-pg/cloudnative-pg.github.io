@@ -1,10 +1,7 @@
 ---
 title: "Finding holes in structs and reducing memory usage. Part I"
 date: 2023-07-29T11:29:52+02:00
-draft: true
-image:
-    url: elephant-meme.webp
-    attribution: 
+draft: false
 author: jgonzalez
 tags:
  - blog
@@ -245,6 +242,8 @@ kubectl -n cnpg-system port-forward services/pyroscope 4040:4040
 Now go to your browser and open the URL [http://localhost:4040/](http://localhost:4040/).
 If everything is working you should
 be able to see the Pyroscope interface running.
+
+![pyroscope](pyroscope_preview.png)
 
 If that's not the case, you should check if the port forward works, as that's the thing
 that fails most of the time
