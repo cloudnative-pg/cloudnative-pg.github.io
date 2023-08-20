@@ -1,6 +1,7 @@
 ---
-title: "Finding holes in structs and reducing memory usage Part I"
-date:
+title: "Creating a custom container image for CloudNativePG"
+date: 2023-08-14T11:29:52
+draft: false
 image:
     url: 
     attribution: 
@@ -15,42 +16,46 @@ tags:
  - postgres
  - images
 summary: Creating a container image for CloudNativePG Operator
+---
 
-# Summary
+## Summary
 
-As the users of CloudNativePG we started to see a lot of people asking on how to create an
-image or if we will evern provide an image with X extension, well, we're a small team
-and many times we cannot keep so many images, but we can help you create your own images
-with your own custom tools, based on our primary PostgreSQL container image for CloudNativePG.
+As adoption of CloudNativePG grows, we see more people asking how to create an
+image, or if we will ever provide an image with a particular extension.
+Well, we're a small team and cannot maintain so many images, but we can help you
+create your own custom images
+to fit your needs, based on the primary PostgreSQL container images for CloudNativePG.
 
-Let's start! This will be an easy an quick blog post, we will use a really famous extension
-[pgvector](https://github.com/pgvector) for this example, and probably lot of people may be
-able to start with this sample.
+Let's start! This will be an easy and quick blog post. We will use the popular extension
+[pgvector](https://github.com/pgvector) to illustrate this example. I hope
+this post will help people  get started.
 
-This to keep in mind:
-* We will use the [postgres-containers](https://github.com/cloudnative-pg/postgres-containers) images
-* It's a Debian based image, so you need to know how to use apt (you can follow the examples)
-* We will use the [pgvector](https://github.com/pgvector) install instructions
+Let's keep in mind:
+
+* We will start from the [postgres-containers](https://github.com/cloudnative-pg/postgres-containers) images
+* They are Debian based images, so you will need to use [`apt`](https://wiki.debian.org/Apt) (you can follow the examples)
+* We will use the [pgvector](https://github.com/pgvector) installation instructions
 * The target PostgreSQL version for this example will be 15
 
-# How to install pgvector?
+## How to install pgvector?
 
-First step, go to the [pgvector](https://github.com/pgvector) page and learn how to install, we can
-find there's a `apt` section to install that say this:
-```
-Debian and Ubuntu packages are available from the PostgreSQL APT Repository.
-```
-That's a really really good starting point, because we already have the PostgreSQL APT Repository
-in our postgres-containers images, so we can just install, let's do that
+First step: in the [pgvector](https://github.com/pgvector/pgvector) page
+we can find an `APT` section with this information:
 
-# Creating the Dockerfile
+> Debian and Ubuntu packages are available from the PostgreSQL APT Repository.
 
-Basically, we need to just run the command `apt install postgresql-15-pgvector` so, let's do that:
+That's a great starting point, as we already have the PostgreSQL APT Repository
+in our `postgres-containers` images; we can go ahead and use `apt`. Let's go:
 
-```
+## Creating the Dockerfile
+
+We just need to run the command `apt install postgresql-15-pgvector`; we can
+add that to a Dockerfile:
+
+``` Dockerfile
 FROM ghcr.io/cloudnative-pg/postgresql:15.4-3
 
-# To install any package we need to be root user
+# To install any package we need to be root
 USER root
 
 # We update the package list, install our package
@@ -62,25 +67,26 @@ RUN set -xe; \
 	rm -fr /tmp/* ; \
 	rm -rf /var/lib/apt/lists/*;
 
-# Change the uid of postgres to 26
+# Change to the uid of postgres (26)
 USER 26
 ```
 
-So we update and we install the target package, but it's really important to keep the last two lines
-where we keep the user 26, which is the postgres user.
+So we update, and we install the target package. It's really important to keep the last two lines
+where we set the user 26, which is the `postgres` user.
 
-Then we can build
-```
+Then we can build the image:
+
+``` shell
 docker build -t pgvector:15 .
 ```
 
-In the build process, it's important to keep the `15` at the end since it's used by the operator to
-detect the versions, never use `latest` as tag since the operator will reject your image.
+In the build process, it's important to keep the `15` tag, since it's used by the CloudNativePG operator to
+detect database versions. Never use `latest` as tag, since the operator will reject your image.
 
-After that you can load the image into your Kubernetes cluster and then you can just create a cluster
-with that image:
+Once the image is built, you can load it into your Kubernetes cluster, and create a
+PostgreSQL cluster with that image:
 
-```
+``` yaml
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
@@ -93,9 +99,16 @@ spec:
     size: 1Gi
 ```
 
-And that's all you have an image with the extension inside, now you can create the extension inside
-the database `app` or the name you used in the yaml file.
+Now that you have an image with the extension inside, you can create the extension inside
+the `app` database:
 
-On the other hand, you can use `postInitTemplateSQL` with the sentence `CREATE EXTENSION vector;`
-and that will work with every database created, but this may not be your use case and you want
-to create it manually or you may have that `CREATE EXTESION` inside your code.
+``` shell
+kubectl exec -ti cluster-example-1 -- psql app
+
+CREATE EXTENSION vector;
+```
+
+You could add the command `CREATE EXTENSION vector;` to the
+`postInitTemplateSQL` section instead,
+and that would automatically work with every database, which might be preferable
+depending on your use case.
