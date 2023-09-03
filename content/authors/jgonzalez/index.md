@@ -4,4 +4,5 @@ avatar: jgonzalez-gh.jpeg
 github: sxd
 ---
 
-A free software lover and passionate for OpenSource and all the tools that has created to help a lot of people to build their dreams.
+A free software lover, passionate about OpenSource and all the tools that
+it has created to help a lot of people build their dreams.
