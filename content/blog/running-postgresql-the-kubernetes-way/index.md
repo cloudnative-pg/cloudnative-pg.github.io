@@ -79,7 +79,7 @@ You can install it with `kubectl apply -f angus.yaml`, as with any other
 Kubernetes manifest.
 
 For more information, please refer to the [documentation for version 1.15.0](https://cloudnative-pg.io/docs/1.15.0/).
-Alternatively, reach out to us on [Slack](https://join.slack.com/t/cloudnativepg/shared_invite/zt-17culux7k-P_UsVOOR9teUYi4dGhDSBQ)
+Alternatively, reach out to us on [Slack](https://join.slack.com/t/cloudnativepg/shared_invite/zt-237bhehx3-htDW2kz2hKJxEhn1W4VTnw)
 or use [GitHub discussions](https://github.com/cloudnative-pg/cloudnative-pg/discussions).
 
 If you are physically in Valencia for KubeCon Europe 2022, come and say hello to us!
