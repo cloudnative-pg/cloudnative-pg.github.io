@@ -17,11 +17,20 @@
     
     <item>
       <title></title>
+      <link>https://cloudnative-pg.io/authors/jgonzalez/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://cloudnative-pg.io/authors/jgonzalez/</guid>
+      <description>A free software lover, passionate about OpenSource and all the tools that it has created to help a lot of people build their dreams.</description>
+    </item>
+    
+    <item>
+      <title></title>
       <link>https://cloudnative-pg.io/authors/jsilvela/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://cloudnative-pg.io/authors/jsilvela/</guid>
-      <description>Jaime Silvela has been around. In a career spanning two decades writing code, he has lived in the US and Europe, worked for big corporations like Amazon and Microsoft, as an early startup employee, in industries including Wall Steet and catastrophe insurance.
+      <description>Jaime Silvela has been around. In a career spanning two decades writing code, he has lived in the US and Europe, worked for big corporations like Amazon and Microsoft, as an early startup employee, in industries including Wall Street and catastrophe insurance.
 He discovered a fondness for SQL and PostgreSQL in particular years ago. He started using Go professionally in 2014, after having suffered Java, and he is very proud to be able to put his skills to use on CloudNativePG.</description>
     </item>
     
