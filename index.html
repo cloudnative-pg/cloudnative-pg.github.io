@@ -33,7 +33,7 @@
 
 </head>
 
-<body class="bg-white dark:bg-sky-800 text-black dark:text-neutral-200">
+<body>
   <div class="h-screen w-screen">
     
 <main>
@@ -65,14 +65,14 @@
         </ul>
       </div>
       
-      <div class="py-4 bg-gray-100 dark:bg-sky-700 mt-5 hidden" id="navi-list">
-        <ul class="md:flex gap-14 text-2xl md:medium-gray text-zinc-900 dark:text-zinc-300">
+      <div class="py-4 bg-gray-1 mt-5 hidden" id="navi-list">
+        <ul class="md:flex gap-14 text-2xl md:medium-gray charcoal">
           <li class="text-center py-4"><a href="/docs">Documentation</a></li>
           <li class="text-center py-4"><a href="/blog">Blog</a></li>
           <li class="text-center py-4"><a href="/support">Support</a></li>
           <li class="text-center py-4"><a href="/end_users">End Users</a></li>
         </ul>
-        <div class="flex gap-3 py-4 justify-center bg-gray-100 dark:bg-sky-700 fill-cnp-blue">
+        <div class="flex gap-3 py-4 justify-center bg-gray-1 fill-cnp-blue">
           <a href="https://github.com/cloudnative-pg/cloudnative-pg">
             <img src="/icons/Git.svg" alt="Github">
           </a>
@@ -123,14 +123,14 @@
     <div class="md:flex md:flex-row px-4 md:px-56 md:justify-between place-content-center">
       <div class="md:w-1/2">
         <h1 class="md:text-6xl font-bold cnp-blue text-3xl md:text-left text-center">Run PostgreSQL.</h1>
-        <h1 class="md:text-6xl font-bold text-red-600 dark:text-red-800 pt-2.5 text-3xl md:text-left text-center">The Kubernetes way.</h1>
-        <p class=" text-gray-800 dark:text-gray-300 text-xl md:text-2xl font-light leading-10 py-5 container md:tracking-wider">
+        <h1 class="md:text-6xl font-bold red-1 pt-2.5 text-3xl md:text-left text-center">The Kubernetes way.</h1>
+        <p class=" gray-4 text-xl md:text-2xl font-light leading-10 py-5 container md:tracking-wider">
           CloudNativePG is the Kubernetes operator that covers the full lifecycle of a highly available PostgreSQL database cluster with a primary/standby architecture, using native streaming replication.
 
         </p>
         <div class="pt-7 md:text-left text-center">
           <a href="https://github.com/cloudnative-pg/cloudnative-pg"
-            class="md:text-3xl bg-red-600 dark:bg-red-800 py-4 px-12 rounded-full text-white text-xl">View on GitHub</a>
+            class="md:text-3xl bg-red-1 py-4 px-12 rounded-full text-white text-xl">View on GitHub</a>
         </div>
       </div>
       <div class="md:ml-8 hidden md:block">
@@ -143,7 +143,7 @@
 <section>
 
     
-    <div class="w-full grid grid-cols-1 md:grid-cols-3 text-white bg-red-600 dark:bg-red-800 md:px-36 md:py-12 py-8">
+    <div class="w-full grid grid-cols-1 md:grid-cols-3 text-white bg-red-1 md:px-36 md:py-12 py-8">
         
         <div class="w-full md:py-4 md:px-20 px-4 py-1">
     <h1 class="md:text-3xl md:py-4 font-medium text-2xl py-1 md:text-left text-center">Autopilot</h1>
@@ -173,11 +173,11 @@ Postgres database inside Kubernetes, including automated failover.</p>
         
         
         
-<div class="md:block hidden w-full  bg-white dark:bg-sky-800 text-black dark:text-neutral-200 py-16 md:px-56">
+<div class="md:block hidden w-full  bg-white py-16 md:px-56">
   <section class="container mx-auto text-left md:flex md:flex-row md:justify-between">
     <div class="md:w-3/5">
       <h1 class="md:text-3xl py-4 font-medium cnp-blue text-2xl">Cloud Native</h1>
-      <p class="md:text-xl leading-8 text-gray-800 dark:text-gray-300  text-lg"><p>Built on proven DevOps concepts like immutable infrastructure, declarative
+      <p class="md:text-xl leading-8 gray-4 text-lg"><p>Built on proven DevOps concepts like immutable infrastructure, declarative
 configuration, and microservice architecture, CloudNativePG exclusively relies
 on the Kubernetes API server to maintain the state of a PostgreSQL cluster.
 Additionally, CloudNativePG provides cloud native capabilities like self-healing,
@@ -191,14 +191,14 @@ on.</p>
     </div>
   </section>
 </div>
-<div class="md:hidden w-full  bg-white dark:bg-sky-800 text-black dark:text-neutral-200 py-16 px-4">
+<div class="md:hidden w-full  bg-white py-16 px-4">
   <section class="container text-left md:flex md:flex-row md:justify-between">
     <div class="mx-auto my-auto ">
       <img src="icons/info/cloud-native.svg" alt="Cloud Native" class="h-20 mx-auto" />
     </div>
     <div class="md:w-3/5">
       <h1 class="md:text-3xl py-4 font-medium text-center cnp-blue text-2xl">Cloud Native</h1>
-      <p class="md:text-xl leading-8 text-gray-800 dark:text-gray-300 text-lg"><p>Built on proven DevOps concepts like immutable infrastructure, declarative
+      <p class="md:text-xl leading-8 gray-4 text-lg"><p>Built on proven DevOps concepts like immutable infrastructure, declarative
 configuration, and microservice architecture, CloudNativePG exclusively relies
 on the Kubernetes API server to maintain the state of a PostgreSQL cluster.
 Additionally, CloudNativePG provides cloud native capabilities like self-healing,
@@ -215,7 +215,7 @@ on.</p>
         
         
 
-<div class="w-full bg-gray-100 dark:bg-sky-700 py-16 md:px-56 px-4">
+<div class="w-full bg-gray-1 py-16 md:px-56 px-4">
   <section class="container mx-auto text-left md:flex md:flex-row md:justify-between">
     <div class="md:block mx-auto my-auto hidden">
       <img src="icons/info/security.svg" alt="Security &amp; TLS Certificates" />
@@ -225,7 +225,7 @@ on.</p>
     </div>
     <div class="md:w-3/5 md:block">
       <h1 class="md:text-3xl py-4 font-medium cnp-blue text-2xl md:text-left text-center">Security &amp; TLS Certificates</h1>
-      <p class="md:text-xl leading-8 text-gray-800 dark:text-gray-300  text-lg"><p>CloudNativePG supports security contexts by default and implements in-transit
+      <p class="md:text-xl leading-8 gray-4 text-lg"><p>CloudNativePG supports security contexts by default and implements in-transit
 encrypted TLS connections. If you are not happy with auto-generated
 certificates, you can bring your own and even integrate with cert-manager. TLS
 client authentication for PostgreSQL is also supported, and auditing with PGAudit
@@ -239,11 +239,11 @@ can be easily enabled in a declarative way.</p>
         
         
         
-<div class="md:block hidden w-full  bg-white dark:bg-sky-800 text-black dark:text-neutral-200 py-16 md:px-56">
+<div class="md:block hidden w-full  bg-white py-16 md:px-56">
   <section class="container mx-auto text-left md:flex md:flex-row md:justify-between">
     <div class="md:w-3/5">
       <h1 class="md:text-3xl py-4 font-medium cnp-blue text-2xl">High Availability</h1>
-      <p class="md:text-xl leading-8 text-gray-800 dark:text-gray-300  text-lg"><p>PostgreSQL has a reliable foundation for high availability that is built on
+      <p class="md:text-xl leading-8 gray-4 text-lg"><p>PostgreSQL has a reliable foundation for high availability that is built on
 physical replication. CloudNativePG leverages streaming replication and a
 file-based one as a fallback method. You can tune synchronous replication to
 obtain zero data loss replicas.</p>
@@ -254,14 +254,14 @@ obtain zero data loss replicas.</p>
     </div>
   </section>
 </div>
-<div class="md:hidden w-full  bg-white dark:bg-sky-800 text-black dark:text-neutral-200 py-16 px-4">
+<div class="md:hidden w-full  bg-white py-16 px-4">
   <section class="container text-left md:flex md:flex-row md:justify-between">
     <div class="mx-auto my-auto ">
       <img src="icons/info/high-availability.svg" alt="High Availability" class="h-20 mx-auto" />
     </div>
     <div class="md:w-3/5">
       <h1 class="md:text-3xl py-4 font-medium text-center cnp-blue text-2xl">High Availability</h1>
-      <p class="md:text-xl leading-8 text-gray-800 dark:text-gray-300 text-lg"><p>PostgreSQL has a reliable foundation for high availability that is built on
+      <p class="md:text-xl leading-8 gray-4 text-lg"><p>PostgreSQL has a reliable foundation for high availability that is built on
 physical replication. CloudNativePG leverages streaming replication and a
 file-based one as a fallback method. You can tune synchronous replication to
 obtain zero data loss replicas.</p>
@@ -275,7 +275,7 @@ obtain zero data loss replicas.</p>
         
         
 
-<div class="w-full bg-gray-100 dark:bg-sky-700 py-16 md:px-56 px-4">
+<div class="w-full bg-gray-1 py-16 md:px-56 px-4">
   <section class="container mx-auto text-left md:flex md:flex-row md:justify-between">
     <div class="md:block mx-auto my-auto hidden">
       <img src="icons/info/desaster.svg" alt="Disaster Recovery" />
@@ -285,7 +285,7 @@ obtain zero data loss replicas.</p>
     </div>
     <div class="md:w-3/5 md:block">
       <h1 class="md:text-3xl py-4 font-medium cnp-blue text-2xl md:text-left text-center">Disaster Recovery</h1>
-      <p class="md:text-xl leading-8 text-gray-800 dark:text-gray-300  text-lg"><p>Define your disaster recovery objectives through continuous backup on object
+      <p class="md:text-xl leading-8 gray-4 text-lg"><p>Define your disaster recovery objectives through continuous backup on object
 stores, and exploits the native Point-In-Time-Recovery capabilities of
 PostgreSQL by boostrapping a new cluster starting from a backup to a given
 timestamp.</p>
@@ -298,11 +298,11 @@ timestamp.</p>
         
         
         
-<div class="md:block hidden w-full  bg-white dark:bg-sky-800 text-black dark:text-neutral-200 py-16 md:px-56">
+<div class="md:block hidden w-full  bg-white py-16 md:px-56">
   <section class="container mx-auto text-left md:flex md:flex-row md:justify-between">
     <div class="md:w-3/5">
       <h1 class="md:text-3xl py-4 font-medium cnp-blue text-2xl">Monitoring</h1>
-      <p class="md:text-xl leading-8 text-gray-800 dark:text-gray-300  text-lg"><p>CloudNativePG has a built-in exporter for Prometheus that can be configured and
+      <p class="md:text-xl leading-8 gray-4 text-lg"><p>CloudNativePG has a built-in exporter for Prometheus that can be configured and
 customized through user defined metrics written in SQL. Logs, including
 database and audit, are transparently sent to stdout in JSON format for
 native integration with infrastructure log management pipelines.</p>
@@ -313,14 +313,14 @@ native integration with infrastructure log management pipelines.</p>
     </div>
   </section>
 </div>
-<div class="md:hidden w-full  bg-white dark:bg-sky-800 text-black dark:text-neutral-200 py-16 px-4">
+<div class="md:hidden w-full  bg-white py-16 px-4">
   <section class="container text-left md:flex md:flex-row md:justify-between">
     <div class="mx-auto my-auto ">
       <img src="icons/info/monitoring.svg" alt="Monitoring" class="h-20 mx-auto" />
     </div>
     <div class="md:w-3/5">
       <h1 class="md:text-3xl py-4 font-medium text-center cnp-blue text-2xl">Monitoring</h1>
-      <p class="md:text-xl leading-8 text-gray-800 dark:text-gray-300 text-lg"><p>CloudNativePG has a built-in exporter for Prometheus that can be configured and
+      <p class="md:text-xl leading-8 gray-4 text-lg"><p>CloudNativePG has a built-in exporter for Prometheus that can be configured and
 customized through user defined metrics written in SQL. Logs, including
 database and audit, are transparently sent to stdout in JSON format for
 native integration with infrastructure log management pipelines.</p>
@@ -334,7 +334,7 @@ native integration with infrastructure log management pipelines.</p>
         
         
 
-<div class="w-full bg-gray-100 dark:bg-sky-700 py-16 md:px-56 px-4">
+<div class="w-full bg-gray-1 py-16 md:px-56 px-4">
   <section class="container mx-auto text-left md:flex md:flex-row md:justify-between">
     <div class="md:block mx-auto my-auto hidden">
       <img src="icons/info/advanced.svg" alt="Advanced Architectures" />
@@ -344,7 +344,7 @@ native integration with infrastructure log management pipelines.</p>
     </div>
     <div class="md:w-3/5 md:block">
       <h1 class="md:text-3xl py-4 font-medium cnp-blue text-2xl md:text-left text-center">Advanced Architectures</h1>
-      <p class="md:text-xl leading-8 text-gray-800 dark:text-gray-300  text-lg"><p>You can extend the primary/standby architecture by adding a PgBouncer
+      <p class="md:text-xl leading-8 gray-4 text-lg"><p>You can extend the primary/standby architecture by adding a PgBouncer
 connection pooler between your application and your PostgreSQL database.
 Additionally, you can take advantage of replica clusters by creating one or
 more disaster recovery clusters in different regions, solely relying on file
@@ -359,11 +359,11 @@ connection.</p>
         
         
         
-<div class="md:block hidden w-full  bg-white dark:bg-sky-800 text-black dark:text-neutral-200 py-16 md:px-56">
+<div class="md:block hidden w-full  bg-white py-16 md:px-56">
   <section class="container mx-auto text-left md:flex md:flex-row md:justify-between">
     <div class="md:w-3/5">
       <h1 class="md:text-3xl py-4 font-medium cnp-blue text-2xl">Postgres Operations</h1>
-      <p class="md:text-xl leading-8 text-gray-800 dark:text-gray-300  text-lg"><p>Most Postgres related operations can be done in a declarative way, including
+      <p class="md:text-xl leading-8 gray-4 text-lg"><p>Most Postgres related operations can be done in a declarative way, including
 management of superuser credentials, application user, and application
 database. Declarative configuration also covers Postgres configuration and some
 common extensions like <code>pg_stat_statements</code>.</p>
@@ -374,14 +374,14 @@ common extensions like <code>pg_stat_statements</code>.</p>
     </div>
   </section>
 </div>
-<div class="md:hidden w-full  bg-white dark:bg-sky-800 text-black dark:text-neutral-200 py-16 px-4">
+<div class="md:hidden w-full  bg-white py-16 px-4">
   <section class="container text-left md:flex md:flex-row md:justify-between">
     <div class="mx-auto my-auto ">
       <img src="icons/info/postgres-operations.svg" alt="Postgres Operations" class="h-20 mx-auto" />
     </div>
     <div class="md:w-3/5">
       <h1 class="md:text-3xl py-4 font-medium text-center cnp-blue text-2xl">Postgres Operations</h1>
-      <p class="md:text-xl leading-8 text-gray-800 dark:text-gray-300 text-lg"><p>Most Postgres related operations can be done in a declarative way, including
+      <p class="md:text-xl leading-8 gray-4 text-lg"><p>Most Postgres related operations can be done in a declarative way, including
 management of superuser credentials, application user, and application
 database. Declarative configuration also covers Postgres configuration and some
 common extensions like <code>pg_stat_statements</code>.</p>
@@ -404,7 +404,7 @@ common extensions like <code>pg_stat_statements</code>.</p>
         <div class="mx-auto md:py-24 md:px-56 px-4 py-8">
             <hr>
         </div>
-        <h1 class="md:text-5xl font-bold text-red-600 dark:text-red-800 leading-10 md:pt-4 text-3xl">100%</h1>
+        <h1 class="md:text-5xl font-bold red-1 leading-10 md:pt-4 text-3xl">100%</h1>
         <h1 class="md:text-5xl font-bold text-white leading-10 md:pt-4 text-3xl">Open Source</h1>
         <p class="md:text-xl text-white md:w-2/5 mx-auto mt-10 text-lg px-4">
             CloudNativePG is 100% open source and community-driven.
@@ -417,22 +417,22 @@ common extensions like <code>pg_stat_statements</code>.</p>
 
     <div class="text-center pt-24">
         <a href="https://github.com/cloudnative-pg/cloudnative-pg"
-            class="bg-red-600 dark:bg-red-800 py-4 px-12 rounded-full text-white text-xl">View on GitHub</a>
+            class="bg-red-1 py-4 px-12 rounded-full text-white text-xl">View on GitHub</a>
     </div>
 </section>
 
 
     <footer class="text-center pb-24">
-    <p class="text-sm text-zinc-900 dark:text-zinc-300 md:w-1/2 mx-auto md:pt-10 px-6 pt-12">
+    <p class="text-sm charcoal md:w-1/2 mx-auto md:pt-10 px-6 pt-12">
 
       &copy; The CloudNativePG Contributors.<br />
 
       <a href="https://www.linuxfoundation.org/trademark-usage/"
-        class="text-red-600 dark:text-red-800 ">The Linux Foundation has registered trademarks and uses
+        class="red-1">The Linux Foundation has registered trademarks and uses
         trademarks</a>.<br />
 
       <a href="https://www.postgresql.org/about/policies/trademarks"
-        class="text-red-600 dark:text-red-800">Postgres, PostgreSQL and the Slonik Logo are trademarks or
+        class="red-1">Postgres, PostgreSQL and the Slonik Logo are trademarks or
         registered trademarks of the PostgreSQL Community Association of Canada, and
         used with their permission</a>.
 

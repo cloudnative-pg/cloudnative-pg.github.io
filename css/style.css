@@ -36,12 +36,6 @@ a {
     color: #E63054;
 }
 
-@media (prefers-color-scheme: dark) {
-    a {
-        color: #eb4444;
-    }
-}
-
 .red-1 {
     color: #E63054;
 }
@@ -363,13 +357,6 @@ header li {
 code {
     font-size: 0.85em;
     color: brown;
-}
-
-@media (prefers-color-scheme: dark) {
-    code {
-        font-size: 0.85em;
-        color: tan;
-    }
 }
 
 pre code {
