@@ -93,7 +93,7 @@ Proud to announce #CloudNativePG 1.21.0, 1.20.3 and 1.19.5 are out! Update now!
 First #PostgreSQL #operator to introduce native #Kubernetes #VolumeSnapshot API support for #incremental
 #differential #backup and #recovery, suitable for very large #databases (#VLDB)
 
-Read more https://cloudnative-pg.io/blog/cloudnative-pg-1.21-0-released/!
+Read more https://cloudnative-pg.io/blog/cloudnative-pg-1-21.0-released/!
 
 #k8s #postgres #oss #cloudnative
 --->
