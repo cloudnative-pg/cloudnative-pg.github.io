@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>volumesnapshots on CloudNativePG - PostgreSQL Operator for Kubernetes</title>
+    <link>https://cloudnative-pg.io/tags/volumesnapshots/</link>
+    <description>Recent content in volumesnapshots on CloudNativePG - PostgreSQL Operator for Kubernetes</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 12 Oct 2023 13:46:12 +0200</lastBuildDate><atom:link href="https://cloudnative-pg.io/tags/volumesnapshots/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CloudNativePG 1.21.0, 1.20.3 and 1.19.5 Released!</title>
+      <link>https://cloudnative-pg.io/blog/cloudnative-pg-1-21.0-released/</link>
+      <pubDate>Thu, 12 Oct 2023 13:46:12 +0200</pubDate>
+      
+      <guid>https://cloudnative-pg.io/blog/cloudnative-pg-1-21.0-released/</guid>
+      <description>The CloudNativePG community has released the new 1.21 minor version and a new update for the supported 1.20 and 1.19 versions of the CloudNativePG operator.</description>
+    </item>
+    
+  </channel>
+</rss>
