@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="The CloudNativePG Contributors" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Release notes for CloudNativePG 1.21 - CloudNativePG</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+        <link href="../../css/override.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Release notes for CloudNativePG 1.21";
+        var mkdocs_page_input_path = "release_notes/v1.21.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> CloudNativePG
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">CloudNativePG</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../before_you_start/">Before You Start</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../use_cases/">Use cases</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../architecture/">Architecture</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../installation_upgrade/">Installation and upgrades</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../quickstart/">Quickstart</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../bootstrap/">Bootstrap</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../database_import/">Importing Postgres databases</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../security/">Security</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../instance_manager/">Postgres instance manager</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../scheduling/">Scheduling</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../resource_management/">Resource management</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../failure_modes/">Failure Modes</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../rolling_update/">Rolling Updates</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../replication/">Replication</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../backup/">Backup</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../backup_barmanobjectstore/">Backup on object stores</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../wal_archiving/">WAL archiving</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../backup_volumesnapshot/">Backup on volume snapshots</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../recovery/">Recovery</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../postgresql_conf/">PostgreSQL Configuration</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../declarative_role_management/">Database Role Management</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../operator_conf/">Operator configuration</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../cluster_conf/">Instance Pod Configuration</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../storage/">Storage</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../labels_annotations/">Labels and annotations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../monitoring/">Monitoring</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../logging/">Logging</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../certificates/">Certificates</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../ssl_connections/">Client TLS/SSL Connections</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../applications/">Connecting from an application</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../connection_pooling/">Connection Pooling</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../replica_cluster/">Replica clusters</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../kubernetes_upgrade/">Kubernetes Upgrade</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../expose_pg_services/">Exposing Postgres Services</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../kubectl-plugin/">Kubectl Plugin</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../failover/">Automated failover</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/">Troubleshooting</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../fencing/">Fencing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../declarative_hibernation/">Declarative hibernation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../postgis/">PostGIS</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../e2e/">End-to-End Tests</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../container_images/">Container Image Requirements</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../operator_capability_levels/">Operator Capability Levels</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../controller/">Custom Pod Controller</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../samples/">Examples</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../networking/">Networking</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../benchmarking/">Benchmarking</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../commercial_support/">Commercial support</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../faq/">Frequently Asked Questions (FAQ)</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../cloudnative-pg.v1/">API Reference</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../supported_releases/">Supported releases</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../">Release notes</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Appendixes</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../appendixes/object_stores/">Appendix A - Common object stores for backups</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">CloudNativePG</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" alt="Docs"></a> &raquo;</li><li>Release notes for CloudNativePG 1.21</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="release-notes-for-cloudnativepg-121">Release notes for CloudNativePG 1.21</h1>
+<p>History of user-visible changes in the 1.21 minor release of CloudNativePG.</p>
+<p>For a complete list of changes, please refer to the
+<a href="https://github.com/cloudnative-pg/cloudnative-pg/commits/release-1.21">commits</a>
+on the release branch in GitHub.</p>
+<h2 id="version-1210">Version 1.21.0</h2>
+<p><strong>Release date:</strong> Oct 12, 2023</p>
+<div class="admonition important">
+<p class="admonition-title">Important changes from previous versions</p>
+<p>This release contains a few changes to the default settings of
+CloudNativePG with the goal to improve general stability and security through
+predefined values. If you are upgrading from a previous version, please
+carefully read the "Important Changes" section below, as well as the
+<a href="installation_upgrade.md">upgrade documentation</a>.</p>
+</div>
+<p>Features:</p>
+<ul>
+<li>
+<p><strong>Volume Snapshot support for backup and recovery:</strong> leverage the standard
+  Kubernetes API on Volume Snapshots to take advantage of capabilities like
+  incremental and differential copy for both backup and recovery operations. This
+  first step, covering cold backups from a standby, will continue in 1.22 with
+  support for hot backups using the PostgreSQL API and tablespaces.</p>
+</li>
+<li>
+<p><strong>OLM installation method</strong>: introduce support for Operator Lifecycle Manager
+  via OperatorHub.io for the latest patch version of the latest minor release
+  through the <em>stable</em> channel. Many thanks to EDB for donating the bundle of
+  their "EDB Postgres for Kubernetes" operator and adapting it for CloudNativePG.</p>
+</li>
+</ul>
+<p>Important Changes:</p>
+<ul>
+<li>Change the default value of <code>stopDelay</code> to 1800 seconds instead of 30 seconds
+  (#2848)</li>
+<li>Introduce a new parameter, called <code>smartShutdownTimeout</code>, to control the
+  window of time reserved for the smart shutdown of Postgres to complete; the
+  general formula to compute the overall timeout to stop Postgres is
+  <code>max(stopDelay -  smartShutdownTimeout, 30)</code> (#2848)</li>
+<li>Change the default value of <code>startDelay</code> to 3600, instead of 30 seconds
+  (#2847)</li>
+<li>Replace the livenessProbe initial delay with a more proper Kubernetes
+  startup probe to deal with the start of a Postgres server (#2847)</li>
+<li>Change the default value of <code>switchoverDelay</code> to 3600 seconds instead of
+  40000000 seconds (#2846)</li>
+<li>Disable superuser access by default for security (#2905)</li>
+<li>Enable replication slots for HA by default (#2903)</li>
+<li>Stop supporting the <code>postgresql</code> label - replaced by <code>cnpg.io/cluster</code> in
+  1.18 (#2744)</li>
+</ul>
+<p>Security:</p>
+<ul>
+<li>Add a default <code>seccompProfile</code> to the operator deployment (#2926)</li>
+</ul>
+<p>Enhancements:</p>
+<ul>
+<li>Enable bootstrap of a replica cluster from a consistent set of volume
+  snapshots (#2647)</li>
+<li>Enable full and Point In Time recovery from a consistent set of volume
+  snapshots (#2390)</li>
+<li>Introduce the <code>cnpg.io/coredumpFilter</code> annotation to control the content of a
+  core dump generated in the unlikely event of a PostgreSQL crash, by default
+  set to exclude shared memory segments from the dump (#2733)</li>
+<li>Allow to configure ephemeral-storage limits for the shared memory and
+  temporary data ephemeral volumes (#2830)</li>
+<li>Validate resource limits and requests through the webhook (#2663)</li>
+<li>Ensure that PostgreSQL's <code>shared_buffers</code> are coherent with the pods'
+  allocated memory resources (#2840)</li>
+<li>Add <code>uri</code> and <code>jdbc-uri</code> fields in the credential secrets to facilitate
+  developers when connecting their applications to the database (#2186)</li>
+<li>Add a new phase <code>Waiting for the instances to become active</code> for finer
+  control of a cluster's state waiting for the replicas to be ready (#2612)</li>
+<li>Improve detection of Pod rollout conditions through the <code>podSpec</code> annotation
+  (#2243)</li>
+<li>Add primary timestamp and uptime to the kubectl plugin's <code>status</code> command
+  (#2953)</li>
+</ul>
+<p>Fixes:</p>
+<ul>
+<li>Ensure that the primary instance is always recreated first by prioritizing
+  ready PVCs with a primary role (#2544)</li>
+<li>Honor the <code>cnpg.io/skipEmptyWalArchiveCheck</code> annotation during recovery to
+  bypass the check for an empty WAL archive (#2731)</li>
+<li>Prevent a cluster from being stuck when the PostgreSQL server is down but the
+  pod is up on the primary (#2966)</li>
+<li>Avoid treating the designated primary in a replica cluster as a regular HA
+  replica when replication slots are enabled (#2960)</li>
+<li>Reconcile services every time the selectors change or when labels/annotations
+  need to be changed (#2918)</li>
+<li>Defaults to <code>app</code> both the owner and database during recovery bootstrap
+  (#2957)</li>
+<li>Avoid write-read concurrency on cached cluster (#2884)</li>
+<li>Remove empty items, make them unique and sort in the <code>ResourceName</code> sections
+  of the generated roles (#2875)</li>
+<li>Ensure that the <code>ContinuousArchiving</code> condition is properly set to 'failed'
+  in case of errors (#2625)</li>
+<li>Make the <code>Backup</code> resource reconciliation cycle more resilient on
+  interruptions by stopping only if the backup is completed or failed (#2591)</li>
+<li>Reconcile PodMonitor <code>labels</code> and <code>annotations</code> (#2583)</li>
+<li>Fix backup failure due to missing RBAC <code>resourceNames</code> on the <code>Role</code> object
+  (#2956)</li>
+<li>
+<p>Observability:</p>
+<ul>
+<li>Add TCP port label to default <code>pg_stat_replication</code> metric (#2961)</li>
+<li>Fix the <code>pg_wal_stat</code> default metric for Prometheus (#2569)</li>
+<li>Improve the <code>pg_replication</code> default metric for Prometheus (#2744 and
+  #2750)</li>
+<li>Use <code>alertInstanceLabelFilter</code> instead of <code>alertName</code> in the provided
+  Grafana dashboard</li>
+<li>Enforce <code>standard_conforming_strings</code> in metric collection (#2888)</li>
+</ul>
+</li>
+</ul>
+<p>Changes:</p>
+<ul>
+<li>Set the default operand image to PostgreSQL 16.0</li>
+<li>Fencing now uses PostgreSQL's fast shutdown instead of smart shutdown to halt
+  an instance (#3051)</li>
+<li>Rename webhooks from kb.io to cnpg.io group (#2851)</li>
+<li>Replace the <code>cnpg snapshot</code> command with <code>cnpg backup -m volumeSnapshot</code> for
+  the <code>kubectl</code> plugin</li>
+<li>Let the <code>cnpg hibernate</code> plugin command use the
+  <code>ClusterManifestAnnotationName</code> and <code>PgControldataAnnotationName</code> annotations
+  on PVCs (#2657)</li>
+<li>Add the <code>cnpg.io/instanceRole</code> label while deprecating the existing <code>role</code>
+  label (#2915)</li>
+</ul>
+<p>Technical enhancements:</p>
+<ul>
+<li>Replace <code>k8s-api-docgen</code> with <code>gen-crd-api-reference-docs</code> to automatically
+  build the API reference documentation (#2606)</li>
+</ul>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme_extra.js" defer></script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
