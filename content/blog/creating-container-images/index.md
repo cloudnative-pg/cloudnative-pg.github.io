@@ -112,3 +112,94 @@ You could add the command `CREATE EXTENSION vector;` to the
 `postInitTemplateSQL` section instead,
 and that would automatically work with every database, which might be preferable
 depending on your use case.
+
+# Extensions from source code
+
+What if there's an extension that doesn't have a package in any distribution, and you need to compile it?
+Well, the answer to this may look easy, you must compile it in the image, but when we do this we will leave
+some dependencies that we don't want inside our images, things like `gcc`, `make`, etc. basically, tools used
+to compile that someone that will have access to the image may have access to compile a malicious code
+and run it inside the container, this it's something we should always avoid.
+
+The solution to this problem it's using multi-stage builds process, this means that in a set of layers
+we compile the extensions and in the next one we just copy the file from the original layer that we actually
+need, files like the `.so` files, but this sounds more complicated than what it is, let's try with an example.
+
+The first layer will be the one to compile, we will use `pg_crash` for this example
+
+``` Dockerfile
+# First step its to build the the extension
+FROM debian:bullseye-slim as builder
+
+RUN set -xe ;\
+    apt update && apt install wget lsb-release gnupg2 -y ;\
+    sh -c 'echo "deb https://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list' ;\
+    wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add - ;\
+    apt-get update ;\
+	apt-get install -y postgresql-server-dev-15 build-essential git; \
+	cd /tmp; \
+	git clone https://github.com/cybertec-postgresql/pg_crash; \
+	cd /tmp/pg_crash; \
+	PG_CONFIG=/usr/lib/postgresql/15/bin/pg_config make; \
+	PG_CONFIG=/usr/lib/postgresql/15/bin/pg_config make install
+```
+
+This will install all the necessary packages to download from source and compile the `pg_crash` extension, the important
+section here is `as builder` part in the `FROM` line, this help us to identify this layer with a name for later use.
+Now in the next section of the file we continue with the standard process to do this:
+
+``` Dockerfile
+# Second step, we build the final image
+FROM ghcr.io/cloudnative-pg/postgresql:15.4-3
+
+# To install any package we need to be root user
+USER root
+
+# But this time we copy the .so file from the build process
+COPY --from=builder /tmp/pg_crash/pg_crash.so /usr/lib/postgresql/15/lib/
+
+# Change the uid of postgres to 26
+RUN usermod -u 26 postgres
+USER 26
+```
+
+As you can see, we used the name `builder` to identify from where we are going to copy the content and the path to use
+that will be used, and with that we know that we know that we can copy to the postgresql path to read that `.so` file.
+
+So now, our file will look like this:
+
+``` Dockerfile
+# First step its to build the the extension
+FROM debian:bullseye-slim as builder
+
+RUN set -xe ;\
+    apt update && apt install wget lsb-release gnupg2 -y ;\
+    sh -c 'echo "deb https://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list' ;\
+    wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add - ;\
+    apt-get update ;\
+	apt-get install -y postgresql-server-dev-15 build-essential git; \
+	cd /tmp; \
+	git clone https://github.com/cybertec-postgresql/pg_crash; \
+	cd /tmp/pg_crash; \
+	PG_CONFIG=/usr/lib/postgresql/15/bin/pg_config make; \
+	PG_CONFIG=/usr/lib/postgresql/15/bin/pg_config make install
+
+# Second step, we build the final image
+FROM ghcr.io/cloudnative-pg/postgresql:15.4-3
+
+# To install any package we need to be root user
+USER root
+
+# But this time we copy the .so file from the build process
+COPY --from=builder /tmp/pg_crash/pg_crash.so /usr/lib/postgresql/15/lib/
+
+# Change the uid of postgres to 26
+RUN usermod -u 26 postgres
+USER 26
+```
+
+And that's it! now you know a way to install extensions from packages and from source code! Let's start creating
+PostgreSQL cluster with many different extensions! Keep in mind that images may increase the size when you add more
+extensions, and that may affect the time to download an image.
+
+Happy Hacking!
