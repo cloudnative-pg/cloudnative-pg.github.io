@@ -45,7 +45,7 @@ we can find an `APT` section with this information:
 > Debian and Ubuntu packages are available from the PostgreSQL APT Repository.
 
 That's a great starting point, as we already have the PostgreSQL APT Repository
-in our `postgres-containers` images; we can go ahead and use `apt`. Let's go:
+in our `postgres-containers` images; we can go ahead and use `apt`. Let's start:
 
 ## Creating the Dockerfile
 
@@ -71,8 +71,8 @@ RUN set -xe; \
 USER 26
 ```
 
-So we update, and we install the target package. It's really important to keep the last two lines
-where we set the user 26, which is the `postgres` user.
+So we update, and then install the target package. It's really important to keep the last two lines
+where we set the user to 26, which is the `postgres` user.
 
 Then we can build the image:
 
@@ -80,7 +80,7 @@ Then we can build the image:
 docker build -t pgvector:15 .
 ```
 
-In the build process, it's important to keep the `15` tag, since it's used by the CloudNativePG operator to
+In the build process, it's important to keep the `15` tag, since the tag is used by the CloudNativePG operator to
 detect database versions. Never use `latest` as tag, since the operator will reject your image.
 
 Once the image is built, you can load it into your Kubernetes cluster, and create a
@@ -99,7 +99,7 @@ spec:
     size: 1Gi
 ```
 
-Now that you have an image with the extension inside, you can create the extension inside
+Now that you have an image with the extension inside, you can create the extension in
 the `app` database:
 
 ``` shell
@@ -120,15 +120,15 @@ Well, the answer to this may look easy: you must compile it in the image. But wh
 some dependencies that we don't want inside our images, things like `gcc`, `make`, etc.
 Tools used
 to compile the image, but that someone with access to the image could use to compile malicious code
-and run it inside the container. This it's something we should prevent.
+and run it inside the container. This is something we should prevent.
 
-The solution to this problem is using a multi-stage build process. This means that in a set of layers
-we compile the extensions, and in the next one we just copy the file from the original layer that we actually
-need, files like the `.so` files.
+The solution to this problem is to use a multi-stage build process. This means that in a layer
+we compile the extensions, and in the next one we just copy the files from the original layer that we actually
+need, like the `.so` files.
+
 This sounds more complicated than it really is; let's try with an example.
-
-As an example we're going to compile `pg_crash`.
-The first layer will be the one to compile.
+We're going to compile [`pg_crash`](https://github.com/cybertec-postgresql/pg_crash).
+The first layer will be the one where we compile.
 
 ``` Dockerfile
 # First step is to build the the extension
@@ -168,7 +168,7 @@ USER 26
 
 As you can see, we used the identifier `builder` to specify the path where we are going to copy the content from. We know that we can copy the `.so` file to the postgresql `lib` folder.
 
-Combined, our file will look like this:
+Combined, our Dockerfile will look like this:
 
 ``` Dockerfile
 # First step is to build the the extension
@@ -200,8 +200,8 @@ RUN usermod -u 26 postgres
 USER 26
 ```
 
-And that's it! now you know a way to install extensions from packages and from source code! Let's start creating
-PostgreSQL clusters with many different extensions! Keep in mind that images may increase the size when you add more
+And that's it! Now you know a way to install extensions from packages and from source code! Let's start creating
+PostgreSQL clusters with many different extensions! Keep in mind that images may increase in size when you add more
 extensions, and that may affect the time to download an image.
 
 Happy Hacking!
