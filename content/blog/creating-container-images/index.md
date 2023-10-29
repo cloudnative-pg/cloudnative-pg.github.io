@@ -113,22 +113,25 @@ You could add the command `CREATE EXTENSION vector;` to the
 and that would automatically work with every database, which might be preferable
 depending on your use case.
 
-# Extensions from source code
+## Extensions from source code
 
 What if there's an extension that doesn't have a package in any distribution, and you need to compile it?
-Well, the answer to this may look easy, you must compile it in the image, but when we do this we will leave
-some dependencies that we don't want inside our images, things like `gcc`, `make`, etc. basically, tools used
-to compile that someone that will have access to the image may have access to compile a malicious code
-and run it inside the container, this it's something we should always avoid.
+Well, the answer to this may look easy: you must compile it in the image. But when we do this we will leave
+some dependencies that we don't want inside our images, things like `gcc`, `make`, etc.
+Tools used
+to compile the image, but that someone with access to the image could use to compile malicious code
+and run it inside the container. This it's something we should prevent.
 
-The solution to this problem it's using multi-stage builds process, this means that in a set of layers
-we compile the extensions and in the next one we just copy the file from the original layer that we actually
-need, files like the `.so` files, but this sounds more complicated than what it is, let's try with an example.
+The solution to this problem is using a multi-stage build process. This means that in a set of layers
+we compile the extensions, and in the next one we just copy the file from the original layer that we actually
+need, files like the `.so` files.
+This sounds more complicated than it really is; let's try with an example.
 
-The first layer will be the one to compile, we will use `pg_crash` for this example
+As an example we're going to compile `pg_crash`.
+The first layer will be the one to compile.
 
 ``` Dockerfile
-# First step its to build the the extension
+# First step is to build the the extension
 FROM debian:bullseye-slim as builder
 
 RUN set -xe ;\
@@ -136,17 +139,17 @@ RUN set -xe ;\
     sh -c 'echo "deb https://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list' ;\
     wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add - ;\
     apt-get update ;\
-	apt-get install -y postgresql-server-dev-15 build-essential git; \
-	cd /tmp; \
-	git clone https://github.com/cybertec-postgresql/pg_crash; \
-	cd /tmp/pg_crash; \
-	PG_CONFIG=/usr/lib/postgresql/15/bin/pg_config make; \
-	PG_CONFIG=/usr/lib/postgresql/15/bin/pg_config make install
+    apt-get install -y postgresql-server-dev-15 build-essential git; \
+    cd /tmp; \
+    git clone https://github.com/cybertec-postgresql/pg_crash; \
+    cd /tmp/pg_crash; \
+    PG_CONFIG=/usr/lib/postgresql/15/bin/pg_config make; \
+    PG_CONFIG=/usr/lib/postgresql/15/bin/pg_config make install
 ```
 
-This will install all the necessary packages to download from source and compile the `pg_crash` extension, the important
-section here is `as builder` part in the `FROM` line, this help us to identify this layer with a name for later use.
-Now in the next section of the file we continue with the standard process to do this:
+This will install all the necessary packages to download from source and compile the `pg_crash` extension. The key
+section here is the `as builder` part in the `FROM` line; this helps us to identify this layer with a name for later use.
+Now in the next section of the file we continue with the standard process:
 
 ``` Dockerfile
 # Second step, we build the final image
@@ -163,13 +166,12 @@ RUN usermod -u 26 postgres
 USER 26
 ```
 
-As you can see, we used the name `builder` to identify from where we are going to copy the content and the path to use
-that will be used, and with that we know that we know that we can copy to the postgresql path to read that `.so` file.
+As you can see, we used the identifier `builder` to specify the path where we are going to copy the content from. We know that we can copy the `.so` file to the postgresql `lib` folder.
 
-So now, our file will look like this:
+Combined, our file will look like this:
 
 ``` Dockerfile
-# First step its to build the the extension
+# First step is to build the the extension
 FROM debian:bullseye-slim as builder
 
 RUN set -xe ;\
@@ -199,7 +201,7 @@ USER 26
 ```
 
 And that's it! now you know a way to install extensions from packages and from source code! Let's start creating
-PostgreSQL cluster with many different extensions! Keep in mind that images may increase the size when you add more
+PostgreSQL clusters with many different extensions! Keep in mind that images may increase the size when you add more
 extensions, and that may affect the time to download an image.
 
 Happy Hacking!
