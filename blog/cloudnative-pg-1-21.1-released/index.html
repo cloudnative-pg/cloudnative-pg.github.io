@@ -6,7 +6,7 @@
 <html lang="en">
 
 <head>
-  <title>Introducing Ciclops, a new GitHub action to better understand CI/CD test results | CloudNativePG - PostgreSQL Operator for Kubernetes</title>
+  <title>CloudNativePG 1.21.1, 1.20.4 and 1.20.6 Released! | CloudNativePG - PostgreSQL Operator for Kubernetes</title>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
@@ -20,15 +20,15 @@
   <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://cloudnative-pg.io/images/hero_image.png"/>
 
-<meta name="twitter:title" content="Introducing Ciclops, a new GitHub action to better understand CI/CD test results"/>
-<meta name="twitter:description" content="Introducing Ciclops, a GitHub Action to make sense of Testing"/>
+<meta name="twitter:title" content="CloudNativePG 1.21.1, 1.20.4 and 1.20.6 Released!"/>
+<meta name="twitter:description" content="The CloudNativePG community has released a new update for the supported 1.21, 1.20 and 1.19 versions of the CloudNativePG operator. Version 1.19 has reached End-of-Life (EOL)."/>
 
-  <meta property="og:title" content="Introducing Ciclops, a new GitHub action to better understand CI/CD test results" />
-<meta property="og:description" content="Introducing Ciclops, a GitHub Action to make sense of Testing" />
+  <meta property="og:title" content="CloudNativePG 1.21.1, 1.20.4 and 1.20.6 Released!" />
+<meta property="og:description" content="The CloudNativePG community has released a new update for the supported 1.21, 1.20 and 1.19 versions of the CloudNativePG operator. Version 1.19 has reached End-of-Life (EOL)." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://cloudnative-pg.io/blog/introducing-ciclops/" /><meta property="og:image" content="https://cloudnative-pg.io/images/hero_image.png"/><meta property="article:section" content="blog" />
-<meta property="article:published_time" content="2023-01-25T13:13:36+01:00" />
-<meta property="article:modified_time" content="2023-01-25T13:13:36+01:00" />
+<meta property="og:url" content="https://cloudnative-pg.io/blog/cloudnative-pg-1-21.1-released/" /><meta property="og:image" content="https://cloudnative-pg.io/images/hero_image.png"/><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2023-11-03T15:43:07+01:00" />
+<meta property="article:modified_time" content="2023-11-03T15:43:07+01:00" />
 
 
 </head>
@@ -116,27 +116,27 @@
 </script>
 
     
-<h1 class="h1 text-center mx-auto md:w-3/5">Introducing Ciclops, a new GitHub action to better understand CI/CD test results</h1>
+<h1 class="h1 text-center mx-auto md:w-3/5">CloudNativePG 1.21.1, 1.20.4 and 1.20.6 Released!</h1>
 <div class="md:w-3/5 mx-auto">
     <div class="px-4">
         
         <div class="flex gap-3 my-10 mx-auto flex justify-center">
             
 <div class="my-auto">
-    <img src="/authors/jsilvela//jsilvela-gh.jpeg" class="w-10 h-10 rounded-full"
-        alt="Jaime Silvela">
+    <img src="/authors/gbartolini//gb.png" class="w-10 h-10 rounded-full"
+        alt="Gabriele Bartolini">
 </div>
 <div>
     <div>
         <h1 class="text-lg charcoal font-bold">
-            <a href="/authors/jsilvela">Jaime Silvela</a>
+            <a href="/authors/gbartolini">Gabriele Bartolini</a>
         </h1>
     </div>
     <div class="flex gap-2 text-sm charcoal opacity-75">
     <h6 class="flex gap-2 text-sm charcoal">
-        January 25, 2023
+        November 3, 2023
         •
-        5 minutes
+        1 minute
     </h6>
 </div>
 </div>
@@ -145,117 +145,41 @@
 
         
         <div>
-            <img src="7th_voyage_of_Sinbad_-_Cyclops.png" alt="blog image" class="mx-auto">
+            <img src="wildlife-zoo-mammal-fauna-elephant-sri-lanka-988769-pxhere.com.jpg" alt="blog image" class="mx-auto">
         </div>
         
 
         
         <div class="mx-auto my-10">
-            <p>At CloudNativePG we take testing seriously; particularly end-to-end testing. The
-CloudNativePG operator needs to work across different versions of Kubernetes and
-PostgreSQL. We have an extensive test suite (over 100 end-to-end tests) that we
-run on several combinations of versions of Postgres and Kubernetes, as part of
-our Continuous Integration pipeline.</p>
-<p>The goal of all this testing is to enhance the continuous delivery posture of our software,
-by building quality directly into the product. Such tests indeed ensure that new features
-developed in separate branches do not introduce any regression, as we need them to
-pass before we merge the commit on the <em>trunk</em>. Moreover, each new patch should
-enrich the tests of sets.
-This is what enables continuous delivery, and at the same time allows us to say that
-the latest snapshot on main is the best version of CloudNativePG so far. Ever.</p>
-<p>We are using GitHub Actions in our github repository, and a
-<a href="https://docs.github.com/en/actions/using-jobs/using-a-matrix-for-your-jobs"><code>strategy: matrix</code></a>
-handles generating jobs for each combination of versions of Kubernetes and
-Postgres we want to run the test suite on.</p>
-<p>This can blow up quickly. In the image below, you can see a matrix with 9
-<em>branches</em>, five of which have errors in the End-to-End Test suite.</p>
-<p><img src="matrix-blowup.png" alt="matrix"></p>
-<p>Without going into each branch to investigate which tests fail, we don&rsquo;t know if
-there is a pattern to the failures. Did the same tests fail on all the branches?
-On branches with failures, are there many failed tests, or few? Are there any
-noteworthy patterns to the failures?</p>
-<p>Investigating test failures becomes a time sink. And 9 branches are not even
-that much; internally at EDB we test more combinations, including the different
-cloud providers, for our EDB Postgres for Kubernetes operator. It is not uncommon for us to
-have on the order of 80 matrix branches.</p>
-<p>With this much data volume, information gets
-<a href="https://www.imdb.com/title/tt0083658/quotes/qt0378266">lost &hellip; like &hellip; tears in rain</a>.</p>
-<p>At EDB we developed a system using a GitHub App that ingested test data into an
-Elastic database, connected to a Grafana dashboard. This enabled us to get a
-quick overview of failures in CI test runs.</p>
-<p>But this system was not free, and therefore could not be made available to the
-CloudNativePG community. We sorely missed having the functionality available.</p>
-<h2 id="ciclops">CIclops</h2>
-<p>We decided to take the spirit of our CI test suite scanner, and the new tool
-<code>ciclops</code> was born.</p>
-<p>CIclops (<em>ciclops</em>, pronounced either cyclops or &ldquo;see I clops&rdquo;) provides an
-intelligible overview of the test executions <em>in a single run</em> of our CI
-pipeline. It does so by taking as input JSON artifacts for each test executed,
-on each branch in a given CI run. It computes a summary based on classifying
-failures into several buckets of interest, and displays it as a
-<a href="https://github.blog/2022-05-09-supercharging-github-actions-with-job-summaries/">GitHub Job Summary</a>:</p>
-<p><img src="ciclops-overview.png" alt="overview"></p>
-<p>In the example above, we see at a glance that two matrix branches have failures,
-but only two tests have failed in the whole suite (2 test combinations out of
-12340). The failed tests affect two versions of Kubernetes and two versions of
-PostgreSQL.
-Right away we can start getting an idea. Perhaps, in this case, we could
-conclude that the <code>Backup and restore</code> tests are showing a bit of brittleness.
-We might try again with laxer timeouts in some of the test assertions. But we
-could also conclude that the tests are mostly in good shape.</p>
-<p>CIclops is available with the same open-source license and collaboration model
-as CloudNativePG.
-This is <a href="https://github.com/cloudnative-pg/ciclops">the repository</a>.
-Feel free to use it, fork it, and contribute to it!</p>
-<h2 id="technical-details">Technical details</h2>
-<p>CIclops is a <a href="https://docs.github.com/en/actions">GitHub Action</a>, built with
-Python and deployed using a Docker image.
-The documentation contains explanations on building the GitHub Action, so it
-might serve as a good tutorial if you want to build your own Docker-based GitHub
-Action.</p>
-<p>While the development of CIclops has been guided by our use case of testing a
-Kubernetes operator for PostgreSQL databases, the model is usable more
-generally to:</p>
-<ol>
-<li>get the test execution in each matrix branch to produce a JSON report with
-the results</li>
-<li>transform the JSON reports produced previously into a series of JSON files,
-one per test run, with a normalized schema (details below)</li>
-<li>have a step in the CI pipeline to collect all the normalized JSON files
-produced in all the matrix branches, and place them all in a single directory</li>
-<li>invoke <code>ciclops</code> passing the location of the directory produced in the
-previous step</li>
-</ol>
-<p>This is the normalized schema CIclops expects for the input files:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;InitDB settings - custom default locale -- use the custom default locale specified&#34;</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;state&#34;</span>: <span style="color:#e6db74">&#34;passed&#34;</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;start_time&#34;</span>: <span style="color:#e6db74">&#34;2021-11-29T18:29:12.613387+01:00&#34;</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;end_time&#34;</span>: <span style="color:#e6db74">&#34;2021-11-29T18:31:07.988145+01:00&#34;</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;error&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;error_file&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;error_line&#34;</span>: <span style="color:#ae81ff">0</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;platform&#34;</span>: <span style="color:#e6db74">&#34;local&#34;</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;postgres_kind&#34;</span>: <span style="color:#e6db74">&#34;PostgreSQL&#34;</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;matrix_id&#34;</span>: <span style="color:#e6db74">&#34;id1&#34;</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;postgres_version&#34;</span>: <span style="color:#e6db74">&#34;11.1&#34;</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;k8s_version&#34;</span>: <span style="color:#e6db74">&#34;22&#34;</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;workflow_id&#34;</span>: <span style="color:#ae81ff">12</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;repo&#34;</span>: <span style="color:#e6db74">&#34;my-repo&#34;</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;branch&#34;</span>: <span style="color:#e6db74">&#34;my-branch&#34;</span>
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><p>As you can see, there are fields to describe the test failure, but also fields
-to describe the versions of PostgreSQL and Kubernetes where the test failure
-happened.</p>
-<p>The project <code>README.md</code> file contains instructions on using <code>ciclops</code> as part of
-your GithHub workflow. In addition, the CloudNativePG operator&rsquo;s
-<a href="https://github.com/cloudnative-pg/cloudnative-pg/blob/main/.github/workflows/continuous-delivery.yml">continuous delivery workflow</a>,
-which uses <code>ciclops</code>, should serve as a live example.</p>
-<p>We hope the project can serve you either directly, or as a starting point to
-your own forks.
-We would be happy to hear of suggestions for improvement, and even happier to
-receive pull requests.
-Enjoy!</p>
+            <p>The <strong>CloudNativePG Community</strong> has released a new update for the supported
+1.21, 1.20 and 1.19 versions of the <strong>CloudNativePG Operator</strong>.</p>
+<p>Version 1.21.1 removes the previous limitation of cold backups on volume
+snapshots: by default, unless differently requested, volume snapshot backups
+are taken while the Postgres instance is up and running, thanks to the direct
+support of the PostgreSQL API for physical online backups. A few options allow
+you to configure the default behavior, and apply hybrid backup strategies
+based on object store, cold volume snapshots, and hot volume snapshots.</p>
+<p><strong>Versions 1.21.1, 1.20.4 and 1.19.6</strong> are <em>patch releases</em> containing a few
+bug fixes, including:</p>
+<ul>
+<li>temporary suspension of WAL archiving during a switchover</li>
+<li>ensure <code>LOCAL</code> synchronous commit level when managing the Postgres cluster
+replication settings</li>
+<li>fix customization of certificates for the streaming replication user</li>
+</ul>
+<p>With this release, version 1.19 has reached End-of-Life (EOL): version 1.19.6
+is the last that will be released for the 1.19 minor version.</p>
+<p>We encourage you to update the operator at your earliest possible convenience.</p>
+<p>For a complete list of changes, please refer to:</p>
+<ul>
+<li><a href="https://cloudnative-pg.io/documentation/1.21/release_notes/v1.21/">release notes for 1.21.1</a></li>
+<li><a href="https://cloudnative-pg.io/documentation/1.20/release_notes/v1.20/">release notes for 1.20.4</a></li>
+<li><a href="https://cloudnative-pg.io/documentation/1.19/release_notes/v1.19/">release notes for 1.19.6</a></li>
+</ul>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 
         </div>
         
@@ -266,29 +190,23 @@ Enjoy!</p>
         <div class="text-xs space-y-1.5 mb-14">
             <ul class="text-sm">
                 
-                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/blog"
-                        class="mr-2">blog</a></li>
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/release"
+                        class="mr-2">release</a></li>
                 
-                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/information"
-                        class="mr-2">information</a></li>
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/postgresql"
+                        class="mr-2">postgresql</a></li>
                 
-                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/continuous-integration"
-                        class="mr-2">continuous-integration</a></li>
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/postgres"
+                        class="mr-2">postgres</a></li>
                 
-                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/ci/cd"
-                        class="mr-2">ci/cd</a></li>
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/kubernetes"
+                        class="mr-2">kubernetes</a></li>
                 
-                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/testing"
-                        class="mr-2">testing</a></li>
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/k8s"
+                        class="mr-2">k8s</a></li>
                 
-                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/github-action"
-                        class="mr-2">github-action</a></li>
-                
-                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/devops"
-                        class="mr-2">devops</a></li>
-                
-                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/continuous-delivery"
-                        class="mr-2">continuous-delivery</a></li>
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/cloudnativepg"
+                        class="mr-2">cloudnativepg</a></li>
                 
             </ul>
 

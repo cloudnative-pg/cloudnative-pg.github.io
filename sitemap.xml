@@ -3,33 +3,36 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://cloudnative-pg.io/</loc>
-    <lastmod>2023-10-12T13:46:12+02:00</lastmod>
+    <lastmod>2023-11-03T15:43:07+01:00</lastmod>
   </url><url>
     <loc>https://cloudnative-pg.io/blog/</loc>
-    <lastmod>2023-10-12T13:46:12+02:00</lastmod>
+    <lastmod>2023-11-03T15:43:07+01:00</lastmod>
   </url><url>
     <loc>https://cloudnative-pg.io/tags/cloudnativepg/</loc>
-    <lastmod>2023-10-12T13:46:12+02:00</lastmod>
+    <lastmod>2023-11-03T15:43:07+01:00</lastmod>
   </url><url>
-    <loc>https://cloudnative-pg.io/blog/cloudnative-pg-1-21.0-released/</loc>
-    <lastmod>2023-10-12T13:46:12+02:00</lastmod>
+    <loc>https://cloudnative-pg.io/blog/cloudnative-pg-1-21.1-released/</loc>
+    <lastmod>2023-11-03T15:43:07+01:00</lastmod>
   </url><url>
     <loc>https://cloudnative-pg.io/tags/k8s/</loc>
-    <lastmod>2023-10-12T13:46:12+02:00</lastmod>
+    <lastmod>2023-11-03T15:43:07+01:00</lastmod>
   </url><url>
     <loc>https://cloudnative-pg.io/tags/kubernetes/</loc>
-    <lastmod>2023-10-12T13:46:12+02:00</lastmod>
+    <lastmod>2023-11-03T15:43:07+01:00</lastmod>
   </url><url>
     <loc>https://cloudnative-pg.io/tags/postgres/</loc>
-    <lastmod>2023-10-12T13:46:12+02:00</lastmod>
+    <lastmod>2023-11-03T15:43:07+01:00</lastmod>
   </url><url>
     <loc>https://cloudnative-pg.io/tags/postgresql/</loc>
-    <lastmod>2023-10-12T13:46:12+02:00</lastmod>
+    <lastmod>2023-11-03T15:43:07+01:00</lastmod>
   </url><url>
     <loc>https://cloudnative-pg.io/tags/release/</loc>
-    <lastmod>2023-10-12T13:46:12+02:00</lastmod>
+    <lastmod>2023-11-03T15:43:07+01:00</lastmod>
   </url><url>
     <loc>https://cloudnative-pg.io/tags/</loc>
+    <lastmod>2023-11-03T15:43:07+01:00</lastmod>
+  </url><url>
+    <loc>https://cloudnative-pg.io/blog/cloudnative-pg-1-21.0-released/</loc>
     <lastmod>2023-10-12T13:46:12+02:00</lastmod>
   </url><url>
     <loc>https://cloudnative-pg.io/tags/volumesnapshots/</loc>
