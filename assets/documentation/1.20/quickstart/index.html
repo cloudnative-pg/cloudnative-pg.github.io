@@ -126,7 +126,11 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../backup_recovery/">Backup and Recovery</a>
+                <li class="toctree-l1"><a class="reference internal" href="../backup/">Backup</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../recovery/">Recovery</a>
                 </li>
               </ul>
               <ul>
@@ -142,7 +146,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../cluster_conf/">Instance Pod Configuration</a>
+                <li class="toctree-l1"><a class="reference internal" href="../cluster_conf/">Instance pod configuration</a>
                 </li>
               </ul>
               <ul>
@@ -174,7 +178,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../connection_pooling/">Connection Pooling</a>
+                <li class="toctree-l1"><a class="reference internal" href="../connection_pooling/">Connection pooling</a>
                 </li>
               </ul>
               <ul>
@@ -250,7 +254,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../api_reference/">API Reference</a>
+                <li class="toctree-l1"><a class="reference internal" href="../cloudnative-pg.v1/">API Reference</a>
                 </li>
               </ul>
               <ul>
@@ -260,6 +264,11 @@
               <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../release_notes/">Release notes</a>
                 </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Appendixes</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../appendixes/object_stores/">Appendix A - Common object stores for backups</a>
+                  </li>
               </ul>
       </div>
     </div>
@@ -364,7 +373,7 @@ spec:
 <div class="admonition note">
 <p class="admonition-title">There's more</p>
 <p>For more detailed information about the available options, please refer
-to the <a href="../api_reference/">"API Reference" section</a>.</p>
+to the <a href="../cloudnative-pg.v1/">"API Reference" section</a>.</p>
 </div>
 <p>In order to create the 3-node PostgreSQL cluster, you need to run the following command:</p>
 <pre><code class="language-sh">kubectl apply -f cluster-example.yaml
@@ -507,7 +516,7 @@ refer to the <a href="../monitoring/"><em>monitoring section</em></a> for more i
 <p><img alt="local prometheus" src="../images/prometheus-local.png" /></p>
 <p>You can now define some alerts by creating a <code>prometheusRule</code>:</p>
 <pre><code class="language-sh">kubectl apply -f \
-  https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/main/docs/src/samples/monitoring/cnpg-prometheusrule.yaml
+  https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/main/docs/src/samples/monitoring/prometheusrule.yaml
 </code></pre>
 <p>You should see the default alerts now:</p>
 <pre><code class="language-sh">% kubectl get prometheusrules                      

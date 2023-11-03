@@ -102,7 +102,11 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../backup_recovery/">Backup and Recovery</a>
+                <li class="toctree-l1"><a class="reference internal" href="../backup/">Backup</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../recovery/">Recovery</a>
                 </li>
               </ul>
               <ul>
@@ -118,7 +122,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../cluster_conf/">Instance Pod Configuration</a>
+                <li class="toctree-l1"><a class="reference internal" href="../cluster_conf/">Instance pod configuration</a>
                 </li>
               </ul>
               <ul>
@@ -150,7 +154,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../connection_pooling/">Connection Pooling</a>
+                <li class="toctree-l1"><a class="reference internal" href="../connection_pooling/">Connection pooling</a>
                 </li>
               </ul>
               <ul>
@@ -232,7 +236,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../api_reference/">API Reference</a>
+                <li class="toctree-l1"><a class="reference internal" href="../cloudnative-pg.v1/">API Reference</a>
                 </li>
               </ul>
               <ul>
@@ -242,6 +246,11 @@
               <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../release_notes/">Release notes</a>
                 </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Appendixes</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../appendixes/object_stores/">Appendix A - Common object stores for backups</a>
+                  </li>
               </ul>
       </div>
     </div>
@@ -311,15 +320,12 @@ using a scale factor of 1000:</p>
 of space on disk.</p>
 </div>
 <p>You can see the progress of the job with:</p>
-<p>```shell 
-kubectl logs jobs/pgbench-run</p>
-<pre><code>
-The following example creates a job called `pgbench-run` executing `pgbench`
+<pre><code class="language-shell">kubectl logs jobs/pgbench-run
+</code></pre>
+<p>The following example creates a job called <code>pgbench-run</code> executing <code>pgbench</code>
 against the previously initialized database for 30 seconds, using a single
-connection:
-
-```shell
-kubectl cnpg pgbench \
+connection:</p>
+<pre><code class="language-shell">kubectl cnpg pgbench \
   --job-name pgbench-run \
   cluster-example \
   -- --time 30 --client 1 --jobs 1

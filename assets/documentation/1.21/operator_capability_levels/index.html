@@ -134,7 +134,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../cluster_conf/">Instance Pod Configuration</a>
+                <li class="toctree-l1"><a class="reference internal" href="../cluster_conf/">Instance pod configuration</a>
                 </li>
               </ul>
               <ul>
@@ -166,7 +166,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../connection_pooling/">Connection Pooling</a>
+                <li class="toctree-l1"><a class="reference internal" href="../connection_pooling/">Connection pooling</a>
                 </li>
               </ul>
               <ul>
@@ -395,13 +395,13 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li><li>Operator Capability Levels</li>
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+      <li>Operator Capability Levels</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
   <hr/>
 </div>
-
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
@@ -697,10 +697,9 @@ part of the application container image) to relay backups in the same endpoint,
 alongside WAL files.</p>
 <p>Both <code>barman-cloud-wal-restore</code> and <code>barman-cloud-backup</code> are distributed in
 the application container image under GNU GPL 3 terms.</p>
-<p>Object store backups are taken while PostgreSQL is up and running (hot
-backups). Volume Snapshot backups are currently taken after PostgreSQL has
-been shut down (cold backups). This will change in the future with support
-for online Volume Snapshot backups.</p>
+<p>Object store backups and Volume Snapshot backups are taken while PostgreSQL is
+up and running (hot backups). Volume snapshots also support taking consistent
+database snapshots with cold backups.</p>
 <h3 id="backups-from-a-standby">Backups from a standby</h3>
 <p>The operator supports offloading base backups onto a standby without impacting
 the RPO of the database. This allows to preserve resources on the primary, in

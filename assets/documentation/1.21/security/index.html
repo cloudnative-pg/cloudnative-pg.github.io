@@ -162,7 +162,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../cluster_conf/">Instance Pod Configuration</a>
+                <li class="toctree-l1"><a class="reference internal" href="../cluster_conf/">Instance pod configuration</a>
                 </li>
               </ul>
               <ul>
@@ -194,7 +194,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../connection_pooling/">Connection Pooling</a>
+                <li class="toctree-l1"><a class="reference internal" href="../connection_pooling/">Connection pooling</a>
                 </li>
               </ul>
               <ul>
@@ -299,13 +299,13 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li><li>Security</li>
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+      <li>Security</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
   <hr/>
 </div>
-
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
@@ -424,6 +424,10 @@ namespaced resources.</p>
   configurations, which are needed to validate and mutate all the resources it
   manages. For more details, please see the
   <a href="https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/">Kubernetes documentation</a>.</dd>
+<dt><code>volumesnapshots</code></dt>
+<dd>The operator needs to generate <code>VolumeSnapshots</code> objects in order to take
+  backups of a PostgreSQL server. VolumeSnapshots are read too in order to
+  validate them before starting the restore process.</dd>
 <dt><code>nodes</code></dt>
 <dd>The operator needs to get the labels for Affinity and AntiAffinity, so it can
   decide in which nodes a pod can be scheduled preventing the replicas to be

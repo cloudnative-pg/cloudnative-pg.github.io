@@ -80,7 +80,7 @@
               <ul class="current">
                 <li class="toctree-l1 current"><a class="reference internal current" href="./">Postgres instance manager</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#liveness-and-readiness-probes">Liveness and readiness probes</a>
+    <li class="toctree-l2"><a class="reference internal" href="#startup-liveness-and-readiness-probes">Startup, liveness and readiness probes</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#shutdown-control">Shutdown control</a>
         <ul>
@@ -114,7 +114,11 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../backup_recovery/">Backup and Recovery</a>
+                <li class="toctree-l1"><a class="reference internal" href="../backup/">Backup</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../recovery/">Recovery</a>
                 </li>
               </ul>
               <ul>
@@ -130,7 +134,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../cluster_conf/">Instance Pod Configuration</a>
+                <li class="toctree-l1"><a class="reference internal" href="../cluster_conf/">Instance pod configuration</a>
                 </li>
               </ul>
               <ul>
@@ -162,7 +166,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../connection_pooling/">Connection Pooling</a>
+                <li class="toctree-l1"><a class="reference internal" href="../connection_pooling/">Connection pooling</a>
                 </li>
               </ul>
               <ul>
@@ -238,7 +242,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../api_reference/">API Reference</a>
+                <li class="toctree-l1"><a class="reference internal" href="../cloudnative-pg.v1/">API Reference</a>
                 </li>
               </ul>
               <ul>
@@ -248,6 +252,11 @@
               <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../release_notes/">Release notes</a>
                 </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Appendixes</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../appendixes/object_stores/">Appendix A - Common object stores for backups</a>
+                  </li>
               </ul>
       </div>
     </div>
@@ -282,50 +291,56 @@ leading process (also known as <code>postmaster</code>).</p>
 The field <code>.spec.instances</code> specifies how many instances to create.</p>
 <p>Each Pod will start the instance manager as the parent process (PID 1) for the
 main container, which in turn runs the PostgreSQL instance. During the lifetime
-of the Pod, the instance manager acts as a backend to handle the <a href="https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#container-probes">liveness and
-readiness probes</a>.</p>
-<h2 id="liveness-and-readiness-probes">Liveness and readiness probes</h2>
-<p>The liveness probe relies on <code>pg_isready</code>, while the readiness probe checks if
-the database is up and able to accept connections using the superuser
-credentials.
-The readiness probe is positive when the Pod is ready to accept traffic.
-The liveness probe controls when to restart the container.</p>
-<blockquote>
-<p>The two probes will report a failure if the probe command fails 3 times with a 10 seconds interval between each check.</p>
-</blockquote>
-<p>For now, the operator doesn't configure a <code>startupProbe</code> on the Pods, since
-startup probes have been introduced only in Kubernetes 1.17.</p>
-<p>The liveness probe is used to detect if the PostgreSQL instance is in a
+of the Pod, the instance manager acts as a backend to handle the
+<a href="https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#container-probes">startup, liveness and readiness probes</a>.</p>
+<h2 id="startup-liveness-and-readiness-probes">Startup, liveness and readiness probes</h2>
+<p>The startup and liveness probes rely on <code>pg_isready</code>, while the readiness
+probe checks if the database is up and able to accept connections using the
+superuser credentials.</p>
+<p>The readiness probe is positive when the Pod is ready to accept traffic.
+The liveness probe controls when to restart the container once
+the startup probe interval has elapsed.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>The liveness and readiness probes will report a failure if the probe command
+fails three times with a 10-second interval between each check.</p>
+</div>
+<p>The liveness probe detects if the PostgreSQL instance is in a
 broken state and needs to be restarted. The value in <code>startDelay</code> is used
-to delay the probe's execution, which is used to prevent an
+to delay the probe's execution, preventing an
 instance with a long startup time from being restarted.</p>
-<p>The number of seconds after the Pod has started before the liveness
+<p>The interval (in seconds) after the Pod has started before the liveness
 probe starts working is expressed in the <code>.spec.startDelay</code> parameter,
-which defaults to 30 seconds. The correct value for your cluster is
+which defaults to 3600 seconds. The correct value for your cluster is
 related to the time needed by PostgreSQL to start.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
 <p>If <code>.spec.startDelay</code> is too low, the liveness probe will start working
-before the PostgreSQL startup, and the Pod could be restarted
-inappropriately.</p>
+before the PostgreSQL startup is complete, and the Pod could be restarted
+prematurely.</p>
+</div>
 <h2 id="shutdown-control">Shutdown control</h2>
 <p>When a Pod running Postgres is deleted, either manually or by Kubernetes
 following a node drain operation, the kubelet will send a termination signal to the
 instance manager, and the instance manager will take care of shutting down
 PostgreSQL in an appropriate way.
-The <code>.spec.stopDelay</code>, expressed in seconds, is the amount of time
-given to PostgreSQL to shut down. The value defaults to 30 seconds.</p>
+The <code>.spec.smartStopDelay</code> and <code>.spec.stopDelay</code> options, expressed in seconds,
+control the amount of time given to PostgreSQL to shut down. The values default
+to 180 and 1800 seconds, respectively.</p>
 <p>The shutdown procedure is composed of two steps:</p>
 <ol>
 <li>
 <p>The instance manager requests a <strong>smart</strong> shut down, disallowing any
-new connection to PostgreSQL. This step will last for half of the
-time set in <code>.spec.stopDelay</code>.</p>
+new connection to PostgreSQL. This step will last for up to
+<code>.spec.smartStopDelay</code> seconds.</p>
 </li>
 <li>
 <p>If PostgreSQL is still up, the instance manager requests a <strong>fast</strong>
 shut down, terminating any existing connection and exiting promptly.
 If the instance is archiving and/or streaming WAL files, the process
-will wait for up to the remaining half of the time set in <code>.spec.stopDelay</code>
-to complete the operation and then forcibly shut down.</p>
+will wait for up to the remaining time set in <code>.spec.stopDelay</code> to complete the
+operation and then forcibly shut down. Such a timeout needs to be at least 15
+seconds.</p>
 </li>
 </ol>
 <div class="admonition important">
@@ -340,11 +355,8 @@ general case. Indeed, the operator requires the former primary to issue a
 <strong>fast</strong> shut down before the selected new primary can be promoted,
 in order to ensure that all the data are available on the new primary.</p>
 <p>For this reason, the <code>.spec.switchoverDelay</code>, expressed in seconds, controls
-the  time given to the former primary to shut down gracefully and archive all 
-the WAL files.
-During this time frame, the primary instance does not accept connections.
-The value defaults is greater than one year in seconds, big enough to simulate
-an infinite delay and therefore preserve data durability.</p>
+the  time given to the former primary to shut down gracefully and archive all
+the WAL files. By default it is set to <code>3600</code> (1 hour).</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>The <code>.spec.switchoverDelay</code> option affects the RPO and RTO of your

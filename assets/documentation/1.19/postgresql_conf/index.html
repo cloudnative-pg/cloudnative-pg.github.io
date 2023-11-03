@@ -156,7 +156,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../cluster_conf/">Instance Pod Configuration</a>
+                <li class="toctree-l1"><a class="reference internal" href="../cluster_conf/">Instance pod configuration</a>
                 </li>
               </ul>
               <ul>
@@ -188,7 +188,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../connection_pooling/">Connection Pooling</a>
+                <li class="toctree-l1"><a class="reference internal" href="../connection_pooling/">Connection pooling</a>
                 </li>
               </ul>
               <ul>
@@ -264,7 +264,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../api_reference/">API Reference</a>
+                <li class="toctree-l1"><a class="reference internal" href="../cloudnative-pg.v1/">API Reference</a>
                 </li>
               </ul>
               <ul>
@@ -339,7 +339,8 @@ include custom.conf
 <p class="admonition-title">PostgreSQL GUCs: Grand Unified Configuration</p>
 <p>Refer to the PostgreSQL documentation for
 <a href="https://www.postgresql.org/docs/current/runtime-config.html">more information on the available parameters</a>,
-also known as GUC (Grand Unified Configuration).</p>
+also known as GUC (Grand Unified Configuration).
+Please note that CloudNativePG accepts only strings for the PostgreSQL parameters.</p>
 </div>
 <p>The content of <code>custom.conf</code> is automatically generated and maintained by the
 operator by applying the following sections in this order:</p>
@@ -645,6 +646,13 @@ Postgres container with:</p>
 </code></pre>
 <p>You should get something similar to the following output:</p>
 <pre><code class="language-console">shm on /dev/shm type tmpfs (rw,nosuid,nodev,noexec,relatime,size=******)
+</code></pre>
+<p>If you would like to set a maximum size for the <code>shm</code> volume, you can do so by
+setting the <code>spec.ephemeralVolumesSizeLimit.shm</code> field in the <code>Cluster</code> resource.
+For example:</p>
+<pre><code class="language-yaml">spec:
+  ephemeralVolumesSizeLimit:
+    shm: 1Gi
 </code></pre>
 <h3 id="system-v-shared-memory">System V shared memory</h3>
 <p>In case your Kubernetes cluster has a high enough value for the <code>SHMMAX</code>

@@ -102,7 +102,11 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../backup_recovery/">Backup and Recovery</a>
+                <li class="toctree-l1"><a class="reference internal" href="../backup/">Backup</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../recovery/">Recovery</a>
                 </li>
               </ul>
               <ul>
@@ -115,6 +119,8 @@
     <li class="toctree-l2"><a class="reference internal" href="#password-management">Password management</a>
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#password-expiry-valid-until">Password expiry, VALID UNTIL</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#password-hashed">Password hashed</a>
     </li>
         </ul>
     </li>
@@ -130,7 +136,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../cluster_conf/">Instance Pod Configuration</a>
+                <li class="toctree-l1"><a class="reference internal" href="../cluster_conf/">Instance pod configuration</a>
                 </li>
               </ul>
               <ul>
@@ -162,7 +168,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../connection_pooling/">Connection Pooling</a>
+                <li class="toctree-l1"><a class="reference internal" href="../connection_pooling/">Connection pooling</a>
                 </li>
               </ul>
               <ul>
@@ -238,7 +244,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../api_reference/">API Reference</a>
+                <li class="toctree-l1"><a class="reference internal" href="../cloudnative-pg.v1/">API Reference</a>
                 </li>
               </ul>
               <ul>
@@ -248,6 +254,11 @@
               <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../release_notes/">Release notes</a>
                 </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Appendixes</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../appendixes/object_stores/">Appendix A - Common object stores for backups</a>
+                  </li>
               </ul>
       </div>
     </div>
@@ -305,7 +316,7 @@ spec:
 </code></pre>
 <p>The role specification in <code>spec.managed.roles</code> adheres to the
 <a href="https://www.postgresql.org/docs/current/sql-createrole.html">PostgreSQL structure and naming conventions</a>.
-Please refer to the <a href="../api_reference/#RoleConfiguration">API reference</a> for
+Please refer to the <a href="../cloudnative-pg.v1/#postgresql-cnpg-io-v1-RoleConfiguration">API reference</a> for
 the full list of attributes you can define for each role.</p>
 <p>A few points are worth noting:</p>
 <ol>
@@ -406,6 +417,20 @@ The relevant change is when using the managed roles to manage roles that
 had been previously created. In 1.20.0, doing this might inadvertently
 result in setting existing passwords to <code>NULL</code>.</p>
 </div>
+<h3 id="password-hashed">Password hashed</h3>
+<p>You can also provide pre-encrypted passwords by specifying the password
+in MD5/SCRAM-SHA-256 hash format:</p>
+<pre><code class="language-yaml">kind: Secret
+type: kubernetes.io/basic-auth
+metadata:
+  name: cluster-example-cavalcanti
+  labels:
+    cnpg.io/reload: &quot;true&quot;
+apiVersion: v1
+stringData:
+  username: cavalcanti
+  password: SCRAM-SHA-256$&lt;iteration count&gt;:&lt;salt&gt;$&lt;StoredKey&gt;:&lt;ServerKey&gt;
+</code></pre>
 <h2 id="unrealizable-role-configurations">Unrealizable role configurations</h2>
 <p>In PostgreSQL, in some cases, commands cannot be honored by the database and
 will be rejected. Please refer to the

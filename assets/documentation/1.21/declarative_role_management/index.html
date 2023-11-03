@@ -132,6 +132,8 @@
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#password-expiry-valid-until">Password expiry, VALID UNTIL</a>
     </li>
+    <li class="toctree-l3"><a class="reference internal" href="#password-hashed">Password hashed</a>
+    </li>
         </ul>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#unrealizable-role-configurations">Unrealizable role configurations</a>
@@ -146,7 +148,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../cluster_conf/">Instance Pod Configuration</a>
+                <li class="toctree-l1"><a class="reference internal" href="../cluster_conf/">Instance pod configuration</a>
                 </li>
               </ul>
               <ul>
@@ -178,7 +180,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../connection_pooling/">Connection Pooling</a>
+                <li class="toctree-l1"><a class="reference internal" href="../connection_pooling/">Connection pooling</a>
                 </li>
               </ul>
               <ul>
@@ -283,13 +285,13 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li><li>Database Role Management</li>
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+      <li>Database Role Management</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
   <hr/>
 </div>
-
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
@@ -427,6 +429,20 @@ The relevant change is when using the managed roles to manage roles that
 had been previously created. In 1.20.0, doing this might inadvertently
 result in setting existing passwords to <code>NULL</code>.</p>
 </div>
+<h3 id="password-hashed">Password hashed</h3>
+<p>You can also provide pre-encrypted passwords by specifying the password
+in MD5/SCRAM-SHA-256 hash format:</p>
+<pre><code class="language-yaml">kind: Secret
+type: kubernetes.io/basic-auth
+metadata:
+  name: cluster-example-cavalcanti
+  labels:
+    cnpg.io/reload: &quot;true&quot;
+apiVersion: v1
+stringData:
+  username: cavalcanti
+  password: SCRAM-SHA-256$&lt;iteration count&gt;:&lt;salt&gt;$&lt;StoredKey&gt;:&lt;ServerKey&gt;
+</code></pre>
 <h2 id="unrealizable-role-configurations">Unrealizable role configurations</h2>
 <p>In PostgreSQL, in some cases, commands cannot be honored by the database and
 will be rejected. Please refer to the

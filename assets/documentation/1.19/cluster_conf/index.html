@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="The CloudNativePG Contributors" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Instance Pod Configuration - CloudNativePG</title>
+    <title>Instance pod configuration - CloudNativePG</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
@@ -13,7 +13,7 @@
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Instance Pod Configuration";
+        var mkdocs_page_name = "Instance pod configuration";
         var mkdocs_page_input_path = "cluster_conf.md";
         var mkdocs_page_url = null;
       </script>
@@ -114,9 +114,17 @@
                 </li>
               </ul>
               <ul class="current">
-                <li class="toctree-l1 current"><a class="reference internal current" href="./">Instance Pod Configuration</a>
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Instance pod configuration</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#projected-volumes">Projected Volumes</a>
+    <li class="toctree-l2"><a class="reference internal" href="#projected-volumes">Projected volumes</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#ephemeral-volumes">Ephemeral volumes</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#volume-for-temporary-storage">Volume for temporary storage</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#volume-for-shared-memory">Volume for shared memory</a>
+    </li>
+        </ul>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#environment-variables">Environment variables</a>
     </li>
@@ -152,7 +160,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../connection_pooling/">Connection Pooling</a>
+                <li class="toctree-l1"><a class="reference internal" href="../connection_pooling/">Connection pooling</a>
                 </li>
               </ul>
               <ul>
@@ -228,7 +236,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../api_reference/">API Reference</a>
+                <li class="toctree-l1"><a class="reference internal" href="../cloudnative-pg.v1/">API Reference</a>
                 </li>
               </ul>
               <ul>
@@ -253,7 +261,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
-      <li>Instance Pod Configuration</li>
+      <li>Instance pod configuration</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -262,16 +270,20 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="instance-pod-configuration">Instance Pod Configuration</h1>
-<h2 id="projected-volumes">Projected Volumes</h2>
-<p>CloudNativePG supports to mount custom files inside the Postgres pods through 
-<code>.spec.projectedVolumeTemplate</code>, this is useful for several Postgres features and extensions 
-that require additional data files. In CloudNativePG, <code>.spec.projectedVolumeTemplate</code> field is a
-<a href="https://kubernetes.io/docs/concepts/storage/projected-volumes/">projected volume</a> template in kubernetes,
-which allows user to mount arbitrary data under <code>/projected</code> folder in Postgres pods. </p>
-<p>Here is a simple example about how to mount an existing tls Secret (named sample-secret) as files 
-into Postgres pods. The values for the Secret keys <code>tls.crt</code> and <code>tls.key</code> in sample-secret will be mounted 
-as files into path <code>/projected/certificate/tls.crt</code> and <code>/projected/certificate/tls.key</code> in Postgres pod. </p>
+                <h1 id="instance-pod-configuration">Instance pod configuration</h1>
+<h2 id="projected-volumes">Projected volumes</h2>
+<p>CloudNativePG supports mounting custom files inside the Postgres pods through
+<code>.spec.projectedVolumeTemplate</code>. This ability is useful for several Postgres
+features and extensions that require additional data files.
+In CloudNativePG, the <code>.spec.projectedVolumeTemplate</code> field is a
+<a href="https://kubernetes.io/docs/concepts/storage/projected-volumes/">projected volume</a>
+template in Kubernetes that allows you to mount arbitrary data under the
+<code>/projected</code> folder in Postgres pods.</p>
+<p>This simple example shows how to mount an existing TLS secret (named
+<code>sample-secret</code>) as files into Postgres pods. The values for the secret keys
+<code>tls.crt</code> and <code>tls.key</code> in <code>sample-secret</code> are mounted as files into the  paths
+<code>/projected/certificate/tls.crt</code> and <code>/projected/certificate/tls.key</code> in the
+Postgres pod.</p>
 <pre><code class="language-yaml">apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
@@ -290,16 +302,32 @@ spec:
   storage:
     size: 1Gi
 </code></pre>
-<p>You can find a complete example using projected volume template to mount Secret and Configmap in
-the <a href="../samples/cluster-example-projected-volume.yaml">cluster-example-projected-volume.yaml</a> deployment manifest.</p>
+<p>You can find a complete example that uses a projected volume template to mount
+the secret and ConfigMap in the
+<a href="../samples/cluster-example-projected-volume.yaml">cluster-example-projected-volume.yaml</a>
+deployment manifest.</p>
+<h2 id="ephemeral-volumes">Ephemeral volumes</h2>
+<p>CloudNativePG relies on <a href="https://kubernetes.io/docs/concepts/storage/ephemeral-volumes/">ephemeral volumes</a>
+for part of the internal activities. Ephemeral volumes exist for the sole
+duration of a pod's life, without persisting across pod restarts.</p>
+<h3 id="volume-for-temporary-storage">Volume for temporary storage</h3>
+<p>An ephemeral volume used for temporary storage. You can configure an upper
+bound on the size using the <code>spec.ephemeralVolumesSizeLimit.temporaryData</code>
+field in the cluster spec.</p>
+<h3 id="volume-for-shared-memory">Volume for shared memory</h3>
+<p>This volume is used as shared memory space for Postgres and as an ephemeral
+type but stored in memory. You can configure an upper bound on the size using
+the <code>spec.ephemeralVolumesSizeLimit.shm</code> field in the cluster spec.
+Use this field only in case of
+<a href="../postgresql_conf/#dynamic-shared-memory-settings">PostgreSQL running with <code>posix</code> shared memory dynamic allocation</a>.</p>
 <h2 id="environment-variables">Environment variables</h2>
-<p>Some system behavior can be customized using environment variables. One example is
-the <code>LDAPCONF</code> variable, which may point to a custom LDAP configuration file. Another
-example is the <code>TZ</code> environment variable, which represents the timezone used by the
-PostgreSQL container.</p>
-<p>CloudNativePG allows the user to set custom environment variables via the <code>env</code> and
-the <code>envFrom</code> stanza of the cluster specification.</p>
-<p>The following is a definition of a PostgreSQL cluster using the <code>Australia/Sydney</code>
+<p>You can customize some system behavior using environment variables. One example
+is the <code>LDAPCONF</code> variable, which can point to a custom LDAP configuration
+file. Another example is the <code>TZ</code> environment variable, which represents the
+timezone used by the PostgreSQL container.</p>
+<p>CloudNativePG allows you to set custom environment variables using the <code>env</code>
+and the <code>envFrom</code> stanza of the cluster specification.</p>
+<p>This example defines a PostgreSQL cluster using the <code>Australia/Sydney</code>
 timezone as the default cluster-level timezone:</p>
 <pre><code class="language-yaml">apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
@@ -315,8 +343,8 @@ spec:
   storage:
     size: 1Gi
 </code></pre>
-<p>The <code>envFrom</code> stanza can refer to ConfigMaps or Secrets to use their content
-as environment variables:</p>
+<p>The <code>envFrom</code> stanza can refer to ConfigMaps or secrets to use their content as
+environment variables:</p>
 <pre><code class="language-yaml">apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
@@ -337,14 +365,14 @@ spec:
 <ul>
 <li><code>POD_NAME</code></li>
 <li><code>NAMESPACE</code></li>
-<li>any environment variable whose name starts with <code>PG</code>.</li>
+<li>Any environment variable whose name starts with <code>PG</code>.</li>
 </ul>
-<p>Any change in the <code>env</code> or in the <code>envFrom</code> section will trigger a rolling
-update of the PostgreSQL Pods.</p>
-<p>If the <code>env</code> or the <code>envFrom</code> section refers to a Secret or a ConfigMap, the
-operator will not detect any changes in them and will not trigger a rollout.
-The Kubelet use the same behavior with Pods, and the user is supposed to
-trigger the Pod rollout manually.</p>
+<p>Any change in the <code>env</code> or in the <code>envFrom</code> section triggers a rolling
+update of the PostgreSQL pods.</p>
+<p>If the <code>env</code> or the <code>envFrom</code> section refers to a secret or a ConfigMap, the
+operator doesn't detect any changes in them and doesn't trigger a rollout. The
+kubelet uses the same behavior with pods, and you must trigger the pod rollout
+manually.</p>
               
             </div>
           </div><footer>

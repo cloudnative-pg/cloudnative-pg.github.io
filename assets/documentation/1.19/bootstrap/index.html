@@ -158,7 +158,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../cluster_conf/">Instance Pod Configuration</a>
+                <li class="toctree-l1"><a class="reference internal" href="../cluster_conf/">Instance pod configuration</a>
                 </li>
               </ul>
               <ul>
@@ -190,7 +190,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../connection_pooling/">Connection Pooling</a>
+                <li class="toctree-l1"><a class="reference internal" href="../connection_pooling/">Connection pooling</a>
                 </li>
               </ul>
               <ul>
@@ -266,7 +266,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../api_reference/">API Reference</a>
+                <li class="toctree-l1"><a class="reference internal" href="../cloudnative-pg.v1/">API Reference</a>
                 </li>
               </ul>
               <ul>
@@ -335,7 +335,7 @@ order to perform administrative tasks on the cluster.<br />
 <a href="https://github.com/cloudnative-pg/cloudnative-pg/issues/2081">Kubernetes' native <code>VolumeSnapshot</code> API</a>
 for both incremental and differential copy in backup and recovery
 operations - if supported by the underlying storage classes.
-Please see <a href="#recovery-from-volumesnapshot-objects">"Recovery from Volume Snapshot objects"</a>
+Please see <a href="recovery.md#recovery-from-volumesnapshot-objects">"Recovery from Volume Snapshot objects"</a>
 for details.</p>
 </div>
 <h2 id="the-bootstrap-section">The <code>bootstrap</code> section</h2>
@@ -357,7 +357,7 @@ used to spin up replica clusters. They both rely on the definition of external
 clusters.</p>
 <div class="admonition seealso">
 <p class="admonition-title">API reference</p>
-<p>Please refer to the <a href="../api_reference/#BootstrapConfiguration">"API reference for the <code>bootstrap</code> section</a>
+<p>Please refer to the <a href="../cloudnative-pg.v1/#postgresql-cnpg-io-v1-BootstrapConfiguration">"API reference for the <code>bootstrap</code> section</a>
 for more information.</p>
 </div>
 <h2 id="the-externalclusters-section">The <code>externalClusters</code> section</h2>
@@ -398,7 +398,7 @@ continuously fed from the source, either via streaming, via WAL shipping
 through the PostgreSQL's <code>restore_command</code>, or any of the two.</p>
 <div class="admonition seealso">
 <p class="admonition-title">API reference</p>
-<p>Please refer to the <a href="../api_reference/#ExternalCluster">"API reference for the <code>externalClusters</code> section</a>
+<p>Please refer to the <a href="../cloudnative-pg.v1/#postgresql-cnpg-io-v1-ExternalCluster">"API reference for the <code>externalClusters</code> section</a>
 for more information.</p>
 </div>
 <h2 id="bootstrap-an-empty-cluster-initdb">Bootstrap an empty cluster (<code>initdb</code>)</h2>
@@ -724,6 +724,10 @@ spec:
 </code></pre>
 <p>This bootstrap method allows you to specify just a reference to the
 backup that needs to be restored.</p>
+<p>The previous example implies the application database and its owning user to be
+the default one, <code>app</code>. If the PostgreSQL cluster being restored was using
+different names, they can be specified as documented in the <a href="recovery.md#configure-the-application-database">Configure the
+application database</a> section.</p>
 <h4 id="recovery-from-volumesnapshot-objects">Recovery from <code>VolumeSnapshot</code> objects</h4>
 <p>CloudNativePG can create a new cluster from a <code>VolumeSnapshot</code> of a PVC of an
 existing <code>Cluster</code> that's been taken with <code>kubectl cnpg snapshot</code>.
@@ -1085,7 +1089,7 @@ file on the source PostgreSQL instance:</p>
 <pre><code># A more restrictive rule for TLS and IP of origin is recommended
 host replication streaming_replica all md5
 </code></pre>
-<p>The following manifest creates a new PostgreSQL 15.3 cluster,
+<p>The following manifest creates a new PostgreSQL 15.4 cluster,
 called <code>target-db</code>, using the <code>pg_basebackup</code> bootstrap method
 to clone an external PostgreSQL cluster defined as <code>source-db</code>
 (in the <code>externalClusters</code> array). As you can see, the <code>source-db</code>
@@ -1098,7 +1102,7 @@ metadata:
   name: target-db
 spec:
   instances: 3
-  imageName: ghcr.io/cloudnative-pg/postgresql:15.3
+  imageName: ghcr.io/cloudnative-pg/postgresql:15.4
 
   bootstrap:
     pg_basebackup:
@@ -1117,7 +1121,7 @@ spec:
       key: password
 </code></pre>
 <p>All the requirements must be met for the clone operation to work, including
-the same PostgreSQL version (in our case 15.3).</p>
+the same PostgreSQL version (in our case 15.4).</p>
 <h4 id="tls-certificate-authentication">TLS certificate authentication</h4>
 <p>The second authentication method supported by CloudNativePG
 with the <code>pg_basebackup</code> bootstrap is based on TLS client certificates.
@@ -1129,7 +1133,7 @@ in the same Kubernetes cluster.</p>
 <p>This example can be easily adapted to cover an instance that resides
 outside the Kubernetes cluster.</p>
 </div>
-<p>The manifest defines a new PostgreSQL 15.3 cluster called <code>cluster-clone-tls</code>,
+<p>The manifest defines a new PostgreSQL 15.4 cluster called <code>cluster-clone-tls</code>,
 which is bootstrapped using the <code>pg_basebackup</code> method from the <code>cluster-example</code>
 external cluster. The host is identified by the read/write service
 in the same cluster, while the <code>streaming_replica</code> user is authenticated
@@ -1142,7 +1146,7 @@ metadata:
   name: cluster-clone-tls
 spec:
   instances: 3
-  imageName: ghcr.io/cloudnative-pg/postgresql:15.3
+  imageName: ghcr.io/cloudnative-pg/postgresql:15.4
 
   bootstrap:
     pg_basebackup:
