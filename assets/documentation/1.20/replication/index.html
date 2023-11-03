@@ -117,12 +117,20 @@
         </ul>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#replication-slots-for-high-availability">Replication slots for High Availability</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#capping-the-wal-size-retained-for-replication-slots">Capping the WAL size retained for replication slots</a>
+    </li>
+        </ul>
     </li>
     </ul>
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../backup_recovery/">Backup and Recovery</a>
+                <li class="toctree-l1"><a class="reference internal" href="../backup/">Backup</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../recovery/">Recovery</a>
                 </li>
               </ul>
               <ul>
@@ -138,7 +146,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../cluster_conf/">Instance Pod Configuration</a>
+                <li class="toctree-l1"><a class="reference internal" href="../cluster_conf/">Instance pod configuration</a>
                 </li>
               </ul>
               <ul>
@@ -170,7 +178,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../connection_pooling/">Connection Pooling</a>
+                <li class="toctree-l1"><a class="reference internal" href="../connection_pooling/">Connection pooling</a>
                 </li>
               </ul>
               <ul>
@@ -246,7 +254,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../api_reference/">API Reference</a>
+                <li class="toctree-l1"><a class="reference internal" href="../cloudnative-pg.v1/">API Reference</a>
                 </li>
               </ul>
               <ul>
@@ -256,6 +264,11 @@
               <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../release_notes/">Release notes</a>
                 </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Appendixes</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../appendixes/object_stores/">Appendix A - Common object stores for backups</a>
+                  </li>
               </ul>
       </div>
     </div>
@@ -476,7 +489,7 @@ in the High Availability cluster, both in the primary and the standby.</p>
 </ul>
 <p>This feature, introduced in CloudNativePG 1.18, is now enabled by default and
 can be disabled via configuration. For details, please refer to the
-<a href="../api_reference/#ReplicationSlotsConfiguration">"replicationSlots" section in the API reference</a>.
+<a href="../cloudnative-pg.v1/#postgresql-cnpg-io-v1-ReplicationSlotsConfiguration">"replicationSlots" section in the API reference</a>.
 Here follows a brief description of the main options:</p>
 <dl>
 <dt><code>.spec.replicationSlots.highAvailability.enabled</code></dt>
@@ -547,12 +560,31 @@ the lag from the primary.</p>
 <p>Please refer to the <a href="../monitoring/">"Monitoring" section</a> for details on
 how to monitor a CloudNativePG deployment.</p>
 </div>
+<h3 id="capping-the-wal-size-retained-for-replication-slots">Capping the WAL size retained for replication slots</h3>
+<p>When replication slots is enabled, you might end up running out of disk
+space due to PostgreSQL trying to retain WAL files requested by a replication
+slot. This might happen due to a standby that is (temporarily?) down, or
+lagging, or simply an orphan replication slot.</p>
+<p>Starting with PostgreSQL 13, you can take advantage of the
+<a href="https://www.postgresql.org/docs/current/runtime-config-replication.html#GUC-MAX-SLOT-WAL-KEEP-SIZE"><code>max_slot_wal_keep_size</code></a>
+configuration option controlling the maximum size of WAL files that replication
+slots are allowed to retain in the <code>pg_wal</code> directory at checkpoint time.
+By default, in PostgreSQL <code>max_slot_wal_keep_size</code> is set to <code>-1</code>, meaning that
+replication slots may retain an unlimited amount of WAL files.
+As a result, our recommendation is to explicitly set <code>max_slot_wal_keep_size</code>
+when replication slots support is enabled. For example:</p>
+<pre><code class="language-ini">  # ...
+  postgresql:
+    parameters:
+      max_slot_wal_keep_size: &quot;10GB&quot;
+  # ...
+</code></pre>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
         <a href="../rolling_update/" class="btn btn-neutral float-left" title="Rolling Updates"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../backup_recovery/" class="btn btn-neutral float-right" title="Backup and Recovery">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../backup/" class="btn btn-neutral float-right" title="Backup">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -578,7 +610,7 @@ how to monitor a CloudNativePG deployment.</p>
       <span><a href="../rolling_update/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../backup_recovery/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../backup/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>

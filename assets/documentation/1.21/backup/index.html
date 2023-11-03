@@ -148,7 +148,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../cluster_conf/">Instance Pod Configuration</a>
+                <li class="toctree-l1"><a class="reference internal" href="../cluster_conf/">Instance pod configuration</a>
                 </li>
               </ul>
               <ul>
@@ -180,7 +180,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../connection_pooling/">Connection Pooling</a>
+                <li class="toctree-l1"><a class="reference internal" href="../connection_pooling/">Connection pooling</a>
                 </li>
               </ul>
               <ul>
@@ -285,13 +285,13 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li><li>Backup</li>
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+      <li>Backup</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
   <hr/>
 </div>
-
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
@@ -340,6 +340,12 @@ up of the following resources:</p>
 <p>Before choosing your backup strategy with CloudNativePG, it is important that
 you take some time to familiarize with some basic concepts, like WAL archive,
 hot and cold backups.</p>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Please refer to the official Kubernetes documentation for a list of all
+the supported <a href="https://kubernetes-csi.github.io/docs/drivers.html">Container Storage Interface (CSI) drivers</a>
+that provide snapshotting capabilities.</p>
 </div>
 <h2 id="wal-archive">WAL archive</h2>
 <p>The WAL archive in PostgreSQL is at the heart of <strong>continuous backup</strong>, and it
@@ -399,9 +405,9 @@ for your disaster recovery plans.</p>
 <p>VolumeSnapshots instead:</p>
 <ul>
 <li>don't require the WAL archive, although in production it is always recommended</li>
-<li>support cold backup only (currently)</li>
 <li>support incremental copy, depending on the underlying storage classes</li>
 <li>support differential copy, depending on the underlying storage classes</li>
+<li>also support cold backup</li>
 </ul>
 <p>Which one to use depends on your specific requirements and environment,
 including:</p>
@@ -442,17 +448,17 @@ available methods for storing physical base backups.</p>
 <tr>
 <td><strong>Hot backup</strong></td>
 <td align="center">✓</td>
-<td align="center">𐄂  (2)</td>
+<td align="center">✓</td>
 </tr>
 <tr>
 <td><strong>Incremental copy</strong></td>
 <td align="center">𐄂</td>
-<td align="center">✓  (3)</td>
+<td align="center">✓  (2)</td>
 </tr>
 <tr>
 <td><strong>Differential copy</strong></td>
 <td align="center">𐄂</td>
-<td align="center">✓  (3)</td>
+<td align="center">✓  (2)</td>
 </tr>
 <tr>
 <td><strong>Backup from a standby</strong></td>
@@ -461,7 +467,7 @@ available methods for storing physical base backups.</p>
 </tr>
 <tr>
 <td><strong>Snapshot recovery</strong></td>
-<td align="center">𐄂 (4)</td>
+<td align="center">𐄂 (3)</td>
 <td align="center">✓</td>
 </tr>
 <tr>
@@ -479,13 +485,10 @@ available methods for storing physical base backups.</p>
 <blockquote>
 <p>See the explanation below for the notes in the above table:</p>
 <ol>
-<li>WAL archive must be on an object store</li>
-<li>Hot backup is not available yet for volume snapshots, and it is planned
-for version 1.22; however, considering that cold backup is taken by fencing
-temporarily a standby, the operation does not induce any downtime for your
-write applications</li>
+<li>WAL archive must be on an object store at the moment</li>
 <li>If supported by the underlying storage classes of the PostgreSQL volumes</li>
-<li>Snapshot recovery can be emulated using the <code>bootstrap.recovery.recoveryTarget.targetImmediate</code> option</li>
+<li>Snapshot recovery can be emulated using the
+   <code>bootstrap.recovery.recoveryTarget.targetImmediate</code> option</li>
 </ol>
 </blockquote>
 <h2 id="scheduled-backups">Scheduled backups</h2>

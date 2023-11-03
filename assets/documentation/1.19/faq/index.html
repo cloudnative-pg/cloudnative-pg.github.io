@@ -114,7 +114,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../cluster_conf/">Instance Pod Configuration</a>
+                <li class="toctree-l1"><a class="reference internal" href="../cluster_conf/">Instance pod configuration</a>
                 </li>
               </ul>
               <ul>
@@ -146,7 +146,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../connection_pooling/">Connection Pooling</a>
+                <li class="toctree-l1"><a class="reference internal" href="../connection_pooling/">Connection pooling</a>
                 </li>
               </ul>
               <ul>
@@ -230,7 +230,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../api_reference/">API Reference</a>
+                <li class="toctree-l1"><a class="reference internal" href="../cloudnative-pg.v1/">API Reference</a>
                 </li>
               </ul>
               <ul>
@@ -372,6 +372,29 @@ matches the desired one through reconciliation loops initiated by the
 Kubernetes controller. If the desired state and the actual state don't
 match, reconciliation loops trigger self-healing procedures. That's
 where an operator like CloudNativePG comes into play.</p>
+<p><strong>Are there any other operators for Postgres out there?</strong></p>
+<p>Yes, of course. And our advice is that you look at all of them and compare
+them with CloudNativePG before making your decision. You will see that
+most of these operators use an external failover management tool (Patroni
+or similar) and rely on StatefulSets.</p>
+<p>Here is a non exhaustive list, in chronological order from their
+publication on GitHub:</p>
+<ul>
+<li><a href="https://github.com/CrunchyData/postgres-operator">Crunchy Data Postgres Operator</a> (2017)</li>
+<li><a href="https://github.com/zalando/postgres-operator">Zalando Postgres Operator</a> (2017)</li>
+<li><a href="https://github.com/ongres/stackgres">Stackgres</a> (2020)</li>
+<li><a href="https://github.com/percona/percona-postgresql-operator">Percona Operator for PostgreSQL</a> (2021)</li>
+<li><a href="https://github.com/reactive-tech/kubegres">Kubegres</a> (2021)</li>
+</ul>
+<p><a href="https://star-history.com/#cloudnative-pg/cloudnative-pg&amp;zalando/postgres-operator&amp;CrunchyData/postgres-operator&amp;ongres/stackgres&amp;percona/percona-postgresql-operator&amp;reactive-tech/kubegres&amp;Date"><img alt="Star History Chart" src="https://api.star-history.com/svg?repos=cloudnative-pg/cloudnative-pg,zalando/postgres-operator,CrunchyData/postgres-operator,ongres/stackgres,percona/percona-postgresql-operator,reactive-tech/kubegres&amp;type=Date" /></a></p>
+<p>Feel free to report any relevant missing entry as a PR.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>The <a href="https://dok.community">Data on Kubernetes Community</a>
+(which includes some of our maintainers) is working on an independent and
+vendor neutral project to list the operators called
+<a href="https://github.com/dokc/operator-feature-matrix">Operator Feature Matrix</a>.</p>
+</div>
 <p><strong>You say that CloudNativePG is a fully declarative operator.
 What do you mean by that?</strong></p>
 <p>The easiest way is to explain declarative configuration through an
@@ -429,14 +452,16 @@ of truth to:</p>
 <li>control the Kubernetes services, that is the entry points for your
   applications</li>
 </ul>
+<p><strong>Should I manually resync a former primary with the new one following a
+failover?</strong></p>
+<p>No. The operator does that automatically for you, and relies on <code>pg_rewind</code> to
+synchronize the former primary with the new one.</p>
 <!--
 How can I ensure that failover (unplanned) and switchover (planned)
 times are within our SLA of 99.995% per year?
 
 TODO
 
-Should I manually resync a former primary with the new one following a
-failover?
 
 TODO
 
@@ -522,7 +547,7 @@ TODO
 <p><strong>Why should I use PostgreSQL?</strong></p>
 <p>We believe that PostgreSQL is the equivalent in the database area of
 what Linux represents in the operating system space. The current latest
-major version of Postgres is version 14, which ships out of the box:</p>
+major version of Postgres is version 15, which ships out of the box:</p>
 <ul>
 <li>native streaming replication, both physical and logical</li>
 <li>continuous hot backup and point in time recovery</li>
@@ -582,9 +607,9 @@ Postgres instance, with dedicated storage.
 We proved that this extreme architectural pattern works when we benchmarked
 <a href="https://www.2ndquadrant.com/en/blog/local-persistent-volumes-and-postgresql-usage-in-kubernetes/">running PostgreSQL on bare metal Kubernetes with local persistent
 volumes</a>.
-A current limitation of CloudNativePG, which will be overcome in future
-releases, is the lack of support for tablespaces so that horizontal
-partitioning can be easily implemented.</p>
+A current limitation of CloudNativePG, which will be overcome in version 1.22,
+is the lack of support for tablespaces. Once tablespaces are available, horizontal partitioning can be
+easily implemented.</p>
 <p><strong>How can I specify a time zone in the PostgreSQL cluster?</strong></p>
 <p>PostgreSQL has an extensive support for time zones, as explained in the official
 documentation:</p>
@@ -679,7 +704,7 @@ TODO
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
         <a href="../commercial_support/" class="btn btn-neutral float-left" title="Commercial support"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../api_reference/" class="btn btn-neutral float-right" title="API Reference">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../cloudnative-pg.v1/" class="btn btn-neutral float-right" title="API Reference">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -705,7 +730,7 @@ TODO
       <span><a href="../commercial_support/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../api_reference/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../cloudnative-pg.v1/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>

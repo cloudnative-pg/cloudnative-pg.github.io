@@ -114,6 +114,8 @@
     </li>
         </ul>
     </li>
+    <li class="toctree-l3"><a class="reference internal" href="#s3-lifecycle-policy">S3 lifecycle policy</a>
+    </li>
     <li class="toctree-l3"><a class="reference internal" href="#other-s3-compatible-object-storages-providers">Other S3-compatible Object Storages providers</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#minio-gateway">MinIO Gateway</a>
@@ -164,7 +166,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../cluster_conf/">Instance Pod Configuration</a>
+                <li class="toctree-l1"><a class="reference internal" href="../cluster_conf/">Instance pod configuration</a>
                 </li>
               </ul>
               <ul>
@@ -196,7 +198,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../connection_pooling/">Connection Pooling</a>
+                <li class="toctree-l1"><a class="reference internal" href="../connection_pooling/">Connection pooling</a>
                 </li>
               </ul>
               <ul>
@@ -272,7 +274,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../api_reference/">API Reference</a>
+                <li class="toctree-l1"><a class="reference internal" href="../cloudnative-pg.v1/">API Reference</a>
                 </li>
               </ul>
               <ul>
@@ -416,6 +418,15 @@ spec:
         eks.amazonaws.com/role-arn: arn:[...]
         [...]
 </code></pre>
+<h3 id="s3-lifecycle-policy">S3 lifecycle policy</h3>
+<p>Barman Cloud writes objects to S3, then does not update them until they are
+deleted by the Barman Cloud retention policy. A recommended approach for an S3
+lifecycle policy is to expire the current version of objects a few days longer
+than the Barman retention policy, enable object versioning, and expire
+non-current versions after a number of days. Such a policy protects against
+accidental deletion, and also allows for restricting permissions to the
+CloudNativePG workload so that it may delete objects from S3 without granting
+permissions to permanently delete objects.</p>
 <h3 id="other-s3-compatible-object-storages-providers">Other S3-compatible Object Storages providers</h3>
 <p>In case you're using S3-compatible object storage, like <strong>MinIO</strong> or
 <strong>Linode Object Storage</strong>, you can specify an endpoint instead of using the
@@ -428,8 +439,8 @@ kind: Cluster
 spec:
   backup:
     barmanObjectStore:
-      destinationPath: &quot;&lt;destination path here&gt;&quot;
-      endpointURL: &quot;https://bucket.us-east1.linodeobjects.com&quot;
+      destinationPath: &quot;s3://bucket/&quot;
+      endpointURL: &quot;https://us-east1.linodeobjects.com&quot;
       s3Credentials:
         [...]
 </code></pre>
@@ -768,8 +779,9 @@ the standard backup procedures for the Kubernetes cluster.</p>
 <p>You can also schedule your backups periodically by creating a
 resource named <code>ScheduledBackup</code>. The latter is similar to a
 <code>Backup</code> but with an added field, called <code>schedule</code>.</p>
-<p>This field is a <em>cron schedule</em> specification, which follows the same
-<a href="https://pkg.go.dev/github.com/robfig/cron#hdr-CRON_Expression_Format">format used in Kubernetes CronJobs</a>.</p>
+<p>The schedule allows you to define a <em>six-term cron schedule</em> specification,
+which includes seconds, as expressed in
+the <a href="https://pkg.go.dev/github.com/robfig/cron#hdr-CRON_Expression_Format">Go <code>cron</code> package format</a>.</p>
 <p>This is an example of a scheduled backup:</p>
 <pre><code class="language-yaml">apiVersion: postgresql.cnpg.io/v1
 kind: ScheduledBackup
@@ -781,7 +793,11 @@ spec:
   cluster:
     name: pg-backup
 </code></pre>
-<p>The above example will schedule a backup every day at midnight.</p>
+<p>The above example will schedule a backup every day at midnight because the schedule
+specifies zero for the second, minute, and hour, while specifying wildcard, meaning all,
+for day of the month, month, and day of the week.</p>
+<p>In Kubernetes CronJobs, the equivalent expression is <code>0 0 * * *</code> because seconds
+are not included.</p>
 <div class="admonition hint">
 <p class="admonition-title">Hint</p>
 <p>Backup frequency might impact your recovery time object (RTO) after a
@@ -1041,8 +1057,8 @@ algorithms via <code>barman-cloud-backup</code> (for backups) and
 <li>snappy</li>
 </ul>
 <p>The compression settings for backups and WALs are independent. See the
-<a href="../api_reference/#DataBackupConfiguration">DataBackupConfiguration</a> and
-<a href="../api_reference/#WalBackupConfiguration">WALBackupConfiguration</a> sections in
+<a href="api_reference.md#DataBackupConfiguration">DataBackupConfiguration</a> and
+<a href="api_reference.md#WalBackupConfiguration">WALBackupConfiguration</a> sections in
 the API reference.</p>
 <p>It is important to note that archival time, restore time, and size change
 between the algorithms, so the compression algorithm should be chosen according

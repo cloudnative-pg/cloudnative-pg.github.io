@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="The CloudNativePG Contributors" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Connection Pooling - CloudNativePG</title>
+    <title>Connection pooling - CloudNativePG</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
@@ -13,7 +13,7 @@
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Connection Pooling";
+        var mkdocs_page_name = "Connection pooling";
         var mkdocs_page_input_path = "connection_pooling.md";
         var mkdocs_page_url = null;
       </script>
@@ -114,7 +114,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../cluster_conf/">Instance Pod Configuration</a>
+                <li class="toctree-l1"><a class="reference internal" href="../cluster_conf/">Instance pod configuration</a>
                 </li>
               </ul>
               <ul>
@@ -146,11 +146,11 @@
                 </li>
               </ul>
               <ul class="current">
-                <li class="toctree-l1 current"><a class="reference internal current" href="./">Connection Pooling</a>
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Connection pooling</a>
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#architecture">Architecture</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#quickstart">Quickstart</a>
+    <li class="toctree-l2"><a class="reference internal" href="#quick-start">Quick start</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#pooler-resource-lifecycle">Pooler resource lifecycle</a>
     </li>
@@ -162,9 +162,9 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#authentication">Authentication</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#podtemplates">PodTemplates</a>
+    <li class="toctree-l2"><a class="reference internal" href="#pod-templates">Pod templates</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#high-availability-ha">High Availability (HA)</a>
+    <li class="toctree-l2"><a class="reference internal" href="#high-availability-ha">High availability (HA)</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#pgbouncer-configuration-options">PgBouncer configuration options</a>
     </li>
@@ -258,7 +258,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../api_reference/">API Reference</a>
+                <li class="toctree-l1"><a class="reference internal" href="../cloudnative-pg.v1/">API Reference</a>
                 </li>
               </ul>
               <ul>
@@ -283,7 +283,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
-      <li>Connection Pooling</li>
+      <li>Connection pooling</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -292,25 +292,25 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="connection-pooling">Connection Pooling</h1>
+                <h1 id="connection-pooling">Connection pooling</h1>
 <p>CloudNativePG provides native support for connection pooling with
 <a href="https://www.pgbouncer.org/">PgBouncer</a>, one of the most popular open source
-connection poolers for PostgreSQL, through the <code>Pooler</code> CRD.</p>
-<p>In a nutshell, a <code>Pooler</code> in CloudNativePG is a deployment of
-PgBouncer pods that sits between your applications and a PostgreSQL service
-(for example the <code>rw</code> service), creating a separate, scalable, configurable,
-and highly available <strong>database access layer</strong>.</p>
+connection poolers for PostgreSQL, through the <code>Pooler</code> custom resource definition (CRD).</p>
+<p>In brief, a pooler in CloudNativePG is a deployment of PgBouncer pods that sits
+between your applications and a PostgreSQL service, for example, the <code>rw</code>
+service. It creates a separate, scalable, configurable, and highly available
+database access layer.</p>
 <h2 id="architecture">Architecture</h2>
-<p>The following diagram highlights how the introduction of a database access
-layer based on PgBouncer changes the architecture of CloudNativePG,
-like an additional blade in a Swiss Army knife. Instead of directly connecting
-to the PostgreSQL primary service, applications can now connect to the
-equivalent service for PgBouncer, enabling reuse of existing connections for
-faster performance and better resource management on the PostgreSQL side.</p>
+<p>The following diagram highlights how introducing a database access layer based
+on PgBouncer changes the architecture of CloudNativePG. Instead of directly
+connecting to the PostgreSQL primary service, applications can connect to the
+equivalent service for PgBouncer. This ability enables reuse of existing
+connections for faster performance and better resource management on the
+PostgreSQL side.</p>
 <p><img alt="Applications writing to the single primary via PgBouncer" src="../images/pgbouncer-architecture-rw.png" /></p>
-<h2 id="quickstart">Quickstart</h2>
-<p>The easiest way to explain how CloudNativePG implements a PgBouncer
-pooler is through an example:</p>
+<h2 id="quick-start">Quick start</h2>
+<p>This example helps to show how CloudNativePG implements a PgBouncer
+pooler:</p>
 <pre><code class="language-yaml">apiVersion: postgresql.cnpg.io/v1
 kind: Pooler
 metadata:
@@ -329,91 +329,92 @@ spec:
 </code></pre>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
-<p>Pooler name should never match with any Cluster name within the same namespace.</p>
+<p>The pooler name can't be the same as any cluster name in the same namespace.</p>
 </div>
-<p>This creates a new <code>Pooler</code> resource called <code>pooler-example-rw</code> (the name is
-arbitrary) that is strictly associated with the Postgres <code>Cluster</code> resource called
-<code>cluster-example</code> and pointing to the primary, identified by the read/write
+<p>This example creates a <code>Pooler</code> resource called <code>pooler-example-rw</code> 
+that's strictly associated with the Postgres <code>Cluster</code> resource called
+<code>cluster-example</code>. It points to the primary, identified by the read/write
 service (<code>rw</code>, therefore <code>cluster-example-rw</code>).</p>
-<p>The <code>Pooler</code> must live in the same namespace of the Postgres cluster.
+<p>The <code>Pooler</code> resource must live in the same namespace as the Postgres cluster.
 It consists of a Kubernetes deployment of 3 pods running the
 <a href="https://ghcr.io/cloudnative-pg/pgbouncer">latest stable image of PgBouncer</a>,
 configured with the <a href="https://www.pgbouncer.org/config.html#pool-mode"><code>session</code> pooling mode</a>
-and accepting up to 1000 connections each - with a default pool size of 10
-user/database pairs towards PostgreSQL.</p>
+and accepting up to 1000 connections each. The default pool size is 10
+user/database pairs toward PostgreSQL.</p>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
-<p>The <code>Pooler</code> only sets the <code>*</code> fallback database in PgBouncer, meaning
+<p>The <code>Pooler</code> resource sets only the <code>*</code> fallback database in PgBouncer. This setting means that
 that all parameters in the connection strings passed from the client are
-relayed to the PostgreSQL server (please refer to <a href="https://www.pgbouncer.org/config.html#section-databases">"Section [databases]"
-in PgBouncer's documentation</a>).</p>
+relayed to the PostgreSQL server. For details, see <a href="https://www.pgbouncer.org/config.html#section-databases">"Section [databases]"
+in the PgBouncer documentation</a>.</p>
 </div>
-<p>Additionally, CloudNativePG automatically creates a secret with the
-same name of the pooler containing the configuration files used with PgBouncer.</p>
+<p>CloudNativePG also creates a secret with the same name as the pooler containing
+the configuration files used with PgBouncer.</p>
 <div class="admonition seealso">
 <p class="admonition-title">API reference</p>
-<p>For details, please refer to <a href="../api_reference/#PgBouncerSpec"><code>PgBouncerSpec</code> section</a>
+<p>For details, see <a href="../cloudnative-pg.v1/#postgresql-cnpg-io-v1-PgBouncerSpec"><code>PgBouncerSpec</code></a>
 in the API reference.</p>
 </div>
 <h2 id="pooler-resource-lifecycle">Pooler resource lifecycle</h2>
-<p><code>Pooler</code> resources are not <code>Cluster</code>-managed resources. You are supposed to
-create poolers manually when they are needed. Additionally, you can deploy
-multiple poolers per PostgreSQL Cluster.</p>
-<p>What is important to note is that the lifecycles of the <code>Cluster</code> and the
-<code>Pooler</code> resources are currently independent: the deletion of the <code>Cluster</code>
-doesn't imply the automatic deletion of the <code>Pooler</code>, and viceversa.</p>
+<p><code>Pooler</code> resources aren't cluster-managed resources. You create poolers
+manually when they're needed. You can also deploy multiple poolers per
+PostgreSQL cluster.</p>
+<p>What's important is that the life cycles of the <code>Cluster</code> and the <code>Pooler</code>
+resources are currently independent. Deleting the cluster doesn't imply the
+deletion of the pooler, and vice versa.</p>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
-<p>Now that you know how a <code>Pooler</code> works, you have full freedom in terms of
-possible architectures: you can have clusters without poolers, clusters with
-a single pooler, or clusters with several poolers (i.e. one per application).</p>
+<p>Once you know how a pooler works, you have full freedom in terms of
+possible architectures. You can have clusters without poolers, clusters with
+a single pooler, or clusters with several poolers, that is, one per application.</p>
 </div>
 <h2 id="security">Security</h2>
-<p>Any PgBouncer pooler is transparently integrated with CloudNativePG
-support for in-transit encryption via <strong>TLS connections</strong>, both on the client
+<p>Any PgBouncer pooler is transparently integrated with CloudNativePG support for
+in-transit encryption by way of TLS connections, both on the client
 (application) and server (PostgreSQL) side of the pool.</p>
-<p>Specifically, PgBouncer automatically reuses the certificates of the PostgreSQL
-server. Moreover, it uses TLS client certificate authentication to connect
-to the PostgreSQL server to run the <code>auth_query</code> for clients' password
-authentication (see the <a href="#authentication">"Authentication" section</a> below).</p>
-<p>Containers run as the <code>pgbouncer</code> system user, and access to the <code>pgbouncer</code>
-database is only allowed via local connections, through <code>peer</code> authentication.</p>
+<p>Specifically, PgBouncer reuses the certificates of the PostgreSQL server. It
+also uses TLS client certificate authentication to connect to the PostgreSQL
+server to run the <code>auth_query</code> for clients' password authentication (see
+<a href="#authentication">Authentication</a>).</p>
+<p>Containers run as the pgbouncer system user, and access to the <code>pgbouncer</code>
+database is allowed only by way of local connections, through peer authentication.</p>
 <h3 id="certificates">Certificates</h3>
-<p>By default, PgBouncer pooler will use the same certificates that are used by the
-cluster itself, but if the user provides those certificates the pooler will accept
-secrets with the following format:</p>
+<p>By default, a PgBouncer pooler uses the same certificates that are used by the
+cluster. However, if you provide those certificates, the pooler accepts secrets
+with the following formats:</p>
 <ol>
 <li>Basic Auth</li>
 <li>TLS</li>
 <li>Opaque</li>
 </ol>
-<p>In the Opaque case, it will look for specific keys that needs to be used, those keys
-are the following:</p>
+<p>In the Opaque case, it looks for the following specific keys that need to be used:</p>
 <ul>
 <li>tls.crt</li>
 <li>tls.key</li>
 </ul>
-<p>So we can treat this secret as a TLS secret, and start from there.</p>
+<p>So you can treat this secret as a TLS secret, and start from there.</p>
 <h2 id="authentication">Authentication</h2>
-<p><strong>Password based authentication</strong> is the only supported method for clients of
+<p>Password-based authentication is the only supported method for clients of
 PgBouncer in CloudNativePG.</p>
-<p>Internally, our implementation relies on PgBouncer's <code>auth_user</code> and <code>auth_query</code> options. Specifically, the operator:</p>
+<p>Internally, the implementation relies on PgBouncer's <code>auth_user</code> and
+<code>auth_query</code> options. Specifically, the operator:</p>
 <ul>
-<li>creates a standard user called <code>cnpg_pooler_pgbouncer</code> in the PostgreSQL server</li>
-<li>creates the lookup function in the <code>postgres</code> database and grants execution
-  privileges to the <code>cnpg_pooler_pgbouncer</code> user (PoLA)</li>
-<li>issues a TLS certificate for this user</li>
-<li>sets <code>cnpg_pooler_pgbouncer</code> as the <code>auth_user</code></li>
-<li>configures PgBouncer to use the TLS certificate to authenticate
+<li>Creates a standard user called <code>cnpg_pooler_pgbouncer</code> in the PostgreSQL server</li>
+<li>Creates the lookup function in the <code>postgres</code> database and grants execution
+  privileges to the cnpg_pooler_pgbouncer user (PoLA)</li>
+<li>Issues a TLS certificate for this user</li>
+<li>Sets <code>cnpg_pooler_pgbouncer</code> as the <code>auth_user</code></li>
+<li>Configures PgBouncer to use the TLS certificate to authenticate
   <code>cnpg_pooler_pgbouncer</code> against the PostgreSQL server</li>
-<li>removes all the above when it detects that a cluster does not have
+<li>Removes all the above when it detects that a cluster doesn't have
   any pooler associated to it</li>
 </ul>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
-<p>If you specify your own secrets the operator will not automatically integrate the Pooler.</p>
+<p>If you specify your own secrets, the operator doesn't automatically
+integrate the pooler.</p>
 </div>
-<p>To manually integrate the Pooler, in the case that you have specified your own
+<p>To manually integrate the pooler, if you specified your own
 secrets, you must run the following queries from inside your cluster.</p>
 <p>First, you must create the role:</p>
 <pre><code class="language-sql">CREATE ROLE cnpg_pooler_pgbouncer WITH LOGIN;
@@ -422,7 +423,7 @@ secrets, you must run the following queries from inside your cluster.</p>
 <code>cnpg_pooler_pgbouncer</code> to connect to it:</p>
 <pre><code class="language-sql">GRANT CONNECT ON DATABASE { database name here } TO cnpg_pooler_pgbouncer;
 </code></pre>
-<p>Finally, connect in each application database, then create the authentication
+<p>Finally, connect in each application database, and then create the authentication
 function inside each of the application databases:</p>
 <pre><code class="language-sql">CREATE OR REPLACE FUNCTION user_search(uname TEXT)
   RETURNS TABLE (usename name, passwd text)
@@ -435,14 +436,14 @@ REVOKE ALL ON FUNCTION user_search(text)
 GRANT EXECUTE ON FUNCTION user_search(text)
   TO cnpg_pooler_pgbouncer;
 </code></pre>
-<h2 id="podtemplates">PodTemplates</h2>
+<h2 id="pod-templates">Pod templates</h2>
 <p>You can take advantage of pod templates specification in the <code>template</code>
-section of a <code>Pooler</code> resource. For details, please refer to <a href="../api_reference/#PoolerSpec"><code>PoolerSpec</code>
-section</a> in the API reference.</p>
-<p>Through templates you can configure pods as you like, including fine
-control over affinity and anti-affinity rules for pods and nodes.
-By default, containers use images from <code>ghcr.io/cloudnative-pg/pgbouncer</code>.</p>
-<p>Here an example of Pooler specifying PodAntiAffinity:</p>
+section of a <code>Pooler</code> resource. For details, see 
+<a href="../cloudnative-pg.v1/#postgresql-cnpg-io-v1-PoolerSpec"><code>PoolerSpec</code></a> in the API reference.</p>
+<p>Using templates, you can configure pods as you like, including fine control
+over affinity and anti-affinity rules for pods and nodes. By default,
+containers use images from <code>ghcr.io/cloudnative-pg/pgbouncer</code>.</p>
+<p>This example shows <code>Pooler</code> specifying `PodAntiAffinity``:</p>
 <pre><code class="language-yaml">apiVersion: postgresql.cnpg.io/v1
 kind: Pooler
 metadata:
@@ -472,11 +473,14 @@ spec:
 </code></pre>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p><code>.spec.template.spec.containers</code> has to be explicitly set to <code>[]</code> when not modified, as it's a required field for a <code>PodSpec</code>.
-If <code>.spec.template.spec.containers</code> is not set the kubernetes api-server will return the following error when trying to apply the manifest:
-<code>error validating "pooler.yaml": error validating data: ValidationError(Pooler.spec.template.spec): missing required field "containers"</code></p>
+<p>Explicitly set <code>.spec.template.spec.containers</code> to <code>[]</code> when not modified,
+as it's a required field for a <code>PodSpec</code>. If <code>.spec.template.spec.containers</code>
+isn't set, the Kubernetes api-server returns the following error when trying to
+apply the manifest:<code>error validating "pooler.yaml": error validating data:
+ValidationError(Pooler.spec.template.spec): missing required field
+"containers"</code></p>
 </div>
-<p>Here an example setting resources and changing the used image:</p>
+<p>This example sets resources and changes the used image:</p>
 <pre><code class="language-yaml">apiVersion: postgresql.cnpg.io/v1
 kind: Pooler
 metadata:
@@ -503,32 +507,31 @@ spec:
               cpu: &quot;0.5&quot;
               memory: 500Mi
 </code></pre>
-<h2 id="high-availability-ha">High Availability (HA)</h2>
-<p>Thanks to Kubernetes' deployments, you can configure your pooler to run
-on a single instance or over multiple pods. The exposed service will
-make sure that your clients are randomly distributed over the available
-pods running PgBouncer - which will then automatically manage and reuse
-connections towards the underlying server (if using the <code>rw</code> service)
-or servers (if using the <code>ro</code> service with multiple replicas).</p>
+<h2 id="high-availability-ha">High availability (HA)</h2>
+<p>Because of Kubernetes' deployments, you can configure your pooler to run on a
+single instance or over multiple pods. The exposed service makes sure that your
+clients are randomly distributed over the available pods running PgBouncer,
+which then manages and reuses connections toward the underlying server (if
+using the <code>rw</code> service) or servers (if using the <code>ro</code> service with multiple
+replicas).</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>Please be aware of network hops in case your infrastructure spans
-multiple availability zones with high latency across them. Consider
-for example the case of your application running in zone 2,
-connecting to PgBouncer running in zone 3, pointing to the PostgreSQL
-primary in zone 1. </p>
+<p>If your infrastructure spans multiple availability zones with high latency
+across them, be aware of network hops. Consider, for example, the case of your
+application running in zone 2, connecting to PgBouncer running in zone 3, and
+pointing to the PostgreSQL primary in zone 1. </p>
 </div>
 <h2 id="pgbouncer-configuration-options">PgBouncer configuration options</h2>
-<p>The operator manages most of the <a href="https://www.pgbouncer.org/config.html">configuration options for PgBouncer</a>, allowing you to modify only a subset of them.</p>
+<p>The operator manages most of the <a href="https://www.pgbouncer.org/config.html">configuration options for PgBouncer</a>,
+allowing you to modify only a subset of them.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>You are responsible to correctly set the value of each option, as the operator
-does not validate them.</p>
+<p>You are responsible for correctly setting the value of each option, as the
+operator doesn't validate them.</p>
 </div>
-<p>Below you can find a list of the PgBouncer options you are allowed to
-customize. Each of them contains a link to the PgBouncer documentation for that
-specific parameter. Unless differently stated here, the default values are the
-ones directly set by PgBouncer:</p>
+<p>These are the PgBouncer options you can customize, with links to the PgBouncer
+documentation for each parameter. Unless stated otherwise, the default values
+are the ones directly set by PgBouncer.</p>
 <ul>
 <li><a href="https://www.pgbouncer.org/config.html#application_name_add_host"><code>application_name_add_host</code></a></li>
 <li><a href="https://www.pgbouncer.org/config.html#autodb_idle_timeout"><code>autodb_idle_timeout</code></a></li>
@@ -547,6 +550,7 @@ ones directly set by PgBouncer:</p>
   export as described in the <a href="#monitoring">"Monitoring"</a> section below</li>
 <li><a href="https://www.pgbouncer.org/config.html#max_client_conn"><code>max_client_conn</code></a></li>
 <li><a href="https://www.pgbouncer.org/config.html#max_db_connections"><code>max_db_connections</code></a></li>
+<li><a href="https://www.pgbouncer.org/config.html#max_prepared_statements"><code>max_prepared_statements</code></a></li>
 <li><a href="https://www.pgbouncer.org/config.html#max_user_connections"><code>max_user_connections</code></a></li>
 <li><a href="https://www.pgbouncer.org/config.html#min_pool_size"><code>min_pool_size</code></a></li>
 <li><a href="https://www.pgbouncer.org/config.html#query_timeout"><code>query_timeout</code></a></li>
@@ -571,34 +575,37 @@ ones directly set by PgBouncer:</p>
 <li><a href="https://www.pgbouncer.org/config.html#tcp_user_timeout"><code>tcp_user_timeout</code></a></li>
 <li><a href="https://www.pgbouncer.org/config.html#verbose"><code>verbose</code></a></li>
 </ul>
-<p>Customizations of the PgBouncer configuration are written
-declaratively in the <code>.spec.pgbouncer.parameters</code> map.</p>
-<p>The operator reacts to the changes in the Pooler specification,
-and every PgBouncer instance reloads the updated configuration
-without disrupting the service.</p>
+<p>Customizations of the PgBouncer configuration are written declaratively in the
+<code>.spec.pgbouncer.parameters</code> map.</p>
+<p>The operator reacts to the changes in the pooler specification, and every
+PgBouncer instance reloads the updated configuration without disrupting the
+service.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>Every PgBouncer pod will have the same configuration, aligned
+<p>Every PgBouncer pod has the same configuration, aligned
 with the parameters in the specification. A mistake in these
-parameters could disrupt the operability of the <strong>whole Pooler</strong>.
-The operator <strong>does not</strong> validate the value of any option.</p>
+parameters might disrupt the operability of the whole pooler.
+The operator doesn't validate the value of any option.</p>
 </div>
 <h2 id="monitoring">Monitoring</h2>
 <p>The PgBouncer implementation of the <code>Pooler</code> comes with a default
-Prometheus exporter that automatically makes available several
-metrics having the <code>cnpg_pgbouncer_</code> prefix, by running:</p>
+Prometheus exporter. It makes available several
+metrics having the <code>cnpg_pgbouncer_</code> prefix by running:</p>
 <ul>
 <li><code>SHOW LISTS</code> (prefix: <code>cnpg_pgbouncer_lists</code>)</li>
 <li><code>SHOW POOLS</code> (prefix: <code>cnpg_pgbouncer_pools</code>)</li>
 <li><code>SHOW STATS</code> (prefix: <code>cnpg_pgbouncer_stats</code>)</li>
 </ul>
-<p>Similarly to the CloudNativePG instance, the exporter runs on port
-<code>9127</code> of each pod running PgBouncer, and also provides metrics related to the
-Go runtime (with prefix <code>go_*</code>). You can debug the exporter on a pod running
-PgBouncer through the following command:</p>
-<pre><code class="language-console">kubectl exec -ti &lt;PGBOUNCER_POD&gt; -- curl 127.0.0.1:9127/metrics
-</code></pre>
-<p>An example of the output for <code>cnpg_pgbouncer</code> metrics:</p>
+<p>Like the CloudNativePG instance, the exporter runs on port
+<code>9127</code> of each pod running PgBouncer and also provides metrics related to the
+Go runtime (with the prefix <code>go_*</code>).</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>You can inspect the exported metrics on a pod running PgBouncer. For instructions, see
+<a href="monitoring.md/#how-to-inspect-the-exported-metrics">How to inspect the exported metrics</a>.
+Make sure that you use the correct IP and the <code>9127</code> port.</p>
+</div>
+<p>This example shows the output for <code>cnpg_pgbouncer</code> metrics:</p>
 <pre><code class="language-text"># HELP cnpg_pgbouncer_collection_duration_seconds Collection time duration in seconds
 # TYPE cnpg_pgbouncer_collection_duration_seconds gauge
 cnpg_pgbouncer_collection_duration_seconds{collector=&quot;Collect.up&quot;} 0.002443168
@@ -759,17 +766,19 @@ cnpg_pgbouncer_stats_total_xact_count{database=&quot;pgbouncer&quot;} 3
 # TYPE cnpg_pgbouncer_stats_total_xact_time gauge
 cnpg_pgbouncer_stats_total_xact_time{database=&quot;pgbouncer&quot;} 0
 </code></pre>
-<p>Like for <code>Clusters</code>, a specific <code>Pooler</code> can be monitored using the
-<a href="https://github.com/prometheus-operator/prometheus-operator">Prometheus Operator's</a> resource
+<p>As for clusters, a specific pooler can be monitored using the
+<a href="https://github.com/prometheus-operator/prometheus-operator">Prometheus operator's</a> resource
 <a href="https://github.com/prometheus-operator/prometheus-operator/blob/v0.47.1/Documentation/api.md#podmonitor">PodMonitor</a>.
-A <code>PodMonitor</code> correctly pointing to a <code>Pooler</code> can be automatically created by the operator by setting
-<code>.spec.monitoring.enablePodMonitor</code> to <code>true</code> in the <code>Pooler</code> resource itself (default: false).</p>
+A <code>PodMonitor</code> correctly pointing to a pooler can be created by the operator by setting
+<code>.spec.monitoring.enablePodMonitor</code> to <code>true</code> in the <code>Pooler</code> resource. The default is <code>false</code>.</p>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
-<p>Any change to the <code>PodMonitor</code> created automatically will be overridden by the Operator at the next reconciliation
-cycle, in case you need to customize it, you can do so as described below.</p>
+<p>Any change to <code>PodMonitor</code> created automatically is overridden by the
+operator at the next reconciliation cycle. If you need to customize it, you can
+do so as shown in the following example.</p>
 </div>
-<p>To deploy a <code>PodMonitor</code> for a specific Pooler manually, you can just define it as follows, changing it as needed:</p>
+<p>To deploy a <code>PodMonitor</code> for a specific pooler manually, you can define it as
+follows and change it as needed:</p>
 <pre><code class="language-yaml">apiVersion: monitoring.coreos.com/v1
 kind: PodMonitor
 metadata:
@@ -799,48 +808,49 @@ following example:</p>
 </code></pre>
 <h2 id="pausing-connections">Pausing connections</h2>
 <p>The <code>Pooler</code> specification allows you to take advantage of PgBouncer's <code>PAUSE</code>
-and <code>RESUME</code> commands, using only declarative configuration - via the <code>paused</code>
-option, by default set to <code>false</code>. When set to <code>true</code>, the operator internally
-invokes the <code>PAUSE</code> command in PgBouncer, which:</p>
+and <code>RESUME</code> commands, using only declarative configuration. You can ado this
+using the <code>paused</code> option, which by default is set to <code>false</code>. When set to
+<code>true</code>, the operator internally invokes the <code>PAUSE</code> command in PgBouncer,
+which:</p>
 <ol>
-<li>closes all active connections towards the PostgreSQL server, after waiting for the queries to complete</li>
-<li>pauses any new connection coming from the client</li>
+<li>Closes all active connections toward the PostgreSQL server, after waiting
+   for the queries to complete</li>
+<li>Pauses any new connection coming from the client</li>
 </ol>
-<p>When the <code>paused</code> option is set back to <code>false</code>, the operator will invoke the
-<code>RESUME</code> command in PgBouncer, re-opening the taps towards the PostgreSQL
-service defined in the <code>Pooler</code>.</p>
+<p>When the <code>paused</code> option is reset to <code>false</code>, the operator invokes the
+<code>RESUME</code> command in PgBouncer, reopening the taps toward the PostgreSQL
+service defined in the <code>Pooler</code> resource.</p>
 <div class="admonition seealso">
 <p class="admonition-title">PAUSE</p>
-<p>For further information, please refer to the
-<a href="https://www.pgbouncer.org/usage.html#pause-db"><code>PAUSE</code> section in the PgBouncer documentation</a>.</p>
+<p>For more information, see
+<a href="https://www.pgbouncer.org/usage.html#pause-db"><code>PAUSE</code> in the PgBouncer documentation</a>.</p>
 </div>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
 <p>In future versions, the switchover operation will be fully integrated
-with the PgBouncer pooler, and take advantage of the <code>PAUSE</code>/<code>RESUME</code>
+with the PgBouncer pooler and take advantage of the <code>PAUSE</code>/<code>RESUME</code>
 features to reduce the perceived downtime by client applications.
-At the moment, you can achieve the same results by setting the <code>paused</code>
-attribute to <code>true</code>, then issuing the switchover command through the
-<a href="../kubectl-plugin/#promote"><code>cnpg</code> plugin</a>, and finally restoring the <code>paused</code>
+Currently, you can achieve the same results by setting the <code>paused</code>
+attribute to <code>true</code>, issuing the switchover command through the
+<a href="../kubectl-plugin/#promote"><code>cnpg</code> plugin</a>, and then restoring the <code>paused</code>
 attribute to <code>false</code>.</p>
 </div>
 <h2 id="limitations">Limitations</h2>
 <h3 id="single-postgresql-cluster">Single PostgreSQL cluster</h3>
 <p>The current implementation of the pooler is designed to work as part of a
-specific CloudNativePG cluster (a service, to be precise). It is not
-possible at the moment to create a pooler that spans over multiple clusters.</p>
+specific CloudNativePG cluster (a service). It isn't currently possible to
+create a pooler that spans multiple clusters.</p>
 <h3 id="controlled-configurability">Controlled configurability</h3>
-<p>CloudNativePG transparently manages several configuration options
-that are used for the PgBouncer layer to communicate with PostgreSQL. Such
-options are not configurable from outside and include TLS certificates,
-authentication settings, <code>databases</code> section, and <code>users</code> section. Also,
-considering the specific use case for the single PostgreSQL cluster, the
-adopted criteria is to explicitly list the options that can be configured by
-users.</p>
+<p>CloudNativePG transparently manages several configuration options that are used
+for the PgBouncer layer to communicate with PostgreSQL. Such options aren't
+configurable from outside and include TLS certificates, authentication
+settings, the <code>databases</code> section, and the <code>users</code> section. Also, considering
+the specific use case for the single PostgreSQL cluster, the adopted criteria
+is to explicitly list the options that can be configured by users.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>We have reasons to believe that the adopted solution addresses the majority of
-use cases, while leaving room for the future implementation of a separate
+<p>The adopted solution likely addresses the majority of
+use cases. It leaves room for the future implementation of a separate
 operator for PgBouncer to complete the gamma with more advanced and customized
 scenarios.</p>
 </div>
