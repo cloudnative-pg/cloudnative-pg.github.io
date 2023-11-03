@@ -102,7 +102,11 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../backup_recovery/">Backup and Recovery</a>
+                <li class="toctree-l1"><a class="reference internal" href="../backup/">Backup</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../recovery/">Recovery</a>
                 </li>
               </ul>
               <ul>
@@ -118,7 +122,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../cluster_conf/">Instance Pod Configuration</a>
+                <li class="toctree-l1"><a class="reference internal" href="../cluster_conf/">Instance pod configuration</a>
                 </li>
               </ul>
               <ul>
@@ -150,7 +154,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../connection_pooling/">Connection Pooling</a>
+                <li class="toctree-l1"><a class="reference internal" href="../connection_pooling/">Connection pooling</a>
                 </li>
               </ul>
               <ul>
@@ -226,7 +230,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../api_reference/">API Reference</a>
+                <li class="toctree-l1"><a class="reference internal" href="../cloudnative-pg.v1/">API Reference</a>
                 </li>
               </ul>
               <ul class="current">
@@ -254,6 +258,11 @@
               <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../release_notes/">Release notes</a>
                 </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Appendixes</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../appendixes/object_stores/">Appendix A - Common object stores for backups</a>
+                  </li>
               </ul>
       </div>
     </div>
@@ -364,22 +373,22 @@ current <code>&lt;minor&gt;</code> release. A patch is usually a small change re
 </thead>
 <tbody>
 <tr>
+<td>1.21.x</td>
+<td>Yes</td>
+<td>October 12, 2023</td>
+<td>~ April 12, 2024</td>
+<td>1.25, 1.26, 1.27, 1.28</td>
+<td>1.23, 1.24</td>
+<td>12 - 16</td>
+</tr>
+<tr>
 <td>1.20.x</td>
 <td>Yes</td>
 <td>April 27, 2023</td>
 <td>~ December 28, 2023</td>
 <td>1.24, 1.25, 1.26, 1.27</td>
 <td>1.23</td>
-<td>11 - 15</td>
-</tr>
-<tr>
-<td>1.19.x</td>
-<td>Yes</td>
-<td>February 14, 2023</td>
-<td>~ October 26, 2023</td>
-<td>1.23, 1.24, 1.25, 1.26</td>
-<td>1.27</td>
-<td>11 - 15</td>
+<td>11 - 16</td>
 </tr>
 <tr>
 <td>main</td>
@@ -388,7 +397,7 @@ current <code>&lt;minor&gt;</code> release. A patch is usually a small change re
 <td></td>
 <td></td>
 <td></td>
-<td>11 - 15</td>
+<td>11 - 16</td>
 </tr>
 </tbody>
 </table>
@@ -406,8 +415,7 @@ version of CloudNativePG was released.</p>
 page for more information about supported versions.</p>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
-<p>Starting by November 10, 2022, Postgres 10 reached its final release and
-is no longer supported.</p>
+<p>Starting from November 9, 2023, Postgres 11 is no longer supported.</p>
 </div>
 <p><strong>We also recommend that you regularly update your PostgreSQL operand images and
 use the latest minor release for the major version you have in use</strong>, as not upgrading
@@ -425,14 +433,14 @@ version of PostgreSQL, we might not be able to help you.</p>
 </thead>
 <tbody>
 <tr>
-<td>1.21.0</td>
-<td>September 26, 2023</td>
+<td>1.22.0</td>
+<td>November 28, 2023</td>
 <td>-</td>
 <td>-</td>
 </tr>
 <tr>
-<td>1.22.0</td>
-<td>November 28, 2023</td>
+<td>1.23.0</td>
+<td>January 25, 2024</td>
 <td>-</td>
 <td>-</td>
 </tr>
@@ -461,16 +469,16 @@ discussion in the main GitHub repository.</p>
 </thead>
 <tbody>
 <tr>
-<td>1.15.x</td>
-<td>April 21, 2022</td>
-<td>October 6, 2022</td>
-<td>1.21, 1.22, 1.23</td>
+<td>1.19.x</td>
+<td>February 14, 2023</td>
+<td>November 3, 2023</td>
+<td>1.23, 1.24, 1.25, 1.26</td>
 </tr>
 <tr>
-<td>1.16.x</td>
-<td>July 7, 2022</td>
-<td>December 21, 2022</td>
-<td>1.22, 1.23, 1.24</td>
+<td>1.18.x</td>
+<td>Nov 10, 2022</td>
+<td>June 12, 2023</td>
+<td>1.23, 1.24, 1.25, 1.26, 1.27</td>
 </tr>
 <tr>
 <td>1.17.x</td>
@@ -479,10 +487,16 @@ discussion in the main GitHub repository.</p>
 <td>1.22, 1.23, 1.24</td>
 </tr>
 <tr>
-<td>1.18.x</td>
-<td>Nov 10, 2022</td>
-<td>June 12, 2023</td>
-<td>1.23, 1.24, 1.25, 1.26, 1.27</td>
+<td>1.16.x</td>
+<td>July 7, 2022</td>
+<td>December 21, 2022</td>
+<td>1.22, 1.23, 1.24</td>
+</tr>
+<tr>
+<td>1.15.x</td>
+<td>April 21, 2022</td>
+<td>October 6, 2022</td>
+<td>1.21, 1.22, 1.23</td>
 </tr>
 </tbody>
 </table>
@@ -528,7 +542,7 @@ extended support timeframes.</p>
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../api_reference/" class="btn btn-neutral float-left" title="API Reference"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../cloudnative-pg.v1/" class="btn btn-neutral float-left" title="API Reference"><span class="icon icon-circle-arrow-left"></span> Previous</a>
         <a href="../release_notes/" class="btn btn-neutral float-right" title="Release notes">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
@@ -552,7 +566,7 @@ extended support timeframes.</p>
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../api_reference/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../cloudnative-pg.v1/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
       <span><a href="../release_notes/" style="color: #fcfcfc">Next &raquo;</a></span>

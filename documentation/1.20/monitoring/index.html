@@ -102,7 +102,11 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../backup_recovery/">Backup and Recovery</a>
+                <li class="toctree-l1"><a class="reference internal" href="../backup/">Backup</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../recovery/">Recovery</a>
                 </li>
               </ul>
               <ul>
@@ -118,7 +122,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../cluster_conf/">Instance Pod Configuration</a>
+                <li class="toctree-l1"><a class="reference internal" href="../cluster_conf/">Instance pod configuration</a>
                 </li>
               </ul>
               <ul>
@@ -186,7 +190,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../connection_pooling/">Connection Pooling</a>
+                <li class="toctree-l1"><a class="reference internal" href="../connection_pooling/">Connection pooling</a>
                 </li>
               </ul>
               <ul>
@@ -262,7 +266,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../api_reference/">API Reference</a>
+                <li class="toctree-l1"><a class="reference internal" href="../cloudnative-pg.v1/">API Reference</a>
                 </li>
               </ul>
               <ul>
@@ -272,6 +276,11 @@
               <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../release_notes/">Release notes</a>
                 </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Appendixes</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../appendixes/object_stores/">Appendix A - Common object stores for backups</a>
+                  </li>
               </ul>
       </div>
     </div>
@@ -330,8 +339,8 @@ section below.</p>
 <li>executed with <code>application_name</code> set to <code>cnpg_metrics_exporter</code></li>
 <li>executed as user <code>postgres</code></li>
 </ul>
-<p>Please refer to the "Default roles" section in PostgreSQL
-<a href="https://www.postgresql.org/docs/current/default-roles.html">documentation</a>
+<p>Please refer to the "Predefined Roles" section in PostgreSQL
+<a href="https://www.postgresql.org/docs/current/predefined-roles.html">documentation</a>
 for details on the <code>pg_monitor</code> role.</p>
 <p>Queries, by default, are run against the <em>main database</em>, as defined by
 the specified <code>bootstrap</code> method of the <code>Cluster</code> resource, according
@@ -469,7 +478,7 @@ cnpg_collector_up{cluster=&quot;cluster-example&quot;} 1
 
 # HELP cnpg_collector_postgres_version Postgres version
 # TYPE cnpg_collector_postgres_version gauge
-cnpg_collector_postgres_version{cluster=&quot;cluster-example&quot;,full=&quot;15.3&quot;} 15.3
+cnpg_collector_postgres_version{cluster=&quot;cluster-example&quot;,full=&quot;15.4&quot;} 15.4
 
 # HELP cnpg_collector_last_failed_backup_timestamp The last failed backup as a unix timestamp
 # TYPE cnpg_collector_last_failed_backup_timestamp gauge
@@ -656,7 +665,7 @@ will be zero until your first backup to the object store. This is separate from 
 </div>
 <h3 id="user-defined-metrics">User defined metrics</h3>
 <p>This feature is currently in <em>beta</em> state and the format is inspired by the
-<a href="https://github.com/prometheus-community/postgres_exporter/blob/master/queries.yaml">queries.yaml file</a> <!-- wokeignore:rule=master -->
+<a href="https://github.com/prometheus-community/postgres_exporter/blob/v0.12.1/queries.yaml">queries.yaml file (release 0.12)</a>
 of the PostgreSQL Prometheus Exporter.</p>
 <p>Custom metrics can be defined by users by referring to the created <code>Configmap</code>/<code>Secret</code> in a <code>Cluster</code> definition
 under the <code>.spec.monitoring.customQueriesConfigMap</code> or <code>customQueriesSecret</code> section as in the following example:</p>
@@ -728,7 +737,7 @@ data:
             description: &quot;Number of streaming replicas connected to the instance&quot;
 </code></pre>
 <p>A list of basic monitoring queries can be found in the
-<a href="https://github.com/cloudnative-pg/cloudnative-pg/blob/main/config/manager/default-monitoring.yaml"><code>default-monitoring.yaml</code> file</a>
+<a href="https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/main/config/manager/default-monitoring.yaml"><code>default-monitoring.yaml</code> file</a>
 that is already installed in your CloudNativePG deployment (see <a href="#default-set-of-metrics">"Default set of metrics"</a>).</p>
 <h4 id="example-of-a-user-defined-metric-running-on-multiple-databases">Example of a user defined metric running on multiple databases</h4>
 <p>If the <code>target_databases</code> option lists more than one database
@@ -810,7 +819,7 @@ cnpg_some_query_rows{datname=&quot;postgres&quot;} 42
 <ul>
 <li><code>&lt;MetricName&gt;</code>: the name of the Prometheus metric<ul>
 <li><code>query</code>: the SQL query to run on the target database to generate the metrics</li>
-<li><code>primary</code>: whether to run the query only on the primary instance <!-- wokeignore:rule=master --></li>
+<li><code>primary</code>: whether to run the query only on the primary instance</li>
 <li><code>master</code>: same as <code>primary</code> (for compatibility with the Prometheus PostgreSQL exporter's syntax - deprecated) <!-- wokeignore:rule=master --></li>
 <li><code>runonserver</code>: a semantic version range to limit the versions of PostgreSQL the query should run on
    (e.g. <code>"&gt;=11.0.0"</code> or <code>"&gt;=12.0.0 &lt;=15.0.0"</code>)</li>
@@ -964,7 +973,7 @@ metadata:
 spec:
   containers:
   - name: curl
-    image: curlimages/curl:7.84.0
+    image: curlimages/curl:8.2.1
     command: ['sleep', '3600']
 </code></pre>
 <p>Then create the pod:</p>
@@ -1002,9 +1011,10 @@ section for context:</p>
 <ul>
 <li><code>kube-stack-config.yaml</code>: a configuration file for the kube-stack helm chart
   installation. It ensures that Prometheus listens for all PodMonitor resources.</li>
-<li><code>cnpg-prometheusrule.yaml</code>: a <code>PrometheusRule</code> with alerts for CloudNativePG.
+<li><code>prometheusrule.yaml</code>: a <code>PrometheusRule</code> with alerts for CloudNativePG.
   NOTE: this does not include inter-operation with notification services. Please refer
   to the <a href="https://prometheus.io/docs/alerting/latest/alertmanager/">Prometheus documentation</a>.</li>
+<li><code>podmonitor.yaml</code>: a <code>PodMonitor</code> for the CloudNativePG Operator deployment.</li>
 <li><code>grafana-configmap.yaml</code>: a ConfigMap containing the definition of the sample
   CloudNativePG Dashboard. Note the labels in the definition, which ensure that
   the Grafana deployment will find the ConfigMap.</li>

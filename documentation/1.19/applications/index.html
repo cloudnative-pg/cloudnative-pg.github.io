@@ -114,7 +114,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../cluster_conf/">Instance Pod Configuration</a>
+                <li class="toctree-l1"><a class="reference internal" href="../cluster_conf/">Instance pod configuration</a>
                 </li>
               </ul>
               <ul>
@@ -154,7 +154,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../connection_pooling/">Connection Pooling</a>
+                <li class="toctree-l1"><a class="reference internal" href="../connection_pooling/">Connection pooling</a>
                 </li>
               </ul>
               <ul>
@@ -230,7 +230,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../api_reference/">API Reference</a>
+                <li class="toctree-l1"><a class="reference internal" href="../cloudnative-pg.v1/">API Reference</a>
                 </li>
               </ul>
               <ul>
@@ -328,18 +328,28 @@ PostgreSQL cluster it deploys:</p>
 <li><code>[cluster name]-superuser</code></li>
 <li><code>[cluster name]-app</code></li>
 </ul>
-<p>The secrets contain the username, password, and a working
-<a href="https://www.postgresql.org/docs/current/libpq-pgpass.html"><code>.pgpass file</code></a>
-respectively for the <code>postgres</code> user and the <em>owner</em> of the database.</p>
+<p>Each secret contain the following:</p>
+<ul>
+<li>username</li>
+<li>password</li>
+<li>hostname to the RW service</li>
+<li>port number</li>
+<li>database name</li>
+<li>a working <a href="https://www.postgresql.org/docs/current/libpq-pgpass.html"><code>.pgpass file</code></a></li>
+<li><a href="https://www.postgresql.org/docs/current/libpq-connect.html#LIBPQ-CONNSTRING">uri</a></li>
+<li><a href="https://jdbc.postgresql.org/documentation/use/#connecting-to-the-database">jdbc-uri</a></li>
+</ul>
 <p>The <code>-app</code> credentials are the ones that should be used by applications
-connecting to the PostgreSQL cluster.</p>
-<p>The <code>-superuser</code> ones are supposed to be used only for administrative purposes.</p>
+connecting to the PostgreSQL cluster, and correspond to the user <em>owning</em> the
+database.</p>
+<p>The <code>-superuser</code> ones are supposed to be used only for administrative purposes,
+and correspond to the <code>postgres</code> user.</p>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
         <a href="../ssl_connections/" class="btn btn-neutral float-left" title="Client TLS/SSL Connections"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../connection_pooling/" class="btn btn-neutral float-right" title="Connection Pooling">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../connection_pooling/" class="btn btn-neutral float-right" title="Connection pooling">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>

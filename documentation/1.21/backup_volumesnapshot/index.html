@@ -122,6 +122,12 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#how-to-configure-volume-snapshot-backups">How to configure Volume Snapshot backups</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#hot-and-cold-backups">Hot and cold backups</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#overriding-the-default-behavior">Overriding the default behavior</a>
+    </li>
+        </ul>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#persistence-of-volume-snapshot-objects">Persistence of volume snapshot objects</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#example">Example</a>
@@ -146,7 +152,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../cluster_conf/">Instance Pod Configuration</a>
+                <li class="toctree-l1"><a class="reference internal" href="../cluster_conf/">Instance pod configuration</a>
                 </li>
               </ul>
               <ul>
@@ -178,7 +184,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../connection_pooling/">Connection Pooling</a>
+                <li class="toctree-l1"><a class="reference internal" href="../connection_pooling/">Connection pooling</a>
                 </li>
               </ul>
               <ul>
@@ -283,39 +289,34 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li><li>Backup on volume snapshots</li>
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+      <li>Backup on volume snapshots</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
   <hr/>
 </div>
-
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
                 <h1 id="backup-on-volume-snapshots">Backup on volume snapshots</h1>
-<div class="admonition important">
-<p class="admonition-title">Important</p>
-<p>The current implementation of volume snapshots in CloudNativePG
-supports <a href="../backup/#cold-and-hot-backups">cold backup</a> only.
-Hot backup with direct support of
-<a href="https://www.postgresql.org/docs/current/continuous-archiving.html#BACKUP-LOWLEVEL-BASE-BACKUP">PostgreSQL's low level API for base backups</a>
-will be added in version 1.22. Having said this, the current implementation
-is suitable for production HA environments, as it will by default work on
-the most aligned standby without impacting the primary.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The initial release of volume snapshots (version 1.21.0) only supported
+cold backups, which required fencing of the instance. This limitation
+has been waived starting with version 1.21.1. Given the minimal impact of
+the change on the code, maintainers have decided to backport this feature
+immediately instead of waiting for version 1.22.0 to be out, and make online
+backups the default behavior on volume snapshots too. If you are planning
+to rely instead on cold backups, make sure you follow the instructions below.</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>As noted in the <a href="../backup/">backup document</a>, a cold snapshot explicitly
 set to target the primary will result in the primary being fenced for
 the duration of the backup, rendering the cluster read-only during that
-time.</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>A volume snapshot backup requires fencing the target instance. For safety,
-in a cluster already containing fenced instances, a cold snapshot would be
-rejected.</p>
+For safety, in a cluster already containing fenced instances, a cold
+snapshot is rejected.</p>
 </div>
 <p>CloudNativePG is one of the first known cases of database operators that
 directly leverages the Kubernetes native Volume Snapshot API for both
@@ -411,6 +412,84 @@ the same value as <code>className</code>).</p>
 </div>
 <p>Once a cluster is defined for volume snapshot backups, you need to define
 a <code>ScheduledBackup</code> resource that requests such backups on a periodic basis.</p>
+<h2 id="hot-and-cold-backups">Hot and cold backups</h2>
+<p>By default, CloudNativePG requests an online/hot backup on volume snapshots, using the
+<a href="https://www.postgresql.org/docs/current/continuous-archiving.html#BACKUP-LOWLEVEL-BASE-BACKUP">PostgreSQL defaults of the low-level API for base backups</a>:</p>
+<ul>
+<li>it doesn't request an immediate checkpoint when starting the backup procedure</li>
+<li>it waits for the WAL archiver to archive the last segment of the backup when
+  terminating the backup procedure</li>
+</ul>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>The default values are suitable for most production environments. Hot
+backups are consistent and can be used to perform snapshot recovery, as we
+ensure WAL retention from the start of the backup through a temporary
+replication slot. However, our recommendation is to rely on cold backups for
+that purpose.</p>
+</div>
+<p>You can explicitly change the default behavior through the following options in
+the <code>.spec.backup.volumeSnapshot</code> stanza of the <code>Cluster</code> resource:</p>
+<ul>
+<li><code>online</code>: accepting <code>true</code> (default) or <code>false</code> as a value</li>
+<li><code>onlineConfiguration.immediateCheckpoint</code>: whether you want to request an
+  immediate checkpoint before you start the backup procedure or not;
+  technically, it corresponds to the <code>fast</code> argument you pass to the
+  <code>pg_backup_start</code>/<code>pg_start_backup()</code> function in PostgreSQL, accepting
+  <code>true</code> (default) or <code>false</code></li>
+<li><code>onlineConfiguration.waitForArchive</code>: whether you want to wait for the
+  archiver to process the last segment of the backup or not; technically, it
+  corresponds to the <code>wait_for_archive</code> argument you pass to the
+  <code>pg_backup_stop</code>/<code>pg_stop_backup()</code> function in PostgreSQL, accepting <code>true</code>
+  (default) or <code>false</code></li>
+</ul>
+<p>If you want to change the default behavior of your Postgres cluster to take
+cold backups by default, all you need to do is add the <code>online: false</code> option
+to your manifest, as follows:</p>
+<pre><code class="language-yaml">  # ...
+  backup:
+    volumeSnapshot:
+       online: false
+       # ...
+</code></pre>
+<p>If you are instead requesting an immediate checkpoint as the default behavior,
+you can add this section:</p>
+<pre><code class="language-yaml">  # ...
+  backup:
+    volumeSnapshot:
+       online: true
+       onlineConfiguration:
+         immediateCheckpoint: true
+       # ...
+</code></pre>
+<h3 id="overriding-the-default-behavior">Overriding the default behavior</h3>
+<p>You can change the default behavior defined in the cluster resource by setting
+different values for <code>online</code> and, if needed, <code>onlineConfiguration</code> in the <code>Backup</code> or <code>ScheduledBackup</code> objects.</p>
+<p>For example, in case you want to issue an on-demand cold backup, you can
+create a <code>Backup</code> object with <code>.spec.online: false</code>:</p>
+<pre><code class="language-yaml">apiVersion: postgresql.cnpg.io/v1
+kind: Backup
+metadata:
+  name: snapshot-cluster-cold-backup-example
+spec:
+  cluster:
+    name: snapshot-cluster
+  method: volumeSnapshot
+  online: false
+</code></pre>
+<p>Similarly, for the ScheduledBackup:</p>
+<pre><code class="language-yaml">apiVersion: postgresql.cnpg.io/v1
+kind: ScheduledBackup
+metadata:
+  name: snapshot-cluster-cold-backup-example
+spec:
+  schedule: &quot;0 0 0 * * *&quot;
+  backupOwnerReference: self
+  cluster:
+    name: snapshot-cluster
+  method: volumeSnapshot
+  online: false
+</code></pre>
 <h2 id="persistence-of-volume-snapshot-objects">Persistence of volume snapshot objects</h2>
 <p>By default, <code>VolumeSnapshot</code> objects created by CloudNativePG are retained after
 deleting the <code>Backup</code> object that originated them, or the <code>Cluster</code> they refer to.

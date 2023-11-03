@@ -114,12 +114,14 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../cluster_conf/">Instance Pod Configuration</a>
+                <li class="toctree-l1"><a class="reference internal" href="../cluster_conf/">Instance pod configuration</a>
                 </li>
               </ul>
               <ul class="current">
                 <li class="toctree-l1 current"><a class="reference internal current" href="./">Storage</a>
     <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#backup-and-recovery">Backup and recovery</a>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#benchmarking-cloudnativepg">Benchmarking CloudNativePG</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#encryption-at-rest">Encryption at rest</a>
@@ -147,6 +149,8 @@
         </ul>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#static-provisioning-of-persistent-volumes">Static provisioning of persistent volumes</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#block-storage-considerations-ceph-longhorn">Block storage considerations (Ceph/ Longhorn)</a>
     </li>
     </ul>
                 </li>
@@ -176,7 +180,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../connection_pooling/">Connection Pooling</a>
+                <li class="toctree-l1"><a class="reference internal" href="../connection_pooling/">Connection pooling</a>
                 </li>
               </ul>
               <ul>
@@ -252,7 +256,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../api_reference/">API Reference</a>
+                <li class="toctree-l1"><a class="reference internal" href="../cloudnative-pg.v1/">API Reference</a>
                 </li>
               </ul>
               <ul>
@@ -331,11 +335,15 @@ Rather, it manages persistent volume claims (PVCs) directly. If you want
 to know more, please read the
 <a href="../controller/">"Custom Pod Controller"</a> document.</p>
 </div>
+<h2 id="backup-and-recovery">Backup and recovery</h2>
+<p>Since CloudNativePG supports volume snapshots for both backup and recovery,
+we recommend that you also consider this aspect when you choose your storage
+solution, especially if you manage very large databases.</p>
 <h2 id="benchmarking-cloudnativepg">Benchmarking CloudNativePG</h2>
-<p>EDB maintains <a href="https://github.com/EnterpriseDB/cnp-bench">cnp-bench</a>,
-an open source set of guidelines and Helm charts for benchmarking CloudNativePG
-in a controlled Kubernetes environment, before deploying the database in production.</p>
-<p>Briefly, <code>cnp-bench</code> is designed to operate at two levels:</p>
+<p>We recommend that you benchmark CloudNativePG in a controlled Kubernetes
+environment, before deploying the database in production, by following
+the <a href="../benchmarking/">guidelines in the "Benchmarking" section</a>.</p>
+<p>Briefly, our advice is to operate at two levels:</p>
 <ul>
 <li>measuring the performance of the underlying storage using <code>fio</code>, with relevant
   metrics for database workloads such as throughput for sequential reads, sequential
@@ -649,11 +657,20 @@ by Kubernetes where a pre-provisioned volume exists. Make sure you check
 for any pods stuck in <code>Pending</code> after you have deployed the cluster, and
 if the condition persists investigate why this is happening.</p>
 </div>
+<h2 id="block-storage-considerations-ceph-longhorn">Block storage considerations (Ceph/ Longhorn)</h2>
+<p>Most block storage solutions in Kubernetes suggest to have multiple 'replicas' of a volume
+to improve resiliency. This works well for workloads that don't have resiliency built into the 
+application. However, CloudNativePG has this resiliency built directly into the Postgres <code>Cluster</code>
+through the number of instances and the persistent volumes that are attached to them. </p>
+<p>In these cases it makes sense to define the  storage class used by the Postgres clusters
+to be defined as 1 replica. By having additional replicas defined in the storage solution like 
+Longhorn and Ceph you might incur in the issue known as write amplification, unnecessarily
+increasing disk I/O and space used.</p>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../cluster_conf/" class="btn btn-neutral float-left" title="Instance Pod Configuration"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../cluster_conf/" class="btn btn-neutral float-left" title="Instance pod configuration"><span class="icon icon-circle-arrow-left"></span> Previous</a>
         <a href="../labels_annotations/" class="btn btn-neutral float-right" title="Labels and annotations">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 

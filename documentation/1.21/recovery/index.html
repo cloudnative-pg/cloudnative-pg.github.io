@@ -160,7 +160,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../cluster_conf/">Instance Pod Configuration</a>
+                <li class="toctree-l1"><a class="reference internal" href="../cluster_conf/">Instance pod configuration</a>
                 </li>
               </ul>
               <ul>
@@ -192,7 +192,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../connection_pooling/">Connection Pooling</a>
+                <li class="toctree-l1"><a class="reference internal" href="../connection_pooling/">Connection pooling</a>
                 </li>
               </ul>
               <ul>
@@ -297,13 +297,13 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li><li>Recovery</li>
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+      <li>Recovery</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
   <hr/>
 </div>
-
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
@@ -352,14 +352,11 @@ If using replica mode, make sure that the PostgreSQL configuration
 compatible, from a physical replication standpoint, with the original one.</p>
 <p>For recovery using volume snapshots:</p>
 <ul>
-<li>take a consistent cold backup of the Postgres cluster from a standby through
-  the <code>kubectl cnpg backup</code> command (see the <a href="../kubectl-plugin/#requesting-a-new-base-backup">plugin document</a>
-  for reference), which creates the necessary <code>VolumeSnapshot</code> objects (two if
-  you have a separate volume for WALs, one if you don't) - recover from the above
-  <em>VolumeSnapshot</em> objects through the <code>volumeSnapshots</code> option in the
-  <code>.spec.bootstrap.recovery</code> stanza, as described in
-  <a href="#recovery-from-volumesnapshot-objects">"Recovery from <code>VolumeSnapshot</code> objects"</a>
-  below</li>
+<li>using a consistent set of <code>VolumeSnapshot</code> objects that all belong to the
+  same backup, and identified by the same <code>cnpg.io/cluster</code> and
+  <code>cnpg.io/backupName</code> labels, then recovering through the <code>volumeSnapshots</code>
+  option in the <code>.spec.bootstrap.recovery</code> stanza, as described in
+  <a href="#recovery-from-volumesnapshot-objects">"Recovery from <code>VolumeSnapshot</code> objects"</a> below</li>
 </ul>
 <h2 id="recovery-from-an-object-store">Recovery from an object store</h2>
 <p>You can recover from a backup created by Barman Cloud and stored on a supported
@@ -419,7 +416,7 @@ difference <strong>when</strong> (not if) you'll need it.</p>
 the volume snapshot, the operator might end up using <code>pg_basebackup</code>
 to synchronize them, resulting in a slower process depending on the size
 of the database. This limitation will be lifted in the future when support
-for online backups will be introduced.</p>
+for online backups and PVC cloning will be introduced.</p>
 </div>
 <p>CloudNativePG can create a new cluster from a <code>VolumeSnapshot</code> of a PVC of an
 existing <code>Cluster</code> that's been taken using the declarative API for
@@ -475,11 +472,6 @@ it would be advisable to:</p>
 </ol>
 </div>
 <h2 id="recovery-from-a-backup-object">Recovery from a <code>Backup</code> object</h2>
-<div class="admonition important">
-<p class="admonition-title">Important</p>
-<p>Recovery from <code>Backup</code> objects works only on object store backups,
-not on volume snapshots.</p>
-</div>
 <p>In case a <code>Backup</code> resource is already available in the namespace in which the
 cluster should be created, you can specify its name through
 <code>.spec.bootstrap.recovery.backup.name</code>, as in the following example:</p>
@@ -489,9 +481,6 @@ metadata:
   name: cluster-example-initdb
 spec:
   instances: 3
-
-  superuserSecret:
-    name: superuser-secret
 
   bootstrap:
     recovery:
@@ -512,17 +501,16 @@ application database</a> section.</p>
 existing <code>Backup</code> resource, the following considerations apply:</p>
 <ul>
 <li>The application database name and the application database user are preserved
-from the backup that is being restored. The operator does not currently attempt
-to back up the underlying secrets, as this is part of the usual maintenance
-activity of the Kubernetes cluster itself.</li>
-<li>In case you don't supply any <code>superuserSecret</code>, a new one is automatically
-generated with a secure and random password. The secret is then used to
-reset the password for the <code>postgres</code> user of the cluster.</li>
+  from the backup that is being restored. The operator does not currently attempt
+  to back up the underlying secrets, as this is part of the usual maintenance
+  activity of the Kubernetes cluster itself.</li>
+<li>To preserve the original <code>postgres</code> user password, you need to properly
+  configure <code>enableSuperuserAccess</code> and supply a <code>superuserSecret</code>.</li>
 <li>By default, the recovery will continue up to the latest
-available WAL on the default target timeline (<code>current</code> for PostgreSQL up to
-11, <code>latest</code> for version 12 and above).
-You can optionally specify a <code>recoveryTarget</code> to perform a point in time
-recovery (see the <a href="#point-in-time-recovery-pitr">"Point in time recovery" section</a>).</li>
+  available WAL on the default target timeline (<code>current</code> for PostgreSQL up to
+  11, <code>latest</code> for version 12 and above).
+  You can optionally specify a <code>recoveryTarget</code> to perform a point in time
+  recovery (see the <a href="#point-in-time-recovery-pitr">"Point in time recovery" section</a>).</li>
 </ul>
 <div class="admonition important">
 <p class="admonition-title">Important</p>

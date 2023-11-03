@@ -134,7 +134,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../cluster_conf/">Instance Pod Configuration</a>
+                <li class="toctree-l1"><a class="reference internal" href="../cluster_conf/">Instance pod configuration</a>
                 </li>
               </ul>
               <ul>
@@ -166,7 +166,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../connection_pooling/">Connection Pooling</a>
+                <li class="toctree-l1"><a class="reference internal" href="../connection_pooling/">Connection pooling</a>
                 </li>
               </ul>
               <ul>
@@ -346,6 +346,8 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#postgresql-cnpg-io-v1-NodeMaintenanceWindow">NodeMaintenanceWindow</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#postgresql-cnpg-io-v1-OnlineConfiguration">OnlineConfiguration</a>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#postgresql-cnpg-io-v1-PasswordState">PasswordState</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#postgresql-cnpg-io-v1-PgBouncerIntegrationStatus">PgBouncerIntegrationStatus</a>
@@ -447,13 +449,13 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li><li>API Reference</li>
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+      <li>API Reference</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
   <hr/>
 </div>
-
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
@@ -939,6 +941,23 @@ standby, if available.</p>
 and <code>volumeSnapshot</code>. Defaults to: <code>barmanObjectStore</code>.</p>
 </td>
 </tr>
+<tr><td><code>online</code><br/>
+<i>bool</i>
+</td>
+<td>
+   <p>Whether the default type of backup with volume snapshots is
+online/hot (<code>true</code>, default) or offline/cold (<code>false</code>)
+Overrides the default setting specified in the cluster field '.spec.backup.volumeSnapshot.online'</p>
+</td>
+</tr>
+<tr><td><code>onlineConfiguration</code><br/>
+<a href="#postgresql-cnpg-io-v1-OnlineConfiguration"><i>OnlineConfiguration</i></a>
+</td>
+<td>
+   <p>Configuration parameters to control the online/hot backup with volume snapshots
+Overrides the default settings specified in the cluster '.backup.volumeSnapshot.onlineConfiguration' stanza</p>
+</td>
+</tr>
 </tbody>
 </table>
 
@@ -1084,6 +1103,20 @@ parameter is omitted</p>
    <p>The backup command output in case of error</p>
 </td>
 </tr>
+<tr><td><code>backupLabelFile</code><br/>
+<i>[]byte</i>
+</td>
+<td>
+   <p>Backup label file content as returned by Postgres in case of online (hot) backups</p>
+</td>
+</tr>
+<tr><td><code>tablespaceMapFile</code><br/>
+<i>[]byte</i>
+</td>
+<td>
+   <p>Tablespace map file content as returned by Postgres in case of online (hot) backups</p>
+</td>
+</tr>
 <tr><td><code>instanceID</code><br/>
 <a href="#postgresql-cnpg-io-v1-InstanceID"><i>InstanceID</i></a>
 </td>
@@ -1103,6 +1136,13 @@ parameter is omitted</p>
 </td>
 <td>
    <p>The backup method being used</p>
+</td>
+</tr>
+<tr><td><code>online</code> <B>[Required]</B><br/>
+<i>bool</i>
+</td>
+<td>
+   <p>Whether the backup was online/hot (<code>true</code>) or offline/cold (<code>false</code>)</p>
 </td>
 </tr>
 </tbody>
@@ -2056,14 +2096,14 @@ Defaults to: <code>RuntimeDefault</code></p>
 </td>
 </tr>
 <tr><td><code>instancesStatus</code><br/>
-<i>map[github.com/cloudnative-pg/cloudnative-pg/pkg/utils.PodStatus][]string</i>
+<i>map[PodStatus][]string</i>
 </td>
 <td>
    <p>InstancesStatus indicates in which status the instances are</p>
 </td>
 </tr>
 <tr><td><code>instancesReportedState</code><br/>
-<a href="#postgresql-cnpg-io-v1-InstanceReportedState"><i>map[github.com/cloudnative-pg/cloudnative-pg/api/v1.PodName]github.com/cloudnative-pg/cloudnative-pg/api/v1.InstanceReportedState</i></a>
+<a href="#postgresql-cnpg-io-v1-InstanceReportedState"><i>map[PodName]InstanceReportedState</i></a>
 </td>
 <td>
    <p>The reported state of the instances during the last reconciliation loop</p>
@@ -2990,7 +3030,7 @@ by the instance manager</p>
 <thead><tr><th width="30%">Field</th><th>Description</th></tr></thead>
 <tbody>
 <tr><td><code>byStatus</code><br/>
-<i>map[github.com/cloudnative-pg/cloudnative-pg/api/v1.RoleStatus][]string</i>
+<i>map[RoleStatus][]string</i>
 </td>
 <td>
    <p>ByStatus gives the list of roles in each state</p>
@@ -3005,7 +3045,7 @@ with an explanation of the cause</p>
 </td>
 </tr>
 <tr><td><code>passwordStatus</code><br/>
-<a href="#postgresql-cnpg-io-v1-PasswordState"><i>map[string]github.com/cloudnative-pg/cloudnative-pg/api/v1.PasswordState</i></a>
+<a href="#postgresql-cnpg-io-v1-PasswordState"><i>map[string]PasswordState</i></a>
 </td>
 <td>
    <p>PasswordStatus gives the last transaction id and password secret version for each managed role</p>
@@ -3125,6 +3165,53 @@ up again) or not (recreate it elsewhere - when <code>instances</code> &gt;1)</p>
 </td>
 <td>
    <p>Is there a node maintenance activity in progress?</p>
+</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="postgresql-cnpg-io-v1-OnlineConfiguration">OnlineConfiguration</h2>
+<p><strong>Appears in:</strong></p>
+<ul>
+<li>
+<p><a href="#postgresql-cnpg-io-v1-BackupSpec">BackupSpec</a></p>
+</li>
+<li>
+<p><a href="#postgresql-cnpg-io-v1-ScheduledBackupSpec">ScheduledBackupSpec</a></p>
+</li>
+<li>
+<p><a href="#postgresql-cnpg-io-v1-VolumeSnapshotConfiguration">VolumeSnapshotConfiguration</a></p>
+</li>
+</ul>
+<p>OnlineConfiguration contains the configuration parameters for the online volume snapshot</p>
+
+<table class="table">
+<thead><tr><th width="30%">Field</th><th>Description</th></tr></thead>
+<tbody>
+<tr><td><code>waitForArchive</code><br/>
+<i>bool</i>
+</td>
+<td>
+   <p>If false, the function will return immediately after the backup is completed,
+without waiting for WAL to be archived.
+This behavior is only useful with backup software that independently monitors WAL archiving.
+Otherwise, WAL required to make the backup consistent might be missing and make the backup useless.
+By default, or when this parameter is true, pg_backup_stop will wait for WAL to be archived when archiving is
+enabled.
+On a standby, this means that it will wait only when archive_mode = always.
+If write activity on the primary is low, it may be useful to run pg_switch_wal on the primary in order to trigger
+an immediate segment switch.</p>
+</td>
+</tr>
+<tr><td><code>immediateCheckpoint</code><br/>
+<i>bool</i>
+</td>
+<td>
+   <p>Control whether the I/O workload for the backup initial checkpoint will
+be limited, according to the <code>checkpoint_completion_target</code> setting on
+the PostgreSQL server. If set to true, an immediate checkpoint will be
+used, meaning PostgreSQL will complete the checkpoint as soon as
+possible. <code>false</code> by default.</p>
 </td>
 </tr>
 </tbody>
@@ -4055,6 +4142,23 @@ standby, if available.</p>
 and <code>volumeSnapshot</code>. Defaults to: <code>barmanObjectStore</code>.</p>
 </td>
 </tr>
+<tr><td><code>online</code><br/>
+<i>bool</i>
+</td>
+<td>
+   <p>Whether the default type of backup with volume snapshots is
+online/hot (<code>true</code>, default) or offline/cold (<code>false</code>)
+Overrides the default setting specified in the cluster field '.spec.backup.volumeSnapshot.online'</p>
+</td>
+</tr>
+<tr><td><code>onlineConfiguration</code><br/>
+<a href="#postgresql-cnpg-io-v1-OnlineConfiguration"><i>OnlineConfiguration</i></a>
+</td>
+<td>
+   <p>Configuration parameters to control the online/hot backup with volume snapshots
+Overrides the default settings specified in the cluster '.backup.volumeSnapshot.onlineConfiguration' stanza</p>
+</td>
+</tr>
 </tbody>
 </table>
 
@@ -4385,7 +4489,7 @@ if all the labels values match.</p>
 <thead><tr><th width="30%">Field</th><th>Description</th></tr></thead>
 <tbody>
 <tr><td><code>instances</code><br/>
-<a href="#postgresql-cnpg-io-v1-PodTopologyLabels"><i>map[github.com/cloudnative-pg/cloudnative-pg/api/v1.PodName]github.com/cloudnative-pg/cloudnative-pg/api/v1.PodTopologyLabels</i></a>
+<a href="#postgresql-cnpg-io-v1-PodTopologyLabels"><i>map[PodName]PodTopologyLabels</i></a>
 </td>
 <td>
    <p>Instances contains the pod topology of the instances</p>
@@ -4457,6 +4561,21 @@ It is the default class for the other types if no specific class is present</p>
 </td>
 <td>
    <p>SnapshotOwnerReference indicates the type of owner reference the snapshot should have</p>
+</td>
+</tr>
+<tr><td><code>online</code><br/>
+<i>bool</i>
+</td>
+<td>
+   <p>Whether the default type of backup with volume snapshots is
+online/hot (<code>true</code>, default) or offline/cold (<code>false</code>)</p>
+</td>
+</tr>
+<tr><td><code>onlineConfiguration</code><br/>
+<a href="#postgresql-cnpg-io-v1-OnlineConfiguration"><i>OnlineConfiguration</i></a>
+</td>
+<td>
+   <p>Configuration parameters to control the online/hot backup with volume snapshots</p>
 </td>
 </tr>
 </tbody>

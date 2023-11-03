@@ -134,7 +134,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../../cluster_conf/">Instance Pod Configuration</a>
+                <li class="toctree-l1"><a class="reference internal" href="../../cluster_conf/">Instance pod configuration</a>
                 </li>
               </ul>
               <ul>
@@ -166,7 +166,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../../connection_pooling/">Connection Pooling</a>
+                <li class="toctree-l1"><a class="reference internal" href="../../connection_pooling/">Connection pooling</a>
                 </li>
               </ul>
               <ul>
@@ -271,13 +271,13 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href="../.." class="icon icon-home" alt="Docs"></a> &raquo;</li><li>Release notes for CloudNativePG 1.21</li>
+    <li><a href="../.." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+      <li>Release notes for CloudNativePG 1.21</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
   <hr/>
 </div>
-
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
@@ -286,6 +286,55 @@
 <p>For a complete list of changes, please refer to the
 <a href="https://github.com/cloudnative-pg/cloudnative-pg/commits/release-1.21">commits</a>
 on the release branch in GitHub.</p>
+<h2 id="version-1211">Version 1.21.1</h2>
+<p><strong>Release date:</strong> Nov 3, 2023</p>
+<p>Enhancements:</p>
+<ul>
+<li>Introduce support for online/hot backups with volume snapshots by using the
+  PostgreSQL API for physical online base backups. Default configuration for
+  hot/cold backups on a given Postgres cluster can be controlled through the
+  <code>online</code> option and the <code>onlineConfiguration</code> stanza in
+  <code>.spec.backup.volumeSnapshot</code>. Unless explicitly set, backups on volume
+  snapshots are now taken online by default (#3102)</li>
+<li>Introduce the possibility to override the above default settings on volume
+  snapshot backup using the <code>ScheduledBackup</code> and <code>Backup</code> resources (#3208, #3226)</li>
+<li>Enhance cold backup on volume snapshots by reducing the time window in which
+  the target instance (standby or primary) is fenced, by lifting it as soon as
+  the volume snapshot have been cut and provisioned (#3210)</li>
+<li>During a recovery from volume snapshots, ensure that the provided volume
+  snapshots are coherent by validating the existing labels and annotations</li>
+<li>The <code>backup</code> command of the <code>cnpg</code> plugin for <code>kubectl</code> improves the volume
+  snapshot backup experience through the <code>--online</code>, <code>--immediate-checkpoint</code>,
+  and <code>--wait-for-archive</code> runtime options</li>
+<li>Enhance the <code>status</code> command of the <code>cnpg</code> plugin for <code>kubectl</code> with progress
+  information on active streaming base backups (#3101)</li>
+<li>Allow the configuration of <code>max_prepared_statements</code> with the pgBouncer
+  <code>Pooler</code> resource (#3174)</li>
+</ul>
+<p>Fixes:</p>
+<ul>
+<li>Suspend WAL archiving during a switchover and resume it when it is completed
+  (#3227)</li>
+<li>Ensure that the instance manager always uses <code>synchronous_commit = local</code>
+  when managing the PostgreSQL cluster (#3143)</li>
+<li>Custom certificates for streaming replication user through
+  <code>.spec.certificates.replicationTLSSecret</code> are now working (#3209)</li>
+<li>Set the <code>cnpg.io/cluster</code> label to the <code>Pooler</code> pods (#3153)</li>
+<li>Reduce the number of labels in <code>VolumeSnapshots</code> resources and render them
+  into more appropriate annotations (#3151)</li>
+</ul>
+<p>Changes:</p>
+<ul>
+<li>Volume snapshot backups, introduced in 1.21.0, are now online/hot by default;
+  in order to restore offline/cold backups set <code>.spec.backup.volumeSnapshot</code> to
+  <code>false</code></li>
+<li>Stop using the <code>postgresql.auto.conf</code> file inside PGDATA to control Postgres
+  replication settings, and replace it with a file named <code>override.conf</code> (#2812)</li>
+</ul>
+<p>Technical enhancements:</p>
+<ul>
+<li>Use extended query protocol for PostgreSQL in the instance manager (#3152)</li>
+</ul>
 <h2 id="version-1210">Version 1.21.0</h2>
 <p><strong>Release date:</strong> Oct 12, 2023</p>
 <div class="admonition important">
@@ -294,7 +343,7 @@ on the release branch in GitHub.</p>
 CloudNativePG with the goal to improve general stability and security through
 predefined values. If you are upgrading from a previous version, please
 carefully read the "Important Changes" section below, as well as the
-<a href="installation_upgrade.md">upgrade documentation</a>.</p>
+<a href="../../installation_upgrade/">upgrade documentation</a>.</p>
 </div>
 <p>Features:</p>
 <ul>

@@ -102,7 +102,11 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../../backup_recovery/">Backup and Recovery</a>
+                <li class="toctree-l1"><a class="reference internal" href="../../backup/">Backup</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../recovery/">Recovery</a>
                 </li>
               </ul>
               <ul>
@@ -118,7 +122,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../../cluster_conf/">Instance Pod Configuration</a>
+                <li class="toctree-l1"><a class="reference internal" href="../../cluster_conf/">Instance pod configuration</a>
                 </li>
               </ul>
               <ul>
@@ -150,7 +154,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../../connection_pooling/">Connection Pooling</a>
+                <li class="toctree-l1"><a class="reference internal" href="../../connection_pooling/">Connection pooling</a>
                 </li>
               </ul>
               <ul>
@@ -226,7 +230,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../../api_reference/">API Reference</a>
+                <li class="toctree-l1"><a class="reference internal" href="../../cloudnative-pg.v1/">API Reference</a>
                 </li>
               </ul>
               <ul>
@@ -236,6 +240,11 @@
               <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../">Release notes</a>
                 </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Appendixes</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../appendixes/object_stores/">Appendix A - Common object stores for backups</a>
+                  </li>
               </ul>
       </div>
     </div>
@@ -265,6 +274,132 @@
 <p>For a complete list of changes, please refer to the
 <a href="https://github.com/cloudnative-pg/cloudnative-pg/commits/release-1.20">commits</a>
 on the release branch in GitHub.</p>
+<h2 id="version-1204">Version 1.20.4</h2>
+<p><strong>Release date:</strong> Nov 3, 2023</p>
+<p>Enhancements:</p>
+<ul>
+<li>Enhance the <code>status</code> command of the <code>cnpg</code> plugin for <code>kubectl</code> with progress
+  information on active streaming base backups (#3101)</li>
+<li>Allow the configuration of <code>max_prepared_statements</code> with the pgBouncer
+  <code>Pooler</code> resource (#3174)</li>
+</ul>
+<p>Fixes:</p>
+<ul>
+<li>Suspend WAL archiving during a switchover and resume it when it is completed
+  (#3227)</li>
+<li>Ensure that the instance manager always uses <code>synchronous_commit = local</code>
+  when managing the PostgreSQL cluster (#3143)</li>
+<li>Custom certificates for streaming replication user through
+  <code>.spec.certificates.replicationTLSSecret</code> are now working (#3209)</li>
+<li>Set the <code>cnpg.io/cluster</code> label to the <code>Pooler</code> pods (#3153)</li>
+</ul>
+<p>Changes:</p>
+<ul>
+<li>Stop using the <code>postgresql.auto.conf</code> file inside PGDATA to control Postgres
+  replication settings, and replace it with a file named <code>override.conf</code> (#2812)</li>
+</ul>
+<p>Technical enhancements:</p>
+<ul>
+<li>Use extended query protocol for PostgreSQL in the instance manager (#3152)</li>
+</ul>
+<h2 id="version-1203">Version 1.20.3</h2>
+<p><strong>Release date:</strong> Oct 11, 2023</p>
+<p>Important Changes:</p>
+<ul>
+<li>Change the default value of <code>stopDelay</code> to 1800 seconds instead of 30 seconds
+  (#2848)</li>
+<li>Introduce a new parameter, called <code>smartShutdownTimeout</code>, to control the
+  window of time reserved for the smart shutdown of Postgres to complete; the
+  general formula to compute the overall timeout to stop Postgres is
+  <code>max(stopDelay -  smartShutdownTimeout, 30)</code> (#2848)</li>
+<li>Change the default value of <code>startDelay</code> to 3600, instead of 30 seconds
+  (#2847)</li>
+<li>Replace the livenessProbe initial delay with a more proper Kubernetes
+  startup probe to deal with the start of a Postgres server (#2847)</li>
+<li>Change the default value of <code>switchoverDelay</code> to 3600 seconds instead of
+  40000000 seconds (#2846)</li>
+<li>Stop supporting the <code>postgresql</code> label - replaced by <code>cnpg.io/cluster</code> in
+  1.18 (#2744)</li>
+</ul>
+<p>Security:</p>
+<ul>
+<li>Add a default <code>seccompProfile</code> to the operator deployment (#2926)</li>
+</ul>
+<p>Enhancements:</p>
+<ul>
+<li>Introduce the <code>cnpg.io/coredumpFilter</code> annotation to control the content of a
+  core dump generated in the unlikely event of a PostgreSQL crash, by default
+  set to exclude shared memory segments from the dump (#2733)</li>
+<li>Allow to configure ephemeral-storage limits for the shared memory and
+  temporary data ephemeral volumes (#2830)</li>
+<li>Validate resource limits and requests through the webhook (#2663)</li>
+<li>Ensure that PostgreSQL's <code>shared_buffers</code> are coherent with the pods'
+  allocated memory resources (#2840)</li>
+<li>Add <code>uri</code> and <code>jdbc-uri</code> fields in the credential secrets to facilitate
+  developers when connecting their applications to the database (#2186)</li>
+<li>Add a new phase <code>Waiting for the instances to become active</code> for finer
+  control of a cluster's state waiting for the replicas to be ready (#2612)</li>
+<li>Improve detection of Pod rollout conditions through the <code>podSpec</code> annotation
+  (#2243)</li>
+<li>Add primary timestamp and uptime to the kubectl plugin’s <code>status</code> command
+  (#2953)</li>
+</ul>
+<p>Fixes:</p>
+<ul>
+<li>Ensure that the primary instance is always recreated first by prioritizing
+  ready PVCs with a primary role (#2544)</li>
+<li>Honor the <code>cnpg.io/skipEmptyWalArchiveCheck</code> annotation during recovery to
+  bypass the check for an empty WAL archive (#2731)</li>
+<li>Prevent a cluster from being stuck when the PostgreSQL server is down but the
+  pod is up on the primary (#2966)</li>
+<li>Avoid treating the designated primary in a replica cluster as a regular HA
+  replica when replication slots are enabled (#2960)</li>
+<li>Reconcile services every time the selectors change or when labels/annotations
+  need to be changed (#2918)</li>
+<li>Defaults to <code>app</code> both the owner and database during recovery bootstrap
+  (#2957)</li>
+<li>Avoid write-read concurrency on cached cluster (#2884)</li>
+<li>Remove empty items, make them unique and sort in the <code>ResourceName</code> sections
+  of the generated roles (#2875)</li>
+<li>Ensure that the <code>ContinuousArchiving</code> condition is properly set to 'failed'
+  in case of errors (#2625)</li>
+<li>Make the <code>Backup</code> resource reconciliation cycle more resilient on
+  interruptions by stopping only if the backup is completed or failed (#2591)</li>
+<li>Reconcile PodMonitor <code>labels</code> and <code>annotations</code> (#2583)</li>
+<li>Fix backup failure due to missing RBAC <code>resourceNames</code> on the <code>Role</code> object
+  (#2956)</li>
+<li>
+<p>Observability:</p>
+<ul>
+<li>Add TCP port label to default <code>pg_stat_replication</code> metric (#2961)</li>
+<li>Fix the <code>pg_wal_stat</code> default metric for Prometheus (#2569)</li>
+<li>Improve the <code>pg_replication</code> default metric for Prometheus (#2744 and
+  #2750)</li>
+<li>Use <code>alertInstanceLabelFilter</code> instead of <code>alertName</code> in the provided
+  Grafana dashboard</li>
+<li>Enforce <code>standard_conforming_strings</code> in metric collection (#2888)</li>
+</ul>
+</li>
+</ul>
+<p>Changes:</p>
+<ul>
+<li>Set the default operand image to PostgreSQL 16.0</li>
+<li>Fencing now uses PostgreSQL’s fast shutdown instead of smart shutdown to halt
+  an instance (#3051)</li>
+<li>Rename webhooks from kb.io to cnpg.io group (#2851)</li>
+<li>Replace the <code>cnpg snapshot</code> command with <code>cnpg backup -m volumeSnapshot</code> for
+  the <code>kubectl</code> plugin</li>
+<li>Let the <code>cnpg hibernate</code> plugin command use the
+  <code>ClusterManifestAnnotationName</code> and <code>PgControldataAnnotationName</code> annotations
+  on PVCs (#2657)</li>
+<li>Add the <code>cnpg.io/instanceRole</code> label while deprecating the existing <code>role</code>
+  label (#2915)</li>
+</ul>
+<p>Technical enhancements:</p>
+<ul>
+<li>Replace <code>k8s-api-docgen</code> with <code>gen-crd-api-reference-docs</code> to automatically
+  build the API reference documentation (#2606)</li>
+</ul>
 <h2 id="version-1202">Version 1.20.2</h2>
 <p><strong>Release date:</strong> July 27, 2023</p>
 <p>Enhancements:</p>

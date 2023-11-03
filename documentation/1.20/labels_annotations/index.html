@@ -102,7 +102,11 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../backup_recovery/">Backup and Recovery</a>
+                <li class="toctree-l1"><a class="reference internal" href="../backup/">Backup</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../recovery/">Recovery</a>
                 </li>
               </ul>
               <ul>
@@ -118,7 +122,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../cluster_conf/">Instance Pod Configuration</a>
+                <li class="toctree-l1"><a class="reference internal" href="../cluster_conf/">Instance pod configuration</a>
                 </li>
               </ul>
               <ul>
@@ -128,6 +132,10 @@
               <ul class="current">
                 <li class="toctree-l1 current"><a class="reference internal current" href="./">Labels and annotations</a>
     <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#predefined-labels">Predefined labels</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#predefined-annotations">Predefined annotations</a>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#pre-requisites">Pre-requisites</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#defining-clusters-metadata">Defining cluster's metadata</a>
@@ -158,7 +166,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../connection_pooling/">Connection Pooling</a>
+                <li class="toctree-l1"><a class="reference internal" href="../connection_pooling/">Connection pooling</a>
                 </li>
               </ul>
               <ul>
@@ -234,7 +242,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../api_reference/">API Reference</a>
+                <li class="toctree-l1"><a class="reference internal" href="../cloudnative-pg.v1/">API Reference</a>
                 </li>
               </ul>
               <ul>
@@ -244,6 +252,11 @@
               <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../release_notes/">Release notes</a>
                 </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Appendixes</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../appendixes/object_stores/">Appendix A - Common object stores for backups</a>
+                  </li>
               </ul>
       </div>
     </div>
@@ -295,6 +308,96 @@ they are automatically inherited by all resources created by it (including pods)
 <p>Label and annotation inheritance is the technique adopted by CloudNativePG
 in lieu of alternative approaches such as pod templates.</p>
 </div>
+<h2 id="predefined-labels">Predefined labels</h2>
+<p>Below is a list of predefined labels that are managed by CloudNativePG.</p>
+<dl>
+<dt><code>cnpg.io/backupName</code></dt>
+<dd>Backup identifier, only available on <code>Backup</code> and <code>VolumeSnapshot</code>
+resources</dd>
+<dt><code>cnpg.io/cluster</code></dt>
+<dd>Name of the cluster</dd>
+<dt><code>cnpg.io/immediateBackup</code></dt>
+<dd>Applied to a <code>Backup</code> resource if the backup is the first one created from
+a <code>ScheduledBackup</code> object having <code>immediate</code> set to <code>true</code>.</dd>
+<dt><code>cnpg.io/instanceName</code></dt>
+<dd>Name of the PostgreSQL instance - this label replaces the old and
+deprecated <code>postgresql</code> label</dd>
+<dt><code>cnpg.io/jobRole</code></dt>
+<dd>Role of the job (i.e. <code>import</code>, <code>initdb</code>, <code>join</code>, ...)</dd>
+<dt><code>cnpg.io/podRole</code></dt>
+<dd>Currently fixed to <code>instance</code> to identify a pod running PostgreSQL</dd>
+<dt><code>cnpg.io/poolerName</code></dt>
+<dd>Name of the PgBouncer pooler</dd>
+<dt><code>cnpg.io/pvcRole</code></dt>
+<dd>Purpose of the PVC, such as <code>PG_DATA</code> or <code>PG_WAL</code></dd>
+<dt><code>cnpg.io/reload</code></dt>
+<dd>Available on <code>ConfigMap</code> and <code>Secret</code> resources. When set to <code>true</code>,
+a change in the resource will be automatically reloaded by the operator.</dd>
+<dt><code>cnpg.io/scheduled-backup</code></dt>
+<dd>When available, name of the <code>ScheduledBackup</code> resource that created a given
+<code>Backup</code> object.</dd>
+<dt><code>role</code></dt>
+<dd>Whether the instance running in a pod is a <code>primary</code> or a <code>replica</code></dd>
+</dl>
+<h2 id="predefined-annotations">Predefined annotations</h2>
+<p>Below is a list of predefined annotations that are managed by CloudNativePG.</p>
+<dl>
+<dt><code>container.apparmor.security.beta.kubernetes.io/*</code></dt>
+<dd>Name of the AppArmor profile to apply to the named container.
+See <a href="../security/#restricting-pod-access-using-apparmor">AppArmor</a>
+documentation for details</dd>
+<dt><code>cnpg.io/coredumpFilter</code></dt>
+<dd>Filter to control the coredump of Postgres processes, expressed with a
+bitmask. By default it is set to <code>0x31</code> in order to exclude shared memory
+segments from the dump. Please refer to <a href="../troubleshooting/#postgresql-core-dumps">"PostgreSQL core dumps"</a>
+for more information.</dd>
+<dt><code>cnpg.io/clusterManifest</code></dt>
+<dd>Manifest of the <code>Cluster</code> owning this resource (such as a PVC) - this label
+replaces the old and deprecated <code>cnpg.io/hibernateClusterManifest</code> label</dd>
+<dt><code>cnpg.io/fencedInstances</code></dt>
+<dd>List, expressed in JSON format, of the instances that need to be fenced.
+The whole cluster is fenced if the list contains the <code>*</code> element.</dd>
+<dt><code>cnpg.io/forceLegacyBackup</code></dt>
+<dd>Applied to a <code>Cluster</code> resource for testing purposes only, in order to
+simulate the behavior of <code>barman-cloud-backup</code> prior to version 3.4 (Jan 2023)
+when the <code>--name</code> option was not available.</dd>
+<dt><code>cnpg.io/hash</code></dt>
+<dd>The hash value of the resource</dd>
+<dt><code>cnpg.io/hibernation</code></dt>
+<dd>Applied to a <code>Cluster</code> resource to control the <a href="../declarative_hibernation/">declarative hibernation feature</a>.
+Allowed values are <code>on</code> and <code>off</code>.</dd>
+<dt><code>cnpg.io/managedSecrets</code></dt>
+<dd>Pull secrets managed by the operator and automatically set in the
+<code>ServiceAccount</code> resources for each Postgres cluster</dd>
+<dt><code>cnpg.io/nodeSerial</code></dt>
+<dd>On a pod resource, identifies the serial number of the instance within the
+Postgres cluster</dd>
+<dt><code>cnpg.io/operatorVersion</code></dt>
+<dd>Version of the operator</dd>
+<dt><code>cnpg.io/pgControldata</code></dt>
+<dd>Output of the <code>pg_controldata</code> command - this annotation replaces the old and
+deprecated <code>cnpg.io/hibernatePgControlData</code> annotation</dd>
+<dt><code>cnpg.io/podEnvHash</code></dt>
+<dd><em>Deprecated</em> as the <code>cnpg.io/podSpec</code> annotation now also contains the pod environment</dd>
+<dt><code>cnpg.io/podSpec</code></dt>
+<dd>Snapshot of the <code>spec</code> of the Pod generated by the operator - this annotation replaces
+the old and deprecated <code>cnpg.io/podEnvHash</code> annotation</dd>
+<dt><code>cnpg.io/poolerSpecHash</code></dt>
+<dd>Hash of the pooler resource</dd>
+<dt><code>cnpg.io/pvcStatus</code></dt>
+<dd>Current status of the pvc, one of <code>initializing</code>, <code>ready</code>, <code>detached</code></dd>
+<dt><code>cnpg.io/reconciliationLoop</code></dt>
+<dd>When set to <code>disabled</code> on a <code>Cluster</code>, the operator prevents the
+reconciliation loop from running</dd>
+<dt><code>cnpg.io/reloadedAt</code></dt>
+<dd>Contains the latest cluster <code>reload</code> time, <code>reload</code> is triggered by user through plugin</dd>
+<dt><code>cnpg.io/skipEmptyWalArchiveCheck</code></dt>
+<dd>When set to <code>true</code> on a <code>Cluster</code> resource, the operator disables the check
+that ensures that the WAL archive is empty before writing data. Use at your own
+risk.</dd>
+<dt><code>kubectl.kubernetes.io/restartedAt</code></dt>
+<dd>When available, the time of last requested restart of a Postgres cluster</dd>
+</dl>
 <h2 id="pre-requisites">Pre-requisites</h2>
 <p>By default, no label or annotation defined in the cluster's metadata is
 inherited by the associated resources.

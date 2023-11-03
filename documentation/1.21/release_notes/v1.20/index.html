@@ -134,7 +134,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../../cluster_conf/">Instance Pod Configuration</a>
+                <li class="toctree-l1"><a class="reference internal" href="../../cluster_conf/">Instance pod configuration</a>
                 </li>
               </ul>
               <ul>
@@ -166,7 +166,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../../connection_pooling/">Connection Pooling</a>
+                <li class="toctree-l1"><a class="reference internal" href="../../connection_pooling/">Connection pooling</a>
                 </li>
               </ul>
               <ul>
@@ -271,13 +271,13 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href="../.." class="icon icon-home" alt="Docs"></a> &raquo;</li><li>Release notes for CloudNativePG 1.20</li>
+    <li><a href="../.." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+      <li>Release notes for CloudNativePG 1.20</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
   <hr/>
 </div>
-
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
@@ -286,6 +286,34 @@
 <p>For a complete list of changes, please refer to the
 <a href="https://github.com/cloudnative-pg/cloudnative-pg/commits/release-1.20">commits</a>
 on the release branch in GitHub.</p>
+<h2 id="version-1204">Version 1.20.4</h2>
+<p><strong>Release date:</strong> Nov 3, 2023</p>
+<p>Enhancements:</p>
+<ul>
+<li>Enhance the <code>status</code> command of the <code>cnpg</code> plugin for <code>kubectl</code> with progress
+  information on active streaming base backups (#3101)</li>
+<li>Allow the configuration of <code>max_prepared_statements</code> with the pgBouncer
+  <code>Pooler</code> resource (#3174)</li>
+</ul>
+<p>Fixes:</p>
+<ul>
+<li>Suspend WAL archiving during a switchover and resume it when it is completed
+  (#3227)</li>
+<li>Ensure that the instance manager always uses <code>synchronous_commit = local</code>
+  when managing the PostgreSQL cluster (#3143)</li>
+<li>Custom certificates for streaming replication user through
+  <code>.spec.certificates.replicationTLSSecret</code> are now working (#3209)</li>
+<li>Set the <code>cnpg.io/cluster</code> label to the <code>Pooler</code> pods (#3153)</li>
+</ul>
+<p>Changes:</p>
+<ul>
+<li>Stop using the <code>postgresql.auto.conf</code> file inside PGDATA to control Postgres
+  replication settings, and replace it with a file named <code>override.conf</code> (#2812)</li>
+</ul>
+<p>Technical enhancements:</p>
+<ul>
+<li>Use extended query protocol for PostgreSQL in the instance manager (#3152)</li>
+</ul>
 <h2 id="version-1203">Version 1.20.3</h2>
 <p><strong>Release date:</strong> Oct 11, 2023</p>
 <p>Important Changes:</p>

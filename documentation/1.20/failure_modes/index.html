@@ -124,7 +124,11 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../backup_recovery/">Backup and Recovery</a>
+                <li class="toctree-l1"><a class="reference internal" href="../backup/">Backup</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../recovery/">Recovery</a>
                 </li>
               </ul>
               <ul>
@@ -140,7 +144,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../cluster_conf/">Instance Pod Configuration</a>
+                <li class="toctree-l1"><a class="reference internal" href="../cluster_conf/">Instance pod configuration</a>
                 </li>
               </ul>
               <ul>
@@ -172,7 +176,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../connection_pooling/">Connection Pooling</a>
+                <li class="toctree-l1"><a class="reference internal" href="../connection_pooling/">Connection pooling</a>
                 </li>
               </ul>
               <ul>
@@ -248,7 +252,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../api_reference/">API Reference</a>
+                <li class="toctree-l1"><a class="reference internal" href="../cloudnative-pg.v1/">API Reference</a>
                 </li>
               </ul>
               <ul>
@@ -258,6 +262,11 @@
               <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../release_notes/">Release notes</a>
                 </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Appendixes</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../appendixes/object_stores/">Appendix A - Common object stores for backups</a>
+                  </li>
               </ul>
       </div>
     </div>
@@ -343,6 +352,28 @@ or starting from a physical backup of the <em>primary</em> otherwise.</p>
 will not be enforced.</p>
 </div>
 <p>Self-healing will happen as soon as the <em>apiserver</em> is notified.</p>
+<p>You can trigger a sudden failure on a given pod of the cluster using the
+following generic command:</p>
+<pre><code class="language-sh">kubectl delete -n [namespace] \
+  pod/[cluster-name]-[serial] --grace-period=1
+</code></pre>
+<p>For example, if you want to simulate a real failure on the primary and trigger
+the failover process, you can run:</p>
+<pre><code class="language-sh">kubectl delete pod [primary pod] --grace-period=1
+</code></pre>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Never use <code>--grace-period=0</code> in your failover simulation tests, as this
+might produce misleading results with your PostgreSQL cluster. A grace
+period of 0 guarantees that the pod is immediately removed from the
+Kubernetes API server, without first ensuring that the PID 1 process of
+the <code>postgres</code> container (the instance manager) is shut down - contrary
+to what would happen in case of a real failure (e.g. unplug the power cord
+cable or network partitioning).
+As a result, the operator doesn't see the pod of the primary anymore, and
+triggers a failover promoting the most aligned standby, without
+the guarantee that the primary had been shut down.</p>
+</div>
 <h3 id="readiness-probe-failure">Readiness probe failure</h3>
 <p>After 3 failures, the pod will be considered <em>not ready</em>. The pod will still
 be part of the <code>Cluster</code>, no new pod will be created.</p>
