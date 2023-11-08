@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+
+
+
+
+<html lang="en">
+
+<head>
+  <title>Creating a custom container image for CloudNativePG | CloudNativePG - PostgreSQL Operator for Kubernetes</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <meta name="description" content="CloudNativePG is the Kubernetes operator that covers the full lifecycle of a highly available PostgreSQL database cluster with a primary/standby architecture, using native streaming replication." />
+  <meta name="keywords" content="" />
+  <link rel="preload" href="/fonts/Supreme-Variable.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet" />
+  <link href="/main.min.css" rel="stylesheet" />
+  <link rel="favicon" href="/favicon/favicon.ico">
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+  <meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://cloudnative-pg.io/images/hero_image.png"/>
+
+<meta name="twitter:title" content="Creating a custom container image for CloudNativePG"/>
+<meta name="twitter:description" content="Creating a container image for CloudNativePG Operator"/>
+
+  <meta property="og:title" content="Creating a custom container image for CloudNativePG" />
+<meta property="og:description" content="Creating a container image for CloudNativePG Operator" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://cloudnative-pg.io/blog/creating-container-images/" /><meta property="og:image" content="https://cloudnative-pg.io/images/hero_image.png"/><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2023-11-08T11:29:52+00:00" />
+<meta property="article:modified_time" content="2023-11-08T11:29:52+00:00" />
+
+
+</head>
+
+<body>
+  <div class="h-screen w-screen">
+    
+<main>
+  <header>
+    <div class="md:flex md:flex-row md:px-16 md:justify-between py-5">
+      <div class="flex justify-between px-4 md:hidden">
+        <div>
+          
+          <a href="/"><img src="/logo/large_logo.svg" class="md:h-14 h-9" alt="Cloud Native Postgres Logo"></a>
+        </div>
+        <div class="h-6 my-auto" id="toggle-button">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+            stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </div>
+      </div>
+      <div class="md:block hidden">
+        
+        <a href="/"><img src="/logo/large_logo.svg" class="h-14" alt="Cloud Native Postgres Logo"></a>
+      </div>
+
+      <div class="hidden md:block">
+        <ul class="md:flex gap-14 text-2xl medium-gray my-5">
+          <li><a href="/docs">Documentation</a></li>
+          <li><a href="/blog">Blog</a></li>
+          <li><a href="/support">Support</a></li>
+          <li><a href="/end_users">End Users</a></li>
+        </ul>
+      </div>
+      
+      <div class="py-4 bg-gray-1 mt-5 hidden" id="navi-list">
+        <ul class="md:flex gap-14 text-2xl md:medium-gray charcoal">
+          <li class="text-center py-4"><a href="/docs">Documentation</a></li>
+          <li class="text-center py-4"><a href="/blog">Blog</a></li>
+          <li class="text-center py-4"><a href="/support">Support</a></li>
+          <li class="text-center py-4"><a href="/end_users">End Users</a></li>
+        </ul>
+        <div class="flex gap-3 py-4 justify-center bg-gray-1 fill-cnp-blue">
+          <a href="https://github.com/cloudnative-pg/cloudnative-pg">
+            <img src="/icons/Git.svg" alt="Github">
+          </a>
+          <a href="https://cloudnativepg.slack.com/">
+            <img src="/icons/Slack.svg" alt="Slack">
+          </a>
+          <a href="https://twitter.com/CloudNativePg">
+            <img src="/icons/Twitter.svg" alt="Twitter">
+          </a>
+          <a href="https://www.youtube.com/channel/UCTGH88W1BiuRRPTzJUDPJyA">
+            <img src="/icons/YouTube.svg" alt="YouTube">
+          </a>
+        </div>
+      </div>
+      
+
+      <div class="flex gap-5 my-4 fill-cnp-blue hidden md:flex">
+        <a class="github-button" href="https://github.com/cloudnative-pg/cloudnative-pg"
+          data-color-scheme="no-preference: light; light: light; dark: dark;" data-size="large" data-show-count="true"
+          aria-label="Star cloudnative-pg/cloudnative-pg on GitHub">Star</a>
+        <a href="https://join.slack.com/t/cloudnativepg/shared_invite/zt-237bhehx3-htDW2kz2hKJxEhn1W4VTnw">
+          <img src="/icons/Slack.svg" alt="Slack" title="Join our Slack channel now!">
+        </a>
+        <a href="https://twitter.com/CloudNativePg">
+          <img src="/icons/Twitter.svg" alt="Twitter">
+        </a>
+        <a href="https://www.youtube.com/channel/UCTGH88W1BiuRRPTzJUDPJyA">
+          <img src="/icons/YouTube.svg" alt="YouTube">
+        </a>
+      </div>
+    </div>
+  </header>
+</main>
+<script>
+  const toggleButton = document.getElementById('toggle-button')
+  const naviList = document.getElementById('navi-list')
+
+  toggleButton.addEventListener('click', () => {
+    naviList.classList.toggle('hidden');
+  })
+</script>
+
+    
+<h1 class="h1 text-center mx-auto md:w-3/5">Creating a custom container image for CloudNativePG</h1>
+<div class="md:w-3/5 mx-auto">
+    <div class="px-4">
+        
+        <div class="flex gap-3 my-10 mx-auto flex justify-center">
+            
+<div class="my-auto">
+    <img src="/authors/jgonzalez//jgonzalez-gh.jpeg" class="w-10 h-10 rounded-full"
+        alt="Jonathan Gonzalez V.">
+</div>
+<div>
+    <div>
+        <h1 class="text-lg charcoal font-bold">
+            <a href="/authors/jgonzalez">Jonathan Gonzalez V.</a>
+        </h1>
+    </div>
+    <div class="flex gap-2 text-sm charcoal opacity-75">
+    <h6 class="flex gap-2 text-sm charcoal">
+        November 8, 2023
+        •
+        5 minutes
+    </h6>
+</div>
+</div>
+        </div>
+        
+
+        
+        <div>
+            <img src="elephant-drawing-small.jpg" alt="blog image" class="mx-auto">
+        </div>
+        
+
+        
+        <div class="mx-auto my-10">
+            <h2 id="summary">Summary</h2>
+<p>As adoption of CloudNativePG grows, we see more people asking how to create an
+image, or if we will ever provide an image with a particular extension.
+Well, we&rsquo;re a small team and cannot maintain so many images, but we can help you
+create your own custom images
+to fit your needs, based on the primary PostgreSQL container images for CloudNativePG.</p>
+<p>Let&rsquo;s start! This will be an easy and quick blog post. We will use the popular extension
+<a href="https://github.com/pgvector">pgvector</a> to illustrate this example. I hope
+this post will help people  get started.</p>
+<p>Let&rsquo;s keep in mind:</p>
+<ul>
+<li>We will start from the <a href="https://github.com/cloudnative-pg/postgres-containers">postgres-containers</a> images</li>
+<li>They are Debian based images, so you will need to use <a href="https://wiki.debian.org/Apt"><code>apt</code></a> (you can follow the examples)</li>
+<li>We will use the <a href="https://github.com/pgvector">pgvector</a> installation instructions</li>
+<li>The target PostgreSQL version for this example will be 15</li>
+</ul>
+<h2 id="how-to-install-pgvector">How to install pgvector?</h2>
+<p>First step: in the <a href="https://github.com/pgvector/pgvector">pgvector</a> page
+we can find an <code>APT</code> section with this information:</p>
+<blockquote>
+<p>Debian and Ubuntu packages are available from the PostgreSQL APT Repository.</p>
+</blockquote>
+<p>That&rsquo;s a great starting point, as we already have the PostgreSQL APT Repository
+in our <code>postgres-containers</code> images; we can go ahead and use <code>apt</code>. Let&rsquo;s start:</p>
+<h2 id="creating-the-dockerfile">Creating the Dockerfile</h2>
+<p>We just need to run the command <code>apt install postgresql-15-pgvector</code>; we can
+add that to a Dockerfile:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Dockerfile" data-lang="Dockerfile"><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span><span style="color:#e6db74"> ghcr.io/cloudnative-pg/postgresql:15.4-3</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#75715e"># To install any package we need to be root</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">USER</span><span style="color:#e6db74"> root</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#75715e"># We update the package list, install our package</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#75715e"># and clean up any cache from the package manager</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">RUN</span> set -xe; <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>	apt-get update; <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>	apt-get install -y --no-install-recommends <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>		<span style="color:#e6db74">&#34;postgresql-15-pgvector&#34;</span> ; <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>	rm -fr /tmp/* ; <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>	rm -rf /var/lib/apt/lists/*;<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#75715e"># Change to the uid of postgres (26)</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">USER</span><span style="color:#e6db74"> 26</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div><p>So we update, and then install the target package. It&rsquo;s really important to keep the last two lines
+where we set the user to 26, which is the <code>postgres</code> user.</p>
+<p>Then we can build the image:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>docker build -t pgvector:15 .
+</span></span></code></pre></div><p>In the build process, it&rsquo;s important to keep the <code>15</code> tag, since the tag is used by the CloudNativePG operator to
+detect database versions. Never use <code>latest</code> as tag, since the operator will reject your image.</p>
+<p>Once the image is built, you can load it into your Kubernetes cluster, and create a
+PostgreSQL cluster with that image:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">postgresql.cnpg.io/v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Cluster</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">cluster-example</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">imageName</span>: <span style="color:#ae81ff">pgvector:15</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">instances</span>: <span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">storage</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">size</span>: <span style="color:#ae81ff">1Gi</span>
+</span></span></code></pre></div><p>Now that you have an image with the extension inside, you can create the extension in
+the <code>app</code> database:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>kubectl exec -ti cluster-example-1 -- psql app
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>CREATE EXTENSION vector;
+</span></span></code></pre></div><p>You could add the command <code>CREATE EXTENSION vector;</code> to the
+<code>postInitTemplateSQL</code> section instead,
+and that would automatically work with every database, which might be preferable
+depending on your use case.</p>
+<h2 id="extensions-from-source-code">Extensions from source code</h2>
+<p>What if there&rsquo;s an extension that doesn&rsquo;t have a package in any distribution, and you need to compile it?
+Well, the answer to this may look easy: you must compile it in the image. But when we do this we will leave
+some dependencies that we don&rsquo;t want inside our images, things like <code>gcc</code>, <code>make</code>, etc.
+Tools used
+to compile the image, but that someone with access to the image could use to compile malicious code
+and run it inside the container. This is something we should prevent.</p>
+<p>The solution to this problem is to use a multi-stage build process. This means that in a layer
+we compile the extensions, and in the next one we just copy the files from the original layer that we actually
+need, like the <code>.so</code> files.</p>
+<p>This sounds more complicated than it really is; let&rsquo;s try with an example.
+We&rsquo;re going to compile <a href="https://github.com/cybertec-postgresql/pg_crash"><code>pg_crash</code></a>.
+The first layer will be the one where we compile.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Dockerfile" data-lang="Dockerfile"><span style="display:flex;"><span><span style="color:#75715e"># First step is to build the the extension</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">FROM</span><span style="color:#e6db74"> debian:bullseye-slim as builder</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">RUN</span> set -xe ;<span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    apt update <span style="color:#f92672">&amp;&amp;</span> apt install wget lsb-release gnupg2 -y ;<span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    sh -c <span style="color:#e6db74">&#39;echo &#34;deb https://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main&#34; &gt; /etc/apt/sources.list.d/pgdg.list&#39;</span> ;<span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add - ;<span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    apt-get update ;<span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    apt-get install -y postgresql-server-dev-15 build-essential git; <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    cd /tmp; <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    git clone https://github.com/cybertec-postgresql/pg_crash; <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    cd /tmp/pg_crash; <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    PG_CONFIG<span style="color:#f92672">=</span>/usr/lib/postgresql/15/bin/pg_config make; <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    PG_CONFIG<span style="color:#f92672">=</span>/usr/lib/postgresql/15/bin/pg_config make install<span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div><p>This will install all the necessary packages to download from source and compile the <code>pg_crash</code> extension. The key
+section here is the <code>as builder</code> part in the <code>FROM</code> line; this helps us to identify this layer with a name for later use.
+Now in the next section of the file we continue with the standard process:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Dockerfile" data-lang="Dockerfile"><span style="display:flex;"><span><span style="color:#75715e"># Second step, we build the final image</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">FROM</span><span style="color:#e6db74"> ghcr.io/cloudnative-pg/postgresql:15.4-3</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#75715e"># To install any package we need to be root user</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">USER</span><span style="color:#e6db74"> root</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#75715e"># But this time we copy the .so file from the build process</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">COPY</span> --from<span style="color:#f92672">=</span>builder /tmp/pg_crash/pg_crash.so /usr/lib/postgresql/15/lib/<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#75715e"># Change the uid of postgres to 26</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">RUN</span> usermod -u <span style="color:#ae81ff">26</span> postgres<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">USER</span><span style="color:#e6db74"> 26</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div><p>As you can see, we used the identifier <code>builder</code> to specify the path where we are going to copy the content from. We know that we can copy the <code>.so</code> file to the postgresql <code>lib</code> folder.</p>
+<p>Combined, our Dockerfile will look like this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Dockerfile" data-lang="Dockerfile"><span style="display:flex;"><span><span style="color:#75715e"># First step is to build the the extension</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">FROM</span><span style="color:#e6db74"> debian:bullseye-slim as builder</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">RUN</span> set -xe ;<span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    apt update <span style="color:#f92672">&amp;&amp;</span> apt install wget lsb-release gnupg2 -y ;<span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    sh -c <span style="color:#e6db74">&#39;echo &#34;deb https://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main&#34; &gt; /etc/apt/sources.list.d/pgdg.list&#39;</span> ;<span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add - ;<span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    apt-get update ;<span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>	apt-get install -y postgresql-server-dev-15 build-essential git; <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>	cd /tmp; <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>	git clone https://github.com/cybertec-postgresql/pg_crash; <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>	cd /tmp/pg_crash; <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>	PG_CONFIG<span style="color:#f92672">=</span>/usr/lib/postgresql/15/bin/pg_config make; <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>	PG_CONFIG<span style="color:#f92672">=</span>/usr/lib/postgresql/15/bin/pg_config make install<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#75715e"># Second step, we build the final image</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">FROM</span><span style="color:#e6db74"> ghcr.io/cloudnative-pg/postgresql:15.4-3</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#75715e"># To install any package we need to be root user</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">USER</span><span style="color:#e6db74"> root</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#75715e"># But this time we copy the .so file from the build process</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">COPY</span> --from<span style="color:#f92672">=</span>builder /tmp/pg_crash/pg_crash.so /usr/lib/postgresql/15/lib/<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#75715e"># Change the uid of postgres to 26</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">RUN</span> usermod -u <span style="color:#ae81ff">26</span> postgres<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">USER</span><span style="color:#e6db74"> 26</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div><p>And that&rsquo;s it! Now you know a way to install extensions from packages and from source code! Let&rsquo;s start creating
+PostgreSQL clusters with many different extensions! Keep in mind that images may increase in size when you add more
+extensions, and that may affect the time to download an image.</p>
+<p>Happy Hacking!</p>
+
+        </div>
+        
+    </div>
+
+    <div class="px-4">
+        <h3 class="text-xl font-bold mb-6">Categories in this blog post</h3>
+        <div class="text-xs space-y-1.5 mb-14">
+            <ul class="text-sm">
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/blog"
+                        class="mr-2">blog</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/information"
+                        class="mr-2">information</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/programming"
+                        class="mr-2">programming</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/applications"
+                        class="mr-2">applications</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/containers"
+                        class="mr-2">containers</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/postgresql"
+                        class="mr-2">postgresql</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/postgres"
+                        class="mr-2">postgres</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/images"
+                        class="mr-2">images</a></li>
+                
+            </ul>
+
+        </div>
+    </div>
+
+    
+    <div class="space-y-10 md:pt-10">
+            
+
+    
+    <div class="px-4">
+        <h3 class="text-xl font-bold mb-6">All categories</h3>
+        <div class="text-xs space-y-1.5 mb-14">
+            <ul class="text-sm">
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/applications/"
+                        class="mr-2">applications</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/blog/"
+                        class="mr-2">blog</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/ci/cd/"
+                        class="mr-2">ci/cd</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/cloudnativepg/"
+                        class="mr-2">cloudnativepg</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/cncf/"
+                        class="mr-2">cncf</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/containers/"
+                        class="mr-2">containers</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/continuous-delivery/"
+                        class="mr-2">continuous-delivery</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/continuous-integration/"
+                        class="mr-2">continuous-integration</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/devops/"
+                        class="mr-2">devops</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/failover/"
+                        class="mr-2">failover</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/github-action/"
+                        class="mr-2">github-action</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/graphql/"
+                        class="mr-2">graphql</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/hasura/"
+                        class="mr-2">hasura</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/images/"
+                        class="mr-2">images</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/information/"
+                        class="mr-2">information</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/k8s/"
+                        class="mr-2">k8s</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/kubernetes/"
+                        class="mr-2">kubernetes</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/operator/"
+                        class="mr-2">operator</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/pg16beta1/"
+                        class="mr-2">pg16beta1</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/postgres/"
+                        class="mr-2">postgres</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/postgresql/"
+                        class="mr-2">postgresql</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/programming/"
+                        class="mr-2">programming</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/release/"
+                        class="mr-2">release</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/testing/"
+                        class="mr-2">testing</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/tutorial/"
+                        class="mr-2">tutorial</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/volumesnapshots/"
+                        class="mr-2">volumesnapshots</a></li>
+                
+            </ul>
+
+        </div>
+    </div>
+    
+
+    
+    <div>
+        <h3 class="text-xl font-bold pb-6 px-4">Latest Posts</h3>
+        <div class="space-y-10 px-4">
+            
+            
+            <div class="p-8 bg-white drop-shadow-md md:w-2/6 rounded-md border-2 border-slate-50 align-super inline-grid max-w-xs"
+                style="min-width: 260px;">
+                
+                <div class="flex gap-3 mb-2.5">
+                    
+<div class="my-auto">
+    <img src="/authors/jgonzalez//jgonzalez-gh.jpeg" class="w-10 h-10 rounded-full"
+        alt="Jonathan Gonzalez V.">
+</div>
+<div class="my-auto">
+    <div>
+        <h1 class="text-lg charcoal font-bold">
+            Jonathan Gonzalez V.
+        </h1>
+    </div>
+</div>
+                </div>
+                
+                <a href="/blog/creating-container-images/">
+                    
+                    <div>
+                        <img src="/blog/creating-container-images//elephant-drawing-small.jpg" class="object-fill"
+                            alt="Blog image">
+                    </div>
+                    <div class="charcoal">
+                        <h2 class="text-lg my-2.5 font-bold">Creating a custom container image for CloudNativePG</h2>
+                    </div>
+                    
+
+                    <div class="flex gap-2 text-sm charcoal opacity-75">
+    <h6 class="flex gap-2 text-sm charcoal">
+        November 8, 2023
+        •
+        5 minutes
+    </h6>
+</div>
+                </a>
+            </div>
+            
+            <div class="p-8 bg-white drop-shadow-md md:w-2/6 rounded-md border-2 border-slate-50 align-super inline-grid max-w-xs"
+                style="min-width: 260px;">
+                
+                <div class="flex gap-3 mb-2.5">
+                    
+<div class="my-auto">
+    <img src="/authors/gbartolini//gb.png" class="w-10 h-10 rounded-full"
+        alt="Gabriele Bartolini">
+</div>
+<div class="my-auto">
+    <div>
+        <h1 class="text-lg charcoal font-bold">
+            Gabriele Bartolini
+        </h1>
+    </div>
+</div>
+                </div>
+                
+                <a href="/blog/cloudnative-pg-1-21.1-released/">
+                    
+                    <div>
+                        <img src="/blog/cloudnative-pg-1-21.1-released//wildlife-zoo-mammal-fauna-elephant-sri-lanka-988769-pxhere.com.jpg" class="object-fill"
+                            alt="Blog image">
+                    </div>
+                    <div class="charcoal">
+                        <h2 class="text-lg my-2.5 font-bold">CloudNativePG 1.21.1, 1.20.4 and 1.19.6 Released!</h2>
+                    </div>
+                    
+
+                    <div class="flex gap-2 text-sm charcoal opacity-75">
+    <h6 class="flex gap-2 text-sm charcoal">
+        November 3, 2023
+        •
+        1 minute
+    </h6>
+</div>
+                </a>
+            </div>
+            
+            <div class="p-8 bg-white drop-shadow-md md:w-2/6 rounded-md border-2 border-slate-50 align-super inline-grid max-w-xs"
+                style="min-width: 260px;">
+                
+                <div class="flex gap-3 mb-2.5">
+                    
+<div class="my-auto">
+    <img src="/authors/gbartolini//gb.png" class="w-10 h-10 rounded-full"
+        alt="Gabriele Bartolini">
+</div>
+<div class="my-auto">
+    <div>
+        <h1 class="text-lg charcoal font-bold">
+            Gabriele Bartolini
+        </h1>
+    </div>
+</div>
+                </div>
+                
+                <a href="/blog/cloudnative-pg-1-21.0-released/">
+                    
+                    <div>
+                        <img src="/blog/cloudnative-pg-1-21.0-released//wildlife-zoo-mammal-fauna-elephant-sri-lanka-988769-pxhere.com.jpg" class="object-fill"
+                            alt="Blog image">
+                    </div>
+                    <div class="charcoal">
+                        <h2 class="text-lg my-2.5 font-bold">CloudNativePG 1.21.0, 1.20.3 and 1.19.5 Released!</h2>
+                    </div>
+                    
+
+                    <div class="flex gap-2 text-sm charcoal opacity-75">
+    <h6 class="flex gap-2 text-sm charcoal">
+        October 12, 2023
+        •
+        2 minutes
+    </h6>
+</div>
+                </a>
+            </div>
+            
+            <div class="p-8 bg-white drop-shadow-md md:w-2/6 rounded-md border-2 border-slate-50 align-super inline-grid max-w-xs"
+                style="min-width: 260px;">
+                
+                <div class="flex gap-3 mb-2.5">
+                    
+<div class="my-auto">
+    <img src="/authors/jsilvela//jsilvela-gh.jpeg" class="w-10 h-10 rounded-full"
+        alt="Jaime Silvela">
+</div>
+<div class="my-auto">
+    <div>
+        <h1 class="text-lg charcoal font-bold">
+            Jaime Silvela
+        </h1>
+    </div>
+</div>
+                </div>
+                
+                <a href="/blog/developing-webapps-with-cloudnative-pg/">
+                    
+                    <div>
+                        <img src="/blog/developing-webapps-with-cloudnative-pg//elephants-spider-web.gif" class="object-fill"
+                            alt="Blog image">
+                    </div>
+                    <div class="charcoal">
+                        <h2 class="text-lg my-2.5 font-bold">Developing Webapps With CloudNativePG, or, Unlocking DevOps</h2>
+                    </div>
+                    
+
+                    <div class="flex gap-2 text-sm charcoal opacity-75">
+    <h6 class="flex gap-2 text-sm charcoal">
+        June 17, 2023
+        •
+        10 minutes
+    </h6>
+</div>
+                </a>
+            </div>
+            
+            <div class="p-8 bg-white drop-shadow-md md:w-2/6 rounded-md border-2 border-slate-50 align-super inline-grid max-w-xs"
+                style="min-width: 260px;">
+                
+                <div class="flex gap-3 mb-2.5">
+                    
+<div class="my-auto">
+    <img src="/authors/gbartolini//gb.png" class="w-10 h-10 rounded-full"
+        alt="Gabriele Bartolini">
+</div>
+<div class="my-auto">
+    <div>
+        <h1 class="text-lg charcoal font-bold">
+            Gabriele Bartolini
+        </h1>
+    </div>
+</div>
+                </div>
+                
+                <a href="/blog/cloudnative-pg-1-20-1-released/">
+                    
+                    <div>
+                        <img src="/blog/cloudnative-pg-1-20-1-released//wildlife-zoo-mammal-fauna-elephant-sri-lanka-988769-pxhere.com.jpg" class="object-fill"
+                            alt="Blog image">
+                    </div>
+                    <div class="charcoal">
+                        <h2 class="text-lg my-2.5 font-bold">CloudNativePG 1.20.1, 1.19.3 and 1.18.5 Released!</h2>
+                    </div>
+                    
+
+                    <div class="flex gap-2 text-sm charcoal opacity-75">
+    <h6 class="flex gap-2 text-sm charcoal">
+        June 12, 2023
+        •
+        1 minute
+    </h6>
+</div>
+                </a>
+            </div>
+            
+            <div class="p-8 bg-white drop-shadow-md md:w-2/6 rounded-md border-2 border-slate-50 align-super inline-grid max-w-xs"
+                style="min-width: 260px;">
+                
+                <div class="flex gap-3 mb-2.5">
+                    
+<div class="my-auto">
+    <img src="/authors/gbartolini//gb.png" class="w-10 h-10 rounded-full"
+        alt="Gabriele Bartolini">
+</div>
+<div class="my-auto">
+    <div>
+        <h1 class="text-lg charcoal font-bold">
+            Gabriele Bartolini
+        </h1>
+    </div>
+</div>
+                </div>
+                
+                <a href="/blog/postgresql-16-beta1/">
+                    
+                    <div>
+                        <img src="/blog/postgresql-16-beta1//elephant-ship.png" class="object-fill"
+                            alt="Blog image">
+                    </div>
+                    <div class="charcoal">
+                        <h2 class="text-lg my-2.5 font-bold">How to test PostgreSQL 16 beta in your Kubernetes cluster</h2>
+                    </div>
+                    
+
+                    <div class="flex gap-2 text-sm charcoal opacity-75">
+    <h6 class="flex gap-2 text-sm charcoal">
+        June 7, 2023
+        •
+        2 minutes
+    </h6>
+</div>
+                </a>
+            </div>
+            
+            
+        </div>
+    </div>
+    
+
+    </div>
+    
+</div>
+
+
+    <footer class="text-center pb-24">
+    <p class="text-sm charcoal md:w-1/2 mx-auto md:pt-10 px-6 pt-12">
+
+      &copy; The CloudNativePG Contributors.<br />
+
+      <a href="https://www.linuxfoundation.org/trademark-usage/"
+        class="red-1">The Linux Foundation has registered trademarks and uses
+        trademarks</a>.<br />
+
+      <a href="https://www.postgresql.org/about/policies/trademarks"
+        class="red-1">Postgres, PostgreSQL and the Slonik Logo are trademarks or
+        registered trademarks of the PostgreSQL Community Association of Canada, and
+        used with their permission</a>.
+
+    </p>
+</footer>
+
+  </div>
+  
+  <script src="https://cdn.usefathom.com/script.js" data-site="GSMQCVAJ" defer></script>
+  
+</body>
+
+</html>
