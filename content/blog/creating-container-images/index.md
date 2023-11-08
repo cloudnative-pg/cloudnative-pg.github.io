@@ -1,10 +1,10 @@
 ---
 title: "Creating a custom container image for CloudNativePG"
-date: 2023-08-14T11:29:52
+date: 2023-11-08T11:29:52
 draft: false
 image:
-    url: 
-    attribution: 
+    url: elephant-drawing-small.jpg
+    attribution: https://openverse.org/image/919258ef-8e18-4638-90e1-05f52de32dbf?q=elephant%20container
 author: jgonzalez
 tags:
  - blog
