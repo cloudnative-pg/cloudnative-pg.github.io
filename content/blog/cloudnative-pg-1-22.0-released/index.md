@@ -27,7 +27,7 @@ users to boost the vertical scalability of their databases by decoupling the
 physical and logical data modeling, achieving optimal performance through
 parallel on-disk read/write operations. With CloudNativePG, users can define
 additional tablespace volumes, and also ensure they can be used for temporary
-operations (by seamlessly managing the `temp_tablespaces` GUC).
+operations (CloudNativePG seamlessly manages the `temp_tablespaces` GUC).
 
 This marks a pivotal step towards adopting Very Large Databases, building upon
 the foundation laid by Kubernetes volume snapshots introduced in version 1.21.
