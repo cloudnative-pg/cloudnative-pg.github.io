@@ -154,6 +154,8 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#changing-configuration">Changing configuration</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#enabling-alter-system">Enabling ALTER SYSTEM</a>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#dynamic-shared-memory-settings">Dynamic Shared Memory settings</a>
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#posix-shared-memory">POSIX shared memory</a>
@@ -256,7 +258,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../operator_capability_levels/">Operator Capability Levels</a>
+                <li class="toctree-l1"><a class="reference internal" href="../operator_capability_levels/">Operator capability levels</a>
                 </li>
               </ul>
               <ul>
@@ -324,8 +326,8 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="postgresql-configuration">PostgreSQL Configuration</h1>
-<p>Users that are familiar with PostgreSQL are aware of the existence of the following two files
-to configure an instance:</p>
+<p>Users that are familiar with PostgreSQL are aware of the existence of the
+following two files to configure an instance:</p>
 <ul>
 <li><code>postgresql.conf</code>: main run-time configuration file of PostgreSQL</li>
 <li><code>pg_hba.conf</code>: clients authentication file</li>
@@ -342,7 +344,8 @@ by defining custom <code>postgresql.conf</code> and <code>pg_hba.conf</code> set
 the PostgreSQL instances in an imperative way. Changing some of the options
 that are normally controlled by the operator might indeed lead to an
 unpredictable/unrecoverable state of the cluster.
-Moreover, <code>ALTER SYSTEM</code> changes are not replicated across the cluster.</p>
+Moreover, <code>ALTER SYSTEM</code> changes are not replicated across the cluster.
+See <a href="#enabling-alter-system">"Enabling ALTER SYSTEM"</a> below for details.</p>
 </div>
 <p>A reference for custom settings usage is included in the samples, see
 <a href="../samples/cluster-example-custom.yaml"><code>cluster-example-custom.yaml</code></a>.</p>
@@ -613,7 +616,7 @@ host all all all scram-sha-256 # (or md5 for PostgreSQL version &lt;= 13)
 </code></pre>
 <p>Refer to the PostgreSQL documentation for <a href="https://www.postgresql.org/docs/current/auth-pg-hba-conf.html">more information on <code>pg_hba.conf</code></a>.</p>
 <p>Inside the cluster manifest, <code>pg_hba</code> lines are added as list items
-in <code>spec.postgresql.pg_hba</code>, as in the following excerpt:</p>
+in <code>.spec.postgresql.pg_hba</code>, as in the following excerpt:</p>
 <pre><code class="language-yaml">  postgresql:
     pg_hba:
       - hostssl app app 10.244.0.0/16 md5
@@ -649,6 +652,28 @@ the <code>Cluster</code> resource.</p>
 configuration to apply the changes.
 If the change involves a parameter requiring a restart, the operator will
 perform a rolling upgrade.</p>
+<h2 id="enabling-alter-system">Enabling <code>ALTER SYSTEM</code></h2>
+<p>CloudNativePG strongly advocates employing the Cluster manifest as the
+exclusive method for altering the configuration of a PostgreSQL cluster. This
+approach guarantees coherence across the entire high-availability cluster and
+aligns with best practices for Infrastructure-as-Code.</p>
+<p>In CloudNativePG version 1.22 and onwards, the default configuration disables
+the use of <code>ALTER SYSTEM</code> on new Postgres clusters. This decision is rooted in
+the recognition of potential risks associated with this command. To enable the
+use of <code>ALTER SYSTEM</code>, you can explicitly set <code>.spec.postgresql.enableAlterSystem</code>
+to <code>true</code>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Proceed with caution when utilizing <code>ALTER SYSTEM</code>. This command operates
+directly on the connected instance and does not undergo replication.
+CloudNativePG assumes responsibility for certain fixed parameters and complete
+control over others, emphasizing the need for careful consideration.</p>
+</div>
+<p>When <code>.spec.postgresql.enableAlterSystem</code> is configured as <code>false</code>, any attempt
+to execute <code>ALTER SYSTEM</code> will result in an error. The error message might
+resemble the following:</p>
+<pre><code class="language-output">ERROR:  could not open file &quot;postgresql.auto.conf&quot;: Permission denied
+</code></pre>
 <h2 id="dynamic-shared-memory-settings">Dynamic Shared Memory settings</h2>
 <p>PostgreSQL supports a few implementations for dynamic shared memory
 management through the
@@ -673,7 +698,7 @@ Postgres container with:</p>
 <pre><code class="language-console">shm on /dev/shm type tmpfs (rw,nosuid,nodev,noexec,relatime,size=******)
 </code></pre>
 <p>If you would like to set a maximum size for the <code>shm</code> volume, you can do so by
-setting the <code>spec.ephemeralVolumesSizeLimit.shm</code> field in the <code>Cluster</code> resource.
+setting the <code>.spec.ephemeralVolumesSizeLimit.shm</code> field in the <code>Cluster</code> resource.
 For example:</p>
 <pre><code class="language-yaml">spec:
   ephemeralVolumesSizeLimit:
@@ -752,13 +777,10 @@ operator. The operator prevents the user from setting them using a webhook.</p>
 <li><code>ssl</code></li>
 <li><code>ssl_ca_file</code></li>
 <li><code>ssl_cert_file</code></li>
-<li><code>ssl_ciphers</code></li>
 <li><code>ssl_crl_file</code></li>
 <li><code>ssl_dh_params_file</code></li>
 <li><code>ssl_ecdh_curve</code></li>
 <li><code>ssl_key_file</code></li>
-<li><code>ssl_max_protocol_version</code></li>
-<li><code>ssl_min_protocol_version</code></li>
 <li><code>ssl_passphrase_command</code></li>
 <li><code>ssl_passphrase_command_supports_reload</code></li>
 <li><code>ssl_prefer_server_ciphers</code></li>

@@ -242,7 +242,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../operator_capability_levels/">Operator Capability Levels</a>
+                <li class="toctree-l1"><a class="reference internal" href="../operator_capability_levels/">Operator capability levels</a>
                 </li>
               </ul>
               <ul>
@@ -650,7 +650,7 @@ async streaming replication</strong> with the current primary instance, with a s
 user called <code>streaming_replica</code>. The connection between nodes is <strong>encrypted</strong>
 and authentication is via <strong>TLS client certificates</strong> (please refer to the
 <a href="../ssl_connections/" title="Client TLS/SSL Connections">"Client TLS/SSL Connections"</a> page
-for details).</p>
+for details). By default, the operator requires TLS v1.3 connections.</p>
 <p>Currently, the operator allows administrators to add <code>pg_hba.conf</code> lines directly in the manifest
 as part of the <code>pg_hba</code> section of the <code>postgresql</code> configuration. The lines defined in the
 manifest are added to a default <code>pg_hba.conf</code>.</p>

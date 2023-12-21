@@ -200,11 +200,13 @@
     </li>
         </ul>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#emergency-backup">Emergency backup</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#logs">Logs</a>
+    <li class="toctree-l2"><a class="reference internal" href="#first-steps">First steps</a>
     </li>
-        </ul>
+    <li class="toctree-l2"><a class="reference internal" href="#are-there-backups">Are there backups?</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#emergency-backup">Emergency backup</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#logs">Logs</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#operator-information">Operator information</a>
         <ul>
@@ -276,7 +278,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../operator_capability_levels/">Operator Capability Levels</a>
+                <li class="toctree-l1"><a class="reference internal" href="../operator_capability_levels/">Operator capability levels</a>
                 </li>
               </ul>
               <ul>
@@ -379,6 +381,34 @@ following plugins/utilities to be available in your system:</p>
   If you are on Windows OS, you can use <a href="https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/findstr"><code>findstr</code></a> as an alternative to <code>grep</code> or directly use <a href="https://docs.microsoft.com/en-us/windows/wsl/"><code>wsl</code></a>
   and install your preferred *nix distro and use the tools mentioned above.</li>
 </ul>
+<h2 id="first-steps">First steps</h2>
+<p>To quickly get an overview of the cluster or installation, the <code>kubectl</code> plugin
+is the primary tool to use:</p>
+<ol>
+<li>the <a href="../kubectl-plugin/#status">status subcommand</a> provides an overview of a
+  cluster</li>
+<li>the <a href="../kubectl-plugin/#report">report subcommand</a> provides the manifests
+  for clusters and the operator deployment. It can also include logs using
+  the <code>--logs</code> option.
+  The report generated via the plugin will include the full cluster manifest.</li>
+</ol>
+<p>The plugin can be installed on air-gapped systems via packages.
+Please refer to the <a href="../kubectl-plugin/">plugin document</a> for complete instructions.</p>
+<h2 id="are-there-backups">Are there backups?</h2>
+<p>After getting the cluster manifest with the plugin, you should verify if backups
+are set up and working.</p>
+<p>In a cluster with backups set up, you will find, in the cluster Status, the fields
+<code>lastSuccessfulBackup</code> and <code>firstRecoverabilityPoint</code>. You should make sure
+there is a recent <code>lastSuccessfulBackup</code>.</p>
+<p>A cluster lacking the <code>.spec.backup</code> stanza won't have backups. 
+An insistent message will appear in the PostgreSQL logs:</p>
+<pre><code>Backup not configured, skip WAL archiving.
+</code></pre>
+<p>Before proceeding with troubleshooting operations, it may be advisable
+to perform an emergency backup depending on your findings regarding backups.
+Refer to the following section for instructions.</p>
+<p>It is <strong>extremely risky</strong> to operate a production database without keeping
+regular backups.</p>
 <h2 id="emergency-backup">Emergency backup</h2>
 <p>In some emergency situations, you might need to take an emergency logical
 backup of the main <code>app</code> database.</p>
@@ -424,7 +454,7 @@ we advise that you do these critical operations under the guidance of
 a professional support company.</p>
 </div>
 <p>The above steps might be integrated into the <code>cnpg</code> plugin at some stage in the future.</p>
-<h3 id="logs">Logs</h3>
+<h2 id="logs">Logs</h2>
 <p>Every resource created and controlled by CloudNativePG logs to
 standard output, as expected by Kubernetes, and directly in <a href="../logging/">JSON
 format</a>. As a result, you should rely on the <code>kubectl logs</code>
@@ -488,7 +518,7 @@ Those pods are managed by a deployment named <code>cnpg-controller-manager</code
 Name:               cluster-example
 Namespace:          default
 System ID:          7044925089871458324
-PostgreSQL Image:   ghcr.io/cloudnative-pg/postgresql:16.0-3
+PostgreSQL Image:   ghcr.io/cloudnative-pg/postgresql:16.1-3
 Primary instance:   cluster-example-1
 Instances:          3
 Ready instances:    3
@@ -546,7 +576,7 @@ For more information, please see <a href="../kubectl-plugin/"><code>cnpg</code> 
 <pre><code class="language-shell">kubectl describe cluster &lt;CLUSTER_NAME&gt; -n &lt;NAMESPACE&gt; | grep &quot;Image Name&quot;
 </code></pre>
 <p>Output:</p>
-<pre><code class="language-shell">  Image Name:    ghcr.io/cloudnative-pg/postgresql:16.0-3
+<pre><code class="language-shell">  Image Name:    ghcr.io/cloudnative-pg/postgresql:16.1-3
 </code></pre>
 <div class="admonition note">
 <p class="admonition-title">Note</p>

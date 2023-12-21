@@ -214,7 +214,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../../operator_capability_levels/">Operator Capability Levels</a>
+                <li class="toctree-l1"><a class="reference internal" href="../../operator_capability_levels/">Operator capability levels</a>
                 </li>
               </ul>
               <ul>
@@ -375,7 +375,7 @@ demonstrate the history of the product on top of commits.
 <li>Fix a memory leak in code fetching status from Postgres pods</li>
 <li>Disable PostgreSQL self-restart after a crash. The instance controller handles
   the lifecycle of the PostgreSQL instance</li>
-<li>Prevent modification of <code>spec.postgresUID</code> and <code>spec.postgresGID</code> fields
+<li>Prevent modification of <code>.spec.postgresUID</code> and <code>.spec.postgresGID</code> fields
   in validation webhook. Changing these fields after Cluster creation makes PostgreSQL unable to start</li>
 <li>Reduce the log verbosity from the backup and WAL archiving handling code</li>
 <li>Correct a bug resulting in a Cluster being marked as <code>Healthy</code> when not initialized yet</li>
@@ -736,7 +736,7 @@ release process and the subsequent release of version 1.9.1.</em></p>
 <p>Security Enhancements:</p>
 <ul>
 <li>Add the <code>.spec.certificates.clientCASecret</code> and
-  <code>spec.certificates.replicationTLSSecret</code> options to define custom client
+  <code>.spec.certificates.replicationTLSSecret</code> options to define custom client
   Certification Authority and certificate for the PostgreSQL server, to be used
   to authenticate client certificates and secure communication between PostgreSQL
   nodes</li>
