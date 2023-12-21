@@ -214,7 +214,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../../operator_capability_levels/">Operator Capability Levels</a>
+                <li class="toctree-l1"><a class="reference internal" href="../../operator_capability_levels/">Operator capability levels</a>
                 </li>
               </ul>
               <ul>
@@ -286,6 +286,64 @@
 <p>For a complete list of changes, please refer to the
 <a href="https://github.com/cloudnative-pg/cloudnative-pg/commits/release-1.21">commits</a>
 on the release branch in GitHub.</p>
+<h2 id="version-1212">Version 1.21.2</h2>
+<p><strong>Release date:</strong> Dec 21, 2023</p>
+<h3 id="security">Security</h3>
+<ul>
+<li>By default, TLSv1.3 is now enforced on all PostgreSQL 12 or higher
+  installations. Additionally, users can configure the <code>ssl_ciphers</code>,
+  <code>ssl_min_protocol_version</code>, and <code>ssl_max_protocol_version</code> GUCs (#3408).</li>
+<li>Integration of Docker image scanning with Dockle and Snyk to enhance security
+  measures (#3300).</li>
+</ul>
+<h3 id="enhancements">Enhancements</h3>
+<ul>
+<li>Improved reconciliation of external clusters (#3533).</li>
+<li>Introduction of the ability to enable/disable the <code>ALTER SYSTEM</code> command (#3535).</li>
+<li>Support for Prometheus' dynamic relabeling through the
+  <code>podMonitorMetricRelabelings</code> and <code>podMonitorRelabelings</code> options in the
+  <code>.spec.monitoring</code> stanza of the <code>Cluster</code> and <code>Pooler</code> resources (#3075).</li>
+<li>Enhanced computation of the first recoverability point and last successful
+  backup by considering volume snapshots alongside object-store backups (#2940). <!-- NO 1.20 --></li>
+<li>Elimination of the use of the <code>PGPASSFILE</code> environment variable when
+  establishing a network connection to PostgreSQL (#3522).</li>
+<li>Improved <code>cnpg report</code> plugin command by collecting a cluster's PVCs (#3357).</li>
+<li>Enhancement of the <code>cnpg status</code> plugin command, providing information about
+  managed roles, including alerts (#3310).</li>
+<li>Introduction of Red Hat UBI 8 container images for the operator, suitable for
+  OLM deployments. <!-- NO 1.20 --></li>
+<li>Connection pooler:<ul>
+<li>Scaling down instances of a <code>Pooler</code> resource to 0 is now possible (#3517).</li>
+<li>Addition of the <code>cnpg.io/podRole</code> label with a value of 'pooler' to every
+  pooler deployment, differentiating them from instance pods (#3396).</li>
+</ul>
+</li>
+</ul>
+<h3 id="fixes">Fixes</h3>
+<ul>
+<li>Reconciliation of metadata, annotations, and labels of <code>PodDisruptionBudget</code>
+  resources (#3312 and #3434).</li>
+<li>Reconciliation of the metadata of the managed credential secrets (#3316).</li>
+<li>Resolution of a bug in the backup snapshot code where an error reading the
+  body would be handled as an overall error, leaving the backup process
+  indefinitely stuck (#3321).</li>
+<li>Implicit setting of online backup with the <code>cnpg backup</code> plugin command when
+  either <code>immediate-checkpoint</code> or <code>wait-for-archive</code> options are requested (#3449).</li>
+<li>Disabling of wal_sender_timeout when joining through pg_basebackup (#3586)</li>
+<li>Reloading of secrets used by external clusters (#3565)</li>
+<li>Connection pooler:<ul>
+<li>Ensuring the controller watches all secrets owned by a <code>Pooler</code> resource (#3428).</li>
+<li>Reconciliation of <code>RoleBinding</code> for <code>Pooler</code> resources (#3391).</li>
+<li>Reconciliation of <code>imagePullSecret</code> for <code>Pooler</code> resources (#3389).</li>
+<li>Reconciliation of the service of a <code>Pooler</code> and addition of the required labels (#3349).</li>
+<li>Extension of <code>Pooler</code> labels to the deployment as well, not just the pods (#3350).</li>
+</ul>
+</li>
+</ul>
+<h3 id="changes">Changes</h3>
+<ul>
+<li>Default operand image set to PostgreSQL 16.1 (#3270).</li>
+</ul>
 <h2 id="version-1211">Version 1.21.1</h2>
 <p><strong>Release date:</strong> Nov 3, 2023</p>
 <p>Enhancements:</p>

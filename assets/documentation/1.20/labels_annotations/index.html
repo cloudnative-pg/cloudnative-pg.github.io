@@ -136,12 +136,6 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#predefined-annotations">Predefined annotations</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#pre-requisites">Pre-requisites</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#defining-clusters-metadata">Defining cluster's metadata</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#current-limitations">Current limitations</a>
-    </li>
     </ul>
                 </li>
               </ul>
@@ -214,7 +208,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../operator_capability_levels/">Operator Capability Levels</a>
+                <li class="toctree-l1"><a class="reference internal" href="../operator_capability_levels/">Operator capability levels</a>
                 </li>
               </ul>
               <ul>
@@ -284,55 +278,55 @@
                 <h1 id="labels-and-annotations">Labels and annotations</h1>
 <p>Resources in Kubernetes are organized in a flat structure, with no hierarchical
 information or relationship between them. However, such resources and objects
-can be linked together and put in relationship through <strong>labels</strong> and
-<strong>annotations</strong>.</p>
+can be linked together and put in relationship through <em>labels</em> and
+<em>annotations</em>.</p>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
-<p>For more information, please refer to the Kubernetes documentation on
+<p>For more information, see the Kubernetes documentation on
 <a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/">annotations</a> and
 <a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/">labels</a>.</p>
 </div>
-<p>In short:</p>
+<p>In brief:</p>
 <ul>
-<li>an annotation is used to assign additional non-identifying information to
-  resources with the goal to facilitate integration with external tools</li>
-<li>a label is used to group objects and query them through Kubernetes' native
-  selector capability</li>
+<li>An annotation is used to assign additional non-identifying information to
+  resources with the goal of facilitating integration with external tools.</li>
+<li>A label is used to group objects and query them through the Kubernetes native
+  selector capability.</li>
 </ul>
-<p>You can select one or more labels and/or annotations you will use
+<p>You can select one or more labels or annotations to use
 in your CloudNativePG deployments. Then you need to configure the operator
-so that when you define these labels and/or annotations in a cluster's metadata,
-they are automatically inherited by all resources created by it (including pods).</p>
+so that when you define these labels or annotations in a cluster's metadata,
+they're inherited by all resources created by it (including pods).</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Label and annotation inheritance is the technique adopted by CloudNativePG
-in lieu of alternative approaches such as pod templates.</p>
+instead of alternative approaches such as pod templates.</p>
 </div>
 <h2 id="predefined-labels">Predefined labels</h2>
-<p>Below is a list of predefined labels that are managed by CloudNativePG.</p>
+<p>These predefined labels are managed by CloudNativePG.</p>
 <dl>
 <dt><code>cnpg.io/backupName</code></dt>
-<dd>Backup identifier, only available on <code>Backup</code> and <code>VolumeSnapshot</code>
+<dd>Backup identifier, available only on <code>Backup</code> and <code>VolumeSnapshot</code>
 resources</dd>
 <dt><code>cnpg.io/cluster</code></dt>
 <dd>Name of the cluster</dd>
 <dt><code>cnpg.io/immediateBackup</code></dt>
 <dd>Applied to a <code>Backup</code> resource if the backup is the first one created from
-a <code>ScheduledBackup</code> object having <code>immediate</code> set to <code>true</code>.</dd>
+a <code>ScheduledBackup</code> object having <code>immediate</code> set to <code>true</code></dd>
 <dt><code>cnpg.io/instanceName</code></dt>
-<dd>Name of the PostgreSQL instance - this label replaces the old and
-deprecated <code>postgresql</code> label</dd>
+<dd>Name of the PostgreSQL instance (replaces the old and
+deprecated <code>postgresql</code> label)</dd>
 <dt><code>cnpg.io/jobRole</code></dt>
-<dd>Role of the job (i.e. <code>import</code>, <code>initdb</code>, <code>join</code>, ...)</dd>
+<dd>Role of the job (that is, <code>import</code>, <code>initdb</code>, <code>join</code>, ...)</dd>
 <dt><code>cnpg.io/podRole</code></dt>
-<dd>Currently fixed to <code>instance</code> to identify a pod running PostgreSQL</dd>
+<dd>Role of the pod: <code>instance</code>, or <code>pooler</code></dd>
 <dt><code>cnpg.io/poolerName</code></dt>
 <dd>Name of the PgBouncer pooler</dd>
 <dt><code>cnpg.io/pvcRole</code></dt>
 <dd>Purpose of the PVC, such as <code>PG_DATA</code> or <code>PG_WAL</code></dd>
 <dt><code>cnpg.io/reload</code></dt>
 <dd>Available on <code>ConfigMap</code> and <code>Secret</code> resources. When set to <code>true</code>,
-a change in the resource will be automatically reloaded by the operator.</dd>
+a change in the resource is automatically reloaded by the operator.</dd>
 <dt><code>cnpg.io/scheduled-backup</code></dt>
 <dd>When available, name of the <code>ScheduledBackup</code> resource that created a given
 <code>Backup</code> object.</dd>
@@ -340,84 +334,100 @@ a change in the resource will be automatically reloaded by the operator.</dd>
 <dd>Whether the instance running in a pod is a <code>primary</code> or a <code>replica</code></dd>
 </dl>
 <h2 id="predefined-annotations">Predefined annotations</h2>
-<p>Below is a list of predefined annotations that are managed by CloudNativePG.</p>
+<p>These predefined annotations are managed by CloudNativePG.</p>
 <dl>
 <dt><code>container.apparmor.security.beta.kubernetes.io/*</code></dt>
 <dd>Name of the AppArmor profile to apply to the named container.
 See <a href="../security/#restricting-pod-access-using-apparmor">AppArmor</a>
-documentation for details</dd>
+for details.</dd>
 <dt><code>cnpg.io/coredumpFilter</code></dt>
 <dd>Filter to control the coredump of Postgres processes, expressed with a
-bitmask. By default it is set to <code>0x31</code> in order to exclude shared memory
-segments from the dump. Please refer to <a href="../troubleshooting/#postgresql-core-dumps">"PostgreSQL core dumps"</a>
+bitmask. By default it's set to <code>0x31</code> to exclude shared memory
+segments from the dump. See <a href="../troubleshooting/#postgresql-core-dumps">PostgreSQL core dumps</a>
 for more information.</dd>
 <dt><code>cnpg.io/clusterManifest</code></dt>
-<dd>Manifest of the <code>Cluster</code> owning this resource (such as a PVC) - this label
-replaces the old and deprecated <code>cnpg.io/hibernateClusterManifest</code> label</dd>
+<dd>Manifest of the <code>Cluster</code> owning this resource (such as a PVC). This label
+replaces the old, deprecated <code>cnpg.io/hibernateClusterManifest</code> label.</dd>
 <dt><code>cnpg.io/fencedInstances</code></dt>
-<dd>List, expressed in JSON format, of the instances that need to be fenced.
+<dd>List of the instances that need to be fenced, expressed in JSON format.
 The whole cluster is fenced if the list contains the <code>*</code> element.</dd>
 <dt><code>cnpg.io/forceLegacyBackup</code></dt>
-<dd>Applied to a <code>Cluster</code> resource for testing purposes only, in order to
+<dd>Applied to a <code>Cluster</code> resource for testing purposes only, to
 simulate the behavior of <code>barman-cloud-backup</code> prior to version 3.4 (Jan 2023)
-when the <code>--name</code> option was not available.</dd>
+when the <code>--name</code> option wasn't available.</dd>
 <dt><code>cnpg.io/hash</code></dt>
-<dd>The hash value of the resource</dd>
+<dd>The hash value of the resource.</dd>
 <dt><code>cnpg.io/hibernation</code></dt>
 <dd>Applied to a <code>Cluster</code> resource to control the <a href="../declarative_hibernation/">declarative hibernation feature</a>.
 Allowed values are <code>on</code> and <code>off</code>.</dd>
 <dt><code>cnpg.io/managedSecrets</code></dt>
 <dd>Pull secrets managed by the operator and automatically set in the
-<code>ServiceAccount</code> resources for each Postgres cluster</dd>
+<code>ServiceAccount</code> resources for each Postgres cluster.</dd>
 <dt><code>cnpg.io/nodeSerial</code></dt>
 <dd>On a pod resource, identifies the serial number of the instance within the
-Postgres cluster</dd>
+Postgres cluster.</dd>
 <dt><code>cnpg.io/operatorVersion</code></dt>
-<dd>Version of the operator</dd>
+<dd>Version of the operator.</dd>
 <dt><code>cnpg.io/pgControldata</code></dt>
-<dd>Output of the <code>pg_controldata</code> command - this annotation replaces the old and
-deprecated <code>cnpg.io/hibernatePgControlData</code> annotation</dd>
+<dd>Output of the <code>pg_controldata</code> command. This annotation replaces the old,
+deprecated <code>cnpg.io/hibernatePgControlData</code> annotation.</dd>
 <dt><code>cnpg.io/podEnvHash</code></dt>
-<dd><em>Deprecated</em> as the <code>cnpg.io/podSpec</code> annotation now also contains the pod environment</dd>
+<dd>Deprecated, as the <code>cnpg.io/podSpec</code> annotation now also contains the pod environment.</dd>
 <dt><code>cnpg.io/podSpec</code></dt>
-<dd>Snapshot of the <code>spec</code> of the Pod generated by the operator - this annotation replaces
-the old and deprecated <code>cnpg.io/podEnvHash</code> annotation</dd>
+<dd>Snapshot of the <code>spec</code> of the pod generated by the operator. This annotation replaces
+the old, deprecated <code>cnpg.io/podEnvHash</code> annotation.</dd>
 <dt><code>cnpg.io/poolerSpecHash</code></dt>
-<dd>Hash of the pooler resource</dd>
+<dd>Hash of the pooler resource.</dd>
 <dt><code>cnpg.io/pvcStatus</code></dt>
-<dd>Current status of the pvc, one of <code>initializing</code>, <code>ready</code>, <code>detached</code></dd>
+<dd>Current status of the PVC: <code>initializing</code>, <code>ready</code>, or <code>detached</code>.</dd>
 <dt><code>cnpg.io/reconciliationLoop</code></dt>
 <dd>When set to <code>disabled</code> on a <code>Cluster</code>, the operator prevents the
-reconciliation loop from running</dd>
+reconciliation loop from running.</dd>
 <dt><code>cnpg.io/reloadedAt</code></dt>
-<dd>Contains the latest cluster <code>reload</code> time, <code>reload</code> is triggered by user through plugin</dd>
+<dd>Contains the latest cluster <code>reload</code> time. <code>reload</code> is triggered by the user through a plugin.</dd>
 <dt><code>cnpg.io/skipEmptyWalArchiveCheck</code></dt>
 <dd>When set to <code>true</code> on a <code>Cluster</code> resource, the operator disables the check
 that ensures that the WAL archive is empty before writing data. Use at your own
 risk.</dd>
-<dt><code>kubectl.kubernetes.io/restartedAt</code></dt>
-<dd>When available, the time of last requested restart of a Postgres cluster</dd>
 </dl>
-<h2 id="pre-requisites">Pre-requisites</h2>
+<h1 id="head">&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</h1>
+<dl>
+<dt><code>cnpg.io/backupStartWAL</code></dt>
+<dd>The WAL at the start of a backup.</dd>
+<dt><code>cnpg.io/backupEndWAL</code></dt>
+<dd>The WAL at the conclusion of a backup.</dd>
+<dt><code>cnpg.io/backupStartTime</code></dt>
+<dd>The time a backup started.</dd>
+<dt><code>cnpg.io/backupEndTime</code></dt>
+<dd>The time a backup ended.</dd>
+<dt><code>cnpg.io/snapshotStartTime</code></dt>
+<dd>The time a snapshot started.</dd>
+<dt><code>cnpg.io/snapshotEndTime</code></dt>
+<dd>The time a snapshot was marked as ready to use.</dd>
+<dt>&gt;&gt;&gt;&gt;&gt;&gt;&gt; 6c32c093 (docs: edits to labels &amp; annotations and logging content (#3392))</dt>
+<dt><code>kubectl.kubernetes.io/restartedAt</code></dt>
+<dd>When available, the time of last requested restart of a Postgres cluster.</dd>
+</dl>
+<h2 id="prerequisites">Prerequisites</h2>
 <p>By default, no label or annotation defined in the cluster's metadata is
 inherited by the associated resources.
-In order to enable label/annotation inheritance, you need to follow the
-instructions provided in the <a href="../operator_conf/">"Operator configuration"</a> section.</p>
-<p>Below we will continue on that example and limit it to the following:</p>
+To enable label/annotation inheritance, follow the
+instructions provided in <a href="../operator_conf/">Operator configuration</a>.</p>
+<p>The following continues from that example and limits it to the following:</p>
 <ul>
-<li>annotations: <code>categories</code></li>
-<li>labels: <code>app</code>, <code>environment</code>, and <code>workload</code></li>
+<li>Annotations: <code>categories</code></li>
+<li>Labels: <code>app</code>, <code>environment</code>, and <code>workload</code></li>
 </ul>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Feel free to select the names that most suit your context for both
-annotations and labels. Remember that you can also use wildcards
-in naming and adopt strategies like <code>mycompany/*</code> for all labels
-or annotations starting with <code>mycompany/</code> to be inherited.</p>
+annotations and labels. You can also use wildcards
+in naming and adopt strategies like using <code>mycompany/*</code> for all labels
+or setting annotations starting with <code>mycompany/</code> to be inherited.</p>
 </div>
 <h2 id="defining-clusters-metadata">Defining cluster's metadata</h2>
-<p>When defining the cluster, <strong>before</strong> any resource is deployed, you can
-properly set the metadata as follows:</p>
+<p>When defining the cluster, before any resource is deployed, you can
+set the metadata as follows:</p>
 <pre><code class="language-yaml">apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
@@ -432,14 +442,14 @@ spec:
      # ... &lt;snip&gt;
 </code></pre>
 <p>Once the cluster is deployed, you can verify, for example, that the labels
-have been correctly set in the pods with:</p>
+were correctly set in the pods:</p>
 <pre><code class="language-shell">kubectl get pods --show-labels
 </code></pre>
 <h2 id="current-limitations">Current limitations</h2>
-<p>Currently, CloudNativePG does not automatically propagate labels or
+<p>Currently, CloudNativePG doesn't automatically propagate labels or
 annotations deletions. Therefore, when an annotation or label is removed from
-a Cluster, which was previously propagated to the underlying pods, the operator
-will not automatically remove it on the associated resources.</p>
+a cluster that was previously propagated to the underlying pods, the operator
+doesn't remove it on the associated resources.</p>
               
             </div>
           </div><footer>

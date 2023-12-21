@@ -208,7 +208,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../operator_capability_levels/">Operator Capability Levels</a>
+                <li class="toctree-l1"><a class="reference internal" href="../operator_capability_levels/">Operator capability levels</a>
                 </li>
               </ul>
               <ul>
@@ -277,7 +277,7 @@
               
                 <h1 id="automated-failover">Automated failover</h1>
 <p>In the case of unexpected errors on the primary for longer than the
-<code>spec.failoverDelay</code> (by default <code>0</code> seconds), the cluster will go into
+<code>.spec.failoverDelay</code> (by default <code>0</code> seconds), the cluster will go into
 <strong>failover mode</strong>. This may happen, for example, when:</p>
 <ul>
 <li>The primary pod has a disk failure</li>
@@ -354,7 +354,7 @@ data loss while leaving the cluster without an active primary for a longer time
 during the switchover.</p>
 </div>
 <h2 id="delayed-failover">Delayed failover</h2>
-<p>As anticipated above, the <code>spec.failoverDelay</code> option allows you to delay the start
+<p>As anticipated above, the <code>.spec.failoverDelay</code> option allows you to delay the start
 of the failover procedure by a number of seconds after the primary has been
 detected to be unhealthy. By default, this setting is set to <code>0</code>, triggering the
 failover procedure immediately.</p>

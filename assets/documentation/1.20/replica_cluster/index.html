@@ -210,7 +210,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../operator_capability_levels/">Operator Capability Levels</a>
+                <li class="toctree-l1"><a class="reference internal" href="../operator_capability_levels/">Operator capability levels</a>
                 </li>
               </ul>
               <ul>
@@ -348,9 +348,9 @@ file and define the following parts accordingly:</p>
 <li>define the bootstrap part for the replica cluster. We can either bootstrap via
   streaming using the <code>pg_basebackup</code> section, or bootstrap from an object store
   using the <code>recovery</code> section</li>
-<li>define the continuous recovery part (<code>spec.replica</code>) in the replica cluster. All
-  we need to do is to enable the replica mode through option <code>spec.replica.enabled</code>
-  and set the <code>externalClusters</code> name in option <code>spec.replica.source</code></li>
+<li>define the continuous recovery part (<code>.spec.replica</code>) in the replica cluster. All
+  we need to do is to enable the replica mode through option <code>.spec.replica.enabled</code>
+  and set the <code>externalClusters</code> name in option <code>.spec.replica.source</code></li>
 </ul>
 <p>This <strong>first example</strong> defines a replica cluster using streaming replication in
 both bootstrap and continuous recovery. The replica cluster connects to the
@@ -431,7 +431,7 @@ certificates are properly created in advance.</p>
 <h2 id="promoting-the-designated-primary-in-the-replica-cluster">Promoting the designated primary in the replica cluster</h2>
 <p>To promote the <strong>designated primary</strong> to <strong>primary</strong>, all we need to do is to
 disable the replica mode in the replica cluster through the option
-<code>spec.replica.enabled</code></p>
+<code>.spec.replica.enabled</code></p>
 <pre><code class="language-yaml"> replica:
    enabled: false
    source: cluster-example
