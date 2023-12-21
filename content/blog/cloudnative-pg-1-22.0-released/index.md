@@ -26,7 +26,7 @@ systems, now take center stage in CloudNativePG 1.22.0. This release empowers
 users to boost the vertical scalability of their databases by decoupling the
 physical and logical data modeling, achieving optimal performance through
 parallel on-disk read/write operations. With CloudNativePG, users can define
-additional tablespace volumes, and also ensure they are used to temporary
+additional tablespace volumes, and also ensure they can be used for temporary
 operations.
 
 This marks a pivotal step towards adopting Very Large Databases, building upon
