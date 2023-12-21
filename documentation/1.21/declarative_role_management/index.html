@@ -228,7 +228,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../operator_capability_levels/">Operator Capability Levels</a>
+                <li class="toctree-l1"><a class="reference internal" href="../operator_capability_levels/">Operator capability levels</a>
                 </li>
               </ul>
               <ul>
@@ -326,7 +326,7 @@ spec:
         - pg_monitor
         - pg_signal_backend
 </code></pre>
-<p>The role specification in <code>spec.managed.roles</code> adheres to the
+<p>The role specification in <code>.spec.managed.roles</code> adheres to the
 <a href="https://www.postgresql.org/docs/current/sql-createrole.html">PostgreSQL structure and naming conventions</a>.
 Please refer to the <a href="../cloudnative-pg.v1/#postgresql-cnpg-io-v1-RoleConfiguration">API reference</a> for
 the full list of attributes you can define for each role.</p>
@@ -464,7 +464,8 @@ in such case, the "fix" proposed might be the wrong thing to do.</p>
 <p>CloudNativePG  will record when such fundamental errors occur, and will display
 them in the cluster Status. Which segues into…</p>
 <h2 id="status-of-managed-roles">Status of managed roles</h2>
-<p>The CRD status includes a section for the managed roles' status, as shown below:</p>
+<p>The Cluster status includes a section for the managed roles' status, as shown
+below:</p>
 <pre><code class="language-yaml">status:
   […snipped…]
   managedRolesStatus:
@@ -490,6 +491,20 @@ CloudNativePG) cannot honor, and which require human intervention.</p>
 <p>This section covers roles reserved for operator use and those that are <strong>not</strong>
 under declarative management, providing a comprehensive view of the roles in
 the database instances.</p>
+<p>The <a href="../kubectl-plugin/">kubectl plugin</a> also shows the status of managed roles
+in its <code>status</code> sub-command:</p>
+<pre><code class="language-txt">Managed roles status
+Status                  Roles
+------                  -----
+pending-reconciliation  petrarca
+reconciled              app,dante
+reserved                postgres,streaming_replica
+
+Irreconcilable roles
+Role      Errors
+----      ------
+petrarca  could not perform UPDATE_MEMBERSHIPS on role petrarca: role &quot;poets&quot; does not exist
+</code></pre>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
 <p>In terms of backward compatibility, declarative role management is designed

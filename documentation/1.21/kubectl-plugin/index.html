@@ -248,6 +248,8 @@
     </li>
         </ul>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#integration-with-k9s">Integration with K9s</a>
+    </li>
     </ul>
                 </li>
               </ul>
@@ -280,7 +282,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../operator_capability_levels/">Operator Capability Levels</a>
+                <li class="toctree-l1"><a class="reference internal" href="../operator_capability_levels/">Operator capability levels</a>
                 </li>
               </ul>
               <ul>
@@ -503,7 +505,7 @@ two different time intervals.</p>
 Name:               sandbox
 Namespace:          default
 System ID:          7039966298120953877
-PostgreSQL Image:   ghcr.io/cloudnative-pg/postgresql:16.0
+PostgreSQL Image:   ghcr.io/cloudnative-pg/postgresql:16.1
 Primary instance:   sandbox-2
 Instances:          3
 Ready instances:    3
@@ -543,7 +545,7 @@ sandbox-3  302 GB         3AF/EBAD5D18  Standby (sync)    OK      Guaranteed  1.
 Name:               sandbox
 Namespace:          default
 System ID:          7039966298120953877
-PostgreSQL Image:   ghcr.io/cloudnative-pg/postgresql:16.0
+PostgreSQL Image:   ghcr.io/cloudnative-pg/postgresql:16.1
 Primary instance:   sandbox-2
 Instances:          3
 Ready instances:    3
@@ -1061,7 +1063,7 @@ method should be used with extreme care, by authorized personnel only.</p>
 </div>
 <pre><code class="language-shell">kubectl cnpg psql cluster-example
 
-psql (16.0 (Debian 16.0-1.pgdg110+1))
+psql (16.1 (Debian 16.1-1.pgdg110+1))
 Type &quot;help&quot; for help.
 
 postgres=#
@@ -1069,7 +1071,7 @@ postgres=#
 <p>By default, the command will connect to the primary instance. The user can
 select to work against a replica by using the <code>--replica</code> option:</p>
 <pre><code class="language-shell">kubectl cnpg psql --replica cluster-example
-psql (16.0 (Debian 16.0-1.pgdg110+1))
+psql (16.1 (Debian 16.1-1.pgdg110+1))
 
 Type &quot;help&quot; for help.
 
@@ -1090,6 +1092,10 @@ reachable in your <code>PATH</code> variable to correctly work.</p>
 Please use the <a href="#requesting-a-new-backup"><code>backup</code> command</a> to request
 backups using volume snapshots.</p>
 </div>
+<h2 id="integration-with-k9s">Integration with K9s</h2>
+<p>The <code>cnpg</code> plugin can be easily integrated in <a href="https://k9scli.io/">K9s</a>, a
+popular terminal based UI to interact with Kubernetes clusters.</p>
+<p>See <a href="../samples/k9s/plugin.yml"><code>k9s/plugin.yml</code></a> for details.</p>
               
             </div>
           </div><footer>

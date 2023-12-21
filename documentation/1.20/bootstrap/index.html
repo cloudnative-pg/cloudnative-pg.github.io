@@ -71,6 +71,10 @@
     <li class="toctree-l2"><a class="reference internal" href="#the-bootstrap-section">The bootstrap section</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#the-externalclusters-section">The externalClusters section</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#password-files">Password files</a>
+    </li>
+        </ul>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#bootstrap-an-empty-cluster-initdb">Bootstrap an empty cluster (initdb)</a>
     </li>
@@ -232,7 +236,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../operator_capability_levels/">Operator Capability Levels</a>
+                <li class="toctree-l1"><a class="reference internal" href="../operator_capability_levels/">Operator capability levels</a>
                 </li>
               </ul>
               <ul>
@@ -363,12 +367,26 @@ storage that the CloudNativePG operator provides, please refer to the
 for more information.</p>
 </div>
 <h2 id="the-externalclusters-section">The <code>externalClusters</code> section</h2>
-<p>The <code>externalClusters</code> section allows you to define one or more PostgreSQL
-clusters that are somehow related to the current one. While in the future
-this section will enable more complex scenarios, it is currently intended
-to define a cross-region PostgreSQL cluster based on physical replication,
-and spanning over different Kubernetes clusters or even traditional VM/bare-metal
-environments.</p>
+<p>The <code>externalClusters</code> section provides a mechanism for specifying one or more
+PostgreSQL clusters associated with the current configuration. Its primary use
+cases include:</p>
+<ol>
+<li><strong>Importing Databases:</strong> Specify an external source to be utilized during
+  the <a href="../database_import/">importation of databases</a> via logical backup and
+  restore, as part of the <code>initdb</code> bootstrap method.</li>
+<li><strong>Cross-Region Replication:</strong> Define a cross-region PostgreSQL cluster
+  employing physical replication, capable of extending across distinct Kubernetes
+  clusters or traditional VM/bare-metal environments.</li>
+<li><strong>Recovery from Physical Base Backup:</strong> Recover, fully or at a
+  given Point-In-Time, a PostgreSQL cluster by referencing a physical base
+  backup.</li>
+</ol>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Ongoing development will extend the functionality of <code>externalClusters</code> to
+accommodate additional use cases, such as logical replication and foreign
+servers in future releases.</p>
+</div>
 <p>As far as bootstrapping is concerned, <code>externalClusters</code> can be used
 to define the source PostgreSQL cluster for either the <code>pg_basebackup</code>
 method or the <code>recovery</code> one. An external cluster needs to have:</p>
@@ -406,6 +424,14 @@ through the PostgreSQL's <code>restore_command</code>, or any of the two.</p>
 <p>Please refer to the <a href="../cloudnative-pg.v1/#postgresql-cnpg-io-v1-ExternalCluster">"API reference for the <code>externalClusters</code> section</a>
 for more information.</p>
 </div>
+<h3 id="password-files">Password files</h3>
+<p>Whenever a password is supplied within an <code>externalClusters</code> entry,
+CloudNativePG autonomously manages a <a href="https://www.postgresql.org/docs/current/libpq-pgpass.html">PostgreSQL password file</a>
+for it, residing at <code>/controller/external/NAME/pgpass</code> in each instance.</p>
+<p>This approach empowers CloudNativePG to securely establish connections with an
+external server without exposing any passwords in the connection string.
+Instead, the connection safely references the aforementioned file through the
+<code>passfile</code> connection parameter.</p>
 <h2 id="bootstrap-an-empty-cluster-initdb">Bootstrap an empty cluster (<code>initdb</code>)</h2>
 <p>The <code>initdb</code> bootstrap method is used to create a new PostgreSQL cluster from
 scratch. It is the default one unless specified differently.</p>
@@ -723,7 +749,7 @@ file on the source PostgreSQL instance:</p>
 <pre><code># A more restrictive rule for TLS and IP of origin is recommended
 host replication streaming_replica all md5
 </code></pre>
-<p>The following manifest creates a new PostgreSQL 15.4 cluster,
+<p>The following manifest creates a new PostgreSQL 16.1 cluster,
 called <code>target-db</code>, using the <code>pg_basebackup</code> bootstrap method
 to clone an external PostgreSQL cluster defined as <code>source-db</code>
 (in the <code>externalClusters</code> array). As you can see, the <code>source-db</code>
@@ -736,7 +762,7 @@ metadata:
   name: target-db
 spec:
   instances: 3
-  imageName: ghcr.io/cloudnative-pg/postgresql:15.4
+  imageName: ghcr.io/cloudnative-pg/postgresql:16.1
 
   bootstrap:
     pg_basebackup:
@@ -755,7 +781,7 @@ spec:
       key: password
 </code></pre>
 <p>All the requirements must be met for the clone operation to work, including
-the same PostgreSQL version (in our case 15.4).</p>
+the same PostgreSQL version (in our case 16.1).</p>
 <h4 id="tls-certificate-authentication">TLS certificate authentication</h4>
 <p>The second authentication method supported by CloudNativePG
 with the <code>pg_basebackup</code> bootstrap is based on TLS client certificates.
@@ -767,7 +793,7 @@ in the same Kubernetes cluster.</p>
 <p>This example can be easily adapted to cover an instance that resides
 outside the Kubernetes cluster.</p>
 </div>
-<p>The manifest defines a new PostgreSQL 15.4 cluster called <code>cluster-clone-tls</code>,
+<p>The manifest defines a new PostgreSQL 16.1 cluster called <code>cluster-clone-tls</code>,
 which is bootstrapped using the <code>pg_basebackup</code> method from the <code>cluster-example</code>
 external cluster. The host is identified by the read/write service
 in the same cluster, while the <code>streaming_replica</code> user is authenticated
@@ -780,7 +806,7 @@ metadata:
   name: cluster-clone-tls
 spec:
   instances: 3
-  imageName: ghcr.io/cloudnative-pg/postgresql:15.4
+  imageName: ghcr.io/cloudnative-pg/postgresql:16.1
 
   bootstrap:
     pg_basebackup:

@@ -232,9 +232,9 @@
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#launching-psql">Launching psql</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#snapshotting-a-postgres-cluster">Snapshotting a Postgres cluster</a>
-    </li>
         </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#integration-with-k9s">Integration with K9s</a>
     </li>
     </ul>
                 </li>
@@ -268,7 +268,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../operator_capability_levels/">Operator Capability Levels</a>
+                <li class="toctree-l1"><a class="reference internal" href="../operator_capability_levels/">Operator capability levels</a>
                 </li>
               </ul>
               <ul>
@@ -491,7 +491,7 @@ two different time intervals.</p>
 Name:               sandbox
 Namespace:          default
 System ID:          7039966298120953877
-PostgreSQL Image:   ghcr.io/cloudnative-pg/postgresql:15.4
+PostgreSQL Image:   ghcr.io/cloudnative-pg/postgresql:16.1
 Primary instance:   sandbox-2
 Instances:          3
 Ready instances:    3
@@ -531,7 +531,7 @@ sandbox-3  302 GB         3AF/EBAD5D18  Standby (sync)    OK      Guaranteed  1.
 Name:               sandbox
 Namespace:          default
 System ID:          7039966298120953877
-PostgreSQL Image:   ghcr.io/cloudnative-pg/postgresql:15.4
+PostgreSQL Image:   ghcr.io/cloudnative-pg/postgresql:16.1
 Primary instance:   sandbox-2
 Instances:          3
 Ready instances:    3
@@ -1035,7 +1035,7 @@ method should be used with extreme care, by authorized personnel only.</p>
 </div>
 <pre><code class="language-shell">kubectl cnpg psql cluster-example
 
-psql (15.4 (Debian 15.4-1.pgdg110+1))
+psql (16.1 (Debian 16.1-1.pgdg110+1))
 Type &quot;help&quot; for help.
 
 postgres=#
@@ -1043,7 +1043,7 @@ postgres=#
 <p>By default, the command will connect to the primary instance. The user can
 select to work against a replica by using the <code>--replica</code> option:</p>
 <pre><code class="language-shell">kubectl cnpg psql --replica cluster-example
-psql (15.4 (Debian 15.4-1.pgdg110+1))
+psql (16.1 (Debian 16.1-1.pgdg110+1))
 
 Type &quot;help&quot; for help.
 
@@ -1057,43 +1057,10 @@ postgres=# \q
 </code></pre>
 <p>This command will start <code>kubectl exec</code>, and the <code>kubectl</code> executable must be
 reachable in your <code>PATH</code> variable to correctly work.</p>
-<h3 id="snapshotting-a-postgres-cluster">Snapshotting a Postgres cluster</h3>
-<p>The <code>kubectl cnpg snapshot</code> creates consistent snapshots of a Postgres
-<code>Cluster</code> by:</p>
-<ol>
-<li>choosing a replica Pod to work on</li>
-<li>fencing the replica</li>
-<li>taking the snapshot</li>
-<li>unfencing the replica</li>
-</ol>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>A cluster already having a fenced instance cannot be snapshotted.</p>
-</div>
-<p>At the moment, this command can be used only for clusters having at least one
-replica: that replica will be shut down by the fencing procedure to ensure the
-snapshot to be consistent (cold backup). As the development of
-declarative support for Kubernetes' <code>VolumeSnapshot</code> API continues,
-this limitation will be removed, allowing you to take online backups
-as business continuity requires.</p>
-<div class="admonition important">
-<p class="admonition-title">Important</p>
-<p>Even if the procedure will shut down a replica, the primary
-Pod will not be involved.</p>
-</div>
-<p>The <code>kubectl cnpg snapshot</code> command requires the cluster name:</p>
-<pre><code class="language-shell">kubectl cnpg snapshot cluster-example
-
-waiting for cluster-example-3 to be fenced
-waiting for VolumeSnapshot cluster-example-3-1682539624 to be ready to use
-unfencing pod cluster-example-3
-</code></pre>
-<p>The <code>VolumeSnapshot</code> resource will be created with an empty
-<code>VolumeSnapshotClass</code> reference. That resource is intended by be used by the
-<code>VolumeSnapshotClass</code> configured as default.</p>
-<p>A specific <code>VolumeSnapshotClass</code> can be requested via the <code>-c</code> option:</p>
-<pre><code class="language-shell">kubectl cnpg snapshot cluster-example -c longhorn
-</code></pre>
+<h2 id="integration-with-k9s">Integration with K9s</h2>
+<p>The <code>cnpg</code> plugin can be easily integrated in <a href="https://k9scli.io/">K9s</a>, a
+popular terminal based UI to interact with Kubernetes clusters.</p>
+<p>See <a href="../samples/k9s/plugin.yml"><code>k9s/plugin.yml</code></a> for details.</p>
               
             </div>
           </div><footer>

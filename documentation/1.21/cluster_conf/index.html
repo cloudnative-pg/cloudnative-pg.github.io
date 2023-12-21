@@ -228,7 +228,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../operator_capability_levels/">Operator Capability Levels</a>
+                <li class="toctree-l1"><a class="reference internal" href="../operator_capability_levels/">Operator capability levels</a>
                 </li>
               </ul>
               <ul>
@@ -337,12 +337,12 @@ for part of the internal activities. Ephemeral volumes exist for the sole
 duration of a pod's life, without persisting across pod restarts.</p>
 <h3 id="volume-for-temporary-storage">Volume for temporary storage</h3>
 <p>An ephemeral volume used for temporary storage. You can configure an upper
-bound on the size using the <code>spec.ephemeralVolumesSizeLimit.temporaryData</code>
+bound on the size using the <code>.spec.ephemeralVolumesSizeLimit.temporaryData</code>
 field in the cluster spec.</p>
 <h3 id="volume-for-shared-memory">Volume for shared memory</h3>
 <p>This volume is used as shared memory space for Postgres and as an ephemeral
 type but stored in memory. You can configure an upper bound on the size using
-the <code>spec.ephemeralVolumesSizeLimit.shm</code> field in the cluster spec.
+the <code>.spec.ephemeralVolumesSizeLimit.shm</code> field in the cluster spec.
 Use this field only in case of
 <a href="../postgresql_conf/#dynamic-shared-memory-settings">PostgreSQL running with <code>posix</code> shared memory dynamic allocation</a>.</p>
 <h2 id="environment-variables">Environment variables</h2>

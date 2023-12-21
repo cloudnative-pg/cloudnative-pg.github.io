@@ -152,6 +152,8 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#testing-the-connection-via-a-tls-certificate">Testing the connection via a TLS certificate</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#about-tls-protocol-versions">About TLS protocol versions</a>
+    </li>
     </ul>
                 </li>
               </ul>
@@ -208,7 +210,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../operator_capability_levels/">Operator Capability Levels</a>
+                <li class="toctree-l1"><a class="reference internal" href="../operator_capability_levels/">Operator capability levels</a>
                 </li>
               </ul>
               <ul>
@@ -411,10 +413,24 @@ user=app sslmode=verify-full' -c 'select version();'&quot;
 <pre><code class="language-console">                                        version
 --------------------------------------------------------------------------------------
 ------------------
-PostgreSQL 15.4 on x86_64-pc-linux-gnu, compiled by gcc (GCC) 8.3.1 20191121 (Red Hat
+PostgreSQL 16.1 on x86_64-pc-linux-gnu, compiled by gcc (GCC) 8.3.1 20191121 (Red Hat
 8.3.1-5), 64-bit
 (1 row)
 </code></pre>
+<h2 id="about-tls-protocol-versions">About TLS protocol versions</h2>
+<p>By default, the operator sets both <a href="https://www.postgresql.org/docs/current/runtime-config-connection.html#GUC-SSL-MIN-PROTOCOL-VERSION"><code>ssl_min_protocol_version</code></a>
+and <a href="https://www.postgresql.org/docs/current/runtime-config-connection.html#GUC-SSL-MAX-PROTOCOL-VERSION"><code>ssl_max_protocol_version</code></a>
+to <code>TLSv1.3</code>.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>In PostgreSQL 11 these two GUC doesn't exists hence, in these specific version
+these values aren't set and will keep using the default ones.</p>
+</div>
+<p>This assumes that the PostgreSQL operand images include an OpenSSL library that
+supports the <code>TLSv1.3</code> version.</p>
+<p>If not, or your client applications need a lower version number, you need to
+manually configure it in the PostgreSQL configuration as any other Postgres
+GUC.</p>
               
             </div>
           </div><footer>
