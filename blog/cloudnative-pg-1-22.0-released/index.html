@@ -6,7 +6,7 @@
 <html lang="en">
 
 <head>
-  <title>CloudNativePG 1.18.1, 1.17.3 and 1.16.5 Released! | CloudNativePG - PostgreSQL Operator for Kubernetes</title>
+  <title>CloudNativePG 1.22.0, 1.21.2 and 1.20.5 Released! | CloudNativePG - PostgreSQL Operator for Kubernetes</title>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
@@ -20,15 +20,15 @@
   <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://cloudnative-pg.io/images/hero_image.png"/>
 
-<meta name="twitter:title" content="CloudNativePG 1.18.1, 1.17.3 and 1.16.5 Released!"/>
-<meta name="twitter:description" content="The CloudNativePG community has released a new update for the supported 1.18, 1.17 and 1.16 versions of the CloudNativePG operator. Version 1.16 has reached End-of-Life (EOL)."/>
+<meta name="twitter:title" content="CloudNativePG 1.22.0, 1.21.2 and 1.20.5 Released!"/>
+<meta name="twitter:description" content="The CloudNativePG community has released the new 1.22 minor version and a new update for the supported 1.21 and 1.20 versions of the CloudNativePG operator."/>
 
-  <meta property="og:title" content="CloudNativePG 1.18.1, 1.17.3 and 1.16.5 Released!" />
-<meta property="og:description" content="The CloudNativePG community has released a new update for the supported 1.18, 1.17 and 1.16 versions of the CloudNativePG operator. Version 1.16 has reached End-of-Life (EOL)." />
+  <meta property="og:title" content="CloudNativePG 1.22.0, 1.21.2 and 1.20.5 Released!" />
+<meta property="og:description" content="The CloudNativePG community has released the new 1.22 minor version and a new update for the supported 1.21 and 1.20 versions of the CloudNativePG operator." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://cloudnative-pg.io/blog/cloudnative-pg-1-18-1-released/" /><meta property="og:image" content="https://cloudnative-pg.io/images/hero_image.png"/><meta property="article:section" content="blog" />
-<meta property="article:published_time" content="2022-12-21T17:58:34+02:00" />
-<meta property="article:modified_time" content="2022-12-21T17:58:34+02:00" />
+<meta property="og:url" content="https://cloudnative-pg.io/blog/cloudnative-pg-1-22.0-released/" /><meta property="og:image" content="https://cloudnative-pg.io/images/hero_image.png"/><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2023-12-21T14:51:33+01:00" />
+<meta property="article:modified_time" content="2023-12-21T14:51:33+01:00" />
 
 
 </head>
@@ -116,7 +116,7 @@
 </script>
 
     
-<h1 class="h1 text-center mx-auto md:w-3/5">CloudNativePG 1.18.1, 1.17.3 and 1.16.5 Released!</h1>
+<h1 class="h1 text-center mx-auto md:w-3/5">CloudNativePG 1.22.0, 1.21.2 and 1.20.5 Released!</h1>
 <div class="md:w-3/5 mx-auto">
     <div class="px-4">
         
@@ -134,9 +134,9 @@
     </div>
     <div class="flex gap-2 text-sm charcoal opacity-75">
     <h6 class="flex gap-2 text-sm charcoal">
-        December 21, 2022
+        December 21, 2023
         •
-        1 minute
+        2 minutes
     </h6>
 </div>
 </div>
@@ -151,27 +151,45 @@
 
         
         <div class="mx-auto my-10">
-            <p>The <strong>CloudNativePG Community</strong> has released a new update for the supported
-1.18, 1.17 and 1.16 versions of the <strong>CloudNativePG Operator</strong>.</p>
-<p><strong>Versions 1.18.1, 1.17.3 and 1.16.5</strong> are <em>patch releases</em> containing a few
-bug fixes and minor enhancements, including:</p>
+            <p>The <strong>CloudNativePG Community</strong> is thrilled to unveil version 1.22.0 of the
+<strong>CloudNativePG Operator</strong>, a significant milestone featuring the introduction
+of <strong>declarative tablespaces</strong> and <strong>temporary tablespaces</strong> alongside various
+enhancements and fixes.</p>
+<p>Tablespaces, a powerful and widely adopted feature in database management
+systems, now take center stage in CloudNativePG 1.22.0. This release empowers
+users to boost the vertical scalability of their databases by decoupling the
+physical and logical data modeling, achieving optimal performance through
+parallel on-disk read/write operations. With CloudNativePG, users can define
+additional tablespace volumes, and also ensure they can be used for temporary
+operations (CloudNativePG seamlessly manages the <code>temp_tablespaces</code> GUC).</p>
+<p>This marks a pivotal step towards adopting Very Large Databases, building upon
+the foundation laid by Kubernetes volume snapshots introduced in version 1.21.</p>
+<p>Starting from version 1.22.0, the <code>ALTER SYSTEM</code> command is now disabled by
+default. This ensures that changes to the PostgreSQL configuration are
+orchestrated through the Kubernetes API. This streamlined approach guarantees
+coherence across the entire high-availability cluster and aligns with best
+practices for Infrastructure-as-Code.</p>
+<p>In terms of security, all supported versions now require TLS 1.3 for PostgreSQL
+connections by default, further bolstering the integrity of data transmission.</p>
+<p>Before initiating an upgrade, carefully review the
+<a href="https://cloudnative-pg.io/documentation/current/installation_upgrade/#upgrading-to-1220-1212-or-1205">detailed instructions</a>.
+New patch releases are now available for all supported versions, including
+1.21.2 and 1.20.5.</p>
+<p>Considering the notable changes introduced, we strongly recommend upgrading to
+CloudNativePG 1.22.0 at your earliest convenience. Alternatively, update to the
+latest patch version within your current minor release.</p>
+<p>With the release of 1.22.0, the 1.20.x minor version will reach its <a href="https://cloudnative-pg.io/documentation/1.22/supported_releases/#support-status-of-cloudnativepg-releases">end of
+life</a>
+on January 21, 2024.</p>
+<p>This release addresses several bugs for improved stability. For a comprehensive list of changes, refer to the following release notes:</p>
 <ul>
-<li>better integration with identity management authentication in GKE or EKS via
-customization of labels and annotations for the service account</li>
-<li>support for <code>nodeAffinity</code></li>
-<li>support for Istio&rsquo;s quit endpoint to prevent jobs like init and recovery from
-running indefinitely</li>
-<li><code>fio</code> command in the <code>cnpg</code> plugin for <code>kubectl</code></li>
+<li><a href="https://cloudnative-pg.io/documentation/1.22/release_notes/v1.22/">Release notes for 1.22.0</a></li>
+<li><a href="https://cloudnative-pg.io/documentation/1.21/release_notes/v1.21/">Release notes for 1.21.2</a></li>
+<li><a href="https://cloudnative-pg.io/documentation/1.20/release_notes/v1.20/">Release notes for 1.20.5</a></li>
 </ul>
-<p>With this release, version 1.16 has reached End-of-Life (EOL): version 1.16.5
-is the last that will be released for the 1.16 minor version.</p>
-<p>We encourage you to update the operator at your earliest possible convenience.</p>
-<p>For a complete list of changes, please refer to:</p>
-<ul>
-<li><a href="https://cloudnative-pg.io/documentation/1.18/release_notes/v1.18/">release notes for 1.18.1</a></li>
-<li><a href="https://cloudnative-pg.io/documentation/1.17/release_notes/v1.17/">release notes for 1.17.3</a></li>
-<li><a href="https://cloudnative-pg.io/documentation/1.16/release_notes/v1.16/">release notes for 1.16.5</a></li>
-</ul>
+<p>Thank you for your continued support and engagement with CloudNativePG!</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <!-- raw HTML omitted -->
 <!-- raw HTML omitted -->
 
@@ -201,6 +219,9 @@ is the last that will be released for the 1.16 minor version.</p>
                 
                 <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/cloudnativepg"
                         class="mr-2">cloudnativepg</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/tablespaces"
+                        class="mr-2">tablespaces</a></li>
                 
             </ul>
 

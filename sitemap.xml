@@ -3,15 +3,42 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://cloudnative-pg.io/</loc>
-    <lastmod>2023-11-08T11:29:52+00:00</lastmod>
+    <lastmod>2023-12-21T14:51:33+01:00</lastmod>
+  </url><url>
+    <loc>https://cloudnative-pg.io/blog/</loc>
+    <lastmod>2023-12-21T14:51:33+01:00</lastmod>
+  </url><url>
+    <loc>https://cloudnative-pg.io/tags/cloudnativepg/</loc>
+    <lastmod>2023-12-21T14:51:33+01:00</lastmod>
+  </url><url>
+    <loc>https://cloudnative-pg.io/blog/cloudnative-pg-1-22.0-released/</loc>
+    <lastmod>2023-12-21T14:51:33+01:00</lastmod>
+  </url><url>
+    <loc>https://cloudnative-pg.io/tags/k8s/</loc>
+    <lastmod>2023-12-21T14:51:33+01:00</lastmod>
+  </url><url>
+    <loc>https://cloudnative-pg.io/tags/kubernetes/</loc>
+    <lastmod>2023-12-21T14:51:33+01:00</lastmod>
+  </url><url>
+    <loc>https://cloudnative-pg.io/tags/postgres/</loc>
+    <lastmod>2023-12-21T14:51:33+01:00</lastmod>
+  </url><url>
+    <loc>https://cloudnative-pg.io/tags/postgresql/</loc>
+    <lastmod>2023-12-21T14:51:33+01:00</lastmod>
+  </url><url>
+    <loc>https://cloudnative-pg.io/tags/release/</loc>
+    <lastmod>2023-12-21T14:51:33+01:00</lastmod>
+  </url><url>
+    <loc>https://cloudnative-pg.io/tags/tablespaces/</loc>
+    <lastmod>2023-12-21T14:51:33+01:00</lastmod>
+  </url><url>
+    <loc>https://cloudnative-pg.io/tags/</loc>
+    <lastmod>2023-12-21T14:51:33+01:00</lastmod>
   </url><url>
     <loc>https://cloudnative-pg.io/tags/applications/</loc>
     <lastmod>2023-11-08T11:29:52+00:00</lastmod>
   </url><url>
     <loc>https://cloudnative-pg.io/tags/blog/</loc>
-    <lastmod>2023-11-08T11:29:52+00:00</lastmod>
-  </url><url>
-    <loc>https://cloudnative-pg.io/blog/</loc>
     <lastmod>2023-11-08T11:29:52+00:00</lastmod>
   </url><url>
     <loc>https://cloudnative-pg.io/tags/containers/</loc>
@@ -26,31 +53,10 @@
     <loc>https://cloudnative-pg.io/tags/information/</loc>
     <lastmod>2023-11-08T11:29:52+00:00</lastmod>
   </url><url>
-    <loc>https://cloudnative-pg.io/tags/postgres/</loc>
-    <lastmod>2023-11-08T11:29:52+00:00</lastmod>
-  </url><url>
-    <loc>https://cloudnative-pg.io/tags/postgresql/</loc>
-    <lastmod>2023-11-08T11:29:52+00:00</lastmod>
-  </url><url>
     <loc>https://cloudnative-pg.io/tags/programming/</loc>
     <lastmod>2023-11-08T11:29:52+00:00</lastmod>
   </url><url>
-    <loc>https://cloudnative-pg.io/tags/</loc>
-    <lastmod>2023-11-08T11:29:52+00:00</lastmod>
-  </url><url>
-    <loc>https://cloudnative-pg.io/tags/cloudnativepg/</loc>
-    <lastmod>2023-11-03T15:43:07+01:00</lastmod>
-  </url><url>
     <loc>https://cloudnative-pg.io/blog/cloudnative-pg-1-21.1-released/</loc>
-    <lastmod>2023-11-03T15:43:07+01:00</lastmod>
-  </url><url>
-    <loc>https://cloudnative-pg.io/tags/k8s/</loc>
-    <lastmod>2023-11-03T15:43:07+01:00</lastmod>
-  </url><url>
-    <loc>https://cloudnative-pg.io/tags/kubernetes/</loc>
-    <lastmod>2023-11-03T15:43:07+01:00</lastmod>
-  </url><url>
-    <loc>https://cloudnative-pg.io/tags/release/</loc>
     <lastmod>2023-11-03T15:43:07+01:00</lastmod>
   </url><url>
     <loc>https://cloudnative-pg.io/blog/cloudnative-pg-1-21.0-released/</loc>

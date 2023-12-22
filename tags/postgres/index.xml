@@ -6,7 +6,16 @@
     <description>Recent content in postgres on CloudNativePG - PostgreSQL Operator for Kubernetes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 08 Nov 2023 11:29:52 +0000</lastBuildDate><atom:link href="https://cloudnative-pg.io/tags/postgres/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 21 Dec 2023 14:51:33 +0100</lastBuildDate><atom:link href="https://cloudnative-pg.io/tags/postgres/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CloudNativePG 1.22.0, 1.21.2 and 1.20.5 Released!</title>
+      <link>https://cloudnative-pg.io/blog/cloudnative-pg-1-22.0-released/</link>
+      <pubDate>Thu, 21 Dec 2023 14:51:33 +0100</pubDate>
+      
+      <guid>https://cloudnative-pg.io/blog/cloudnative-pg-1-22.0-released/</guid>
+      <description>The CloudNativePG community has released the new 1.22 minor version and a new update for the supported 1.21 and 1.20 versions of the CloudNativePG operator.</description>
+    </item>
+    
     <item>
       <title>Creating a custom container image for CloudNativePG</title>
       <link>https://cloudnative-pg.io/blog/creating-container-images/</link>
