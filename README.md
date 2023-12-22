@@ -121,3 +121,28 @@ hack/import_docs.sh X.Y
 Apply all changes in the development branch and push. If you are adding a new
 patch release to the latest minor version, you will need to update the
 `current` branch (which at the moment is a copy of the folder).
+
+## Publishing on the website
+
+Changes that have been merged into `main` are not yet visible on the website. To
+publish them, they need to be merged into the `production` branch.
+
+Please publish to `production` by doing a direct merge into the branch from
+`main`.
+This needs to be done by an administrator.
+
+If you try to merge or cherry-pick into `production` and you don't have the
+right permissions, `git` will alert you about the branch protections.
+
+``` sh
+remote: error: GH006: Protected branch update failed for refs/heads/production.
+remote: error: Changes must be made through a pull request.
+```
+
+Please **don't make a pull request**. Instead, get an administrator to make the
+needed changes, or to make you an administrator. A pull request would create
+unnecessary discrepancies between `main` and `production`.
+
+Once a commit is merged to `production`, github will trigger the necessary
+`hugo_build` and `pages-build-deployment` workflows that will update
+[cloudnative-pg.io](https://cloudnative-pg.io).
