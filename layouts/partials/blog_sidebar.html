@@ -25,7 +25,7 @@
         <div class="space-y-10 px-4">
             <!--card 1 starts here-->
             {{ range first 6  (.Site.GetPage "/blog").Pages}}
-            <div class="p-8 bg-white drop-shadow-md md:w-2/6 rounded-md border-2 border-slate-50 align-super inline-grid max-w-xs"
+            <div class="p-8 bg-white dark:bg-sky-800 text-black dark:text-neutral-200 drop-shadow-md md:w-2/6 rounded-md border-2 border-slate-50 dark:border-bg-slate-500 align-super inline-grid max-w-xs"
                 style="min-width: 260px;">
                 <!--User profile-->
                 <div class="flex gap-3 mb-2.5">
@@ -38,7 +38,7 @@
                         <img src="{{ .RelPermalink }}/{{ .Params.image.url }}" class="object-fill"
                             alt="Blog image">
                     </div>
-                    <div class="charcoal">
+                    <div class="text-zinc-900 dark:text-zinc-300">
                         <h2 class="text-lg my-2.5 font-bold">{{.Title}}</h2>
                     </div>
                     <!--Blog image and content preview-->
