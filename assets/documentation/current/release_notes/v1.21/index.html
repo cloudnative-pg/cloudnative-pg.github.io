@@ -162,7 +162,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../../ssl_connections/">Client TLS/SSL Connections</a>
+                <li class="toctree-l1"><a class="reference internal" href="../../ssl_connections/">Client TLS/SSL connections</a>
                 </li>
               </ul>
               <ul>
@@ -275,13 +275,13 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href="../.." class="icon icon-home" alt="Docs"></a> &raquo;</li>
-      <li>Release notes for CloudNativePG 1.21</li>
+    <li><a href="../.." class="icon icon-home" alt="Docs"></a> &raquo;</li><li>Release notes for CloudNativePG 1.21</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
   <hr/>
 </div>
+
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
@@ -290,9 +290,38 @@
 <p>For a complete list of changes, please refer to the
 <a href="https://github.com/cloudnative-pg/cloudnative-pg/commits/release-1.21">commits</a>
 on the release branch in GitHub.</p>
+<h2 id="version-1213">Version 1.21.3</h2>
+<p><strong>Release date:</strong> Feb 2, 2024</p>
+<p>Enhancements:</p>
+<ul>
+<li>Tailor ephemeral volume storage in a Postgres cluster using a claim template
+  through the <code>ephemeralVolumeSource</code> option (#3678)</li>
+<li>Introduce the <code>pgadmin4</code> command in the <code>cnpg</code> plugin for <code>kubectl</code>,
+  providing a straightforward method to demonstrate connecting to a given
+  database cluster and navigate its content in a local environment such as kind -
+  for evaluation purposes only (#3701)</li>
+<li>Allow customization of PostgreSQL's ident map file via the
+  <code>.spec.postgresql.pg_ident</code> stanza, through a list of user name maps (#3534)</li>
+</ul>
+<p>Fixes:</p>
+<ul>
+<li>Prevent an unrecoverable issue with <code>pg_rewind</code> failing due to
+  <code>postgresql.auto.conf</code> being read-only on clusters where the <code>ALTER SYSTEM</code>
+  SQL command is disabled - the default (#3728)</li>
+<li>Reduce the risk of disk space shortage when using the import facility of the
+  <code>initdb</code> bootstrap method, by disabling the durability settings in the PostgreSQL
+  instance for the duration of the import process (#3743)</li>
+<li>Avoid pod restart due to erroneous resource quantity comparisons, e.g. "1 !=
+  1000m"  (#3706)</li>
+<li>Properly escape reserved characters in <code>pgpass</code> connection fields (#3713)</li>
+<li>Prevent systematic rollout of pods due to considering zero and nil different
+  values in <code>.spec.projectedVolumeTemplate.sources</code> (#3647)</li>
+<li>Ensure configuration coherence by pruning from <code>postgresql.auto.conf</code> any
+  options now incorporated into <code>override.conf</code> (#3773)</li>
+</ul>
 <h2 id="version-1212">Version 1.21.2</h2>
 <p><strong>Release date:</strong> Dec 21, 2023</p>
-<h3 id="security">Security</h3>
+<p>Security:</p>
 <ul>
 <li>By default, TLSv1.3 is now enforced on all PostgreSQL 12 or higher
   installations. Additionally, users can configure the <code>ssl_ciphers</code>,
@@ -300,7 +329,7 @@ on the release branch in GitHub.</p>
 <li>Integration of Docker image scanning with Dockle and Snyk to enhance security
   measures (#3300).</li>
 </ul>
-<h3 id="enhancements">Enhancements</h3>
+<p>Enhancements:</p>
 <ul>
 <li>Improved reconciliation of external clusters (#3533).</li>
 <li>Introduction of the ability to enable/disable the <code>ALTER SYSTEM</code> command (#3535).</li>
@@ -323,7 +352,7 @@ on the release branch in GitHub.</p>
 </ul>
 </li>
 </ul>
-<h3 id="fixes">Fixes</h3>
+<p>Fixes:</p>
 <ul>
 <li>Reconciliation of metadata, annotations, and labels of <code>PodDisruptionBudget</code>
   resources (#3312 and #3434).</li>
@@ -344,7 +373,7 @@ on the release branch in GitHub.</p>
 </ul>
 </li>
 </ul>
-<h3 id="changes">Changes</h3>
+<p>Changes:</p>
 <ul>
 <li>Default operand image set to PostgreSQL 16.1 (#3270).</li>
 </ul>

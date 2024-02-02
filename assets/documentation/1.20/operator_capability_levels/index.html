@@ -146,7 +146,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../ssl_connections/">Client TLS/SSL Connections</a>
+                <li class="toctree-l1"><a class="reference internal" href="../ssl_connections/">Client TLS/SSL connections</a>
                 </li>
               </ul>
               <ul>
@@ -306,6 +306,8 @@
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#prometheus-exporter-with-configurable-queries">Prometheus exporter with configurable queries</a>
     </li>
+    <li class="toctree-l3"><a class="reference internal" href="#grafana-dashboard">Grafana dashboard</a>
+    </li>
     <li class="toctree-l3"><a class="reference internal" href="#standard-output-logging-of-postgresql-error-messages-in-json-format">Standard output logging of PostgreSQL error messages in JSON format</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#real-time-query-monitoring">Real-time query monitoring</a>
@@ -381,13 +383,13 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
-      <li>Operator capability levels</li>
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li><li>Operator capability levels</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
   <hr/>
 </div>
+
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
@@ -812,6 +814,9 @@ or <code>Secret</code> objects using a syntax that's compatible with
 <a href="https://github.com/prometheus-community/postgres_exporter"><code>postgres_exporter</code> for Prometheus</a>.
 CloudNativePG provides a set of basic monitoring queries for
 PostgreSQL that can be integrated and adapted to your context.</p>
+<h3 id="grafana-dashboard">Grafana dashboard</h3>
+<p>CloudNativePG comes with a Grafana dashboard that you can use as a base to
+monitor all critical aspects of a PostgreSQL cluster, and customize.</p>
 <h3 id="standard-output-logging-of-postgresql-error-messages-in-json-format">Standard output logging of PostgreSQL error messages in JSON format</h3>
 <p>Every log message is delivered to standard output in JSON format. The first level is the
 definition of the timestamp, the log level, and the type of log entry, such as

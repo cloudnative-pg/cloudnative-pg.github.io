@@ -78,6 +78,8 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#the-monolith-type">The monolith type</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#import-optimizations">Import optimizations</a>
+    </li>
     </ul>
                 </li>
               </ul>
@@ -170,7 +172,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../ssl_connections/">Client TLS/SSL Connections</a>
+                <li class="toctree-l1"><a class="reference internal" href="../ssl_connections/">Client TLS/SSL connections</a>
                 </li>
               </ul>
               <ul>
@@ -283,13 +285,13 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
-      <li>Importing Postgres databases</li>
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li><li>Importing Postgres databases</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
   <hr/>
 </div>
+
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
@@ -527,6 +529,31 @@ spec:
   database.</li>
 <li><code>postImportApplicationSQL</code> field is not supported</li>
 </ul>
+<h2 id="import-optimizations">Import optimizations</h2>
+<p>During the logical import of a database, CloudNativePG optimizes the
+configuration of PostgreSQL in order to prioritize speed versus data
+durability, by forcing:</p>
+<ul>
+<li><code>archive_mode</code> to <code>off</code></li>
+<li><code>fsync</code> to <code>off</code></li>
+<li><code>full_page_writes</code> to <code>off</code></li>
+<li><code>max_wal_senders</code> to <code>0</code></li>
+<li><code>wal_level</code> to <code>minimal</code></li>
+</ul>
+<p>Before completing the import job, CloudNativePG restores the expected
+configuration, then runs <code>initdb --sync-only</code> to ensure that data is
+permanently written on disk.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>WAL archiving, if requested, and WAL level will be honored after the
+database import process has completed. Similarly, replicas will be cloned
+after the bootstrap phase, when the actual cluster resource starts.</p>
+</div>
+<p>There are other optimizations you can do during the import phase. Although this
+topic is beyond the scope of CloudNativePG, we recommend that you reduce
+unnecessary writes in the checkpoint area by tuning Postgres GUCs like
+<code>shared_buffers</code>, <code>max_wal_size</code>, <code>checkpoint_timeout</code> directly in the
+<code>Cluster</code> configuration.</p>
               
             </div>
           </div><footer>

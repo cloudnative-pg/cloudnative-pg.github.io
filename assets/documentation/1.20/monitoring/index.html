@@ -182,7 +182,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../ssl_connections/">Client TLS/SSL Connections</a>
+                <li class="toctree-l1"><a class="reference internal" href="../ssl_connections/">Client TLS/SSL connections</a>
                 </li>
               </ul>
               <ul>
@@ -295,13 +295,13 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
-      <li>Monitoring</li>
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li><li>Monitoring</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
   <hr/>
 </div>
+
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
@@ -1015,16 +1015,11 @@ section for context:</p>
   NOTE: this does not include inter-operation with notification services. Please refer
   to the <a href="https://prometheus.io/docs/alerting/latest/alertmanager/">Prometheus documentation</a>.</li>
 <li><code>podmonitor.yaml</code>: a <code>PodMonitor</code> for the CloudNativePG Operator deployment.</li>
-<li><code>grafana-configmap.yaml</code>: a ConfigMap containing the definition of the sample
-  CloudNativePG Dashboard. Note the labels in the definition, which ensure that
-  the Grafana deployment will find the ConfigMap.</li>
 </ul>
-<p>In addition, we provide the "raw" sources for the Grafana dashboard and the
-Prometheus alert rules, for your reference:</p>
-<ul>
-<li><code>alerts.yaml</code>: Prometheus rules with alerts</li>
-<li><code>grafana-dashboard.json</code>: the CloudNativePG dashboard as a native Grafana JSON.</li>
-</ul>
+<p>In addition, we provide the "raw" sources for the Prometheus alert rules in the
+<code>alerts.yaml</code> file.</p>
+<p>The <a href="https://github.com/cloudnative-pg/charts/blob/main/charts/cloudnative-pg/monitoring/grafana-dashboard.json">Grafana dashboard</a>
+is now part of the official Helm Chart project.</p>
 <p>Note that, for the configuration of <code>kube-prometheus-stack</code>, other fields and
 settings are available over what we provide in <code>kube-stack-config.yaml</code>.</p>
 <p>You can execute <code>helm show values prometheus-community/kube-prometheus-stack</code>

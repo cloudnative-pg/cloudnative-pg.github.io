@@ -146,7 +146,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../ssl_connections/">Client TLS/SSL Connections</a>
+                <li class="toctree-l1"><a class="reference internal" href="../ssl_connections/">Client TLS/SSL connections</a>
                 </li>
               </ul>
               <ul>
@@ -212,6 +212,8 @@
               <ul class="current">
                 <li class="toctree-l1 current"><a class="reference internal current" href="./">Examples</a>
     <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#basics">Basics</a>
+    </li>
     </ul>
                 </li>
               </ul>
@@ -261,36 +263,41 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
-      <li>Examples</li>
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li><li>Examples</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
   <hr/>
 </div>
+
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
                 <h1 id="examples">Examples</h1>
-<p>In this section, you can find some examples of configuration files to set up
-your PostgreSQL Cluster.</p>
+<p>The examples show configuration files for setting up
+your PostgreSQL cluster.</p>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
-<p>These are here for demonstration and experimentation
-purposes, and can be executed on a personal Kubernetes cluster with Minikube
-or Kind as described in the <a href="../quickstart/">"Quickstart"</a>.</p>
+<p>These examples are for demonstration and experimentation
+purposes. You can execute them on a personal Kubernetes cluster with Minikube
+or Kind, as described in <a href="../quickstart/">Quick start</a>.</p>
 </div>
+<div class="admonition seealso">
+<p class="admonition-title">Reference</p>
+<p>For a list of available options, see <a href="../cloudnative-pg.v1/">API reference</a>.</p>
+</div>
+<h2 id="basics">Basics</h2>
 <dl>
 <dt>Basic cluster</dt>
 <dd><a href="cluster-example.yaml"><code>cluster-example.yaml</code></a>
-   a basic example of  a cluster.</dd>
+   A basic example of a cluster.</dd>
 <dt>Custom cluster</dt>
 <dd><a href="cluster-example-custom.yaml"><code>cluster-example-custom.yaml</code></a>
-   a basic cluster that uses the default storage class and custom parameters for
+   A basic cluster that uses the default storage class and custom parameters for
    the <code>postgresql.conf</code> and <code>pg_hba.conf</code> files.</dd>
 <dt>Customized storage class</dt>
 <dd><a href="cluster-storage-class.yaml"><code>cluster-storage-class.yaml</code></a>:
-   a basic cluster that uses a specified storage class of <code>standard</code>.</dd>
+   A basic cluster that uses a specified storage class of <code>standard</code>.</dd>
 <dt>Customized storage class and backups</dt>
 <dd><strong>Prerequisites</strong>: bucket storage should be available. The sample config is for AWS,
 please change to suit your setup</dd>
@@ -300,7 +307,7 @@ please change to suit your setup</dd>
 <dd><strong>Prerequisites</strong>: <a href="cluster-storage-class-with-backup.yaml"><code>cluster-storage-class-with-backup.yaml</code></a>
 applied and Healthy</dd>
 <dd><a href="backup-example.yaml"><code>backup-example.yaml</code></a>:
-  an example of a backup that runs against the previous sample</dd>
+  An example of a backup that runs against the previous sample.</dd>
 <dt>Cluster with PVC (Persistent Volume Claim) configured</dt>
 <dd><a href="cluster-pvc-template.yaml"><code>cluster-pvc-template.yaml</code></a>:
    a basic cluster that with an explicit persistent volume claim template.</dd>
@@ -318,15 +325,15 @@ applied and Healthy</dd>
 <dd><strong>Prerequisites</strong>: The configuration assumes <code>minio</code> is running and working.
 Please update <code>backup.barmanObjectStore</code> with your <code>minio</code> parameters or your cloud solution</dd>
 <dd><a href="cluster-example-with-backup.yaml"><code>cluster-example-with-backup.yaml</code></a>
-   a basic cluster with backups configured.</dd>
+   A basic cluster with backups configured.</dd>
 <dt>Replica cluster via backup</dt>
 <dd><strong>Prerequisites</strong>:
 <a href="cluster-storage-class-with-backup.yaml"><code>cluster-storage-class-with-backup.yaml</code></a> applied and Healthy.
 And a backup
 <a href="cluster-example-trigger-backup.yaml"><code>cluster-example-trigger-backup.yaml</code></a>
-applied and Completed.</dd>
+applied and completed.</dd>
 <dd><a href="cluster-example-replica-from-backup-simple.yaml"><code>cluster-example-replica-from-backup-simple.yaml</code></a>:
-   a replica cluster following a cluster with backup configured.</dd>
+   A replica cluster following a cluster with backup configured.</dd>
 <dt>Bootstrap cluster with SQL files</dt>
 <dd><a href="cluster-example-initdb-sql-refs.yaml"><code>cluster-example-initdb-sql-refs.yaml</code></a>:
    a cluster example that will execute a set of queries defined in a Secret and a ConfigMap right after the database is created.</dd>
@@ -338,10 +345,10 @@ applied and Completed.</dd>
   a basic cluster with existing Secret and Configmap mounted into Postgres pod using projected volume mount.</dd>
 <dt>Cluster with declarative role management</dt>
 <dd><a href="cluster-example-with-roles.yaml"><code>cluster-example-with-roles.yaml</code></a>:
-  declares a role with the <code>managed</code> stanza, includes password management with
-  kubernetes secrets</dd>
+  Declares a role with the <code>managed</code> stanza. Includes password management with
+  Kubernetes secrets.</dd>
 </dl>
-<p>For a list of available options, please refer to the <a href="../cloudnative-pg.v1/">"API Reference" page</a>.</p>
+<p>For a list of available options, see <a href="../cloudnative-pg.v1/">API reference</a>.</p>
               
             </div>
           </div><footer>

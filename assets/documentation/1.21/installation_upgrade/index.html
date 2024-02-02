@@ -214,7 +214,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../ssl_connections/">Client TLS/SSL Connections</a>
+                <li class="toctree-l1"><a class="reference internal" href="../ssl_connections/">Client TLS/SSL connections</a>
                 </li>
               </ul>
               <ul>
@@ -327,13 +327,13 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
-      <li>Installation and upgrades</li>
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li><li>Installation and upgrades</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
   <hr/>
 </div>
+
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
@@ -342,10 +342,10 @@
 <h3 id="directly-using-the-operator-manifest">Directly using the operator manifest</h3>
 <p>The operator can be installed like any other resource in Kubernetes,
 through a YAML manifest applied via <code>kubectl</code>.</p>
-<p>You can install the <a href="https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/release-1.21/releases/cnpg-1.21.2.yaml">latest operator manifest</a>
+<p>You can install the <a href="https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/release-1.21/releases/cnpg-1.21.3.yaml">latest operator manifest</a>
 for this minor release as follows:</p>
 <pre><code class="language-sh">kubectl apply -f \
-  https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/release-1.21/releases/cnpg-1.21.2.yaml
+  https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/release-1.21/releases/cnpg-1.21.3.yaml
 </code></pre>
 <p>You can verify that with:</p>
 <pre><code class="language-sh">kubectl get deployment -n cnpg-system cnpg-controller-manager
@@ -356,7 +356,7 @@ that are in the static manifests. </p>
 <p>For example, to generate the default latest manifest but change the watch
 namespaces to only be a specific namespace, you could run:</p>
 <pre><code class="language-shell">kubectl cnpg install generate \
-  --watch-namespaces &quot;specific-namespace&quot; \
+  --watch-namespace &quot;specific-namespace&quot; \
   &gt; cnpg_for_specific_namespace.yaml
 </code></pre>
 <p>Please refer to <a href="../kubectl-plugin/#generation-of-installation-manifests">"<code>cnpg</code> plugin"</a> documentation
