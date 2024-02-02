@@ -1,6 +1,6 @@
 ---
 title: "CloudNativePG 1.22.1, 1.21.3 and 1.20.6 Released!"
-date: 2024-02-01T17:10:42+01:00
+date: 2024-02-02T17:10:42+01:00
 draft: false
 image:
     url: wildlife-zoo-mammal-fauna-elephant-sri-lanka-988769-pxhere.com.jpg
