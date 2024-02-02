@@ -182,7 +182,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../ssl_connections/">Client TLS/SSL Connections</a>
+                <li class="toctree-l1"><a class="reference internal" href="../ssl_connections/">Client TLS/SSL connections</a>
                 </li>
               </ul>
               <ul>
@@ -363,22 +363,13 @@ you need to apply a configuration file that defines your desired <code>Cluster</
 <p>The <a href="../samples/cluster-example.yaml"><code>cluster-example.yaml</code></a> sample file
 defines a simple <code>Cluster</code> using the default storage class to allocate
 disk space:</p>
-<pre><code class="language-yaml"># Example of PostgreSQL cluster
-apiVersion: postgresql.cnpg.io/v1
+<pre><code class="language-yaml">apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
   name: cluster-example
 spec:
   instances: 3
 
-  # Example of rolling update strategy:
-  # - unsupervised: automated update of the primary once all
-  #                 replicas have been upgraded (default)
-  # - supervised: requires manual supervision to perform
-  #               the switchover of the primary
-  primaryUpdateStrategy: unsupervised
-
-  # Require 1Gi of space
   storage:
     size: 1Gi
 </code></pre>
@@ -544,12 +535,10 @@ we just installed.</p>
 </code></pre>
 <p>And access Grafana locally at <a href="http://localhost:3000/"><code>http://localhost:3000/</code></a>
 providing the credentials <code>admin</code> as username, <code>prom-operator</code> as password (defined in <code>kube-stack-config.yaml</code>).</p>
-<p>We can now install our sample Grafana dashboard:</p>
-<pre><code class="language-sh">kubectl apply -f \
-  https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/main/docs/src/samples/monitoring/grafana-configmap.yaml
-</code></pre>
-<p>Which will be picked up by the Grafana page in a few seconds. You should now
-see the <code>CloudNativePG</code> dashboard.</p>
+<p>CloudNativePG provides a default dashboard for Grafana as part of the official
+<a href="https://github.com/cloudnative-pg/charts">Helm chart</a>. You can download the
+<a href="https://github.com/cloudnative-pg/charts/blob/main/charts/cloudnative-pg/monitoring/grafana-dashboard.json">grafana-dashboard.json</a>
+file and manually importing it via the GUI.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>Some graphs in the previous dashboard make use of metrics that are in alpha stage by the time

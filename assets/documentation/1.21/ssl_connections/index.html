@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="The CloudNativePG Contributors" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Client TLS/SSL Connections - CloudNativePG</title>
+    <title>Client TLS/SSL connections - CloudNativePG</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
@@ -13,7 +13,7 @@
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Client TLS/SSL Connections";
+        var mkdocs_page_name = "Client TLS/SSL connections";
         var mkdocs_page_input_path = "ssl_connections.md";
         var mkdocs_page_url = null;
       </script>
@@ -158,7 +158,7 @@
                 </li>
               </ul>
               <ul class="current">
-                <li class="toctree-l1 current"><a class="reference internal current" href="./">Client TLS/SSL Connections</a>
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Client TLS/SSL connections</a>
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#issuing-a-new-certificate">Issuing a new certificate</a>
     </li>
@@ -280,7 +280,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
-      <li>Client TLS/SSL Connections</li>
+      <li>Client TLS/SSL connections</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -289,33 +289,37 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="client-tlsssl-connections">Client TLS/SSL Connections</h1>
+                <h1 id="client-tlsssl-connections">Client TLS/SSL connections</h1>
 <div class="admonition seealso">
 <p class="admonition-title">Certificates</p>
-<p>Please refer to the <a href="../certificates/">"Certificates"</a>
-page for more details on how CloudNativePG supports TLS certificates.</p>
+<p>See <a href="../certificates/">Certificates</a>
+for more details on how CloudNativePG supports TLS certificates.</p>
 </div>
-<p>The CloudNativePG operator has been designed to work with TLS/SSL for both encryption in transit and
-authentication, on server and client sides. Clusters created using the CNPG operator comes with a Certification
-Authority (CA) to create and sign TLS client certificates. Through the <code>cnpg</code> plugin for <code>kubectl</code> you can
-issue a new TLS client certificate which can be used to authenticate a user instead of using passwords.</p>
-<p>Please refer to the following steps to authenticate via TLS/SSL certificates, which assume you have
-installed a cluster using the <a href="../samples/cluster-example-pg-hba.yaml">cluster-example-pg-hba.yaml</a>
-manifest. According to the convention over configuration paradigm, that file automatically creates an <code>app</code>
-database which is owned by a user called <code>app</code> (you can change this convention through the <code>initdb</code>
-configuration in the <code>bootstrap</code> section).</p>
+<p>The CloudNativePG operator was designed to work with TLS/SSL for both
+encryption in transit and authentication on the server and client sides.
+Clusters created using the CNPG operator come with a certification authority
+(CA) to create and sign TLS client certificates. Using the cnpg plugin for
+kubectl, you can issue a new TLS client certificate for authenticating a user
+instead of using passwords.</p>
+<p>These instructions for authenticating using TLS/SSL certificates assume you
+installed a cluster using the
+<a href="../samples/cluster-example-pg-hba.yaml">cluster-example-pg-hba.yaml</a> manifest.
+According to the convention-over-configuration paradigm, that file creates an
+<code>app</code> database that's owned by a user called app. (You can change this
+convention by way of the <code>initdb</code> configuration in the <code>bootstrap</code> section.)</p>
 <h2 id="issuing-a-new-certificate">Issuing a new certificate</h2>
 <div class="admonition seealso">
 <p class="admonition-title">About CNPG plugin for kubectl</p>
-<p>Please refer to the <a href="../kubectl-plugin/#certificates">"Certificates" section in the "CloudNativePG Plugin"</a>
-page for details on how to use the plugin for <code>kubectl</code>.</p>
+<p>See the <a href="../kubectl-plugin/#certificates">Certificates in the CloudNativePG plugin</a>
+content for details on how to use the plugin for kubectl.</p>
 </div>
-<p>You can create a certificate for the <code>app</code> user in the <code>cluster-example</code> PostgreSQL cluster as follows:</p>
+<p>You can create a certificate for the app user in the <code>cluster-example</code>
+PostgreSQL cluster as follows:</p>
 <pre><code class="language-shell">kubectl cnpg certificate cluster-app \
   --cnpg-cluster cluster-example \
   --cnpg-user app
 </code></pre>
-<p>You can now verify the certificate with:</p>
+<p>You can now verify the certificate:</p>
 <pre><code class="language-shell">kubectl get secret cluster-app \
   -o jsonpath=&quot;{.data['tls\.crt']}&quot; \
   | base64 -d | openssl x509 -text -noout \
@@ -335,14 +339,15 @@ Certificate:
       Not After : Mar 22 10:22:14 2022 GMT
     Subject: CN = app
 </code></pre>
-<p>As you can see, TLS client certificates by default are created with 90 days of validity, and with a simple CN that
-corresponds to the username in PostgreSQL. This is necessary to leverage the <code>cert</code> authentication method for <code>hostssl</code>
+<p>As you can see, TLS client certificates by default are created with 90 days of
+validity and with a simple CN that corresponds to the username in PostgreSQL.
+This is necessary to leverage the <code>cert</code> authentication method for <code>hostssl</code>
 entries in <code>pg_hba.conf</code>.</p>
 <h2 id="testing-the-connection-via-a-tls-certificate">Testing the connection via a TLS certificate</h2>
-<p>Now we will test this client certificate by configuring a demo client application that connects to our CloudNativePG
-cluster.</p>
-<p>The following manifest called <code>cert-test.yaml</code> creates a demo Pod with a test application
-in the same namespace where your database cluster is running:</p>
+<p>Next, test this client certificate by configuring a demo client application
+that connects to your CloudNativePG cluster.</p>
+<p>The following manifest, called <code>cert-test.yaml</code>, creates a demo pod with a test
+application in the same namespace where your database cluster is running:</p>
 <pre><code class="language-yaml">apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -393,35 +398,38 @@ spec:
             secretName: cluster-app
             defaultMode: 0600
 </code></pre>
-<p>This Pod will mount secrets managed by the CloudNativePG operator, including:</p>
+<p>This pod mounts secrets managed by the CloudNativePG operator, including:</p>
 <ul>
-<li><code>sslcert</code>: the TLS client public certificate</li>
-<li><code>sslkey</code>: the TLS client certificate private key</li>
-<li><code>sslrootcert</code>: the TLS Certification Authority certificate, that signed the certificate on
-  the server to be used to verify the identity of the instances</li>
+<li><code>sslcert</code> – The TLS client public certificate.</li>
+<li><code>sslkey</code> – The TLS client certificate private key.</li>
+<li><code>sslrootcert</code> – The TLS CA certificate that signed the certificate on
+  the server to use to verify the identity of the instances.</li>
 </ul>
-<p>They will be used to create the default resources that <code>psql</code> (and other libpq based applications like <code>pgbench</code>)
-requires to establish a TLS encrypted connection to the Postgres database.</p>
-<p>By default <code>psql</code> searches for certificates inside the <code>~/.postgresql</code> directory of the current user, but we can use
-the sslkey, sslcert, sslrootcert options to point libpq to the actual location of the cryptographic material.
-The content of the above files is gathered from the secrets that were previously created by using the <code>cnpg</code> plugin for
-kubectl.</p>
-<p>Now deploy the application:</p>
+<p>They're used to create the default resources that psql (and other libpq-based
+applications, like pgbench) requires to establish a TLS-encrypted connection to
+the Postgres database.</p>
+<p>By default, psql searches for certificates in the <code>~/.postgresql</code> directory of
+the current user, but you can use the <code>sslkey</code>, <code>sslcert</code>, and <code>sslrootcert</code>
+options to point libpq to the actual location of the cryptographic material.
+The content of these files is gathered from the secrets that were previously
+created by using the cnpg plugin for kubectl.</p>
+<p>Deploy the application:</p>
 <pre><code class="language-shell">kubectl create -f cert-test.yaml
 </code></pre>
-<p>Then we will use created Pod as PostgreSQL client to validate SSL connection and
-authentication using TLS certificates we just created.</p>
-<p>A readiness probe has been configured to ensure that the application is ready when the database server can be
-reached.</p>
-<p>You can verify that the connection works by executing an interactive <code>bash</code> inside the Pod's container to run <code>psql</code>
-using the necessary options. The PostgreSQL server is exposed through the read-write Kubernetes service. We will point
-the <code>psql</code> command to connect to this service:</p>
+<p>Then use the created pod as the PostgreSQL client to validate the SSL
+connection and authentication using the TLS certificates you just created.</p>
+<p>A readiness probe was configured to ensure that the application is ready when
+the database server can be reached.</p>
+<p>You can verify that the connection works. To do so, execute an interactive
+<code>bash</code> inside the pod's container to run psql using the necessary options. The
+PostgreSQL server is exposed through the read-write Kubernetes service. Point
+the psql command to connect to this service:</p>
 <pre><code class="language-shell">kubectl exec -it cert-test -- bash -c &quot;psql
 'sslkey=/etc/secrets/app/tls.key sslcert=/etc/secrets/app/tls.crt
 sslrootcert=/etc/secrets/ca/ca.crt host=cluster-example-rw.default.svc dbname=app
 user=app sslmode=verify-full' -c 'select version();'&quot;
 </code></pre>
-<p>Output :</p>
+<p>Output:</p>
 <pre><code class="language-console">                                        version
 --------------------------------------------------------------------------------------
 ------------------
@@ -435,14 +443,13 @@ and <a href="https://www.postgresql.org/docs/current/runtime-config-connection.h
 to <code>TLSv1.3</code>.</p>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
-<p>In PostgreSQL 11 these two GUC doesn't exists hence, in these specific version
-these values aren't set and will keep using the default ones.</p>
+<p>In PostgreSQL 11, these two GUCs don't exist. Hence, in these specific versions
+these values aren't set,  and the default values are used.</p>
 </div>
 <p>This assumes that the PostgreSQL operand images include an OpenSSL library that
-supports the <code>TLSv1.3</code> version.</p>
-<p>If not, or your client applications need a lower version number, you need to
-manually configure it in the PostgreSQL configuration as any other Postgres
-GUC.</p>
+supports the <code>TLSv1.3</code> version. If not, or if your client applications need a
+lower version number, you need to manually configure it in the PostgreSQL
+configuration as any other Postgres GUC.</p>
               
             </div>
           </div><footer>
