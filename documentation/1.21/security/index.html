@@ -186,7 +186,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../ssl_connections/">Client TLS/SSL Connections</a>
+                <li class="toctree-l1"><a class="reference internal" href="../ssl_connections/">Client TLS/SSL connections</a>
                 </li>
               </ul>
               <ul>
@@ -352,7 +352,7 @@ Within the pipelines, images are scanned with:</p>
 <p class="admonition-title">Important</p>
 <p>All operand images are automatically rebuilt once a day by our pipelines in case
 of security updates at the base image and package level, providing <strong>patch level updates</strong>
-for the container images that EDB distributes.</p>
+for the container images that the community distributes.</p>
 </div>
 <p>The following guidelines and frameworks have been taken into account for container-level security:</p>
 <ul>
@@ -656,6 +656,10 @@ as part of the <code>pg_hba</code> section of the <code>postgresql</code> config
 manifest are added to a default <code>pg_hba.conf</code>.</p>
 <p>For further detail on how <code>pg_hba.conf</code> is managed by the operator, see the
 <a href="../postgresql_conf/#the-pg_hba-section">"PostgreSQL Configuration" page</a> of the documentation.</p>
+<p>The administrator can also customize the content of the <code>pg_ident.conf</code> file that by default
+only maps the local postgres user to the postgres user in the database.</p>
+<p>For further detail on how <code>pg_ident.conf</code> is managed by the operator, see the
+<a href="../postgresql_conf/#the-pg_ident-section">"PostgreSQL Configuration" page</a> of the documentation.</p>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
 <p>Examples assume that the Kubernetes cluster runs in a private and secure network.</p>
