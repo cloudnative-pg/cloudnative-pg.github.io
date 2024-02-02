@@ -162,7 +162,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../ssl_connections/">Client TLS/SSL Connections</a>
+                <li class="toctree-l1"><a class="reference internal" href="../ssl_connections/">Client TLS/SSL connections</a>
                 </li>
               </ul>
               <ul>
@@ -300,114 +300,117 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="examples">Examples</h1>
-<p>In this section, you can find some examples of configuration files to set up
-your PostgreSQL Cluster.</p>
+<p>The examples show configuration files for setting up
+your PostgreSQL cluster.</p>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
-<p>These examples are here for demonstration and experimentation
-purposes, and can be executed on a personal Kubernetes cluster with Minikube
-or Kind as described in the <a href="../quickstart/">"Quickstart"</a>.</p>
+<p>These examples are for demonstration and experimentation
+purposes. You can execute them on a personal Kubernetes cluster with Minikube
+or Kind, as described in <a href="../quickstart/">Quick start</a>.</p>
 </div>
 <div class="admonition seealso">
 <p class="admonition-title">Reference</p>
-<p>For a list of available options, please refer to the <a href="../cloudnative-pg.v1/">"API Reference" page</a>.</p>
+<p>For a list of available options, see <a href="../cloudnative-pg.v1/">API reference</a>.</p>
 </div>
 <h2 id="basics">Basics</h2>
 <dl>
 <dt><strong>Basic cluster</strong></dt>
 <dd><a href="cluster-example.yaml"><code>cluster-example.yaml</code></a>
-   a basic example of  a cluster.</dd>
+   A basic example of a cluster.</dd>
 <dt><strong>Custom cluster</strong></dt>
 <dd><a href="cluster-example-custom.yaml"><code>cluster-example-custom.yaml</code></a>
-   a basic cluster that uses the default storage class and custom parameters for
+   A basic cluster that uses the default storage class and custom parameters for
    the <code>postgresql.conf</code> and <code>pg_hba.conf</code> files.</dd>
 <dt><strong>Cluster with customized storage class</strong></dt>
 <dd><a href="cluster-storage-class.yaml"><code>cluster-storage-class.yaml</code></a>:
-   a basic cluster that uses a specified storage class of <code>standard</code>.</dd>
-<dt><strong>Cluster with PVC Template (Persistent Volume Claim) configured</strong></dt>
+   A basic cluster that uses a specified storage class of <code>standard</code>.</dd>
+<dt><strong>Cluster with persistent volume claim (PVC) template configured</strong></dt>
 <dd><a href="cluster-pvc-template.yaml"><code>cluster-pvc-template.yaml</code></a>:
-   a basic cluster that with an explicit persistent volume claim template.</dd>
+   A basic cluster with an explicit persistent volume claim template.</dd>
 <dt><strong>Extended configuration example</strong></dt>
 <dd><a href="cluster-example-full.yaml"><code>cluster-example-full.yaml</code></a>:
-   a cluster that sets most of the available options.</dd>
+   A cluster that sets most of the available options.</dd>
 <dt><strong>Bootstrap cluster with SQL files</strong></dt>
 <dd><a href="cluster-example-initdb-sql-refs.yaml"><code>cluster-example-initdb-sql-refs.yaml</code></a>:
-   a cluster example that will execute a set of queries defined in a Secret and a ConfigMap right after the database is created.</dd>
+   A cluster example that executes a set of queries defined in a secret and a
+   <code>ConfigMap</code> right after the database is created.</dd>
 <dt><strong>Sample cluster with customized <code>pg_hba</code> configuration</strong></dt>
 <dd><a href="cluster-example-pg-hba.yaml"><code>cluster-example-pg-hba.yaml</code></a>:
-  a basic cluster that enables user <code>app</code> to authenticate using certificates.</dd>
-<dt><strong>Sample cluster with Secret and Configmap mounted using projected volume template</strong></dt>
+  A basic cluster that enables the user app to authenticate using certificates.</dd>
+<dt><strong>Sample cluster with Secret and ConfigMap mounted using projected volume template</strong></dt>
 <dd><a href="cluster-example-projected-volume.yaml"><code>cluster-example-projected-volume.yaml</code></a>
-  a basic cluster with existing Secret and Configmap mounted into Postgres pod using projected volume mount.</dd>
+  A basic cluster with the existing <code>Secret</code> and <code>ConfigMap</code> mounted into Postgres
+  pod using projected volume mount.</dd>
 </dl>
 <h2 id="backups">Backups</h2>
 <dl>
 <dt><strong>Customized storage class and backups</strong></dt>
-<dd><em>Prerequisites</em>: bucket storage should be available. The sample config is for AWS,
-please change to suit your setup</dd>
-<dd><a href="cluster-storage-class-with-backup.yaml"><code>cluster-storage-class-with-backup.yaml</code></a> a cluster
-   with backups configured</dd>
+<dd><em>Prerequisites</em>: Bucket storage must be available. The sample config is for AWS.
+Change it to suit your setup.</dd>
+<dd><a href="cluster-storage-class-with-backup.yaml"><code>cluster-storage-class-with-backup.yaml</code></a> 
+   A cluster with backups configured.</dd>
 <dt><strong>Backup</strong></dt>
 <dd><em>Prerequisites</em>: <a href="cluster-storage-class-with-backup.yaml"><code>cluster-storage-class-with-backup.yaml</code></a>
-applied and Healthy</dd>
+applied and healthy.</dd>
 <dd><a href="backup-example.yaml"><code>backup-example.yaml</code></a>:
-  an example of a backup that runs against the previous sample</dd>
+  An example of a backup that runs against the previous sample.</dd>
 <dt><strong>Simple cluster with backup configured</strong></dt>
-<dd><em>Prerequisites</em>: The configuration assumes <code>minio</code> is running and working.
-Please update <code>backup.barmanObjectStore</code> with your <code>minio</code> parameters or your cloud solution</dd>
+<dd><em>Prerequisites</em>: The configuration assumes minio is running and working.
+Update <code>backup.barmanObjectStore</code> with your minio parameters or your cloud solution.</dd>
 <dd><a href="cluster-example-with-backup.yaml"><code>cluster-example-with-backup.yaml</code></a>
-   a basic cluster with backups configured.</dd>
+   A basic cluster with backups configured.</dd>
 </dl>
 <h2 id="replica-clusters">Replica clusters</h2>
 <dl>
-<dt><strong>Replica cluster via Backup from an object store</strong></dt>
+<dt><strong>Replica cluster by way of backup from an object store</strong></dt>
 <dd><em>Prerequisites</em>:
-<a href="cluster-storage-class-with-backup.yaml"><code>cluster-storage-class-with-backup.yaml</code></a> applied and Healthy.
-And a backup
+<a href="cluster-storage-class-with-backup.yaml"><code>cluster-storage-class-with-backup.yaml</code></a>
+applied and healthy, and a backup
 <a href="cluster-example-trigger-backup.yaml"><code>cluster-example-trigger-backup.yaml</code></a>
-applied and Completed.</dd>
+applied and completed.</dd>
 <dd><a href="cluster-example-replica-from-backup-simple.yaml"><code>cluster-example-replica-from-backup-simple.yaml</code></a>:
-   a replica cluster following a cluster with backup configured.</dd>
-<dt><strong>Replica cluster via Volume Snapshot</strong></dt>
+   A replica cluster following a cluster with backup configured.</dd>
+<dt><strong>Replica cluster by way of volume snapshot</strong></dt>
 <dd><em>Prerequisites</em>:
-<a href="cluster-example-with-volume-snapshot.yaml"><code>cluster-example-with-volume-snapshot.yaml</code></a> applied and Healthy.
-And a volume snapshot
+<a href="cluster-example-with-volume-snapshot.yaml"><code>cluster-example-with-volume-snapshot.yaml</code></a>
+applied and healthy, and a volume snapshot
 <a href="backup-with-volume-snapshot.yaml"><code>backup-with-volume-snapshot.yaml</code></a>
-applied and Completed.</dd>
+applied and completed.</dd>
 <dd><a href="cluster-example-replica-from-volume-snapshot.yaml"><code>cluster-example-replica-from-volume-snapshot.yaml</code></a>:
-   a replica cluster following a cluster with volume snapshot configured.</dd>
-<dt><strong>Replica cluster via streaming (pg_basebackup)</strong></dt>
+   A replica cluster following a cluster with volume snapshot configured.</dd>
+<dt><strong>Replica cluster by way of streaming (pg_basebackup)</strong></dt>
 <dd><em>Prerequisites</em>: <a href="cluster-example.yaml"><code>cluster-example.yaml</code></a>
-applied and Healthy</dd>
-<dd><a href="cluster-example-replica-streaming.yaml"><code>cluster-example-replica-streaming.yaml</code></a>: a replica cluster following <code>cluster-example</code> with streaming replication.</dd>
+applied and healthy.</dd>
+<dd><a href="cluster-example-replica-streaming.yaml"><code>cluster-example-replica-streaming.yaml</code></a>: 
+   A replica cluster following <code>cluster-example</code> with streaming replication.</dd>
 </dl>
 <h2 id="postgis">PostGIS</h2>
 <dl>
 <dt><strong>PostGIS example</strong></dt>
 <dd><a href="postgis-example.yaml"><code>postgis-example.yaml</code></a>:
-   an example of "PostGIS cluster" (see the <a href="../postgis/">PostGIS section</a> for details.)</dd>
+   An example of a PostGIS cluster. See <a href="../postgis/">PostGIS</a> for details.</dd>
 </dl>
 <h2 id="managed-roles">Managed roles</h2>
 <dl>
 <dt><strong>Cluster with declarative role management</strong></dt>
 <dd><a href="cluster-example-with-roles.yaml"><code>cluster-example-with-roles.yaml</code></a>:
-  declares a role with the <code>managed</code> stanza, includes password management with
-  kubernetes secrets</dd>
+  Declares a role with the <code>managed</code> stanza. Includes password management with
+  Kubernetes secrets.</dd>
 </dl>
 <h2 id="declarative-tablespaces">Declarative tablespaces</h2>
 <dl>
 <dt><strong>Cluster with declarative tablespaces</strong></dt>
 <dd><a href="cluster-example-with-tablespaces.yaml"><code>cluster-example-with-tablespaces.yaml</code></a></dd>
 <dt><strong>Cluster with declarative tablespaces and backup</strong></dt>
-<dd><em>Prerequisites</em>: The configuration assumes <code>minio</code> is running and working.
-Please update <code>backup.barmanObjectStore</code> with your <code>minio</code> parameters or your cloud solution</dd>
+<dd><em>Prerequisites</em>: The configuration assumes minio is running and working.
+Update <code>backup.barmanObjectStore</code> with your minio parameters or your cloud solution.</dd>
 <dd><a href="cluster-example-with-tablespaces-backup.yaml"><code>cluster-example-with-tablespaces-backup.yaml</code></a></dd>
-<dt><em>Restored cluster with tablespaces from object store</em></dt>
-<dd><em>Prerequisites</em>: the previous cluster applied and a base backup completed.
+<dt><strong>Restored cluster with tablespaces from object store</strong></dt>
+<dd><em>Prerequisites</em>: The previous cluster applied and a base backup completed.
 Remember to update <code>bootstrap.recovery.backup.name</code> with the backup name.</dd>
 <dd><a href="cluster-restore-with-tablespaces.yaml"><code>cluster-restore-with-tablespaces.yaml</code></a></dd>
 </dl>
-<p>For a list of available options, see the <a href="../cloudnative-pg.v1/">"API Reference" page</a>.</p>
+<p>For a list of available options, see <a href="../cloudnative-pg.v1/">API reference</a>.</p>
               
             </div>
           </div><footer>
