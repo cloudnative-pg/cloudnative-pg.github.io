@@ -8,7 +8,7 @@
     <title>Release notes for CloudNativePG 1.22 - CloudNativePG</title>
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/theme_extra.css" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
         <link href="../../css/override.css" rel="stylesheet" />
     
       <script>
@@ -18,12 +18,11 @@
         var mkdocs_page_url = null;
       </script>
     
-    <script src="../../js/jquery-3.6.0.min.js" defer></script>
     <!--[if lt IE 9]>
       <script src="../../js/html5shiv.min.js"></script>
     <![endif]-->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-      <script>hljs.initHighlightingOnLoad();</script> 
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
 </head>
 
 <body class="wy-body-for-nav" role="document">
@@ -35,7 +34,7 @@
           <a href="../.." class="icon icon-home"> CloudNativePG
         </a><div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
@@ -275,8 +274,8 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href="../.." class="icon icon-home" alt="Docs"></a> &raquo;</li>
-      <li>Release notes for CloudNativePG 1.22</li>
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Release notes for CloudNativePG 1.22</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -290,6 +289,54 @@
 <p>For a complete list of changes, please refer to the
 <a href="https://github.com/cloudnative-pg/cloudnative-pg/commits/release-1.22">commits</a>
 on the release branch in GitHub.</p>
+<h2 id="version-1222">Version 1.22.2</h2>
+<p><strong>Release date:</strong> Mar 14, 2024</p>
+<h3 id="enhancements">Enhancements</h3>
+<ul>
+<li>Allow customization of the <code>wal_level</code> GUC in PostgreSQL (#4020)</li>
+<li>Add the <code>cnpg.io/skipWalArchiving</code> annotation to disable WAL archiving when
+  set to <code>enabled</code> (#4055)</li>
+<li>Enrich the <code>cnpg</code> plugin for <code>kubectl</code> with the <code>publication</code> and
+  <code>subscription</code> command groups to imperatively set up PostgreSQL native
+  logical replication (#4052)</li>
+<li>Allow customization of <code>CERTIFICATE_DURATION</code> and <code>EXPIRING_CHECK_THRESHOLD</code>
+  for automated management of TLS certificates handled by the operator (#3686)</li>
+<li>Retrieve the correct architecture's binary from the corresponding catalog in
+  the running operator image during in-place updates, enabling the operator to
+  inject the correct binary into any Pod with a supported architecture (#3840)</li>
+<li>Introduce initial support for tab-completion with the <code>cnpg</code> plugin for
+  <code>kubectl</code> (#3875)</li>
+</ul>
+<h3 id="fixes">Fixes</h3>
+<ul>
+<li>Properly synchronize PVC group labels with those on the pods, a critical
+  aspect when all pods are deleted and the operator needs to decide which Pod
+  to recreate first (#3930)</li>
+<li>Disable <code>wal_sender_timeout</code> when cloning a replica to prevent timeout errors
+  due to slow connections (#4080)</li>
+<li>Ensure that volume snapshots are ready before initiating recovery bootstrap
+  procedures, preventing an error condition where recovery with incomplete
+  backups could enter an error loop (#3663)</li>
+<li>Prevent an error loop when unsetting connection limits in managed roles (#3832)</li>
+<li>Resolve a corner case in hibernation where the instance pod has been deleted,
+  but the cluster status still has the hibernation condition set to false (#3970)</li>
+<li>Correctly detect Google Cloud capabilities for Barman Cloud (#3931)</li>
+</ul>
+<h3 id="security">Security</h3>
+<ul>
+<li>Use <code>Role</code> instead of <code>ClusterRole</code> for operator permissions in OLM,
+  requiring fewer privileges when installed on a per-namespace basis (#3855,
+  #3990)</li>
+<li>Enforce fully-qualified object names in SQL queries for the PgBouncer pooler
+  (#4080)</li>
+</ul>
+<h3 id="changes">Changes</h3>
+<ul>
+<li>Follow Kubernetes recommendations to switch from client-side to server-side
+  application of manifests, requiring the <code>--server-side</code> option by default
+  when installing the operator (#3729).</li>
+<li>Set the default operand image to PostgreSQL 16.2 (#3823).</li>
+</ul>
 <h2 id="version-1221">Version 1.22.1</h2>
 <p><strong>Release date:</strong> Feb 2, 2024</p>
 <p>Enhancements:</p>
@@ -427,14 +474,15 @@ previous version who wish to retain the old behavior: please refer to the
     
   </span>
 </div>
-    <script>var base_url = '../..';</script>
-    <script src="../../js/theme_extra.js" defer></script>
-    <script src="../../js/theme.js" defer></script>
-      <script src="../../search/main.js" defer></script>
-    <script defer>
-        window.onload = function () {
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
             SphinxRtdTheme.Navigation.enable(true);
-        };
+        });
     </script>
 
 </body>

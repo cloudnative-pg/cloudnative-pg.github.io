@@ -8,7 +8,7 @@
     <title>Supported releases - CloudNativePG</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
         <link href="../css/override.css" rel="stylesheet" />
     
       <script>
@@ -18,12 +18,11 @@
         var mkdocs_page_url = null;
       </script>
     
-    <script src="../js/jquery-3.6.0.min.js" defer></script>
     <!--[if lt IE 9]>
       <script src="../js/html5shiv.min.js"></script>
     <![endif]-->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-      <script>hljs.initHighlightingOnLoad();</script> 
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
 </head>
 
 <body class="wy-body-for-nav" role="document">
@@ -35,7 +34,7 @@
           <a href=".." class="icon icon-home"> CloudNativePG
         </a><div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
-      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
@@ -293,8 +292,8 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
-      <li>Supported releases</li>
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Supported releases</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -391,7 +390,7 @@ current <code>&lt;minor&gt;</code> release. A patch is usually a small change re
 <td>1.22.x</td>
 <td>Yes</td>
 <td>December 21, 2023</td>
-<td>~ May 21, 2024</td>
+<td>~ July/August, 2024</td>
 <td>1.26, 1.27, 1.28</td>
 <td>1.23, 1.24, 1.25</td>
 <td>12 - 16</td>
@@ -400,7 +399,7 @@ current <code>&lt;minor&gt;</code> release. A patch is usually a small change re
 <td>1.21.x</td>
 <td>Yes</td>
 <td>October 12, 2023</td>
-<td>~ April 12, 2024</td>
+<td>~ May 23, 2024</td>
 <td>1.25, 1.26, 1.27, 1.28</td>
 <td>1.23, 1.24</td>
 <td>12 - 16</td>
@@ -449,13 +448,13 @@ version of PostgreSQL, we might not be able to help you.</p>
 <tbody>
 <tr>
 <td>1.23.0</td>
-<td>February 22, 2024</td>
+<td>April 23, 2024</td>
 <td>-</td>
 <td>-</td>
 </tr>
 <tr>
 <td>1.24.0</td>
-<td>April 23, 2024</td>
+<td>June/July, 2024</td>
 <td>-</td>
 <td>-</td>
 </tr>
@@ -594,14 +593,15 @@ extended support timeframes.</p>
     
   </span>
 </div>
-    <script>var base_url = '..';</script>
-    <script src="../js/theme_extra.js" defer></script>
-    <script src="../js/theme.js" defer></script>
-      <script src="../search/main.js" defer></script>
-    <script defer>
-        window.onload = function () {
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
             SphinxRtdTheme.Navigation.enable(true);
-        };
+        });
     </script>
 
 </body>

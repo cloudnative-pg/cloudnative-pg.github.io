@@ -8,7 +8,7 @@
     <title>Operator capability levels - CloudNativePG</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
         <link href="../css/override.css" rel="stylesheet" />
     
       <script>
@@ -18,12 +18,11 @@
         var mkdocs_page_url = null;
       </script>
     
-    <script src="../js/jquery-3.6.0.min.js" defer></script>
     <!--[if lt IE 9]>
       <script src="../js/html5shiv.min.js"></script>
     <![endif]-->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-      <script>hljs.initHighlightingOnLoad();</script> 
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
 </head>
 
 <body class="wy-body-for-nav" role="document">
@@ -35,7 +34,7 @@
           <a href=".." class="icon icon-home"> CloudNativePG
         </a><div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
-      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
@@ -403,8 +402,8 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
-      <li>Operator capability levels</li>
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Operator capability levels</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -745,22 +744,27 @@ instances in the cluster. It uses the following formula for the quorum (<code>q<
 <pre><code>1 &lt;= minSyncReplicas &lt;= q &lt;= maxSyncReplicas &lt;= readyReplicas
 </code></pre>
 <h3 id="replica-clusters">Replica clusters</h3>
-<p>Define a cross-Kubernetes cluster topology of PostgreSQL clusters by taking
-advantage of PostgreSQL native streaming and cascading replication.
-Using the <code>replica</code> option, you can set up an independent cluster to
-continuously replicate data from another PostgreSQL source of the same major
-version. Such a source can be anywhere, as long as a direct streaming
-connection by way of TLS is allowed from the two endpoints.</p>
-<p>Moreover, the source can be even outside Kubernetes, running in a physical or
-virtual environment.</p>
-<p>Replica clusters can be created from a volume snapshot, a recovery object store
-(backup in Barman Cloud format), or by way of streaming using <code>pg_basebackup</code>.
-Both WAL file shipping and WAL streaming are allowed.
-Replica clusters dramatically improve the business continuity posture of your
-PostgreSQL databases in Kubernetes, spanning over multiple data centers and
-opening up for hybrid and multi-cloud setups. (Currently, while waiting for Kubernetes 
-federation native capabilities, manual switchover
-across data centers is required.)</p>
+<p>Establish a robust cross-Kubernetes cluster topology for PostgreSQL clusters,
+harnessing the power of native streaming and cascading replication. With the
+<code>replica</code> option, you can configure an autonomous cluster to consistently
+replicate data from another PostgreSQL source of the same major version. This
+source can be located anywhere, provided you have access to a WAL archive for
+fetching WAL files or a direct streaming connection via TLS between the two
+endpoints.</p>
+<p>Notably, the source PostgreSQL instance can exist outside the Kubernetes
+environment, whether in a physical or virtual setting.</p>
+<p>Replica clusters can be instantiated through various methods, including volume
+snapshots, a recovery object store (utilizing the Barman Cloud backup format),
+or streaming using <code>pg_basebackup</code>. Both WAL file shipping and WAL streaming
+are supported. The deployment of replica clusters significantly elevates the
+business continuity posture of PostgreSQL databases within Kubernetes,
+extending across multiple data centers and facilitating hybrid and multi-cloud
+setups. (While anticipating Kubernetes federation native capabilities, manual
+switchover across data centers remains necessary.)</p>
+<p>Additionally, the flexibility extends to creating delayed replica clusters
+intentionally lagging behind the primary cluster. This intentional lag aims to
+minimize the Recovery Time Objective (RTO) in the event of unintended errors,
+such as incorrect <code>DELETE</code> or <code>UPDATE</code> SQL operations.</p>
 <h3 id="tablespace-support">Tablespace support</h3>
 <p>CloudNativePG seamlessly integrates robust support for PostgreSQL tablespaces
 by facilitating the declarative definition of individual persistent volumes.
@@ -947,14 +951,15 @@ the procedure to re-create a standby server.</p>
     
   </span>
 </div>
-    <script>var base_url = '..';</script>
-    <script src="../js/theme_extra.js" defer></script>
-    <script src="../js/theme.js" defer></script>
-      <script src="../search/main.js" defer></script>
-    <script defer>
-        window.onload = function () {
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
             SphinxRtdTheme.Navigation.enable(true);
-        };
+        });
     </script>
 
 </body>
