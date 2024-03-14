@@ -37,7 +37,7 @@ Key enhancements in both supported minor releases are:
 essential bug fixes, addressing issues such as:
 
 - proper synchronization of PVC group labels to match those on the pods
-- check for volume snapshots to be ready before initiating recovery procedures,
+- check that volume snapshots are ready before initiating recovery procedures,
   ensuring smoother operations and data integrity
 
 In adherence to Kubernetes best practices, we are transitioning from
