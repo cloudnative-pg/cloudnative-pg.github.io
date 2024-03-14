@@ -3,33 +3,36 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://cloudnative-pg.io/</loc>
-    <lastmod>2024-02-02T17:10:42+01:00</lastmod>
+    <lastmod>2024-03-14T16:40:27+01:00</lastmod>
   </url><url>
     <loc>https://cloudnative-pg.io/blog/</loc>
-    <lastmod>2024-02-02T17:10:42+01:00</lastmod>
+    <lastmod>2024-03-14T16:40:27+01:00</lastmod>
   </url><url>
     <loc>https://cloudnative-pg.io/tags/cloudnativepg/</loc>
-    <lastmod>2024-02-02T17:10:42+01:00</lastmod>
+    <lastmod>2024-03-14T16:40:27+01:00</lastmod>
   </url><url>
-    <loc>https://cloudnative-pg.io/blog/cloudnative-pg-1-22.1-released/</loc>
-    <lastmod>2024-02-02T17:10:42+01:00</lastmod>
+    <loc>https://cloudnative-pg.io/blog/cloudnative-pg-1-22.2-released/</loc>
+    <lastmod>2024-03-14T16:40:27+01:00</lastmod>
   </url><url>
     <loc>https://cloudnative-pg.io/tags/k8s/</loc>
-    <lastmod>2024-02-02T17:10:42+01:00</lastmod>
+    <lastmod>2024-03-14T16:40:27+01:00</lastmod>
   </url><url>
     <loc>https://cloudnative-pg.io/tags/kubernetes/</loc>
-    <lastmod>2024-02-02T17:10:42+01:00</lastmod>
+    <lastmod>2024-03-14T16:40:27+01:00</lastmod>
   </url><url>
     <loc>https://cloudnative-pg.io/tags/postgres/</loc>
-    <lastmod>2024-02-02T17:10:42+01:00</lastmod>
+    <lastmod>2024-03-14T16:40:27+01:00</lastmod>
   </url><url>
     <loc>https://cloudnative-pg.io/tags/postgresql/</loc>
-    <lastmod>2024-02-02T17:10:42+01:00</lastmod>
+    <lastmod>2024-03-14T16:40:27+01:00</lastmod>
   </url><url>
     <loc>https://cloudnative-pg.io/tags/release/</loc>
-    <lastmod>2024-02-02T17:10:42+01:00</lastmod>
+    <lastmod>2024-03-14T16:40:27+01:00</lastmod>
   </url><url>
     <loc>https://cloudnative-pg.io/tags/</loc>
+    <lastmod>2024-03-14T16:40:27+01:00</lastmod>
+  </url><url>
+    <loc>https://cloudnative-pg.io/blog/cloudnative-pg-1-22.1-released/</loc>
     <lastmod>2024-02-02T17:10:42+01:00</lastmod>
   </url><url>
     <loc>https://cloudnative-pg.io/blog/cloudnative-pg-1-22.0-released/</loc>
@@ -159,8 +162,6 @@
     <loc>https://cloudnative-pg.io/authors/jsilvela/</loc>
   </url><url>
     <loc>https://cloudnative-pg.io/authors/leonardoce/</loc>
-  </url><url>
-    <loc>https://cloudnative-pg.io/docs/1.20/</loc>
   </url><url>
     <loc>https://cloudnative-pg.io/docs/1.21/</loc>
   </url><url>

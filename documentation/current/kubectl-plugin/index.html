@@ -8,7 +8,7 @@
     <title>Kubectl Plugin - CloudNativePG</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
         <link href="../css/override.css" rel="stylesheet" />
     
       <script>
@@ -18,12 +18,11 @@
         var mkdocs_page_url = null;
       </script>
     
-    <script src="../js/jquery-3.6.0.min.js" defer></script>
     <!--[if lt IE 9]>
       <script src="../js/html5shiv.min.js"></script>
     <![endif]-->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-      <script>hljs.initHighlightingOnLoad();</script> 
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
 </head>
 
 <body class="wy-body-for-nav" role="document">
@@ -35,7 +34,7 @@
           <a href=".." class="icon icon-home"> CloudNativePG
         </a><div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
-      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
@@ -204,6 +203,8 @@
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#supported-architectures">Supported Architectures</a>
     </li>
+    <li class="toctree-l3"><a class="reference internal" href="#configuring-auto-completion">Configuring auto-completion</a>
+    </li>
         </ul>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#use">Use</a>
@@ -251,6 +252,24 @@
     <li class="toctree-l3"><a class="reference internal" href="#snapshotting-a-postgres-cluster">Snapshotting a Postgres cluster</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#using-pgadmin4-for-evaluationdemonstration-purposes-only">Using pgAdmin4 for evaluation/demonstration purposes only</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#logical-replication-publications">Logical Replication Publications</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#creating-a-new-publication">Creating a new publication</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#dropping-a-publication">Dropping a publication</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#logical-replication-subscriptions">Logical Replication Subscriptions</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#creating-a-new-subscription">Creating a new subscription</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#dropping-a-subscription">Dropping a subscription</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#synchronizing-sequences">Synchronizing sequences</a>
+    </li>
+        </ul>
     </li>
         </ul>
     </li>
@@ -345,8 +364,8 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
-      <li>Kubectl Plugin</li>
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Kubectl Plugin</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -380,7 +399,7 @@ them in your systems.</p>
 <h4 id="debian-packages">Debian packages</h4>
 <p>For example, let's install the 1.18.1 release of the plugin, for an Intel based
 64 bit server. First, we download the right <code>.deb</code> file.</p>
-<pre><code class="language-sh">$ wget https://github.com/cloudnative-pg/cloudnative-pg/releases/download/v1.18.1/kubectl-cnpg_1.18.1_linux_x86_64.deb
+<pre><code class="language-sh">wget https://github.com/cloudnative-pg/cloudnative-pg/releases/download/v1.18.1/kubectl-cnpg_1.18.1_linux_x86_64.deb
 </code></pre>
 <p>Then, install from the local file using <code>dpkg</code>:</p>
 <pre><code class="language-sh">$ dpkg -i kubectl-cnpg_1.18.1_linux_x86_64.deb 
@@ -443,6 +462,26 @@ operating system and architectures:</p>
 <li>arm 5/6/7</li>
 <li>arm64</li>
 </ul>
+<h3 id="configuring-auto-completion">Configuring auto-completion</h3>
+<p>To configure auto-completion for the plugin, a helper shell script needs to be
+installed into your current PATH. Assuming the latter contains <code>/usr/local/bin</code>,
+this can be done with the following commands:</p>
+<pre><code class="language-shell">cat &gt; kubectl_complete-cnpg &lt;&lt;EOF
+#!/usr/bin/env sh
+
+# Call the __complete command passing it all arguments
+kubectl cnpg __complete &quot;\$@&quot;
+EOF
+
+chmod +x kubectl_complete-cnpg
+
+# Important: the following command may require superuser permission
+sudo mv kubectl_complete-cnpg /usr/local/bin
+</code></pre>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>The name of the script needs to be exactly the one provided since is used by the kubectl auto-complete process</p>
+</div>
 <h2 id="use">Use</h2>
 <p>Once the plugin was installed and deployed, you can start using it like this:</p>
 <pre><code class="language-shell">kubectl cnpg &lt;command&gt; &lt;args...&gt;
@@ -958,7 +997,7 @@ to follow:</p>
 …
 </code></pre>
 <p>With the <code>-o</code> option omitted, and with <code>--output</code> specified:</p>
-<pre><code class="language-sh">kubectl-cnpg logs cluster cluster-example --output my-cluster.log
+<pre><code class="language-sh">kubectl cnpg logs cluster cluster-example --output my-cluster.log
 
 Successfully written logs to &quot;my-cluster.log&quot;
 </code></pre>
@@ -1151,6 +1190,198 @@ executing:</p>
 <p class="admonition-title">Warning</p>
 <p>Never deploy pgAdmin in production using the plugin.</p>
 </div>
+<h3 id="logical-replication-publications">Logical Replication Publications</h3>
+<p>The <code>cnpg publication</code> command group is designed to streamline the creation and
+removal of <a href="https://www.postgresql.org/docs/current/logical-replication-publication.html">PostgreSQL logical replication publications</a>.
+Be aware that these commands are primarily intended for assisting in the
+creation of logical replication publications, particularly on remote PostgreSQL
+databases.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>It is crucial to have a solid understanding of both the capabilities and
+limitations of PostgreSQL's native logical replication system before using
+these commands.
+In particular, be mindful of the <a href="https://www.postgresql.org/docs/current/logical-replication-restrictions.html">logical replication restrictions</a>.</p>
+</div>
+<h4 id="creating-a-new-publication">Creating a new publication</h4>
+<p>To create a logical replication publication, use the <code>cnpg publication create</code>
+command. The basic structure of this command is as follows:</p>
+<pre><code class="language-sh">kubectl cnpg publication create \
+  --publication &lt;PUBLICATION_NAME&gt; \
+  [--external-cluster &lt;EXTERNAL_CLUSTER&gt;]
+  &lt;LOCAL_CLUSTER&gt; [options]
+</code></pre>
+<p>There are two primary use cases:</p>
+<ul>
+<li>
+<p>With <code>--external-cluster</code>: Use this option to create a publication on an
+  external cluster (i.e. defined in the <code>externalClusters</code> stanza). The commands
+  will be issued from the <code>&lt;LOCAL_CLUSTER&gt;</code>, but the publication will be for the
+  data in <code>&lt;EXTERNAL_CLUSTER&gt;</code>.</p>
+</li>
+<li>
+<p>Without <code>--external-cluster</code>: Use this option to create a publication in the
+  <code>&lt;LOCAL_CLUSTER&gt;</code> PostgreSQL <code>Cluster</code> (by default, the <code>app</code> database).</p>
+</li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>When connecting to an external cluster, ensure that the specified user has
+sufficient permissions to execute the <code>CREATE PUBLICATION</code> command.</p>
+</div>
+<p>You have several options, similar to the <a href="https://www.postgresql.org/docs/current/sql-createpublication.html"><code>CREATE PUBLICATION</code></a>
+command, to define the group of tables to replicate. Notable options include:</p>
+<ul>
+<li>If you specify the <code>--all-tables</code> option, you create a publication <code>FOR ALL TABLES</code>.</li>
+<li>Alternatively, you can specify multiple occurrences of:</li>
+<li><code>--table</code>: Add a specific table (with an expression) to the publication.</li>
+<li><code>--schema</code>: Include all tables in the specified database schema (available
+    from PostgreSQL 15).</li>
+</ul>
+<p>The <code>--dry-run</code> option enables you to preview the SQL commands that the plugin
+will execute.</p>
+<p>For additional information and detailed instructions, type the following
+command:</p>
+<pre><code class="language-sh">kubectl cnpg publication create --help
+</code></pre>
+<h5 id="example">Example</h5>
+<p>Given a <code>source-cluster</code> and a <code>destination-cluster</code>, we would like to create a
+publication for the data on <code>source-cluster</code>.
+The <code>destination-cluster</code> has an entry in the <code>externalClusters</code> stanza pointing
+to <code>source-cluster</code>.</p>
+<p>We can run:</p>
+<pre><code class="language-sh">kubectl cnpg publication create destination-cluster  \
+  --external-cluster=source-cluster --all-tables
+</code></pre>
+<p>which will create a publication for all tables on <code>source-cluster</code>, running
+the SQL commands on the <code>destination-cluster</code>.</p>
+<p>Or instead, we can run:</p>
+<pre><code class="language-sh">kubectl cnpg publication create source-cluster \
+  --publication=app --all-tables
+</code></pre>
+<p>which will create a publication named <code>app</code> for all the tables in the
+<code>source-cluster</code>, running the SQL commands on the source cluster.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>There are two sample files that have been provided for illustration and inspiration:
+<a href="../samples/cluster-example-logical-source.yaml">logical-source</a> and
+<a href="../samples/cluster-example-logical-destination.yaml">logical-destination</a>.</p>
+</div>
+<h4 id="dropping-a-publication">Dropping a publication</h4>
+<p>The <code>cnpg publication drop</code> command seamlessly complements the <code>create</code> command
+by offering similar key options, including the publication name, cluster name,
+and an optional external cluster. You can drop a <code>PUBLICATION</code> with the
+following command structure:</p>
+<pre><code class="language-sh">kubectl cnpg publication drop \
+  --publication &lt;PUBLICATION_NAME&gt; \
+  [--external-cluster &lt;EXTERNAL_CLUSTER&gt;]
+  &lt;LOCAL_CLUSTER&gt; [options]
+</code></pre>
+<p>To access further details and precise instructions, use the following command:</p>
+<pre><code class="language-sh">kubectl cnpg publication drop --help
+</code></pre>
+<h3 id="logical-replication-subscriptions">Logical Replication Subscriptions</h3>
+<p>The <code>cnpg subscription</code> command group is a dedicated set of commands designed
+to simplify the creation and removal of
+<a href="https://www.postgresql.org/docs/current/logical-replication-subscription.html">PostgreSQL logical replication subscriptions</a>.
+These commands are specifically crafted to aid in the establishment of logical
+replication subscriptions, especially when dealing with remote PostgreSQL
+databases.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Before using these commands, it is essential to have a comprehensive
+understanding of both the capabilities and limitations of PostgreSQL's
+native logical replication system.
+In particular, be mindful of the <a href="https://www.postgresql.org/docs/current/logical-replication-restrictions.html">logical replication restrictions</a>.</p>
+</div>
+<p>In addition to subscription management, we provide a helpful command for
+synchronizing all sequences from the source cluster. While its applicability
+may vary, this command can be particularly useful in scenarios involving major
+upgrades or data import from remote servers.</p>
+<h4 id="creating-a-new-subscription">Creating a new subscription</h4>
+<p>To create a logical replication subscription, use the <code>cnpg subscription create</code>
+command. The basic structure of this command is as follows:</p>
+<pre><code class="language-sh">kubectl cnpg subscription create \
+  --subscription &lt;SUBSCRIPTION_NAME&gt; \
+  --publication &lt;PUBLICATION_NAME&gt; \
+  --external-cluster &lt;EXTERNAL_CLUSTER&gt; \
+  &lt;LOCAL_CLUSTER&gt; [options]
+</code></pre>
+<p>This command configures a subscription directed towards the specified
+publication in the designated external cluster, as defined in the
+<code>externalClusters</code> stanza of the <code>&lt;LOCAL_CLUSTER&gt;</code>.</p>
+<p>For additional information and detailed instructions, type the following
+command:</p>
+<pre><code class="language-sh">kubectl cnpg subscription create --help
+</code></pre>
+<h5 id="example_1">Example</h5>
+<p>As in the section on publications, we have a <code>source-cluster</code> and a
+<code>destination-cluster</code>, and we have already created a publication called
+<code>app</code>.</p>
+<p>The following command:</p>
+<pre><code class="language-sh">kubectl cnpg subscription create destination-cluster \
+  --external-cluster=source-cluster \
+  --publication=app --subscription=app
+</code></pre>
+<p>will create a subscription for <code>app</code> on the destination cluster.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Prioritize testing subscriptions in a non-production environment to ensure
+their effectiveness and identify any potential issues before implementing them
+in a production setting.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>There are two sample files that have been provided for illustration and inspiration:
+<a href="../samples/cluster-example-logical-source.yaml">logical-source</a> and
+<a href="../samples/cluster-example-logical-destination.yaml">logical-destination</a>.</p>
+</div>
+<h4 id="dropping-a-subscription">Dropping a subscription</h4>
+<p>The <code>cnpg subscription drop</code> command seamlessly complements the <code>create</code> command.
+You can drop a <code>SUBSCRIPTION</code> with the following command structure:</p>
+<pre><code class="language-sh">kubectl cnpg subcription drop \
+  --subscription &lt;SUBSCRIPTION_NAME&gt; \
+  &lt;LOCAL_CLUSTER&gt; [options]
+</code></pre>
+<p>To access further details and precise instructions, use the following command:</p>
+<pre><code class="language-sh">kubectl cnpg subscription drop --help
+</code></pre>
+<h4 id="synchronizing-sequences">Synchronizing sequences</h4>
+<p>One notable constraint of PostgreSQL logical replication, implemented through
+publications and subscriptions, is the lack of sequence synchronization. This
+becomes particularly relevant when utilizing logical replication for live
+database migration, especially to a higher version of PostgreSQL. A crucial
+step in this process involves updating sequences before transitioning
+applications to the new database (<em>cutover</em>).</p>
+<p>To address this limitation, the <code>cnpg subscription sync-sequences</code> command
+offers a solution. This command establishes a connection with the source
+database, retrieves all relevant sequences, and subsequently updates local
+sequences with matching identities (based on database schema and sequence
+name).</p>
+<p>You can use the command as shown below:</p>
+<pre><code class="language-sh">kubectl cnpg subscription sync-sequences \
+  --subscription &lt;SUBSCRIPTION_NAME&gt; \
+  &lt;LOCAL_CLUSTER&gt;
+</code></pre>
+<p>For comprehensive details and specific instructions, utilize the following
+command:</p>
+<pre><code class="language-sh">kubectl cnpg subscription sync-sequences --help
+</code></pre>
+<h5 id="example_2">Example</h5>
+<p>As in the previous sections for publication and subscription, we have
+a <code>source-cluster</code> and a <code>destination-cluster</code>. The publication and the
+subscription, both called <code>app</code>, are already present.</p>
+<p>The following command will synchronize the sequences involved in the
+<code>app</code> subscription, from the source cluster into the destination cluster.</p>
+<pre><code class="language-sh">kubectl cnpg subscription sync-sequences destination-cluster \
+  --subscription=app
+</code></pre>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Prioritize testing subscriptions in a non-production environment to
+guarantee their effectiveness and detect any potential issues before deploying
+them in a production setting.</p>
+</div>
 <h2 id="integration-with-k9s">Integration with K9s</h2>
 <p>The <code>cnpg</code> plugin can be easily integrated in <a href="https://k9scli.io/">K9s</a>, a
 popular terminal-based UI to interact with Kubernetes clusters.</p>
@@ -1190,14 +1421,15 @@ popular terminal-based UI to interact with Kubernetes clusters.</p>
     
   </span>
 </div>
-    <script>var base_url = '..';</script>
-    <script src="../js/theme_extra.js" defer></script>
-    <script src="../js/theme.js" defer></script>
-      <script src="../search/main.js" defer></script>
-    <script defer>
-        window.onload = function () {
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
             SphinxRtdTheme.Navigation.enable(true);
-        };
+        });
     </script>
 
 </body>

@@ -8,7 +8,7 @@
     <title>CloudNativePG</title>
     <link rel="stylesheet" href="css/theme.css" />
     <link rel="stylesheet" href="css/theme_extra.css" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
         <link href="css/override.css" rel="stylesheet" />
     
       <script>
@@ -18,12 +18,11 @@
         var mkdocs_page_url = null;
       </script>
     
-    <script src="js/jquery-3.6.0.min.js" defer></script>
     <!--[if lt IE 9]>
       <script src="js/html5shiv.min.js"></script>
     <![endif]-->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-      <script>hljs.initHighlightingOnLoad();</script> 
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
 </head>
 
 <body class="wy-body-for-nav" role="document">
@@ -35,7 +34,7 @@
           <a href="." class="icon icon-home"> CloudNativePG
         </a><div role="search">
   <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
-      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
@@ -285,8 +284,8 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href="." class="icon icon-home" alt="Docs"></a> &raquo;</li>
-      <li>CloudNativePG</li>
+    <li><a href="." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">CloudNativePG</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -328,7 +327,7 @@ Kubernetes versions, usually the ones supported by the CNCF at the time the
 minor version was first released.</p>
 <p>Please refer to the <a href="supported_releases/">"Supported releases"</a> page for details.</p>
 <h2 id="container-images">Container images</h2>
-<p>The <a href="https://github.com/cloudnative-pg">CloudNativePG community</a>  maintains
+<p>The <a href="https://github.com/cloudnative-pg">CloudNativePG community</a> maintains
 container images for both the operator and the operand, that is PostgreSQL.</p>
 <p>The CloudNativePG operator container images are <a href="https://github.com/GoogleContainerTools/distroless">distroless</a>
 and available on the <a href="https://github.com/cloudnative-pg/cloudnative-pg/pkgs/container/cloudnative-pg"><code>cloudnative-pg</code> project's GitHub Container Registry</a>.</p>
@@ -337,12 +336,6 @@ and available on the <a href="https://github.com/cloudnative-pg/cloudnative-pg/p
 on multiple architectures, directly from the
 <a href="https://github.com/cloudnative-pg/postgres-containers/pkgs/container/postgresql"><code>postgres-containers</code> project's GitHub Container Registry</a>.</p>
 <p>Additionally, the Community provides images for the <a href="postgis/">PostGIS extension</a>.</p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>CloudNativePG requires that all nodes in a Kubernetes cluster have the
-same CPU architecture, thus a hybrid CPU architecture Kubernetes cluster is not
-supported.</p>
-</div>
 <h2 id="main-features">Main features</h2>
 <ul>
 <li>Direct integration with Kubernetes API server for High Availability,
@@ -374,6 +367,7 @@ supported.</p>
 <li>Backups on object stores (AWS S3 and S3-compatible, Azure Blob Storage, and Google Cloud Storage)</li>
 <li>Full recovery and Point-In-Time recovery from an existing backup on volume snapshots or object stores</li>
 <li>Offline import of existing PostgreSQL databases, including major upgrades of PostgreSQL</li>
+<li>Online import of existing PostgreSQL databases, including major upgrades of PostgreSQL, through PostgreSQL native logical replication (imperative, via the <code>cnpg</code> plugin)</li>
 <li>Fencing of an entire PostgreSQL cluster, or a subset of the instances in a declarative way</li>
 <li>Hibernation of a PostgreSQL cluster in a declarative way</li>
 <li>Support for Synchronous Replicas</li>
@@ -383,9 +377,10 @@ supported.</p>
 <li>Parallel WAL archiving and restore to allow the database to keep up with WAL
   generation on high write systems</li>
 <li>Support tagging backup files uploaded to an object store to enable optional
-  retention management at the object store layer Replica clusters for</li>
-<li>PostgreSQL deployments across multiple Kubernetes
+  retention management at the object store layer</li>
+<li>Replica clusters for PostgreSQL deployments across multiple Kubernetes
   clusters, enabling private, public, hybrid, and multi-cloud architectures</li>
+<li>Delayed Replica clusters</li>
 <li>Connection pooling with PgBouncer</li>
 <li>Support for node affinity via <code>nodeSelector</code></li>
 <li>Native customizable exporter of user defined metrics for Prometheus through the <code>metrics</code> port (9187)</li>
@@ -442,20 +437,21 @@ of Canada, and used with their permission.</em></p>
     
   </span>
 </div>
-    <script>var base_url = '.';</script>
-    <script src="js/theme_extra.js" defer></script>
-    <script src="js/theme.js" defer></script>
-      <script src="search/main.js" defer></script>
-    <script defer>
-        window.onload = function () {
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = ".";</script>
+    <script src="js/theme_extra.js"></script>
+    <script src="js/theme.js"></script>
+      <script src="search/main.js"></script>
+    <script>
+        jQuery(function () {
             SphinxRtdTheme.Navigation.enable(true);
-        };
+        });
     </script>
 
 </body>
 </html>
 
 <!--
-MkDocs version : 1.4.2
-Build Date UTC : 2024-02-02 16:31:52.816024+00:00
+MkDocs version : 1.5.3
+Build Date UTC : 2024-03-14 16:43:02.122182+00:00
 -->

@@ -8,7 +8,7 @@
     <title>Installation and upgrades - CloudNativePG</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
         <link href="../css/override.css" rel="stylesheet" />
     
       <script>
@@ -18,12 +18,11 @@
         var mkdocs_page_url = null;
       </script>
     
-    <script src="../js/jquery-3.6.0.min.js" defer></script>
     <!--[if lt IE 9]>
       <script src="../js/html5shiv.min.js"></script>
     <![endif]-->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-      <script>hljs.initHighlightingOnLoad();</script> 
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
 </head>
 
 <body class="wy-body-for-nav" role="document">
@@ -35,7 +34,7 @@
           <a href=".." class="icon icon-home"> CloudNativePG
         </a><div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
-      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
@@ -82,8 +81,6 @@
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#compatibility-among-versions">Compatibility among versions</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#upgrading-to-1220-1212-or-1205">Upgrading to 1.22.0, 1.21.2 or 1.20.5</a>
-    </li>
     <li class="toctree-l3"><a class="reference internal" href="#upgrading-to-121-from-a-previous-minor-version">Upgrading to 1.21 from a previous minor version</a>
         <ul>
     <li class="toctree-l4"><a class="reference internal" href="#superuser-access-disabled">Superuser access disabled</a>
@@ -99,6 +96,8 @@
     <li class="toctree-l4"><a class="reference internal" href="#labels">Labels</a>
     </li>
     <li class="toctree-l4"><a class="reference internal" href="#shortcut-for-keeping-the-existing-behavior">Shortcut for keeping the existing behavior</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#server-side-apply-of-manifests">Server-side apply of manifests</a>
     </li>
         </ul>
     </li>
@@ -327,8 +326,8 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
-      <li>Installation and upgrades</li>
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Installation and upgrades</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -342,10 +341,10 @@
 <h3 id="directly-using-the-operator-manifest">Directly using the operator manifest</h3>
 <p>The operator can be installed like any other resource in Kubernetes,
 through a YAML manifest applied via <code>kubectl</code>.</p>
-<p>You can install the <a href="https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/release-1.21/releases/cnpg-1.21.3.yaml">latest operator manifest</a>
+<p>You can install the <a href="https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/release-1.21/releases/cnpg-1.21.4.yaml">latest operator manifest</a>
 for this minor release as follows:</p>
-<pre><code class="language-sh">kubectl apply -f \
-  https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/release-1.21/releases/cnpg-1.21.3.yaml
+<pre><code class="language-sh">kubectl apply --server-side -f \
+  https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/release-1.21/releases/cnpg-1.21.4.yaml
 </code></pre>
 <p>You can verify that with:</p>
 <pre><code class="language-sh">kubectl get deployment -n cnpg-system cnpg-controller-manager
@@ -384,13 +383,13 @@ supported release.</p>
 <p>For example, you can install the latest snapshot of the operator with:</p>
 <pre><code class="language-sh">curl -sSfL \
   https://raw.githubusercontent.com/cloudnative-pg/artifacts/main/manifests/operator-manifest.yaml | \
-  kubectl apply -f -
+  kubectl apply --server-side -f -
 </code></pre>
 <p>If you are instead looking for the latest snapshot of the operator for this
 specific minor release, you can just run:</p>
 <pre><code class="language-sh">curl -sSfL \
   https://raw.githubusercontent.com/cloudnative-pg/artifacts/release-1.21/manifests/operator-manifest.yaml | \
-  kubectl apply -f -
+  kubectl apply --server-side -f -
 </code></pre>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
@@ -503,11 +502,6 @@ environment variable to <code>'true'</code> in the
 <p>The in-place upgrade process will not change the init container image inside the
 Pods. Therefore, the Pod definition will not reflect the current version of the
 operator.</p>
-<div class="admonition important">
-<p class="admonition-title">Important</p>
-<p>This feature requires that all pods (operators and operands) run on the
-same platform/architecture (for example, all <code>linux/amd64</code>).</p>
-</div>
 <h3 id="compatibility-among-versions">Compatibility among versions</h3>
 <p>CloudNativePG follows semantic versioning. Every release of the
 operator within the same API version is compatible with the previous one.
@@ -529,50 +523,26 @@ manager of the chosen distribution is enough.</p>
 <p>When versions are not directly upgradable, the old version needs to be
 removed before installing the new one. This won't affect user data but
 only the operator itself.</p>
-<h3 id="upgrading-to-1220-1212-or-1205">Upgrading to 1.22.0, 1.21.2 or 1.20.5</h3>
+<h3 id="upgrading-to-121-from-a-previous-minor-version">Upgrading to 1.21 from a previous minor version</h3>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
-<p>We encourage all existing users of CloudNativePG to upgrade to version
-1.22.0 or at least to the latest stable version of the minor release you are
-currently using (namely 1.21.2 or 1.20.5).</p>
+<p>If you are transitioning from a prior minor version to version 1.21, it's
+essential to note that 1.21 is not the most recent minor release. We strongly
+recommend upgrading to the latest minor release for optimal features,
+enhancements, and stability. However, if your specific requirement is to
+upgrade to version 1.21, please ensure that you are using the latest available
+patch version, which is currently 1.21.4. This guarantees that you benefit from
+the most recent bug fixes, security updates, and improvements associated with
+the 1.21 series.</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>Every time you are upgrading to a higher minor release, make sure you
 go through the release notes and upgrade instructions of all the
 intermediate minor releases. For example, if you want to move
-from 1.20.x to 1.22, make sure you go through the release notes
-and upgrade instructions for 1.21 and 1.22.</p>
+from 1.19.x to 1.21, make sure you go through the release notes
+and upgrade instructions for 1.20 and 1.21.</p>
 </div>
-<p>CloudNativePG continues to adhere to the security-by-default approach. As of
-version 1.22, the usage of the <code>ALTER SYSTEM</code> command is now disabled by
-default.</p>
-<p>The reason behind this choice is to ensure that, by default, changes to the
-PostgreSQL configuration in a database cluster controlled by CloudNativePG are
-allowed only through the Kubernetes API.</p>
-<p>At the same time, we are providing an option to enable <code>ALTER SYSTEM</code> if you
-need to use it, even temporarily, from versions 1.22.0, 1.21.2, and 1.20.5,
-by setting <code>.spec.postgresql.enableAlterSystem</code> to <code>true</code>, as in the following
-excerpt:</p>
-<pre><code class="language-yaml">...
-  postgresql:
-    enableAlterSystem: true
-...
-</code></pre>
-<p>Clusters in 1.22 will have <code>enableAlterSystem</code> set to <code>false</code> by default.
-If you want to retain the existing behavior, in 1.22, you need to explicitly
-set <code>enableAlterSystem</code> to <code>true</code> as shown above.</p>
-<p>In versions 1.21.2 and 1.20.5, and later patch releases in the 1.20 and 1.21
-branches, <code>enableAlterSystem</code> will be set to <code>true</code> by default, keeping with
-the existing behavior. If you don't need to use <code>ALTER SYSTEM</code>, we recommend
-that you set <code>enableAlterSystem</code> explicitly to <code>false</code>.</p>
-<div class="admonition important">
-<p class="admonition-title">Important</p>
-<p>You can set the desired value for  <code>enableAlterSystem</code> immediately
-following your upgrade to version 1.22.0, 1.21.2, or 1.20.5, as shown in
-the example above.</p>
-</div>
-<h3 id="upgrading-to-121-from-a-previous-minor-version">Upgrading to 1.21 from a previous minor version</h3>
 <p>With the goal to keep improving out-of-the-box the <em>convention over
 configuration</em> behavior of the operator, CloudNativePG changes the default
 value of several knobs in the following areas:</p>
@@ -703,6 +673,23 @@ definitions <strong>before upgrading</strong> to a higher version:</p>
    ...
    smartShutdownTimeout: 15
 </code></pre>
+<h4 id="server-side-apply-of-manifests">Server-side apply of manifests</h4>
+<p>To ensure compatibility with Kubernetes 1.29 and upcoming versions,
+CloudNativePG now mandates the utilization of
+<a href="https://kubernetes.io/docs/reference/using-api/server-side-apply/">"Server-side apply"</a>
+when deploying the operator manifest.</p>
+<p>While employing this installation method poses no challenges for new
+deployments, updating existing operator manifests using the <code>--server-side</code>
+option may result in errors resembling the example below:</p>
+<pre><code class="language-text">Apply failed with 1 conflict: conflict with &quot;kubectl-client-side-apply&quot; using..
+</code></pre>
+<p>If such errors arise, they can be resolved by explicitly specifying the
+<code>--force-conflicts</code> option to enforce conflict resolution:</p>
+<pre><code class="language-sh">kubectl apply --server-side --force-conflicts -f &lt;OPERATOR_MANIFEST&gt;
+</code></pre>
+<p>Henceforth, <code>kube-apiserver</code> will be automatically acknowledged as a recognized
+manager for the CRDs, eliminating the need for any further manual intervention
+on this matter.</p>
 <h3 id="upgrading-to-120-from-a-previous-minor-version">Upgrading to 1.20 from a previous minor version</h3>
 <p>CloudNativePG 1.20 introduces some changes from previous versions of the
 operator in the default behavior of a few features, with the goal to improve
@@ -795,14 +782,15 @@ management by adding from now the following lines to your <code>Cluster</code> r
     
   </span>
 </div>
-    <script>var base_url = '..';</script>
-    <script src="../js/theme_extra.js" defer></script>
-    <script src="../js/theme.js" defer></script>
-      <script src="../search/main.js" defer></script>
-    <script defer>
-        window.onload = function () {
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
             SphinxRtdTheme.Navigation.enable(true);
-        };
+        });
     </script>
 
 </body>
