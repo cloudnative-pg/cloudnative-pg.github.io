@@ -30,8 +30,8 @@ Key enhancements in both supported minor releases are:
   
 - introduction of the `publication` and `subscription` command groups in the
   `cnpg` plugin for `kubectl`, facilitating seamless management of PostgreSQL
-  native logical replication (this unlocks new possibilities for imperative major
-  online upgrades and online imports, enriching your data management strategies)
+  native logical replication. This unlocks new possibilities for imperative major
+  online upgrades and online imports, enriching your data management strategies.
 
 **Versions 1.22.2 and 1.21.4** are *patch releases* that include
 essential bug fixes, addressing issues such as:
