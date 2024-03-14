@@ -8,7 +8,7 @@
     <title>End-to-End Tests - CloudNativePG</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
         <link href="../css/override.css" rel="stylesheet" />
     
       <script>
@@ -18,12 +18,11 @@
         var mkdocs_page_url = null;
       </script>
     
-    <script src="../js/jquery-3.6.0.min.js" defer></script>
     <!--[if lt IE 9]>
       <script src="../js/html5shiv.min.js"></script>
     <![endif]-->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-      <script>hljs.initHighlightingOnLoad();</script> 
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
 </head>
 
 <body class="wy-body-for-nav" role="document">
@@ -35,7 +34,7 @@
           <a href=".." class="icon icon-home"> CloudNativePG
         </a><div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
-      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
@@ -277,8 +276,8 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
-      <li>End-to-End Tests</li>
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">End-to-End Tests</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -289,122 +288,190 @@
               
                 <h1 id="end-to-end-tests">End-to-End Tests</h1>
 <p>CloudNativePG is automatically tested after each
-commit via a suite of <strong>End-to-end (E2E) tests</strong>, which ensures that
-the operator correctly deploys and manages PostgreSQL clusters.</p>
-<p>Moreover, the following Kubernetes versions are tested for each commit,
-helping detect bugs at an early stage of the development process:</p>
-<ul>
-<li>1.27</li>
-<li>1.26</li>
-<li>1.25</li>
-<li>1.24</li>
-<li>1.23</li>
-</ul>
-<p>The following PostgreSQL versions are tested:</p>
-<ul>
-<li>PostgreSQL 15</li>
-<li>PostgreSQL 14</li>
-<li>PostgreSQL 13</li>
-<li>PostgreSQL 12</li>
-<li>PostgreSQL 11</li>
-</ul>
+commit via a suite of <strong>End-to-end (E2E) tests</strong> (or integration tests)
+which ensure that the operator correctly deploys and manages PostgreSQL
+clusters.</p>
+<p>Kubernetes versions 1.23 through 1.29, and PostgreSQL versions 12 through 16,
+are tested for each commit, helping detect bugs at an early stage of the
+development process.</p>
 <p>For each tested version of Kubernetes and PostgreSQL, a Kubernetes
-cluster is created using <a href="https://kind.sigs.k8s.io/">kind</a>,
+cluster is created using <a href="https://kind.sigs.k8s.io/">kind</a>, run on the GitHub
+Actions platform,
 and the following suite of E2E tests are performed on that cluster:</p>
 <ul>
-<li><strong>Basic:</strong><ul>
-<li>Installation of the operator;</li>
-<li>Creation of a Cluster;</li>
-<li>Usage of a persistent volume for data storage;</li>
+<li>
+<p><strong>Basic:</strong></p>
+<ul>
+<li>Installation of the operator</li>
+<li>Creation of a Cluster</li>
+<li>Usage of a persistent volume for data storage</li>
 </ul>
 </li>
-<li><strong>Service connectivity:</strong><ul>
-<li>Connection via services, including read-only;</li>
-<li>Connection via user-provided server and/or client certificates;</li>
-<li>PgBouncer;</li>
+<li>
+<p><strong>Service connectivity:</strong></p>
+<ul>
+<li>Connection via services, including read-only</li>
+<li>Connection via user-provided server and/or client certificates</li>
+<li>PgBouncer</li>
 </ul>
 </li>
-<li><strong>Self-healing:</strong><ul>
-<li>Failover;</li>
-<li>Switchover;</li>
-<li>Primary endpoint switch in case of failover in less than 10 seconds;</li>
-<li>Primary endpoint switch in case of switchover in less than 20 seconds;</li>
-<li>Recover from a degraded state in less than 60 seconds;</li>
-<li>PVC Deletion;</li>
+<li>
+<p><strong>Self-healing:</strong></p>
+<ul>
+<li>Failover</li>
+<li>Switchover</li>
+<li>Primary endpoint switch in case of failover in less than 10 seconds</li>
+<li>Primary endpoint switch in case of switchover in less than 20 seconds</li>
+<li>Recover from a degraded state in less than 60 seconds</li>
+<li>PVC Deletion</li>
+<li>Corrupted PVC</li>
 </ul>
 </li>
-<li><strong>Backup and Restore:</strong><ul>
-<li>Backup and ScheduledBackups execution using Barman Cloud on S3;</li>
+<li>
+<p><strong>Backup and Restore:</strong></p>
+<ul>
+<li>Backup and restore from Volume Snapshots</li>
+<li>Backup and ScheduledBackups execution using Barman Cloud on S3</li>
 <li>Backup and ScheduledBackups execution using Barman Cloud on Azure
-blob storage;</li>
-<li>Restore from backup using Barman Cloud on S3;</li>
-<li>Restore from backup using Barman Cloud on Azure blob storage;</li>
-<li>Wal-Restore;</li>
+blob storage</li>
+<li>Restore from backup using Barman Cloud on S3</li>
+<li>Restore from backup using Barman Cloud on Azure blob storage</li>
+<li>Point-in-time recovery (PITR) on Azure, S3 storage</li>
+<li>Wal-Restore (sequential / parallel)</li>
 </ul>
 </li>
-<li><strong>Operator:</strong><ul>
-<li>Operator Deployment;</li>
-<li>Operator configuration via ConfigMap;</li>
-<li>Operator pod deletion;</li>
-<li>Operator pod eviction;</li>
-<li>Operator upgrade;</li>
-<li>Operator High Availability;</li>
+<li>
+<p><strong>Operator:</strong></p>
+<ul>
+<li>Operator Deployment</li>
+<li>Operator configuration via ConfigMap</li>
+<li>Operator pod deletion</li>
+<li>Operator pod eviction</li>
+<li>Operator upgrade</li>
+<li>Operator High Availability</li>
 </ul>
 </li>
-<li><strong>Observability:</strong><ul>
-<li>Metrics collection;</li>
-<li>PgBouncer Metrics;</li>
-<li>JSON log format;</li>
+<li>
+<p><strong>Observability:</strong></p>
+<ul>
+<li>Metrics collection</li>
+<li>PgBouncer Metrics</li>
+<li>JSON log format</li>
 </ul>
 </li>
-<li><strong>Replication:</strong><ul>
-<li>Physical replica clusters;</li>
-<li>Replication Slots;</li>
-<li>Synchronous replication;</li>
-<li>Scale-up and scale-down of a Cluster;</li>
+<li>
+<p><strong>Replication:</strong></p>
+<ul>
+<li>Replication Slots</li>
+<li>Synchronous replication</li>
+<li>Scale-up and scale-down of a Cluster</li>
 </ul>
 </li>
-<li><strong>Plugin:</strong><ul>
-<li>Cluster Hibernation using CNPG plugin;</li>
-<li>Fencing;</li>
-<li>Creation of a connection certificate;</li>
+<li>
+<p><strong>Replica clusters</strong></p>
+<ul>
+<li>Bootstrapping a replica cluster from backup</li>
+<li>Bootstrapping a replica cluster via streaming</li>
+<li>Bootstrapping via volume snapshots</li>
+<li>Detaching a replica cluster</li>
 </ul>
 </li>
-<li><strong>Postgres Configuration:</strong><ul>
-<li>Manage PostgreSQL configuration changes;</li>
-<li>Rolling updates when changing PostgreSQL images;</li>
+<li>
+<p><strong>Plugin:</strong></p>
+<ul>
+<li>Cluster Hibernation using CNPG plugin</li>
+<li>Fencing</li>
+<li>Creation of a connection certificate</li>
 </ul>
 </li>
-<li><strong>Pod Scheduling:</strong><ul>
-<li>Tolerations and taints;</li>
-<li>Pod affinity using <code>NodeSelector</code>;</li>
+<li>
+<p><strong>Postgres Configuration:</strong></p>
+<ul>
+<li>Manage PostgreSQL configuration changes</li>
+<li>Rolling updates when changing PostgreSQL images</li>
+<li>Rolling updates on hot standby sensitive parameter changes</li>
+<li>Database initialization via InitDB</li>
 </ul>
 </li>
-<li><strong>Cluster Metadata:</strong><ul>
-<li>ConfigMap for Cluster Labels and Annotations;</li>
-<li>Object metadata;</li>
+<li>
+<p><strong>Pod Scheduling:</strong></p>
+<ul>
+<li>Tolerations and taints</li>
+<li>Pod affinity using <code>NodeSelector</code></li>
+<li>Rolling updates on PodSpec drift detection</li>
+<li>In-place upgrades</li>
+<li>Multi-Arch availability</li>
 </ul>
 </li>
-<li><strong>Recovery:</strong><ul>
-<li>Data corruption;</li>
-<li>pg_basebackup;</li>
+<li>
+<p><strong>Cluster Metadata:</strong></p>
+<ul>
+<li>ConfigMap for Cluster Labels and Annotations</li>
+<li>Object metadata</li>
 </ul>
 </li>
-<li><strong>Importing Databases:</strong><ul>
-<li>Microservice approach;</li>
-<li>Monolith approach;</li>
+<li>
+<p><strong>Recovery:</strong></p>
+<ul>
+<li>Data corruption</li>
+<li>pg_basebackup</li>
 </ul>
 </li>
-<li><strong>Storage:</strong><ul>
-<li>Storage expansion;</li>
+<li>
+<p><strong>Importing Databases:</strong></p>
+<ul>
+<li>Microservice approach</li>
+<li>Monolith approach</li>
 </ul>
 </li>
-<li><strong>Security:</strong><ul>
-<li>AppArmor annotation propagation. Executed only on Azure environment;</li>
+<li>
+<p><strong>Storage:</strong></p>
+<ul>
+<li>Storage expansion</li>
+<li>Dedicated PG_WAL persistent volume</li>
 </ul>
 </li>
-<li><strong>Maintenance:</strong><ul>
-<li>Node Drain;</li>
+<li>
+<p><strong>Security:</strong></p>
+<ul>
+<li>AppArmor annotation propagation. Executed only on Azure environment</li>
+</ul>
+</li>
+<li>
+<p><strong>Maintenance:</strong></p>
+<ul>
+<li>Node Drain with maintenance window</li>
+</ul>
+</li>
+<li>
+<p><strong>Hibernation</strong></p>
+<ul>
+<li>Declarative hibernation / rehydration</li>
+</ul>
+</li>
+<li>
+<p><strong>Volume snapshots</strong></p>
+<ul>
+<li>Backup/restore for cold and online snapshots</li>
+<li>Point-in-time recovery (PITR) for cold and online snapshots</li>
+<li>Backups via plugin for cold and online snapshots</li>
+<li>Declarative backups for cold and online snapshots</li>
+</ul>
+</li>
+<li>
+<p><strong>Managed Roles</strong></p>
+<ul>
+<li>Creation and update of managed roles</li>
+<li>Password maintenance using Kubernetes secrets</li>
+</ul>
+</li>
+<li>
+<p><strong>Tablespaces</strong></p>
+<ul>
+<li>Declarative creation of tablespaces</li>
+<li>Declarative creation of temporary tablespaces</li>
+<li>Backup / recovery from object storage</li>
+<li>Backup / recovery from volume snapshots</li>
 </ul>
 </li>
 </ul>
@@ -443,14 +510,15 @@ blob storage;</li>
     
   </span>
 </div>
-    <script>var base_url = '..';</script>
-    <script src="../js/theme_extra.js" defer></script>
-    <script src="../js/theme.js" defer></script>
-      <script src="../search/main.js" defer></script>
-    <script defer>
-        window.onload = function () {
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
             SphinxRtdTheme.Navigation.enable(true);
-        };
+        });
     </script>
 
 </body>
