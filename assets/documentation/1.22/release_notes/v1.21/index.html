@@ -289,6 +289,49 @@
 <p>For a complete list of changes, please refer to the
 <a href="https://github.com/cloudnative-pg/cloudnative-pg/commits/release-1.21">commits</a>
 on the release branch in GitHub.</p>
+<h2 id="version-1215">Version 1.21.5</h2>
+<p><strong>Release date:</strong> Apr 24, 2024</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Version 1.21 is approaching its End-of-Life (EOL) on May 24, 2024.
+If you haven't already, please begin planning for an upgrade promptly to
+ensure continued support and security.</p>
+</div>
+<p>Enhancements:</p>
+<ul>
+<li>Users can now configure the <code>wal_log_hints</code> PostgreSQL parameter (#4218)
+  (#4218)</li>
+<li>Fully Qualified Domain Names (FQDN) in URIs for automatically generated
+  secrets (#4095)</li>
+<li>Cleanup of instance Pods not owned by the Cluster during Cluster restore
+  (#4141)</li>
+<li>Error detection when invoking <code>barman-cloud-wal-restore</code> in <code>recovery</code>
+  bootstrap (#4101)</li>
+</ul>
+<p>Fixes:</p>
+<ul>
+<li>Ensured that before a switchover, the elected replica is in streaming
+  replication (#4288)</li>
+<li>Correctly handle parsing errors of instances' LSN when sorting them (#4283)</li>
+<li>Recreate the primary Pod if there are no healthy standbys available to
+  promote (#4132)</li>
+<li>Cleanup <code>PGDATA</code> in case of failure of the restore job (#4151)</li>
+<li>Reload certificates on configuration update (#3705)</li>
+<li><code>cnpg</code> plugin for <code>kubectl</code>:<ul>
+<li>Improve the arguments handling of <code>destroy</code>, <code>fencing</code>, and <code>promote</code>
+  plugin commands (#4280)</li>
+<li>Correctly handle the percentage of the backup progress in <code>cnpg status</code>
+  (#4131)</li>
+<li>Gracefully handle databases with no sequences in <code>sync-sequences</code> command
+  (#4346)</li>
+</ul>
+</li>
+</ul>
+<p>Changes:</p>
+<ul>
+<li>The Grafana dashboard now resides at
+  https://github.com/cloudnative-pg/grafana-dashboards (#4154)</li>
+</ul>
 <h2 id="version-1214">Version 1.21.4</h2>
 <p><strong>Release date:</strong> Mar 14, 2024</p>
 <h3 id="enhancements">Enhancements</h3>

@@ -29,9 +29,10 @@ git clone --depth 1 --branch release-$release_version git@github.com:cloudnative
 mkdir -p $TARGETDIR
 
 pushd $WORKDIR/cnpg/docs
+docker pull minidocks/mkdocs:latest
 docker run --rm -v "$(pwd):$(pwd)" -w "$(pwd)" \
     -v "$TARGETDIR:/var/cnpg" \
-    minidocks/mkdocs \
+    minidocks/mkdocs:latest \
     mkdocs build -v -d /var/cnpg
 popd
 
