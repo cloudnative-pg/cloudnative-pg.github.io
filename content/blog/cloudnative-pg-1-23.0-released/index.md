@@ -24,9 +24,11 @@ This release brings a host of new features and enhancements, including support
 for PostgreSQL image catalogs, synchronization of user-defined replication
 slots, and Pod Disruption Budget (PDB) configuration.
 
-We've revised our Community support policy to prioritize one minor release at a
-time, enhancing our focus and resources. Furthermore, we've extended the
-supplementary support period for the prior minor release to three months.
+We've revised our Community support to enhance our focus and optimize resources.
+The supported versions will be the last minor, plus the previous minor, which will be
+supported for three months once the new minor is out.
+This is in effect adding two more months of support to the outgoing minor over
+what we used to have.
 
 ## What's New in 1.23
 
