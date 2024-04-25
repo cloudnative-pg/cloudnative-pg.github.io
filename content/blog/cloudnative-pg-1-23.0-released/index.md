@@ -42,7 +42,7 @@ PostgreSQL Image Catalogs
 
 Synchronization of User-Defined Replication Slots
 :   Ensure seamless failover with extended physical replication slot
-    synchronization, now covering user-defined slots persist after failover.
+    synchronization, now covering persistence of user-defined slots after failover.
 
 Pod Disruption Budget (PDB) Configuration
 :   Customize PDB settings with the new `.spec.enablePDB` field. Disable PDBs
