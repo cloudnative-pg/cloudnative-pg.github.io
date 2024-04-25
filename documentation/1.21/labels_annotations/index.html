@@ -346,7 +346,8 @@ instead of alternative approaches such as pod templates.</p>
 <dt><code>cnpg.io/onlineBackup</code></dt>
 <dd>Whether the backup is online (hot) or taken when Postgres is down (cold)</dd>
 <dt><code>cnpg.io/podRole</code></dt>
-<dd>Role of the pod: <code>instance</code>, or <code>pooler</code></dd>
+<dd>Distinguishes pods dedicated to pooler deployment from those used for
+  database instances</dd>
 <dt><code>cnpg.io/poolerName</code></dt>
 <dd>Name of the PgBouncer pooler</dd>
 <dt><code>cnpg.io/pvcRole</code></dt>
@@ -356,10 +357,12 @@ instead of alternative approaches such as pod templates.</p>
   a change in the resource is automatically reloaded by the operator.</dd>
 <dt><code>role</code> - <strong>deprecated</strong></dt>
 <dd>Whether the instance running in a pod is a <code>primary</code> or a <code>replica</code>.
-   This label is deprecated, you should use <code>cnpg.io/podRole</code> instead.</dd>
+   This label is deprecated, you should use <code>cnpg.io/instanceRole</code> instead.</dd>
 <dt><code>cnpg.io/scheduled-backup</code></dt>
 <dd>When available, name of the <code>ScheduledBackup</code> resource that created a given
    <code>Backup</code> object</dd>
+<dt><code>cnpg.io/instanceRole</code></dt>
+<dd>Whether the instance running in a pod is a <code>primary</code> or a <code>replica</code>.</dd>
 </dl>
 <h2 id="predefined-annotations">Predefined annotations</h2>
 <p>These predefined annotations are managed by CloudNativePG.</p>

@@ -385,7 +385,8 @@ operator by applying the following sections in this order:</p>
 <li>Fixed parameters</li>
 </ul>
 <p>The <strong>global default parameters</strong> are:</p>
-<pre><code class="language-text">dynamic_shared_memory_type = 'posix'
+<pre><code class="language-text">archive_mode = 'on'
+dynamic_shared_memory_type = 'posix'
 logging_collector = 'on'
 log_destination = 'csvlog'
 log_directory = '/controller/log'
@@ -400,6 +401,7 @@ shared_memory_type = 'mmap' # for PostgreSQL &gt;= 12 only
 wal_keep_size = '512MB' # for PostgreSQL &gt;= 13 only
 wal_keep_segments = '32' # for PostgreSQL &lt;= 12 only
 wal_level = 'logical'
+wal_log_hints = 'on'
 wal_sender_timeout = '5s'
 wal_receiver_timeout = '5s'
 </code></pre>
@@ -426,7 +428,6 @@ replication purposes.</p>
 </div>
 <p>The following parameters are <strong>fixed</strong> and exclusively controlled by the operator:</p>
 <pre><code class="language-text">archive_command = '/controller/manager wal-archive %p'
-archive_mode = 'on'
 full_page_writes = 'on'
 hot_standby = 'true'
 listen_addresses = '*'
@@ -437,8 +438,6 @@ ssl_ca_file = '/controller/certificates/client-ca.crt'
 ssl_cert_file = '/controller/certificates/server.crt'
 ssl_key_file = '/controller/certificates/server.key'
 unix_socket_directories = '/controller/run'
-wal_level = 'logical'
-wal_log_hints = 'on'
 </code></pre>
 <p>Since the fixed parameters are added at the end, they can't be overridden by the
 user via the YAML configuration. Those parameters are required for correct WAL
@@ -841,7 +840,6 @@ operator. The operator prevents the user from setting them using a webhook.</p>
 <li><code>unix_socket_directories</code></li>
 <li><code>unix_socket_group</code></li>
 <li><code>unix_socket_permissions</code></li>
-<li><code>wal_log_hints</code></li>
 </ul>
               
             </div>

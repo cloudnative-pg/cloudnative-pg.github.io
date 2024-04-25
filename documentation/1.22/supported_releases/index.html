@@ -308,11 +308,12 @@
 
 <p><em>This page lists the status, timeline and policy for currently supported
 releases of CloudNativePG</em>.</p>
-<p>We support the latest two minor releases, and we aim to create a new minor
-release every two months. Each release is supported until the declared
-"End of Life" date in the <a href="#support-status-of-cloudnativepg-releases">table below</a>,
-which considers an additional month of assistance to allow for upgrade
-planning.</p>
+<p>We are committed to providing support for the latest minor release, with a
+dedication to launching a new minor release every two months. Each release
+remains fully supported until reaching its designated "End of Life" date, as
+outlined in the <a href="#support-status-of-cloudnativepg-releases">support status table for CloudNativePG releases</a>.
+This includes an additional 3-month assistance window to facilitate seamless
+upgrade planning.</p>
 <p>Supported releases of CloudNativePG include releases that are in the active
 maintenance window and are patched for security and bug fixes.</p>
 <p>Subsequent patch releases on a minor release contain backward-compatible changes only.</p>
@@ -326,7 +327,7 @@ maintenance window and are patched for security and bug fixes.</p>
 <p>We produce new builds of CloudNativePG for each commit.</p>
 <p>Approximately every two months, we build a minor release and run through several
 additional tests as well as release qualification. We release patch versions
-for issues found in minor releases.</p>
+for issues found in supported minor releases.</p>
 <p>The various types of releases represent a different product quality level and
 level of assistance from the CloudNativePG community.
 For details on the support provided by the community, see
@@ -347,7 +348,7 @@ For details on the support provided by the community, see
 </tr>
 <tr>
 <td>Minor Release</td>
-<td>Support provided until 1 month after the N+2 minor release (ex. 1.15 supported until 1 month after 1.17.0 is released)</td>
+<td>Support provided until 3 months after the N+1 minor release (ex. 1.23 supported until 3 months after 1.24.0 is released)</td>
 <td></td>
 </tr>
 <tr>
@@ -387,21 +388,30 @@ current <code>&lt;minor&gt;</code> release. A patch is usually a small change re
 </thead>
 <tbody>
 <tr>
+<td>1.23.x</td>
+<td>Yes</td>
+<td>April 24, 2024</td>
+<td>~ October, 2024</td>
+<td>1.27, 1.28, 1.29</td>
+<td>1.23, 1.24, 1.25, 1.26</td>
+<td>12 - 16</td>
+</tr>
+<tr>
 <td>1.22.x</td>
 <td>Yes</td>
 <td>December 21, 2023</td>
-<td>~ July/August, 2024</td>
+<td>July 24, 2024</td>
 <td>1.26, 1.27, 1.28</td>
-<td>1.23, 1.24, 1.25</td>
+<td>1.23, 1.24, 1.25, 1.29</td>
 <td>12 - 16</td>
 </tr>
 <tr>
 <td>1.21.x</td>
 <td>Yes</td>
 <td>October 12, 2023</td>
-<td>~ May 23, 2024</td>
+<td>May 24, 2024</td>
 <td>1.25, 1.26, 1.27, 1.28</td>
-<td>1.23, 1.24</td>
+<td>1.23, 1.24, 1.29</td>
 <td>12 - 16</td>
 </tr>
 <tr>
@@ -411,7 +421,7 @@ current <code>&lt;minor&gt;</code> release. A patch is usually a small change re
 <td></td>
 <td></td>
 <td></td>
-<td>11 - 16</td>
+<td>12 - 16</td>
 </tr>
 </tbody>
 </table>
@@ -521,24 +531,24 @@ discussion in the main GitHub repository.</p>
 </tbody>
 </table>
 <h2 id="what-we-mean-by-support">What we mean by support</h2>
-<p>Our support window is roughly five months for each release branch (latest two
-minor releases, plus an additional month), given that we produce a new final
+<p>Our support window is roughly five months for each release branch (latest
+minor release, plus 3 additional months), given that we produce a new final
 release every two months.</p>
-<p>In the following diagram, <code>release-1.22</code> is an example of a release branch.</p>
-<p>For example, if the latest release is <code>v1.22.0</code>, you can expect
-support for both <code>v1.22.0</code> and <code>v1.21.0</code>.</p>
+<p>In the following diagram, <code>release-1.23</code> is an example of a release branch.</p>
+<p>For example, if the latest release is <code>v1.23.0</code>, you can expect a supplementary
+3-month support period for the preceding release, <code>v1.22.x</code>.</p>
 <p>Only the last patch release of each branch is supported.</p>
 <pre><code class="language-diagram">------+---------------------------------------------&gt; main (trunk development)
        \             \
         \             \
-         \             \             v1.22.0
-          \             \            Dec 21, 2023                   ^
-           \             \----------+---------------&gt; release-1.22  |
+         \             \             v1.23.0
+          \             \            Apr 24, 2024                   ^
+           \             \----------+---------------&gt; release-1.23  |
             \                                                       | SUPPORTED
              \                                                      | RELEASES
-              \   v1.21.0                                           | = the two
-               \  Oct 12, 2023                                      |   last
-                +-------------------+---------------&gt; release-1.21  |   releases
+              \   v1.22.0                                           | = last minor
+               \  Dec 21, 2023                                      |   release +
+                +-------------------+---------------&gt; release-1.22  |   3 months
                                                                     v
 </code></pre>
 <p>We offer two types of support:</p>
