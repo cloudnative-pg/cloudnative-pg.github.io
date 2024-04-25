@@ -8,7 +8,7 @@
     <title>Security - CloudNativePG</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
         <link href="../css/override.css" rel="stylesheet" />
     
       <script>
@@ -18,12 +18,11 @@
         var mkdocs_page_url = null;
       </script>
     
-    <script src="../js/jquery-3.6.0.min.js" defer></script>
     <!--[if lt IE 9]>
       <script src="../js/html5shiv.min.js"></script>
     <![endif]-->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-      <script>hljs.initHighlightingOnLoad();</script> 
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
 </head>
 
 <body class="wy-body-for-nav" role="document">
@@ -35,7 +34,7 @@
           <a href=".." class="icon icon-home"> CloudNativePG
         </a><div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
-      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
@@ -299,13 +298,13 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li><li>Security</li>
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Security</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
   <hr/>
 </div>
-
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
@@ -570,54 +569,54 @@ levels, as listed in the table below:</p>
 <table>
 <thead>
 <tr>
-<th align="left">System</th>
-<th align="left">Port number</th>
-<th align="left">Exposing</th>
-<th align="left">Name</th>
-<th align="left">Certificates</th>
-<th align="left">Authentication</th>
+<th style="text-align: left;">System</th>
+<th style="text-align: left;">Port number</th>
+<th style="text-align: left;">Exposing</th>
+<th style="text-align: left;">Name</th>
+<th style="text-align: left;">Certificates</th>
+<th style="text-align: left;">Authentication</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="left">operator</td>
-<td align="left">9443</td>
-<td align="left">webhook server</td>
-<td align="left"><code>webhook-server</code></td>
-<td align="left">TLS</td>
-<td align="left">Yes</td>
+<td style="text-align: left;">operator</td>
+<td style="text-align: left;">9443</td>
+<td style="text-align: left;">webhook server</td>
+<td style="text-align: left;"><code>webhook-server</code></td>
+<td style="text-align: left;">TLS</td>
+<td style="text-align: left;">Yes</td>
 </tr>
 <tr>
-<td align="left">operator</td>
-<td align="left">8080</td>
-<td align="left">metrics</td>
-<td align="left"><code>metrics</code></td>
-<td align="left">no TLS</td>
-<td align="left">No</td>
+<td style="text-align: left;">operator</td>
+<td style="text-align: left;">8080</td>
+<td style="text-align: left;">metrics</td>
+<td style="text-align: left;"><code>metrics</code></td>
+<td style="text-align: left;">no TLS</td>
+<td style="text-align: left;">No</td>
 </tr>
 <tr>
-<td align="left">instance manager</td>
-<td align="left">9187</td>
-<td align="left">metrics</td>
-<td align="left"><code>metrics</code></td>
-<td align="left">no TLS</td>
-<td align="left">No</td>
+<td style="text-align: left;">instance manager</td>
+<td style="text-align: left;">9187</td>
+<td style="text-align: left;">metrics</td>
+<td style="text-align: left;"><code>metrics</code></td>
+<td style="text-align: left;">no TLS</td>
+<td style="text-align: left;">No</td>
 </tr>
 <tr>
-<td align="left">instance manager</td>
-<td align="left">8000</td>
-<td align="left">status</td>
-<td align="left"><code>status</code></td>
-<td align="left">no TLS</td>
-<td align="left">No</td>
+<td style="text-align: left;">instance manager</td>
+<td style="text-align: left;">8000</td>
+<td style="text-align: left;">status</td>
+<td style="text-align: left;"><code>status</code></td>
+<td style="text-align: left;">no TLS</td>
+<td style="text-align: left;">No</td>
 </tr>
 <tr>
-<td align="left">operand</td>
-<td align="left">5432</td>
-<td align="left">PostgreSQL instance</td>
-<td align="left"><code>postgresql</code></td>
-<td align="left">optional TLS</td>
-<td align="left">Yes</td>
+<td style="text-align: left;">operand</td>
+<td style="text-align: left;">5432</td>
+<td style="text-align: left;">PostgreSQL instance</td>
+<td style="text-align: left;"><code>postgresql</code></td>
+<td style="text-align: left;">optional TLS</td>
+<td style="text-align: left;">Yes</td>
 </tr>
 </tbody>
 </table>
@@ -711,14 +710,15 @@ a storage class that supports encryption at rest.</p>
     
   </span>
 </div>
-    <script>var base_url = '..';</script>
-    <script src="../js/theme_extra.js" defer></script>
-    <script src="../js/theme.js" defer></script>
-      <script src="../search/main.js" defer></script>
-    <script defer>
-        window.onload = function () {
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
             SphinxRtdTheme.Navigation.enable(true);
-        };
+        });
     </script>
 
 </body>
