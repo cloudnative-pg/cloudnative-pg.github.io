@@ -8,7 +8,7 @@
     <title>Release notes for CloudNativePG 1.21 - CloudNativePG</title>
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/theme_extra.css" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
         <link href="../../css/override.css" rel="stylesheet" />
     
       <script>
@@ -18,11 +18,12 @@
         var mkdocs_page_url = null;
       </script>
     
+    <script src="../../js/jquery-3.6.0.min.js" defer></script>
     <!--[if lt IE 9]>
       <script src="../../js/html5shiv.min.js"></script>
     <![endif]-->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
-      <script>hljs.highlightAll();</script> 
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
 </head>
 
 <body class="wy-body-for-nav" role="document">
@@ -34,7 +35,7 @@
           <a href="../.." class="icon icon-home"> CloudNativePG
         </a><div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
@@ -270,13 +271,13 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
-      <li class="breadcrumb-item active">Release notes for CloudNativePG 1.21</li>
+    <li><a href="../.." class="icon icon-home" alt="Docs"></a> &raquo;</li><li>Release notes for CloudNativePG 1.21</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
   <hr/>
 </div>
+
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
@@ -285,6 +286,49 @@
 <p>For a complete list of changes, please refer to the
 <a href="https://github.com/cloudnative-pg/cloudnative-pg/commits/release-1.21">commits</a>
 on the release branch in GitHub.</p>
+<h2 id="version-1215">Version 1.21.5</h2>
+<p><strong>Release date:</strong> Apr 24, 2024</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Version 1.21 is approaching its End-of-Life (EOL) on May 24, 2024.
+If you haven't already, please begin planning for an upgrade promptly to
+ensure continued support and security.</p>
+</div>
+<p>Enhancements:</p>
+<ul>
+<li>Users can now configure the <code>wal_log_hints</code> PostgreSQL parameter (#4218)
+  (#4218)</li>
+<li>Fully Qualified Domain Names (FQDN) in URIs for automatically generated
+  secrets (#4095)</li>
+<li>Cleanup of instance Pods not owned by the Cluster during Cluster restore
+  (#4141)</li>
+<li>Error detection when invoking <code>barman-cloud-wal-restore</code> in <code>recovery</code>
+  bootstrap (#4101)</li>
+</ul>
+<p>Fixes:</p>
+<ul>
+<li>Ensured that before a switchover, the elected replica is in streaming
+  replication (#4288)</li>
+<li>Correctly handle parsing errors of instances' LSN when sorting them (#4283)</li>
+<li>Recreate the primary Pod if there are no healthy standbys available to
+  promote (#4132)</li>
+<li>Cleanup <code>PGDATA</code> in case of failure of the restore job (#4151)</li>
+<li>Reload certificates on configuration update (#3705)</li>
+<li><code>cnpg</code> plugin for <code>kubectl</code>:<ul>
+<li>Improve the arguments handling of <code>destroy</code>, <code>fencing</code>, and <code>promote</code>
+  plugin commands (#4280)</li>
+<li>Correctly handle the percentage of the backup progress in <code>cnpg status</code>
+  (#4131)</li>
+<li>Gracefully handle databases with no sequences in <code>sync-sequences</code> command
+  (#4346)</li>
+</ul>
+</li>
+</ul>
+<p>Changes:</p>
+<ul>
+<li>The Grafana dashboard now resides at
+  https://github.com/cloudnative-pg/grafana-dashboards (#4154)</li>
+</ul>
 <h2 id="version-1214">Version 1.21.4</h2>
 <p><strong>Release date:</strong> Mar 14, 2024</p>
 <h3 id="enhancements">Enhancements</h3>
@@ -624,15 +668,14 @@ carefully read the "Important Changes" section below, as well as the
     
   </span>
 </div>
-    <script src="../../js/jquery-3.6.0.min.js"></script>
-    <script>var base_url = "../..";</script>
-    <script src="../../js/theme_extra.js"></script>
-    <script src="../../js/theme.js"></script>
-      <script src="../../search/main.js"></script>
-    <script>
-        jQuery(function () {
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme_extra.js" defer></script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
             SphinxRtdTheme.Navigation.enable(true);
-        });
+        };
     </script>
 
 </body>

@@ -8,7 +8,7 @@
     <title>Labels and annotations - CloudNativePG</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
         <link href="../css/override.css" rel="stylesheet" />
     
       <script>
@@ -18,11 +18,12 @@
         var mkdocs_page_url = null;
       </script>
     
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
     <!--[if lt IE 9]>
       <script src="../js/html5shiv.min.js"></script>
     <![endif]-->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
-      <script>hljs.highlightAll();</script> 
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
 </head>
 
 <body class="wy-body-for-nav" role="document">
@@ -34,7 +35,7 @@
           <a href=".." class="icon icon-home"> CloudNativePG
         </a><div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
-      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
@@ -282,13 +283,13 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
-      <li class="breadcrumb-item active">Labels and annotations</li>
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li><li>Labels and annotations</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
   <hr/>
 </div>
+
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
@@ -346,7 +347,8 @@ instead of alternative approaches such as pod templates.</p>
 <dt><code>cnpg.io/onlineBackup</code></dt>
 <dd>Whether the backup is online (hot) or taken when Postgres is down (cold)</dd>
 <dt><code>cnpg.io/podRole</code></dt>
-<dd>Role of the pod: <code>instance</code>, or <code>pooler</code></dd>
+<dd>Distinguishes pods dedicated to pooler deployment from those used for
+  database instances</dd>
 <dt><code>cnpg.io/poolerName</code></dt>
 <dd>Name of the PgBouncer pooler</dd>
 <dt><code>cnpg.io/pvcRole</code></dt>
@@ -356,10 +358,12 @@ instead of alternative approaches such as pod templates.</p>
   a change in the resource is automatically reloaded by the operator.</dd>
 <dt><code>role</code> - <strong>deprecated</strong></dt>
 <dd>Whether the instance running in a pod is a <code>primary</code> or a <code>replica</code>.
-   This label is deprecated, you should use <code>cnpg.io/podRole</code> instead.</dd>
+   This label is deprecated, you should use <code>cnpg.io/instanceRole</code> instead.</dd>
 <dt><code>cnpg.io/scheduled-backup</code></dt>
 <dd>When available, name of the <code>ScheduledBackup</code> resource that created a given
    <code>Backup</code> object</dd>
+<dt><code>cnpg.io/instanceRole</code></dt>
+<dd>Whether the instance running in a pod is a <code>primary</code> or a <code>replica</code>.</dd>
 </dl>
 <h2 id="predefined-annotations">Predefined annotations</h2>
 <p>These predefined annotations are managed by CloudNativePG.</p>
@@ -513,15 +517,14 @@ doesn't remove it on the associated resources.</p>
     
   </span>
 </div>
-    <script src="../js/jquery-3.6.0.min.js"></script>
-    <script>var base_url = "..";</script>
-    <script src="../js/theme_extra.js"></script>
-    <script src="../js/theme.js"></script>
-      <script src="../search/main.js"></script>
-    <script>
-        jQuery(function () {
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
             SphinxRtdTheme.Navigation.enable(true);
-        });
+        };
     </script>
 
 </body>
