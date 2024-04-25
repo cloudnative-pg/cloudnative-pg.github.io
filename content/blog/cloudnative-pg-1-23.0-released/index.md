@@ -36,8 +36,9 @@ PostgreSQL Image Catalogs
     Simply request the PostgreSQL major version you need and control how your
     databases stay up-to-date. We've introduced two new resources
     (`ClusterImageCatalog` and `ImageCatalog`) and a new stanza
-    (`spec.imageCatalogRef`), setting the stage for future defaults. You can use
-    the Community provided catalogs, third-party ones, or even build your own.
+    (`spec.imageCatalogRef`), setting the stage for simpler management of default images.
+    The Community will provide catalogs, and you could also use third-party ones,
+    or even build your own.
 
 Synchronization of User-Defined Replication Slots
 :   Ensure seamless failover with extended physical replication slot
