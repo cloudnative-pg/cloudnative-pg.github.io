@@ -309,6 +309,9 @@ supplementary support period for the previous minor release to 3 months.</p>
   <code>.spec.imageCatalogRef stanza</code>. This feature provides an alternative to the
   imageName option and will eventually replace it as the default method to define
   operand container images.</li>
+<li><strong>User-Defined Replication Slots:</strong> Enhanced the synchronization of physical
+  replication slots to cover user-defined replication slots on the primary,
+  via the newly introduced stanza <code>replicationSlots.synchronizeReplicas</code>.</li>
 <li><strong>Configuration of Pod Disruption Budgets (PDB)</strong>: Introduced the
   <code>.spec.enablePDB</code> field to disable PDBs on the primary instance, allowing
   proper eviction of the pod during maintenance operations. This is particularly
