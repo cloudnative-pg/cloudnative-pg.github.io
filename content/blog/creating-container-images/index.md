@@ -15,6 +15,7 @@ tags:
  - postgresql
  - postgres
  - images
+ - tutorial
 summary: Creating a container image for CloudNativePG Operator
 ---
 

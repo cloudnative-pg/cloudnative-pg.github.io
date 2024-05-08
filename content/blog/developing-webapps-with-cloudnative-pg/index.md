@@ -11,6 +11,7 @@ tags:
  - information
  - devops
  - applications
+ - tutorial
 summary: Bootstrap a simple webapp developed with PostgreSQL into a scalable app with CloudNativePG.
 ---
 

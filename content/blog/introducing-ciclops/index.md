@@ -8,11 +8,8 @@ image:
 author: jsilvela
 tags:
  - blog
- - information
  - continuous-integration
- - ci/cd
  - testing
- - github-action
  - devops
  - continuous-delivery
 summary: Introducing Ciclops, a GitHub Action to make sense of Testing
