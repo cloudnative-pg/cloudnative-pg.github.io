@@ -221,7 +221,7 @@
                 </li>
               </ul>
               <ul class="current">
-                <li class="toctree-l1 current"><a class="reference internal current" href="./">Operator capability levels</a>
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Operator capability levels</a>
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#level-1-basic-install">Level 1: Basic install</a>
         <ul>
@@ -504,9 +504,10 @@ PVC template in the CR's <code>storage</code> parameter.</p>
 <p>For better performance and finer control, you can also choose to host your
 cluster's write-ahead log (WAL, also known as <code>pg_wal</code>) on a separate volume,
 preferably on different storage.
-The <a href="https://github.com/EnterpriseDB/cnp-bench"><code>cnp-bench</code></a> open source
-project can be used to benchmark both the storage and the database prior to
-production.</p>
+The <a href="../benchmarking/">"Benchmarking"</a> section of the documentation provides
+detailed instructions on benchmarking both storage and the database before
+production. It relies on the <code>cnpg</code> plugin to ensure optimal performance and
+reliability.</p>
 <h3 id="replica-configuration">Replica configuration</h3>
 <p>The operator detects replicas in a cluster
 through a single parameter, called <code>instances</code>. If set to <code>1</code>, the cluster

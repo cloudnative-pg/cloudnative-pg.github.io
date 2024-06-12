@@ -293,9 +293,100 @@
 <p>For a complete list of changes, please refer to the
 <a href="https://github.com/cloudnative-pg/cloudnative-pg/commits/release-1.22">commits</a>
 on the release branch in GitHub.</p>
+<h2 id="version-1224">Version 1.22.4</h2>
+<p><strong>Release date:</strong> Jun 12, 2024</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Version 1.22 is approaching its End-of-Life (EOL) on Jul 24, 2024.
+If you haven't already, please begin planning for an upgrade promptly to
+ensure continued support and security.</p>
+</div>
+<h3 id="enhancements">Enhancements:</h3>
+<ul>
+<li>
+<p>Enabled configuration of standby-sensitive parameters during recovery using a
+  physical backup (#4564)</p>
+</li>
+<li>
+<p>Enabled the configuration of the liveness probe timeout via the
+  <code>.spec.livenessProbeTimeout</code> option (#4719)</p>
+</li>
+<li>
+<p><code>cnpg</code> plugin for <code>kubectl</code>:</p>
+<ul>
+<li>Enhanced support for ANSI colors in the plugin by adding the <code>--color</code>
+  option, which accepts <code>always</code>, <code>never</code>, and <code>auto</code> (default) as values
+  (#4775)</li>
+<li>The plugin is now available on Homebrew for macOS users (#4602)</li>
+</ul>
+</li>
+</ul>
+<h3 id="fixes">Fixes:</h3>
+<ul>
+<li>
+<p>Prevented fenced instances from entering an unnecessary loop and consuming
+  all available CPU (#4625)</p>
+</li>
+<li>
+<p>Resolved an issue where the instance manager on the primary would
+  indefinitely wait for the instance to start after encountering a failure
+  following a stop operation (#4434)</p>
+</li>
+<li>
+<p>Fixed an issue where the interaction between <code>hot_standby_feedback</code> and
+  managed cluster-level replication slots was preventing the autovacuum from
+  operating correctly; this issue was causing disk space to remain occupied by
+  dead tuples (#4811)</p>
+</li>
+<li>
+<p>Fixed a panic in the backup controller that occurred when pod container
+  statuses were missing (#4765)</p>
+</li>
+<li>
+<p>Prevented unnecessary shutdown of the instance manager (#4670)</p>
+</li>
+<li>
+<p>Prevented unnecessary reloads of PostgreSQL configuration when unchanged (#4531)</p>
+</li>
+<li>
+<p>Prevented unnecessary reloads of the ident map by ensuring a consistent and
+  unique method of writing its content (#4648)</p>
+</li>
+<li>
+<p>Avoided conflicts during phase registration by patching the status of the
+  resource instead of updating it (#4637)</p>
+</li>
+<li>
+<p>Implemented a timeout when restarting PostgreSQL and lifting fencing (#4504)</p>
+</li>
+<li>
+<p>Ensured that a replica cluster is restarted after promotion to properly set
+  the archive mode (#4399)</p>
+</li>
+<li>
+<p>Removed an unneeded concurrent keep-alive routine that was causing random
+  failures in volume snapshot backups (#4768)</p>
+</li>
+<li>
+<p>Ensured correct parsing of the additional rows field returned when the
+  <code>pgaudit.log_rows</code> option was enabled, preventing audit logs from being
+  incorrectly routed to the normal log stream (#4394)</p>
+</li>
+<li>
+<p><code>cnpg</code> plugin for <code>kubectl</code>:</p>
+<ul>
+<li>Resolved an issue with listing PDBs using the <code>cnpg status</code> command (#4530)</li>
+</ul>
+</li>
+</ul>
+<h3 id="changes">Changes</h3>
+<ul>
+<li>Default operand image set to PostgreSQL 16.3 (#4584)</li>
+<li>Removed all RBAC requirements on namespace objects (#4753)</li>
+</ul>
 <h2 id="version-1223">Version 1.22.3</h2>
 <p><strong>Release date:</strong> Apr 24, 2024</p>
-<p>Enhancements:</p>
+<h3 id="enhancements_1">Enhancements:</h3>
 <ul>
 <li>Users can now configure the <code>wal_log_hints</code> PostgreSQL parameter (#4218)
   (#4218)</li>
@@ -306,7 +397,7 @@ on the release branch in GitHub.</p>
 <li>Error detection when invoking <code>barman-cloud-wal-restore</code> in <code>recovery</code>
   bootstrap (#4101)</li>
 </ul>
-<p>Fixes:</p>
+<h3 id="fixes_1">Fixes:</h3>
 <ul>
 <li>Ensured that before a switchover, the elected replica is in streaming
   replication (#4288)</li>
@@ -325,14 +416,14 @@ on the release branch in GitHub.</p>
 </ul>
 </li>
 </ul>
-<p>Changes:</p>
+<h3 id="changes_1">Changes:</h3>
 <ul>
 <li>The Grafana dashboard now resides at
   https://github.com/cloudnative-pg/grafana-dashboards (#4154)</li>
 </ul>
 <h2 id="version-1222">Version 1.22.2</h2>
 <p><strong>Release date:</strong> Mar 14, 2024</p>
-<h3 id="enhancements">Enhancements</h3>
+<h3 id="enhancements_2">Enhancements</h3>
 <ul>
 <li>Allow customization of the <code>wal_level</code> GUC in PostgreSQL (#4020)</li>
 <li>Add the <code>cnpg.io/skipWalArchiving</code> annotation to disable WAL archiving when
@@ -348,7 +439,7 @@ on the release branch in GitHub.</p>
 <li>Introduce initial support for tab-completion with the <code>cnpg</code> plugin for
   <code>kubectl</code> (#3875)</li>
 </ul>
-<h3 id="fixes">Fixes</h3>
+<h3 id="fixes_2">Fixes</h3>
 <ul>
 <li>Properly synchronize PVC group labels with those on the pods, a critical
   aspect when all pods are deleted and the operator needs to decide which Pod
@@ -371,7 +462,7 @@ on the release branch in GitHub.</p>
 <li>Enforce fully-qualified object names in SQL queries for the PgBouncer pooler
   (#4080)</li>
 </ul>
-<h3 id="changes">Changes</h3>
+<h3 id="changes_2">Changes</h3>
 <ul>
 <li>Follow Kubernetes recommendations to switch from client-side to server-side
   application of manifests, requiring the <code>--server-side</code> option by default
@@ -417,7 +508,7 @@ of the <code>ALTER SYSTEM</code> command in PostgreSQL. For users upgrading from
 previous version who wish to retain the old behavior: please refer to the
 <a href="../../installation_upgrade/">upgrade documentation</a> for detailed instructions.</p>
 </div>
-<p>Features:</p>
+<h3 id="features">Features:</h3>
 <ul>
 <li>
 <p><strong>Declarative Tablespaces</strong>: Introducing the <code>tablespaces</code> stanza in the
@@ -431,7 +522,7 @@ previous version who wish to retain the old behavior: please refer to the
   parameter (#3464).</p>
 </li>
 </ul>
-<p>Security:</p>
+<h3 id="security_1">Security:</h3>
 <ul>
 <li>By default, TLSv1.3 is now enforced on all PostgreSQL 12 or higher
   installations. Additionally, users can configure the <code>ssl_ciphers</code>,
@@ -439,7 +530,7 @@ previous version who wish to retain the old behavior: please refer to the
 <li>Integration of Docker image scanning with Dockle and Snyk to enhance security
   measures (#3300).</li>
 </ul>
-<p>Enhancements:</p>
+<h3 id="enhancements_3">Enhancements:</h3>
 <ul>
 <li>Improved reconciliation of external clusters (#3533).</li>
 <li>Introduction of the ability to enable/disable the <code>ALTER SYSTEM</code> command (#3535).</li>

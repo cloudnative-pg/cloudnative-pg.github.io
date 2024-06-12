@@ -293,9 +293,94 @@
 <p>For a complete list of changes, please refer to the
 <a href="https://github.com/cloudnative-pg/cloudnative-pg/commits/release-1.23">commits</a>
 on the release branch in GitHub.</p>
+<h2 id="version-1232">Version 1.23.2</h2>
+<p><strong>Release date:</strong> Jun 12, 2024</p>
+<h3 id="enhancements">Enhancements:</h3>
+<ul>
+<li>
+<p>Enabled configuration of standby-sensitive parameters during recovery using a
+  physical backup (#4564)</p>
+</li>
+<li>
+<p>Enabled the configuration of the liveness probe timeout via the
+  <code>.spec.livenessProbeTimeout</code> option (#4719)</p>
+</li>
+<li>
+<p><code>cnpg</code> plugin for <code>kubectl</code>:</p>
+<ul>
+<li>Enhanced support for ANSI colors in the plugin by adding the <code>--color</code>
+  option, which accepts <code>always</code>, <code>never</code>, and <code>auto</code> (default) as values
+  (#4775)</li>
+<li>The plugin is now available on Homebrew for macOS users (#4602)</li>
+</ul>
+</li>
+</ul>
+<h3 id="fixes">Fixes:</h3>
+<ul>
+<li>
+<p>Prevented fenced instances from entering an unnecessary loop and consuming
+  all available CPU (#4625)</p>
+</li>
+<li>
+<p>Resolved an issue where the instance manager on the primary would
+  indefinitely wait for the instance to start after encountering a failure
+  following a stop operation (#4434)</p>
+</li>
+<li>
+<p>Fixed an issue where the interaction between <code>hot_standby_feedback</code> and
+  managed cluster-level replication slots was preventing the autovacuum from
+  operating correctly; this issue was causing disk space to remain occupied by
+  dead tuples (#4811)</p>
+</li>
+<li>
+<p>Fixed a panic in the backup controller that occurred when pod container
+  statuses were missing (#4765)</p>
+</li>
+<li>
+<p>Prevented unnecessary shutdown of the instance manager (#4670)</p>
+</li>
+<li>
+<p>Prevented unnecessary reloads of PostgreSQL configuration when unchanged (#4531)</p>
+</li>
+<li>
+<p>Prevented unnecessary reloads of the ident map by ensuring a consistent and
+  unique method of writing its content (#4648)</p>
+</li>
+<li>
+<p>Avoided conflicts during phase registration by patching the status of the
+  resource instead of updating it (#4637)</p>
+</li>
+<li>
+<p>Implemented a timeout when restarting PostgreSQL and lifting fencing (#4504)</p>
+</li>
+<li>
+<p>Ensured that a replica cluster is restarted after promotion to properly set
+  the archive mode (#4399)</p>
+</li>
+<li>
+<p>Removed an unneeded concurrent keep-alive routine that was causing random
+  failures in volume snapshot backups (#4768)</p>
+</li>
+<li>
+<p>Ensured correct parsing of the additional rows field returned when the
+  <code>pgaudit.log_rows</code> option was enabled, preventing audit logs from being
+  incorrectly routed to the normal log stream (#4394)</p>
+</li>
+<li>
+<p><code>cnpg</code> plugin for <code>kubectl</code>:</p>
+<ul>
+<li>Resolved an issue with listing PDBs using the <code>cnpg status</code> command (#4530)</li>
+</ul>
+</li>
+</ul>
+<h3 id="changes">Changes</h3>
+<ul>
+<li>Default operand image set to PostgreSQL 16.3 (#4584)</li>
+<li>Removed all RBAC requirements on namespace objects (#4753)</li>
+</ul>
 <h2 id="version-1231">Version 1.23.1</h2>
 <p><strong>Release date:</strong> Apr 29, 2024</p>
-<p>Fixes:</p>
+<h3 id="fixes_1">Fixes:</h3>
 <ul>
 <li>Corrects the reconciliation of <code>PodMonitor</code> resources, which was
   failing due to a regression (#4286)</li>
@@ -308,7 +393,7 @@ on the release branch in GitHub.</p>
 minor release at a time, rather than two. Additionally, we've extended the
 supplementary support period for the previous minor release to 3 months.</p>
 </div>
-<p>Features:</p>
+<h3 id="features">Features:</h3>
 <ul>
 <li><strong>PostgreSQL Image Catalogs:</strong> Introduced <code>ClusterImageCatalog</code> and
   <code>ImageCatalog</code> CRDs to manage operand container images based on PostgreSQL
@@ -325,7 +410,7 @@ supplementary support period for the previous minor release to 3 months.</p>
   useful for single-instance deployments. This feature is intended to replace the
   node maintenance window feature.</li>
 </ul>
-<p>Enhancements:</p>
+<h3 id="enhancements_1">Enhancements:</h3>
 <ul>
 <li>Users now have the capability to transition an existing cluster into replica
   mode, simplifying cross-datacenter switchover operations (#4261)</li>
@@ -342,7 +427,7 @@ supplementary support period for the previous minor release to 3 months.</p>
 <li>Error detection when invoking <code>barman-cloud-wal-restore</code> in <code>recovery</code>
   bootstrap (#4101)</li>
 </ul>
-<p>Fixes:</p>
+<h3 id="fixes_2">Fixes:</h3>
 <ul>
 <li>Ensured that before a switchover, the elected replica is in streaming
   replication (#4288)</li>
@@ -361,7 +446,7 @@ supplementary support period for the previous minor release to 3 months.</p>
 </ul>
 </li>
 </ul>
-<p>Changes:</p>
+<h3 id="changes_1">Changes:</h3>
 <ul>
 <li>Operator images are now based on <code>gcr.io/distroless/static-debian12:nonroot</code>
   (#4201)</li>
