@@ -81,7 +81,7 @@
                 </li>
               </ul>
               <ul class="current">
-                <li class="toctree-l1 current"><a class="reference internal current" href="./">Postgres instance manager</a>
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Postgres instance manager</a>
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#startup-liveness-and-readiness-probes">Startup, liveness and readiness probes</a>
     </li>
@@ -328,6 +328,9 @@ fails three times with a 10-second interval between each check.</p>
 broken state and needs to be restarted. The value in <code>startDelay</code> is used
 to delay the probe's execution, preventing an
 instance with a long startup time from being restarted.</p>
+<p>The amount of time needed for a Pod to be classified as not alive is
+configurable in the <code>.spec.livenessProbeTimeout</code> parameter, that
+defaults to 30 seconds.</p>
 <p>The interval (in seconds) after the Pod has started before the liveness
 probe starts working is expressed in the <code>.spec.startDelay</code> parameter,
 which defaults to 3600 seconds. The correct value for your cluster is
