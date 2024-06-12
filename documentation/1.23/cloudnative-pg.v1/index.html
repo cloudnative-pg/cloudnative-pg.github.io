@@ -249,7 +249,7 @@
                 </li>
               </ul>
               <ul class="current">
-                <li class="toctree-l1 current"><a class="reference internal current" href="./">API Reference</a>
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">API Reference</a>
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#resource-types">Resource Types</a>
     </li>
@@ -2139,6 +2139,16 @@ after the primary PostgreSQL instance in the cluster was detected
 to be unhealthy</p>
 </td>
 </tr>
+<tr><td><code>livenessProbeTimeout</code><br/>
+<i>int32</i>
+</td>
+<td>
+   <p>LivenessProbeTimeout is the time (in seconds) that is allowed for a PostgreSQL instance
+to successfully respond to the liveness probe (default 30).
+The Liveness probe failure threshold is derived from this value using the formula:
+ceiling(livenessProbe / 10).</p>
+</td>
+</tr>
 <tr><td><code>affinity</code><br/>
 <a href="#postgresql-cnpg-io-v1-AffinityConfiguration"><i>AffinityConfiguration</i></a>
 </td>
@@ -3527,14 +3537,14 @@ Default: false.</p>
 </td>
 </tr>
 <tr><td><code>podMonitorMetricRelabelings</code><br/>
-<a href="https://pkg.go.dev/github.com/prometheus-operator/prometheus-operator/pkg/apis/monitoring/v1#RelabelConfig"><i>[]*github.com/prometheus-operator/prometheus-operator/pkg/apis/monitoring/v1.RelabelConfig</i></a>
+<a href="https://pkg.go.dev/github.com/prometheus-operator/prometheus-operator/pkg/apis/monitoring/v1#RelabelConfig"><i>[]github.com/prometheus-operator/prometheus-operator/pkg/apis/monitoring/v1.RelabelConfig</i></a>
 </td>
 <td>
    <p>The list of metric relabelings for the <code>PodMonitor</code>. Applied to samples before ingestion.</p>
 </td>
 </tr>
 <tr><td><code>podMonitorRelabelings</code><br/>
-<a href="https://pkg.go.dev/github.com/prometheus-operator/prometheus-operator/pkg/apis/monitoring/v1#RelabelConfig"><i>[]*github.com/prometheus-operator/prometheus-operator/pkg/apis/monitoring/v1.RelabelConfig</i></a>
+<a href="https://pkg.go.dev/github.com/prometheus-operator/prometheus-operator/pkg/apis/monitoring/v1#RelabelConfig"><i>[]github.com/prometheus-operator/prometheus-operator/pkg/apis/monitoring/v1.RelabelConfig</i></a>
 </td>
 <td>
    <p>The list of relabelings for the <code>PodMonitor</code>. Applied to samples before scraping.</p>
@@ -3907,14 +3917,14 @@ part for now.</p>
 </td>
 </tr>
 <tr><td><code>podMonitorMetricRelabelings</code><br/>
-<a href="https://pkg.go.dev/github.com/prometheus-operator/prometheus-operator/pkg/apis/monitoring/v1#RelabelConfig"><i>[]*github.com/prometheus-operator/prometheus-operator/pkg/apis/monitoring/v1.RelabelConfig</i></a>
+<a href="https://pkg.go.dev/github.com/prometheus-operator/prometheus-operator/pkg/apis/monitoring/v1#RelabelConfig"><i>[]github.com/prometheus-operator/prometheus-operator/pkg/apis/monitoring/v1.RelabelConfig</i></a>
 </td>
 <td>
    <p>The list of metric relabelings for the <code>PodMonitor</code>. Applied to samples before ingestion.</p>
 </td>
 </tr>
 <tr><td><code>podMonitorRelabelings</code><br/>
-<a href="https://pkg.go.dev/github.com/prometheus-operator/prometheus-operator/pkg/apis/monitoring/v1#RelabelConfig"><i>[]*github.com/prometheus-operator/prometheus-operator/pkg/apis/monitoring/v1.RelabelConfig</i></a>
+<a href="https://pkg.go.dev/github.com/prometheus-operator/prometheus-operator/pkg/apis/monitoring/v1#RelabelConfig"><i>[]github.com/prometheus-operator/prometheus-operator/pkg/apis/monitoring/v1.RelabelConfig</i></a>
 </td>
 <td>
    <p>The list of relabelings for the <code>PodMonitor</code>. Applied to samples before scraping.</p>

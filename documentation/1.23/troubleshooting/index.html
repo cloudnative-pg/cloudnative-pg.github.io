@@ -197,7 +197,7 @@
                 </li>
               </ul>
               <ul class="current">
-                <li class="toctree-l1 current"><a class="reference internal current" href="./">Troubleshooting</a>
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Troubleshooting</a>
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#before-you-start">Before you start</a>
         <ul>
@@ -525,7 +525,7 @@ Those pods are managed by a deployment named <code>cnpg-controller-manager</code
 Name:               cluster-example
 Namespace:          default
 System ID:          7044925089871458324
-PostgreSQL Image:   ghcr.io/cloudnative-pg/postgresql:16.2-3
+PostgreSQL Image:   ghcr.io/cloudnative-pg/postgresql:16.3-3
 Primary instance:   cluster-example-1
 Instances:          3
 Ready instances:    3
@@ -583,7 +583,7 @@ For more information, please see <a href="../kubectl-plugin/"><code>cnpg</code> 
 <pre><code class="language-shell">kubectl describe cluster &lt;CLUSTER_NAME&gt; -n &lt;NAMESPACE&gt; | grep &quot;Image Name&quot;
 </code></pre>
 <p>Output:</p>
-<pre><code class="language-shell">  Image Name:    ghcr.io/cloudnative-pg/postgresql:16.2-3
+<pre><code class="language-shell">  Image Name:    ghcr.io/cloudnative-pg/postgresql:16.3-3
 </code></pre>
 <div class="admonition note">
 <p class="admonition-title">Note</p>

@@ -61,7 +61,7 @@
                 </li>
               </ul>
               <ul class="current">
-                <li class="toctree-l1 current"><a class="reference internal current" href="./">Quickstart</a>
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Quickstart</a>
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#part-1-setup-the-local-kubernetes-playground">Part 1: Setup the local Kubernetes playground</a>
         <ul>
@@ -313,8 +313,9 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="quickstart">Quickstart</h1>
-<p>This section describes how to test a PostgreSQL cluster on your laptop/computer
-using CloudNativePG on a local Kubernetes cluster in <a href="https://kind.sigs.k8s.io/">Kind</a> or
+<p>This section guides you through testing a PostgreSQL cluster on your local machine by
+deploying CloudNativePG on a local Kubernetes cluster
+using either <a href="https://kind.sigs.k8s.io/">Kind</a> or
 <a href="https://kubernetes.io/docs/setup/learning-environment/minikube/">Minikube</a>.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
@@ -474,7 +475,7 @@ helm upgrade --install \
 </ul>
 <div class="admonition seealso">
 <p class="admonition-title">Seealso</p>
-<p>For further information about the above command see the <a href="https://helm.sh/docs/helm/helm_install/">helm install</a> 
+<p>For further information about the above command, refer to the <a href="https://helm.sh/docs/helm/helm_install/">helm install</a>
 documentation. </p>
 </div>
 <p>You can see several Custom Resources have been created:</p>
@@ -520,7 +521,7 @@ EOF
 <pre><code class="language-sh">kubectl port-forward svc/prometheus-community-kube-prometheus 9090
 </code></pre>
 <p>Then access the Prometheus console locally at: <a href="http://localhost:9090/"><code>http://localhost:9090/</code></a></p>
-<p>Assuming that the monitoring stack was successfully deployed, and you have a Cluster with <code>enablePodMonitor: true</code>
+<p>Assuming that the monitoring stack was successfully deployed, and you have a Cluster with <code>enablePodMonitor: true</code>,
 you should find a series of metrics relating to CloudNativePG clusters. Again, please
 refer to the <a href="../monitoring/"><em>monitoring section</em></a> for more information.</p>
 <p><img alt="local prometheus" src="../images/prometheus-local.png" /></p>
@@ -553,8 +554,8 @@ this was created, like <code>kubelet_volume_stats_available_bytes</code> and <co
 producing some graphs to show <code>No data</code>.</p>
 </div>
 <p><img alt="local grafana" src="../images/grafana-local.png" /></p>
-<p>Note that in our example setup, both Prometheus and Grafana will pick up
-any other CloudNativePG clusters deployed with Monitoring activated.</p>
+<p>Note that in our local setup, Prometheus and Grafana are configured to automatically discover
+and monitor any CloudNativePG clusters deployed with the Monitoring feature enabled.</p>
               
             </div>
           </div><footer>

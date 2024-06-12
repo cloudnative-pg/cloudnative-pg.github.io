@@ -189,7 +189,7 @@
                 </li>
               </ul>
               <ul class="current">
-                <li class="toctree-l1 current"><a class="reference internal current" href="./">Kubectl Plugin</a>
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Kubectl Plugin</a>
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#install">Install</a>
         <ul>
@@ -204,6 +204,8 @@
         </ul>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#using-krew">Using Krew</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#using-homebrew">Using Homebrew</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#supported-architectures">Supported Architectures</a>
     </li>
@@ -447,6 +449,25 @@ installation with:</p>
 <pre><code class="language-sh">kubectl krew update
 kubectl krew upgrade cnpg
 </code></pre>
+<h3 id="using-homebrew">Using Homebrew</h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Please note that the Homebrew community manages the availability of the <a href="https://formulae.brew.sh/formula/kubectl-cnpg">kubectl-cnpg plugin on Homebrew</a>.</p>
+</div>
+<p>If you already have <a href="https://brew.sh/">Homebrew</a> installed, you can simply
+run:</p>
+<pre><code class="language-sh">brew install kubectl-cnpg
+</code></pre>
+<p>When a new version of the plugin is released, you can update the existing
+installation with:</p>
+<pre><code class="language-sh">brew update
+brew upgrade kubectl-cnpg
+</code></pre>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Auto-completion for the kubectl plugin is already managed by Homebrew.
+There's no need to create the <code>kubectl_complete-cnpg</code> script mentioned below.</p>
+</div>
 <h3 id="supported-architectures">Supported Architectures</h3>
 <p>CloudNativePG Plugin is currently built for the following
 operating system and architectures:</p>
@@ -490,6 +511,12 @@ sudo mv kubectl_complete-cnpg /usr/local/bin
 <p>Once the plugin was installed and deployed, you can start using it like this:</p>
 <pre><code class="language-shell">kubectl cnpg &lt;command&gt; &lt;args...&gt;
 </code></pre>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The plugin automatically detects if the standard output channel is connected to a terminal.
+In such cases, it may add ANSI colors to the command output. To disable colors, use the
+<code>--color=never</code> option with the command.</p>
+</div>
 <h3 id="generation-of-installation-manifests">Generation of installation manifests</h3>
 <p>The <code>cnpg</code> plugin can be used to generate the YAML manifest for the
 installation of the operator. This option would typically be used if you want
@@ -554,7 +581,7 @@ two different time intervals.</p>
 Name:               sandbox
 Namespace:          default
 System ID:          7039966298120953877
-PostgreSQL Image:   ghcr.io/cloudnative-pg/postgresql:16.2
+PostgreSQL Image:   ghcr.io/cloudnative-pg/postgresql:16.3
 Primary instance:   sandbox-2
 Instances:          3
 Ready instances:    3
@@ -594,7 +621,7 @@ sandbox-3  302 GB         3AF/EBAD5D18  Standby (sync)    OK      Guaranteed  1.
 Name:               sandbox
 Namespace:          default
 System ID:          7039966298120953877
-PostgreSQL Image:   ghcr.io/cloudnative-pg/postgresql:16.2
+PostgreSQL Image:   ghcr.io/cloudnative-pg/postgresql:16.3
 Primary instance:   sandbox-2
 Instances:          3
 Ready instances:    3
@@ -1112,7 +1139,7 @@ method should be used with extreme care, by authorized personnel only.</p>
 </div>
 <pre><code class="language-shell">kubectl cnpg psql cluster-example
 
-psql (16.2 (Debian 16.2-1.pgdg110+1))
+psql (16.3 (Debian 16.3-1.pgdg110+1))
 Type &quot;help&quot; for help.
 
 postgres=#
@@ -1120,7 +1147,7 @@ postgres=#
 <p>By default, the command will connect to the primary instance. The user can
 select to work against a replica by using the <code>--replica</code> option:</p>
 <pre><code class="language-shell">kubectl cnpg psql --replica cluster-example
-psql (16.2 (Debian 16.2-1.pgdg110+1))
+psql (16.3 (Debian 16.3-1.pgdg110+1))
 
 Type &quot;help&quot; for help.
 
