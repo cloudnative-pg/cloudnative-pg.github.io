@@ -1,0 +1,43 @@
+{{ define "main" }}
+<h1 class="h1 text-center mx-auto md:w-3/5">{{.Title}}</h1>
+<div class="md:w-3/5 mx-auto">
+    <div class="px-4">
+        <!--User profile-->
+        <div class="flex gap-3 my-10 mx-auto flex justify-center">
+            {{ partial "author.html" . }}
+        </div>
+        <!--User profile-->
+
+        <!--Blog image-->
+        <div>
+            <img src="{{ .Params.image.url }}" alt="blog image" class="mx-auto">
+        </div>
+        <!--Blog image-->
+
+        <!--Blog content-->
+        <div class="mx-auto my-10">
+            {{ .Content }}
+        </div>
+        <!--Blog content-->
+    </div>
+
+    <div class="px-4">
+        <h3 class="text-xl font-bold mb-6">Categories in this blog post</h3>
+        <div class="text-xs space-y-1.5 mb-14">
+            <ul class="text-sm">
+                {{ range .Params.tags }}
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/{{ . }}"
+                        class="mr-2">{{. }}</a></li>
+                {{ end }}
+            </ul>
+
+        </div>
+    </div>
+
+    <!--Col 2 starts here-->
+    <div class="space-y-10 md:pt-10">
+        {{ partial "blog_sidebar.html" . }}
+    </div>
+    <!--Col 2 ends here-->
+</div>
+{{ end }}
