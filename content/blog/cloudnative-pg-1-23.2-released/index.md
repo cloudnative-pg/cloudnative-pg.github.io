@@ -29,7 +29,7 @@ them in these new releases, ensuring a more stable and resilient software.
 bug fixes, addressing issues such as:
 
 - Unnecessary reloads and shutdowns of PostgreSQL
-- Excessive CPU usage due to unnecessary loops
+- Excessive CPU usage on fenced instances, due to busy waiting loop
 - The primary instance manager hanging indefinitely after a stop and subsequent
   failure
 - Autovacuum not working correctly due to an issue between
