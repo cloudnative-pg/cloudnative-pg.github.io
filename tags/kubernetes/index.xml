@@ -6,7 +6,16 @@
     <description>Recent content in kubernetes on CloudNativePG - PostgreSQL Operator for Kubernetes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 25 Apr 2024 16:04:04 +0200</lastBuildDate><atom:link href="https://cloudnative-pg.io/tags/kubernetes/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 12 Jun 2024 23:49:11 +0200</lastBuildDate><atom:link href="https://cloudnative-pg.io/tags/kubernetes/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CloudNativePG 1.23.2, 1.22.4 and 1.21.6 Released!</title>
+      <link>https://cloudnative-pg.io/blog/cloudnative-pg-1-23.2-released/</link>
+      <pubDate>Wed, 12 Jun 2024 23:49:11 +0200</pubDate>
+      
+      <guid>https://cloudnative-pg.io/blog/cloudnative-pg-1-23.2-released/</guid>
+      <description>The CloudNativePG community has released a new update for the supported 1.23, 1.22 and 1.21 versions of the CloudNativePG operator. Version 1.21 has reached End-of-Life (EOL).</description>
+    </item>
+    
     <item>
       <title>CloudNativePG 1.23.0, 1.22.3 and 1.21.5 Released!</title>
       <link>https://cloudnative-pg.io/blog/cloudnative-pg-1-23.0-released/</link>

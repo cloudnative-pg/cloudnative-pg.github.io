@@ -6,7 +6,7 @@
 <html lang="en">
 
 <head>
-  <title>CloudNativePG 1.21.0, 1.20.3 and 1.19.5 Released! | CloudNativePG - PostgreSQL Operator for Kubernetes</title>
+  <title>CloudNativePG 1.23.2, 1.22.4 and 1.21.6 Released! | CloudNativePG - PostgreSQL Operator for Kubernetes</title>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
@@ -20,15 +20,15 @@
   <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://cloudnative-pg.io/images/hero_image.png"/>
 
-<meta name="twitter:title" content="CloudNativePG 1.21.0, 1.20.3 and 1.19.5 Released!"/>
-<meta name="twitter:description" content="The CloudNativePG community has released the new 1.21 minor version and a new update for the supported 1.20 and 1.19 versions of the CloudNativePG operator."/>
+<meta name="twitter:title" content="CloudNativePG 1.23.2, 1.22.4 and 1.21.6 Released!"/>
+<meta name="twitter:description" content="The CloudNativePG community has released a new update for the supported 1.23, 1.22 and 1.21 versions of the CloudNativePG operator. Version 1.21 has reached End-of-Life (EOL)."/>
 
-  <meta property="og:title" content="CloudNativePG 1.21.0, 1.20.3 and 1.19.5 Released!" />
-<meta property="og:description" content="The CloudNativePG community has released the new 1.21 minor version and a new update for the supported 1.20 and 1.19 versions of the CloudNativePG operator." />
+  <meta property="og:title" content="CloudNativePG 1.23.2, 1.22.4 and 1.21.6 Released!" />
+<meta property="og:description" content="The CloudNativePG community has released a new update for the supported 1.23, 1.22 and 1.21 versions of the CloudNativePG operator. Version 1.21 has reached End-of-Life (EOL)." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://cloudnative-pg.io/blog/cloudnative-pg-1-21.0-released/" /><meta property="og:image" content="https://cloudnative-pg.io/images/hero_image.png"/><meta property="article:section" content="blog" />
-<meta property="article:published_time" content="2023-10-12T13:46:12+02:00" />
-<meta property="article:modified_time" content="2023-10-12T13:46:12+02:00" />
+<meta property="og:url" content="https://cloudnative-pg.io/blog/cloudnative-pg-1-23.2-released/" /><meta property="og:image" content="https://cloudnative-pg.io/images/hero_image.png"/><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2024-06-12T23:49:11+02:00" />
+<meta property="article:modified_time" content="2024-06-12T23:49:11+02:00" />
 
 
 </head>
@@ -116,7 +116,7 @@
 </script>
 
     
-<h1 class="h1 text-center mx-auto md:w-3/5">CloudNativePG 1.21.0, 1.20.3 and 1.19.5 Released!</h1>
+<h1 class="h1 text-center mx-auto md:w-3/5">CloudNativePG 1.23.2, 1.22.4 and 1.21.6 Released!</h1>
 <div class="md:w-3/5 mx-auto">
     <div class="px-4">
         
@@ -134,7 +134,7 @@
     </div>
     <div class="flex gap-2 text-sm charcoal opacity-75">
     <h6 class="flex gap-2 text-sm charcoal">
-        October 12, 2023
+        June 12, 2024
         •
         2 minutes
     </h6>
@@ -145,60 +145,49 @@
 
         
         <div>
-            <img src="wildlife-zoo-mammal-fauna-elephant-sri-lanka-988769-pxhere.com.jpg" alt="blog image" class="mx-auto">
+            <img src="58364dde1adc4a0a8.37186404-2048x1445.jpg" alt="blog image" class="mx-auto">
         </div>
         
 
         
         <div class="mx-auto my-10">
-            <p>The <strong>CloudNativePG Community</strong> has announced version 1.21.0, a new minor
-release of the <strong>CloudNativePG Operator</strong>, which introduces <strong>volume snapshot
-support for backup and recovery</strong> along several enhancements in the default
-behavior in terms of usability, security and resilience.</p>
-<p>By leveraging the <a href="https://kubernetes.io/blog/2020/12/10/kubernetes-1.20-volume-snapshot-moves-to-ga/">standard Kubernetes API on Volume Snapshots</a>,
-you can now take advantage of capabilities like incremental and differential
-copy for both backup and recovery operations of PostgreSQL databases, opening
-up the frontier of very large databases (VLDB).  CloudNativePG is the first
-PostgreSQL operator that natively supports Kubernetes volume snapshots.
-This implementation covers cold backups from a standby, waiting for 1.22 to
-complete the feature with hot backups using the PostgreSQL API.</p>
-<p>CloudNativePG 1.21 also introduces support for Operator Lifecycle Manager (OLM)
-via OperatorHub.io (through the <code>stable</code> channel, which is limited to the
-latest patch version of the latest minor release). Many thanks to
-<a href="https://enterprisedb.com">EDB</a> for donating the bundle of their &ldquo;EDB Postgres
-for Kubernetes&rdquo; operator and adapting it for CloudNativePG.</p>
-<p>As an exceptional measure, some important changes to the default behavior of
-the operator have been made in this release with the goal to keep improving the
-out-of-the-box usability, security and resilience of the operator.
-The most relevant changes on new PostgreSQL clusters are:</p>
+            <p>The <strong>CloudNativePG Community</strong> is thrilled to announce a new update for the
+<strong>CloudNativePG Operator</strong>, now available for the supported versions 1.23,
+1.22, and 1.21.</p>
+<p>Thanks to comprehensive refactoring and enhancement activities, we&rsquo;ve
+significantly improved the reliability of our automated End-to-End (E2E) tests.
+With contributions from <a href="https://enterprisedb.com">EDB</a>, we&rsquo;ve tested the
+operator on all major cloud providers, identified several defects, and resolved
+them in these new releases, ensuring a more stable and resilient software.</p>
+<p><strong>Versions 1.23.2, 1.22.4, and 1.21.6</strong> are patch releases that contain crucial
+bug fixes, addressing issues such as:</p>
 <ul>
-<li>network access as <code>postgres</code> superuser is forbidden unless requested, for
-better security-by-default (1.21.0 only)</li>
-<li>replication slots for the High Availability cluster are enabled by default,
-improving resilience (1.21.0 only)</li>
-<li>more realistic default values for timeouts and delays that control start,
-stop, switchover, and fencing operations, suitable for most production
-environments (all patch releases).</li>
+<li>Unnecessary reloads and shutdowns of PostgreSQL</li>
+<li>Excessive CPU usage on fenced instances, due to busy waiting loop</li>
+<li>The primary instance manager hanging indefinitely after a stop and subsequent
+failure</li>
+<li>Autovacuum not working correctly due to an issue between
+<code>hot_standby_feedback</code> and our managed cluster-level replication slots
+implementation</li>
+<li><code>pgaudit.log_rows</code> not functioning as intended</li>
 </ul>
-<p>We apologize with our existing users for any inconvenience but, as the user
-base of CloudNativePG keeps expanding, postponing them would have generated
-more issues in the long term. Before upgrading, please make sure you
-<a href="https://cloudnative-pg.io/documentation/current/installation_upgrade/#upgrading-to-1210-1203-or-1195">read the detailed instructions</a>.</p>
-<p>New patch releases are available for all the supported versions, including
-1.20.3 and 1.19.5.</p>
-<p>Before of the above changes, we recommend to upgrade at your earliest possible
-convenience to 1.21.0, or, alternatively, at least to the latest patch version
-for your current minor release.</p>
-<p>With the release of 1.21.0, the 1.19.x minor version will be
-<a href="https://cloudnative-pg.io/documentation/1.21/supported_releases/#support-status-of-cloudnativepg-releases">end of life</a>
-from 11 November, 2023.</p>
-<p>Several bugs have also been fixed.</p>
-<p>For a complete list of changes, please refer to:</p>
+<p>With this update, version 1.21 has reached End-of-Life (EOL). Version 1.21.6
+marks the final release for the 1.21 minor version.</p>
+<p>We highly recommend updating the operator at your earliest convenience to
+benefit from these improvements and bug fixes.</p>
+<p>For a detailed list of changes, please refer to the release notes:</p>
 <ul>
-<li><a href="https://cloudnative-pg.io/documentation/1.21/release_notes/v1.21/">release notes for 1.21.0</a></li>
-<li><a href="https://cloudnative-pg.io/documentation/1.20/release_notes/v1.20/">release notes for 1.20.3</a></li>
-<li><a href="https://cloudnative-pg.io/documentation/1.19/release_notes/v1.19/">release notes for 1.19.5</a></li>
+<li><a href="https://cloudnative-pg.io/documentation/1.23/release_notes/v1.23/">Release notes for 1.23.2</a></li>
+<li><a href="https://cloudnative-pg.io/documentation/1.22/release_notes/v1.22/">Release notes for 1.22.4</a></li>
+<li><a href="https://cloudnative-pg.io/documentation/1.21/release_notes/v1.21/">Release notes for 1.21.6</a></li>
 </ul>
+<p>Additionally, we are pleased to announce that macOS users can now install the
+<code>cnpg</code> plugin for <code>kubectl</code> via Homebrew with the command: <code>brew install kubectl-cnpg</code>.</p>
+<p>Thank you for your continued support. We look forward to your seamless
+experience with the updated CloudNativePG Operator.
+If you are using it in production, please consider
+<a href="https://github.com/cloudnative-pg/cloudnative-pg/blob/main/ADOPTERS.md">adding your organization as an adopter of the project</a>.</p>
+<p>Your support helps us grow and improve!</p>
 <!-- raw HTML omitted -->
 <!-- raw HTML omitted -->
 <!-- raw HTML omitted -->
@@ -230,9 +219,6 @@ from 11 November, 2023.</p>
                 
                 <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/cloudnativepg"
                         class="mr-2">cloudnativepg</a></li>
-                
-                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/volumesnapshots"
-                        class="mr-2">volumesnapshots</a></li>
                 
             </ul>
 
