@@ -23,8 +23,14 @@ TARGETDIR=$DOCDIR/$release_version
 WORKDIR=$(mktemp -d)
 mkdir -p $WORKDIR/cnpg
 
+BRANCH_NAME=release-$release_version
+# Use the main branch if we are not targeting a stable version
+if ! [[ "${release_version}" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+    BRANCH_NAME="main"
+fi
+
 # Clone the branch
-git clone --depth 1 --branch release-$release_version git@github.com:cloudnative-pg/cloudnative-pg.git $WORKDIR/cnpg
+git clone --depth 1 --branch $BRANCH_NAME git@github.com:cloudnative-pg/cloudnative-pg.git $WORKDIR/cnpg
 
 mkdir -p $TARGETDIR
 
