@@ -9,10 +9,10 @@
     <lastBuildDate>Thu, 21 Dec 2023 14:51:33 +0100</lastBuildDate><atom:link href="https://cloudnative-pg.io/tags/tablespaces/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>CloudNativePG 1.22.0, 1.21.2 and 1.20.5 Released!</title>
-      <link>https://cloudnative-pg.io/blog/cloudnative-pg-1-22.0-released/</link>
+      <link>https://cloudnative-pg.io/releases/cloudnative-pg-1-22.0-released/</link>
       <pubDate>Thu, 21 Dec 2023 14:51:33 +0100</pubDate>
       
-      <guid>https://cloudnative-pg.io/blog/cloudnative-pg-1-22.0-released/</guid>
+      <guid>https://cloudnative-pg.io/releases/cloudnative-pg-1-22.0-released/</guid>
       <description>The CloudNativePG community has released the new 1.22 minor version and a new update for the supported 1.21 and 1.20 versions of the CloudNativePG operator.</description>
     </item>
     
