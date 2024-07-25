@@ -32,7 +32,7 @@ what we used to have.
 
 ## What's New in 1.23
 
-#### PostgreSQL Image Catalogs
+### PostgreSQL Image Catalogs
 
 Say goodbye to PostgreSQL version management headaches! With image catalogs
 based on major versions, managing your database fleet has never been easier.
@@ -44,12 +44,12 @@ images.
 The Community will provide catalogs, and you could also use third-party ones,
 or even build your own.
 
-#### Synchronization of User-Defined Replication Slots
+### Synchronization of User-Defined Replication Slots
 
 Ensure seamless failover with extended physical replication slot
 synchronization, now covering persistence of user-defined slots after failover.
 
-#### Pod Disruption Budget (PDB) Configuration
+### Pod Disruption Budget (PDB) Configuration
 
 Customize PDB settings with the new `.spec.enablePDB` field. Disable PDBs
 on primary instances for single-instance deployments, ensuring smooth pod
