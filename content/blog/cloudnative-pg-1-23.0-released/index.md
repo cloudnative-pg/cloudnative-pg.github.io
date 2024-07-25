@@ -32,25 +32,29 @@ what we used to have.
 
 ## What's New in 1.23
 
-PostgreSQL Image Catalogs
-:   Say goodbye to PostgreSQL version management headaches! With image catalogs
-    based on major versions, managing your database fleet has never been easier.
-    Simply request the PostgreSQL major version you need and control how your
-    databases stay up-to-date. We've introduced two new resources
-    (`ClusterImageCatalog` and `ImageCatalog`) and a new stanza
-    (`spec.imageCatalogRef`), setting the stage for simpler management of default images.
-    The Community will provide catalogs, and you could also use third-party ones,
-    or even build your own.
+### PostgreSQL Image Catalogs
 
-Synchronization of User-Defined Replication Slots
-:   Ensure seamless failover with extended physical replication slot
-    synchronization, now covering persistence of user-defined slots after failover.
+Say goodbye to PostgreSQL version management headaches! With image catalogs
+based on major versions, managing your database fleet has never been easier.
+Simply request the PostgreSQL major version you need and control how your
+databases stay up-to-date. We've introduced two new resources
+(`ClusterImageCatalog` and `ImageCatalog`) and a new stanza
+(`spec.imageCatalogRef`), setting the stage for simpler management of default 
+images.
+The Community will provide catalogs, and you could also use third-party ones,
+or even build your own.
 
-Pod Disruption Budget (PDB) Configuration
-:   Customize PDB settings with the new `.spec.enablePDB` field. Disable PDBs
-    on primary instances for single-instance deployments, ensuring smooth pod
-    eviction during maintenance operations. This marks our first step towards
-    deprecating the node maintenance window feature.
+### Synchronization of User-Defined Replication Slots
+
+Ensure seamless failover with extended physical replication slot
+synchronization, now covering persistence of user-defined slots after failover.
+
+### Pod Disruption Budget (PDB) Configuration
+
+Customize PDB settings with the new `.spec.enablePDB` field. Disable PDBs
+on primary instances for single-instance deployments, ensuring smooth pod
+eviction during maintenance operations. This marks our first step towards
+deprecating the node maintenance window feature.
 
 ## Upgrade and Maintenance
 
