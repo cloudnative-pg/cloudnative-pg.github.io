@@ -58,7 +58,14 @@ LATEST_VERSION_LINK_DIR=current
 # Preview release
 if [ $PREVIEW_RELEASE -eq 1 ]
 then
-  cat >> $REPO_ROOT/assets/robots.txt <<EOF
+  ROBOTS_FILE="$REPO_ROOT/assets/robots.txt"
+  if [ ! -f "$ROBOTS_FILE" ]
+  then
+    cat > "$ROBOTS_FILE" <<EOF
+User-agent: *
+EOF
+  fi
+  cat >> "$ROBOTS_FILE" <<EOF
 Disallow: /documentation/$release_version/
 EOF
   latest_version=$(ls $DOCDIR | sort -n | grep '\-rc\?' | tail -1)
