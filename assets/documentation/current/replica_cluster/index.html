@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="The CloudNativePG Contributors" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Replica clusters - CloudNativePG</title>
+    <title>Replica clusters - CloudNativePG v1.23</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
@@ -31,7 +31,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-          <a href=".." class="icon icon-home"> CloudNativePG
+          <a href=".." class="icon icon-home"> CloudNativePG v1.23
         </a><div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
       <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
@@ -177,7 +177,7 @@
                 </li>
               </ul>
               <ul class="current">
-                <li class="toctree-l1 current"><a class="reference internal current" href="#">Replica clusters</a>
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Replica clusters</a>
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#basic-concepts">Basic concepts</a>
     </li>
@@ -194,8 +194,6 @@
     <li class="toctree-l2"><a class="reference internal" href="#demoting-a-primary-to-a-replica-cluster">Demoting a Primary to a Replica Cluster</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#promoting-the-designated-primary-in-the-replica-cluster">Promoting the designated primary in the replica cluster</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#delayed-replicas">Delayed replicas</a>
     </li>
     </ul>
                 </li>
@@ -292,7 +290,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
       <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="..">CloudNativePG</a>
+          <a href="..">CloudNativePG v1.23</a>
         
       </nav>
       <div class="wy-nav-content">
@@ -407,6 +405,12 @@ in the <code>samples/</code> subdirectory.</p>
     enabled: true
     source: cluster-example
 </code></pre>
+<p>The previous configuration assumes that the application database and its owning
+user are set to the default, <code>app</code>. If the PostgreSQL cluster being restored
+uses different names, you must specify them as documented in <a href="../bootstrap/#configure-the-application-database">Configure the application database</a>.
+You should also consider copying over the application user secret from
+the original cluster and keep it synchronized with the source.
+See <a href="#about-postgresql-roles">"About PostgreSQL Roles"</a> for more details.</p>
 <p>In the <code>externalClusters</code> section, remember to use the right namespace for the
 host in the <code>connectionParameters</code> sub-section.
 The <code>-replication</code> and <code>-ca</code> secrets should have been copied over if necessary,
@@ -444,6 +448,12 @@ for it in the <code>samples/</code> subdirectory.</p>
     enabled: true
     source: cluster-example
 </code></pre>
+<p>The previous configuration assumes that the application database and its owning
+user are set to the default, <code>app</code>. If the PostgreSQL cluster being restored
+uses different names, you must specify them as documented in <a href="../recovery/#configure-the-application-database">Configure the application database</a>.
+You should also consider copying over the application user secret from
+the original cluster and keep it synchronized with the source.
+See <a href="#about-postgresql-roles">"About PostgreSQL Roles"</a> for more details.</p>
 <p>In the <code>externalClusters</code> section, take care to use the right namespace in the
 <code>endpointURL</code> and the <code>connectionParameters.host</code>.
 And do ensure that the necessary secrets have been copied if necessary, and that
@@ -481,6 +491,13 @@ streaming replication (via basic authentication) and the object
 store to fetch the WAL files.</p>
 <p>You can check the <a href="../samples/cluster-example-replica-from-volume-snapshot.yaml">sample YAML</a>
 for it in the <code>samples/</code> subdirectory.</p>
+<p>The example assumes that the application database and its owning
+user are set to the default, <code>app</code>. If the PostgreSQL cluster being restored
+uses different names, you must specify them as documented in <a href="../recovery/#configure-the-application-database">Configure the
+application database</a>.
+You should also consider copying over the application user secret from
+the original cluster and keep it synchronized with the source.
+See <a href="#about-postgresql-roles">"About PostgreSQL Roles"</a> for more details.</p>
 <h2 id="demoting-a-primary-to-a-replica-cluster">Demoting a Primary to a Replica Cluster</h2>
 <p>CloudNativePG provides the functionality to demote a primary cluster to a
 replica cluster. This action is typically planned when transitioning the
@@ -524,20 +541,26 @@ disabled and the designated primary is promoted to primary, the replica cluster
 and the source cluster become two independent clusters definitively. Ensure to
 follow the demotion procedure correctly to avoid unintended consequences.</p>
 </div>
-<h2 id="delayed-replicas">Delayed replicas</h2>
-<p>In addition to standard replica clusters, our system supports the creation of
-<strong>delayed replicas</strong> through the utilization of PostgreSQL's
-<a href="https://www.postgresql.org/docs/current/runtime-config-replication.html#GUC-RECOVERY-MIN-APPLY-DELAY"><code>recovery_min_apply_delay</code></a>
-option.</p>
-<p>Delayed replicas intentionally lag behind the primary database by a specified
-amount of time. This delay is configurable using the <code>recovery_min_apply_delay</code>
+<!--
+## Delayed replicas
+
+In addition to standard replica clusters, our system supports the creation of
+**delayed replicas** through the utilization of PostgreSQL's
+[`recovery_min_apply_delay`](https://www.postgresql.org/docs/current/runtime-config-replication.html#GUC-RECOVERY-MIN-APPLY-DELAY)
+option.
+
+Delayed replicas intentionally lag behind the primary database by a specified
+amount of time. This delay is configurable using the `recovery_min_apply_delay`
 option in PostgreSQL. The primary objective of introducing delayed replicas is
 to mitigate the impact of unintentional executions of SQL statements on the
 primary database. This is particularly useful in scenarios where an incorrect
-or missing <code>WHERE</code> clause is used in operations such as <code>UPDATE</code> or <code>DELETE</code>.</p>
-<p>To introduce a delay in a replica cluster, adjust the
-<code>recovery_min_apply_delay</code> option. This parameter determines the time by which
-replicas lag behind the primary. For example:</p>
+or missing `WHERE` clause is used in operations such as `UPDATE` or `DELETE`.
+
+To introduce a delay in a replica cluster, adjust the
+`recovery_min_apply_delay` option. This parameter determines the time by which
+replicas lag behind the primary. For example:
+
+
 <pre><code class="language-yaml">  # ...
   postgresql:
     parameters:
@@ -545,36 +568,35 @@ replicas lag behind the primary. For example:</p>
       recovery_min_apply_delay = '8h'
   # ...
 </code></pre>
-<p>Monitor and adjust the delay as needed based on your recovery time objectives
-and the potential impact of unintended primary database operations.</p>
-<p>The main use cases of delayed replicas can be summarized into:</p>
-<ol>
-<li>
-<p>mitigating human errors: reduce the risk of data corruption or loss
-   resulting from unintentional SQL operations on the primary database</p>
-</li>
-<li>
-<p>recovery time optimization: facilitate quicker recovery from unintended
+
+
+Monitor and adjust the delay as needed based on your recovery time objectives
+and the potential impact of unintended primary database operations.
+
+The main use cases of delayed replicas can be summarized into:
+
+1. mitigating human errors: reduce the risk of data corruption or loss
+   resulting from unintentional SQL operations on the primary database
+
+2. recovery time optimization: facilitate quicker recovery from unintended
    changes by having a delayed replica that allows you to identify and rectify
-   issues before changes are applied to other replicas.</p>
-</li>
-<li>
-<p>enhanced data protection: safeguard critical data by introducing a time
+   issues before changes are applied to other replicas.
+
+3. enhanced data protection: safeguard critical data by introducing a time
    buffer that provides an opportunity to intervene and prevent the propagation of
-   undesirable changes.</p>
-</li>
-</ol>
-<p>By integrating delayed replicas into your replication strategy, you can enhance
+   undesirable changes.
+
+By integrating delayed replicas into your replication strategy, you can enhance
 the resilience and data protection capabilities of your PostgreSQL environment.
 Adjust the delay duration based on your specific needs and the criticality of
-your data.</p>
-<div class="admonition important">
-<p class="admonition-title">Important</p>
-<p>Always measure your goals. Depending on your environment, it might be more
-efficient to rely on volume snapshot-based recovery for faster outcomes.
-Evaluate and choose the approach that best aligns with your unique requirements
-and infrastructure.</p>
-</div>
+your data.
+
+!!! Important
+    Always measure your goals. Depending on your environment, it might be more
+    efficient to rely on volume snapshot-based recovery for faster outcomes.
+    Evaluate and choose the approach that best aligns with your unique requirements
+    and infrastructure.
+-->
               
             </div>
           </div><footer>

@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="The CloudNativePG Contributors" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Bootstrap - CloudNativePG</title>
+    <title>Bootstrap - CloudNativePG v1.23</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
@@ -31,7 +31,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-          <a href=".." class="icon icon-home"> CloudNativePG
+          <a href=".." class="icon icon-home"> CloudNativePG v1.23
         </a><div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
       <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
@@ -69,7 +69,7 @@
                 </li>
               </ul>
               <ul class="current">
-                <li class="toctree-l1 current"><a class="reference internal current" href="#">Bootstrap</a>
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Bootstrap</a>
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#the-bootstrap-section">The bootstrap section</a>
     </li>
@@ -312,7 +312,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
       <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="..">CloudNativePG</a>
+          <a href="..">CloudNativePG v1.23</a>
         
       </nav>
       <div class="wy-nav-content">
@@ -865,8 +865,16 @@ spec:
 from a live cluster, just like the case of <code>initdb</code> and  <code>recovery</code> bootstrap method.
 If the new cluster is created as a replica cluster (with replica mode enabled), application
 database configuration will be skipped.</p>
-<p>The following example configure the application database <code>app</code> with password in
-supplied secret <code>app-secret</code> after bootstrap from a live cluster.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>While the <code>Cluster</code> is in recovery mode, no changes to the database,
+including the catalog, are permitted. This restriction includes any role
+overrides, which are deferred until the <code>Cluster</code> transitions to primary.
+During the recovery phase, roles remain as defined in the source cluster.</p>
+</div>
+<p>The example below configures the <code>app</code> database with the owner <code>app</code> and
+the password stored in the provided secret <code>app-secret</code>, following the
+bootstrap from a live cluster.</p>
 <pre><code class="language-yaml">apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 [...]
@@ -879,21 +887,17 @@ spec:
         name: app-secret
       source: cluster-example
 </code></pre>
-<p>With the above configuration, the following will happen after recovery is completed:</p>
+<p>With the above configuration, the following will happen only <strong>after recovery is
+completed</strong>:</p>
 <ol>
-<li>if database <code>app</code> does not exist, a new database <code>app</code> will be created.</li>
-<li>if user <code>app</code> does not exist, a new user <code>app</code> will be created.</li>
-<li>if user <code>app</code> is not the owner of database, user <code>app</code> will be granted
-   as owner of database <code>app</code>.</li>
-<li>If value of <code>username</code> match value of <code>owner</code> in secret, the password of
-   application database will be changed to the value of <code>password</code> in secret.</li>
+<li>If the <code>app</code> database does not exist, it will be created.</li>
+<li>If the <code>app</code> user does not exist, it will be created.</li>
+<li>If the <code>app</code> user is not the owner of the <code>app</code> database, ownership will be
+   granted to the <code>app</code> user.</li>
+<li>If the <code>username</code> value matches the <code>owner</code> value in the secret, the
+   password for the application user (the <code>app</code> user in this case) will be
+   updated to the <code>password</code> value in the secret.</li>
 </ol>
-<div class="admonition important">
-<p class="admonition-title">Important</p>
-<p>For a replica cluster with replica mode enabled, the operator will not
-create any database or user in the PostgreSQL instance, as these will be
-recovered from the original cluster.</p>
-</div>
 <h4 id="current-limitations">Current limitations</h4>
 <h5 id="snapshot-copy">Snapshot copy</h5>
 <p>The <code>pg_basebackup</code> method takes a snapshot of the source instance in the form of
