@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="The CloudNativePG Contributors" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Kubectl Plugin - CloudNativePG</title>
+    <title>Kubectl Plugin - CloudNativePG v1.22</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
@@ -31,7 +31,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-          <a href=".." class="icon icon-home"> CloudNativePG
+          <a href=".." class="icon icon-home"> CloudNativePG v1.22
         </a><div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
       <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
@@ -62,6 +62,10 @@
               </ul>
               <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../quickstart/">Quickstart</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../image_catalog/">Image Catalog</a>
                 </li>
               </ul>
               <ul>
@@ -121,6 +125,10 @@
                 </li>
               </ul>
               <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../service_management/">Service Management</a>
+                </li>
+              </ul>
+              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../postgresql_conf/">PostgreSQL Configuration</a>
                 </li>
               </ul>
@@ -177,11 +185,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../kubernetes_upgrade/">Kubernetes Upgrade</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../expose_pg_services/">Exposing Postgres Services</a>
+                <li class="toctree-l1"><a class="reference internal" href="../kubernetes_upgrade/">Kubernetes Upgrade and Maintenance</a>
                 </li>
               </ul>
               <ul class="current">
@@ -200,6 +204,8 @@
         </ul>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#using-krew">Using Krew</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#using-homebrew">Using Homebrew</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#supported-architectures">Supported Architectures</a>
     </li>
@@ -343,6 +349,10 @@
                 </li>
               </ul>
               <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../preview_version/">Preview Versions</a>
+                </li>
+              </ul>
+              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../release_notes/">Release notes</a>
                 </li>
               </ul>
@@ -358,7 +368,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
       <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="..">CloudNativePG</a>
+          <a href="..">CloudNativePG v1.22</a>
         
       </nav>
       <div class="wy-nav-content">
@@ -397,21 +407,21 @@ section. In that section are pre-built packages for a variety of systems.
 As a result, you can follow standard practices and instructions to install
 them in your systems.</p>
 <h4 id="debian-packages">Debian packages</h4>
-<p>For example, let's install the 1.18.1 release of the plugin, for an Intel based
+<p>For example, let's install the 1.22.2 release of the plugin, for an Intel based
 64 bit server. First, we download the right <code>.deb</code> file.</p>
-<pre><code class="language-sh">wget https://github.com/cloudnative-pg/cloudnative-pg/releases/download/v1.18.1/kubectl-cnpg_1.18.1_linux_x86_64.deb
+<pre><code class="language-sh">$ wget https://github.com/cloudnative-pg/cloudnative-pg/releases/download/v1.22.1/kubectl-cnpg_1.22.2_linux_x86_64.deb
 </code></pre>
 <p>Then, install from the local file using <code>dpkg</code>:</p>
-<pre><code class="language-sh">$ dpkg -i kubectl-cnpg_1.18.1_linux_x86_64.deb 
-(Reading database ... 16102 files and directories currently installed.)
-Preparing to unpack kubectl-cnpg_1.18.1_linux_x86_64.deb ...
-Unpacking cnpg (1.18.1) over (1.18.1) ...
-Setting up cnpg (1.18.1) ...
+<pre><code class="language-sh">$ dpkg -i kubectl-cnpg_1.22.2_linux_x86_64.deb
+(Reading database ... 702524 files and directories currently installed.)
+Preparing to unpack kubectl-cnpg_1.22.2_linux_x86_64.deb ...
+Unpacking cnpg (1.22.2) over (1.22.2) ...
+Setting up cnpg (1.22.2) ..
 </code></pre>
 <h4 id="rpm-packages">RPM packages</h4>
-<p>As in the example for <code>.deb</code> packages, let's install the 1.18.1 release for an
+<p>As in the example for <code>.deb</code> packages, let's install the 1.22.2 release for an
 Intel 64 bit machine. Note the <code>--output</code> flag to provide a file name.</p>
-<pre><code class="language-sh">curl -L https://github.com/cloudnative-pg/cloudnative-pg/releases/download/v1.18.1/kubectl-cnpg_1.18.1_linux_x86_64.rpm \
+<pre><code class="language-sh">curl -L https://github.com/cloudnative-pg/cloudnative-pg/releases/download/v1.22.2/kubectl-cnpg_1.22.2_linux_x86_64.rpm \
   --output kube-plugin.rpm
 </code></pre>
 <p>Then install with <code>yum</code>, and you're ready to use:</p>
@@ -423,7 +433,7 @@ Dependencies resolved.
  Package            Architecture         Version                   Repository                  Size
 ====================================================================================================
 Installing:
- cnpg               x86_64               1.18.1-1                  @commandline                14 M
+ cnpg               x86_64               1.22.2-1                  @commandline                17 M
 
 Transaction Summary
 ====================================================================================================
@@ -443,6 +453,25 @@ installation with:</p>
 <pre><code class="language-sh">kubectl krew update
 kubectl krew upgrade cnpg
 </code></pre>
+<h3 id="using-homebrew">Using Homebrew</h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Please note that the Homebrew community manages the availability of the <a href="https://formulae.brew.sh/formula/kubectl-cnpg">kubectl-cnpg plugin on Homebrew</a>.</p>
+</div>
+<p>If you already have <a href="https://brew.sh/">Homebrew</a> installed, you can simply
+run:</p>
+<pre><code class="language-sh">brew install kubectl-cnpg
+</code></pre>
+<p>When a new version of the plugin is released, you can update the existing
+installation with:</p>
+<pre><code class="language-sh">brew update
+brew upgrade kubectl-cnpg
+</code></pre>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Auto-completion for the kubectl plugin is already managed by Homebrew.
+There's no need to create the <code>kubectl_complete-cnpg</code> script mentioned below.</p>
+</div>
 <h3 id="supported-architectures">Supported Architectures</h3>
 <p>CloudNativePG Plugin is currently built for the following
 operating system and architectures:</p>
@@ -486,6 +515,12 @@ sudo mv kubectl_complete-cnpg /usr/local/bin
 <p>Once the plugin was installed and deployed, you can start using it like this:</p>
 <pre><code class="language-shell">kubectl cnpg &lt;command&gt; &lt;args...&gt;
 </code></pre>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The plugin automatically detects if the standard output channel is connected to a terminal.
+In such cases, it may add ANSI colors to the command output. To disable colors, use the
+<code>--color=never</code> option with the command.</p>
+</div>
 <h3 id="generation-of-installation-manifests">Generation of installation manifests</h3>
 <p>The <code>cnpg</code> plugin can be used to generate the YAML manifest for the
 installation of the operator. This option would typically be used if you want
@@ -550,7 +585,7 @@ two different time intervals.</p>
 Name:               sandbox
 Namespace:          default
 System ID:          7039966298120953877
-PostgreSQL Image:   ghcr.io/cloudnative-pg/postgresql:16.1
+PostgreSQL Image:   ghcr.io/cloudnative-pg/postgresql:16.3
 Primary instance:   sandbox-2
 Instances:          3
 Ready instances:    3
@@ -590,7 +625,7 @@ sandbox-3  302 GB         3AF/EBAD5D18  Standby (sync)    OK      Guaranteed  1.
 Name:               sandbox
 Namespace:          default
 System ID:          7039966298120953877
-PostgreSQL Image:   ghcr.io/cloudnative-pg/postgresql:16.1
+PostgreSQL Image:   ghcr.io/cloudnative-pg/postgresql:16.3
 Primary instance:   sandbox-2
 Instances:          3
 Ready instances:    3
@@ -1072,16 +1107,10 @@ details.</p>
 <h3 id="requesting-a-new-physical-backup">Requesting a new physical backup</h3>
 <p>The <code>kubectl cnpg backup</code> command requests a new physical backup for
 an existing Postgres cluster by creating a new <code>Backup</code> resource.</p>
-<div class="admonition info">
-<p class="admonition-title">Info</p>
-<p>From release 1.21, the <code>backup</code> command accepts a new flag, <code>-m</code>
-to specify the backup method.
-To request a backup using volume snapshots, set <code>-m volumeSnapshot</code></p>
-</div>
 <p>The following example requests an on-demand backup for a given cluster:</p>
 <pre><code class="language-shell">kubectl cnpg backup [cluster_name]
 </code></pre>
-<p>or, if using volume snapshots (from release 1.21)</p>
+<p>or, if using volume snapshots:</p>
 <pre><code class="language-shell">kubectl cnpg backup [cluster_name] -m volumeSnapshot
 </code></pre>
 <p>The created backup will be named after the request time:</p>
@@ -1108,7 +1137,7 @@ method should be used with extreme care, by authorized personnel only.</p>
 </div>
 <pre><code class="language-shell">kubectl cnpg psql cluster-example
 
-psql (16.1 (Debian 16.1-1.pgdg110+1))
+psql (16.3 (Debian 16.3-1.pgdg110+1))
 Type &quot;help&quot; for help.
 
 postgres=#
@@ -1116,7 +1145,7 @@ postgres=#
 <p>By default, the command will connect to the primary instance. The user can
 select to work against a replica by using the <code>--replica</code> option:</p>
 <pre><code class="language-shell">kubectl cnpg psql --replica cluster-example
-psql (16.1 (Debian 16.1-1.pgdg110+1))
+psql (16.3 (Debian 16.3-1.pgdg110+1))
 
 Type &quot;help&quot; for help.
 
@@ -1134,7 +1163,7 @@ reachable in your <code>PATH</code> variable to correctly work.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>The <code>kubectl cnpg snapshot</code> command has been removed.
-Please use the <a href="#requesting-a-new-backup"><code>backup</code> command</a> to request
+Please use the <a href="#requesting-a-new-physical-backup"><code>backup</code> command</a> to request
 backups using volume snapshots.</p>
 </div>
 <h3 id="using-pgadmin4-for-evaluationdemonstration-purposes-only">Using pgAdmin4 for evaluation/demonstration purposes only</h3>
@@ -1390,7 +1419,7 @@ popular terminal-based UI to interact with Kubernetes clusters.</p>
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../expose_pg_services/" class="btn btn-neutral float-left" title="Exposing Postgres Services"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../kubernetes_upgrade/" class="btn btn-neutral float-left" title="Kubernetes Upgrade and Maintenance"><span class="icon icon-circle-arrow-left"></span> Previous</a>
         <a href="../failover/" class="btn btn-neutral float-right" title="Automated failover">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
@@ -1414,7 +1443,7 @@ popular terminal-based UI to interact with Kubernetes clusters.</p>
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../expose_pg_services/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../kubernetes_upgrade/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
       <span><a href="../failover/" style="color: #fcfcfc">Next &raquo;</a></span>

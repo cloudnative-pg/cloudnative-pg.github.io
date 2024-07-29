@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="The CloudNativePG Contributors" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Recovery - CloudNativePG</title>
+    <title>Recovery - CloudNativePG v1.21</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
@@ -31,7 +31,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-          <a href=".." class="icon icon-home"> CloudNativePG
+          <a href=".." class="icon icon-home"> CloudNativePG v1.21
         </a><div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
       <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
@@ -62,6 +62,10 @@
               </ul>
               <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../quickstart/">Quickstart</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../image_catalog/">Image Catalog</a>
                 </li>
               </ul>
               <ul>
@@ -125,13 +129,13 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#recovery-from-a-backup-object">Recovery from a Backup object</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#additional-considerations">Additional considerations</a>
+    <li class="toctree-l2"><a class="reference internal" href="#additional-considerations">Additional Considerations</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#point-in-time-recovery-pitr">Point in time recovery (PITR)</a>
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#pitr-from-an-object-store">PITR from an object store</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#pitr-from-volumesnapshot-objects">PITR from VolumeSnapshot Objects</a>
+    <li class="toctree-l3"><a class="reference internal" href="#pitr-from-volumesnapshot-objects">PITR from VolumeSnapshot objects</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#recovery-targets">Recovery targets</a>
     </li>
@@ -147,11 +151,19 @@
                 </li>
               </ul>
               <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../service_management/">Service Management</a>
+                </li>
+              </ul>
+              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../postgresql_conf/">PostgreSQL Configuration</a>
                 </li>
               </ul>
               <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../declarative_role_management/">Database Role Management</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../tablespaces/">Tablespaces</a>
                 </li>
               </ul>
               <ul>
@@ -199,11 +211,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../kubernetes_upgrade/">Kubernetes Upgrade</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../expose_pg_services/">Exposing Postgres Services</a>
+                <li class="toctree-l1"><a class="reference internal" href="../kubernetes_upgrade/">Kubernetes Upgrade and Maintenance</a>
                 </li>
               </ul>
               <ul>
@@ -275,6 +283,10 @@
                 </li>
               </ul>
               <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../preview_version/">Preview Versions</a>
+                </li>
+              </ul>
+              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../release_notes/">Release notes</a>
                 </li>
               </ul>
@@ -290,7 +302,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
       <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="..">CloudNativePG</a>
+          <a href="..">CloudNativePG v1.21</a>
         
       </nav>
       <div class="wy-nav-content">
@@ -308,61 +320,55 @@
               
                 <h1 id="recovery">Recovery</h1>
 <p>In PostgreSQL terminology, recovery is the process of starting a PostgreSQL
-instance using a previously taken backup. The PostgreSQL recovery mechanism
-is very solid and rich. It also supports Point In Time Recovery, which allows
-you to restore a given cluster up to any point in time from the first available
-backup in your catalog to the last archived WAL (as you can see, the WAL
-archive is mandatory in this case).</p>
-<p>In CloudNativePG, recovery cannot be performed "in-place" on an existing
-cluster. Recovery is rather a way to bootstrap a new Postgres cluster
+instance using an existing backup. The PostgreSQL recovery mechanism
+is very solid and rich. It also supports point-in-time recovery (PITR), which allows
+you to restore a given cluster up to any point in time, from the first available
+backup in your catalog to the last archived WAL. (The WAL
+archive is mandatory in this case.)</p>
+<p>In CloudNativePG, you can't perform recovery in place on an existing
+cluster. Recovery is instead a way to bootstrap a new Postgres cluster
 starting from an available physical backup.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>For details on the <code>bootstrap</code> stanza, please refer to the
-<a href="../bootstrap/">"Bootstrap" section</a>.</p>
+<p>For details on the <code>bootstrap</code> stanza, see
+<a href="../bootstrap/">Bootstrap</a>.</p>
 </div>
-<p>The <code>recovery</code> bootstrap mode lets you create a new cluster from an existing
-physical base backup, and then reapply the WAL files containing the REDO log
+<p>The <code>recovery</code> bootstrap mode lets you create a cluster from an existing
+physical base backup. You then reapply the WAL files containing the REDO log
 from the archive.</p>
 <p>WAL files are pulled from the defined <em>recovery object store</em>.</p>
-<p>Base backups may be taken either on object stores, or using volume snapshots
-(from version 1.21).</p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Recovery using volume snapshots had an initial release on 1.20.1. Because of
-the amount of progress on the feature for 1.21.0, it is strongly advised
-that you upgrade to 1.21.0 or more advanced releases to use volume
-snapshots.</p>
-</div>
-<p>Recovery from a <em>recovery object store</em> can be achieved in two ways:</p>
+<p>Base backups can be taken either on object stores or using volume snapshots.</p>
+<p>You can achieve recovery from a <em>recovery object store</em> in two ways:</p>
 <ul>
-<li>using a recovery object store, that is, a backup of another cluster
-  created by Barman Cloud and defined via the <code>barmanObjectStore</code> option
-  in the <code>externalClusters</code> section (<em>recommended</em>)</li>
-<li>using an existing <code>Backup</code> object in the same namespace (this was the
-  only option available before version 1.8.0).</li>
+<li>We recommend using a recovery object store, that is, a backup of another cluster
+  created by Barman Cloud and defined by way of the <code>barmanObjectStore</code> option
+  in the <code>externalClusters</code> section.</li>
+<li>Alternatively, you can use an existing <code>Backup</code> object in the same namespace.</li>
 </ul>
 <p>Both recovery methods enable either full recovery (up to the last
 available WAL) or up to a <a href="#point-in-time-recovery-pitr">point in time</a>.
-When performing a full recovery, the cluster can also be started
-in replica mode (see <a href="../replica_cluster/">replica clusters</a> for reference).
-If using replica mode, make sure that the PostgreSQL configuration
-(<code>.spec.postgresql.parameters</code>) of the recovered cluster is
-compatible, from a physical replication standpoint, with the original one.</p>
-<p>For recovery using volume snapshots:</p>
+When performing a full recovery, you can also start the cluster
+in replica mode (see <a href="../replica_cluster/">replica clusters</a> for reference).</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>If using replica mode, make sure that the PostgreSQL configuration
+(<code>.spec.postgresql.parameters</code>) of the recovered cluster is compatible with
+the original one from a physical replication standpoint.</p>
+</div>
+<p>For recovery using <em>volume snapshots</em>:</p>
 <ul>
-<li>using a consistent set of <code>VolumeSnapshot</code> objects that all belong to the
-  same backup, and identified by the same <code>cnpg.io/cluster</code> and
-  <code>cnpg.io/backupName</code> labels, then recovering through the <code>volumeSnapshots</code>
+<li>Use a consistent set of <code>VolumeSnapshot</code> objects that all belong to the
+  same backup and are identified by the same <code>cnpg.io/cluster</code> and
+  <code>cnpg.io/backupName</code> labels. Then, recover through the <code>volumeSnapshots</code>
   option in the <code>.spec.bootstrap.recovery</code> stanza, as described in
-  <a href="#recovery-from-volumesnapshot-objects">"Recovery from <code>VolumeSnapshot</code> objects"</a> below</li>
+  <a href="#recovery-from-volumesnapshot-objects">Recovery from <code>VolumeSnapshot</code> objects</a>.</li>
 </ul>
 <h2 id="recovery-from-an-object-store">Recovery from an object store</h2>
 <p>You can recover from a backup created by Barman Cloud and stored on a supported
-object store. Once you have defined the external cluster, including all the
-required configuration in the <code>barmanObjectStore</code> section, you need to
-reference it in the <code>.spec.recovery.source</code> option. The following example
-defines a recovery object store in a blob container in Azure:</p>
+object store. After you define the external cluster, including all the required
+configuration in the <code>barmanObjectStore</code> section, you need to reference it in
+the <code>.spec.recovery.source</code> option.</p>
+<p>This example defines a recovery object store in a blob container in Azure:</p>
 <pre><code class="language-yaml">apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
@@ -391,36 +397,39 @@ spec:
         wal:
           maxParallel: 8
 </code></pre>
+<p>The previous example assumes that the application database and its owning user
+are named <code>app</code> by default. If the PostgreSQL cluster being restored uses
+different names, you must specify these names before exiting the recovery phase,
+as documented in <a href="#configure-the-application-database">"Configure the application database"</a>.</p>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
-<p>By default the <code>recovery</code> method strictly uses the <code>name</code> of the
+<p>By default, the <code>recovery</code> method strictly uses the <code>name</code> of the
 cluster in the <code>externalClusters</code> section as the name of the main folder
-of the backup data within the object store, which is normally reserved
+of the backup data within the object store. This name is normally reserved
 for the name of the server. You can specify a different folder name
-with the <code>barmanObjectStore.serverName</code> property.</p>
+using the <code>barmanObjectStore.serverName</code> property.</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>In the above example we are taking advantage of the parallel WAL restore
-feature, dedicating up to 8 jobs to concurrently fetch the required WAL
-files from the archive. This feature can appreciably reduce the recovery time.
-Make sure that you plan ahead for this scenario and correctly tune the
-value of this parameter for your environment. It will certainly make a
-difference <strong>when</strong> (not if) you'll need it.</p>
+<p>This example takes advantage of the parallel WAL restore feature,
+dedicating up to 8 jobs to concurrently fetch the required WAL files from the
+archive. This feature can appreciably reduce the recovery time. Make sure that
+you plan ahead for this scenario and correctly tune the value of this parameter
+for your environment. It will make a difference when you need it, and you will.</p>
 </div>
 <h2 id="recovery-from-volumesnapshot-objects">Recovery from <code>VolumeSnapshot</code> objects</h2>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>When creating replicas after having recovered the primary instance from
+<p>When creating replicas after recovering the primary instance from
 the volume snapshot, the operator might end up using <code>pg_basebackup</code>
-to synchronize them, resulting in a slower process depending on the size
-of the database. This limitation will be lifted in the future when support
-for online backups and PVC cloning will be introduced.</p>
+to synchronize them. This behavior results in a slower process, depending
+on the size of the database. This limitation will be lifted in the future when
+support for online backups and PVC cloning are introduced.</p>
 </div>
 <p>CloudNativePG can create a new cluster from a <code>VolumeSnapshot</code> of a PVC of an
-existing <code>Cluster</code> that's been taken using the declarative API for
-<a href="../backup_volumesnapshot/">volume snapshot backups</a>.
-You will need to specify the name of the snapshot, as in the following example:</p>
+existing <code>Cluster</code> that's been taken using the declarative API for <a href="../backup_volumesnapshot/">volume
+snapshot backups</a>. You must specify the name of the
+snapshot, as in the following example:</p>
 <pre><code class="language-yaml">apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
@@ -458,21 +467,25 @@ spec:
           kind: VolumeSnapshot
           apiGroup: snapshot.storage.k8s.io
 </code></pre>
+<p>The previous example assumes that the application database and its owning user
+are named <code>app</code> by default. If the PostgreSQL cluster being restored uses
+different names, you must specify these names before exiting the recovery phase,
+as documented in <a href="#configure-the-application-database">"Configure the application database"</a>.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>If bootstrapping a replica-mode cluster from snapshots, to leverage
 snapshots for the standby instances and not just the primary,
-it would be advisable to:</p>
+we recommend that you:</p>
 <ol>
-<li>start with a single instance replica cluster. The primary instance will
-  be recovered using the snapshot and available WALs from the source cluster</li>
-<li>take a snapshot of the primary in the replica cluster</li>
-<li>increase the number of instances in the replica cluster as desired</li>
+<li>Start with a single instance replica cluster. The primary instance will
+  be recovered using the snapshot, and available WALs from the source cluster.</li>
+<li>Take a snapshot of the primary in the replica cluster.</li>
+<li>Increase the number of instances in the replica cluster as desired.</li>
 </ol>
 </div>
 <h2 id="recovery-from-a-backup-object">Recovery from a <code>Backup</code> object</h2>
-<p>In case a <code>Backup</code> resource is already available in the namespace in which the
-cluster should be created, you can specify its name through
+<p>If a <code>Backup</code> resource is already available in the namespace in which you need
+to create the cluster, you can specify the name using
 <code>.spec.bootstrap.recovery.backup.name</code>, as in the following example:</p>
 <pre><code class="language-yaml">apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
@@ -491,26 +504,27 @@ spec:
 </code></pre>
 <p>This bootstrap method allows you to specify just a reference to the
 backup that needs to be restored.</p>
-<p>The previous example implies the application database and its owning user to be
-the default one, <code>app</code>. If the PostgreSQL cluster being restored was using
-different names, they can be specified as documented in the <a href="#configure-the-application-database">Configure the
-application database</a> section.</p>
-<h2 id="additional-considerations">Additional considerations</h2>
-<p>Whether you recover from a recovery object store, a volume snapshot, or an
-existing <code>Backup</code> resource, the following considerations apply:</p>
+<p>The previous example assumes that the application database and its owning user
+are named <code>app</code> by default. If the PostgreSQL cluster being restored uses
+different names, you must specify these names before exiting the recovery phase,
+as documented in <a href="#configure-the-application-database">"Configure the application database"</a>.</p>
+<h2 id="additional-considerations">Additional Considerations</h2>
+<p>Whether you recover from an object store, a volume snapshot, or an existing
+<code>Backup</code> resource, no changes to the database, including the catalog, are
+permitted until the <code>Cluster</code> is fully promoted to primary and accepts write
+operations. This restriction includes any role overrides, which are deferred
+until the <code>Cluster</code> transitions to primary.
+As a result, the following considerations apply:</p>
 <ul>
-<li>The application database name and the application database user are preserved
-  from the backup that is being restored. The operator does not currently attempt
-  to back up the underlying secrets, as this is part of the usual maintenance
-  activity of the Kubernetes cluster itself.</li>
-<li>To preserve the original <code>postgres</code> user password, you need to properly
-  configure <code>enableSuperuserAccess</code> and supply a <code>superuserSecret</code>.</li>
-<li>By default, the recovery will continue up to the latest
-  available WAL on the default target timeline (<code>current</code> for PostgreSQL up to
-  11, <code>latest</code> for version 12 and above).
-  You can optionally specify a <code>recoveryTarget</code> to perform a point in time
-  recovery (see the <a href="#point-in-time-recovery-pitr">"Point in time recovery" section</a>).</li>
+<li>The application database name and user are copied from the backup being
+  restored. The operator does not currently back up the underlying secrets, as
+  this is part of the usual maintenance activity of the Kubernetes cluster.</li>
+<li>To preserve the original postgres user password, configure
+  <code>enableSuperuserAccess</code> and supply a <code>superuserSecret</code>.</li>
 </ul>
+<p>By default, recovery continues up to the latest available WAL on the default
+target timeline (<code>latest</code>). You can optionally specify a <code>recoveryTarget</code> to
+perform a point-in-time recovery (see <a href="#point-in-time-recovery-pitr">Point in Time Recovery (PITR)</a>).</p>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
 <p>Consider using the <code>barmanObjectStore.wal.maxParallel</code> option to speed
@@ -518,21 +532,21 @@ up WAL fetching from the archive by concurrently downloading the transaction
 logs from the recovery object store.</p>
 </div>
 <h2 id="point-in-time-recovery-pitr">Point in time recovery (PITR)</h2>
-<p>Instead of replaying all the WALs up to the latest one, we can ask PostgreSQL
-to stop replaying WALs at any given point in time, after having extracted a
-base backup. PostgreSQL uses this technique to achieve <em>point-in-time</em> recovery
-(PITR). The presence of a WAL archive is mandatory.</p>
+<p>Instead of replaying all the WALs up to the latest one, after extracting a base
+backup, you can ask PostgreSQL to stop replaying WALs at any given point in
+time. PostgreSQL uses this technique to achieve PITR. The presence of a WAL
+archive is mandatory.</p>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
-<p>PITR requires you to specify a <strong>recovery target</strong>, by using the options
-described in the <a href="#recovery-targets">"Recovery targets" section</a> below.</p>
+<p>PITR requires you to specify a recovery target by using the options
+described in <a href="#recovery-targets">Recovery targets</a>.</p>
 </div>
-<p>The operator will generate the configuration parameters required for this
-feature to work in case a recovery target is specified.</p>
+<p>The operator generates the configuration parameters required for this
+feature to work if you specify a recovery target.</p>
 <h3 id="pitr-from-an-object-store">PITR from an object store</h3>
-<p>The example below uses a recovery object store in Azure that contains both
+<p>This example uses a recovery object store in Azure that contains both
 the base backups and the WAL archive. The recovery target is based on a
-requested timestamp:</p>
+requested timestamp.</p>
 <pre><code class="language-yaml">apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
@@ -565,34 +579,34 @@ spec:
         wal:
           maxParallel: 8
 </code></pre>
-<p>You might have noticed that in the above example you only had to specify
-the <code>targetTime</code> in the form of a timestamp, without having to worry about
-specifying the base backup from which to start the recovery.</p>
+<p>In this example, you had to specify only the <code>targetTime</code> in the form of a
+timestamp. You didn't have to specify the base backup from which to start the
+recovery.</p>
 <p>The <code>backupID</code> option is the one that allows you to specify the base backup
 from which to initiate the recovery process. By default, this value is
 empty.</p>
 <p>If you assign a value to it (in the form of a Barman backup ID), the operator
-will use that backup as base for the recovery.</p>
+uses that backup as the base for the recovery.</p>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
 <p>You need to make sure that such a backup exists and is accessible.</p>
 </div>
-<p>If the backup ID is not specified, the operator will automatically detect the
-base backup for the recovery as follows:</p>
+<p>If you don't specify the backup ID, the operator detects the base backup for
+the recovery as follows:</p>
 <ul>
-<li>when you use <code>targetTime</code> or <code>targetLSN</code>, the operator selects the closest
-  backup that was completed before that target</li>
-<li>otherwise the operator selects the last available backup in chronological
+<li>When you use <code>targetTime</code> or <code>targetLSN</code>, the operator selects the closest
+  backup that was completed before that target.</li>
+<li>Otherwise, the operator selects the last available backup, in chronological
   order.</li>
 </ul>
-<h3 id="pitr-from-volumesnapshot-objects">PITR from <code>VolumeSnapshot</code> Objects</h3>
-<p>The example below uses:</p>
+<h3 id="pitr-from-volumesnapshot-objects">PITR from <code>VolumeSnapshot</code> objects</h3>
+<p>The example that follows uses:</p>
 <ul>
-<li>a Kubernetes volume snapshot for the <code>PGDATA</code> containing the base backup from
-  which to start the recovery process, identified in the
-  <code>recovery.volumeSnapshots</code> section and called <code>test-snapshot-1</code></li>
-<li>a recovery object store in MinIO containing the WAL archive, identified by
-  the <code>recovery.source</code> option in the form of an external cluster definition</li>
+<li>A Kubernetes volume snapshot for the <code>PGDATA</code> containing the base backup from
+  which to start the recovery process. This snapshot is identified in the
+  <code>recovery.volumeSnapshots</code> section and called <code>test-snapshot-1</code>.</li>
+<li>A recovery object store in MinIO containing the WAL archive. The object store is identified by
+  the <code>recovery.source</code> option in the form of an external cluster definition.</li>
 </ul>
 <p>The recovery target is based on a requested timestamp.</p>
 <pre><code class="language-yaml">apiVersion: postgresql.cnpg.io/v1
@@ -626,50 +640,48 @@ spec:
 </code></pre>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>In case the backed up Cluster had <code>walStorage</code> enabled, you also must
-specify the volume snapshot containing the <code>PGWAL</code> directory, as mentioned
-in the <a href="#recovery-from-volumesnapshot-objects">Recovery from VolumeSnapshot objects</a>
-section.</p>
+<p>If the backed-up cluster had <code>walStorage</code> enabled, you also must specify
+the volume snapshot containing the <code>PGWAL</code> directory, as mentioned in
+<a href="#recovery-from-volumesnapshot-objects">Recovery from VolumeSnapshot objects</a>.</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>It is your responsibility to ensure that the end time of the base backup in
-the volume snapshot is prior to the recovery target timestamp.</p>
+<p>It's your responsibility to ensure that the end time of the base backup in
+the volume snapshot is before the recovery target timestamp.</p>
 </div>
 <h3 id="recovery-targets">Recovery targets</h3>
 <p>Here are the recovery target criteria you can use:</p>
 <dl>
 <dt>targetTime</dt>
-<dd>time stamp up to which recovery will proceed, expressed in
-   <a href="https://datatracker.ietf.org/doc/html/rfc3339">RFC 3339</a> format
-   (the precise stopping point is also influenced by the <code>exclusive</code> option)</dd>
+<dd>Time stamp up to which recovery proceeds, expressed in
+   <a href="https://datatracker.ietf.org/doc/html/rfc3339">RFC 3339</a> format.
+   (The precise stopping point is also influenced by the <code>exclusive</code> option.)</dd>
 <dt>targetXID</dt>
-<dd>transaction ID up to which recovery will proceed
-   (the precise stopping point is also influenced by the <code>exclusive</code> option);
-   keep in mind that while transaction IDs are assigned sequentially at
+<dd>Transaction ID up to which recovery proceeds.
+   (The precise stopping point is also influenced by the <code>exclusive</code> option.)
+   Keep in mind that while transaction IDs are assigned sequentially at
    transaction start, transactions can complete in a different numeric order.
-   The transactions that will be recovered are those that committed before
-   (and optionally including) the specified one</dd>
+   The transactions that are recovered are those that committed before
+   (and optionally including) the specified one.</dd>
 <dt>targetName</dt>
-<dd>named restore point (created with <code>pg_create_restore_point()</code>) to which
-   recovery will proceed</dd>
+<dd>Named restore point (created with <code>pg_create_restore_point()</code>) to which
+   recovery proceeds.</dd>
 <dt>targetLSN</dt>
-<dd>LSN of the write-ahead log location up to which recovery will proceed
-   (the precise stopping point is also influenced by the <code>exclusive</code> option)</dd>
+<dd>LSN of the write-ahead log location up to which recovery proceeds.
+   (The precise stopping point is also influenced by the <code>exclusive</code> option.)</dd>
 <dt>targetImmediate</dt>
-<dd>recovery should end as soon as a consistent state is reached - i.e. as early
+<dd>Recovery ends as soon as a consistent state is reached, that is, as early
    as possible. When restoring from an online backup, this means the point where
-   taking the backup ended</dd>
+   taking the backup ended.</dd>
 </dl>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
-<p>While the operator is able to automatically retrieve the closest backup
-when either <code>targetTime</code> or <code>targetLSN</code> is specified, this is not possible
-for the remaining targets: <code>targetName</code>, <code>targetXID</code>, and <code>targetImmediate</code>.
-In such cases, it is important to specify <code>backupID</code>, unless you are OK with
-the last available backup in the catalog.</p>
+<p>The operator can retrieve the closest backup when you specify either
+<code>targetTime</code> or <code>targetLSN</code>. However, this isn't possible for the remaining
+targets: <code>targetName</code>, <code>targetXID</code>, and <code>targetImmediate</code>. In such cases, it's
+mandatory to specify <code>backupID</code>.</p>
 </div>
-<p>The example below uses a <code>targetName</code> based recovery target:</p>
+<p>This example uses a <code>targetName</code>-based recovery target:</p>
 <pre><code class="language-yaml">apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 [...]
@@ -681,16 +693,17 @@ kind: Cluster
         targetName: 'restore_point_1'
 [...]
 </code></pre>
-<p>You can choose only a single one among the targets above in each
-<code>recoveryTarget</code> configuration.</p>
-<p>Additionally, you can specify <code>targetTLI</code> force recovery to a specific
+<p>You can choose only a single one among the targets in each <code>recoveryTarget</code>
+configuration.</p>
+<p>Additionally, you can specify <code>targetTLI</code> to force recovery to a specific
 timeline.</p>
 <p>By default, the previous parameters are considered to be inclusive, stopping
-just after the recovery target, matching <a href="https://www.postgresql.org/docs/current/runtime-config-wal.html#GUC-RECOVERY-TARGET-INCLUSIVE">the behavior in PostgreSQL</a>
-You can request exclusive behavior,
-stopping right before the recovery target, by setting the <code>exclusive</code> parameter to
-<code>true</code> like in the following example relying on a blob container in Azure
-for both base backups and the WAL archive:</p>
+just after the recovery target, matching
+<a href="https://www.postgresql.org/docs/current/runtime-config-wal.html#GUC-RECOVERY-TARGET-INCLUSIVE">the behavior in PostgreSQL</a>.</p>
+<p>You can request exclusive behavior, stopping right before the recovery target,
+by setting the <code>exclusive</code> parameter to <code>true</code>. The following example shows
+this behavior, relying on a blob container in Azure for both base backups and
+the WAL archive:</p>
 <pre><code class="language-yaml">apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
@@ -724,15 +737,23 @@ spec:
           maxParallel: 8
 </code></pre>
 <h2 id="configure-the-application-database">Configure the application database</h2>
-<p>For the recovered cluster, we can configure the application database name and
+<p>For the recovered cluster, you can configure the application database name and
 credentials with additional configuration. To update application database
-credentials, we can generate our own passwords, store them as secrets, and
-update the database use the secrets. Or we can also let the operator generate a
-secret with randomly secure password for use. Please reference the
-<a href="../bootstrap/#bootstrap-an-empty-cluster-initdb">"Bootstrap an empty cluster"</a>
-section for more information about secrets.</p>
-<p>The following example configure the application database <code>app</code> with owner
-<code>app</code>, and supplied secret <code>app-secret</code>.</p>
+credentials, you can generate your own passwords, store them as secrets, and
+update the database to use the secrets. Or you can also let the operator
+generate a secret with a randomly secure password for use.
+See <a href="../bootstrap/#bootstrap-an-empty-cluster-initdb">Bootstrap an empty cluster</a>
+for more information about secrets.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>While the <code>Cluster</code> is in recovery mode, no changes to the database,
+including the catalog, are permitted. This restriction includes any role
+overrides, which are deferred until the <code>Cluster</code> transitions to primary.
+During this phase, users remain as defined in the source cluster.</p>
+</div>
+<p>The following example configures the <code>app</code> database with the owner <code>app</code> and
+the password stored in the provided secret <code>app-secret</code>, following the
+bootstrap from a live cluster.</p>
 <pre><code class="language-yaml">apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 [...]
@@ -745,41 +766,38 @@ spec:
         name: app-secret
       [...]
 </code></pre>
-<p>With the above configuration, the following will happen after recovery is completed:</p>
+<p>With the above configuration, the following will happen only <strong>after recovery is
+completed</strong>:</p>
 <ol>
-<li>if database <code>app</code> does not exist, a new database <code>app</code> will be created.</li>
-<li>if user <code>app</code> does not exist, a new user <code>app</code> will be created.</li>
-<li>if user <code>app</code> is not the owner of database, user <code>app</code> will be granted
-as owner of database <code>app</code>.</li>
-<li>If value of <code>username</code> match value of <code>owner</code> in secret, the password of
-application database will be changed to the value of <code>password</code> in secret.</li>
+<li>If the <code>app</code> database does not exist, it will be created.</li>
+<li>If the <code>app</code> user does not exist, it will be created.</li>
+<li>If the <code>app</code> user is not the owner of the <code>app</code> database, ownership will be
+   granted to the <code>app</code> user.</li>
+<li>If the <code>username</code> value matches the <code>owner</code> value in the secret, the
+   password for the application user (the <code>app</code> user in this case) will be
+   updated to the <code>password</code> value in the secret.</li>
 </ol>
-<div class="admonition important">
-<p class="admonition-title">Important</p>
-<p>For a replica cluster with replica mode enabled, the operator will not
-create any database or user in the PostgreSQL instance, as these will be
-recovered from the original cluster.</p>
-</div>
 <h2 id="how-recovery-works-under-the-hood">How recovery works under the hood</h2>
 <!-- TODO: do we need this section? -->
+<!-- Also, "under the hood" is an idiom and should be replaced with something more precise -->
 
-<p>You can use the data uploaded to the object storage to <em>bootstrap</em> a
-new cluster from a previously taken backup.
-The operator will orchestrate the recovery process using the
-<code>barman-cloud-restore</code> tool (for the base backup) and the
+<p>You can use the data uploaded to the object storage to <em>bootstrap</em> a new
+cluster from an existing backup. The operator orchestrates the recovery process
+using the <code>barman-cloud-restore</code> tool (for the base backup) and the
 <code>barman-cloud-wal-restore</code> tool (for WAL files, including parallel support, if
 requested).</p>
-<p>For details and instructions on the <code>recovery</code> bootstrap method, please refer
-to the <a href="../bootstrap/#bootstrap-from-a-backup-recovery">"Bootstrap from a backup" section</a>.</p>
+<p>For details and instructions on the <code>recovery</code> bootstrap method, see
+<a href="../bootstrap/#bootstrap-from-a-backup-recovery">Bootstrap from a backup</a>.</p>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
-<p>If you are not familiar with how <a href="https://www.postgresql.org/docs/current/continuous-archiving.html#BACKUP-PITR-RECOVERY">PostgreSQL PITR</a>
+<p>If you're not familiar with how
+<a href="https://www.postgresql.org/docs/current/continuous-archiving.html#BACKUP-PITR-RECOVERY">PostgreSQL PITR</a>
 works, we suggest that you configure the recovery cluster as the original
 one when it comes to <code>.spec.postgresql.parameters</code>. Once the new cluster is
 restored, you can then change the settings as desired.</p>
 </div>
-<p>Under the hood, the operator will inject an init container in the first
-instance of the new cluster, and the init container will start recovering the
+<p>The way it works is that the operator injects an init container in the first
+instance of the new cluster, and the init container starts recovering the
 backup from the object storage.</p>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
@@ -787,33 +805,31 @@ backup from the object storage.</p>
 the size of the backup, as well as the speed of both the network and the
 storage.</p>
 </div>
-<p>When the base backup recovery process is completed, the operator starts the
-Postgres instance in recovery mode: in this phase, PostgreSQL is up, albeit not
+<p>When the base backup recovery process is complete, the operator starts the
+Postgres instance in recovery mode. In this phase, PostgreSQL is up, though not
 able to accept connections, and the pod is healthy according to the
-liveness probe. Through the <code>restore_command</code>, PostgreSQL starts fetching WAL
-files from the archive (you can speed up this phase by setting the
-<code>maxParallel</code> option and enable the parallel WAL restore capability).</p>
+liveness probe. By way of the <code>restore_command</code>, PostgreSQL starts fetching WAL
+files from the archive. (You can speed up this phase by setting the
+<code>maxParallel</code> option and enabling the parallel WAL restore capability.)</p>
 <p>This phase terminates when PostgreSQL reaches the target (either the end of the
-WAL or the required target in case of Point-In-Time-Recovery). Indeed, you can
-optionally specify a <code>recoveryTarget</code> to perform a point in time recovery. If
-left unspecified, the recovery will continue up to the latest available WAL on
-the default target timeline (<code>current</code> for PostgreSQL up to 11, <code>latest</code> for
-version 12 and above).</p>
-<p>Once the recovery is complete, the operator will set the required
-superuser password into the instance. The new primary instance will start
-as usual, and the remaining instances will join the cluster as replicas.</p>
-<p>The process is transparent for the user and it is managed by the instance
-manager running in the Pods.</p>
+WAL or the required target in case of PITR. You can optionally specify a
+<code>recoveryTarget</code> to perform a PITR. If left unspecified, the recovery continues
+up to the latest available WAL on the default target timeline (<code>latest</code>).</p>
+<p>Once the recovery is complete, the operator sets the required superuser
+password into the instance. The new primary instance starts as usual, and the
+remaining instances join the cluster as replicas.</p>
+<p>The process is transparent for the user and is managed by the instance manager
+running in the pods.</p>
 <h2 id="restoring-into-a-cluster-with-a-backup-section">Restoring into a cluster with a backup section</h2>
 <!-- TODO: do we need this section? -->
 
-<p>A manifest for a cluster restore may include a <code>backup</code> section.
-This means that the new cluster, after recovery, will start archiving WAL's and
-taking backups if configured to do so.</p>
-<p>For example, the section below could be part of a manifest for a Cluster
-bootstrapping from Cluster <code>cluster-example-backup</code>, and would create a
-new folder in the storage bucket named <code>recoveredCluster</code> where the base backups
-and WAL's of the recovered cluster would be stored.</p>
+<p>A manifest for a cluster restore might include a <code>backup</code> section. This means
+that,after recovery, the new cluster starts archiving WALs and taking backups
+if configured to do so.</p>
+<p>For example, this section is part of a manifest for a cluster bootstrapping
+from the cluster <code>cluster-example-backup</code>. In the storage bucket, it creates a
+folder named <code>recoveredCluster</code>, where the base backups and WALs of the
+recovered cluster are stored.</p>
 <pre><code class="language-yaml">  backup:
     barmanObjectStore:
       destinationPath: s3://backups/
@@ -835,32 +851,31 @@ and WAL's of the recovered cluster would be stored.</p>
       endpointURL: http://minio:9000
       s3Credentials:
 </code></pre>
-<p>You should not re-use the exact same <code>barmanObjectStore</code> configuration
-for different clusters. There could be cases where the existing information
-in the storage buckets could be overwritten by the new cluster.</p>
+<p>Don't reuse the same <code>barmanObjectStore</code> configuration for different clusters.
+There might be cases where the existing information in the storage buckets
+could be overwritten by the new cluster.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>The operator includes a safety check to ensure a cluster will not
-overwrite a storage bucket that contained information. A cluster that would
-overwrite existing storage will remain in state <code>Setting up primary</code> with
-Pods in an Error state.
-The pod logs will show:
-<code>ERROR: WAL archive check failed for server recoveredCluster: Expected empty archive</code></p>
+<p>The operator includes a safety check to ensure a cluster doesn't overwrite
+a storage bucket that contained information. A cluster that would overwrite
+existing storage remains in the state <code>Setting up primary</code> with pods in an
+error state. The pod logs show: <code>ERROR: WAL archive check failed for server
+recoveredCluster: Expected empty archive</code>.</p>
 </div>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
-<p>If you set the <code>cnpg.io/skipEmptyWalArchiveCheck</code> annotation to <code>enabled</code> in
-the recovered cluster, you can skip the above check. This is not recommended
-as for the general use case the above check works fine. Please don't do
-this unless you are familiar with PostgreSQL recovery system, as this can lead
-you to severe data loss.</p>
+<p>If you set the <code>cnpg.io/skipEmptyWalArchiveCheck</code> annotation to <code>enabled</code>
+in the recovered cluster, you can skip the safety check. We don't recommend
+skipping the check because, for the general use case, the check works fine.
+Skip this check only if you're familiar with the PostgreSQL recovery system, as
+severe data loss can occur.</p>
 </div>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
         <a href="../backup_volumesnapshot/" class="btn btn-neutral float-left" title="Backup on volume snapshots"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../postgresql_conf/" class="btn btn-neutral float-right" title="PostgreSQL Configuration">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../service_management/" class="btn btn-neutral float-right" title="Service Management">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -886,7 +901,7 @@ you to severe data loss.</p>
       <span><a href="../backup_volumesnapshot/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../postgresql_conf/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../service_management/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>

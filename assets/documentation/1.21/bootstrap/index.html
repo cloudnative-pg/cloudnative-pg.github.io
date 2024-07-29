@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="The CloudNativePG Contributors" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Bootstrap - CloudNativePG</title>
+    <title>Bootstrap - CloudNativePG v1.21</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
@@ -31,7 +31,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-          <a href=".." class="icon icon-home"> CloudNativePG
+          <a href=".." class="icon icon-home"> CloudNativePG v1.21
         </a><div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
       <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
@@ -64,6 +64,10 @@
                 <li class="toctree-l1"><a class="reference internal" href="../quickstart/">Quickstart</a>
                 </li>
               </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../image_catalog/">Image Catalog</a>
+                </li>
+              </ul>
               <ul class="current">
                 <li class="toctree-l1 current"><a class="reference internal current" href="./">Bootstrap</a>
     <ul class="current">
@@ -79,7 +83,7 @@
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#passing-options-to-initdb">Passing options to initdb</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#executing-queries-after-initialization">Executing queries after initialization</a>
+    <li class="toctree-l3"><a class="reference internal" href="#executing-queries-after-initialization">Executing Queries After Initialization</a>
     </li>
         </ul>
     </li>
@@ -161,11 +165,19 @@
                 </li>
               </ul>
               <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../service_management/">Service Management</a>
+                </li>
+              </ul>
+              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../postgresql_conf/">PostgreSQL Configuration</a>
                 </li>
               </ul>
               <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../declarative_role_management/">Database Role Management</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../tablespaces/">Tablespaces</a>
                 </li>
               </ul>
               <ul>
@@ -213,11 +225,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../kubernetes_upgrade/">Kubernetes Upgrade</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../expose_pg_services/">Exposing Postgres Services</a>
+                <li class="toctree-l1"><a class="reference internal" href="../kubernetes_upgrade/">Kubernetes Upgrade and Maintenance</a>
                 </li>
               </ul>
               <ul>
@@ -289,6 +297,10 @@
                 </li>
               </ul>
               <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../preview_version/">Preview Versions</a>
+                </li>
+              </ul>
+              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../release_notes/">Release notes</a>
                 </li>
               </ul>
@@ -304,7 +316,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
       <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="..">CloudNativePG</a>
+          <a href="..">CloudNativePG v1.21</a>
         
       </nav>
       <div class="wy-nav-content">
@@ -575,10 +587,43 @@ are options that can break the behavior of the operator (such as <code>--auth</c
 <code>-d</code>), this technique is deprecated and will be removed from future versions of
 the API.</p>
 </div>
-<p>You can also specify a custom list of queries that will be executed
-once, just after the database is created and configured. These queries will
-be executed as the <em>superuser</em> (<code>postgres</code>), connected to the <code>postgres</code>
-database:</p>
+<h3 id="executing-queries-after-initialization">Executing Queries After Initialization</h3>
+<p>You can specify a custom list of queries that will be executed once,
+immediately after the cluster is created and configured. These queries will be
+executed as the <em>superuser</em> (<code>postgres</code>) against three different databases, in
+this specific order:</p>
+<ol>
+<li>The <code>postgres</code> database (<code>postInit</code> section)</li>
+<li>The <code>template1</code> database (<code>postInitTemplate</code> section)</li>
+<li>The application database (<code>postInitApplication</code> section)</li>
+</ol>
+<p>For each of these sections, CloudNativePG provides two ways to specify custom
+queries, executed in the following order:</p>
+<ul>
+<li>As a list of SQL queries in the cluster's definition (<code>postInitSQL</code>,
+  <code>postInitTemplateSQL</code>, and <code>postInitApplicationSQL</code> stanzas)</li>
+<li>As a list of Secrets and/or ConfigMaps, each containing a SQL script to be
+  executed (<code>postInitSQLRefs</code>, <code>postInitTemplateSQLRefs</code>, and
+  <code>postInitApplicationSQLRefs</code> stanzas). Secrets are processed before ConfigMaps.</li>
+</ul>
+<p>Objects in each list will be processed sequentially.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Use the <code>postInit</code>, <code>postInitTemplate</code>, and <code>postInitApplication</code> options
+with extreme care, as queries are run as a superuser and can disrupt the entire
+cluster. An error in any of those queries will interrupt the bootstrap phase,
+leaving the cluster incomplete and requiring manual intervention.</p>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Ensure the existence of entries inside the ConfigMaps or Secrets specified
+in <code>postInitSQLRefs</code>, <code>postInitTemplateSQLRefs</code>, and
+<code>postInitApplicationSQLRefs</code>, otherwise the bootstrap will fail. Errors in any
+of those SQL files will prevent the bootstrap phase from completing
+successfully.</p>
+</div>
+<p>The following example runs a single SQL query as part of the <code>postInitSQL</code>
+stanza:</p>
 <pre><code class="language-yaml">apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
@@ -598,18 +643,9 @@ spec:
   storage:
     size: 1Gi
 </code></pre>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Please use the <code>postInitSQL</code>, <code>postInitApplicationSQL</code> and
-<code>postInitTemplateSQL</code> options with extreme care, as queries are run as a
-superuser and can disrupt the entire cluster.  An error in any of those queries
-interrupts the bootstrap phase, leaving the cluster incomplete.</p>
-</div>
-<h3 id="executing-queries-after-initialization">Executing queries after initialization</h3>
-<p>Moreover, you can specify a list of Secrets and/or ConfigMaps which contains
-SQL script that will be executed after the database is created and configured.
-These SQL script will be executed using the <strong>superuser</strong> role (<code>postgres</code>),
-connected to the database specified in the <code>initdb</code> section:</p>
+<p>The example below relies on <code>postInitApplicationSQLRefs</code> to specify a secret
+and a ConfigMap containing the queries to run after the initialization on the
+application database:</p>
 <pre><code class="language-yaml">apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
@@ -633,19 +669,9 @@ spec:
 </code></pre>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The SQL scripts referenced in <code>secretRefs</code> will be executed before the ones
-referenced in <code>configMapRefs</code>. For both sections the SQL scripts will be
-executed respecting the order in the list.  Inside SQL scripts, each SQL
-statement is executed in a single exec on the server according to the
-<a href="https://www.postgresql.org/docs/current/protocol-flow.html#PROTOCOL-FLOW-MULTI-STATEMENT">PostgreSQL semantics</a>,
-comments can be included, but internal command like <code>psql</code> cannot.</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Please make sure the existence of the entries inside the ConfigMaps or
-Secrets specified in <code>postInitApplicationSQLRefs</code>, otherwise the bootstrap will
-fail. Errors in any of those SQL files will prevent the bootstrap phase to
-complete successfully.</p>
+<p>Within SQL scripts, each SQL statement is executed in a single exec on the
+server according to the <a href="https://www.postgresql.org/docs/current/protocol-flow.html#PROTOCOL-FLOW-MULTI-STATEMENT">PostgreSQL semantics</a>.
+Comments can be included, but internal commands like <code>psql</code> cannot.</p>
 </div>
 <h2 id="bootstrap-from-another-cluster">Bootstrap from another cluster</h2>
 <p>CloudNativePG enables the bootstrap of a cluster starting from
@@ -711,7 +737,7 @@ Both cases are explained below.</p>
 <ul>
 <li>target and source must have the same hardware architecture</li>
 <li>target and source must have the same major PostgreSQL version</li>
-<li>source must not have any tablespace defined (see <a href="#current-limitations">"Current limitations"</a> below)</li>
+<li>target and source must have the same tablespaces</li>
 <li>source must be configured with enough <code>max_wal_senders</code> to grant
   access from the target for this one-off operation by providing at least
   one <em>walsender</em> for the backup plus one for WAL streaming</li>
@@ -770,7 +796,7 @@ file on the source PostgreSQL instance:</p>
 <pre><code># A more restrictive rule for TLS and IP of origin is recommended
 host replication streaming_replica all md5
 </code></pre>
-<p>The following manifest creates a new PostgreSQL 16.1 cluster,
+<p>The following manifest creates a new PostgreSQL 16.3 cluster,
 called <code>target-db</code>, using the <code>pg_basebackup</code> bootstrap method
 to clone an external PostgreSQL cluster defined as <code>source-db</code>
 (in the <code>externalClusters</code> array). As you can see, the <code>source-db</code>
@@ -783,7 +809,7 @@ metadata:
   name: target-db
 spec:
   instances: 3
-  imageName: ghcr.io/cloudnative-pg/postgresql:16.1
+  imageName: ghcr.io/cloudnative-pg/postgresql:16.3
 
   bootstrap:
     pg_basebackup:
@@ -802,7 +828,7 @@ spec:
       key: password
 </code></pre>
 <p>All the requirements must be met for the clone operation to work, including
-the same PostgreSQL version (in our case 16.1).</p>
+the same PostgreSQL version (in our case 16.3).</p>
 <h4 id="tls-certificate-authentication">TLS certificate authentication</h4>
 <p>The second authentication method supported by CloudNativePG
 with the <code>pg_basebackup</code> bootstrap is based on TLS client certificates.
@@ -814,7 +840,7 @@ in the same Kubernetes cluster.</p>
 <p>This example can be easily adapted to cover an instance that resides
 outside the Kubernetes cluster.</p>
 </div>
-<p>The manifest defines a new PostgreSQL 16.1 cluster called <code>cluster-clone-tls</code>,
+<p>The manifest defines a new PostgreSQL 16.3 cluster called <code>cluster-clone-tls</code>,
 which is bootstrapped using the <code>pg_basebackup</code> method from the <code>cluster-example</code>
 external cluster. The host is identified by the read/write service
 in the same cluster, while the <code>streaming_replica</code> user is authenticated
@@ -827,7 +853,7 @@ metadata:
   name: cluster-clone-tls
 spec:
   instances: 3
-  imageName: ghcr.io/cloudnative-pg/postgresql:16.1
+  imageName: ghcr.io/cloudnative-pg/postgresql:16.3
 
   bootstrap:
     pg_basebackup:
@@ -857,8 +883,16 @@ spec:
 from a live cluster, just like the case of <code>initdb</code> and  <code>recovery</code> bootstrap method.
 If the new cluster is created as a replica cluster (with replica mode enabled), application
 database configuration will be skipped.</p>
-<p>The following example configure the application database <code>app</code> with password in
-supplied secret <code>app-secret</code> after bootstrap from a live cluster.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>While the <code>Cluster</code> is in recovery mode, no changes to the database,
+including the catalog, are permitted. This restriction includes any role
+overrides, which are deferred until the <code>Cluster</code> transitions to primary.
+During the recovery phase, roles remain as defined in the source cluster.</p>
+</div>
+<p>The example below configures the <code>app</code> database with the owner <code>app</code> and
+the password stored in the provided secret <code>app-secret</code>, following the
+bootstrap from a live cluster.</p>
 <pre><code class="language-yaml">apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 [...]
@@ -871,35 +905,18 @@ spec:
         name: app-secret
       source: cluster-example
 </code></pre>
-<p>With the above configuration, the following will happen after recovery is completed:</p>
+<p>With the above configuration, the following will happen only <strong>after recovery is
+completed</strong>:</p>
 <ol>
-<li>if database <code>app</code> does not exist, a new database <code>app</code> will be created.</li>
-<li>if user <code>app</code> does not exist, a new user <code>app</code> will be created.</li>
-<li>if user <code>app</code> is not the owner of database, user <code>app</code> will be granted
-   as owner of database <code>app</code>.</li>
-<li>If value of <code>username</code> match value of <code>owner</code> in secret, the password of
-   application database will be changed to the value of <code>password</code> in secret.</li>
+<li>If the <code>app</code> database does not exist, it will be created.</li>
+<li>If the <code>app</code> user does not exist, it will be created.</li>
+<li>If the <code>app</code> user is not the owner of the <code>app</code> database, ownership will be
+   granted to the <code>app</code> user.</li>
+<li>If the <code>username</code> value matches the <code>owner</code> value in the secret, the
+   password for the application user (the <code>app</code> user in this case) will be
+   updated to the <code>password</code> value in the secret.</li>
 </ol>
-<div class="admonition important">
-<p class="admonition-title">Important</p>
-<p>For a replica cluster with replica mode enabled, the operator will not
-create any database or user in the PostgreSQL instance, as these will be
-recovered from the original cluster.</p>
-</div>
 <h4 id="current-limitations">Current limitations</h4>
-<h5 id="missing-tablespace-support">Missing tablespace support</h5>
-<p>CloudNativePG does not currently include full declarative management
-of PostgreSQL global objects, namely roles, databases, and tablespaces.
-While roles and databases are copied from the source instance to the target
-cluster, tablespaces require a capability that this version of
-CloudNativePG is missing: definition and management of additional
-persistent volumes. When dealing with base backup and tablespaces, PostgreSQL
-itself requires that the exact mount points in the source instance
-must also exist in the target instance, in our case, the pods in Kubernetes
-that CloudNativePG manages. For this reason, you cannot directly
-migrate in CloudNativePG a PostgreSQL instance that takes advantage
-of tablespaces (you first need to remove them from the source or, if your
-organization requires this feature, contact EDB to prioritize it).</p>
 <h5 id="snapshot-copy">Snapshot copy</h5>
 <p>The <code>pg_basebackup</code> method takes a snapshot of the source instance in the form of
 a PostgreSQL base backup. All transactions written from the start of
@@ -921,7 +938,7 @@ applications in production.</p>
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../quickstart/" class="btn btn-neutral float-left" title="Quickstart"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../image_catalog/" class="btn btn-neutral float-left" title="Image Catalog"><span class="icon icon-circle-arrow-left"></span> Previous</a>
         <a href="../database_import/" class="btn btn-neutral float-right" title="Importing Postgres databases">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
@@ -945,7 +962,7 @@ applications in production.</p>
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../quickstart/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../image_catalog/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
       <span><a href="../database_import/" style="color: #fcfcfc">Next &raquo;</a></span>

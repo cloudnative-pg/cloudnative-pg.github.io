@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="The CloudNativePG Contributors" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Monitoring - CloudNativePG</title>
+    <title>Monitoring - CloudNativePG v1.22</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
@@ -31,7 +31,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-          <a href=".." class="icon icon-home"> CloudNativePG
+          <a href=".." class="icon icon-home"> CloudNativePG v1.22
         </a><div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
       <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
@@ -62,6 +62,10 @@
               </ul>
               <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../quickstart/">Quickstart</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../image_catalog/">Image Catalog</a>
                 </li>
               </ul>
               <ul>
@@ -121,6 +125,10 @@
                 </li>
               </ul>
               <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../service_management/">Service Management</a>
+                </li>
+              </ul>
+              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../postgresql_conf/">PostgreSQL Configuration</a>
                 </li>
               </ul>
@@ -155,11 +163,15 @@
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#prometheus-operator-example">Prometheus Operator example</a>
     </li>
+    <li class="toctree-l3"><a class="reference internal" href="#enabling-tls-on-the-metrics-port">Enabling TLS on the Metrics Port</a>
+    </li>
     <li class="toctree-l3"><a class="reference internal" href="#predefined-set-of-metrics">Predefined set of metrics</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#user-defined-metrics">User defined metrics</a>
         <ul>
     <li class="toctree-l4"><a class="reference internal" href="#example-of-a-user-defined-metric">Example of a user defined metric</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#example-of-a-user-defined-metric-with-predicate-query">Example of a user defined metric with predicate query</a>
     </li>
     <li class="toctree-l4"><a class="reference internal" href="#example-of-a-user-defined-metric-running-on-multiple-databases">Example of a user defined metric running on multiple databases</a>
     </li>
@@ -213,11 +225,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../kubernetes_upgrade/">Kubernetes Upgrade</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../expose_pg_services/">Exposing Postgres Services</a>
+                <li class="toctree-l1"><a class="reference internal" href="../kubernetes_upgrade/">Kubernetes Upgrade and Maintenance</a>
                 </li>
               </ul>
               <ul>
@@ -289,6 +297,10 @@
                 </li>
               </ul>
               <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../preview_version/">Preview Versions</a>
+                </li>
+              </ul>
+              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../release_notes/">Release notes</a>
                 </li>
               </ul>
@@ -304,7 +316,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
       <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="..">CloudNativePG</a>
+          <a href="..">CloudNativePG v1.22</a>
         
       </nav>
       <div class="wy-nav-content">
@@ -330,7 +342,7 @@ experimentation we provide instructions in
 </div>
 <h2 id="monitoring-instances">Monitoring Instances</h2>
 <p>For each PostgreSQL instance, the operator provides an exporter of metrics for
-<a href="https://prometheus.io/">Prometheus</a> via HTTP, on port 9187, named <code>metrics</code>.
+<a href="https://prometheus.io/">Prometheus</a> via HTTP or HTTPS, on port 9187, named <code>metrics</code>.
 The operator comes with a <a href="#predefined-set-of-metrics">predefined set of metrics</a>, as well as a highly
 configurable and customizable system to define additional queries via one or
 more <code>ConfigMap</code> or <code>Secret</code> resources (see the
@@ -379,15 +391,15 @@ in <a href="../quickstart/#part-4-monitor-clusters-with-prometheus-and-grafana">
 <h3 id="prometheus-operator-example">Prometheus Operator example</h3>
 <p>A specific PostgreSQL cluster can be monitored using the
 <a href="https://github.com/prometheus-operator/prometheus-operator">Prometheus Operator's</a> resource 
-<a href="https://github.com/prometheus-operator/prometheus-operator/blob/v0.47.1/Documentation/api.md#podmonitor">PodMonitor</a>.
-A PodMonitor correctly pointing to a Cluster can be automatically created by the operator by setting
-<code>.spec.monitoring.enablePodMonitor</code> to <code>true</code> in the Cluster resource itself (default: false).</p>
+<a href="https://github.com/prometheus-operator/prometheus-operator/blob/v0.75.1/Documentation/api.md#podmonitor">PodMonitor</a>.</p>
+<p>A <code>PodMonitor</code> that correctly points to the Cluster can be automatically created by the operator by setting
+<code>.spec.monitoring.enablePodMonitor</code> to <code>true</code> in the Cluster resource itself (default: <code>false</code>).</p>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
 <p>Any change to the <code>PodMonitor</code> created automatically will be overridden by the Operator at the next reconciliation
 cycle, in case you need to customize it, you can do so as described below.</p>
 </div>
-<p>To deploy a <code>PodMonitor</code> for a specific Cluster manually, you can just define it as follows, changing it as needed:</p>
+<p>To deploy a <code>PodMonitor</code> for a specific Cluster manually, define it as follows and adjust as needed:</p>
 <pre><code class="language-yaml">apiVersion: monitoring.coreos.com/v1
 kind: PodMonitor
 metadata:
@@ -401,14 +413,55 @@ spec:
 </code></pre>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
-<p>Make sure you modify the example above with a unique name as well as the
-correct cluster's namespace and labels (we are using <code>cluster-example</code>).</p>
+<p>Ensure you modify the example above with a unique name, as well as the
+correct cluster's namespace and labels (e.g., <code>cluster-example</code>).</p>
 </div>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
-<p>Label <code>postgresql</code>, used in previous versions of this document, is deprecated
-and will be removed in the future. Please use the label <code>cnpg.io/cluster</code>
+<p>The <code>postgresql</code> label, used in previous versions of this document, is deprecated
+and will be removed in the future. Please use the <code>cnpg.io/cluster</code> label
 instead to select the instances.</p>
+</div>
+<h3 id="enabling-tls-on-the-metrics-port">Enabling TLS on the Metrics Port</h3>
+<p>To enable TLS communication on the metrics port, configure the <code>.spec.monitoring.tls.enabled</code>
+setting to <code>true</code>. This setup ensures that the metrics exporter uses the same
+server certificate used by PostgreSQL to secure communication on port 5432.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Changing the <code>.spec.monitoring.tls.enabled</code> setting will trigger a rolling restart of the Cluster.</p>
+</div>
+<p>If the <code>PodMonitor</code> is managed by the operator (<code>.spec.monitoring.enablePodMonitor</code> set to <code>true</code>),
+it will automatically contain the necessary configurations to access the metrics via TLS.</p>
+<p>To manually deploy a <code>PodMonitor</code> suitable for reading metrics via TLS, define it as follows and
+adjust as needed:</p>
+<pre><code class="language-yaml">apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  name: cluster-example
+spec:
+  selector:
+    matchLabels:
+      &quot;cnpg.io/cluster&quot;: cluster-example
+  podMetricsEndpoints:
+  - port: metrics
+    scheme: https
+    tlsConfig:
+      ca:
+        secret:
+          name: cluster-example-ca
+          key: ca.crt
+      serverName: cluster-example-rw
+</code></pre>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Ensure you modify the example above with a unique name, as well as the
+correct Cluster's namespace and labels (e.g., <code>cluster-example</code>).</p>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>The <code>serverName</code> field in the metrics endpoint must match one of the names
+defined in the server certificate. If the default certificate is in use,
+the <code>serverName</code> value should be in the format <code>&lt;cluster-name&gt;-rw</code>.</p>
 </div>
 <h3 id="predefined-set-of-metrics">Predefined set of metrics</h3>
 <p>Every PostgreSQL instance exporter automatically exposes a set of predefined
@@ -493,7 +546,7 @@ cnpg_collector_up{cluster=&quot;cluster-example&quot;} 1
 
 # HELP cnpg_collector_postgres_version Postgres version
 # TYPE cnpg_collector_postgres_version gauge
-cnpg_collector_postgres_version{cluster=&quot;cluster-example&quot;,full=&quot;16.1&quot;} 16.1
+cnpg_collector_postgres_version{cluster=&quot;cluster-example&quot;,full=&quot;16.3&quot;} 16.3
 
 # HELP cnpg_collector_last_failed_backup_timestamp The last failed backup as a unix timestamp
 # TYPE cnpg_collector_last_failed_backup_timestamp gauge
@@ -754,6 +807,24 @@ data:
 <p>A list of basic monitoring queries can be found in the
 <a href="https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/main/config/manager/default-monitoring.yaml"><code>default-monitoring.yaml</code> file</a>
 that is already installed in your CloudNativePG deployment (see <a href="#default-set-of-metrics">"Default set of metrics"</a>).</p>
+<h4 id="example-of-a-user-defined-metric-with-predicate-query">Example of a user defined metric with predicate query</h4>
+<p>The <code>predicate_query</code> option allows the user to execute the <code>query</code> to collect the metrics only under the specified conditions.
+To do so the user needs to provide a predicate query that returns at most one row with a single <code>boolean</code> column.</p>
+<p>The predicate query is executed in the same transaction as the main query and against the same databases.</p>
+<pre><code class="language-yaml">some_query: |
+  predicate_query: |
+    SELECT 
+      some_bool as predicate 
+    FROM some_table
+  query: |
+    SELECT
+     count(*) as rows
+    FROM some_table
+  metrics:
+    - rows:
+        usage: &quot;GAUGE&quot;
+        description: &quot;number of rows&quot;
+</code></pre>
 <h4 id="example-of-a-user-defined-metric-running-on-multiple-databases">Example of a user defined metric running on multiple databases</h4>
 <p>If the <code>target_databases</code> option lists more than one database
 the metric is collected from each of them.</p>
@@ -833,6 +904,7 @@ cnpg_some_query_rows{datname=&quot;postgres&quot;} 42
 <p>Here is a short description of all the available fields:</p>
 <ul>
 <li><code>&lt;MetricName&gt;</code>: the name of the Prometheus metric<ul>
+<li><code>name</code>: override <code>&lt;MetricName&gt;</code>, if defined</li>
 <li><code>query</code>: the SQL query to run on the target database to generate the metrics</li>
 <li><code>primary</code>: whether to run the query only on the primary instance</li>
 <li><code>master</code>: same as <code>primary</code> (for compatibility with the Prometheus PostgreSQL exporter's syntax - deprecated) <!-- wokeignore:rule=master --></li>
@@ -841,8 +913,11 @@ cnpg_some_query_rows{datname=&quot;postgres&quot;} 42
 <li><code>target_databases</code>: a list of databases to run the <code>query</code> against,
   or a <a href="#example-of-a-user-defined-metric-running-on-multiple-databases">shell-like pattern</a>
   to enable auto discovery. Overwrites the default database if provided.</li>
+<li><code>predicate_query</code>: a SQL query that returns at most one row and one <code>boolean</code> column to run on the target database.
+   The system evaluates the predicate and if <code>true</code> executes the <code>query</code>. </li>
 <li><code>metrics</code>: section containing a list of all exported columns, defined as follows:</li>
 <li><code>&lt;ColumnName&gt;</code>: the name of the column returned by the query<ul>
+<li><code>name</code>: override the <code>ColumnName</code> of the column in the metric, if defined</li>
 <li><code>usage</code>: one of the values described below</li>
 <li><code>description</code>: the metric's description</li>
 <li><code>metrics_mapping</code>: the optional column mapping when <code>usage</code> is set to <code>MAPPEDMETRIC</code></li>
@@ -1007,6 +1082,9 @@ that pod:</p>
 </code></pre>
 <p>And then run:</p>
 <pre><code class="language-shell">kubectl exec -ti curl -- curl -s ${POD_IP}:9187/metrics
+</code></pre>
+<p>If you enabled TLS metrics, run instead:</p>
+<pre><code class="language-shell">kubectl exec -ti curl -- curl -sk https://${POD_IP}:9187/metrics
 </code></pre>
 <p>In case you want to access the metrics of the operator, you need to point
 to the pod where the operator is running, and use TCP port 8080 as target.</p>

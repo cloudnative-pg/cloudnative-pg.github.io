@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="The CloudNativePG Contributors" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Connecting from an application - CloudNativePG</title>
+    <title>Connecting from an application - CloudNativePG v1.22</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
@@ -31,7 +31,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-          <a href=".." class="icon icon-home"> CloudNativePG
+          <a href=".." class="icon icon-home"> CloudNativePG v1.22
         </a><div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
       <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
@@ -62,6 +62,10 @@
               </ul>
               <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../quickstart/">Quickstart</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../image_catalog/">Image Catalog</a>
                 </li>
               </ul>
               <ul>
@@ -118,6 +122,10 @@
               </ul>
               <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../recovery/">Recovery</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../service_management/">Service Management</a>
                 </li>
               </ul>
               <ul>
@@ -185,11 +193,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../kubernetes_upgrade/">Kubernetes Upgrade</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../expose_pg_services/">Exposing Postgres Services</a>
+                <li class="toctree-l1"><a class="reference internal" href="../kubernetes_upgrade/">Kubernetes Upgrade and Maintenance</a>
                 </li>
               </ul>
               <ul>
@@ -261,6 +265,10 @@
                 </li>
               </ul>
               <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../preview_version/">Preview Versions</a>
+                </li>
+              </ul>
+              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../release_notes/">Release notes</a>
                 </li>
               </ul>
@@ -276,7 +284,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
       <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="..">CloudNativePG</a>
+          <a href="..">CloudNativePG v1.22</a>
         
       </nav>
       <div class="wy-nav-content">
@@ -294,15 +302,9 @@
               
                 <h1 id="connecting-from-an-application">Connecting from an application</h1>
 <p>Applications are supposed to work with the services created by CloudNativePG
-in the same Kubernetes cluster:</p>
-<ul>
-<li><code>[cluster name]-rw</code></li>
-<li><code>[cluster name]-ro</code></li>
-<li><code>[cluster name]-r</code></li>
-</ul>
-<p>Those services are entirely managed by the Kubernetes cluster and
-implement a form of Virtual IP as described in the
-<a href="https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies">"Service" page of the Kubernetes Documentation</a>.</p>
+in the same Kubernetes cluster.</p>
+<p>For more information on services and how to manage them, please refer to the
+<a href="../service_management/">"Service management"</a> section.</p>
 <div class="admonition hint">
 <p class="admonition-title">Hint</p>
 <p>It is highly recommended using those services in your applications,
@@ -372,8 +374,11 @@ every PostgreSQL cluster it deploys:</p>
 connecting to the PostgreSQL cluster, and correspond to the user <em>owning</em> the
 database.</p>
 <p>The <code>-superuser</code> ones are supposed to be used only for administrative purposes,
-and correspond to the <code>postgres</code> user. Since version 1.21, superuser access
-over the network is disabled by default.</p>
+and correspond to the <code>postgres</code> user.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Superuser access over the network is disabled by default.</p>
+</div>
               
             </div>
           </div><footer>

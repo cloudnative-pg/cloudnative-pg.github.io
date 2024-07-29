@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="The CloudNativePG Contributors" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Architecture - CloudNativePG</title>
+    <title>Architecture - CloudNativePG v1.21</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
@@ -31,7 +31,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-          <a href=".." class="icon icon-home"> CloudNativePG
+          <a href=".." class="icon icon-home"> CloudNativePG v1.21
         </a><div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
       <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
@@ -84,6 +84,10 @@
               </ul>
               <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../quickstart/">Quickstart</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../image_catalog/">Image Catalog</a>
                 </li>
               </ul>
               <ul>
@@ -143,11 +147,19 @@
                 </li>
               </ul>
               <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../service_management/">Service Management</a>
+                </li>
+              </ul>
+              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../postgresql_conf/">PostgreSQL Configuration</a>
                 </li>
               </ul>
               <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../declarative_role_management/">Database Role Management</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../tablespaces/">Tablespaces</a>
                 </li>
               </ul>
               <ul>
@@ -195,11 +207,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../kubernetes_upgrade/">Kubernetes Upgrade</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../expose_pg_services/">Exposing Postgres Services</a>
+                <li class="toctree-l1"><a class="reference internal" href="../kubernetes_upgrade/">Kubernetes Upgrade and Maintenance</a>
                 </li>
               </ul>
               <ul>
@@ -271,6 +279,10 @@
                 </li>
               </ul>
               <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../preview_version/">Preview Versions</a>
+                </li>
+              </ul>
+              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../release_notes/">Release notes</a>
                 </li>
               </ul>
@@ -286,7 +298,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
       <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="..">CloudNativePG</a>
+          <a href="..">CloudNativePG v1.21</a>
         
       </nav>
       <div class="wy-nav-content">
@@ -305,16 +317,16 @@
                 <h1 id="architecture">Architecture</h1>
 <p>This section covers the main architectural aspects you need to consider
 when deploying PostgreSQL in Kubernetes.</p>
-<div class="admonition important">
-<p class="admonition-title">Important</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
 <p>We encourage you to read an article that we've written for the CNCF blog
-with title <a href="https://www.cncf.io/blog/2023/09/29/recommended-architectures-for-postgresql-in-kubernetes/">"Recommended Architectures for PostgreSQL in Kubernetes"</a>.</p>
+titled <a href="https://www.cncf.io/blog/2023/09/29/recommended-architectures-for-postgresql-in-kubernetes/">"Recommended Architectures for PostgreSQL in Kubernetes"</a>.</p>
 </div>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
 <p>If you are deploying PostgreSQL in a self-managed Kubernetes environment,
-please make sure you read the <a href="#kubernetes-architecture">"Kubernetes architecture"</a>
-below when you start planning your journey to the Cloud Native world.</p>
+please make sure you read the <a href="#kubernetes-architecture">Kubernetes architecture</a>
+section below when you start planning your journey to the Cloud Native world.</p>
 </div>
 <h2 id="synchronizing-the-state">Synchronizing the state</h2>
 <p>PostgreSQL is a database management system and, as such, it needs to be treated
@@ -379,10 +391,19 @@ Kubernetes cluster.</p>
 section below for details on how you can design your PostgreSQL clusters within
 the same Kubernetes cluster through shared-nothing deployments at the storage,
 worker node, and availability zone levels.</p>
-<p>Moreover, you can take advantage of additional <a href="#deployments-across-kubernetes-clusters">Kubernetes clusters</a>,
-by using them to host "passive" PostgreSQL replica clusters. This should be
-used primarily for DR, read-only operations, or cross-region availability,
-even though failovers and promotions in this case must be done manually.</p>
+<p>Additionally, you can leverage <a href="#deployments-across-kubernetes-clusters">Kubernetes clusters</a>
+to deploy distributed PostgreSQL topologies hosting "passive"
+<a href="../replica_cluster/">PostgreSQL replica clusters</a> in different regions and
+managing them via declarative configuration. This setup is ideal for disaster
+recovery (DR), read-only operations, or cross-region availability.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Each operator deployment can only manage operations within its local
+Kubernetes cluster. For operations across Kubernetes clusters, such as
+controlled switchover or unexpected failover, coordination must be handled
+manually (through GitOps, for example) or by using a higher-level cluster
+management tool.</p>
+</div>
 <p><img alt="Example of a multiple Kubernetes cluster architecture distributed over 3 regions each with 3 independent data centers" src="../images/k8s-architecture-multi.png" /></p>
 <h3 id="single-availability-zone-kubernetes-clusters">Single availability zone Kubernetes clusters</h3>
 <p>If your Kubernetes cluster has only one availability zone, CloudNativePG still
@@ -392,14 +413,14 @@ of the zone as much as possible - i.e. the zone must have an outage before your
 CloudNativePG clusters suffer a failure.</p>
 <p>This scenario is typical of self-managed on-premise Kubernetes clusters, where
 only one data center is available.</p>
-<p>Single availability zone Kubernetes is unfortunately the only viable option
-where just <strong>two (2) data centers</strong> are available within reach of a low latency
-connection (normally in the same metropolitan area): having only two zones
-precludes users from creating a multi-availability zone Kubernetes cluster
-(as the minimum number of
-3 zones is not reached) and forces them to create two different Kubernetes
-clusters in an active/passive configuration, where the second cluster is used
-primarily for Disaster Recovery.</p>
+<p>Single availability zone Kubernetes clusters are the only viable option when
+only <strong>two data centers</strong> are available within reach of a low-latency
+connection (typically in the same metropolitan area). Having only two zones
+prevents the creation of a multi-availability zone Kubernetes cluster, which
+requires a minimum of three zones. As a result, users must create two separate
+Kubernetes clusters in an active/passive configuration, with the second cluster
+primarily used for Disaster Recovery (see
+the <a href="../replica_cluster/">replica cluster feature</a>).</p>
 <p><img alt="Example of a Kubernetes architecture with only 2 data centers" src="../images/k8s-architecture-2-az.png" /></p>
 <div class="admonition hint">
 <p class="admonition-title">Hint</p>
@@ -420,27 +441,43 @@ your single availability zone Kubernetes cluster through shared-nothing
 deployments at the storage and worker node levels only. For HA, in such a
 scenario it becomes even more important that the PostgreSQL instances be
 located on different worker nodes and do not share the same storage.</p>
-<p>For DR, you can push the SPoF above the single zone, by
-using additional
-<a href="#deployments-across-kubernetes-clusters">Kubernetes clusters</a> to
-host "passive" PostgreSQL replica clusters. As with other Kubernetes workloads in
-this scenario, promotion of a Kubernetes cluster as primary must be done
-manually. As explained below, no automated failover across Kubernetes clusters
-is available for PostgreSQL at the moment with CloudNativePG, as the operator
-can only work within a single Kubernetes cluster.</p>
+<p>For DR, you can push the SPoF above the single zone, by using additional
+<a href="#deployments-across-kubernetes-clusters">Kubernetes clusters</a> to define a
+distributed topology hosting "passive" <a href="../replica_cluster/">PostgreSQL replica clusters</a>.
+As with other Kubernetes workloads in this scenario, promotion of a Kubernetes
+cluster as primary must be done manually.</p>
+<p>Through the <a href="../replica_cluster/">replica cluster feature</a>, you can define a
+distributed PostgreSQL topology and coordinate a controlled switchover between
+data centers by first demoting the primary cluster and then promoting the
+replica cluster, without the need to re-clone the former primary. While failover
+is now fully declarative, automated failover across Kubernetes clusters is not
+within CloudNativePG's scope, as the operator can only function within a single
+Kubernetes cluster.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>CloudNativePG provides all the necessary primitives and probes to
+coordinate PostgreSQL active/passive topologies across different Kubernetes
+clusters through a higher-level operator or management tool.</p>
+</div>
 <h2 id="postgresql-architecture">PostgreSQL architecture</h2>
 <p>CloudNativePG supports clusters based on asynchronous and synchronous
 streaming replication to manage multiple hot standby replicas within the same
 Kubernetes cluster, with the following specifications:</p>
 <ul>
 <li>One primary, with optional multiple hot standby replicas for HA</li>
-<li>Available services for applications:<ul>
+<li>
+<p>Available services for applications:</p>
+<ul>
 <li><code>-rw</code>: applications connect only to the primary instance of the cluster</li>
-<li><code>-ro</code>: applications connect only to hot standby replicas for read-only-workloads</li>
-<li><code>-r</code>: applications connect to any of the instances for read-only workloads</li>
+<li><code>-ro</code>: applications connect only to hot standby replicas for
+  read-only-workloads (optional)</li>
+<li><code>-r</code>: applications connect to any of the instances for read-only
+  workloads (optional)</li>
 </ul>
 </li>
-<li>Shared-nothing architecture recommended for better resilience of the PostgreSQL cluster:<ul>
+<li>
+<p>Shared-nothing architecture recommended for better resilience of the PostgreSQL cluster:</p>
+<ul>
 <li>PostgreSQL instances should reside on different Kubernetes worker nodes
   and share only the network - as a result, instances should not share
   the storage and preferably use local volumes attached to the node they
@@ -450,6 +487,14 @@ Kubernetes cluster, with the following specifications:</p>
 </ul>
 </li>
 </ul>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>You can configure the above services through the <code>managed.services</code> section
+in the <code>Cluster</code> configuration. This can be done by reducing the number of
+services and selecting the type (default is <code>ClusterIP</code>). For more details,
+please refer to the <a href="../service_management/">"Service Management" section</a>
+below.</p>
+</div>
 <p>The below diagram provides a simplistic view of the recommended shared-nothing
 architecture for a PostgreSQL cluster spanning across 3 different availability
 zones, running on separate nodes, each with dedicated local storage for
@@ -504,9 +549,9 @@ primary node.</p>
 <h2 id="deployments-across-kubernetes-clusters">Deployments across Kubernetes clusters</h2>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
-<p>CloudNativePG supports deploying PostgreSQL across multiple
-Kubernetes clusters through a feature called <strong>Replica Cluster</strong>,
-which is described in this section.</p>
+<p>CloudNativePG supports deploying PostgreSQL across multiple Kubernetes
+clusters through a feature that allows you to define a distributed PostgreSQL
+topology using replica clusters, as described in this section.</p>
 </div>
 <p>In a distributed PostgreSQL cluster there can only be a single PostgreSQL
 instance acting as a primary at all times. This means that applications can
@@ -519,61 +564,65 @@ only write inside a single Kubernetes cluster, at any time.</p>
 <li>reduce global <strong>recovery time objectives</strong> (RTO) by taking advantage of PostgreSQL
   replication beyond the primary Kubernetes cluster (High Availability)</li>
 </ul>
-<p>In order to address the above concerns, CloudNativePG introduces the
-concept of a <em>PostgreSQL Replica Cluster</em>. Replica clusters are the
-CloudNativePG way to enable multi-cluster deployments in private, public,
-hybrid, and multi-cloud contexts.</p>
-<p>A replica cluster is a separate <code>Cluster</code> resource:</p>
-<ol>
-<li>having either <code>pg_basebackup</code> or full <code>recovery</code> as the <code>bootstrap</code>
-   option from a defined external source cluster</li>
-<li>having the <code>replica.enabled</code> option set to <code>true</code></li>
-<li>replicating from a defined external cluster identified by <code>replica.source</code>,
-   normally located outside the Kubernetes cluster</li>
-<li>replaying WAL information received from the recovery object store
-   (using PostgreSQL's <code>restore_command</code> parameter), or via streaming
-   replication (using PostgreSQL's <code>primary_conninfo</code> parameter), or any of
-   the two (in case both the <code>barmanObjectStore</code> and <code>connectionParameters</code>
-   are defined in the external cluster)</li>
-<li>accepting only read connections, as supported by PostgreSQL's Hot Standby</li>
-</ol>
-<div class="admonition seealso">
-<p class="admonition-title">Seealso</p>
-<p>Please refer to the <a href="../bootstrap/">"Bootstrap" section</a> for more information
-about cloning a PostgreSQL cluster from another one (defined in the
-<code>externalClusters</code> section).</p>
-</div>
+<p>In order to address the above concerns, CloudNativePG introduces the concept of
+a PostgreSQL Topology that is distributed across different Kubernetes clusters
+and is made up of a primary PostgreSQL cluster and one or more PostgreSQL
+replica clusters.
+This feature is called <strong>distributed PostgreSQL topology with replica clusters</strong>,
+and it enables multi-cluster deployments in private, public, hybrid, and
+multi-cloud contexts.</p>
+<p>A replica cluster is a separate <code>Cluster</code> resource that is in continuous
+recovery, replicating from another source, either via WAL shipping from a WAL
+archive or via streaming replication from a primary or a standby (cascading).</p>
 <p>The diagram below depicts a PostgreSQL cluster spanning over two different
 Kubernetes clusters, where the primary cluster is in the first Kubernetes
 cluster and the replica cluster is in the second. The second Kubernetes cluster
 acts as the company's disaster recovery cluster, ready to be activated in case
 of disaster and unavailability of the first one.</p>
 <p><img alt="An example of multi-cluster deployment with a primary and a replica cluster" src="../images/multi-cluster.png" /></p>
-<p>A replica cluster can have the same architecture of the primary cluster. In
-place of the primary instance, a replica cluster has a <strong>designated primary</strong>
+<p>A replica cluster can have the same architecture as the primary cluster.
+Instead of a primary instance, a replica cluster has a <strong>designated primary</strong>
 instance, which is a standby server with an arbitrary number of cascading
 standby servers in streaming replication (symmetric architecture).</p>
-<p>The designated primary can be promoted at any time, making the replica cluster
-a primary cluster capable of accepting write connections.</p>
+<p>The designated primary can be promoted at any time, transforming the replica
+cluster into a primary cluster capable of accepting write connections.
+This is typically triggered by:</p>
+<ul>
+<li><strong>Human decision:</strong> You choose to make the other PostgreSQL cluster (or the
+  entire Kubernetes cluster) the primary. To avoid data loss and ensure that
+  the former primary can follow without being re-cloned (especially with large
+  data sets), you first demote the current primary, then promote the designated
+  primary using the API provided by CloudNativePG.</li>
+<li><strong>Unexpected failure:</strong> If the entire Kubernetes cluster fails, you might
+  experience data loss, but you need to failover to the other Kubernetes
+  cluster by promoting the PostgreSQL replica cluster.</li>
+</ul>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>CloudNativePG does not perform any cross-cluster switchover
-or failover at the moment. Such operation must be performed manually
-or delegated to a multi-cluster/federated cluster aware authority.
-Each PostgreSQL cluster is independent from any other.</p>
+<p>CloudNativePG cannot perform any cross-cluster automated failover, as it
+does not have authority beyond a single Kubernetes cluster. Such operations
+must be performed manually or delegated to a multi-cluster/federated
+cluster-aware authority.</p>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>CloudNativePG allows you to control the distributed topology via
+declarative configuration, enabling you to automate these procedures as part of
+your Infrastructure as Code (IaC) process, including GitOps.</p>
 </div>
 <p>The designated primary in the above example is fed via WAL streaming
 (<code>primary_conninfo</code>), with fallback option for file-based WAL shipping through
 the <code>restore_command</code> and <code>barman-cloud-wal-restore</code>.</p>
-<p>CloudNativePG allows you to define multiple replica clusters.
+<p>CloudNativePG allows you to define topologies with multiple replica clusters.
 You can also define replica clusters with a lower number of replicas, and then
 increase this number when the cluster is promoted to primary.</p>
 <div class="admonition seealso">
 <p class="admonition-title">Replica clusters</p>
-<p>Please refer to the <a href="../replica_cluster/">"Replica Clusters" section</a> for more
-information about physical replica clusters work and how you can configure
-read-only clusters in different Kubernetes cluster to improve your global
-disaster recovery and HA strategy.</p>
+<p>Please refer to the <a href="../replica_cluster/">"Replica Clusters" section</a> for
+more detailed information on how physical replica clusters operate and how to
+define a distributed topology with read-only clusters across different
+Kubernetes clusters. This approach can significantly enhance your global
+disaster recovery and high availability (HA) strategy.</p>
 </div>
               
             </div>

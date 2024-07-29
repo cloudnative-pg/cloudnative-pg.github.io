@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="The CloudNativePG Contributors" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Replication - CloudNativePG</title>
+    <title>Replication - CloudNativePG v1.22</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
@@ -31,7 +31,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-          <a href=".." class="icon icon-home"> CloudNativePG
+          <a href=".." class="icon icon-home"> CloudNativePG v1.22
         </a><div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
       <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
@@ -62,6 +62,10 @@
               </ul>
               <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../quickstart/">Quickstart</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../image_catalog/">Image Catalog</a>
                 </li>
               </ul>
               <ul>
@@ -109,15 +113,39 @@
     </li>
         </ul>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#synchronous-replication">Synchronous replication</a>
+    <li class="toctree-l2"><a class="reference internal" href="#synchronous-replication">Synchronous Replication</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#quorum-based-synchronous-replication">Quorum-based Synchronous Replication</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#migrating-from-the-deprecated-synchronous-replication-implementation">Migrating from the Deprecated Synchronous Replication Implementation</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#priority-based-synchronous-replication">Priority-based Synchronous Replication</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#controlling-synchronous_standby_names-content">Controlling synchronous_standby_names Content</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#examples">Examples</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#synchronous-replication-deprecated">Synchronous Replication (Deprecated)</a>
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#select-nodes-for-synchronous-replication">Select nodes for synchronous replication</a>
     </li>
         </ul>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#replication-slots-for-high-availability">Replication slots for High Availability</a>
+    <li class="toctree-l2"><a class="reference internal" href="#replication-slots">Replication slots</a>
         <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#replication-slots-for-high-availability">Replication slots for High Availability</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#user-defined-replication-slots">User-Defined Replication slots</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#synchronization-frequency">Synchronization frequency</a>
+    </li>
     <li class="toctree-l3"><a class="reference internal" href="#capping-the-wal-size-retained-for-replication-slots">Capping the WAL size retained for replication slots</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#monitoring-replication-slots">Monitoring replication slots</a>
     </li>
         </ul>
     </li>
@@ -142,6 +170,10 @@
               </ul>
               <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../recovery/">Recovery</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../service_management/">Service Management</a>
                 </li>
               </ul>
               <ul>
@@ -201,11 +233,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../kubernetes_upgrade/">Kubernetes Upgrade</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../expose_pg_services/">Exposing Postgres Services</a>
+                <li class="toctree-l1"><a class="reference internal" href="../kubernetes_upgrade/">Kubernetes Upgrade and Maintenance</a>
                 </li>
               </ul>
               <ul>
@@ -277,6 +305,10 @@
                 </li>
               </ul>
               <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../preview_version/">Preview Versions</a>
+                </li>
+              </ul>
+              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../release_notes/">Release notes</a>
                 </li>
               </ul>
@@ -292,7 +324,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
       <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="..">CloudNativePG</a>
+          <a href="..">CloudNativePG v1.22</a>
         
       </nav>
       <div class="wy-nav-content">
@@ -337,12 +369,56 @@ concept of transactional changes continuously stored in the WAL (Write Ahead Log
 technologies, physical replication was first introduced in PostgreSQL 8.2
 (2006) through WAL shipping from the primary to a warm standby in
 continuous recovery.</p>
-<p>PostgreSQL 9.0 (2010) enhanced it with WAL streaming and read-only replicas via
-<em>hot standby</em>, while 9.1 (2011) introduced synchronous replication at the
-transaction level (for RPO=0 clusters). Cascading replication was released with
-PostgreSQL 9.2 (2012). The foundations of logical replication were laid in
-PostgreSQL 9.4, while version 10 (2017) introduced native support for the
-publisher/subscriber pattern to replicate data from an origin to a destination.</p>
+<p>PostgreSQL 9.0 (2010) introduced WAL streaming and read-only replicas through
+<em>hot standby</em>. In 2011, PostgreSQL 9.1 brought synchronous replication at the
+transaction level, supporting RPO=0 clusters. Cascading replication was added
+in PostgreSQL 9.2 (2012). The foundations for logical replication were
+established in PostgreSQL 9.4 (2014), and version 10 (2017) introduced native
+support for the publisher/subscriber pattern to replicate data from an origin
+to a destination. The table below summarizes these milestones.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Version</th>
+<th style="text-align: center;">Year</th>
+<th>Feature</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">8.2</td>
+<td style="text-align: center;">2006</td>
+<td>Warm Standby with WAL shipping</td>
+</tr>
+<tr>
+<td style="text-align: center;">9.0</td>
+<td style="text-align: center;">2010</td>
+<td>Hot Standby and physical streaming replication</td>
+</tr>
+<tr>
+<td style="text-align: center;">9.1</td>
+<td style="text-align: center;">2011</td>
+<td>Synchronous replication (priority-based)</td>
+</tr>
+<tr>
+<td style="text-align: center;">9.2</td>
+<td style="text-align: center;">2012</td>
+<td>Cascading replication</td>
+</tr>
+<tr>
+<td style="text-align: center;">9.4</td>
+<td style="text-align: center;">2014</td>
+<td>Foundations of logical replication</td>
+</tr>
+<tr>
+<td style="text-align: center;">10</td>
+<td style="text-align: center;">2017</td>
+<td>Logical publisher/subscriber and quorum-based synchronous replication</td>
+</tr>
+</tbody>
+</table>
+<p>This table highlights key PostgreSQL replication features and their respective
+versions.</p>
 <h2 id="streaming-replication-support">Streaming replication support</h2>
 <p>At the moment, CloudNativePG natively and transparently manages
 physical streaming replicas within a cluster in a declarative way, based on
@@ -383,7 +459,181 @@ below.</p>
 transparently configures replicas to take advantage of <code>restore_command</code> when
 in continuous recovery. As a result, PostgreSQL can use the WAL archive
 as a fallback option whenever pulling WALs via streaming replication fails.</p>
-<h2 id="synchronous-replication">Synchronous replication</h2>
+<h2 id="synchronous-replication">Synchronous Replication</h2>
+<p>CloudNativePG supports both
+<a href="https://www.postgresql.org/docs/current/warm-standby.html#SYNCHRONOUS-REPLICATION">quorum-based and priority-based synchronous replication for PostgreSQL</a>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Please be aware that synchronous replication will halt your write
+operations if the required number of standby nodes to replicate WAL data for
+transaction commits is unavailable. In such cases, write operations for your
+applications will hang. This behavior differs from the previous implementation
+in CloudNativePG but aligns with the expectations of a PostgreSQL DBA for this
+capability.</p>
+</div>
+<p>While direct configuration of the <code>synchronous_standby_names</code> option is
+prohibited, CloudNativePG allows you to customize its content and extend
+synchronous replication beyond the <code>Cluster</code> resource through the
+<a href="../cloudnative-pg.v1/#postgresql-cnpg-io-v1-SynchronousReplicaConfiguration"><code>.spec.postgresql.synchronous</code> stanza</a>.</p>
+<p>Synchronous replication is disabled by default (the <code>synchronous</code> stanza is not
+defined). When defined, two options are mandatory:</p>
+<ul>
+<li><code>method</code>: either <code>any</code> (quorum) or <code>first</code> (priority)</li>
+<li><code>number</code>: the number of synchronous standby servers that transactions must
+  wait for responses from</li>
+</ul>
+<h3 id="quorum-based-synchronous-replication">Quorum-based Synchronous Replication</h3>
+<p>PostgreSQL's quorum-based synchronous replication makes transaction commits
+wait until their WAL records are replicated to at least a certain number of
+standbys. To use this method, set <code>method</code> to <code>any</code>.</p>
+<h4 id="migrating-from-the-deprecated-synchronous-replication-implementation">Migrating from the Deprecated Synchronous Replication Implementation</h4>
+<p>This section provides instructions on migrating your existing quorum-based
+synchronous replication, defined using the deprecated form, to the new and more
+robust capability in CloudNativePG.</p>
+<p>Suppose you have the following manifest:</p>
+<pre><code class="language-yaml">apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: angus
+spec:
+  instances: 3
+
+  minSyncReplicas: 1
+  maxSyncReplicas: 1
+
+  storage:
+    size: 1G
+</code></pre>
+<p>You can convert it to the new quorum-based format as follows:</p>
+<pre><code class="language-yaml">apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: angus
+spec:
+  instances: 3
+
+  storage:
+    size: 1G
+
+  postgresql:
+    synchronous:
+      method: any
+      number: 1
+</code></pre>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>The primary difference with the new capability is that PostgreSQL will
+always prioritize data durability over high availability. Consequently, if no
+replica is available, write operations on the primary will be blocked. However,
+this behavior is consistent with the expectations of a PostgreSQL DBA for this
+capability.</p>
+</div>
+<h3 id="priority-based-synchronous-replication">Priority-based Synchronous Replication</h3>
+<p>PostgreSQL's priority-based synchronous replication makes transaction commits
+wait until their WAL records are replicated to the requested number of
+synchronous standbys chosen based on their priorities. Standbys listed earlier
+in the <code>synchronous_standby_names</code> option are given higher priority and
+considered synchronous. If a current synchronous standby disconnects, it is
+immediately replaced by the next-highest-priority standby. To use this method,
+set <code>method</code> to <code>first</code>.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Currently, this method is most useful when extending
+synchronous replication beyond the current cluster using the
+<code>maxStandbyNamesFromCluster</code>, <code>standbyNamesPre</code>, and <code>standbyNamesPost</code>
+options explained below.</p>
+</div>
+<h3 id="controlling-synchronous_standby_names-content">Controlling <code>synchronous_standby_names</code> Content</h3>
+<p>By default, CloudNativePG populates <code>synchronous_standby_names</code> with the names
+of local pods in a <code>Cluster</code> resource, ensuring synchronous replication within
+the PostgreSQL cluster. You can customize the content of
+<code>synchronous_standby_names</code> based on your requirements and replication method
+(quorum or priority) using the following optional parameters in the
+<code>.spec.postgresql.synchronous</code> stanza:</p>
+<ul>
+<li><code>maxStandbyNamesFromCluster</code>: the maximum number of pod names from the local
+  <code>Cluster</code> object that can be automatically included in the
+  <code>synchronous_standby_names</code> option in PostgreSQL.</li>
+<li><code>standbyNamesPre</code>: a list of standby names (specifically <code>application_name</code>)
+  to be prepended to the list of local pod names automatically listed by the
+  operator.</li>
+<li><code>standbyNamesPost</code>: a list of standby names (specifically <code>application_name</code>)
+  to be appended to the list of local pod names automatically listed by the
+  operator.</li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>You are responsible for ensuring the correct names in <code>standbyNamesPre</code> and
+<code>standbyNamesPost</code>. CloudNativePG expects that you manage any standby with an
+<code>application_name</code> listed here, ensuring their high availability. Incorrect
+entries can jeopardize your PostgreSQL database uptime.</p>
+</div>
+<h3 id="examples">Examples</h3>
+<p>Here are some examples, all based on a <code>cluster-example</code> with three instances:</p>
+<p>If you set:</p>
+<pre><code class="language-yaml">postgresql:
+  synchronous:
+    method: any
+    number: 1
+</code></pre>
+<p>The content of <code>synchronous_standby_names</code> will be:</p>
+<pre><code class="language-console">ANY 1 (cluster-example-2, cluster-example-3)
+</code></pre>
+<p>If you set:</p>
+<pre><code class="language-yaml">postgresql:
+  synchronous:
+    method: any
+    number: 1
+    maxStandbyNamesFromCluster: 1
+    standbyNamesPre:
+      - angus
+</code></pre>
+<p>The content of <code>synchronous_standby_names</code> will be:</p>
+<pre><code class="language-console">ANY 1 (angus, cluster-example-2)
+</code></pre>
+<p>If you set:</p>
+<pre><code class="language-yaml">postgresql:
+  synchronous:
+    method: any
+    number: 1
+    maxStandbyNamesFromCluster: 0
+    standbyNamesPre:
+      - angus
+      - malcolm
+</code></pre>
+<p>The content of <code>synchronous_standby_names</code> will be:</p>
+<pre><code class="language-console">ANY 1 (angus, malcolm)
+</code></pre>
+<p>If you set:</p>
+<pre><code class="language-yaml">postgresql:
+  synchronous:
+    method: first
+    number: 2
+    maxStandbyNamesFromCluster: 1
+    standbyNamesPre:
+      - angus
+    standbyNamesPost:
+      - malcolm
+</code></pre>
+<p>The <code>synchronous_standby_names</code> option will look like:</p>
+<pre><code class="language-console">FIRST 2 (angus, cluster-example-2, malcolm)
+</code></pre>
+<h2 id="synchronous-replication-deprecated">Synchronous Replication (Deprecated)</h2>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Prior to CloudNativePG 1.24, only the quorum-based synchronous replication
+implementation was supported. Although this method is now deprecated, it will
+not be removed anytime soon.
+The new method prioritizes data durability over self-healing and offers
+more robust features, including priority-based synchronous replication and full
+control over the <code>synchronous_standby_names</code> option.
+It is recommended to gradually migrate to the new configuration method for
+synchronous replication, as explained in the previous paragraph.</p>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>The deprecated method and the new method are mutually exclusive.</p>
+</div>
 <p>CloudNativePG supports the configuration of <strong>quorum-based synchronous
 streaming replication</strong> via two configuration options called <code>minSyncReplicas</code>
 and <code>maxSyncReplicas</code>, which are the minimum and the maximum number of expected
@@ -439,6 +689,12 @@ Postgres pod are.</p>
 <p>For more information on the general pod affinity and anti-affinity rules,
 please check the <a href="../scheduling/">"Scheduling" section</a>.</p>
 </div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The <code>.spec.postgresql.syncReplicaElectionConstraint</code> option only applies to the
+legacy implementation of synchronous replication
+(see <a href="./#synchronous-replication-deprecated">"Synchronous Replication (Deprecated)"</a>).</p>
+</div>
 <p>As an example use-case for this feature: in a cluster with a single sync replica,
 we would be able to ensure the sync replica will be in a different availability
 zone from the primary instance, usually identified by the <code>topology.kubernetes.io/zone</code>
@@ -474,7 +730,7 @@ from that of the node where the primary is:</p>
 <p>As you can imagine, the availability zone is just an example, but you could
 customize this behavior based on other labels that describe the node, such
 as storage, CPU, or memory.</p>
-<h2 id="replication-slots-for-high-availability">Replication slots for High Availability</h2>
+<h2 id="replication-slots">Replication slots</h2>
 <p><a href="https://www.postgresql.org/docs/current/warm-standby.html#STREAMING-REPLICATION-SLOTS">Replication slots</a>
 are a native PostgreSQL feature introduced in 9.4 that provides an automated way
 to ensure that the primary does not remove WAL segments until all the attached
@@ -484,9 +740,18 @@ standby is (temporarily) disconnected.</p>
 <p>A replication slot exists solely on the instance that created it, and PostgreSQL
 does not replicate it on the standby servers. As a result, after a failover
 or a switchover, the new primary does not contain the replication slot from
-the old primary. This can create problems for
-the streaming replication clients that were connected to the old
-primary and have lost their slot.</p>
+the old primary. This can create problems for the streaming replication clients
+that were connected to the old primary and have lost their slot.</p>
+<p>CloudNativePG provides a turn-key solution to synchronize the content of
+physical replication slots from the primary to each standby, addressing two use
+cases:</p>
+<ul>
+<li>the replication slots automatically created for the High Availability of the
+  Postgres cluster (see <a href="#replication-slots-for-high-availability">"Replication slots for High Availability" below</a> for details)</li>
+<li><a href="#user-defined-replication-slots">user-defined replication slots</a> created on
+  the primary</li>
+</ul>
+<h3 id="replication-slots-for-high-availability">Replication slots for High Availability</h3>
 <p>CloudNativePG fills this gap by introducing the concept of cluster-managed
 replication slots, starting with high availability clusters. This feature
 automatically manages physical replication slots for each hot standby replica
@@ -502,13 +767,13 @@ in the High Availability cluster, both in the primary and the standby.</p>
   content of the <code>pg_replication_slots</code> view in the primary, and updated at regular
   intervals using <code>pg_replication_slot_advance()</code>.</li>
 </ul>
-<p>This feature, introduced in CloudNativePG 1.18, is now enabled by default and
-can be disabled via configuration. For details, please refer to the
+<p>This feature is enabled by default and can be disabled via configuration.
+For details, please refer to the
 <a href="../cloudnative-pg.v1/#postgresql-cnpg-io-v1-ReplicationSlotsConfiguration">"replicationSlots" section in the API reference</a>.
 Here follows a brief description of the main options:</p>
 <dl>
 <dt><code>.spec.replicationSlots.highAvailability.enabled</code></dt>
-<dd>if true, the feature is enabled (<code>true</code> is the default since 1.21)</dd>
+<dd>if <code>true</code>, the feature is enabled (<code>true</code> is the default)</dd>
 <dt><code>.spec.replicationSlots.highAvailability.slotPrefix</code></dt>
 <dd>the prefix that identifies replication slots managed by the operator
   for this feature (default: <code>_cnpg_</code>)</dd>
@@ -548,6 +813,57 @@ spec:
   storage:
     size: 1Gi
 </code></pre>
+<h3 id="user-defined-replication-slots">User-Defined Replication slots</h3>
+<p>Although CloudNativePG doesn't support a way to declaratively define physical
+replication slots, you can still <a href="https://www.postgresql.org/docs/current/functions-admin.html#FUNCTIONS-REPLICATION">create your own slots via SQL</a>.</p>
+<div class="admonition information">
+<p class="admonition-title">Information</p>
+<p>At the moment, we don't have any plans to manage replication slots
+in a declarative way, but it might change depending on the feedback
+we receive from users. The reason is that replication slots exist
+for a specific purpose and each should be managed by a specific application
+the oversees the entire lifecycle of the slot on the primary.</p>
+</div>
+<p>CloudNativePG can manage the synchronization of any user managed physical
+replication slots between the primary and standbys, similarly to what it does
+for the HA replication slots explained above (the only difference is that you
+need to create the replication slot).</p>
+<p>This feature is enabled by default (meaning that any replication slot is
+synchronized), but you can disable it or further customize its behavior (for
+example by excluding some slots using regular expressions) through the
+<code>synchronizeReplicas</code> stanza. For example:</p>
+<pre><code class="language-yaml">apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: cluster-example
+spec:
+  instances: 3
+  replicationSlots:
+    synchronizeReplicas:
+      enabled: true
+      excludePatterns:
+      - &quot;^foo&quot;
+</code></pre>
+<p>For details, please refer to the
+<a href="../cloudnative-pg.v1/#postgresql-cnpg-io-v1-ReplicationSlotsConfiguration">"replicationSlots" section in the API reference</a>.
+Here follows a brief description of the main options:</p>
+<dl>
+<dt><code>.spec.replicationSlots.synchronizeReplicas.enabled</code></dt>
+<dd>When true or not specified, every user-defined replication slot on the
+  primary is synchronized on each standby. If changed to false, the operator will
+  remove any replication slot previously created by itself on each standby.</dd>
+<dt><code>.spec.replicationSlots.synchronizeReplicas.excludePatterns</code></dt>
+<dd>A list of regular expression patterns to match the names of user-defined
+  replication slots to be excluded from synchronization. This can be useful to
+  exclude specific slots based on naming conventions.</dd>
+</dl>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Users utilizing this feature should carefully monitor user-defined replication
+slots to ensure they align with their operational requirements and do not
+interfere with the failover process.</p>
+</div>
+<h3 id="synchronization-frequency">Synchronization frequency</h3>
 <p>You can also control the frequency with which a standby queries the
 <code>pg_replication_slots</code> view on the primary, and updates its local copy of
 the replication slots, like in this example:</p>
@@ -559,22 +875,11 @@ spec:
   instances: 3
   # Reduce the frequency of standby HA slots updates to once every 5 minutes
   replicationSlots:
-    highAvailability:
-      enabled: true
     updateInterval: 300
 
   storage:
     size: 1Gi
 </code></pre>
-<p>Replication slots must be carefully monitored in your infrastructure. By default,
-we provide the <code>pg_replication_slots</code> metric in our Prometheus exporter with
-key information such as the name of the slot, the type, whether it is active,
-the lag from the primary.</p>
-<div class="admonition seealso">
-<p class="admonition-title">Monitoring</p>
-<p>Please refer to the <a href="../monitoring/">"Monitoring" section</a> for details on
-how to monitor a CloudNativePG deployment.</p>
-</div>
 <h3 id="capping-the-wal-size-retained-for-replication-slots">Capping the WAL size retained for replication slots</h3>
 <p>When replication slots is enabled, you might end up running out of disk
 space due to PostgreSQL trying to retain WAL files requested by a replication
@@ -594,6 +899,16 @@ when replication slots support is enabled. For example:</p>
       max_slot_wal_keep_size: &quot;10GB&quot;
   # ...
 </code></pre>
+<h3 id="monitoring-replication-slots">Monitoring replication slots</h3>
+<p>Replication slots must be carefully monitored in your infrastructure. By default,
+we provide the <code>pg_replication_slots</code> metric in our Prometheus exporter with
+key information such as the name of the slot, the type, whether it is active,
+the lag from the primary.</p>
+<div class="admonition seealso">
+<p class="admonition-title">Monitoring</p>
+<p>Please refer to the <a href="../monitoring/">"Monitoring" section</a> for details on
+how to monitor a CloudNativePG deployment.</p>
+</div>
               
             </div>
           </div><footer>

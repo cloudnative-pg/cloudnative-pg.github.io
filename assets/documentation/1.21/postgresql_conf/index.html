@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="The CloudNativePG Contributors" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>PostgreSQL Configuration - CloudNativePG</title>
+    <title>PostgreSQL Configuration - CloudNativePG v1.21</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
@@ -31,7 +31,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-          <a href=".." class="icon icon-home"> CloudNativePG
+          <a href=".." class="icon icon-home"> CloudNativePG v1.21
         </a><div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
       <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
@@ -62,6 +62,10 @@
               </ul>
               <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../quickstart/">Quickstart</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../image_catalog/">Image Catalog</a>
                 </li>
               </ul>
               <ul>
@@ -120,6 +124,10 @@
                 <li class="toctree-l1"><a class="reference internal" href="../recovery/">Recovery</a>
                 </li>
               </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../service_management/">Service Management</a>
+                </li>
+              </ul>
               <ul class="current">
                 <li class="toctree-l1 current"><a class="reference internal current" href="./">PostgreSQL Configuration</a>
     <ul class="current">
@@ -175,6 +183,10 @@
                 </li>
               </ul>
               <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../tablespaces/">Tablespaces</a>
+                </li>
+              </ul>
+              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../operator_conf/">Operator configuration</a>
                 </li>
               </ul>
@@ -219,11 +231,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../kubernetes_upgrade/">Kubernetes Upgrade</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../expose_pg_services/">Exposing Postgres Services</a>
+                <li class="toctree-l1"><a class="reference internal" href="../kubernetes_upgrade/">Kubernetes Upgrade and Maintenance</a>
                 </li>
               </ul>
               <ul>
@@ -295,6 +303,10 @@
                 </li>
               </ul>
               <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../preview_version/">Preview Versions</a>
+                </li>
+              </ul>
+              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../release_notes/">Release notes</a>
                 </li>
               </ul>
@@ -310,7 +322,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
       <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="..">CloudNativePG</a>
+          <a href="..">CloudNativePG v1.21</a>
         
       </nav>
       <div class="wy-nav-content">
@@ -700,11 +712,10 @@ perform a rolling upgrade.</p>
 exclusive method for altering the configuration of a PostgreSQL cluster. This
 approach guarantees coherence across the entire high-availability cluster and
 aligns with best practices for Infrastructure-as-Code.</p>
-<p>In CloudNativePG version 1.22 and onwards, the default configuration disables
-the use of <code>ALTER SYSTEM</code> on new Postgres clusters. This decision is rooted in
-the recognition of potential risks associated with this command. To enable the
-use of <code>ALTER SYSTEM</code>, you can explicitly set <code>.spec.postgresql.enableAlterSystem</code>
-to <code>true</code>.</p>
+<p>In CloudNativePG the default configuration disables the use of <code>ALTER SYSTEM</code>
+on new Postgres clusters. This decision is rooted in the recognition of
+potential risks associated with this command. To enable the use of <code>ALTER SYSTEM</code>,
+you can explicitly set <code>.spec.postgresql.enableAlterSystem</code> to <code>true</code>.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>Proceed with caution when utilizing <code>ALTER SYSTEM</code>. This command operates
@@ -712,9 +723,13 @@ directly on the connected instance and does not undergo replication.
 CloudNativePG assumes responsibility for certain fixed parameters and complete
 control over others, emphasizing the need for careful consideration.</p>
 </div>
-<p>When <code>.spec.postgresql.enableAlterSystem</code> is configured as <code>false</code>, any attempt
-to execute <code>ALTER SYSTEM</code> will result in an error. The error message might
-resemble the following:</p>
+<p>Starting from PostgreSQL 17, the <code>.spec.postgresql.enableAlterSystem</code> setting
+directly controls the <a href="https://www.postgresql.org/docs/17/runtime-config-compatible.html#GUC-ALLOW-ALTER-SYSTEM"><code>allow_alter_system</code> GUC in PostgreSQL</a>
+— a feature directly contributed by CloudNativePG to PostgreSQL.</p>
+<p>Prior to PostgreSQL 17, when <code>.spec.postgresql.enableAlterSystem</code> is set to
+<code>false</code>, the <code>postgresql.auto.conf</code> file is made read-only. Consequently, any
+attempt to execute the <code>ALTER SYSTEM</code> command will result in an error. The
+error message might look like this:</p>
 <pre><code class="language-output">ERROR:  could not open file &quot;postgresql.auto.conf&quot;: Permission denied
 </code></pre>
 <h2 id="dynamic-shared-memory-settings">Dynamic Shared Memory settings</h2>
@@ -774,6 +789,7 @@ operator. The operator prevents the user from setting them using a webhook.</p>
 <p>Users are not allowed to set the following configuration parameters in the
 <code>postgresql</code> section:</p>
 <ul>
+<li><code>allow_alter_system</code></li>
 <li><code>allow_system_table_mods</code></li>
 <li><code>archive_cleanup_command</code></li>
 <li><code>archive_command</code></li>
@@ -841,7 +857,7 @@ operator. The operator prevents the user from setting them using a webhook.</p>
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../recovery/" class="btn btn-neutral float-left" title="Recovery"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../service_management/" class="btn btn-neutral float-left" title="Service Management"><span class="icon icon-circle-arrow-left"></span> Previous</a>
         <a href="../declarative_role_management/" class="btn btn-neutral float-right" title="Database Role Management">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
@@ -865,7 +881,7 @@ operator. The operator prevents the user from setting them using a webhook.</p>
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../recovery/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../service_management/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
       <span><a href="../declarative_role_management/" style="color: #fcfcfc">Next &raquo;</a></span>

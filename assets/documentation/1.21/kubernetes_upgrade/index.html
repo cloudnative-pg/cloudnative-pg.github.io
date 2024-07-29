@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="The CloudNativePG Contributors" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Kubernetes Upgrade - CloudNativePG</title>
+    <title>Kubernetes Upgrade and Maintenance - CloudNativePG v1.21</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
@@ -13,7 +13,7 @@
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Kubernetes Upgrade";
+        var mkdocs_page_name = "Kubernetes Upgrade and Maintenance";
         var mkdocs_page_input_path = "kubernetes_upgrade.md";
         var mkdocs_page_url = null;
       </script>
@@ -31,7 +31,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-          <a href=".." class="icon icon-home"> CloudNativePG
+          <a href=".." class="icon icon-home"> CloudNativePG v1.21
         </a><div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
       <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
@@ -62,6 +62,10 @@
               </ul>
               <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../quickstart/">Quickstart</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../image_catalog/">Image Catalog</a>
                 </li>
               </ul>
               <ul>
@@ -121,11 +125,19 @@
                 </li>
               </ul>
               <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../service_management/">Service Management</a>
+                </li>
+              </ul>
+              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../postgresql_conf/">PostgreSQL Configuration</a>
                 </li>
               </ul>
               <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../declarative_role_management/">Database Role Management</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../tablespaces/">Tablespaces</a>
                 </li>
               </ul>
               <ul>
@@ -173,15 +185,25 @@
                 </li>
               </ul>
               <ul class="current">
-                <li class="toctree-l1 current"><a class="reference internal current" href="./">Kubernetes Upgrade</a>
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Kubernetes Upgrade and Maintenance</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#single-instance-clusters-with-reusepvc-set-to-false">Single instance clusters with reusePVC set to false</a>
+    <li class="toctree-l2"><a class="reference internal" href="#importance-of-regular-updates">Importance of Regular Updates</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#maintenance-operations-in-a-cluster">Maintenance Operations in a Cluster</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#temporary-postgresql-cluster-degradation">Temporary PostgreSQL Cluster Degradation</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pod-disruption-budgets">Pod Disruption Budgets</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#postgresql-clusters-used-for-development-or-testing">PostgreSQL Clusters used for Development or Testing</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#node-maintenance-window">Node Maintenance Window</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#single-instance-clusters-with-reusepvc-set-to-false">Single instance clusters with reusePVC set to false</a>
+    </li>
+        </ul>
     </li>
     </ul>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../expose_pg_services/">Exposing Postgres Services</a>
                 </li>
               </ul>
               <ul>
@@ -253,6 +275,10 @@
                 </li>
               </ul>
               <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../preview_version/">Preview Versions</a>
+                </li>
+              </ul>
+              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../release_notes/">Release notes</a>
                 </li>
               </ul>
@@ -268,14 +294,14 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
       <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="..">CloudNativePG</a>
+          <a href="..">CloudNativePG v1.21</a>
         
       </nav>
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
-      <li class="breadcrumb-item active">Kubernetes Upgrade</li>
+      <li class="breadcrumb-item active">Kubernetes Upgrade and Maintenance</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -284,51 +310,95 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="kubernetes-upgrade">Kubernetes Upgrade</h1>
-<p>Kubernetes clusters must be kept updated. This becomes even more
-important if you are self-managing your Kubernetes clusters, especially
-on <strong>bare metal</strong>.</p>
-<p>Planning and executing regular updates is a way for your organization
-to clean up the technical debt and reduce the business risks, despite
-the introduction in your Kubernetes infrastructure of controlled
-downtimes that temporarily take out a node from the cluster for
-maintenance reasons (recommended reading:
+                <h1 id="kubernetes-upgrade-and-maintenance">Kubernetes Upgrade and Maintenance</h1>
+<p>Maintaining an up-to-date Kubernetes cluster is crucial for ensuring optimal
+performance and security, particularly for self-managed clusters, especially
+those running on bare metal infrastructure. Regular updates help address
+technical debt and mitigate business risks, despite the controlled downtimes
+associated with temporarily removing a node from the cluster for maintenance
+purposes. For further insights on embracing risk in operations, refer to the
 <a href="https://landing.google.com/sre/sre-book/chapters/embracing-risk/">"Embracing Risk"</a>
-from the Site Reliability Engineering book).</p>
-<p>For example, you might need to apply security updates on the Linux
-servers where Kubernetes is installed, or to replace a malfunctioning
-hardware component such as RAM, CPU, or RAID controller, or even upgrade
-the cluster to the latest version of Kubernetes.</p>
-<p>Usually, maintenance operations in a cluster are performed one node
-at a time by:</p>
+chapter from the Site Reliability Engineering book.</p>
+<h2 id="importance-of-regular-updates">Importance of Regular Updates</h2>
+<p>Updating Kubernetes involves planning and executing maintenance tasks, such as
+applying security updates to underlying Linux servers, replacing malfunctioning
+hardware components, or upgrading the cluster to the latest Kubernetes version.
+These activities are essential for maintaining a robust and secure
+infrastructure.</p>
+<h2 id="maintenance-operations-in-a-cluster">Maintenance Operations in a Cluster</h2>
+<p>Typically, maintenance operations are carried out on one node at a time, following a <a href="https://kubernetes.io/docs/tasks/administer-cluster/kubeadm/kubeadm-upgrade/">structured process</a>:</p>
 <ol>
-<li>evicting the workloads from the node to be updated (<code>drain</code>)</li>
-<li>performing the actual operation (for example, system update)</li>
-<li>re-joining the node to the cluster (<code>uncordon</code>)</li>
+<li>eviction of workloads (<code>drain</code>): workloads are gracefully moved away from
+   the node to be updated, ensuring a smooth transition.</li>
+<li>performing the operation: the actual maintenance operation, such as a
+   system update or hardware replacement, is executed.</li>
+<li>rejoining the node to the cluster (<code>uncordon</code>): the updated node is
+   reintegrated into the cluster, ready to resume its responsibilities.</li>
 </ol>
-<p>The above process requires workloads to be either stopped for the
-entire duration of the upgrade or migrated to another node.</p>
-<p>While the latest case is the expected one in terms of service
-reliability and self-healing capabilities of Kubernetes, there can
-be situations where it is advised to operate with a temporarily
-degraded cluster and wait for the upgraded node to be up again.</p>
-<p>In particular, if your PostgreSQL cluster relies on <strong>node-local storage</strong>
-- that is <em>storage which is local to the Kubernetes worker node where
-the PostgreSQL database is running</em>.
-Node-local storage (or simply <em>local storage</em>) is used to enhance performance.</p>
+<p>This process requires either stopping workloads for the entire upgrade duration
+or migrating them to other nodes in the cluster.</p>
+<h2 id="temporary-postgresql-cluster-degradation">Temporary PostgreSQL Cluster Degradation</h2>
+<p>While the standard approach ensures service reliability and leverages
+Kubernetes' self-healing capabilities, there are scenarios where operating with
+a temporarily degraded cluster may be acceptable. This is particularly relevant
+for PostgreSQL clusters relying on <strong>node-local storage</strong>, where the storage is
+local to the Kubernetes worker node running the PostgreSQL database. Node-local
+storage, or simply <em>local storage</em>, is employed to enhance performance.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>If your database files are on shared storage over the network,
-you may not need to define a maintenance window. If the volumes currently
-used by the pods can be reused by pods running on different nodes after
-the drain, the default self-healing behavior of the operator will work
-fine (you can then skip the rest of this section).</p>
+<p>If your database files reside on shared storage accessible over the
+network, the default self-healing behavior of the operator can efficiently
+handle scenarios where volumes are reused by pods on different nodes after a
+drain operation. In such cases, you can skip the remaining sections of this
+document.</p>
 </div>
-<p>When using local storage for PostgreSQL, you are advised to temporarily
-put the cluster in <strong>maintenance mode</strong> through the <code>nodeMaintenanceWindow</code>
-option to avoid standard self-healing procedures to kick in,
-while, for example, enlarging the partition on the physical node or
-updating the node itself.</p>
+<h2 id="pod-disruption-budgets">Pod Disruption Budgets</h2>
+<p>By default, CloudNativePG safeguards Postgres cluster operations. If a node is
+to be drained and contains a cluster's primary instance, a switchover happens
+ahead of the drain. Once the instance in the node is downgraded to replica, the
+draining can resume.
+For single-instance clusters, a switchover is not possible, so CloudNativePG
+will prevent draining the node where the instance is housed.
+Additionally, in multi-instance clusters, CloudNativePG guarantees that only
+one replica at a time is gracefully shut down during a drain operation.</p>
+<p>Each PostgreSQL <code>Cluster</code> is equipped with two associated <code>PodDisruptionBudget</code>
+resources - you can easily confirm it with the <code>kubectl get pdb</code> command.</p>
+<p>Our recommendation is to leave pod disruption budgets enabled for every
+production Postgres cluster. This can be effortlessly managed by toggling the
+<code>.spec.enablePDB</code> option, as detailed in the
+<a href="../cloudnative-pg.v1/#postgresql-cnpg-io-v1-ClusterSpec">API reference</a>.</p>
+<h2 id="postgresql-clusters-used-for-development-or-testing">PostgreSQL Clusters used for Development or Testing</h2>
+<p>For PostgreSQL clusters used for development purposes, often consisting of
+a single instance, it is essential to disable pod disruption budgets. Failure
+to do so will prevent the node hosting that cluster from being drained.</p>
+<p>The following example illustrates how to disable pod disruption budgets for a
+1-instance development cluster:</p>
+<pre><code class="language-yaml">apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: dev
+spec:
+  instances: 1
+  enablePDB: false
+
+  storage:
+    size: 1Gi
+</code></pre>
+<p>This configuration ensures smoother maintenance procedures without restrictions
+on draining the node during development activities.</p>
+<h2 id="node-maintenance-window">Node Maintenance Window</h2>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>While CloudNativePG will continue supporting the node maintenance window,
+it is currently recommended to transition to direct control of pod disruption
+budgets, as explained in the previous section. This section is retained
+mainly for backward compatibility.</p>
+</div>
+<p>Prior to release 1.23, CloudNativePG had just one declarative mechanism to manage
+Kubernetes upgrades when dealing with local storage: you had to temporarily put
+the cluster in <strong>maintenance mode</strong> through the <code>nodeMaintenanceWindow</code> option
+to avoid standard self-healing procedures to kick in, while, for example,
+enlarging the partition on the physical node or updating the node itself.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>Limit the duration of the maintenance window to the shortest
@@ -361,11 +431,18 @@ reusePVC disabled: see section below.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>When performing the <code>kubectl drain</code> command, you will need
-to add the <code>--delete-local-data</code> option.
+to add the <code>--delete-emptydir-data</code> option.
 Don't be afraid: it refers to another volume internally used
 by the operator - not the PostgreSQL data directory.</p>
 </div>
-<h2 id="single-instance-clusters-with-reusepvc-set-to-false">Single instance clusters with <code>reusePVC</code> set to <code>false</code></h2>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p><code>PodDisruptionBudget</code> management can be disabled by setting the
+<code>.spec.enablePDB</code> field to <code>false</code>. In that case, the operator won't
+create <code>PodDisruptionBudgets</code> and will delete them if they were
+previously created.</p>
+</div>
+<h3 id="single-instance-clusters-with-reusepvc-set-to-false">Single instance clusters with <code>reusePVC</code> set to <code>false</code></h3>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
 <p>We recommend to always create clusters with more
@@ -404,7 +481,7 @@ downtime in this case will be the duration of the switchover.</p>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
         <a href="../replica_cluster/" class="btn btn-neutral float-left" title="Replica clusters"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../expose_pg_services/" class="btn btn-neutral float-right" title="Exposing Postgres Services">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../kubectl-plugin/" class="btn btn-neutral float-right" title="Kubectl Plugin">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -430,7 +507,7 @@ downtime in this case will be the duration of the switchover.</p>
       <span><a href="../replica_cluster/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../expose_pg_services/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../kubectl-plugin/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>

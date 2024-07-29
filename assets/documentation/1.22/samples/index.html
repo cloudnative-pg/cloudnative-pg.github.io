@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="The CloudNativePG Contributors" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Examples - CloudNativePG</title>
+    <title>Examples - CloudNativePG v1.22</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
@@ -31,7 +31,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-          <a href=".." class="icon icon-home"> CloudNativePG
+          <a href=".." class="icon icon-home"> CloudNativePG v1.22
         </a><div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
       <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
@@ -62,6 +62,10 @@
               </ul>
               <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../quickstart/">Quickstart</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../image_catalog/">Image Catalog</a>
                 </li>
               </ul>
               <ul>
@@ -121,6 +125,10 @@
                 </li>
               </ul>
               <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../service_management/">Service Management</a>
+                </li>
+              </ul>
+              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../postgresql_conf/">PostgreSQL Configuration</a>
                 </li>
               </ul>
@@ -177,11 +185,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../kubernetes_upgrade/">Kubernetes Upgrade</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../expose_pg_services/">Exposing Postgres Services</a>
+                <li class="toctree-l1"><a class="reference internal" href="../kubernetes_upgrade/">Kubernetes Upgrade and Maintenance</a>
                 </li>
               </ul>
               <ul>
@@ -237,7 +241,11 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#managed-roles">Managed roles</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#managed-services">Managed services</a>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#declarative-tablespaces">Declarative tablespaces</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pooler-configuration">Pooler configuration</a>
     </li>
     </ul>
                 </li>
@@ -267,6 +275,10 @@
                 </li>
               </ul>
               <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../preview_version/">Preview Versions</a>
+                </li>
+              </ul>
+              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../release_notes/">Release notes</a>
                 </li>
               </ul>
@@ -282,7 +294,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
       <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="..">CloudNativePG</a>
+          <a href="..">CloudNativePG v1.22</a>
         
       </nav>
       <div class="wy-nav-content">
@@ -396,6 +408,13 @@ applied and healthy.</dd>
   Declares a role with the <code>managed</code> stanza. Includes password management with
   Kubernetes secrets.</dd>
 </dl>
+<h2 id="managed-services">Managed services</h2>
+<dl>
+<dt><strong>Cluster with managed services</strong></dt>
+<dd><a href="cluster-example-managed-services.yaml"><code>cluster-example-managed-services.yaml</code></a>:
+  Declares a service with the <code>managed</code> stanza. Includes default service disabled and new
+  <code>rw</code> service template of <code>LoadBalancer</code> type defined.</dd>
+</dl>
 <h2 id="declarative-tablespaces">Declarative tablespaces</h2>
 <dl>
 <dt><strong>Cluster with declarative tablespaces</strong></dt>
@@ -410,6 +429,11 @@ Remember to update <code>bootstrap.recovery.backup.name</code> with the backup n
 <dd><a href="cluster-restore-with-tablespaces.yaml"><code>cluster-restore-with-tablespaces.yaml</code></a></dd>
 </dl>
 <p>For a list of available options, see <a href="../cloudnative-pg.v1/">API reference</a>.</p>
+<h2 id="pooler-configuration">Pooler configuration</h2>
+<dl>
+<dt><strong>Pooler with custom service config</strong></dt>
+<dd><a href="pooler-external.yaml"><code>pooler-external.yaml</code></a></dd>
+</dl>
               
             </div>
           </div><footer>

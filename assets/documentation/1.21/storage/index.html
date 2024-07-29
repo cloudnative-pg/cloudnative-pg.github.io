@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="The CloudNativePG Contributors" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Storage - CloudNativePG</title>
+    <title>Storage - CloudNativePG v1.21</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
@@ -31,7 +31,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-          <a href=".." class="icon icon-home"> CloudNativePG
+          <a href=".." class="icon icon-home"> CloudNativePG v1.21
         </a><div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
       <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
@@ -62,6 +62,10 @@
               </ul>
               <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../quickstart/">Quickstart</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../image_catalog/">Image Catalog</a>
                 </li>
               </ul>
               <ul>
@@ -121,11 +125,19 @@
                 </li>
               </ul>
               <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../service_management/">Service Management</a>
+                </li>
+              </ul>
+              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../postgresql_conf/">PostgreSQL Configuration</a>
                 </li>
               </ul>
               <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../declarative_role_management/">Database Role Management</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../tablespaces/">Tablespaces</a>
                 </li>
               </ul>
               <ul>
@@ -152,6 +164,8 @@
     <li class="toctree-l2"><a class="reference internal" href="#configuration-via-a-pvc-template">Configuration via a PVC template</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#volume-for-wal">Volume for WAL</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#volumes-for-tablespaces">Volumes for tablespaces</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#volume-expansion">Volume expansion</a>
         <ul>
@@ -207,11 +221,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../kubernetes_upgrade/">Kubernetes Upgrade</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../expose_pg_services/">Exposing Postgres Services</a>
+                <li class="toctree-l1"><a class="reference internal" href="../kubernetes_upgrade/">Kubernetes Upgrade and Maintenance</a>
                 </li>
               </ul>
               <ul>
@@ -283,6 +293,10 @@
                 </li>
               </ul>
               <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../preview_version/">Preview Versions</a>
+                </li>
+              </ul>
+              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../release_notes/">Release notes</a>
                 </li>
               </ul>
@@ -298,7 +312,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
       <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="..">CloudNativePG</a>
+          <a href="..">CloudNativePG v1.21</a>
         
       </nav>
       <div class="wy-nav-content">
@@ -401,11 +415,15 @@ information about this important security feature.</p>
 <h2 id="persistent-volume-claim-pvc">Persistent Volume Claim (PVC)</h2>
 <p>The operator creates a PVC for each PostgreSQL instance, with the goal of
 storing the <code>PGDATA</code>. It then mounts it into each pod.</p>
-<p>Additionally, it supports the creation of clusters with a separate PVC
-on which to store PostgreSQL Write-Ahead Log (WAL), as explained in the
-<a href="#volume-for-wal">"Volume for WAL" section</a> below.</p>
-<p>In CloudNativePG, the volumes attached to a single PostgreSQL instance
-are defined as <strong>PVC group</strong>.</p>
+<p>Additionally, it supports creating clusters with:</p>
+<ul>
+<li>A separate PVC on which to store PostgreSQL WAL, as explained in
+  <a href="#volume-for-wal">Volume for WAL</a></li>
+<li>Additional separate volumes reserved for PostgreSQL tablespaces, as explained
+  in <a href="../tablespaces/">Tablespaces</a></li>
+</ul>
+<p>In CloudNativePG, the volumes attached to a single PostgreSQL instance are
+defined as a <em>PVC group</em>.</p>
 <h2 id="configuration-via-a-storage-class">Configuration via a storage class</h2>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
@@ -523,6 +541,10 @@ spec:
 <p>Removing <code>walStorage</code> isn't supported. Once added, a separate volume for
 WALs can't be removed from an existing Postgres cluster.</p>
 </div>
+<h2 id="volumes-for-tablespaces">Volumes for tablespaces</h2>
+<p>CloudNativePG supports declarative tablespaces. You can add one or more
+volumes, each dedicated to a single PostgreSQL tablespace.
+See <a href="../tablespaces/">Tablespaces</a> for details.</p>
 <h2 id="volume-expansion">Volume expansion</h2>
 <p>Kubernetes exposes an API allowing <a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/#expanding-persistent-volumes-claims">expanding PVCs</a>
 that's enabled by default. However, it needs to be supported by the underlying <code>StorageClass</code>.</p>

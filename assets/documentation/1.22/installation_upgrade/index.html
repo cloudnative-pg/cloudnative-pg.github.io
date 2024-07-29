@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="The CloudNativePG Contributors" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Installation and upgrades - CloudNativePG</title>
+    <title>Installation and upgrades - CloudNativePG v1.22</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
@@ -31,7 +31,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-          <a href=".." class="icon icon-home"> CloudNativePG
+          <a href=".." class="icon icon-home"> CloudNativePG v1.22
         </a><div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
       <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
@@ -81,39 +81,21 @@
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#compatibility-among-versions">Compatibility among versions</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#upgrading-to-122-from-a-previous-minor-version">Upgrading to 1.22 from a previous minor version</a>
+    <li class="toctree-l3"><a class="reference internal" href="#upgrading-to-1240-or-1233">Upgrading to 1.24.0 or 1.23.3</a>
         <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#from-replica-clusters-to-distributed-topology">From Replica Clusters to Distributed Topology</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#upgrading-to-123-from-a-previous-minor-version">Upgrading to 1.23 from a previous minor version</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#user-defined-replication-slots">User defined replication slots</a>
+    </li>
     <li class="toctree-l4"><a class="reference internal" href="#server-side-apply-of-manifests">Server-side apply of manifests</a>
     </li>
         </ul>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#upgrading-to-121-from-a-previous-minor-version">Upgrading to 1.21 from a previous minor version</a>
-        <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#superuser-access-disabled">Superuser access disabled</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#replication-slots-for-ha">Replication slots for HA</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#delay-for-postgresql-shutdown">Delay for PostgreSQL shutdown</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#delay-for-postgresql-startup">Delay for PostgreSQL startup</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#delay-for-postgresql-switchover">Delay for PostgreSQL switchover</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#labels">Labels</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#shortcut-for-keeping-the-existing-behavior">Shortcut for keeping the existing behavior</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#upgrading-to-120-from-a-previous-minor-version">Upgrading to 1.20 from a previous minor version</a>
-        <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#backup-from-a-standby">Backup from a standby</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#restart-of-a-primary-after-a-rolling-update">Restart of a primary after a rolling update</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#replication-slots-for-high-availability">Replication slots for High Availability</a>
-    </li>
-        </ul>
+    <li class="toctree-l3"><a class="reference internal" href="#upgrading-to-122-from-a-previous-minor-version">Upgrading to 1.22 from a previous minor version</a>
     </li>
         </ul>
     </li>
@@ -122,6 +104,10 @@
               </ul>
               <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../quickstart/">Quickstart</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../image_catalog/">Image Catalog</a>
                 </li>
               </ul>
               <ul>
@@ -181,6 +167,10 @@
                 </li>
               </ul>
               <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../service_management/">Service Management</a>
+                </li>
+              </ul>
+              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../postgresql_conf/">PostgreSQL Configuration</a>
                 </li>
               </ul>
@@ -237,11 +227,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../kubernetes_upgrade/">Kubernetes Upgrade</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../expose_pg_services/">Exposing Postgres Services</a>
+                <li class="toctree-l1"><a class="reference internal" href="../kubernetes_upgrade/">Kubernetes Upgrade and Maintenance</a>
                 </li>
               </ul>
               <ul>
@@ -313,6 +299,10 @@
                 </li>
               </ul>
               <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../preview_version/">Preview Versions</a>
+                </li>
+              </ul>
+              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../release_notes/">Release notes</a>
                 </li>
               </ul>
@@ -328,7 +318,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
       <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="..">CloudNativePG</a>
+          <a href="..">CloudNativePG v1.22</a>
         
       </nav>
       <div class="wy-nav-content">
@@ -349,10 +339,10 @@
 <h3 id="directly-using-the-operator-manifest">Directly using the operator manifest</h3>
 <p>The operator can be installed like any other resource in Kubernetes,
 through a YAML manifest applied via <code>kubectl</code>.</p>
-<p>You can install the <a href="https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/release-1.22/releases/cnpg-1.22.3.yaml">latest operator manifest</a>
+<p>You can install the <a href="https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/release-1.23/releases/cnpg-1.23.2.yaml">latest operator manifest</a>
 for this minor release as follows:</p>
 <pre><code class="language-sh">kubectl apply --server-side -f \
-  https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/release-1.22/releases/cnpg-1.22.3.yaml
+  https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/release-1.23/releases/cnpg-1.23.2.yaml
 </code></pre>
 <p>You can verify that with:</p>
 <pre><code class="language-sh">kubectl get deployment -n cnpg-system cnpg-controller-manager
@@ -396,7 +386,7 @@ supported release.</p>
 <p>If you are instead looking for the latest snapshot of the operator for this
 specific minor release, you can just run:</p>
 <pre><code class="language-sh">curl -sSfL \
-  https://raw.githubusercontent.com/cloudnative-pg/artifacts/release-1.22/manifests/operator-manifest.yaml | \
+  https://raw.githubusercontent.com/cloudnative-pg/artifacts/release-1.23/manifests/operator-manifest.yaml | \
   kubectl apply --server-side -f -
 </code></pre>
 <div class="admonition important">
@@ -453,11 +443,6 @@ some default options. For more information, please refer to the
 <p>Please carefully read the <a href="../release_notes/">release notes</a>
 before performing an upgrade as some versions might require
 extra steps.</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>If you are upgrading to version 1.20, please read carefully
-the <a href="#upgrading-to-120-from-a-previous-minor-version">dedicated section below</a>.</p>
 </div>
 <p>Upgrading CloudNativePG operator is a two-step process:</p>
 <ol>
@@ -531,50 +516,80 @@ manager of the chosen distribution is enough.</p>
 <p>When versions are not directly upgradable, the old version needs to be
 removed before installing the new one. This won't affect user data but
 only the operator itself.</p>
-<h3 id="upgrading-to-122-from-a-previous-minor-version">Upgrading to 1.22 from a previous minor version</h3>
+<h3 id="upgrading-to-1240-or-1233">Upgrading to 1.24.0 or 1.23.3</h3>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
-<p>If you are transitioning from a prior minor version to version 1.22, please
-ensure that you are using the latest available patch version, which is
-currently 1.22.2. This guarantees that you benefit from the most recent bug
-fixes, security updates, and improvements associated with the 1.22 series.</p>
+<p>We encourage all existing users of CloudNativePG to upgrade to version
+1.24.0 or at least to the latest stable version of the minor release you are
+currently using (namely 1.23.3).</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>Every time you are upgrading to a higher minor release, make sure you
 go through the release notes and upgrade instructions of all the
 intermediate minor releases. For example, if you want to move
-from 1.20.x to 1.22, make sure you go through the release notes
-and upgrade instructions for 1.21 and 1.22.</p>
+from 1.21.x to 1.24, make sure you go through the release notes
+and upgrade instructions for 1.22, 1.23 and 1.24.</p>
 </div>
-<p>CloudNativePG continues to adhere to the security-by-default approach. As of
-version 1.22, the usage of the <code>ALTER SYSTEM</code> command is now disabled by
-default.</p>
-<p>The reason behind this choice is to ensure that, by default, changes to the
-PostgreSQL configuration in a database cluster controlled by CloudNativePG are
-allowed only through the Kubernetes API.</p>
-<p>At the same time, we are providing an option to enable <code>ALTER SYSTEM</code> if you
-need to use it, even temporarily, from versions 1.22.0, 1.21.2, and 1.20.5,
-by setting <code>.spec.postgresql.enableAlterSystem</code> to <code>true</code>, as in the following
-excerpt:</p>
+<h4 id="from-replica-clusters-to-distributed-topology">From Replica Clusters to Distributed Topology</h4>
+<p>One of the key enhancements in CloudNativePG 1.24.0 is the upgrade of the
+replica cluster feature.</p>
+<p>The former replica cluster feature, now referred to as the "Standalone Replica
+Cluster," is no longer recommended for Disaster Recovery (DR) and High
+Availability (HA) scenarios that span multiple Kubernetes clusters. Standalone
+replica clusters are best suited for read-only workloads, such as reporting,
+OLAP, or creating development environments with test data.</p>
+<p>For DR and HA purposes, CloudNativePG now introduces the Distributed Topology
+strategy for replica clusters. This new strategy allows you to build PostgreSQL
+clusters across private, public, hybrid, and multi-cloud environments, spanning
+multiple regions and potentially different cloud providers. It also provides an
+API to control the switchover operation, ensuring that only one cluster acts as
+the primary at any given time.</p>
+<p>This Distributed Topology strategy enhances resilience and scalability, making
+it a robust solution for modern, distributed applications that require high
+availability and disaster recovery capabilities across diverse infrastructure
+setups.</p>
+<p>You can seamlessly transition from a previous replica cluster configuration to a
+distributed topology by modifying all the <code>Cluster</code> resources involved in the
+distributed PostgreSQL setup. Ensure the following steps are taken:</p>
+<ul>
+<li>Configure the <code>externalClusters</code> section to include all the clusters involved
+  in the distributed topology. We strongly suggest using the same configuration
+  across all <code>Cluster</code> resources for maintainability and consistency.</li>
+<li>Configure the <code>primary</code> and <code>source</code> fields in the <code>.spec.replica</code> stanza to
+  reflect the distributed topology. The <code>primary</code> field should contain the name
+  of the current primary cluster in the distributed topology, while the <code>source</code>
+  field should contain the name of the cluster each <code>Cluster</code> resource is
+  replicating from. It is important to note that the <code>enabled</code> field, which was
+  previously set to <code>true</code> or <code>false</code>, should now be unset (default).</li>
+</ul>
+<p>For more information, please refer to
+the <a href="../replica_cluster/#distributed-topology">"Distributed Topology" section for replica clusters</a>.</p>
+<h3 id="upgrading-to-123-from-a-previous-minor-version">Upgrading to 1.23 from a previous minor version</h3>
+<h4 id="user-defined-replication-slots">User defined replication slots</h4>
+<p>CloudNativePG now offers automated synchronization of all replication slots
+defined on the primary to any standby within the High Availability (HA)
+cluster.</p>
+<p>If you manually manage replication slots on a standby, it is essential to
+exclude those replication slots from synchronization. Failure to do so may
+result in CloudNativePG removing them from the standby. To implement this
+exclusion, utilize the following YAML configuration. In this example,
+replication slots with a name starting with 'foo' are prevented from
+synchronization:</p>
 <pre><code class="language-yaml">...
-  postgresql:
-    enableAlterSystem: true
-...
+  replicationSlots:
+    synchronizeReplicas:
+      enabled: true
+      excludePatterns:
+      - &quot;^foo&quot;
 </code></pre>
-<p>Clusters in 1.22 will have <code>enableAlterSystem</code> set to <code>false</code> by default.
-If you want to retain the existing behavior, in 1.22, you need to explicitly
-set <code>enableAlterSystem</code> to <code>true</code> as shown above.</p>
-<p>In versions 1.21.2 and 1.20.5, and later patch releases in the 1.20 and 1.21
-branches, <code>enableAlterSystem</code> will be set to <code>true</code> by default, keeping with
-the existing behavior. If you don't need to use <code>ALTER SYSTEM</code>, we recommend
-that you set <code>enableAlterSystem</code> explicitly to <code>false</code>.</p>
-<div class="admonition important">
-<p class="admonition-title">Important</p>
-<p>You can set the desired value for  <code>enableAlterSystem</code> immediately
-following your upgrade to version 1.22.0, 1.21.2, or 1.20.5, as shown in
-the example above.</p>
-</div>
+<p>Alternatively, if you prefer to disable the synchronization mechanism entirely,
+use the following configuration:</p>
+<pre><code class="language-yaml">...
+  replicationSlots:
+    synchronizeReplicas:
+      enabled: false
+</code></pre>
 <h4 id="server-side-apply-of-manifests">Server-side apply of manifests</h4>
 <p>To ensure compatibility with Kubernetes 1.29 and upcoming versions,
 CloudNativePG now mandates the utilization of
@@ -592,194 +607,30 @@ option may result in errors resembling the example below:</p>
 <p>Henceforth, <code>kube-apiserver</code> will be automatically acknowledged as a recognized
 manager for the CRDs, eliminating the need for any further manual intervention
 on this matter.</p>
-<h3 id="upgrading-to-121-from-a-previous-minor-version">Upgrading to 1.21 from a previous minor version</h3>
-<p>With the goal to keep improving out-of-the-box the <em>convention over
-configuration</em> behavior of the operator, CloudNativePG changes the default
-value of several knobs in the following areas:</p>
-<ul>
-<li>startup and shutdown control of the PostgreSQL instance</li>
-<li>self-healing</li>
-<li>security</li>
-<li>labels</li>
-</ul>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Please read carefully the list of changes below, and how to modify the
-<code>Cluster</code> manifests to retain the existing behavior if you don't want to
-disrupt your existing workloads. Alternatively, postpone the upgrade to
-until you are sure. In general, we recommend adopting these default
-values unless you have valid reasons not to.</p>
-</div>
-<h4 id="superuser-access-disabled">Superuser access disabled</h4>
-<p>Pushing towards <em>security-by-default</em>, CloudNativePG now disables access
-<code>postgres</code> superuser access via the network in all new clusters, unless
-explicitly enabled.</p>
-<p>If you want to ensure superuser access to the PostgreSQL cluster, regardless
-which version of CloudNativePG you are running, we advise you to explicitly
-declare it by setting:</p>
-<pre><code class="language-yaml">spec:
-   ...
-   enableSuperuserAccess: true
+<h3 id="upgrading-to-122-from-a-previous-minor-version">Upgrading to 1.22 from a previous minor version</h3>
+<p>CloudNativePG continues to adhere to the security-by-default approach. As of
+version 1.22, the usage of the <code>ALTER SYSTEM</code> command is now disabled by
+default.</p>
+<p>The reason behind this choice is to ensure that, by default, changes to the
+PostgreSQL configuration in a database cluster controlled by CloudNativePG are
+allowed only through the Kubernetes API.</p>
+<p>At the same time, we are providing an option to enable <code>ALTER SYSTEM</code> if you
+need to use it, even temporarily, from versions 1.22.0, 1.21.2, and 1.20.5,
+by setting <code>.spec.postgresql.enableAlterSystem</code> to <code>true</code>, as in the following
+excerpt:</p>
+<pre><code class="language-yaml">...
+  postgresql:
+    enableAlterSystem: true
+...
 </code></pre>
-<h4 id="replication-slots-for-ha">Replication slots for HA</h4>
-<p>Replication slots for High Availability are enabled by default.</p>
-<p>If you want to ensure replication slots are disabled, regardless of which
-version of CloudNativePG you are running, we advise you to explicitly declare
-it by setting:</p>
-<pre><code class="language-yaml">spec:
-   ...
-   replicationSlots:
-     highAvailability:
-       enabled: false
-</code></pre>
-<h4 id="delay-for-postgresql-shutdown">Delay for PostgreSQL shutdown</h4>
-<p>Up to 1.20.2, <a href="../instance_manager/#shutdown-control">the <code>stopDelay</code> parameter</a>
-was set to 30 seconds. Despite the recommendations to change and tune this
-value, almost all the cases we have examined during support incidents or
-community issues show that this value is left unchanged.</p>
-<p>The <a href="https://github.com/cloudnative-pg/cloudnative-pg/commit/9f7f18c5b9d9103423a53d180c0e2f2189e71c3c">new default value is 1800 seconds</a>,
-the equivalent of 30 minutes.</p>
-<p>The new <code>smartShutdownTimeout</code> parameter has been introduced to define
-the maximum time window within the <code>stopDelay</code> value reserved to complete
-the <code>smart</code> shutdown procedure in PostgreSQL. During this time, the
-Postgres server rejects any new connections while waiting for all regular
-sessions to terminate.</p>
-<p>Once elapsed, the remaining time up to <code>stopDelay</code> will be reserved for
-PostgreSQL to complete its duties regarding WAL commitments with both the
-archive and the streaming replicas to ensure the cluster doesn't lose any data.</p>
-<p>If you want to retain the old behavior, you need to set explicitly:</p>
-<pre><code class="language-yaml">spec:
-   ...
-   stopDelay: 30
-</code></pre>
-<p>And, <strong>after</strong> the upgrade has completed, specify <code>smartShutdownTimeout</code>:</p>
-<pre><code class="language-yaml">spec:
-   ...
-   stopDelay: 30
-   smartShutdownTimeout: 15
-</code></pre>
-<h4 id="delay-for-postgresql-startup">Delay for PostgreSQL startup</h4>
-<p>Up to 1.20.2, <a href="../instance_manager/#startup-liveness-and-readiness-probes">the <code>startDelay</code> parameter</a>
-was set to 30 seconds, and CloudNativePG used this parameter as
-<code>initialDelaySeconds</code> for the Kubernetes liveness probe. Given that all the
-supported Kubernetes releases provide <a href="https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/#define-startup-probes">startup probes</a>,
-<code>startDelay</code> is now automatically divided into periods of 10 seconds of
-duration  each.</p>
+<p>Clusters in 1.22 will have <code>enableAlterSystem</code> set to <code>false</code> by default.
+If you want to retain the existing behavior in 1.22, you need to explicitly
+set <code>enableAlterSystem</code> to <code>true</code> as shown above.</p>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
-<p>In order to add the <code>startupProbe</code>, each pod needs to be restarted.
-As a result, when you upgrade the operator, a one-time rolling
-update of the cluster will be executed even in the online update case.</p>
+<p>You can set the desired value for  <code>enableAlterSystem</code> immediately
+following your upgrade to version 1.22.3 as shown in the example above.</p>
 </div>
-<p>Despite the recommendations to change and tune this value, almost all the cases
-we have examined during support incidents or community issues show that this
-value is left unchanged. Given that this parameter influences the startup of
-a PostgreSQL instance, a low value of <code>startDelay</code> would cause Postgres
-never to reach a consistent recovery state and be restarted indefinitely.</p>
-<p>For this reason, <code>startDelay</code> has been <a href="https://github.com/cloudnative-pg/cloudnative-pg/commit/4f4cd96bc6f8e284a200705c11a2b41652d58146">raised by default to 3600 seconds</a>,
-the equivalent of 1 hour.</p>
-<p>If you want to retain the existing behavior using the new implementation, you
-can do that by explicitly setting:</p>
-<pre><code class="language-yaml">spec:
-   ...
-   startDelay: 30
-</code></pre>
-<h4 id="delay-for-postgresql-switchover">Delay for PostgreSQL switchover</h4>
-<p>Up to 1.20.2, <a href="../instance_manager/#shutdown-of-the-primary-during-a-switchover">the <code>switchoverDelay</code> parameter</a>
-was set by default to 40000000 seconds (over 15 months) to simulate a very long
-interval.</p>
-<p>The <a href="https://github.com/cloudnative-pg/cloudnative-pg/commit/9565f9f2ebab8bc648d9c361198479974664c322">default value has been lowered to 3600 seconds</a>,
-the equivalent of 1 hour.</p>
-<p>If you want to retain the old behavior, you need to set explicitly:</p>
-<pre><code class="language-yaml">spec:
-   ...
-   switchoverDelay: 40000000
-</code></pre>
-<h4 id="labels">Labels</h4>
-<p>In version 1.18, we deprecated the <code>postgresql</code> label in pods to identify the
-name of the cluster, and replaced it with the more canonical <code>cnpg.io/cluster</code>
-label. The <code>postgresql</code> label is no longer maintained.</p>
-<p>Similarly, from this version, the <code>role</code> label is deprecated. The new label
-<code>cnpg.io/instanceRole</code> is now used, and will entirely replace the <code>role</code> label
-in a future release.</p>
-<h4 id="shortcut-for-keeping-the-existing-behavior">Shortcut for keeping the existing behavior</h4>
-<p>If you want to explicitly keep the behavior of CloudNativePG up to version
-1.20.2 (we advise not to), you need to set these values in all your <code>Cluster</code>
-definitions <strong>before upgrading</strong> to a higher version:</p>
-<pre><code class="language-yaml">spec:
-   ...
-   # Changed in 1.21.0, 1.20.3 and 1.19.5
-   startDelay: 30
-   stopDelay: 30
-   switchoverDelay: 40000000
-   # Changed in 1.21.0 only
-   enableSuperuserAccess: true
-   replicationSlots:
-     highAvailability:
-       enabled: false
-</code></pre>
-<p>Once the upgrade is completed, also add:</p>
-<pre><code class="language-yaml">spec:
-   ...
-   smartShutdownTimeout: 15
-</code></pre>
-<h3 id="upgrading-to-120-from-a-previous-minor-version">Upgrading to 1.20 from a previous minor version</h3>
-<p>CloudNativePG 1.20 introduces some changes from previous versions of the
-operator in the default behavior of a few features, with the goal to improve
-resilience and usability of a Postgres cluster out of the box, through
-convention over configuration.</p>
-<div class="admonition important">
-<p class="admonition-title">Important</p>
-<p>These changes all involve cases where at least one replica is present, and
-<strong>only affect new <code>Cluster</code> resources</strong>.</p>
-</div>
-<h4 id="backup-from-a-standby">Backup from a standby</h4>
-<p><a href="../backup/#backup-from-a-standby">Backup from a standby</a>
-was introduced in CloudNativePG 1.19, but disabled by default - meaning that
-the base backup is taken from the primary unless the target is explicitly
-set to prefer standby.</p>
-<p>From version 1.20, if one or more replicas are available, the operator
-will prefer the most aligned standby to take a full base backup.</p>
-<p>If you are upgrading your CloudNativePG deployment to 1.20 and are concerned that
-this feature might impact your production environment for the new <code>Cluster</code> resources
-that you create, you can explicitly set the target to the primary by adding the
-following line to all your <code>Cluster</code> resources:</p>
-<pre><code class="language-yaml">spec:
-   ...
-   backup:
-     target: &quot;primary&quot;
-</code></pre>
-<h4 id="restart-of-a-primary-after-a-rolling-update">Restart of a primary after a rolling update</h4>
-<p><a href="../rolling_update/#automated-updates-unsupervised">Automated rolling updates</a>
-have been always available in CloudNativePG, and by default they update the
-primary after having performed a switchover to the most aligned replica.</p>
-<p>From version 1.20, we are changing the default update method
-of the primary from switchover to restart as, in most cases, this is
-the fastest and safest way.</p>
-<p>If you are upgrading your CloudNativePG deployment to 1.20 and are concerned that
-this feature might impact your production environment for the new <code>Cluster</code>
-resources that you create, you can explicitly set the update method of the
-primary to switchover by adding the following line to all your <code>Cluster</code>
-resources:</p>
-<pre><code class="language-yaml">spec:
-   ...
-   primaryUpdateMethod: switchover
-</code></pre>
-<h4 id="replication-slots-for-high-availability">Replication slots for High Availability</h4>
-<p><a href="../replication/#replication-slots-for-high-availability">Replication slots for High Availability</a>
-were introduced in CloudNativePG in version 1.18, but disabled by default.</p>
-<p>Version 1.20 prepares the ground for enabling this feature by default in any
-future release, as replication slots enhance the resilience and robustness of a
-High Availability cluster.</p>
-<p>For future compatibility, if you already know that your environments won't ever
-need replication slots, our recommendation is that you explicitly disable their
-management by adding from now the following lines to your <code>Cluster</code> resources:</p>
-<pre><code class="language-yaml">spec:
-   ...
-   replicationSlots:
-     highAvailability:
-       enabled: false
-</code></pre>
               
             </div>
           </div><footer>

@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="The CloudNativePG Contributors" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Troubleshooting - CloudNativePG</title>
+    <title>Troubleshooting - CloudNativePG v1.22</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
@@ -31,7 +31,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-          <a href=".." class="icon icon-home"> CloudNativePG
+          <a href=".." class="icon icon-home"> CloudNativePG v1.22
         </a><div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
       <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
@@ -62,6 +62,10 @@
               </ul>
               <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../quickstart/">Quickstart</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../image_catalog/">Image Catalog</a>
                 </li>
               </ul>
               <ul>
@@ -121,6 +125,10 @@
                 </li>
               </ul>
               <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../service_management/">Service Management</a>
+                </li>
+              </ul>
+              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../postgresql_conf/">PostgreSQL Configuration</a>
                 </li>
               </ul>
@@ -177,11 +185,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../kubernetes_upgrade/">Kubernetes Upgrade</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../expose_pg_services/">Exposing Postgres Services</a>
+                <li class="toctree-l1"><a class="reference internal" href="../kubernetes_upgrade/">Kubernetes Upgrade and Maintenance</a>
                 </li>
               </ul>
               <ul>
@@ -241,7 +245,7 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#postgresql-core-dumps">PostgreSQL core dumps</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#some-common-issues">Some common issues</a>
+    <li class="toctree-l2"><a class="reference internal" href="#some-known-issues">Some known issues</a>
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#storage-is-full">Storage is full</a>
     </li>
@@ -317,6 +321,10 @@
                 </li>
               </ul>
               <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../preview_version/">Preview Versions</a>
+                </li>
+              </ul>
+              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../release_notes/">Release notes</a>
                 </li>
               </ul>
@@ -332,7 +340,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
       <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="..">CloudNativePG</a>
+          <a href="..">CloudNativePG v1.22</a>
         
       </nav>
       <div class="wy-nav-content">
@@ -521,7 +529,7 @@ Those pods are managed by a deployment named <code>cnpg-controller-manager</code
 Name:               cluster-example
 Namespace:          default
 System ID:          7044925089871458324
-PostgreSQL Image:   ghcr.io/cloudnative-pg/postgresql:16.1-3
+PostgreSQL Image:   ghcr.io/cloudnative-pg/postgresql:16.3-3
 Primary instance:   cluster-example-1
 Instances:          3
 Ready instances:    3
@@ -579,7 +587,7 @@ For more information, please see <a href="../kubectl-plugin/"><code>cnpg</code> 
 <pre><code class="language-shell">kubectl describe cluster &lt;CLUSTER_NAME&gt; -n &lt;NAMESPACE&gt; | grep &quot;Image Name&quot;
 </code></pre>
 <p>Output:</p>
-<pre><code class="language-shell">  Image Name:    ghcr.io/cloudnative-pg/postgresql:16.1-3
+<pre><code class="language-shell">  Image Name:    ghcr.io/cloudnative-pg/postgresql:16.3-3
 </code></pre>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -607,7 +615,11 @@ cluster with:</p>
 <pre><code class="language-shell">kubectl logs -n &lt;NAMESPACE&gt; &lt;CLUSTER&gt;-&lt;N&gt; | \
   jq 'select(.logger==&quot;postgres&quot;) | .record.message'
 </code></pre>
-<p>The following example also adds the timestamp in a user-friendly format:</p>
+<p>The following example also adds the timestamp:</p>
+<pre><code class="language-shell">kubectl logs -n &lt;NAMESPACE&gt; &lt;CLUSTER&gt;-&lt;N&gt; | \
+  jq -r 'select(.logger==&quot;postgres&quot;) | [.ts, .record.message] | @csv'
+</code></pre>
+<p>If the timestamp is displayed in Unix Epoch time, you can convert it to a user-friendly format:</p>
 <pre><code class="language-shell">kubectl logs -n &lt;NAMESPACE&gt; &lt;CLUSTER&gt;-&lt;N&gt; | \
   jq -r 'select(.logger==&quot;postgres&quot;) | [(.ts|strflocaltime(&quot;%Y-%m-%dT%H:%M:%S %Z&quot;)), .record.message] | @csv'
 </code></pre>
@@ -818,12 +830,20 @@ core dump on your machine through <code>kubectl cp</code> as follows:</p>
 </code></pre>
 <p>You now have the file. Make sure you free the space on the server by
 removing the core dumps.</p>
-<h2 id="some-common-issues">Some common issues</h2>
+<h2 id="some-known-issues">Some known issues</h2>
 <h3 id="storage-is-full">Storage is full</h3>
-<p>If one or more pods in the cluster are in <code>CrashloopBackoff</code> and logs
-suggest this could be due to a full disk, you probably have to increase the
-size of the instance's <code>PersistentVolumeClaim</code>. Please look at the
-<a href="../storage/#volume-expansion">"Volume expansion" section</a> in the documentation.</p>
+<p>In case the storage is full, the PostgreSQL pods will not be able to write new
+data, or, in case of the disk containing the WAL segments being full, PostgreSQL
+will shut down.</p>
+<p>If you see messages in the logs about the disk being full, you should increase
+the size of the affected PVC. You can do this by editing the PVC and changing
+the <code>spec.resources.requests.storage</code> field. After that, you should also update
+the Cluster resource with the new size to apply the same change to all the pods.
+Please look at the <a href="../storage/#volume-expansion">"Volume expansion" section</a> in the documentation.</p>
+<p>If the space for WAL segments is exhausted, the pod will be crash-looping and
+the cluster status will report <code>Not enough disk space</code>. Increasing the size in
+the PVC and then in the Cluster resource will solve the issue. See also
+the <a href="../instance_manager/#disk-full-failure">"Disk Full Failure" section</a></p>
 <h3 id="pods-are-stuck-in-pending-state">Pods are stuck in <code>Pending</code> state</h3>
 <p>In case a Cluster's instance is stuck in the <code>Pending</code> phase, you should check
 the pod's <code>Events</code> section to get an idea of the reasons behind this:</p>
@@ -866,8 +886,7 @@ kubectl delete pod/$PODNAME pvc/$PODNAME pvc/$PODNAME-wal pv/$VOLNAME
 relevant problems.
 This has been found to be related to the next issue
 <a href="#networking-is-impaired-by-installed-network-policies">on connectivity</a>.
-From releases 1.20.1, 1.19.3, and 1.18.5, networking issues will be more clearly
-reflected in the status column as follows:</p>
+Networking issues are reflected in the status column as follows:</p>
 <pre><code class="language-text">Instance Status Extraction Error: HTTP communication issue
 </code></pre>
 <h3 id="networking-is-impaired-by-installed-network-policies">Networking is impaired by installed Network Policies</h3>
