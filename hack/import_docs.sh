@@ -28,7 +28,7 @@ mkdir -p $WORKDIR/cnpg
 
 BRANCH_NAME=release-$release_version
 # Use the main branch if we are not targeting a stable version
-if ! [[ "${release_version}" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+if ! [[ "${release_version}" =~ ^[0-9]+\.[0-9]+$ ]]; then
     BRANCH_NAME="main"
     PREVIEW_RELEASE=1
 fi

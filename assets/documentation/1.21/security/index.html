@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="The CloudNativePG Contributors" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Security - CloudNativePG</title>
+    <title>Security - CloudNativePG v1.21</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
@@ -31,7 +31,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-          <a href=".." class="icon icon-home"> CloudNativePG
+          <a href=".." class="icon icon-home"> CloudNativePG v1.21
         </a><div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
       <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
@@ -78,6 +78,10 @@
     <li class="toctree-l2"><a class="reference internal" href="#code">Code</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#container">Container</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#guidelines-and-frameworks-for-container-security">Guidelines and Frameworks for Container Security</a>
+    </li>
+        </ul>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#cluster">Cluster</a>
         <ul>
@@ -292,7 +296,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
       <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="..">CloudNativePG</a>
+          <a href="..">CloudNativePG v1.21</a>
         
       </nav>
       <div class="wy-nav-content">
@@ -325,46 +329,82 @@ blog article to get a better understanding and context of the approach EDB
 has taken with security in CloudNativePG.</p>
 </div>
 <h2 id="code">Code</h2>
-<p>Source code of CloudNativePG is <em>systematically scanned</em> for static analysis purposes,
-including <strong>security problems</strong>, using a popular open-source linter for Go called
-<a href="https://github.com/golangci/golangci-lint">GolangCI-Lint</a> directly in the CI/CD pipeline.
-GolangCI-Lint can run several <em>linters</em> on the same source code.</p>
-<p>One of these is <a href="https://github.com/securego/gosec">Golang Security Checker</a>, or simply <code>gosec</code>,
-a linter that scans the abstract syntactic tree of the source against a set of rules aimed at
-the discovery of well-known vulnerabilities, threats, and weaknesses hidden in
-the code such as hard-coded credentials, integer overflows and SQL injections - to name a few.</p>
+<p>CloudNativePG's source code undergoes systematic static analysis, including
+checks for security vulnerabilities, using the popular open-source linter for
+Go, <a href="https://github.com/golangci/golangci-lint">GolangCI-Lint</a>, directly
+integrated into the CI/CD pipeline. GolangCI-Lint can run multiple linters on
+the same source code.</p>
+<p>The following tools are used to identify security issues:</p>
+<ul>
+<li>
+<p><strong><a href="https://github.com/securego/gosec">Golang Security Checker</a> (<code>gosec</code>):</strong> A
+  linter that scans the abstract syntax tree of the source code against a set
+  of rules designed to detect known vulnerabilities, threats, and weaknesses,
+  such as hard-coded credentials, integer overflows, and SQL injections.
+  GolangCI-Lint runs <code>gosec</code> as part of its suite.</p>
+</li>
+<li>
+<p><strong><a href="https://pkg.go.dev/golang.org/x/vuln/cmd/govulncheck">govulncheck</a>:</strong> This
+  tool runs in the CI/CD pipeline and reports known vulnerabilities affecting
+  Go code or the compiler. If the operator is built with a version of the Go
+  compiler containing a known vulnerability, <code>govulncheck</code> will detect it.</p>
+</li>
+<li>
+<p><strong><a href="https://codeql.github.com/">CodeQL</a>:</strong> Provided by GitHub, this tool scans
+  for security issues and blocks any pull request with detected
+  vulnerabilities. CodeQL is configured to review only Go code, excluding other
+  languages in the repository such as Python or Bash.</p>
+</li>
+<li>
+<p><strong><a href="https://snyk.io/">Snyk</a>:</strong> Conducts nightly code scans in a scheduled job
+  and generates weekly reports highlighting any new findings related to code
+  security and licensing issues.</p>
+</li>
+</ul>
+<p>The CloudNativePG repository has the <em>"Private vulnerability reporting"</em> option
+enabled in the <a href="https://github.com/cloudnative-pg/cloudnative-pg/security">Security section</a>.
+This feature allows users to safely report security issues that require careful
+handling before being publicly disclosed. If you discover any security bug,
+please use this medium to report it.</p>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
-<p>A failure in the static code analysis phase of the CI/CD pipeline is a blocker
-for the entire delivery of CloudNativePG, meaning that each commit is validated
-against all the linters defined by GolangCI-Lint.</p>
+<p>A failure in the static code analysis phase of the CI/CD pipeline will
+block the entire delivery process of CloudNativePG. Every commit must pass all
+the linters defined by GolangCI-Lint.</p>
 </div>
 <h2 id="container">Container</h2>
-<p>Every container image that is part of CloudNativePG is automatically built via CI/CD pipelines following every commit.
-Such images include not only the operator's, but also the operands' - specifically every supported PostgreSQL version.
-Within the pipelines, images are scanned with:</p>
+<p>Every container image in CloudNativePG is automatically built via CI/CD
+pipelines following every commit. These images include not only the operator's
+image but also the operands' images, specifically for every supported
+PostgreSQL version. During the CI/CD process, images undergo scanning with the
+following tools:</p>
 <ul>
-<li><a href="https://github.com/goodwithtech/dockle">Dockle</a>: for best practices in terms
-  of the container build process</li>
+<li><strong><a href="https://github.com/goodwithtech/dockle">Dockle</a>:</strong> Ensures best practices
+  in the container build process.</li>
+<li><strong><a href="https://snyk.io/">Snyk</a>:</strong> Detects security issues within the container
+  and reports findings via the GitHub interface.</li>
 </ul>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
-<p>All operand images are automatically rebuilt once a day by our pipelines in case
-of security updates at the base image and package level, providing <strong>patch level updates</strong>
-for the container images that the community distributes.</p>
+<p>All operand images are automatically rebuilt daily by our pipelines to
+incorporate security updates at the base image and package level, providing
+<strong>patch-level updates</strong> for the container images distributed to the community.</p>
 </div>
-<p>The following guidelines and frameworks have been taken into account for container-level security:</p>
+<h3 id="guidelines-and-frameworks-for-container-security">Guidelines and Frameworks for Container Security</h3>
+<p>The following guidelines and frameworks have been considered for ensuring
+container-level security:</p>
 <ul>
-<li>the <a href="https://dl.dod.cyber.mil/wp-content/uploads/devsecops/pdf/DevSecOps_Enterprise_Container_Image_Creation_and_Deployment_Guide_2.6-Public-Release.pdf">"Container Image Creation and Deployment Guide"</a>,
-  developed by the Defense Information Systems Agency (DISA) of the United States Department of Defense (DoD)</li>
-<li>the <a href="https://www.cisecurity.org/benchmark/docker/">"CIS Benchmark for Docker"</a>,
-  developed by the Center for Internet Security (CIS)</li>
+<li><strong><a href="https://dl.dod.cyber.mil/wp-content/uploads/devsecops/pdf/DevSecOps_Enterprise_Container_Image_Creation_and_Deployment_Guide_2.6-Public-Release.pdf">"Container Image Creation and Deployment Guide"</a>:</strong>
+  Developed by the Defense Information Systems Agency (DISA) of the United States
+  Department of Defense (DoD).</li>
+<li><strong><a href="https://www.cisecurity.org/benchmark/docker/">"CIS Benchmark for Docker"</a>:</strong>
+  Developed by the Center for Internet Security (CIS).</li>
 </ul>
 <div class="admonition seealso">
-<p class="admonition-title">About the Container level security</p>
-<p>Please refer to <a href="https://www.enterprisedb.com/blog/security-and-containers-cloud-native-postgresql">"Security and Containers in CloudNativePG"</a>
-blog article for more information about the approach that EDB has taken on
-security at the container level in CloudNativePG.</p>
+<p class="admonition-title">About Container-Level Security</p>
+<p>For more information on the approach that EDB has taken regarding security
+at the container level in CloudNativePG, please refer to the blog article
+<a href="https://www.enterprisedb.com/blog/security-and-containers-cloud-native-postgresql">"Security and Containers in CloudNativePG"</a>.</p>
 </div>
 <h2 id="cluster">Cluster</h2>
 <p>Security at the cluster level takes into account all Kubernetes components that
