@@ -6,11 +6,11 @@
     <description>Recent content in Tags on CloudNativePG - PostgreSQL Operator for Kubernetes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 12 Jun 2024 23:49:11 +0200</lastBuildDate><atom:link href="https://cloudnative-pg.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 29 Jul 2024 18:27:49 +0200</lastBuildDate><atom:link href="https://cloudnative-pg.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>cloudnativepg</title>
       <link>https://cloudnative-pg.io/tags/cloudnativepg/</link>
-      <pubDate>Wed, 12 Jun 2024 23:49:11 +0200</pubDate>
+      <pubDate>Mon, 29 Jul 2024 18:27:49 +0200</pubDate>
       
       <guid>https://cloudnative-pg.io/tags/cloudnativepg/</guid>
       <description></description>
@@ -19,7 +19,7 @@
     <item>
       <title>k8s</title>
       <link>https://cloudnative-pg.io/tags/k8s/</link>
-      <pubDate>Wed, 12 Jun 2024 23:49:11 +0200</pubDate>
+      <pubDate>Mon, 29 Jul 2024 18:27:49 +0200</pubDate>
       
       <guid>https://cloudnative-pg.io/tags/k8s/</guid>
       <description></description>
@@ -28,7 +28,7 @@
     <item>
       <title>kubernetes</title>
       <link>https://cloudnative-pg.io/tags/kubernetes/</link>
-      <pubDate>Wed, 12 Jun 2024 23:49:11 +0200</pubDate>
+      <pubDate>Mon, 29 Jul 2024 18:27:49 +0200</pubDate>
       
       <guid>https://cloudnative-pg.io/tags/kubernetes/</guid>
       <description></description>
@@ -37,7 +37,7 @@
     <item>
       <title>postgres</title>
       <link>https://cloudnative-pg.io/tags/postgres/</link>
-      <pubDate>Wed, 12 Jun 2024 23:49:11 +0200</pubDate>
+      <pubDate>Mon, 29 Jul 2024 18:27:49 +0200</pubDate>
       
       <guid>https://cloudnative-pg.io/tags/postgres/</guid>
       <description></description>
@@ -46,7 +46,7 @@
     <item>
       <title>postgresql</title>
       <link>https://cloudnative-pg.io/tags/postgresql/</link>
-      <pubDate>Wed, 12 Jun 2024 23:49:11 +0200</pubDate>
+      <pubDate>Mon, 29 Jul 2024 18:27:49 +0200</pubDate>
       
       <guid>https://cloudnative-pg.io/tags/postgresql/</guid>
       <description></description>
@@ -55,7 +55,7 @@
     <item>
       <title>release</title>
       <link>https://cloudnative-pg.io/tags/release/</link>
-      <pubDate>Wed, 12 Jun 2024 23:49:11 +0200</pubDate>
+      <pubDate>Mon, 29 Jul 2024 18:27:49 +0200</pubDate>
       
       <guid>https://cloudnative-pg.io/tags/release/</guid>
       <description></description>

@@ -6,7 +6,7 @@
     <description>Recent content on CloudNativePG - PostgreSQL Operator for Kubernetes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 12 Jun 2024 23:49:11 +0200</lastBuildDate><atom:link href="https://cloudnative-pg.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 29 Jul 2024 18:27:49 +0200</lastBuildDate><atom:link href="https://cloudnative-pg.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Creating a custom container image for CloudNativePG</title>
       <link>https://cloudnative-pg.io/blog/creating-container-images/</link>
