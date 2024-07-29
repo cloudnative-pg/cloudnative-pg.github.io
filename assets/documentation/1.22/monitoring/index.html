@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="The CloudNativePG Contributors" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Monitoring - CloudNativePG</title>
+    <title>Monitoring - CloudNativePG v1.22</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
@@ -31,7 +31,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-          <a href=".." class="icon icon-home"> CloudNativePG
+          <a href=".." class="icon icon-home"> CloudNativePG v1.22
         </a><div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
       <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
@@ -304,7 +304,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
       <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="..">CloudNativePG</a>
+          <a href="..">CloudNativePG v1.22</a>
         
       </nav>
       <div class="wy-nav-content">
@@ -493,7 +493,7 @@ cnpg_collector_up{cluster=&quot;cluster-example&quot;} 1
 
 # HELP cnpg_collector_postgres_version Postgres version
 # TYPE cnpg_collector_postgres_version gauge
-cnpg_collector_postgres_version{cluster=&quot;cluster-example&quot;,full=&quot;16.1&quot;} 16.1
+cnpg_collector_postgres_version{cluster=&quot;cluster-example&quot;,full=&quot;16.3&quot;} 16.3
 
 # HELP cnpg_collector_last_failed_backup_timestamp The last failed backup as a unix timestamp
 # TYPE cnpg_collector_last_failed_backup_timestamp gauge
@@ -833,6 +833,7 @@ cnpg_some_query_rows{datname=&quot;postgres&quot;} 42
 <p>Here is a short description of all the available fields:</p>
 <ul>
 <li><code>&lt;MetricName&gt;</code>: the name of the Prometheus metric<ul>
+<li><code>name</code>: override <code>&lt;MetricName&gt;</code>, if defined</li>
 <li><code>query</code>: the SQL query to run on the target database to generate the metrics</li>
 <li><code>primary</code>: whether to run the query only on the primary instance</li>
 <li><code>master</code>: same as <code>primary</code> (for compatibility with the Prometheus PostgreSQL exporter's syntax - deprecated) <!-- wokeignore:rule=master --></li>
@@ -843,6 +844,7 @@ cnpg_some_query_rows{datname=&quot;postgres&quot;} 42
   to enable auto discovery. Overwrites the default database if provided.</li>
 <li><code>metrics</code>: section containing a list of all exported columns, defined as follows:</li>
 <li><code>&lt;ColumnName&gt;</code>: the name of the column returned by the query<ul>
+<li><code>name</code>: override the <code>ColumnName</code> of the column in the metric, if defined</li>
 <li><code>usage</code>: one of the values described below</li>
 <li><code>description</code>: the metric's description</li>
 <li><code>metrics_mapping</code>: the optional column mapping when <code>usage</code> is set to <code>MAPPEDMETRIC</code></li>

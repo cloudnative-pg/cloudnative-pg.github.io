@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="The CloudNativePG Contributors" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Kubectl Plugin - CloudNativePG</title>
+    <title>Kubectl Plugin - CloudNativePG v1.21</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
@@ -31,7 +31,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-          <a href=".." class="icon icon-home"> CloudNativePG
+          <a href=".." class="icon icon-home"> CloudNativePG v1.21
         </a><div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
       <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
@@ -354,7 +354,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
       <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="..">CloudNativePG</a>
+          <a href="..">CloudNativePG v1.21</a>
         
       </nav>
       <div class="wy-nav-content">
@@ -482,6 +482,12 @@ sudo mv kubectl_complete-cnpg /usr/local/bin
 <p>Once the plugin was installed and deployed, you can start using it like this:</p>
 <pre><code class="language-shell">kubectl cnpg &lt;command&gt; &lt;args...&gt;
 </code></pre>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The plugin automatically detects if the standard output channel is connected to a terminal.
+In such cases, it may add ANSI colors to the command output. To disable colors, use the
+<code>--color=never</code> option with the command.</p>
+</div>
 <h3 id="generation-of-installation-manifests">Generation of installation manifests</h3>
 <p>The <code>cnpg</code> plugin can be used to generate the YAML manifest for the
 installation of the operator. This option would typically be used if you want
@@ -546,7 +552,7 @@ two different time intervals.</p>
 Name:               sandbox
 Namespace:          default
 System ID:          7039966298120953877
-PostgreSQL Image:   ghcr.io/cloudnative-pg/postgresql:16.1
+PostgreSQL Image:   ghcr.io/cloudnative-pg/postgresql:16.3
 Primary instance:   sandbox-2
 Instances:          3
 Ready instances:    3
@@ -586,7 +592,7 @@ sandbox-3  302 GB         3AF/EBAD5D18  Standby (sync)    OK      Guaranteed  1.
 Name:               sandbox
 Namespace:          default
 System ID:          7039966298120953877
-PostgreSQL Image:   ghcr.io/cloudnative-pg/postgresql:16.1
+PostgreSQL Image:   ghcr.io/cloudnative-pg/postgresql:16.3
 Primary instance:   sandbox-2
 Instances:          3
 Ready instances:    3
@@ -1104,7 +1110,7 @@ method should be used with extreme care, by authorized personnel only.</p>
 </div>
 <pre><code class="language-shell">kubectl cnpg psql cluster-example
 
-psql (16.1 (Debian 16.1-1.pgdg110+1))
+psql (16.3 (Debian 16.3-1.pgdg110+1))
 Type &quot;help&quot; for help.
 
 postgres=#
@@ -1112,7 +1118,7 @@ postgres=#
 <p>By default, the command will connect to the primary instance. The user can
 select to work against a replica by using the <code>--replica</code> option:</p>
 <pre><code class="language-shell">kubectl cnpg psql --replica cluster-example
-psql (16.1 (Debian 16.1-1.pgdg110+1))
+psql (16.3 (Debian 16.3-1.pgdg110+1))
 
 Type &quot;help&quot; for help.
 
