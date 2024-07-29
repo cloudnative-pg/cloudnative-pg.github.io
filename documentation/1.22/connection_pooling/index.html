@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="The CloudNativePG Contributors" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Connection pooling - CloudNativePG</title>
+    <title>Connection pooling - CloudNativePG v1.22</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
@@ -31,7 +31,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-          <a href=".." class="icon icon-home"> CloudNativePG
+          <a href=".." class="icon icon-home"> CloudNativePG v1.22
         </a><div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
       <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
@@ -304,7 +304,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
       <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="..">CloudNativePG</a>
+          <a href="..">CloudNativePG v1.22</a>
         
       </nav>
       <div class="wy-nav-content">
@@ -395,6 +395,12 @@ deletion of the pooler, and vice versa.</p>
 <p>Once you know how a pooler works, you have full freedom in terms of
 possible architectures. You can have clusters without poolers, clusters with
 a single pooler, or clusters with several poolers, that is, one per application.</p>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>When the operator is upgraded, the pooler pods will undergo a rolling
+upgrade. This is necessary to ensure that the instance manager within the
+pooler pods is also upgraded.</p>
 </div>
 <h2 id="security">Security</h2>
 <p>Any PgBouncer pooler is transparently integrated with CloudNativePG support for

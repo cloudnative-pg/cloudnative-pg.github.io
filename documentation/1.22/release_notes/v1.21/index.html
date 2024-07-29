@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="The CloudNativePG Contributors" />
       <link rel="shortcut icon" href="../../img/favicon.ico" />
-    <title>Release notes for CloudNativePG 1.21 - CloudNativePG</title>
+    <title>Release notes for CloudNativePG 1.21 - CloudNativePG v1.22</title>
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
@@ -31,7 +31,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-          <a href="../.." class="icon icon-home"> CloudNativePG
+          <a href="../.." class="icon icon-home"> CloudNativePG v1.22
         </a><div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
       <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
@@ -268,7 +268,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
       <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../..">CloudNativePG</a>
+          <a href="../..">CloudNativePG v1.22</a>
         
       </nav>
       <div class="wy-nav-content">
@@ -289,15 +289,99 @@
 <p>For a complete list of changes, please refer to the
 <a href="https://github.com/cloudnative-pg/cloudnative-pg/commits/release-1.21">commits</a>
 on the release branch in GitHub.</p>
-<h2 id="version-1215">Version 1.21.5</h2>
-<p><strong>Release date:</strong> Apr 24, 2024</p>
+<h2 id="version-1216">Version 1.21.6</h2>
+<p><strong>Release date:</strong> Jun 12, 2024</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>Version 1.21 is approaching its End-of-Life (EOL) on May 24, 2024.
-If you haven't already, please begin planning for an upgrade promptly to
-ensure continued support and security.</p>
+<p>This is expected to be the last release in the 1.21.X series.
+Users are encouraged to update to a newer minor version soon.</p>
 </div>
-<p>Enhancements:</p>
+<h3 id="enhancements">Enhancements:</h3>
+<ul>
+<li>
+<p>Enabled configuration of standby-sensitive parameters during recovery using a
+  physical backup (#4564)</p>
+</li>
+<li>
+<p>Enabled the configuration of the liveness probe timeout via the
+  <code>.spec.livenessProbeTimeout</code> option (#4719)</p>
+</li>
+<li>
+<p><code>cnpg</code> plugin for <code>kubectl</code>:</p>
+<ul>
+<li>Enhanced support for ANSI colors in the plugin by adding the <code>--color</code>
+  option, which accepts <code>always</code>, <code>never</code>, and <code>auto</code> (default) as values
+  (#4775)</li>
+<li>The plugin is now available on Homebrew for macOS users (#4602)</li>
+</ul>
+</li>
+</ul>
+<h3 id="fixes">Fixes:</h3>
+<ul>
+<li>
+<p>Prevented fenced instances from entering an unnecessary loop and consuming
+  all available CPU (#4625)</p>
+</li>
+<li>
+<p>Resolved an issue where the instance manager on the primary would
+  indefinitely wait for the instance to start after encountering a failure
+  following a stop operation (#4434)</p>
+</li>
+<li>
+<p>Fixed an issue where the interaction between <code>hot_standby_feedback</code> and
+  managed cluster-level replication slots was preventing the autovacuum from
+  operating correctly; this issue was causing disk space to remain occupied by
+  dead tuples (#4811)</p>
+</li>
+<li>
+<p>Fixed a panic in the backup controller that occurred when pod container
+  statuses were missing (#4765)</p>
+</li>
+<li>
+<p>Prevented unnecessary shutdown of the instance manager (#4670)</p>
+</li>
+<li>
+<p>Prevented unnecessary reloads of PostgreSQL configuration when unchanged (#4531)</p>
+</li>
+<li>
+<p>Prevented unnecessary reloads of the ident map by ensuring a consistent and
+  unique method of writing its content (#4648)</p>
+</li>
+<li>
+<p>Avoided conflicts during phase registration by patching the status of the
+  resource instead of updating it (#4637)</p>
+</li>
+<li>
+<p>Implemented a timeout when restarting PostgreSQL and lifting fencing (#4504)</p>
+</li>
+<li>
+<p>Ensured that a replica cluster is restarted after promotion to properly set
+  the archive mode (#4399)</p>
+</li>
+<li>
+<p>Removed an unneeded concurrent keep-alive routine that was causing random
+  failures in volume snapshot backups (#4768)</p>
+</li>
+<li>
+<p>Ensured correct parsing of the additional rows field returned when the
+  <code>pgaudit.log_rows</code> option was enabled, preventing audit logs from being
+  incorrectly routed to the normal log stream (#4394)</p>
+</li>
+<li>
+<p><code>cnpg</code> plugin for <code>kubectl</code>:</p>
+<ul>
+<li>Resolved an issue with listing PDBs using the <code>cnpg status</code> command (#4530)</li>
+</ul>
+</li>
+</ul>
+<h3 id="changes">Changes</h3>
+<ul>
+<li>Default operand image set to PostgreSQL 16.3 (#4584)</li>
+<li>Removed all RBAC requirements on namespace objects (#4753)</li>
+</ul>
+<h2 id="version-1215">Version 1.21.5</h2>
+<p><strong>Release date:</strong> Apr 24, 2024</p>
+<h3 id="enhancements_1">Enhancements:</h3>
 <ul>
 <li>Users can now configure the <code>wal_log_hints</code> PostgreSQL parameter (#4218)
   (#4218)</li>
@@ -308,7 +392,7 @@ ensure continued support and security.</p>
 <li>Error detection when invoking <code>barman-cloud-wal-restore</code> in <code>recovery</code>
   bootstrap (#4101)</li>
 </ul>
-<p>Fixes:</p>
+<h3 id="fixes_1">Fixes:</h3>
 <ul>
 <li>Ensured that before a switchover, the elected replica is in streaming
   replication (#4288)</li>
@@ -327,14 +411,14 @@ ensure continued support and security.</p>
 </ul>
 </li>
 </ul>
-<p>Changes:</p>
+<h3 id="changes_1">Changes:</h3>
 <ul>
 <li>The Grafana dashboard now resides at
   https://github.com/cloudnative-pg/grafana-dashboards (#4154)</li>
 </ul>
 <h2 id="version-1214">Version 1.21.4</h2>
 <p><strong>Release date:</strong> Mar 14, 2024</p>
-<h3 id="enhancements">Enhancements</h3>
+<h3 id="enhancements_2">Enhancements</h3>
 <ul>
 <li>Allow customization of the <code>wal_level</code> GUC in PostgreSQL (#4020)</li>
 <li>Add the <code>cnpg.io/skipWalArchiving</code> annotation to disable WAL archiving when
@@ -350,7 +434,7 @@ ensure continued support and security.</p>
   the running operator image during in-place updates, enabling the operator to
   inject the correct binary into any Pod with a supported architecture (#3840)</li>
 </ul>
-<h3 id="fixes">Fixes</h3>
+<h3 id="fixes_2">Fixes</h3>
 <ul>
 <li>Properly synchronize PVC group labels with those on the pods, a critical
   aspect when all pods are deleted and the operator needs to decide which Pod
@@ -373,7 +457,7 @@ ensure continued support and security.</p>
 <li>Enforce fully-qualified object names in SQL queries for the PgBouncer pooler
   (#4080)</li>
 </ul>
-<h3 id="changes">Changes</h3>
+<h3 id="changes_2">Changes</h3>
 <ul>
 <li>Follow Kubernetes recommendations to switch from client-side to server-side
   application of manifests, requiring the <code>--server-side</code> option by default
@@ -382,7 +466,7 @@ ensure continued support and security.</p>
 </ul>
 <h2 id="version-1213">Version 1.21.3</h2>
 <p><strong>Release date:</strong> Feb 2, 2024</p>
-<p>Enhancements:</p>
+<h3 id="enhancements_3">Enhancements:</h3>
 <ul>
 <li>Tailor ephemeral volume storage in a Postgres cluster using a claim template
   through the <code>ephemeralVolumeSource</code> option (#3678)</li>
@@ -393,7 +477,7 @@ ensure continued support and security.</p>
 <li>Allow customization of PostgreSQL's ident map file via the
   <code>.spec.postgresql.pg_ident</code> stanza, through a list of user name maps (#3534)</li>
 </ul>
-<p>Fixes:</p>
+<h3 id="fixes_3">Fixes:</h3>
 <ul>
 <li>Prevent an unrecoverable issue with <code>pg_rewind</code> failing due to
   <code>postgresql.auto.conf</code> being read-only on clusters where the <code>ALTER SYSTEM</code>
@@ -411,7 +495,7 @@ ensure continued support and security.</p>
 </ul>
 <h2 id="version-1212">Version 1.21.2</h2>
 <p><strong>Release date:</strong> Dec 21, 2023</p>
-<p>Security:</p>
+<h3 id="security_1">Security:</h3>
 <ul>
 <li>By default, TLSv1.3 is now enforced on all PostgreSQL 12 or higher
   installations. Additionally, users can configure the <code>ssl_ciphers</code>,
@@ -419,7 +503,7 @@ ensure continued support and security.</p>
 <li>Integration of Docker image scanning with Dockle and Snyk to enhance security
   measures (#3300).</li>
 </ul>
-<p>Enhancements:</p>
+<h3 id="enhancements_4">Enhancements:</h3>
 <ul>
 <li>Improved reconciliation of external clusters (#3533).</li>
 <li>Introduction of the ability to enable/disable the <code>ALTER SYSTEM</code> command (#3535).</li>
@@ -442,7 +526,7 @@ ensure continued support and security.</p>
 </ul>
 </li>
 </ul>
-<p>Fixes:</p>
+<h3 id="fixes_4">Fixes:</h3>
 <ul>
 <li>Reconciliation of metadata, annotations, and labels of <code>PodDisruptionBudget</code>
   resources (#3312 and #3434).</li>
@@ -463,13 +547,13 @@ ensure continued support and security.</p>
 </ul>
 </li>
 </ul>
-<p>Changes:</p>
+<h3 id="changes_3">Changes:</h3>
 <ul>
 <li>Default operand image set to PostgreSQL 16.1 (#3270).</li>
 </ul>
 <h2 id="version-1211">Version 1.21.1</h2>
 <p><strong>Release date:</strong> Nov 3, 2023</p>
-<p>Enhancements:</p>
+<h3 id="enhancements_5">Enhancements:</h3>
 <ul>
 <li>Introduce support for online/hot backups with volume snapshots by using the
   PostgreSQL API for physical online base backups. Default configuration for
@@ -492,7 +576,7 @@ ensure continued support and security.</p>
 <li>Allow the configuration of <code>max_prepared_statements</code> with the pgBouncer
   <code>Pooler</code> resource (#3174)</li>
 </ul>
-<p>Fixes:</p>
+<h3 id="fixes_5">Fixes:</h3>
 <ul>
 <li>Suspend WAL archiving during a switchover and resume it when it is completed
   (#3227)</li>
@@ -504,7 +588,7 @@ ensure continued support and security.</p>
 <li>Reduce the number of labels in <code>VolumeSnapshots</code> resources and render them
   into more appropriate annotations (#3151)</li>
 </ul>
-<p>Changes:</p>
+<h3 id="changes_4">Changes:</h3>
 <ul>
 <li>Volume snapshot backups, introduced in 1.21.0, are now online/hot by default;
   in order to restore offline/cold backups set <code>.spec.backup.volumeSnapshot</code> to
@@ -512,7 +596,7 @@ ensure continued support and security.</p>
 <li>Stop using the <code>postgresql.auto.conf</code> file inside PGDATA to control Postgres
   replication settings, and replace it with a file named <code>override.conf</code> (#2812)</li>
 </ul>
-<p>Technical enhancements:</p>
+<h3 id="technical-enhancements">Technical enhancements:</h3>
 <ul>
 <li>Use extended query protocol for PostgreSQL in the instance manager (#3152)</li>
 </ul>
@@ -526,7 +610,7 @@ predefined values. If you are upgrading from a previous version, please
 carefully read the "Important Changes" section below, as well as the
 <a href="../../installation_upgrade/">upgrade documentation</a>.</p>
 </div>
-<p>Features:</p>
+<h3 id="features">Features:</h3>
 <ul>
 <li>
 <p><strong>Volume Snapshot support for backup and recovery:</strong> leverage the standard
@@ -542,7 +626,7 @@ carefully read the "Important Changes" section below, as well as the
   their "EDB Postgres for Kubernetes" operator and adapting it for CloudNativePG.</p>
 </li>
 </ul>
-<p>Important Changes:</p>
+<h3 id="important-changes">Important Changes:</h3>
 <ul>
 <li>Change the default value of <code>stopDelay</code> to 1800 seconds instead of 30 seconds
   (#2848)</li>
@@ -561,11 +645,11 @@ carefully read the "Important Changes" section below, as well as the
 <li>Stop supporting the <code>postgresql</code> label - replaced by <code>cnpg.io/cluster</code> in
   1.18 (#2744)</li>
 </ul>
-<p>Security:</p>
+<h3 id="security_2">Security:</h3>
 <ul>
 <li>Add a default <code>seccompProfile</code> to the operator deployment (#2926)</li>
 </ul>
-<p>Enhancements:</p>
+<h3 id="enhancements_6">Enhancements:</h3>
 <ul>
 <li>Enable bootstrap of a replica cluster from a consistent set of volume
   snapshots (#2647)</li>
@@ -588,7 +672,7 @@ carefully read the "Important Changes" section below, as well as the
 <li>Add primary timestamp and uptime to the kubectl plugin's <code>status</code> command
   (#2953)</li>
 </ul>
-<p>Fixes:</p>
+<h3 id="fixes_6">Fixes:</h3>
 <ul>
 <li>Ensure that the primary instance is always recreated first by prioritizing
   ready PVCs with a primary role (#2544)</li>
@@ -625,7 +709,7 @@ carefully read the "Important Changes" section below, as well as the
 </ul>
 </li>
 </ul>
-<p>Changes:</p>
+<h3 id="changes_5">Changes:</h3>
 <ul>
 <li>Set the default operand image to PostgreSQL 16.0</li>
 <li>Fencing now uses PostgreSQL's fast shutdown instead of smart shutdown to halt
@@ -639,7 +723,7 @@ carefully read the "Important Changes" section below, as well as the
 <li>Add the <code>cnpg.io/instanceRole</code> label while deprecating the existing <code>role</code>
   label (#2915)</li>
 </ul>
-<p>Technical enhancements:</p>
+<h3 id="technical-enhancements_1">Technical enhancements:</h3>
 <ul>
 <li>Replace <code>k8s-api-docgen</code> with <code>gen-crd-api-reference-docs</code> to automatically
   build the API reference documentation (#2606)</li>
