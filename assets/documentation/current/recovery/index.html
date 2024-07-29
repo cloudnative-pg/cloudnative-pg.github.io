@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="The CloudNativePG Contributors" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Recovery - CloudNativePG</title>
+    <title>Recovery - CloudNativePG v1.23</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
@@ -31,7 +31,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-          <a href=".." class="icon icon-home"> CloudNativePG
+          <a href=".." class="icon icon-home"> CloudNativePG v1.23
         </a><div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
       <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
@@ -121,7 +121,7 @@
                 </li>
               </ul>
               <ul class="current">
-                <li class="toctree-l1 current"><a class="reference internal current" href="#">Recovery</a>
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Recovery</a>
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#recovery-from-an-object-store">Recovery from an object store</a>
     </li>
@@ -129,7 +129,7 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#recovery-from-a-backup-object">Recovery from a Backup object</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#additional-considerations">Additional considerations</a>
+    <li class="toctree-l2"><a class="reference internal" href="#additional-considerations">Additional Considerations</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#point-in-time-recovery-pitr">Point in time recovery (PITR)</a>
         <ul>
@@ -298,7 +298,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
       <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="..">CloudNativePG</a>
+          <a href="..">CloudNativePG v1.23</a>
         
       </nav>
       <div class="wy-nav-content">
@@ -401,6 +401,10 @@ spec:
         wal:
           maxParallel: 8
 </code></pre>
+<p>The previous example assumes that the application database and its owning user
+are named <code>app</code> by default. If the PostgreSQL cluster being restored uses
+different names, you must specify these names before exiting the recovery phase,
+as documented in <a href="#configure-the-application-database">"Configure the application database"</a>.</p>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
 <p>By default, the <code>recovery</code> method strictly uses the <code>name</code> of the
@@ -467,6 +471,10 @@ spec:
           kind: VolumeSnapshot
           apiGroup: snapshot.storage.k8s.io
 </code></pre>
+<p>The previous example assumes that the application database and its owning user
+are named <code>app</code> by default. If the PostgreSQL cluster being restored uses
+different names, you must specify these names before exiting the recovery phase,
+as documented in <a href="#configure-the-application-database">"Configure the application database"</a>.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>If bootstrapping a replica-mode cluster from snapshots, to leverage
@@ -500,25 +508,27 @@ spec:
 </code></pre>
 <p>This bootstrap method allows you to specify just a reference to the
 backup that needs to be restored.</p>
-<p>The previous example implies the application database and its owning user is
-the default one, <code>app</code>. If the PostgreSQL cluster being restored was using
-different names, you can specify them as documented in <a href="#configure-the-application-database">Configure the
-application database</a>.</p>
-<h2 id="additional-considerations">Additional considerations</h2>
-<p>Whether you recover from a recovery object store, a volume snapshot, or an
-existing <code>Backup</code> resource, the following considerations apply:</p>
+<p>The previous example assumes that the application database and its owning user
+are named <code>app</code> by default. If the PostgreSQL cluster being restored uses
+different names, you must specify these names before exiting the recovery phase,
+as documented in <a href="#configure-the-application-database">"Configure the application database"</a>.</p>
+<h2 id="additional-considerations">Additional Considerations</h2>
+<p>Whether you recover from an object store, a volume snapshot, or an existing
+<code>Backup</code> resource, no changes to the database, including the catalog, are
+permitted until the <code>Cluster</code> is fully promoted to primary and accepts write
+operations. This restriction includes any role overrides, which are deferred
+until the <code>Cluster</code> transitions to primary.
+As a result, the following considerations apply:</p>
 <ul>
-<li>The application database name and the application database user are preserved
-  from the backup that's being restored. The operator doesn't currently attempt
-  to back up the underlying secrets, as this is part of the usual maintenance
-  activity of the Kubernetes cluster.</li>
-<li>To preserve the original postgres user password, you need to properly
-  configure <code>enableSuperuserAccess</code> and supply a <code>superuserSecret</code>.</li>
-<li>By default, the recovery continues up to the latest
-  available WAL on the default target timeline (<code>latest</code>).
-  You can optionally specify a <code>recoveryTarget</code> to perform a point-in-time
-  recovery (see <a href="#point-in-time-recovery-pitr">Point in time recovery (PITR)</a>).</li>
+<li>The application database name and user are copied from the backup being
+  restored. The operator does not currently back up the underlying secrets, as
+  this is part of the usual maintenance activity of the Kubernetes cluster.</li>
+<li>To preserve the original postgres user password, configure
+  <code>enableSuperuserAccess</code> and supply a <code>superuserSecret</code>.</li>
 </ul>
+<p>By default, recovery continues up to the latest available WAL on the default
+target timeline (<code>latest</code>). You can optionally specify a <code>recoveryTarget</code> to
+perform a point-in-time recovery (see <a href="#point-in-time-recovery-pitr">Point in Time Recovery (PITR)</a>).</p>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
 <p>Consider using the <code>barmanObjectStore.wal.maxParallel</code> option to speed
@@ -673,8 +683,7 @@ the volume snapshot is before the recovery target timestamp.</p>
 <p>The operator can retrieve the closest backup when you specify either
 <code>targetTime</code> or <code>targetLSN</code>. However, this isn't possible for the remaining
 targets: <code>targetName</code>, <code>targetXID</code>, and <code>targetImmediate</code>. In such cases, it's
-important to specify <code>backupID</code>, unless the last available backup in the
-catalog is acceptable.</p>
+mandatory to specify <code>backupID</code>.</p>
 </div>
 <p>This example uses a <code>targetName</code>-based recovery target:</p>
 <pre><code class="language-yaml">apiVersion: postgresql.cnpg.io/v1
@@ -739,8 +748,16 @@ update the database to use the secrets. Or you can also let the operator
 generate a secret with a randomly secure password for use.
 See <a href="../bootstrap/#bootstrap-an-empty-cluster-initdb">Bootstrap an empty cluster</a>
 for more information about secrets.</p>
-<p>This example configures the application database <code>app</code> with owner <code>app</code> and
-supplied secret <code>app-secret</code>.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>While the <code>Cluster</code> is in recovery mode, no changes to the database,
+including the catalog, are permitted. This restriction includes any role
+overrides, which are deferred until the <code>Cluster</code> transitions to primary.
+During this phase, users remain as defined in the source cluster.</p>
+</div>
+<p>The following example configures the <code>app</code> database with the owner <code>app</code> and
+the password stored in the provided secret <code>app-secret</code>, following the
+bootstrap from a live cluster.</p>
 <pre><code class="language-yaml">apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 [...]
@@ -753,22 +770,17 @@ spec:
         name: app-secret
       [...]
 </code></pre>
-<p>With this configuration, the following happens after recovery is complete:</p>
+<p>With the above configuration, the following will happen only <strong>after recovery is
+completed</strong>:</p>
 <ol>
-<li>If database <code>app</code> doesn't exist, a new database <code>app</code> is created.</li>
-<li>If user <code>app</code> doesn't exist, a new user <code>app</code> is created.</li>
-<li>if user <code>app</code> isn't the owner of the database, user <code>app</code> is granted
-   as owner of database <code>app</code>.</li>
-<li>If the value of <code>username</code> matches the value of <code>owner</code> in the secret, the
-   password of application database is changed to the value of <code>password</code> in the
-   secret.</li>
+<li>If the <code>app</code> database does not exist, it will be created.</li>
+<li>If the <code>app</code> user does not exist, it will be created.</li>
+<li>If the <code>app</code> user is not the owner of the <code>app</code> database, ownership will be
+   granted to the <code>app</code> user.</li>
+<li>If the <code>username</code> value matches the <code>owner</code> value in the secret, the
+   password for the application user (the <code>app</code> user in this case) will be
+   updated to the <code>password</code> value in the secret.</li>
 </ol>
-<div class="admonition important">
-<p class="admonition-title">Important</p>
-<p>For a replica cluster with replica mode enabled, the operator doesn't
-create any database or user in the PostgreSQL instance. These are
-recovered from the original cluster.</p>
-</div>
 <h2 id="how-recovery-works-under-the-hood">How recovery works under the hood</h2>
 <!-- TODO: do we need this section? -->
 <!-- Also, "under the hood" is an idiom and should be replaced with something more precise -->
@@ -848,12 +860,12 @@ There might be cases where the existing information in the storage buckets
 could be overwritten by the new cluster.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>The operator includes a safety check to ensure a cluster doesn't overwrite</p>
-</div>
-<p>a storage bucket that contained information. A cluster that would overwrite
+<p>The operator includes a safety check to ensure a cluster doesn't overwrite
+a storage bucket that contained information. A cluster that would overwrite
 existing storage remains in the state <code>Setting up primary</code> with pods in an
 error state. The pod logs show: <code>ERROR: WAL archive check failed for server
 recoveredCluster: Expected empty archive</code>.</p>
+</div>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
 <p>If you set the <code>cnpg.io/skipEmptyWalArchiveCheck</code> annotation to <code>enabled</code>

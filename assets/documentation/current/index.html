@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="description" content="None" /><meta name="author" content="The CloudNativePG Contributors" />
       <link rel="shortcut icon" href="img/favicon.ico" />
-    <title>CloudNativePG</title>
+    <title>CloudNativePG v1.23</title>
     <link rel="stylesheet" href="css/theme.css" />
     <link rel="stylesheet" href="css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
@@ -31,7 +31,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-          <a href="." class="icon icon-home"> CloudNativePG
+          <a href="." class="icon icon-home"> CloudNativePG v1.23
         </a><div role="search">
   <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
       <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
@@ -41,11 +41,17 @@
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-                <li class="toctree-l1 current"><a class="reference internal current" href="#">CloudNativePG</a>
+                <li class="toctree-l1 current"><a class="reference internal current" href=".">CloudNativePG</a>
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#supported-kubernetes-distributions">Supported Kubernetes distributions</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#container-images">Container images</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#operator">Operator</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#operands">Operands</a>
+    </li>
+        </ul>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#main-features">Main features</a>
     </li>
@@ -282,7 +288,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
       <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href=".">CloudNativePG</a>
+          <a href=".">CloudNativePG v1.23</a>
         
       </nav>
       <div class="wy-nav-content">
@@ -332,14 +338,25 @@ minor version was first released.</p>
 <p>Please refer to the <a href="supported_releases/">"Supported releases"</a> page for details.</p>
 <h2 id="container-images">Container images</h2>
 <p>The <a href="https://github.com/cloudnative-pg">CloudNativePG community</a> maintains
-container images for both the operator and the operand, that is PostgreSQL.</p>
-<p>The CloudNativePG operator container images are <a href="https://github.com/GoogleContainerTools/distroless">distroless</a>
-and available on the <a href="https://github.com/cloudnative-pg/cloudnative-pg/pkgs/container/cloudnative-pg"><code>cloudnative-pg</code> project's GitHub Container Registry</a>.</p>
-<p>The PostgreSQL operand container images are available for all the
+container images for both the operator and PostgreSQL (the operand).</p>
+<h3 id="operator">Operator</h3>
+<p>The CloudNativePG operator container images are available on the
+<a href="https://github.com/cloudnative-pg/cloudnative-pg/pkgs/container/cloudnative-pg"><code>cloudnative-pg</code> project's GitHub Container Registry</a>
+in three different flavors:</p>
+<ul>
+<li>Debian 12 distroless</li>
+<li>Red Hat UBI 9 micro (suffix <code>-ubi9</code>)</li>
+<li>Red Hat UBI 8 micro (suffix <code>-ubi8</code>)</li>
+</ul>
+<p>Red Hat UBI images are primarily intended for OLM consumption.</p>
+<h3 id="operands">Operands</h3>
+<p>The PostgreSQL operand container images are available for all
 <a href="https://www.postgresql.org/">PGDG supported versions of PostgreSQL</a>,
-on multiple architectures, directly from the
+across multiple architectures, directly from the
 <a href="https://github.com/cloudnative-pg/postgres-containers/pkgs/container/postgresql"><code>postgres-containers</code> project's GitHub Container Registry</a>.</p>
-<p>Additionally, the Community provides images for the <a href="postgis/">PostGIS extension</a>.</p>
+<p>Daily jobs ensure that critical vulnerabilities (CVEs) in the entire stack are
+promptly addressed.</p>
+<p>Additionally, the community provides images for the <a href="postgis/">PostGIS extension</a>.</p>
 <h2 id="main-features">Main features</h2>
 <ul>
 <li>Direct integration with Kubernetes API server for High Availability,
@@ -383,10 +400,16 @@ on multiple architectures, directly from the
   generation on high write systems</li>
 <li>Support tagging backup files uploaded to an object store to enable optional
   retention management at the object store layer</li>
-<li>Replica clusters for PostgreSQL deployments across multiple Kubernetes
-  clusters, enabling private, public, hybrid, and multi-cloud architectures</li>
-<li>Delayed Replica clusters</li>
-<li>Connection pooling with PgBouncer</li>
+<li>
+<p>Replica clusters for PostgreSQL deployments across multiple Kubernetes
+  clusters, enabling private, public, hybrid, and multi-cloud architectures
+  <!--
+* Delayed Replica clusters
+--></p>
+</li>
+<li>
+<p>Connection pooling with PgBouncer</p>
+</li>
 <li>Support for node affinity via <code>nodeSelector</code></li>
 <li>Native customizable exporter of user defined metrics for Prometheus through the <code>metrics</code> port (9187)</li>
 <li>Standard output logging of PostgreSQL error messages in JSON format</li>
@@ -457,6 +480,6 @@ of Canada, and used with their permission.</em></p>
 </html>
 
 <!--
-MkDocs version : 1.6.0
-Build Date UTC : 2024-06-12 21:40:35.935642+00:00
+MkDocs version : 1.5.3
+Build Date UTC : 2024-07-29 16:19:54.258294+00:00
 -->

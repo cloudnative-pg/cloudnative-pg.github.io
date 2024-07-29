@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="The CloudNativePG Contributors" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Supported releases - CloudNativePG</title>
+    <title>Supported releases - CloudNativePG v1.23</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
@@ -31,7 +31,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-          <a href=".." class="icon icon-home"> CloudNativePG
+          <a href=".." class="icon icon-home"> CloudNativePG v1.23
         </a><div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
       <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
@@ -253,11 +253,11 @@
                 </li>
               </ul>
               <ul class="current">
-                <li class="toctree-l1 current"><a class="reference internal current" href="#">Supported releases</a>
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Supported releases</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#support-policy">Support policy</a>
+    <li class="toctree-l2"><a class="reference internal" href="#support-policy">Support Policy</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#naming-scheme">Naming scheme</a>
+    <li class="toctree-l2"><a class="reference internal" href="#naming-scheme">Naming Scheme</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#support-status-of-cloudnativepg-releases">Support status of CloudNativePG releases</a>
         <ul>
@@ -290,7 +290,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
       <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="..">CloudNativePG</a>
+          <a href="..">CloudNativePG v1.23</a>
         
       </nav>
       <div class="wy-nav-content">
@@ -327,15 +327,20 @@ maintenance window and are patched for security and bug fixes.</p>
 <li><a href="#support-status-of-cloudnativepg-releases">Support status of CloudNativePG releases</a></li>
 <li><a href="#what-we-mean-by-support">What we mean by support</a></li>
 </ul>
-<h2 id="support-policy">Support policy</h2>
-<p>We produce new builds of CloudNativePG for each commit.</p>
-<p>Approximately every two months, we build a minor release and run through several
-additional tests as well as release qualification. We release patch versions
-for issues found in supported minor releases.</p>
-<p>The various types of releases represent a different product quality level and
-level of assistance from the CloudNativePG community.
-For details on the support provided by the community, see
-<a href="#what-we-mean-by-support">What we mean by support</a>.</p>
+<h2 id="support-policy">Support Policy</h2>
+<p>CloudNativePG produces new builds for each commit.</p>
+<p>Approximately every two months, we create a minor release that undergoes
+several additional tests and a thorough release qualification process. We
+release patch versions for issues found in supported minor releases.</p>
+<p>Before an official release, at least one Release Candidate (RC) is built for
+testing. Additional release candidates may be issued if new bugs are
+discovered. The Release Candidates are announced on the Slack channel to
+encourage community testing before the final release. The maintainers provide
+1-2 weeks for community testing, and if no objections are raised, the final
+release is announced.</p>
+<p>Different types of releases represent varying levels of product quality and
+assistance from the CloudNativePG community. For details on the support
+provided by the community, see <a href="#what-we-mean-by-support">What we mean by support</a>.</p>
 <table>
 <thead>
 <tr>
@@ -349,6 +354,11 @@ For details on the support provided by the community, see
 <td>Development Build</td>
 <td>No support</td>
 <td>Dangerous, might not be fully reliable. Useful to experiment with.</td>
+</tr>
+<tr>
+<td>Release Candidate</td>
+<td>No support</td>
+<td>Preview version: Not production-ready. Released for experimentation and testing.</td>
 </tr>
 <tr>
 <td>Minor Release</td>
@@ -368,15 +378,22 @@ For details on the support provided by the community, see
 </tbody>
 </table>
 <p>You can find available releases on the <a href="https://github.com/cloudnative-pg/cloudnative-pg/releases">releases page</a>.</p>
-<p>You can find high-level more information for each minor and patch release in the <a href="../release_notes/">release notes</a>.</p>
-<h2 id="naming-scheme">Naming scheme</h2>
-<p>Our naming scheme is based on <a href="https://semver.org/">Semantic Versioning 2.0.0</a>
-as follows:</p>
+<p>You can find high-level more information for each minor and patch release in
+the <a href="../release_notes/">release notes</a>.</p>
+<p>Sure, here’s an improved version of the naming scheme section:</p>
+<h2 id="naming-scheme">Naming Scheme</h2>
+<p>Our naming scheme follows <a href="https://semver.org/">Semantic Versioning 2.0.0</a> and
+is structured as follows:</p>
 <pre><code>&lt;major&gt;.&lt;minor&gt;.&lt;patch&gt;
 </code></pre>
-<p>Where <code>&lt;minor&gt;</code> is increased for each release, and <code>&lt;patch&gt;</code> counts the number of patches for the
-current <code>&lt;minor&gt;</code> release. A patch is usually a small change relative to the <code>&lt;minor&gt;</code> release.</p>
-<p>Git tags for versions are prepended with <code>v</code>.</p>
+<ul>
+<li><code>&lt;minor&gt;</code> is incremented for each release.</li>
+<li><code>&lt;patch&gt;</code> counts the number of patches for the current <code>&lt;minor&gt;</code> release,
+  representing small changes relative to the <code>&lt;minor&gt;</code> release.</li>
+</ul>
+<p>Release candidates are indicated by an additional <code>-&lt;pre-release&gt;</code> identifier
+following the patch version, as specified in <a href="https://semver.org/#spec-item-9">Semantic Versioning 2.0.0 - item #9</a>.</p>
+<p>Git tags for versions are prefixed with <code>v</code>.</p>
 <h2 id="support-status-of-cloudnativepg-releases">Support status of CloudNativePG releases</h2>
 <table>
 <thead>
@@ -395,18 +412,9 @@ current <code>&lt;minor&gt;</code> release. A patch is usually a small change re
 <td>1.23.x</td>
 <td>Yes</td>
 <td>April 24, 2024</td>
-<td>~ October, 2024</td>
+<td>~ November, 2024</td>
 <td>1.27, 1.28, 1.29</td>
-<td></td>
-<td>12 - 16</td>
-</tr>
-<tr>
-<td>1.22.x</td>
-<td>Yes</td>
-<td>December 21, 2023</td>
-<td>July 24, 2024</td>
-<td>1.26, 1.27, 1.28</td>
-<td>1.29</td>
+<td>1.30</td>
 <td>12 - 16</td>
 </tr>
 <tr>
@@ -452,18 +460,18 @@ version of PostgreSQL, we might not be able to help you.</p>
 <tbody>
 <tr>
 <td>1.24.0</td>
-<td>July 16, 2024</td>
-<td>Jan/Feb, 2025</td>
+<td>August 22, 2024</td>
+<td>Feb/Mar, 2025</td>
 </tr>
 <tr>
 <td>1.25.0</td>
-<td>Oct/Nov, 2024</td>
-<td>Apr/May, 2025</td>
+<td>Nov/Dec, 2024</td>
+<td>May/Jun, 2025</td>
 </tr>
 <tr>
 <td>1.26.0</td>
-<td>Feb, 2025</td>
-<td>Jul/Aug, 2025</td>
+<td>Mar, 2025</td>
+<td>Aug/Sep, 2025</td>
 </tr>
 </tbody>
 </table>
@@ -489,6 +497,12 @@ discussion in the main GitHub repository.</p>
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>1.22.x</td>
+<td>December 21, 2023</td>
+<td>July 24, 2024</td>
+<td>1.26, 1.27, 1.28</td>
+</tr>
 <tr>
 <td>1.21.x</td>
 <td>October 12, 2023</td>

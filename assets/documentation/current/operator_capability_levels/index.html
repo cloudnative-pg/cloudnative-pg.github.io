@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="The CloudNativePG Contributors" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Operator capability levels - CloudNativePG</title>
+    <title>Operator capability levels - CloudNativePG v1.23</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
@@ -31,7 +31,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-          <a href=".." class="icon icon-home"> CloudNativePG
+          <a href=".." class="icon icon-home"> CloudNativePG v1.23
         </a><div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
       <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
@@ -221,7 +221,7 @@
                 </li>
               </ul>
               <ul class="current">
-                <li class="toctree-l1 current"><a class="reference internal current" href="#">Operator capability levels</a>
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Operator capability levels</a>
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#level-1-basic-install">Level 1: Basic install</a>
         <ul>
@@ -400,7 +400,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
       <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="..">CloudNativePG</a>
+          <a href="..">CloudNativePG v1.23</a>
         
       </nav>
       <div class="wy-nav-content">
@@ -771,10 +771,13 @@ business continuity posture of PostgreSQL databases within Kubernetes,
 extending across multiple data centers and facilitating hybrid and multi-cloud
 setups. (While anticipating Kubernetes federation native capabilities, manual
 switchover across data centers remains necessary.)</p>
-<p>Additionally, the flexibility extends to creating delayed replica clusters
+<!--
+Additionally, the flexibility extends to creating delayed replica clusters
 intentionally lagging behind the primary cluster. This intentional lag aims to
 minimize the Recovery Time Objective (RTO) in the event of unintended errors,
-such as incorrect <code>DELETE</code> or <code>UPDATE</code> SQL operations.</p>
+such as incorrect `DELETE` or `UPDATE` SQL operations.
+-->
+
 <h3 id="tablespace-support">Tablespace support</h3>
 <p>CloudNativePG seamlessly integrates robust support for PostgreSQL tablespaces
 by facilitating the declarative definition of individual persistent volumes.

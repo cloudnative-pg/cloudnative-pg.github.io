@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="The CloudNativePG Contributors" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Connection pooling - CloudNativePG</title>
+    <title>Connection pooling - CloudNativePG v1.23</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
@@ -31,7 +31,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-          <a href=".." class="icon icon-home"> CloudNativePG
+          <a href=".." class="icon icon-home"> CloudNativePG v1.23
         </a><div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
       <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
@@ -173,7 +173,7 @@
                 </li>
               </ul>
               <ul class="current">
-                <li class="toctree-l1 current"><a class="reference internal current" href="#">Connection pooling</a>
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Connection pooling</a>
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#architecture">Architecture</a>
     </li>
@@ -310,7 +310,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
       <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="..">CloudNativePG</a>
+          <a href="..">CloudNativePG v1.23</a>
         
       </nav>
       <div class="wy-nav-content">
@@ -401,6 +401,12 @@ deletion of the pooler, and vice versa.</p>
 <p>Once you know how a pooler works, you have full freedom in terms of
 possible architectures. You can have clusters without poolers, clusters with
 a single pooler, or clusters with several poolers, that is, one per application.</p>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>When the operator is upgraded, the pooler pods will undergo a rolling
+upgrade. This is necessary to ensure that the instance manager within the
+pooler pods is also upgraded.</p>
 </div>
 <h2 id="security">Security</h2>
 <p>Any PgBouncer pooler is transparently integrated with CloudNativePG support for
@@ -571,6 +577,18 @@ spec:
       max_client_conn: &quot;1000&quot;
       default_pool_size: &quot;10&quot;
 </code></pre>
+<p>The operator by default adds a <code>ServicePort</code> with the following data:</p>
+<pre><code>  ports:
+  - name: pgbouncer
+    port: 5432
+    protocol: TCP
+    targetPort: pgbouncer
+</code></pre>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Specifying a <code>ServicePort</code> with the name <code>pgbouncer</code> or the port <code>5432</code>  will prevent the default <code>ServicePort</code> from being added.
+This because <code>ServicePort</code> entries with the same <code>name</code> or <code>port</code> are not allowed on Kubernetes and result in errors.</p>
+</div>
 <h2 id="high-availability-ha">High availability (HA)</h2>
 <p>Because of Kubernetes' deployments, you can configure your pooler to run on a
 single instance or over multiple pods. The exposed service makes sure that your
