@@ -1,6 +1,6 @@
 ---
 title: "CloudNativePG 1.23.3 and 1.22.5 Released!"
-date: 2024-07-25T23:15:08+02:00
+date: 2024-07-29T18:27:49+02:00
 draft: true
 image:
     url: 58364dde1adc4a0a8.37186404-2048x1445.jpg
