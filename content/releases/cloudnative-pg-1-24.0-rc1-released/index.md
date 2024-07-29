@@ -76,7 +76,7 @@ list strategies. This update allows full customization of the
 ### WAL Disk Space Exhaustion
 
 Version 1.24 includes a critical safety measure to handle WAL disk space
-exhaustion. Instead of triggering a chain of failovers when PostgreSQL runs out
+exhaustion. Instead of a potential chain of failovers when PostgreSQL runs out
 of disk space for WAL files, the cluster will safely stop. This prevents the
 cluster from entering an unrecoverable state and simplifies recovery by
 allowing for the manual expansion of the affected volume.
@@ -88,11 +88,11 @@ allowing for the manual expansion of the affected volume.
 The stability of each CloudNativePG minor version greatly depends on you, the
 community. Test the upcoming version with your workloads and tools to identify
 bugs and regressions before the general availability of CloudNativePG 1.24.
-Your feedback and testing will help finalize the new features, so please test
+Your feedback and testing will help validate the new features, so please test
 it soon. The quality of user testing helps determine when we can make a final
 release.
 
-A list of [open issues is publicly available on our GitHub project](https://github.com/cloudnative-pg/cloudnative-pg/issues?q=is%3Aopen+is%3Aissue+milestone%3A1.24.0).
+A list of [open issues for the 1.24 release is publicly available on our GitHub project](https://github.com/cloudnative-pg/cloudnative-pg/issues?q=is%3Aopen+is%3Aissue+milestone%3A1.24.0).
 You can report [bugs directly from GitHub](https://github.com/cloudnative-pg/cloudnative-pg/issues/new/choose).
 
 ## Preview Release Schedule
