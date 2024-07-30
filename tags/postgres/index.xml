@@ -6,7 +6,16 @@
     <description>Recent content in postgres on CloudNativePG - PostgreSQL Operator for Kubernetes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 29 Jul 2024 18:27:49 +0200</lastBuildDate><atom:link href="https://cloudnative-pg.io/tags/postgres/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 30 Jul 2024 10:12:26 +0200</lastBuildDate><atom:link href="https://cloudnative-pg.io/tags/postgres/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CloudNativePG 1.24.0 RC1 Released!</title>
+      <link>https://cloudnative-pg.io/releases/cloudnative-pg-1-24.0-rc1-released/</link>
+      <pubDate>Tue, 30 Jul 2024 10:12:26 +0200</pubDate>
+      
+      <guid>https://cloudnative-pg.io/releases/cloudnative-pg-1-24.0-rc1-released/</guid>
+      <description>The CloudNativePG community has released the first release candidate of CloudNativePG 1.24. Help us test new features in preview like distributed PostgreSQL topologies, managed services, enhanced API for synchronous replication, and WAL disk space safeguards.</description>
+    </item>
+    
     <item>
       <title>CloudNativePG 1.23.3 and 1.22.5 Released!</title>
       <link>https://cloudnative-pg.io/releases/cloudnative-pg-1-23.3-released/</link>
