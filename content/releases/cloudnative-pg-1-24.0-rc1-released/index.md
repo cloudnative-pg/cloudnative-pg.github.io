@@ -36,7 +36,7 @@ our high standards of stability and reliability, maintaining its status as one
 of the world's most popular open source operators for PostgreSQL in Kubernetes.
 
 For more details on our preview testing process and how you can contribute,
-read more [here](https://cloudnative-pg.io/documentation/current/preview_version).
+read more [here](https://cloudnative-pg.io/documentation/preview).
 
 ---
 
