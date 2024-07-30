@@ -85,7 +85,7 @@ allowing for the manual expansion of the affected volume.
 
 ## There's More...
 
-Explore the [release notes for 1.24 RC1](https://cloudnative-pg.io/documentation/preview/release_notes/1.24/)
+Explore the [release notes for 1.24 RC1](https://cloudnative-pg.io/documentation/preview/release_notes/v1.24/)
 to discover additional enhancements in CloudNativePG, including declarative
 delayed replicas, transparent support for PostgreSQL 17's `allow_alter_system`,
 `postInitSQLRefs`, `postInitTemplateSQLRefs`, and numerous observability
