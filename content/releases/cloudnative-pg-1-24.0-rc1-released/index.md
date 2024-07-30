@@ -1,6 +1,6 @@
 ---
 title: "CloudNativePG 1.24.0 RC1 Released!"
-date: 2024-07-26T15:17:37+02:00
+date: 2024-07-30T10:12:26+02:00
 draft: false
 author: gbartolini
 image:
@@ -54,7 +54,7 @@ offering:
 - **Seamless Switchover**: Demote the current primary and promote a selected
   replica cluster, typically in a different region, without needing to rebuild
   the former primary. This ensures high availability and resilience in diverse
-  environments.
+  scenarios.
 
 ### Managed Services
 
@@ -82,6 +82,14 @@ cluster from entering an unrecoverable state and simplifies recovery by
 allowing for the manual expansion of the affected volume.
 
 ---
+
+## There's More...
+
+Explore the [release notes for 1.24 RC1](https://cloudnative-pg.io/documentation/preview/release_notes/1.24/)
+to discover additional enhancements in CloudNativePG, including declarative
+delayed replicas, transparent support for PostgreSQL 17's `allow_alter_system`,
+`postInitSQLRefs`, `postInitTemplateSQLRefs`, and numerous observability
+improvements.
 
 ## Testing
 
