@@ -112,7 +112,7 @@ the final release, currently planned for the end of August 2024.
 ## Links
 
 - [Documentation for 1.24 RC1](https://cloudnative-pg.io/documentation/preview/)
-- [Release notes for 1.24 RC1](https://cloudnative-pg.io/documentation/preview/release_notes/v.24/)
+- [Release notes for 1.24 RC1](https://cloudnative-pg.io/documentation/preview/release_notes/v1.24/)
 
 ## Join the Community
 
