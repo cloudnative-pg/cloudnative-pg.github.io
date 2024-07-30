@@ -23,7 +23,7 @@ details may still be refined during this preview phase.
 For detailed information on the features and changes in CloudNativePG 1.24,
 please refer to the [release notes](https://cloudnative-pg.io/documentation/preview/release_notes/v1.24/).
 
-### Get Involved and Make a Difference!
+## Get Involved and Make a Difference!
 
 In true open source spirit, we strongly encourage you to test the new features
 of CloudNativePG 1.24 on your systems. Your testing and feedback are crucial in
@@ -112,7 +112,7 @@ the final release, currently planned for the end of August 2024.
 ## Links
 
 - [Documentation for 1.24 RC1](https://cloudnative-pg.io/documentation/preview/)
-- [Release notes for 1.24 RC1](https://cloudnative-pg.io/documentation/preview/release_notes/1.24/)
+- [Release notes for 1.24 RC1](https://cloudnative-pg.io/documentation/preview/release_notes/v.24/)
 
 ## Join the Community
 
