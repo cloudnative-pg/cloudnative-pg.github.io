@@ -36,7 +36,7 @@ our high standards of stability and reliability, maintaining its status as one
 of the world's most popular open source operators for PostgreSQL in Kubernetes.
 
 For more details on our preview testing process and how you can contribute,
-read more [here](https://cloudnative-pg.io/documentation/current/preview_version).
+read more [here](https://cloudnative-pg.io/documentation/preview).
 
 ---
 
@@ -85,7 +85,7 @@ allowing for the manual expansion of the affected volume.
 
 ## There's More...
 
-Explore the [release notes for 1.24 RC1](https://cloudnative-pg.io/documentation/preview/release_notes/1.24/)
+Explore the [release notes for 1.24 RC1](https://cloudnative-pg.io/documentation/preview/release_notes/v1.24/)
 to discover additional enhancements in CloudNativePG, including declarative
 delayed replicas, transparent support for PostgreSQL 17's `allow_alter_system`,
 `postInitSQLRefs`, `postInitTemplateSQLRefs`, and numerous observability
