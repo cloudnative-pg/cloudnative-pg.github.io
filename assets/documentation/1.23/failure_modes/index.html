@@ -207,10 +207,6 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../expose_pg_services/">Exposing Postgres Services</a>
-                </li>
-              </ul>
-              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../kubectl-plugin/">Kubectl Plugin</a>
                 </li>
               </ul>
@@ -276,6 +272,10 @@
               </ul>
               <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../supported_releases/">Supported releases</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../preview_version/">Preview Versions</a>
                 </li>
               </ul>
               <ul>
@@ -451,9 +451,8 @@ to solve the problem manually.</p>
 <p>In such cases, please do not perform any manual operation without
 <a href="https://cloudnative-pg.io/support/">professional support</a>.</p>
 </div>
-<p>From version 1.11.0 of the operator, you can use the
-<code>cnpg.io/reconciliationLoop</code> annotation to temporarily disable the
-reconciliation loop on a selected PostgreSQL cluster, as follows:</p>
+<p>You can use the <code>cnpg.io/reconciliationLoop</code> annotation to temporarily disable
+the reconciliation loop for a specific PostgreSQL cluster, as shown below:</p>
 <pre><code class="language-yaml">metadata:
   name: cluster-example-no-reconcile
   annotations:

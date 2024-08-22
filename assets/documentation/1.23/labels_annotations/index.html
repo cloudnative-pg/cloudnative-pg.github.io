@@ -197,10 +197,6 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../expose_pg_services/">Exposing Postgres Services</a>
-                </li>
-              </ul>
-              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../kubectl-plugin/">Kubectl Plugin</a>
                 </li>
               </ul>
@@ -266,6 +262,10 @@
               </ul>
               <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../supported_releases/">Supported releases</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../preview_version/">Preview Versions</a>
                 </li>
               </ul>
               <ul>
@@ -448,7 +448,7 @@ reconciliation loop from running.</dd>
 <dd>When set to <code>true</code> on a <code>Cluster</code> resource, the operator disables the check
 that ensures that the WAL archive is empty before writing data. Use at your own
 risk.</dd>
-<dt><code>cnpg.io/skipEmptyWalArchiveCheck</code></dt>
+<dt><code>cnpg.io/skipWalArchiving</code></dt>
 <dd>When set to <code>true</code> on a <code>Cluster</code> resource, the operator disables WAL archiving.
 This will set <code>archive_mode</code> to <code>off</code> and require a restart of all PostgreSQL
 instances. Use at your own risk.</dd>

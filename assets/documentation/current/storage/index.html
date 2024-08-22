@@ -179,7 +179,7 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#static-provisioning-of-persistent-volumes">Static provisioning of persistent volumes</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#block-storage-considerations-ceph-longhorn">Block storage considerations (Ceph/ Longhorn)</a>
+    <li class="toctree-l2"><a class="reference internal" href="#block-storage-considerations-cephlonghorn">Block storage considerations (Ceph/Longhorn)</a>
     </li>
     </ul>
                 </li>
@@ -218,10 +218,6 @@
               </ul>
               <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../kubernetes_upgrade/">Kubernetes Upgrade and Maintenance</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../expose_pg_services/">Exposing Postgres Services</a>
                 </li>
               </ul>
               <ul>
@@ -290,6 +286,10 @@
               </ul>
               <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../supported_releases/">Supported releases</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../preview_version/">Preview Versions</a>
                 </li>
               </ul>
               <ul>
@@ -716,16 +716,39 @@ exists. (The scheduling configuration is based on the affinity rules of your
 cluster.) Make sure you check for any pods stuck in <code>Pending</code> after you deploy
 the cluster. If the condition persists, investigate why it's happening.</p>
 </div>
-<h2 id="block-storage-considerations-ceph-longhorn">Block storage considerations (Ceph/ Longhorn)</h2>
-<p>Most block storage solutions in Kubernetes recommend having multiple replicas
-of a volume to improve resiliency. This works well for workloads that don't
-have resiliency built into the application. However, CloudNativePG has this
-resiliency built directly into the Postgres <code>Cluster</code> through the number of
-instances and the persistent volumes that are attached to them. </p>
-<p>In these cases, it makes sense to define the storage class used by the Postgres
-clusters as one replica. By having additional replicas defined in the storage
-solution (like Longhorn and Ceph), you might incur what's known as write
-amplification, unnecessarily increasing disk I/O and space used.</p>
+<h2 id="block-storage-considerations-cephlonghorn">Block storage considerations (Ceph/Longhorn)</h2>
+<p>Most block storage solutions in Kubernetes, such as Longhorn and Ceph,
+recommend having multiple replicas of a volume to enhance resiliency. This
+approach works well for workloads that lack built-in resiliency.</p>
+<p>However, CloudNativePG integrates this resiliency directly into the Postgres
+<code>Cluster</code> through the number of instances and the persistent volumes attached
+to them, as explained in <a href="../architecture/#synchronizing-the-state">"Synchronizing the state"</a>.</p>
+<p>As a result, defining additional replicas at the storage level can lead to
+write amplification, unnecessarily increasing disk I/O and space usage.</p>
+<p>For CloudNativePG usage, consider reducing the number of replicas at the block storage
+level to one, while ensuring that no single point of failure (SPoF) exists at
+the storage level for the entire <code>Cluster</code> resource. This typically means
+ensuring that a single storage host—and ultimately, a physical disk—does not
+host blocks from different instances of the same <code>Cluster</code>, in alignment with
+the broader <em>shared-nothing architecture</em> principle.</p>
+<p>In Longhorn, you can mitigate this risk by enabling strict-local data locality
+when creating a custom storage class. Detailed instructions for creating a
+volume with strict-local data locality are available <a href="https://longhorn.io/docs/1.7.0/high-availability/data-locality/">here</a>.
+This setting ensures that a pod’s data volume resides on the same node as the
+pod itself.</p>
+<p>Additionally, your Postgres <code>Cluster</code> should have <a href="../scheduling/#isolating-postgresql-workloads">pod anti-affinity rules</a>
+in place to ensure that the operator deploys pods across different nodes,
+allowing Longhorn to place the data volumes on the corresponding hosts. If
+needed, you can manually relocate volumes in Longhorn by temporarily setting
+the volume replica count to 2, reducing it afterward, and then removing the old
+replica. If a host becomes corrupted, you can use the <a href="../kubectl-plugin/#destroy"><code>cnpg</code> plugin to destroy</a>
+the affected instance. CloudNativePG will then recreate the instance on another
+host and replicate the data.</p>
+<p>In Ceph, this can be configured through CRUSH rules. The documentation for
+configuring CRUSH rules is available
+<a href="https://rook.io/docs/rook/latest-release/CRDs/Cluster/external-cluster/topology-for-external-mode/?h=topology">here</a>.
+These rules aim to ensure one volume per pod per node. You can also relocate
+volumes by importing them into a different pool.</p>
               
             </div>
           </div><footer>

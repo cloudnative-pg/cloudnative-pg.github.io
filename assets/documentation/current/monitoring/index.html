@@ -221,10 +221,6 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../expose_pg_services/">Exposing Postgres Services</a>
-                </li>
-              </ul>
-              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../kubectl-plugin/">Kubectl Plugin</a>
                 </li>
               </ul>
@@ -293,6 +289,10 @@
                 </li>
               </ul>
               <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../preview_version/">Preview Versions</a>
+                </li>
+              </ul>
+              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../release_notes/">Release notes</a>
                 </li>
               </ul>
@@ -341,9 +341,8 @@ more <code>ConfigMap</code> or <code>Secret</code> resources (see the
 <a href="#user-defined-metrics">"User defined metrics" section</a> below for details).</p>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
-<p>Starting from version 1.11, CloudNativePG already installs
-<a href="#default-set-of-metrics">by default a set of predefined metrics</a> in
-a <code>ConfigMap</code> called <code>default-monitoring</code>.</p>
+<p>CloudNativePG, by default, installs a set of <a href="#default-set-of-metrics">predefined metrics</a>
+in a <code>ConfigMap</code> named <code>default-monitoring</code>.</p>
 </div>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
@@ -497,7 +496,7 @@ cnpg_collector_up{cluster=&quot;cluster-example&quot;} 1
 
 # HELP cnpg_collector_postgres_version Postgres version
 # TYPE cnpg_collector_postgres_version gauge
-cnpg_collector_postgres_version{cluster=&quot;cluster-example&quot;,full=&quot;16.3&quot;} 16.3
+cnpg_collector_postgres_version{cluster=&quot;cluster-example&quot;,full=&quot;16.4&quot;} 16.4
 
 # HELP cnpg_collector_last_failed_backup_timestamp The last failed backup as a unix timestamp
 # TYPE cnpg_collector_last_failed_backup_timestamp gauge

@@ -239,10 +239,6 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../expose_pg_services/">Exposing Postgres Services</a>
-                </li>
-              </ul>
-              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../kubectl-plugin/">Kubectl Plugin</a>
                 </li>
               </ul>
@@ -311,6 +307,10 @@
                 </li>
               </ul>
               <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../preview_version/">Preview Versions</a>
+                </li>
+              </ul>
+              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../release_notes/">Release notes</a>
                 </li>
               </ul>
@@ -347,10 +347,10 @@
 <h3 id="directly-using-the-operator-manifest">Directly using the operator manifest</h3>
 <p>The operator can be installed like any other resource in Kubernetes,
 through a YAML manifest applied via <code>kubectl</code>.</p>
-<p>You can install the <a href="https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/release-1.23/releases/cnpg-1.23.3.yaml">latest operator manifest</a>
+<p>You can install the <a href="https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/release-1.23/releases/cnpg-1.23.4.yaml">latest operator manifest</a>
 for this minor release as follows:</p>
 <pre><code class="language-sh">kubectl apply --server-side -f \
-  https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/release-1.23/releases/cnpg-1.23.3.yaml
+  https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/release-1.23/releases/cnpg-1.23.4.yaml
 </code></pre>
 <p>You can verify that with:</p>
 <pre><code class="language-sh">kubectl get deployment -n cnpg-system cnpg-controller-manager
@@ -478,10 +478,10 @@ plugin for <code>kubectl</code>.</p>
 an upgrade of the operator will trigger a switchover on your PostgreSQL cluster,
 causing a (normally negligible) downtime.</p>
 </div>
-<p>Since version 1.10.0, the rolling update behavior can be replaced with in-place
-updates of the instance manager. The latter don't require a restart of the
-PostgreSQL instance and, as a result, a switchover in the cluster.
-This behavior, which is disabled by default, is described below.</p>
+<p>The default rolling update behavior can be replaced with in-place updates of
+the instance manager. This approach does not require a restart of the
+PostgreSQL instance, thereby avoiding a switchover within the cluster. This
+feature, which is disabled by default, is described in detail below.</p>
 <h3 id="in-place-updates-of-the-instance-manager">In-place updates of the instance manager</h3>
 <p>By default, CloudNativePG issues a rolling update of the cluster
 every time the operator is updated. The new instance manager shipped with the
@@ -489,11 +489,11 @@ operator is added to each PostgreSQL pod via an init container.</p>
 <p>However, this behavior can be changed via configuration to enable in-place
 updates of the instance manager, which is the PID 1 process that keeps the
 container alive.</p>
-<p>Internally, any instance manager from version 1.10 of CloudNativePG
-supports injection of a new executable that will replace the existing one,
-once the integrity verification phase is completed, as well as graceful
-termination of all the internal processes. When the new instance manager
-restarts using the new binary, it adopts the already running <em>postmaster</em>.</p>
+<p>Internally, each instance manager in CloudNativePG supports the injection of a
+new executable that replaces the existing one after successfully completing an
+integrity verification phase and gracefully terminating all internal processes.
+Upon restarting with the new binary, the instance manager seamlessly adopts the
+already running <em>postmaster</em>.</p>
 <p>As a result, the PostgreSQL process is unaffected by the update, refraining
 from the need to perform a switchover. The other side of the coin, is that
 the Pod is changed after the start, breaking the pure concept of immutability.</p>

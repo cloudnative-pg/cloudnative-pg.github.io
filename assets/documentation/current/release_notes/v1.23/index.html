@@ -185,10 +185,6 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../../expose_pg_services/">Exposing Postgres Services</a>
-                </li>
-              </ul>
-              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../../kubectl-plugin/">Kubectl Plugin</a>
                 </li>
               </ul>
@@ -257,6 +253,10 @@
                 </li>
               </ul>
               <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../preview_version/">Preview Versions</a>
+                </li>
+              </ul>
+              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../">Release notes</a>
                 </li>
               </ul>
@@ -293,9 +293,31 @@
 <p>For a complete list of changes, please refer to the
 <a href="https://github.com/cloudnative-pg/cloudnative-pg/commits/release-1.23">commits</a>
 on the release branch in GitHub.</p>
+<h2 id="version-1234">Version 1.23.4</h2>
+<p><strong>Release date:</strong> Aug 22, 2024</p>
+<h3 id="enhancements">Enhancements:</h3>
+<ul>
+<li><code>cnpg</code> plugin updates:<ul>
+<li>Enhance the <code>install generate</code> command by adding a <code>--control-plane</code> option,
+  allowing deployment of the operator on control-plane nodes by setting
+  node affinity and tolerations (#5271).</li>
+<li>Enhance the <code>destroy</code> command to delete also any job related to the target
+  instance (#5298).</li>
+</ul>
+</li>
+</ul>
+<h3 id="fixes">Fixes:</h3>
+<ul>
+<li>Synchronous replication self-healing checks now exclude terminated pods,
+  focusing only on active and functional pods (#5210).</li>
+<li>The instance manager will now terminate all existing operator-related replication
+  connections following a role change in a replica cluster (#5209).</li>
+<li>Allow setting <code>smartShutdownTimeout</code> to zero, enabling immediate fast
+  shutdown and bypassing the smart shutdown process when required (#5347).</li>
+</ul>
 <h2 id="version-1233">Version 1.23.3</h2>
 <p><strong>Release date:</strong> Jul 29, 2024</p>
-<h3 id="enhancements">Enhancements:</h3>
+<h3 id="enhancements_1">Enhancements:</h3>
 <ul>
 <li>Add transparent support for PostgreSQL 17's <code>allow_alter_system</code> parameter,
   enabling or disabling the <code>ALTER SYSTEM</code> command through the
@@ -306,7 +328,7 @@ on the release branch in GitHub.</p>
 <li>Support the new metrics introduced in PgBouncer 1.23 in the <code>Pooler</code> metrics
   collector (#5044).</li>
 </ul>
-<h3 id="fixes">Fixes:</h3>
+<h3 id="fixes_1">Fixes:</h3>
 <ul>
 <li>Enhance the mechanism for detecting Pods that have been terminated but not
   deleted during an eviction process, and extend the cleanup process during
@@ -346,7 +368,7 @@ on the release branch in GitHub.</p>
 </ul>
 <h2 id="version-1232">Version 1.23.2</h2>
 <p><strong>Release date:</strong> Jun 12, 2024</p>
-<h3 id="enhancements_1">Enhancements:</h3>
+<h3 id="enhancements_2">Enhancements:</h3>
 <ul>
 <li>
 <p>Enabled configuration of standby-sensitive parameters during recovery using a
@@ -366,7 +388,7 @@ on the release branch in GitHub.</p>
 </ul>
 </li>
 </ul>
-<h3 id="fixes_1">Fixes:</h3>
+<h3 id="fixes_2">Fixes:</h3>
 <ul>
 <li>
 <p>Prevented fenced instances from entering an unnecessary loop and consuming
@@ -431,7 +453,7 @@ on the release branch in GitHub.</p>
 </ul>
 <h2 id="version-1231">Version 1.23.1</h2>
 <p><strong>Release date:</strong> Apr 29, 2024</p>
-<h3 id="fixes_2">Fixes:</h3>
+<h3 id="fixes_3">Fixes:</h3>
 <ul>
 <li>Corrects the reconciliation of <code>PodMonitor</code> resources, which was
   failing due to a regression (#4286)</li>
@@ -461,7 +483,7 @@ supplementary support period for the previous minor release to 3 months.</p>
   useful for single-instance deployments. This feature is intended to replace the
   node maintenance window feature.</li>
 </ul>
-<h3 id="enhancements_2">Enhancements:</h3>
+<h3 id="enhancements_3">Enhancements:</h3>
 <ul>
 <li>Users now have the capability to transition an existing cluster into replica
   mode, simplifying cross-datacenter switchover operations (#4261)</li>
@@ -478,7 +500,7 @@ supplementary support period for the previous minor release to 3 months.</p>
 <li>Error detection when invoking <code>barman-cloud-wal-restore</code> in <code>recovery</code>
   bootstrap (#4101)</li>
 </ul>
-<h3 id="fixes_3">Fixes:</h3>
+<h3 id="fixes_4">Fixes:</h3>
 <ul>
 <li>Ensured that before a switchover, the elected replica is in streaming
   replication (#4288)</li>
