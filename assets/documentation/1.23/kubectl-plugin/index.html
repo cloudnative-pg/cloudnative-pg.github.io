@@ -184,10 +184,6 @@
                 <li class="toctree-l1"><a class="reference internal" href="../kubernetes_upgrade/">Kubernetes Upgrade and Maintenance</a>
                 </li>
               </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../expose_pg_services/">Exposing Postgres Services</a>
-                </li>
-              </ul>
               <ul class="current">
                 <li class="toctree-l1 current"><a class="reference internal current" href="./">Kubectl Plugin</a>
     <ul class="current">
@@ -346,6 +342,10 @@
               </ul>
               <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../supported_releases/">Supported releases</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../preview_version/">Preview Versions</a>
                 </li>
               </ul>
               <ul>
@@ -527,27 +527,30 @@ installation namespace, namespaces to watch, and so on.</p>
 </code></pre>
 <p>The main options are:</p>
 <ul>
-<li><code>-n</code>: the namespace in which to install the operator (by default: <code>cnpg-system</code>)</li>
-<li><code>--replicas</code>: number of replicas in the deployment</li>
-<li><code>--version</code>: minor version of the operator to be installed, such as <code>1.17</code>.
-  If a minor version is specified, the plugin will install the latest patch
-  version of that minor version. If no version is supplied the plugin will
-  install the latest <code>MAJOR.MINOR.PATCH</code> version of the operator.</li>
-<li><code>--watch-namespace</code>: comma separated string containing the namespaces to
-  watch (by default all namespaces)</li>
+<li><code>-n</code>: specifies the namespace in which to install the operator (default:
+  <code>cnpg-system</code>).</li>
+<li><code>--control-plane</code>: if set to true, the operator deployment will include a
+  toleration and affinity for <code>node-role.kubernetes.io/control-plane</code>.</li>
+<li><code>--replicas</code>: sets the number of replicas in the deployment.</li>
+<li><code>--watch-namespace</code>: specifies a comma-separated list of namespaces to watch
+  (default: all namespaces).</li>
+<li><code>--version</code>: defines the minor version of the operator to be installed, such
+  as <code>1.22</code>. If a minor version is specified, the plugin installs the latest
+  patch version of that minor version. If no version is supplied, the plugin
+  installs the latest <code>MAJOR.MINOR.PATCH</code> version of the operator.</li>
 </ul>
 <p>An example of the <code>generate</code> command, which will generate a YAML manifest that
 will install the operator, is as follows:</p>
 <pre><code class="language-shell">kubectl cnpg install generate \
   -n king \
-  --version 1.17 \
+  --version 1.22 \
   --replicas 3 \
   --watch-namespace &quot;albert, bb, freddie&quot; \
   &gt; operator.yaml
 </code></pre>
 <p>The flags in the above command have the following meaning:
 - <code>-n king</code> install the CNPG operator into the <code>king</code> namespace
-- <code>--version 1.17</code> install the latest patch version for minor version 1.17
+- <code>--version 1.22</code> install the latest patch version for minor version 1.22
 - <code>--replicas 3</code> install the operator with 3 replicas
 - <code>--watch-namespace "albert, bb, freddie"</code> have the operator watch for
   changes in the <code>albert</code>, <code>bb</code> and <code>freddie</code> namespaces only</p>
@@ -581,7 +584,7 @@ two different time intervals.</p>
 Name:               sandbox
 Namespace:          default
 System ID:          7039966298120953877
-PostgreSQL Image:   ghcr.io/cloudnative-pg/postgresql:16.3
+PostgreSQL Image:   ghcr.io/cloudnative-pg/postgresql:16.4
 Primary instance:   sandbox-2
 Instances:          3
 Ready instances:    3
@@ -621,7 +624,7 @@ sandbox-3  302 GB         3AF/EBAD5D18  Standby (sync)    OK      Guaranteed  1.
 Name:               sandbox
 Namespace:          default
 System ID:          7039966298120953877
-PostgreSQL Image:   ghcr.io/cloudnative-pg/postgresql:16.3
+PostgreSQL Image:   ghcr.io/cloudnative-pg/postgresql:16.4
 Primary instance:   sandbox-2
 Instances:          3
 Ready instances:    3
@@ -1139,7 +1142,7 @@ method should be used with extreme care, by authorized personnel only.</p>
 </div>
 <pre><code class="language-shell">kubectl cnpg psql cluster-example
 
-psql (16.3 (Debian 16.3-1.pgdg110+1))
+psql (16.4 (Debian 16.4-1.pgdg110+1))
 Type &quot;help&quot; for help.
 
 postgres=#
@@ -1147,7 +1150,7 @@ postgres=#
 <p>By default, the command will connect to the primary instance. The user can
 select to work against a replica by using the <code>--replica</code> option:</p>
 <pre><code class="language-shell">kubectl cnpg psql --replica cluster-example
-psql (16.3 (Debian 16.3-1.pgdg110+1))
+psql (16.4 (Debian 16.4-1.pgdg110+1))
 
 Type &quot;help&quot; for help.
 
@@ -1421,7 +1424,7 @@ popular terminal-based UI to interact with Kubernetes clusters.</p>
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../expose_pg_services/" class="btn btn-neutral float-left" title="Exposing Postgres Services"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../kubernetes_upgrade/" class="btn btn-neutral float-left" title="Kubernetes Upgrade and Maintenance"><span class="icon icon-circle-arrow-left"></span> Previous</a>
         <a href="../failover/" class="btn btn-neutral float-right" title="Automated failover">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
@@ -1445,7 +1448,7 @@ popular terminal-based UI to interact with Kubernetes clusters.</p>
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../expose_pg_services/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../kubernetes_upgrade/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
       <span><a href="../failover/" style="color: #fcfcfc">Next &raquo;</a></span>

@@ -195,10 +195,6 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../expose_pg_services/">Exposing Postgres Services</a>
-                </li>
-              </ul>
-              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../kubectl-plugin/">Kubectl Plugin</a>
                 </li>
               </ul>
@@ -267,6 +263,10 @@
                 </li>
               </ul>
               <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../preview_version/">Preview Versions</a>
+                </li>
+              </ul>
+              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../release_notes/">Release notes</a>
                 </li>
               </ul>
@@ -326,7 +326,7 @@ spec:
     - major: 15
       image: ghcr.io/cloudnative-pg/postgresql:15.6
     - major: 16
-      image: ghcr.io/cloudnative-pg/postgresql:16.3
+      image: ghcr.io/cloudnative-pg/postgresql:16.4
 </code></pre>
 <p><strong>Example of a Cluster-Wide Catalog using <code>ClusterImageCatalog</code> Resource:</strong></p>
 <pre><code class="language-yaml">apiVersion: postgresql.cnpg.io/v1
@@ -338,7 +338,7 @@ spec:
     - major: 15
       image: ghcr.io/cloudnative-pg/postgresql:15.6
     - major: 16
-      image: ghcr.io/cloudnative-pg/postgresql:16.3
+      image: ghcr.io/cloudnative-pg/postgresql:16.4
 </code></pre>
 <p>A <code>Cluster</code> resource has the flexibility to reference either an <code>ImageCatalog</code>
 or a <code>ClusterImageCatalog</code> to precisely specify the desired image.</p>
