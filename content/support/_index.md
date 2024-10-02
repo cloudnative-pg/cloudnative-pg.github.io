@@ -11,4 +11,4 @@ related to CloudNativePG.
 
 This list is provided in alphabetical order. If you want to add your company or
 yourself to this list, please open up a pull request for the
-[CloudNativePG website](https://github.com/cloudnative-pg/cloudnative-pg).
+[CloudNativePG website](https://github.com/cloudnative-pg/cloudnative-pg.github.io).
