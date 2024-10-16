@@ -57,7 +57,7 @@
                 </li>
               </ul>
               <ul class="current">
-                <li class="toctree-l1 current"><a class="reference internal current" href="./">Installation and upgrades</a>
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Installation and upgrades</a>
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#installation-on-kubernetes">Installation on Kubernetes</a>
         <ul>
@@ -291,10 +291,6 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../commercial_support/">Commercial support</a>
-                </li>
-              </ul>
-              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../faq/">Frequently Asked Questions (FAQ)</a>
                 </li>
               </ul>
@@ -399,14 +395,17 @@ specific minor release, you can just run:</p>
 </code></pre>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
-<p>Snapshots are not supported by the CloudNativePG and not intended for production usage.</p>
+<p>Snapshots are not supported by the CloudNativePG Community, and are not
+intended for use in production.</p>
 </div>
 <h3 id="using-the-helm-chart">Using the Helm Chart</h3>
 <p>The operator can be installed using the provided <a href="https://github.com/cloudnative-pg/charts">Helm chart</a>.</p>
 <h3 id="using-olm">Using OLM</h3>
-<p>CloudNativePG can also be installed using the
-<a href="https://olm.operatorframework.io/docs/">Operator Lifecycle Manager (OLM)</a>
+<p>CloudNativePG can also be installed via the <a href="https://olm.operatorframework.io/docs/">Operator Lifecycle Manager (OLM)</a>
 directly from <a href="https://operatorhub.io/operator/cloudnative-pg">OperatorHub.io</a>.</p>
+<p>For deployments on Red Hat OpenShift, EDB offers and fully supports a certified
+version of CloudNativePG, available through the
+<a href="https://catalog.redhat.com/software/container-stacks/detail/653fd4035eece8598f66d97b">Red Hat OpenShift Container Platform</a>.</p>
 <h2 id="details-about-the-deployment">Details about the deployment</h2>
 <p>In Kubernetes, the operator is by default installed in the <code>cnpg-system</code>
 namespace as a Kubernetes <code>Deployment</code>. The name of this deployment

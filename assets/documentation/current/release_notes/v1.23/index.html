@@ -241,10 +241,6 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../../commercial_support/">Commercial support</a>
-                </li>
-              </ul>
-              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../../faq/">Frequently Asked Questions (FAQ)</a>
                 </li>
               </ul>
@@ -297,9 +293,57 @@
 <p>For a complete list of changes, please refer to the
 <a href="https://github.com/cloudnative-pg/cloudnative-pg/commits/release-1.23">commits</a>
 on the release branch in GitHub.</p>
+<h2 id="version-1235">Version 1.23.5</h2>
+<p><strong>Release date:</strong> Oct 16, 2024</p>
+<h3 id="enhancements">Enhancements:</h3>
+<ul>
+<li>Remove the use of <code>pg_database_size</code> from the status probe, as it caused
+  high resource utilization by scanning the entire <code>PGDATA</code> directory to
+  compute database sizes. The <code>kubectl status</code> plugin will now rely on <code>du</code>
+  to provide detailed size information retrieval (#5689).</li>
+<li>Add the ability to configure the <code>full_page_writes</code> parameter in
+  PostgreSQL. This setting defaults to <code>on</code>, in line with PostgreSQL's
+  recommendations (#5516).</li>
+<li>Plugin:<ul>
+<li>Add the <code>logs pretty</code> command in the <code>cnpg</code> plugin to read a log stream
+  from standard input and output a human-readable format, with options to
+  filter log entries (#5770)</li>
+<li>Enhance the <code>status</code> command by allowing multiple <code>-v</code> options to
+  increase verbosity for more detailed output (#5765).</li>
+<li>Add support for specifying a custom Docker image using the <code>--image</code>
+  flag in the <code>pgadmin4</code> plugin command, giving users control over the
+  Docker image used for pgAdmin4 deployments (#5515).</li>
+</ul>
+</li>
+</ul>
+<h3 id="fixes">Fixes:</h3>
+<ul>
+<li>Resolve an issue with concurrent status updates when demoting a primary to a
+  designated primary, ensuring smoother transitions during cluster role changes
+  (#5755).</li>
+<li>Ensure that replica PodDisruptionBudgets (PDB) are removed when scaling down
+  to two instances, enabling easier maintenance on the node hosting the replica
+  (#5487).</li>
+<li>Prioritize full rollout over inplace restarts (#5407).</li>
+<li>Fix an issue that could lead to double failover in cases of lost
+  connectivity (#5788).</li>
+<li>Correctly set the <code>TMPDIR</code> and <code>PSQL_HISTORY</code> environment variables for pods
+  and jobs, improving temporary file and history management (#5503).</li>
+<li>Plugin:<ul>
+<li>Resolve a race condition in the <code>logs cluster</code> command (#5775).</li>
+<li>Display the <code>potential</code> sync status in the <code>status</code> plugin (#5533).</li>
+<li>Fix the issue where pods deployed by the <code>pgadmin4</code> command didn’t have
+  a writable home directory (#5800).</li>
+</ul>
+</li>
+</ul>
+<h3 id="supported-versions">Supported versions</h3>
+<ul>
+<li>PostgreSQL 17 (PostgreSQL 17.0 is the default image)</li>
+</ul>
 <h2 id="version-1234">Version 1.23.4</h2>
 <p><strong>Release date:</strong> Aug 22, 2024</p>
-<h3 id="enhancements">Enhancements:</h3>
+<h3 id="enhancements_1">Enhancements:</h3>
 <ul>
 <li><code>cnpg</code> plugin updates:<ul>
 <li>Enhance the <code>install generate</code> command by adding a <code>--control-plane</code> option,
@@ -310,7 +354,7 @@ on the release branch in GitHub.</p>
 </ul>
 </li>
 </ul>
-<h3 id="fixes">Fixes:</h3>
+<h3 id="fixes_1">Fixes:</h3>
 <ul>
 <li>Synchronous replication self-healing checks now exclude terminated pods,
   focusing only on active and functional pods (#5210).</li>
@@ -321,7 +365,7 @@ on the release branch in GitHub.</p>
 </ul>
 <h2 id="version-1233">Version 1.23.3</h2>
 <p><strong>Release date:</strong> Jul 29, 2024</p>
-<h3 id="enhancements_1">Enhancements:</h3>
+<h3 id="enhancements_2">Enhancements:</h3>
 <ul>
 <li>Add transparent support for PostgreSQL 17's <code>allow_alter_system</code> parameter,
   enabling or disabling the <code>ALTER SYSTEM</code> command through the
@@ -332,7 +376,7 @@ on the release branch in GitHub.</p>
 <li>Support the new metrics introduced in PgBouncer 1.23 in the <code>Pooler</code> metrics
   collector (#5044).</li>
 </ul>
-<h3 id="fixes_1">Fixes:</h3>
+<h3 id="fixes_2">Fixes:</h3>
 <ul>
 <li>Enhance the mechanism for detecting Pods that have been terminated but not
   deleted during an eviction process, and extend the cleanup process during
@@ -372,7 +416,7 @@ on the release branch in GitHub.</p>
 </ul>
 <h2 id="version-1232">Version 1.23.2</h2>
 <p><strong>Release date:</strong> Jun 12, 2024</p>
-<h3 id="enhancements_2">Enhancements:</h3>
+<h3 id="enhancements_3">Enhancements:</h3>
 <ul>
 <li>
 <p>Enabled configuration of standby-sensitive parameters during recovery using a
@@ -392,7 +436,7 @@ on the release branch in GitHub.</p>
 </ul>
 </li>
 </ul>
-<h3 id="fixes_2">Fixes:</h3>
+<h3 id="fixes_3">Fixes:</h3>
 <ul>
 <li>
 <p>Prevented fenced instances from entering an unnecessary loop and consuming
@@ -457,7 +501,7 @@ on the release branch in GitHub.</p>
 </ul>
 <h2 id="version-1231">Version 1.23.1</h2>
 <p><strong>Release date:</strong> Apr 29, 2024</p>
-<h3 id="fixes_3">Fixes:</h3>
+<h3 id="fixes_4">Fixes:</h3>
 <ul>
 <li>Corrects the reconciliation of <code>PodMonitor</code> resources, which was
   failing due to a regression (#4286)</li>
@@ -487,7 +531,7 @@ supplementary support period for the previous minor release to 3 months.</p>
   useful for single-instance deployments. This feature is intended to replace the
   node maintenance window feature.</li>
 </ul>
-<h3 id="enhancements_3">Enhancements:</h3>
+<h3 id="enhancements_4">Enhancements:</h3>
 <ul>
 <li>Users now have the capability to transition an existing cluster into replica
   mode, simplifying cross-datacenter switchover operations (#4261)</li>
@@ -504,7 +548,7 @@ supplementary support period for the previous minor release to 3 months.</p>
 <li>Error detection when invoking <code>barman-cloud-wal-restore</code> in <code>recovery</code>
   bootstrap (#4101)</li>
 </ul>
-<h3 id="fixes_4">Fixes:</h3>
+<h3 id="fixes_5">Fixes:</h3>
 <ul>
 <li>Ensured that before a switchover, the elected replica is in streaming
   replication (#4288)</li>

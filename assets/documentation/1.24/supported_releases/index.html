@@ -241,10 +241,6 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../commercial_support/">Commercial support</a>
-                </li>
-              </ul>
-              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../faq/">Frequently Asked Questions (FAQ)</a>
                 </li>
               </ul>
@@ -253,7 +249,7 @@
                 </li>
               </ul>
               <ul class="current">
-                <li class="toctree-l1 current"><a class="reference internal current" href="./">Supported releases</a>
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Supported releases</a>
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#support-policy">Support Policy</a>
     </li>
@@ -420,16 +416,16 @@ following the patch version, as specified in <a href="https://semver.org/#spec-i
 <td>~ February, 2025</td>
 <td>1.28, 1.29, 1.30, 1.31</td>
 <td>1.27</td>
-<td>12 - 16</td>
+<td>12<sup>1</sup> - 17</td>
 </tr>
 <tr>
 <td>1.23.x</td>
 <td>Yes</td>
 <td>April 24, 2024</td>
-<td>~ November, 2024</td>
+<td>November 24, 2024</td>
 <td>1.27, 1.28, 1.29</td>
 <td>1.30, 1.31</td>
-<td>12 - 16</td>
+<td>12<sup>1</sup> - 17</td>
 </tr>
 <tr>
 <td>main</td>
@@ -438,16 +434,20 @@ following the patch version, as specified in <a href="https://semver.org/#spec-i
 <td></td>
 <td></td>
 <td></td>
-<td>12 - 16</td>
+<td>12<sup>1</sup> - 17</td>
 </tr>
 </tbody>
 </table>
+<p><sup>1</sup> <em>PostgreSQL 12 will be supported until November 14, 2024.</em></p>
 <p>The list of supported Kubernetes versions in the table depends on what
 the CloudNativePG maintainers think is reasonable to support and to test.</p>
-<p>At the moment, the CloudNativePG community doesn't support or test any
-additional Kubernetes distribution, like Red Hat OpenShift. This might change
-in the future and, in that case, that would be reflected in an official policy
-written by the CloudNativePG maintainers.</p>
+<p>Currently, the CloudNativePG community does not officially support or test any
+Kubernetes distributions beyond the standard/vanilla one - such as Red Hat
+OpenShift. This may change in the future, and if it does, the CloudNativePG
+maintainers will update the official policy accordingly.</p>
+<p>If you plan to deploy CloudNativePG on Red Hat OpenShift, you can use the
+<a href="https://catalog.redhat.com/software/container-stacks/detail/653fd4035eece8598f66d97b">certified operator provided by EDB</a>,
+which comes with full support from EDB.</p>
 <h3 id="supported-postgresql-versions">Supported PostgreSQL versions</h3>
 <p>The list of supported Postgres versions in the previous table generally depends on
 what PostgreSQL versions were supported by the community at the time the minor

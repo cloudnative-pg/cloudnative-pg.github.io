@@ -125,7 +125,7 @@
                 </li>
               </ul>
               <ul class="current">
-                <li class="toctree-l1 current"><a class="reference internal current" href="./">PostgreSQL Configuration</a>
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">PostgreSQL Configuration</a>
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#the-postgresql-section">The postgresql section</a>
         <ul>
@@ -283,10 +283,6 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../commercial_support/">Commercial support</a>
-                </li>
-              </ul>
-              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../faq/">Frequently Asked Questions (FAQ)</a>
                 </li>
               </ul>
@@ -391,6 +387,7 @@ operator by applying the following sections in this order:</p>
 <p>The <strong>global default parameters</strong> are:</p>
 <pre><code class="language-text">archive_mode = 'on'
 dynamic_shared_memory_type = 'posix'
+full_page_writes = 'on'
 logging_collector = 'on'
 log_destination = 'csvlog'
 log_directory = '/controller/log'
@@ -432,7 +429,6 @@ replication purposes.</p>
 </div>
 <p>The following parameters are <strong>fixed</strong> and exclusively controlled by the operator:</p>
 <pre><code class="language-text">archive_command = '/controller/manager wal-archive %p'
-full_page_writes = 'on'
 hot_standby = 'true'
 listen_addresses = '*'
 port = '5432'
@@ -798,7 +794,6 @@ operator. The operator prevents the user from setting them using a webhook.</p>
 <li><code>data_sync_retry</code></li>
 <li><code>event_source</code></li>
 <li><code>external_pid_file</code></li>
-<li><code>full_page_writes</code></li>
 <li><code>hba_file</code></li>
 <li><code>hot_standby</code></li>
 <li><code>ident_file</code></li>
