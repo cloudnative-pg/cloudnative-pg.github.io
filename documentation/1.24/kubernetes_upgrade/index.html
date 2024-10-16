@@ -185,7 +185,7 @@
                 </li>
               </ul>
               <ul class="current">
-                <li class="toctree-l1 current"><a class="reference internal current" href="./">Kubernetes Upgrade and Maintenance</a>
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Kubernetes Upgrade and Maintenance</a>
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#importance-of-regular-updates">Importance of Regular Updates</a>
     </li>
@@ -256,10 +256,6 @@
               </ul>
               <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../benchmarking/">Benchmarking</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../commercial_support/">Commercial support</a>
                 </li>
               </ul>
               <ul>
@@ -359,8 +355,8 @@ ahead of the drain. Once the instance in the node is downgraded to replica, the
 draining can resume.
 For single-instance clusters, a switchover is not possible, so CloudNativePG
 will prevent draining the node where the instance is housed.
-Additionally, in multi-instance clusters, CloudNativePG guarantees that only
-one replica at a time is gracefully shut down during a drain operation.</p>
+Additionally, in clusters with 3 or more instances, CloudNativePG guarantees that
+only one replica at a time is gracefully shut down during a drain operation.</p>
 <p>Each PostgreSQL <code>Cluster</code> is equipped with two associated <code>PodDisruptionBudget</code>
 resources - you can easily confirm it with the <code>kubectl get pdb</code> command.</p>
 <p>Our recommendation is to leave pod disruption budgets enabled for every

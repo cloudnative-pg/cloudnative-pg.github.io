@@ -157,15 +157,17 @@
                 </li>
               </ul>
               <ul class="current">
-                <li class="toctree-l1 current"><a class="reference internal current" href="./">Logging</a>
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Logging</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#operator-log">Operator log</a>
+    <li class="toctree-l2"><a class="reference internal" href="#cluster-logs">Cluster Logs</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#postgresql-log">PostgreSQL log</a>
+    <li class="toctree-l2"><a class="reference internal" href="#operator-logs">Operator Logs</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#pgaudit-logs">PGAudit logs</a>
+    <li class="toctree-l2"><a class="reference internal" href="#postgresql-logs">PostgreSQL Logs</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#other-logs">Other logs</a>
+    <li class="toctree-l2"><a class="reference internal" href="#pgaudit-logs">PGAudit Logs</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#other-logs">Other Logs</a>
     </li>
     </ul>
                 </li>
@@ -247,10 +249,6 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../commercial_support/">Commercial support</a>
-                </li>
-              </ul>
-              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../faq/">Frequently Asked Questions (FAQ)</a>
                 </li>
               </ul>
@@ -299,41 +297,57 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="logging">Logging</h1>
-<p>The operator is designed to log in JSON format directly to standard output,
-including PostgreSQL logs.</p>
-<p>Each log entry has the following fields:</p>
-<ul>
-<li><code>level</code> – Log level (<code>info</code>, <code>notice</code>, ...).</li>
-<li><code>ts</code> – The timestamp (epoch with microseconds).</li>
-<li><code>logger</code> – The type of the record (for example, <code>postgres</code> or <code>pg_controldata</code>).</li>
-<li><code>msg</code> – The actual message or the keyword <code>record</code> in case the message is parsed in JSON format.</li>
-<li><code>record</code> – The actual record with structure that varies depending on the
-  <code>logger</code> type.</li>
-<li><code>logging_podName</code> – The pod where the log was created.</li>
-</ul>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Long-term storage and management of logs is outside the operator's purview,
-and needs to be provided at the level of the Kubernetes installation.
-See the
+<p>CloudNativePG outputs logs in JSON format directly to standard output, including
+PostgreSQL logs, without persisting them to storage for security reasons. This
+design facilitates seamless integration with most Kubernetes-compatible log
+management tools, including command line ones like
+<a href="https://github.com/stern/stern">stern</a>.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Long-term storage and management of logs are outside the scope of the
+operator and should be handled at the Kubernetes infrastructure level.
+For more information, see the
 <a href="https://kubernetes.io/docs/concepts/cluster-administration/logging/">Kubernetes Logging Architecture</a>
 documentation.</p>
 </div>
+<p>Each log entry includes the following fields:</p>
+<ul>
+<li><code>level</code> – The log level (e.g., <code>info</code>, <code>notice</code>).</li>
+<li><code>ts</code> – The timestamp.</li>
+<li><code>logger</code> – The type of log (e.g., <code>postgres</code>, <code>pg_controldata</code>).</li>
+<li><code>msg</code> – The log message, or the keyword <code>record</code> if the message is in JSON
+  format.</li>
+<li><code>record</code> – The actual record, with a structure that varies depending on the
+  <code>logger</code> type.</li>
+<li><code>logging_pod</code> – The name of the pod where the log was generated.</li>
+</ul>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
-<p>If your log ingestion system requires it, you can rename the <code>level</code> and <code>ts</code> field names using the <code>log-field-level</code> and
-<code>log-field-timestamp</code> flags of the operator controller. Edit the <code>Deployment</code> definition of the
-<code>cloudnative-pg</code> operator.</p>
+<p>If your log ingestion system requires custom field names, you can rename
+the <code>level</code> and <code>ts</code> fields using the <code>log-field-level</code> and
+<code>log-field-timestamp</code> flags in the operator controller. This can be configured
+by editing the <code>Deployment</code> definition of the <code>cloudnative-pg</code> operator.</p>
 </div>
-<h2 id="operator-log">Operator log</h2>
-<p>You can specify a log level in the cluster spec with the option <code>logLevel</code>.
-You can set it to <code>error</code>, <code>warning</code>, <code>info</code>(default), <code>debug</code>, or <code>trace</code>.</p>
-<p>Currently, you can set the log level only when an instance starts. You can't
-change it at runtime. If you change the value in the cluster spec after the cluster
-was started, it takes effect only in the new pods and not the old ones.</p>
-<h2 id="postgresql-log">PostgreSQL log</h2>
-<p>Each entry in the PostgreSQL log is a JSON object having the <code>logger</code> key set
-to <code>postgres</code> and the structure described in the following example:</p>
+<h2 id="cluster-logs">Cluster Logs</h2>
+<p>You can configure the log level for the instance pods in the cluster
+specification using the <code>logLevel</code> option. Available log levels are: <code>error</code>,
+<code>warning</code>, <code>info</code> (default), <code>debug</code>, and <code>trace</code>.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+</div>
+<p>Currently, the log level can only be set at the time the instance starts.
+   Changes to the log level in the cluster specification after the cluster has
+   started will only apply to new pods, not existing ones.</p>
+<h2 id="operator-logs">Operator Logs</h2>
+<p>The logs produced by the operator pod can be configured with log
+levels, same as instance pods: <code>error</code>, <code>warning</code>, <code>info</code> (default), <code>debug</code>,
+and <code>trace</code>.</p>
+<p>The log level for the operator can be configured by editing the <code>Deployment</code>
+definition of the operator and setting the <code>--log-level</code> command line argument
+to the desired value.</p>
+<h2 id="postgresql-logs">PostgreSQL Logs</h2>
+<p>Each PostgreSQL log entry is a JSON object with the <code>logger</code> key set to
+<code>postgres</code>. The structure of the log entries is as follows:</p>
 <pre><code class="language-json">{
   &quot;level&quot;: &quot;info&quot;,
   &quot;ts&quot;: 1619781249.7188137,
@@ -368,39 +382,38 @@ to <code>postgres</code> and the structure described in the following example:</
   &quot;logging_pod&quot;: &quot;cluster-example-1&quot;,
 }
 </code></pre>
-<p>Internally, the operator relies on the PostgreSQL CSV log format. See
-the PostgreSQL documentation for more information about the <a href="https://www.postgresql.org/docs/current/runtime-config-logging.html">CSV log
-format</a>.</p>
-<h2 id="pgaudit-logs">PGAudit logs</h2>
-<p>CloudNativePG has transparent and native support for
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Internally, the operator uses PostgreSQL's CSV log format. For more details,
+refer to the <a href="https://www.postgresql.org/docs/current/runtime-config-logging.html">PostgreSQL documentation on CSV log format</a>.</p>
+</div>
+<h2 id="pgaudit-logs">PGAudit Logs</h2>
+<p>CloudNativePG offers seamless and native support for
 <a href="https://www.pgaudit.org/">PGAudit</a> on PostgreSQL clusters.</p>
-<p>To enable this support, add the required <code>pgaudit</code> parameters to the <code>postgresql</code>
-section in the configuration of the cluster.</p>
+<p>To enable PGAudit, add the necessary <code>pgaudit</code> parameters in the <code>postgresql</code>
+section of the cluster configuration.</p>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
-<p>You need to add the PGAudit library to <code>shared_preload_libraries</code>.
-CloudNativePG adds the library based on the
-presence of <code>pgaudit.*</code> parameters in the postgresql configuration.
-The operator detects and manages the addition and removal of the
-library from <code>shared_preload_libraries</code>.</p>
+<p>The PGAudit library must be added to <code>shared_preload_libraries</code>.
+CloudNativePG automatically manages this based on the presence of <code>pgaudit.*</code>
+parameters in the PostgreSQL configuration. The operator handles both the
+addition and removal of the library from <code>shared_preload_libraries</code>.</p>
 </div>
-<p>The operator also takes care of creating and removing the extension from all
-the available databases in the cluster.</p>
+<p>Additionally, the operator manages the creation and removal of the PGAudit
+extension across all databases within the cluster.</p>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
-<p>CloudNativePG runs the <code>CREATE EXTENSION</code> and
-<code>DROP EXTENSION</code> commands in all databases in the cluster that accept
-connections.</p>
+<p>CloudNativePG executes the <code>CREATE EXTENSION</code> and <code>DROP EXTENSION</code> commands
+in all databases within the cluster that accept connections.</p>
 </div>
-<p>This example shows a PostgreSQL 13 <code>Cluster</code> deployment that results in
-<code>pgaudit</code> being enabled with the requested configuration:</p>
+<p>The following example demonstrates a PostgreSQL <code>Cluster</code> deployment with
+PGAudit enabled and configured:</p>
 <pre><code class="language-yaml">apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
   name: cluster-example
 spec:
   instances: 3
-  imageName: ghcr.io/cloudnative-pg/postgresql:13
 
   postgresql:
     parameters:
@@ -412,14 +425,15 @@ spec:
   storage:
     size: 1Gi
 </code></pre>
-<p>The audit CSV logs entries returned by PGAudit are then parsed and routed to
-stdout in JSON format, similarly to all the remaining logs:</p>
+<p>The audit CSV log entries generated by PGAudit are parsed and routed to
+standard output in JSON format, similar to all other logs:</p>
 <ul>
 <li><code>.logger</code> is set to <code>pgaudit</code>.</li>
 <li><code>.msg</code> is set to <code>record</code>.</li>
-<li><code>.record</code> contains the whole parsed record as a JSON object. This is similar to
-  <code>logging_collector</code> logs, except for <code>.record.audit</code>, which contains the
-  PGAudit CSV message formatted as a JSON object.</li>
+<li><code>.record</code> contains the entire parsed record as a JSON object. This structure
+  resembles that of <code>logging_collector</code> logs, with the exception of
+  <code>.record.audit</code>, which contains the PGAudit CSV message formatted as a JSON
+  object.</li>
 </ul>
 <p>This example shows sample log entries:</p>
 <pre><code class="language-json">{
@@ -458,25 +472,27 @@ stdout in JSON format, similarly to all the remaining logs:</p>
 <p>See the
 <a href="https://github.com/pgaudit/pgaudit/blob/master/README.md#format">PGAudit documentation</a> <!-- wokeignore:rule=master -->
 for more details about each field in a record.</p>
-<h2 id="other-logs">Other logs</h2>
-<p>All logs that are produced by the operator and its instances are in JSON
-format, with <code>logger</code> set according to the process that produced them.
-Therefore, all the possible <code>logger</code> values are the following:</p>
+<h2 id="other-logs">Other Logs</h2>
+<p>All logs generated by the operator and its instances are in JSON format, with
+the <code>logger</code> field indicating the process that produced them. The possible
+<code>logger</code> values are as follows:</p>
 <ul>
-<li><code>barman-cloud-wal-archive</code>: from <code>barman-cloud-wal-archive</code> directly</li>
-<li><code>barman-cloud-wal-restore</code>: from <code>barman-cloud-wal-restore</code> directly</li>
-<li><code>initdb</code>: from running <code>initdb</code></li>
-<li><code>pg_basebackup</code>: from running <code>pg_basebackup</code></li>
-<li><code>pg_controldata</code>: from running <code>pg_controldata</code></li>
-<li><code>pg_ctl</code>: from running any <code>pg_ctl</code> subcommand</li>
-<li><code>pg_rewind</code>: from running <code>pg_rewind</code></li>
-<li><code>pgaudit</code>: from PGAudit extension</li>
-<li><code>postgres</code>: from the <code>postgres</code> instance (having <code>msg</code> different than <code>record</code>)</li>
-<li><code>wal-archive</code>: from the <code>wal-archive</code> subcommand of the instance manager</li>
-<li><code>wal-restore</code>: from the <code>wal-restore</code> subcommand of the instance manager</li>
+<li><code>barman-cloud-wal-archive</code>: logs from <code>barman-cloud-wal-archive</code></li>
+<li><code>barman-cloud-wal-restore</code>: logs from <code>barman-cloud-wal-restore</code></li>
+<li><code>initdb</code>: logs from running <code>initdb</code></li>
+<li><code>pg_basebackup</code>: logs from running <code>pg_basebackup</code></li>
+<li><code>pg_controldata</code>: logs from running <code>pg_controldata</code></li>
+<li><code>pg_ctl</code>: logs from running any <code>pg_ctl</code> subcommand</li>
+<li><code>pg_rewind</code>: logs from running <code>pg_rewind</code></li>
+<li><code>pgaudit</code>: logs from the PGAudit extension</li>
+<li><code>postgres</code>: logs from the <code>postgres</code> instance (with <code>msg</code> distinct from
+  <code>record</code>)</li>
+<li><code>wal-archive</code>: logs from the <code>wal-archive</code> subcommand of the instance manager</li>
+<li><code>wal-restore</code>: logs from the <code>wal-restore</code> subcommand of the instance manager</li>
+<li><code>instance-manager</code>: from the <a href="../instance_manager/">PostgreSQL instance manager</a></li>
 </ul>
-<p>Except for <code>postgres</code>, which has the aforementioned structures,
-all other possible values have <code>msg</code> set to the escaped message that's
+<p>With the exception of <code>postgres</code>, which follows a specific structure, all other
+<code>logger</code> values contain the <code>msg</code> field with the escaped message that is
 logged.</p>
               
             </div>

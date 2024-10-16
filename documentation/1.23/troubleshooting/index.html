@@ -193,7 +193,7 @@
                 </li>
               </ul>
               <ul class="current">
-                <li class="toctree-l1 current"><a class="reference internal current" href="./">Troubleshooting</a>
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Troubleshooting</a>
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#before-you-start">Before you start</a>
         <ul>
@@ -255,6 +255,8 @@
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#error-while-bootstrapping-the-data-directory">Error while bootstrapping the data directory</a>
     </li>
+    <li class="toctree-l3"><a class="reference internal" href="#bootstrap-job-hangs-in-running-status">Bootstrap job hangs in running status</a>
+    </li>
         </ul>
     </li>
     </ul>
@@ -298,10 +300,6 @@
               </ul>
               <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../benchmarking/">Benchmarking</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../commercial_support/">Commercial support</a>
                 </li>
               </ul>
               <ul>
@@ -462,23 +460,27 @@ a professional support company.</p>
 </div>
 <p>The above steps might be integrated into the <code>cnpg</code> plugin at some stage in the future.</p>
 <h2 id="logs">Logs</h2>
-<p>Every resource created and controlled by CloudNativePG logs to
-standard output, as expected by Kubernetes, and directly in <a href="../logging/">JSON
-format</a>. As a result, you should rely on the <code>kubectl logs</code>
-command to retrieve logs from a given resource.</p>
-<p>For more information, type:</p>
-<pre><code class="language-shell">kubectl logs --help
-</code></pre>
-<div class="admonition hint">
-<p class="admonition-title">Hint</p>
-<p>JSON logs are great for machine reading, but hard to read for human beings.
-Our recommendation is to use the <code>jq</code> command to improve usability. For
-example, you can <em>pipe</em> the <code>kubectl logs</code> command with <code>| jq -C</code>.</p>
-</div>
+<p>All resources created and managed by CloudNativePG log to standard output in
+accordance with Kubernetes conventions, using <a href="../logging/">JSON format</a>.</p>
+<p>While logs are typically processed at the infrastructure level and include
+those from CloudNativePG, accessing logs directly from the command line
+interface is critical during troubleshooting. You have three primary options
+for doing so:</p>
+<ul>
+<li>Use the <code>kubectl logs</code> command to retrieve logs from a specific resource, and
+  apply <code>jq</code> for better readability.</li>
+<li>Use the <a href="../kubectl-plugin/#logs"><code>kubectl cnpg logs</code> command</a> for
+  CloudNativePG-specific logging.</li>
+<li>Leverage specialized open-source tools like
+  <a href="https://github.com/stern/stern">stern</a>, which can aggregate logs from
+  multiple resources (e.g., all pods in a PostgreSQL cluster by selecting the
+  <code>cnpg.io/clusterName</code> label), filter log entries, customize output formats,
+  and more.</li>
+</ul>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>In the sections below, we will show some examples on how to retrieve logs
-about different resources when it comes to troubleshooting CloudNativePG.</p>
+<p>The following sections provide examples of how to retrieve logs for various
+resources when troubleshooting CloudNativePG.</p>
 </div>
 <h2 id="operator-information">Operator information</h2>
 <p>By default, the CloudNativePG operator is installed in the
@@ -525,7 +527,7 @@ Those pods are managed by a deployment named <code>cnpg-controller-manager</code
 Name:               cluster-example
 Namespace:          default
 System ID:          7044925089871458324
-PostgreSQL Image:   ghcr.io/cloudnative-pg/postgresql:16.4-3
+PostgreSQL Image:   ghcr.io/cloudnative-pg/postgresql:17.0-3
 Primary instance:   cluster-example-1
 Instances:          3
 Ready instances:    3
@@ -570,20 +572,11 @@ of the <code>Cluster</code> resource:</p>
 <p class="admonition-title">Tip</p>
 <p>You can print more information by adding the <code>--verbose</code> option.</p>
 </div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Besides knowing cluster status, you can also do the following things with the cnpg plugin:
-Promote a replica.<br />
-Manage certificates.<br />
-Make a rollout restart cluster to apply configuration changes.<br />
-Make a reconciliation loop to reload and apply configuration changes.<br />
-For more information, please see <a href="../kubectl-plugin/"><code>cnpg</code> plugin</a> documentation.</p>
-</div>
 <p>Get PostgreSQL container image version:</p>
 <pre><code class="language-shell">kubectl describe cluster &lt;CLUSTER_NAME&gt; -n &lt;NAMESPACE&gt; | grep &quot;Image Name&quot;
 </code></pre>
 <p>Output:</p>
-<pre><code class="language-shell">  Image Name:    ghcr.io/cloudnative-pg/postgresql:16.4-3
+<pre><code class="language-shell">  Image Name:    ghcr.io/cloudnative-pg/postgresql:17.0-3
 </code></pre>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -925,6 +918,16 @@ every PostgreSQL pod should have available.</p>
 <p>Please remember that you must have enough hugepages memory available to schedule
 every Pod in the Cluster (in the example above, at least 512MiB per Pod must be
 free).</p>
+<h3 id="bootstrap-job-hangs-in-running-status">Bootstrap job hangs in running status</h3>
+<p>If your Cluster's initialization job hangs while in <code>Running</code> status with the
+message:
+"error while waiting for the API server to be reachable", you probably have
+a network issue preventing communication with the Kubernetes API server.
+Initialization jobs (like most of jobs) need to access the Kubernetes
+API. Please check your networking.</p>
+<p>Another possible cause is when you have sidecar injection configured. Sidecars
+such as Istio may make the network temporarily unavailable during startup. If
+you have sidecar injection enabled, retry with injection disabled.</p>
               
             </div>
           </div><footer>

@@ -205,7 +205,7 @@
                 </li>
               </ul>
               <ul class="current">
-                <li class="toctree-l1 current"><a class="reference internal current" href="./">PostGIS</a>
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">PostGIS</a>
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#basic-concepts-about-a-postgis-cluster">Basic concepts about a PostGIS cluster</a>
     </li>
@@ -240,10 +240,6 @@
               </ul>
               <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../benchmarking/">Benchmarking</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../commercial_support/">Commercial support</a>
                 </li>
               </ul>
               <ul>
@@ -387,7 +383,7 @@ container, by connecting to the <code>app</code> database (you might obtain diff
 values from the ones in this document):</p>
 <pre><code class="language-console">$ kubectl exec -ti postgis-example-1 -- psql app
 Defaulted container &quot;postgres&quot; out of: postgres, bootstrap-controller (init)
-psql (16.4 (Debian 16.4-1.pgdg110+1))
+psql (17.0 (Debian 17.0-1.pgdg110+1))
 Type &quot;help&quot; for help.
 
 app=# SELECT * FROM pg_available_extensions WHERE name ~ '^postgis' ORDER BY 1;
