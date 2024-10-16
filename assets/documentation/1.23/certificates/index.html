@@ -161,9 +161,9 @@
                 </li>
               </ul>
               <ul class="current">
-                <li class="toctree-l1 current"><a class="reference internal current" href="./">Certificates</a>
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Certificates</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#operator-managed-mode">Operator-managed mode</a>
+    <li class="toctree-l2"><a class="reference internal" href="#operator-managed-mode">Operator-Managed Mode</a>
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#server-certificates">Server certificates</a>
         <ul>
@@ -279,10 +279,6 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../commercial_support/">Commercial support</a>
-                </li>
-              </ul>
-              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../faq/">Frequently Asked Questions (FAQ)</a>
                 </li>
               </ul>
@@ -357,9 +353,24 @@ primarily operates in two modes:</p>
 </ol>
 <p>You can also choose a hybrid approach, where only part of the certificates is
 generated outside CNPG.</p>
-<h2 id="operator-managed-mode">Operator-managed mode</h2>
-<p>By default, the operator generates a single CA and uses it for both client and
-server certificates, which are then managed and renewed automatically.</p>
+<h2 id="operator-managed-mode">Operator-Managed Mode</h2>
+<p>By default, the operator automatically generates a single Certificate Authority
+(CA) to issue both client and server certificates. These certificates are
+managed continuously by the operator, with automatic renewal 7 days before
+expiration (within a 90-day validity period).</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>You can adjust this default behavior by configuring the
+<code>CERTIFICATE_DURATION</code> and <code>EXPIRING_CHECK_THRESHOLD</code> environment variables.
+For detailed guidance, refer to the <a href="../operator_conf/">Operator Configuration</a>.</p>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Certificate renewal does not cause any downtime for the PostgreSQL server,
+as a simple reload operation is sufficient. However, any user-managed
+certificates not controlled by CloudNativePG must be re-issued following the
+renewal process.</p>
+</div>
 <h3 id="server-certificates">Server certificates</h3>
 <h4 id="server-ca-secret">Server CA secret</h4>
 <p>The operator generates a self-signed CA and stores it in a generic secret
