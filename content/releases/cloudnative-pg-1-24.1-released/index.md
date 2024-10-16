@@ -43,7 +43,7 @@ Your support is greatly appreciated!
 
 ## Upgrade and Maintenance
 
-Before upgrading, please review the [upgrade instructions](https://cloudnative-pg.io/documentation/1.24/installation_upgrade/)
+Before upgrading, please review the [upgrade instructions](https://cloudnative-pg.io/documentation/1.24/installation_upgrade/#upgrading-to-124-from-a-previous-minor-version)
 carefully.
 
 We strongly recommend upgrading to version 1.24.1 as soon as possible. For
