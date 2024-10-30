@@ -7,6 +7,15 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language><atom:link href="https://cloudnative-pg.io/support/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>CYBERTEC</title>
+      <link>https://cloudnative-pg.io/support/cybertec/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://cloudnative-pg.io/support/cybertec/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>EDB</title>
       <link>https://cloudnative-pg.io/support/edb/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
