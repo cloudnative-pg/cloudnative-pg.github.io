@@ -343,10 +343,10 @@
 <h3 id="directly-using-the-operator-manifest">Directly using the operator manifest</h3>
 <p>The operator can be installed like any other resource in Kubernetes,
 through a YAML manifest applied via <code>kubectl</code>.</p>
-<p>You can install the <a href="https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/release-1.24/releases/cnpg-1.24.1.yaml">latest operator manifest</a>
+<p>You can install the <a href="https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/main/releases/cnpg-1.25.0-rc1.yaml">latest operator manifest</a>
 for this minor release as follows:</p>
 <pre><code class="language-sh">kubectl apply --server-side -f \
-  https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/release-1.24/releases/cnpg-1.24.1.yaml
+  https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/main/releases/cnpg-1.25.0-rc1.yaml
 </code></pre>
 <p>You can verify that with:</p>
 <pre><code class="language-sh">kubectl get deployment -n cnpg-system cnpg-controller-manager
@@ -390,7 +390,7 @@ supported release.</p>
 <p>If you are instead looking for the latest snapshot of the operator for this
 specific minor release, you can just run:</p>
 <pre><code class="language-sh">curl -sSfL \
-  https://raw.githubusercontent.com/cloudnative-pg/artifacts/release-1.24/manifests/operator-manifest.yaml | \
+  https://raw.githubusercontent.com/cloudnative-pg/artifacts/release-1.25/manifests/operator-manifest.yaml | \
   kubectl apply --server-side -f -
 </code></pre>
 <div class="admonition important">
