@@ -40,7 +40,7 @@ notes](https://cloudnative-pg.io/documentation/preview/release_notes/v1.25/).
 
 ## Get Involved and Make a Difference!
 
-This release candidate offers a unique opportunity to test new features in your
+This release candidate offers a unique opportunity to test the new features in your
 environment before the final release. Although **not recommended for production
 use**, simulating your workloads can help uncover potential issues and validate
 feature stability.
