@@ -70,7 +70,7 @@ The stability of each CloudNativePG release relies on the community’s
 engagement. Testing your workloads with this release candidate helps identify
 bugs and regressions early.
 
-- View the [open issues for the 1.25 release](https://github.com/cloudnative-pg/cloudnative-pg/issues?q=is%3Aopen+is%3Aissue+milestone%3A1.25.0).
+- View the [open issues for the 1.25 release](https://github.com/cloudnative-pg/cloudnative-pg/milestone/24).
 - Report bugs directly on [GitHub](https://github.com/cloudnative-pg/cloudnative-pg/issues/new/choose).
 
 ## Release Timeline
