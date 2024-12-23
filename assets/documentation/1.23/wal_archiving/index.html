@@ -300,8 +300,8 @@ the <a href="../backup_barmanobjectstore/">"Backup on object stores" section</a>
 the WAL archive.</p>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
-<p>Please refer to <a href="../cloudnative-pg.v1/#postgresql-cnpg-io-v1-barmanobjectstoreconfiguration"><code>BarmanObjectStoreConfiguration</code></a>
-in the API reference for a full list of options.</p>
+<p>Please refer to <a href="https://pkg.go.dev/github.com/cloudnative-pg/barman-cloud/pkg/api#BarmanObjectStoreConfiguration"><code>BarmanObjectStoreConfiguration</code></a>
+in the barman-cloud API for a full list of options.</p>
 </div>
 <p>If required, you can choose to compress WAL files as soon as they
 are uploaded and/or encrypt them:</p>
@@ -326,7 +326,7 @@ segment to be archived.</p>
 <p>By default, CloudNativePG sets <code>archive_timeout</code> to <code>5min</code>, ensuring
 that WAL files, even in case of low workloads, are closed and archived
 at least every 5 minutes, providing a deterministic time-based value for
-your Recovery Point Objective (RPO). Even though you change the value
+your Recovery Point Objective (<a href="../before_you_start/#rpo">RPO</a>). Even though you change the value
 of the <a href="https://www.postgresql.org/docs/current/runtime-config-wal.html#GUC-ARCHIVE-TIMEOUT"><code>archive_timeout</code> setting in the PostgreSQL configuration</a>,
 our experience suggests that the default value set by the operator is
 suitable for most use cases.</p>

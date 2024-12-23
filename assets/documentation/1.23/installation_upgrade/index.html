@@ -81,7 +81,7 @@
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#compatibility-among-versions">Compatibility among versions</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#upgrading-to-1230-1223-or-1215">Upgrading to 1.23.0, 1.22.3 or 1.21.5</a>
+    <li class="toctree-l3"><a class="reference internal" href="#upgrading-to-123-from-a-previous-minor-version">Upgrading to 1.23 from a previous minor version</a>
         <ul>
     <li class="toctree-l4"><a class="reference internal" href="#user-defined-replication-slots">User defined replication slots</a>
     </li>
@@ -343,10 +343,10 @@
 <h3 id="directly-using-the-operator-manifest">Directly using the operator manifest</h3>
 <p>The operator can be installed like any other resource in Kubernetes,
 through a YAML manifest applied via <code>kubectl</code>.</p>
-<p>You can install the <a href="https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/release-1.23/releases/cnpg-1.23.5.yaml">latest operator manifest</a>
+<p>You can install the <a href="https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/release-1.23/releases/cnpg-1.23.6.yaml">latest operator manifest</a>
 for this minor release as follows:</p>
 <pre><code class="language-sh">kubectl apply --server-side -f \
-  https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/release-1.23/releases/cnpg-1.23.5.yaml
+  https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/release-1.23/releases/cnpg-1.23.6.yaml
 </code></pre>
 <p>You can verify that with:</p>
 <pre><code class="language-sh">kubectl get deployment -n cnpg-system cnpg-controller-manager
@@ -475,7 +475,10 @@ plugin for <code>kubectl</code>.</p>
 <p class="admonition-title">Important</p>
 <p>In case <code>primaryUpdateStrategy</code> is set to the default value of <code>unsupervised</code>,
 an upgrade of the operator will trigger a switchover on your PostgreSQL cluster,
-causing a (normally negligible) downtime.</p>
+causing a (normally negligible) downtime. If your PostgreSQL Cluster has only one
+instance, the instance will be automatically restarted as <code>supervised</code> value is
+not supported for <code>primaryUpdateStrategy</code>. In either case, your applications will
+have to reconnect to PostgreSQL.</p>
 </div>
 <p>The default rolling update behavior can be replaced with in-place updates of
 the instance manager. This approach does not require a restart of the
@@ -523,13 +526,7 @@ manager of the chosen distribution is enough.</p>
 <p>When versions are not directly upgradable, the old version needs to be
 removed before installing the new one. This won't affect user data but
 only the operator itself.</p>
-<h3 id="upgrading-to-1230-1223-or-1215">Upgrading to 1.23.0, 1.22.3 or 1.21.5</h3>
-<div class="admonition important">
-<p class="admonition-title">Important</p>
-<p>We encourage all existing users of CloudNativePG to upgrade to version
-1.23.0 or at least to the latest stable version of the minor release you are
-currently using (namely 1.22.2 or 1.21.4).</p>
-</div>
+<h3 id="upgrading-to-123-from-a-previous-minor-version">Upgrading to 1.23 from a previous minor version</h3>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>Every time you are upgrading to a higher minor release, make sure you

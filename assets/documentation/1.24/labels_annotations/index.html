@@ -363,6 +363,11 @@ instead of alternative approaches such as pod templates.</p>
 <dt><code>cnpg.io/reload</code></dt>
 <dd>Available on <code>ConfigMap</code> and <code>Secret</code> resources. When set to <code>true</code>,
   a change in the resource is automatically reloaded by the operator.</dd>
+<dt><code>cnpg.io/userType</code></dt>
+<dd>Specifies the type of PostgreSQL user associated with the
+  <code>Secret</code>, either <code>superuser</code> (Postgres superuser access) or <code>app</code>
+  (application-level user in CloudNativePG terminology), and is limited to the
+  default users created by CloudNativePG (typically <code>postgres</code> and <code>app</code>).</dd>
 <dt><code>role</code> - <strong>deprecated</strong></dt>
 <dd>Whether the instance running in a pod is a <code>primary</code> or a <code>replica</code>.
    This label is deprecated, you should use <code>cnpg.io/instanceRole</code> instead.</dd>
