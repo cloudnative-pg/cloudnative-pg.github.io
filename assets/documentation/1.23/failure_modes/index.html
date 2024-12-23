@@ -101,9 +101,9 @@
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#pod-deleted-by-the-user">Pod deleted by the user</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#readiness-probe-failure">Readiness probe failure</a>
+    <li class="toctree-l3"><a class="reference internal" href="#liveness-probe-failure">Liveness Probe Failure</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#liveness-probe-failure">Liveness probe failure</a>
+    <li class="toctree-l3"><a class="reference internal" href="#readiness-probe-failure">Readiness Probe Failure</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#worker-node-drained">Worker node drained</a>
     </li>
@@ -389,19 +389,20 @@ As a result, the operator doesn't see the pod of the primary anymore, and
 triggers a failover promoting the most aligned standby, without
 the guarantee that the primary had been shut down.</p>
 </div>
-<h3 id="readiness-probe-failure">Readiness probe failure</h3>
-<p>After 3 failures, the pod will be considered <em>not ready</em>. The pod will still
-be part of the <code>Cluster</code>, no new pod will be created.</p>
-<p>If the cause of the failure can't be fixed, it is possible to delete the pod
-manually. Otherwise, the pod will resume the previous role when the failure
-is solved.</p>
-<p>Self-healing will happen after three failures of the probe.</p>
-<h3 id="liveness-probe-failure">Liveness probe failure</h3>
-<p>After 3 failures, the <code>postgres</code> container will be considered failed. The
-pod will still be part of the <code>Cluster</code>, and the <em>kubelet</em> will try to restart
-the container. If the cause of the failure can't be fixed, it is possible
-to delete the pod manually.</p>
-<p>Self-healing will happen after three failures of the probe.</p>
+<h3 id="liveness-probe-failure">Liveness Probe Failure</h3>
+<p>By default, after three consecutive liveness probe failures, the <code>postgres</code>
+container will be considered failed. The Pod will remain part of the <code>Cluster</code>,
+but the <em>kubelet</em> will attempt to restart the failed container. If the issue
+causing the failure persists and cannot be resolved, you can manually delete
+the Pod.</p>
+<p>In both cases, self-healing occurs automatically once the underlying issues are
+resolved.</p>
+<h3 id="readiness-probe-failure">Readiness Probe Failure</h3>
+<p>By default, after three consecutive readiness probe failures, the Pod will be
+marked as <em>not ready</em>. It will remain part of the <code>Cluster</code>, and no new Pod
+will be created. If the issue causing the failure cannot be resolved, you can
+manually delete the Pod. Once the failure is addressed, the Pod will
+automatically regain its previous role.</p>
 <h3 id="worker-node-drained">Worker node drained</h3>
 <p>The pod will be evicted from the worker node and removed from the service. A
 new pod will be created on a different worker node from a physical backup of the

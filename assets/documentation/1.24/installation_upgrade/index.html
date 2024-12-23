@@ -333,10 +333,10 @@
 <h3 id="directly-using-the-operator-manifest">Directly using the operator manifest</h3>
 <p>The operator can be installed like any other resource in Kubernetes,
 through a YAML manifest applied via <code>kubectl</code>.</p>
-<p>You can install the <a href="https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/release-1.24/releases/cnpg-1.24.1.yaml">latest operator manifest</a>
+<p>You can install the <a href="https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/release-1.24/releases/cnpg-1.24.2.yaml">latest operator manifest</a>
 for this minor release as follows:</p>
 <pre><code class="language-sh">kubectl apply --server-side -f \
-  https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/release-1.24/releases/cnpg-1.24.1.yaml
+  https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/release-1.24/releases/cnpg-1.24.2.yaml
 </code></pre>
 <p>You can verify that with:</p>
 <pre><code class="language-sh">kubectl get deployment -n cnpg-system cnpg-controller-manager
@@ -385,7 +385,8 @@ specific minor release, you can just run:</p>
 </code></pre>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
-<p>Snapshots are not supported by the CloudNativePG and not intended for production usage.</p>
+<p>Snapshots are not supported by the CloudNativePG Community, and are not
+intended for use in production.</p>
 </div>
 <h3 id="using-the-helm-chart">Using the Helm Chart</h3>
 <p>The operator can be installed using the provided <a href="https://github.com/cloudnative-pg/charts">Helm chart</a>.</p>
@@ -464,7 +465,10 @@ plugin for <code>kubectl</code>.</p>
 <p class="admonition-title">Important</p>
 <p>In case <code>primaryUpdateStrategy</code> is set to the default value of <code>unsupervised</code>,
 an upgrade of the operator will trigger a switchover on your PostgreSQL cluster,
-causing a (normally negligible) downtime.</p>
+causing a (normally negligible) downtime. If your PostgreSQL Cluster has only one
+instance, the instance will be automatically restarted as <code>supervised</code> value is
+not supported for <code>primaryUpdateStrategy</code>. In either case, your applications will
+have to reconnect to PostgreSQL.</p>
 </div>
 <p>The default rolling update behavior can be replaced with in-place updates of
 the instance manager. This approach does not require a restart of the

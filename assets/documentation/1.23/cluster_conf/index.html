@@ -146,6 +146,14 @@
     <li class="toctree-l2"><a class="reference internal" href="#projected-volumes">Projected volumes</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#ephemeral-volumes">Ephemeral volumes</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#volume-claim-template-for-temporary-storage">Volume Claim Template for Temporary Storage</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#volume-for-shared-memory">Volume for shared memory</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#environment-variables">Environment variables</a>
     </li>
     </ul>
                 </li>
@@ -330,7 +338,7 @@ deployment manifest.</p>
 <p>CloudNativePG relies on <a href="https://kubernetes.io/docs/concepts/storage/ephemeral-volumes/">ephemeral volumes</a>
 for part of the internal activities. Ephemeral volumes exist for the sole
 duration of a pod's life, without persisting across pod restarts.</p>
-<h1 id="volume-claim-template-for-temporary-storage">Volume Claim Template for Temporary Storage</h1>
+<h3 id="volume-claim-template-for-temporary-storage">Volume Claim Template for Temporary Storage</h3>
 <p>The operator uses  by default an <code>emptyDir</code> volume, which can be customized by using the <code>.spec.ephemeralVolumesSizeLimit field</code>.
 This can be overridden by specifying a volume claim template in the <code>.spec.ephemeralVolumeSource</code> field.</p>
 <p>In the following example, a <code>1Gi</code> ephemeral volume is set.</p>

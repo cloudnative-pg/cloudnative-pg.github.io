@@ -293,9 +293,63 @@
 <p>For a complete list of changes, please refer to the
 <a href="https://github.com/cloudnative-pg/cloudnative-pg/commits/release-1.23">commits</a>
 on the release branch in GitHub.</p>
+<h2 id="version-1236">Version 1.23.6</h2>
+<p><strong>Release Date:</strong> December 23, 2024</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This is the final release in the 1.23.x series.
+Users are strongly encouraged to upgrade to a newer minor version, as 1.23
+is no longer supported.</p>
+</div>
+<h3 id="enhancements">Enhancements</h3>
+<ul>
+<li>Enable customization of startup, liveness, and readiness probes through the
+  <code>.spec.probes</code> stanza. (#6266)</li>
+<li>Add the <code>cnpg.io/userType</code> label to secrets generated for predefined users,
+  specifically <code>superuser</code> and <code>app</code>. (#4392)</li>
+<li>Improved validation for the <code>spec.schedule</code> field in ScheduledBackups,
+  raising warnings for potential misconfigurations. (#5396)</li>
+<li><code>cnpg</code> plugin:<ul>
+<li>Honor the <code>User-Agent</code> header in HTTP requests with the API server. (#6153)</li>
+</ul>
+</li>
+</ul>
+<h3 id="bug-fixes">Bug Fixes</h3>
+<ul>
+<li>Ensure the former primary flushes its WAL file queue to the archive before
+  re-synchronizing as a replica, reducing recovery times and enhancing data
+  consistency during failovers. (#6141)</li>
+<li>Clean the WAL volume along with the <code>PGDATA</code> volume during bootstrap. (#6265)</li>
+<li>Update the operator to set the cluster phase to <code>Unrecoverable</code> when
+  all previously generated <code>PersistentVolumeClaims</code> are missing. (#6170)</li>
+<li>Fix the parsing of the <code>synchronous_standby_names</code> GUC when
+  <code>.spec.postgresql.synchronous.method</code> is set to <code>first</code>. (#5955)</li>
+<li>Resolved a potential race condition when patching certain conditions
+  in CRD statuses, improving reliability in concurrent updates. (#6328)</li>
+<li>Correct role changes to apply at the transaction level instead of the
+  database context. (#6064)</li>
+<li>Remove the <code>primary_slot_name</code> definition from the <code>override.conf</code> file on
+  the primary to ensure it is always empty. (#6219)</li>
+<li>Configure libpq environment variables, including <code>PGHOST</code>, in PgBouncer pods
+  to enable seamless access to the <code>pgbouncer</code> virtual database using <code>psql</code>
+  from within the container. (#6247)</li>
+<li>Remove unnecessary updates to the Cluster status when verifying changes in
+  the image catalog. (#6277)</li>
+<li>Prevent panic during recovery from an external server without proper backup
+  configuration. (#6300)</li>
+<li>Resolved a key collision issue in structured logs, where the name field was
+  inconsistently used to log two distinct values. (#6324)</li>
+<li>Ensure proper quoting of the inRoles field in SQL statements to prevent
+  syntax errors in generated SQL during role management. (#6346)</li>
+<li><code>cnpg</code> plugin:<ul>
+<li>Ensure the <code>kubectl</code> context is properly passed in the <code>psql</code> command. (#6257)</li>
+<li>Avoid displaying physical backups block when empty with <code>status</code> command. (#5998)</li>
+</ul>
+</li>
+</ul>
 <h2 id="version-1235">Version 1.23.5</h2>
 <p><strong>Release date:</strong> Oct 16, 2024</p>
-<h3 id="enhancements">Enhancements:</h3>
+<h3 id="enhancements_1">Enhancements:</h3>
 <ul>
 <li>Remove the use of <code>pg_database_size</code> from the status probe, as it caused
   high resource utilization by scanning the entire <code>PGDATA</code> directory to
@@ -343,7 +397,7 @@ on the release branch in GitHub.</p>
 </ul>
 <h2 id="version-1234">Version 1.23.4</h2>
 <p><strong>Release date:</strong> Aug 22, 2024</p>
-<h3 id="enhancements_1">Enhancements:</h3>
+<h3 id="enhancements_2">Enhancements:</h3>
 <ul>
 <li><code>cnpg</code> plugin updates:<ul>
 <li>Enhance the <code>install generate</code> command by adding a <code>--control-plane</code> option,
@@ -365,7 +419,7 @@ on the release branch in GitHub.</p>
 </ul>
 <h2 id="version-1233">Version 1.23.3</h2>
 <p><strong>Release date:</strong> Jul 29, 2024</p>
-<h3 id="enhancements_2">Enhancements:</h3>
+<h3 id="enhancements_3">Enhancements:</h3>
 <ul>
 <li>Add transparent support for PostgreSQL 17's <code>allow_alter_system</code> parameter,
   enabling or disabling the <code>ALTER SYSTEM</code> command through the
@@ -416,7 +470,7 @@ on the release branch in GitHub.</p>
 </ul>
 <h2 id="version-1232">Version 1.23.2</h2>
 <p><strong>Release date:</strong> Jun 12, 2024</p>
-<h3 id="enhancements_3">Enhancements:</h3>
+<h3 id="enhancements_4">Enhancements:</h3>
 <ul>
 <li>
 <p>Enabled configuration of standby-sensitive parameters during recovery using a
@@ -531,7 +585,7 @@ supplementary support period for the previous minor release to 3 months.</p>
   useful for single-instance deployments. This feature is intended to replace the
   node maintenance window feature.</li>
 </ul>
-<h3 id="enhancements_4">Enhancements:</h3>
+<h3 id="enhancements_5">Enhancements:</h3>
 <ul>
 <li>Users now have the capability to transition an existing cluster into replica
   mode, simplifying cross-datacenter switchover operations (#4261)</li>

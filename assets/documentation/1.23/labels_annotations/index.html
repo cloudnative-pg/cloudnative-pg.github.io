@@ -359,6 +359,11 @@ instead of alternative approaches such as pod templates.</p>
 <dt><code>cnpg.io/reload</code></dt>
 <dd>Available on <code>ConfigMap</code> and <code>Secret</code> resources. When set to <code>true</code>,
   a change in the resource is automatically reloaded by the operator.</dd>
+<dt><code>cnpg.io/userType</code></dt>
+<dd>Specifies the type of PostgreSQL user associated with the
+  <code>Secret</code>, either <code>superuser</code> (Postgres superuser access) or <code>app</code>
+  (application-level user in CloudNativePG terminology), and is limited to the
+  default users created by CloudNativePG (typically <code>postgres</code> and <code>app</code>).</dd>
 <dt><code>role</code> - <strong>deprecated</strong></dt>
 <dd>Whether the instance running in a pod is a <code>primary</code> or a <code>replica</code>.
    This label is deprecated, you should use <code>cnpg.io/instanceRole</code> instead.</dd>
@@ -445,7 +450,7 @@ reconciliation loop from running.</dd>
 that ensures that the WAL archive is empty before writing data. Use at your own
 risk.</dd>
 <dt><code>cnpg.io/skipWalArchiving</code></dt>
-<dd>When set to <code>true</code> on a <code>Cluster</code> resource, the operator disables WAL archiving.
+<dd>When set to <code>enabled</code> on a <code>Cluster</code> resource, the operator disables WAL archiving.
 This will set <code>archive_mode</code> to <code>off</code> and require a restart of all PostgreSQL
 instances. Use at your own risk.</dd>
 <dt><code>cnpg.io/snapshotStartTime</code></dt>
