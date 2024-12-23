@@ -341,7 +341,8 @@ and clients are forcibly disconnected, then the server is shut down.
 without a clean shutdown.</p>
 </div>
 <h2 id="rto-and-rpo-impact">RTO and RPO impact</h2>
-<p>Failover may result in the service being impacted and/or data being lost:</p>
+<p>Failover may result in the service being impacted (<a href="../before_you_start/#rto">RTO</a>)
+and/or data being lost (<a href="../before_you_start/#rpo">RPO</a>):</p>
 <ol>
 <li>During the time when the primary has started to fail, and before the controller
    starts failover procedures, queries in transit, WAL writes, checkpoints and

@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>tablespaces on CloudNativePG - PostgreSQL Operator for Kubernetes</title>
+    <title>Tablespaces on CloudNativePG - PostgreSQL Operator for Kubernetes</title>
     <link>https://cloudnative-pg.io/tags/tablespaces/</link>
-    <description>Recent content in tablespaces on CloudNativePG - PostgreSQL Operator for Kubernetes</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Tablespaces on CloudNativePG - PostgreSQL Operator for Kubernetes</description>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 21 Dec 2023 14:51:33 +0100</lastBuildDate><atom:link href="https://cloudnative-pg.io/tags/tablespaces/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 21 Dec 2023 14:51:33 +0100</lastBuildDate>
+    <atom:link href="https://cloudnative-pg.io/tags/tablespaces/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>CloudNativePG 1.22.0, 1.21.2 and 1.20.5 Released!</title>
       <link>https://cloudnative-pg.io/releases/cloudnative-pg-1-22.0-released/</link>
       <pubDate>Thu, 21 Dec 2023 14:51:33 +0100</pubDate>
-      
       <guid>https://cloudnative-pg.io/releases/cloudnative-pg-1-22.0-released/</guid>
       <description>The CloudNativePG community has released the new 1.22 minor version and a new update for the supported 1.21 and 1.20 versions of the CloudNativePG operator.</description>
     </item>
-    
   </channel>
 </rss>

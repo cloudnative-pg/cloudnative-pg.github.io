@@ -355,6 +355,8 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#postgresql-cnpg-io-v1-PgBouncerSpec">PgBouncerSpec</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#postgresql-cnpg-io-v1-PluginConfigurationList">PluginConfigurationList</a>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#postgresql-cnpg-io-v1-PluginStatus">PluginStatus</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#postgresql-cnpg-io-v1-PodTemplateSpec">PodTemplateSpec</a>
@@ -380,6 +382,10 @@
     <li class="toctree-l2"><a class="reference internal" href="#postgresql-cnpg-io-v1-PrimaryUpdateMethod">PrimaryUpdateMethod</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#postgresql-cnpg-io-v1-PrimaryUpdateStrategy">PrimaryUpdateStrategy</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#postgresql-cnpg-io-v1-Probe">Probe</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#postgresql-cnpg-io-v1-ProbesConfiguration">ProbesConfiguration</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#postgresql-cnpg-io-v1-RecoveryTarget">RecoveryTarget</a>
     </li>
@@ -910,7 +916,7 @@ plugin for this backup</p>
    <p>Type is tho role of the snapshot in the cluster, such as PG_DATA, PG_WAL and PG_TABLESPACE</p>
 </td>
 </tr>
-<tr><td><code>tablespaceName</code> <B>[Required]</B><br/>
+<tr><td><code>tablespaceName</code><br/>
 <i>string</i>
 </td>
 <td>
@@ -1211,7 +1217,7 @@ parameter is omitted</p>
    <p>The backup method being used</p>
 </td>
 </tr>
-<tr><td><code>online</code> <B>[Required]</B><br/>
+<tr><td><code>online</code><br/>
 <i>bool</i>
 </td>
 <td>
@@ -1948,7 +1954,7 @@ https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 for more information.</p>
 </td>
 </tr>
-<tr><td><code>ephemeralVolumesSizeLimit</code> <B>[Required]</B><br/>
+<tr><td><code>ephemeralVolumesSizeLimit</code><br/>
 <a href="#postgresql-cnpg-io-v1-EphemeralVolumesSizeLimitConfiguration"><i>EphemeralVolumesSizeLimitConfiguration</i></a>
 </td>
 <td>
@@ -2079,12 +2085,20 @@ advisable for any PostgreSQL cluster employed for
 development/staging purposes.</p>
 </td>
 </tr>
-<tr><td><code>plugins</code> <B>[Required]</B><br/>
+<tr><td><code>plugins</code><br/>
 <a href="#postgresql-cnpg-io-v1-PluginConfigurationList"><i>PluginConfigurationList</i></a>
 </td>
 <td>
    <p>The plugins configuration, containing
 any plugin to be loaded with the corresponding configuration</p>
+</td>
+</tr>
+<tr><td><code>probes</code><br/>
+<a href="#postgresql-cnpg-io-v1-ProbesConfiguration"><i>ProbesConfiguration</i></a>
+</td>
+<td>
+   <p>The configuration of the probes to be injected
+in the PostgreSQL Pods.</p>
 </td>
 </tr>
 </tbody>
@@ -2405,7 +2419,7 @@ This field is reported when <code>.spec.failoverDelay</code> is populated or dur
    <p>Image contains the image name used by the pods</p>
 </td>
 </tr>
-<tr><td><code>pluginStatus</code> <B>[Required]</B><br/>
+<tr><td><code>pluginStatus</code><br/>
 <a href="#postgresql-cnpg-io-v1-PluginStatus"><i>[]PluginStatus</i></a>
 </td>
 <td>
@@ -2543,14 +2557,14 @@ storage</p>
 <table class="table">
 <thead><tr><th width="30%">Field</th><th>Description</th></tr></thead>
 <tbody>
-<tr><td><code>shm</code> <B>[Required]</B><br/>
+<tr><td><code>shm</code><br/>
 <a href="https://pkg.go.dev/k8s.io/apimachinery/pkg/api/resource#Quantity"><i>k8s.io/apimachinery/pkg/api/resource.Quantity</i></a>
 </td>
 <td>
    <p>Shm is the size limit of the shared memory volume</p>
 </td>
 </tr>
-<tr><td><code>temporaryData</code> <B>[Required]</B><br/>
+<tr><td><code>temporaryData</code><br/>
 <a href="https://pkg.go.dev/k8s.io/apimachinery/pkg/api/resource#Quantity"><i>k8s.io/apimachinery/pkg/api/resource.Quantity</i></a>
 </td>
 <td>
@@ -3332,6 +3346,15 @@ the operator calls PgBouncer's <code>PAUSE</code> and <code>RESUME</code> comman
 </tbody>
 </table>
 
+<h2 id="postgresql-cnpg-io-v1-PluginConfigurationList">PluginConfigurationList</h2>
+<p>(Alias of <code>[]github.com/cloudnative-pg/cloudnative-pg/api/v1.PluginConfiguration</code>)</p>
+<p><strong>Appears in:</strong></p>
+<ul>
+<li><a href="#postgresql-cnpg-io-v1-ClusterSpec">ClusterSpec</a></li>
+</ul>
+<p>PluginConfigurationList represent a set of plugin with their
+configuration parameters</p>
+
 <h2 id="postgresql-cnpg-io-v1-PluginStatus">PluginStatus</h2>
 <p><strong>Appears in:</strong></p>
 <ul>
@@ -3357,7 +3380,7 @@ the operator calls PgBouncer's <code>PAUSE</code> and <code>RESUME</code> comman
 latest reconciliation loop</p>
 </td>
 </tr>
-<tr><td><code>capabilities</code> <B>[Required]</B><br/>
+<tr><td><code>capabilities</code><br/>
 <i>[]string</i>
 </td>
 <td>
@@ -3365,7 +3388,7 @@ latest reconciliation loop</p>
 plugin</p>
 </td>
 </tr>
-<tr><td><code>operatorCapabilities</code> <B>[Required]</B><br/>
+<tr><td><code>operatorCapabilities</code><br/>
 <i>[]string</i>
 </td>
 <td>
@@ -3373,7 +3396,7 @@ plugin</p>
 plugin regarding the reconciler</p>
 </td>
 </tr>
-<tr><td><code>walCapabilities</code> <B>[Required]</B><br/>
+<tr><td><code>walCapabilities</code><br/>
 <i>[]string</i>
 </td>
 <td>
@@ -3381,7 +3404,7 @@ plugin regarding the reconciler</p>
 plugin regarding the WAL management</p>
 </td>
 </tr>
-<tr><td><code>backupCapabilities</code> <B>[Required]</B><br/>
+<tr><td><code>backupCapabilities</code><br/>
 <i>[]string</i>
 </td>
 <td>
@@ -3764,6 +3787,112 @@ the primary server of the cluster as part of rolling updates</p>
 </ul>
 <p>PrimaryUpdateStrategy contains the strategy to follow when upgrading
 the primary server of the cluster as part of rolling updates</p>
+
+<h2 id="postgresql-cnpg-io-v1-Probe">Probe</h2>
+<p><strong>Appears in:</strong></p>
+<ul>
+<li><a href="#postgresql-cnpg-io-v1-ProbesConfiguration">ProbesConfiguration</a></li>
+</ul>
+<p>Probe describes a health check to be performed against a container to determine whether it is
+alive or ready to receive traffic.</p>
+
+<table class="table">
+<thead><tr><th width="30%">Field</th><th>Description</th></tr></thead>
+<tbody>
+<tr><td><code>initialDelaySeconds</code><br/>
+<i>int32</i>
+</td>
+<td>
+   <p>Number of seconds after the container has started before liveness probes are initiated.
+More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes</p>
+</td>
+</tr>
+<tr><td><code>timeoutSeconds</code><br/>
+<i>int32</i>
+</td>
+<td>
+   <p>Number of seconds after which the probe times out.
+Defaults to 1 second. Minimum value is 1.
+More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes</p>
+</td>
+</tr>
+<tr><td><code>periodSeconds</code><br/>
+<i>int32</i>
+</td>
+<td>
+   <p>How often (in seconds) to perform the probe.
+Default to 10 seconds. Minimum value is 1.</p>
+</td>
+</tr>
+<tr><td><code>successThreshold</code><br/>
+<i>int32</i>
+</td>
+<td>
+   <p>Minimum consecutive successes for the probe to be considered successful after having failed.
+Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.</p>
+</td>
+</tr>
+<tr><td><code>failureThreshold</code><br/>
+<i>int32</i>
+</td>
+<td>
+   <p>Minimum consecutive failures for the probe to be considered failed after having succeeded.
+Defaults to 3. Minimum value is 1.</p>
+</td>
+</tr>
+<tr><td><code>terminationGracePeriodSeconds</code><br/>
+<i>int64</i>
+</td>
+<td>
+   <p>Optional duration in seconds the pod needs to terminate gracefully upon probe failure.
+The grace period is the duration in seconds after the processes running in the pod are sent
+a termination signal and the time when the processes are forcibly halted with a kill signal.
+Set this value longer than the expected cleanup time for your process.
+If this value is nil, the pod's terminationGracePeriodSeconds will be used. Otherwise, this
+value overrides the value provided by the pod spec.
+Value must be non-negative integer. The value zero indicates stop immediately via
+the kill signal (no opportunity to shut down).
+This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate.
+Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset.</p>
+</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="postgresql-cnpg-io-v1-ProbesConfiguration">ProbesConfiguration</h2>
+<p><strong>Appears in:</strong></p>
+<ul>
+<li><a href="#postgresql-cnpg-io-v1-ClusterSpec">ClusterSpec</a></li>
+</ul>
+<p>ProbesConfiguration represent the configuration for the probes
+to be injected in the PostgreSQL Pods</p>
+
+<table class="table">
+<thead><tr><th width="30%">Field</th><th>Description</th></tr></thead>
+<tbody>
+<tr><td><code>startup</code> <B>[Required]</B><br/>
+<a href="#postgresql-cnpg-io-v1-Probe"><i>Probe</i></a>
+</td>
+<td>
+   <p>The startup probe configuration</p>
+</td>
+</tr>
+<tr><td><code>liveness</code> <B>[Required]</B><br/>
+<a href="#postgresql-cnpg-io-v1-Probe"><i>Probe</i></a>
+</td>
+<td>
+   <p>The liveness probe configuration</p>
+</td>
+</tr>
+<tr><td><code>readiness</code> <B>[Required]</B><br/>
+<a href="#postgresql-cnpg-io-v1-Probe"><i>Probe</i></a>
+</td>
+<td>
+   <p>The readiness probe configuration</p>
+</td>
+</tr>
+</tbody>
+</table>
 
 <h2 id="postgresql-cnpg-io-v1-RecoveryTarget">RecoveryTarget</h2>
 <p><strong>Appears in:</strong></p>
@@ -4544,12 +4673,6 @@ physical replication slots</p>
 <td>
    <p>List of regular expression patterns to match the names of replication slots to be excluded (by default empty)</p>
 </td>
-</tr>
-<tr><td><code>-</code> <B>[Required]</B><br/>
-<a href="#postgresql-cnpg-io-v1-synchronizeReplicasCache"><i>synchronizeReplicasCache</i></a>
-</td>
-<td>
-   <span class="text-muted">No description provided.</span></td>
 </tr>
 </tbody>
 </table>

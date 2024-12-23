@@ -4,48 +4,36 @@
     <title>Authors on CloudNativePG - PostgreSQL Operator for Kubernetes</title>
     <link>https://cloudnative-pg.io/authors/</link>
     <description>Recent content in Authors on CloudNativePG - PostgreSQL Operator for Kubernetes</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="https://cloudnative-pg.io/authors/index.xml" rel="self" type="application/rss+xml" />
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="https://cloudnative-pg.io/authors/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title></title>
       <link>https://cloudnative-pg.io/authors/gbartolini/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://cloudnative-pg.io/authors/gbartolini/</guid>
-      <description>A long time open source programmer and entrepreneur, Gabriele has a degree in Statistics from the University of Florence. After having consistently contributed to the growth of 2ndQuadrant and its members through nurturing a lean and devops culture, he is now leading the Cloud Native initiative at EDB. Gabriele lives in Prato, a small but vibrant city located in the northern part of Tuscany, Italy - known for having hosted the first European PostgreSQL conferences.</description>
+      <description>&lt;p&gt;A long time open source programmer and entrepreneur, Gabriele has a degree in&#xA;Statistics from the University of Florence. After having consistently&#xA;contributed to the growth of 2ndQuadrant and its members through nurturing a&#xA;lean and devops culture, he is now leading the Cloud Native initiative at EDB.&#xA;Gabriele lives in Prato, a small but vibrant city located in the northern part&#xA;of Tuscany, Italy - known for having hosted the first European PostgreSQL&#xA;conferences. His second home is Melbourne, Australia, where he studied at&#xA;Monash University and worked in the ICT sector. He loves playing the Blues with&#xA;his Fender Stratocaster, but his major passions are called Elisabeth and&#xA;Charlotte!&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title></title>
       <link>https://cloudnative-pg.io/authors/jgonzalez/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://cloudnative-pg.io/authors/jgonzalez/</guid>
-      <description>A free software lover, passionate about OpenSource and all the tools that it has created to help a lot of people build their dreams.
-Working at EDB to bring the real database experience to Kubernetes world.</description>
+      <description>&lt;p&gt;A free software lover, passionate about OpenSource and all the tools that&#xA;it has created to help a lot of people build their dreams.&lt;/p&gt;&#xA;&lt;p&gt;Working at EDB to bring the real database experience to Kubernetes world.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title></title>
       <link>https://cloudnative-pg.io/authors/jsilvela/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://cloudnative-pg.io/authors/jsilvela/</guid>
-      <description>Jaime Silvela has been around. In a career spanning two decades writing code, he has lived in the US and Europe, worked for big corporations like Amazon and Microsoft, as an early startup employee, in industries including Wall Street and catastrophe insurance.
-Early in his career he discovered a fondness for databases, PostgreSQL in particular. He started using Go professionally in 2014, after having suffered Java.
-Jaime joined EDB in 2021, and he is very proud to be able to put his skills to use on Kubernetes operators for databases, including CloudNativePG for PostgreSQL workloads.</description>
+      <description>&lt;p&gt;Jaime Silvela has been around. In a career spanning two decades writing code,&#xA;he has lived in the US and Europe, worked for big corporations like Amazon and&#xA;Microsoft, as an early startup employee, in industries including Wall Street and&#xA;catastrophe insurance.&lt;/p&gt;&#xA;&lt;p&gt;Early in his career he discovered a fondness for databases, PostgreSQL in&#xA;particular. He started using Go professionally in 2014, after having suffered&#xA;Java.&lt;/p&gt;&#xA;&lt;p&gt;Jaime joined EDB in 2021, and he is very proud to be able to put his skills to&#xA;use on Kubernetes operators for databases, including CloudNativePG for PostgreSQL&#xA;workloads.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title></title>
       <link>https://cloudnative-pg.io/authors/leonardoce/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://cloudnative-pg.io/authors/leonardoce/</guid>
-      <description>I’ve been in computer science from the beginning, and programming has always been my obsession. My passion began when I was 6 when my father taught me the rudiments of C programming.
-I’ve been working in 2ndQuadrant since 2016 as a developer and a PostgreSQL consultant. PostgreSQL has always been my choice when working with a DBMS. I’ve been using it since 1998.
-EDB acquired 2ndQuadrant in 2020, and CloudNativePG, the operator I have been working on with my team since 2019, was finally released as OSS in 2022.</description>
+      <description>&lt;p&gt;I’ve been in computer science from the beginning, and programming has always&#xA;been my obsession. My passion began when I was 6 when my father taught me the&#xA;rudiments of C programming.&lt;/p&gt;&#xA;&lt;p&gt;I’ve been working in 2ndQuadrant since 2016 as a developer and a PostgreSQL&#xA;consultant. PostgreSQL has always been my choice when working with a DBMS. I’ve&#xA;been using it since 1998.&lt;/p&gt;&#xA;&lt;p&gt;EDB acquired 2ndQuadrant in 2020, and CloudNativePG, the operator I&#xA;have been working on with my team since 2019, was finally released as OSS in 2022.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

@@ -1,29 +1,26 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>applications on CloudNativePG - PostgreSQL Operator for Kubernetes</title>
+    <title>Applications on CloudNativePG - PostgreSQL Operator for Kubernetes</title>
     <link>https://cloudnative-pg.io/tags/applications/</link>
-    <description>Recent content in applications on CloudNativePG - PostgreSQL Operator for Kubernetes</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Applications on CloudNativePG - PostgreSQL Operator for Kubernetes</description>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 08 Nov 2023 11:29:52 +0000</lastBuildDate><atom:link href="https://cloudnative-pg.io/tags/applications/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 08 Nov 2023 11:29:52 +0000</lastBuildDate>
+    <atom:link href="https://cloudnative-pg.io/tags/applications/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Creating a custom container image for CloudNativePG</title>
       <link>https://cloudnative-pg.io/blog/creating-container-images/</link>
       <pubDate>Wed, 08 Nov 2023 11:29:52 +0000</pubDate>
-      
       <guid>https://cloudnative-pg.io/blog/creating-container-images/</guid>
       <description>Creating a container image for CloudNativePG Operator</description>
     </item>
-    
     <item>
       <title>Developing Webapps With CloudNativePG, or, Unlocking DevOps</title>
       <link>https://cloudnative-pg.io/blog/developing-webapps-with-cloudnative-pg/</link>
       <pubDate>Sat, 17 Jun 2023 11:29:52 +0200</pubDate>
-      
       <guid>https://cloudnative-pg.io/blog/developing-webapps-with-cloudnative-pg/</guid>
       <description>Bootstrap a simple webapp developed with PostgreSQL into a scalable app with CloudNativePG.</description>
     </item>
-    
   </channel>
 </rss>

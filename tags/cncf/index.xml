@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>cncf on CloudNativePG - PostgreSQL Operator for Kubernetes</title>
+    <title>Cncf on CloudNativePG - PostgreSQL Operator for Kubernetes</title>
     <link>https://cloudnative-pg.io/tags/cncf/</link>
-    <description>Recent content in cncf on CloudNativePG - PostgreSQL Operator for Kubernetes</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Cncf on CloudNativePG - PostgreSQL Operator for Kubernetes</description>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 11 May 2022 14:13:20 +0200</lastBuildDate><atom:link href="https://cloudnative-pg.io/tags/cncf/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 11 May 2022 14:13:20 +0200</lastBuildDate>
+    <atom:link href="https://cloudnative-pg.io/tags/cncf/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Running PostgreSQL the Kubernetes Way</title>
       <link>https://cloudnative-pg.io/blog/running-postgresql-the-kubernetes-way/</link>
       <pubDate>Wed, 11 May 2022 14:13:20 +0200</pubDate>
-      
       <guid>https://cloudnative-pg.io/blog/running-postgresql-the-kubernetes-way/</guid>
       <description>Welcome CloudNativePG as a new open source operator that orchestrates PostgreSQL clusters inside Kubernetes!</description>
     </item>
-    
   </channel>
 </rss>

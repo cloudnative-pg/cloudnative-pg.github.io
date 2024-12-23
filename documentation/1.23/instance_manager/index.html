@@ -84,6 +84,14 @@
                 <li class="toctree-l1 current"><a class="reference internal current" href="#">Postgres instance manager</a>
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#startup-liveness-and-readiness-probes">Startup, liveness and readiness probes</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#startup-probe">Startup Probe</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#liveness-probe">Liveness Probe</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#readiness-probe">Readiness Probe</a>
+    </li>
+        </ul>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#shutdown-control">Shutdown control</a>
         <ul>
@@ -301,7 +309,7 @@
 It simply relies on the Kubernetes API server and a native key component called:
 the <strong>Postgres instance manager</strong>.</p>
 <p>The instance manager takes care of the entire lifecycle of the PostgreSQL
-leading process (also known as <code>postmaster</code>).</p>
+server process (also known as <code>postmaster</code>).</p>
 <p>When you create a new cluster, the operator makes a Pod per instance.
 The field <code>.spec.instances</code> specifies how many instances to create.</p>
 <p>Each Pod will start the instance manager as the parent process (PID 1) for the
@@ -310,32 +318,120 @@ of the Pod, the instance manager acts as a backend to handle the
 <a href="https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#container-probes">startup, liveness and readiness probes</a>.</p>
 <h2 id="startup-liveness-and-readiness-probes">Startup, liveness and readiness probes</h2>
 <p>The startup and liveness probes rely on <code>pg_isready</code>, while the readiness
-probe checks if the database is up and able to accept connections using the
-superuser credentials.</p>
-<p>The readiness probe is positive when the Pod is ready to accept traffic.
-The liveness probe controls when to restart the container once
-the startup probe interval has elapsed.</p>
-<div class="admonition important">
-<p class="admonition-title">Important</p>
-<p>The liveness and readiness probes will report a failure if the probe command
-fails three times with a 10-second interval between each check.</p>
-</div>
-<p>The liveness probe detects if the PostgreSQL instance is in a
-broken state and needs to be restarted. The value in <code>startDelay</code> is used
-to delay the probe's execution, preventing an
-instance with a long startup time from being restarted.</p>
-<p>The amount of time needed for a Pod to be classified as not alive is
-configurable in the <code>.spec.livenessProbeTimeout</code> parameter, that
-defaults to 30 seconds.</p>
-<p>The interval (in seconds) after the Pod has started before the liveness
-probe starts working is expressed in the <code>.spec.startDelay</code> parameter,
-which defaults to 3600 seconds. The correct value for your cluster is
-related to the time needed by PostgreSQL to start.</p>
+probe checks if the database is up and able to accept connections.</p>
+<h3 id="startup-probe">Startup Probe</h3>
+<p>The <code>.spec.startDelay</code> parameter specifies the delay (in seconds) before the
+liveness probe activates after a PostgreSQL Pod starts. By default, this is set
+to <code>3600</code> seconds. You should adjust this value based on the time PostgreSQL
+requires to fully initialize in your environment.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>If <code>.spec.startDelay</code> is too low, the liveness probe will start working
-before the PostgreSQL startup is complete, and the Pod could be restarted
-prematurely.</p>
+<p>Setting <code>.spec.startDelay</code> too low can cause the liveness probe to activate
+prematurely, potentially resulting in unnecessary Pod restarts if PostgreSQL
+hasn’t fully initialized.</p>
+</div>
+<p>CloudNativePG configures the startup probe with the following default parameters:</p>
+<pre><code class="language-yaml">failureThreshold: FAILURE_THRESHOLD
+periodSeconds: 10
+successThreshold: 1
+timeoutSeconds: 5
+</code></pre>
+<p>Here, <code>FAILURE_THRESHOLD</code> is calculated as <code>startDelay</code> divided by
+<code>periodSeconds</code>.</p>
+<p>If the default behavior based on <code>startDelay</code> is not suitable for your use
+case, you can take full control of the startup probe by specifying custom
+parameters in the <code>.spec.probes.startup</code> stanza. Note that defining this stanza
+will override the default behavior, including the use of <code>startDelay</code>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Ensure that any custom probe settings are aligned with your cluster’s
+operational requirements to prevent unintended disruptions.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>For detailed information about probe configuration, refer to the
+<a href="../cloudnative-pg.v1/#postgresql-cnpg-io-v1-Probe">probe API</a>.</p>
+</div>
+<p>For example, the following configuration bypasses <code>startDelay</code> entirely:</p>
+<pre><code class="language-yaml"># ... snip
+spec:
+  probes:
+    startup:
+      periodSeconds: 3
+      timeoutSeconds: 3
+      failureThreshold: 10
+</code></pre>
+<h3 id="liveness-probe">Liveness Probe</h3>
+<p>The liveness probe begins after the startup probe succeeds and is responsible
+for detecting if the PostgreSQL instance has entered a broken state that
+requires a restart of the pod.</p>
+<p>The amount of time before a Pod is classified as not alive is configurable via
+the <code>.spec.livenessProbeTimeout</code> parameter.</p>
+<p>CloudNativePG configures the liveness probe with the following default
+parameters:</p>
+<pre><code class="language-yaml">failureThreshold: FAILURE_THRESHOLD
+periodSeconds: 10
+successThreshold: 1
+timeoutSeconds: 5
+</code></pre>
+<p>Here, <code>FAILURE_THRESHOLD</code> is calculated as <code>livenessProbeTimeout</code> divided by
+<code>periodSeconds</code>.</p>
+<p>By default, <code>.spec.livenessProbeTimeout</code> is set to <code>30</code> seconds. This means the
+liveness probe will report a failure if it detects three consecutive probe
+failures, with a 10-second interval between each check.</p>
+<p>If the default behavior using <code>livenessProbeTimeout</code> does not meet your needs,
+you can fully customize the liveness probe by defining parameters in the
+<code>.spec.probes.liveness</code> stanza. Keep in mind that specifying this stanza will
+override the default behavior, including the use of <code>livenessProbeTimeout</code>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Ensure that any custom probe settings are aligned with your cluster’s
+operational requirements to prevent unintended disruptions.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>For more details on probe configuration, refer to the
+<a href="../cloudnative-pg.v1/#postgresql-cnpg-io-v1-Probe">probe API</a>.</p>
+</div>
+<p>For example, the following configuration overrides the default behavior and
+bypasses <code>livenessProbeTimeout</code>:</p>
+<pre><code class="language-yaml"># ... snip
+spec:
+  probes:
+    liveness:
+      periodSeconds: 3
+      timeoutSeconds: 3
+      failureThreshold: 10
+</code></pre>
+<h3 id="readiness-probe">Readiness Probe</h3>
+<p>The readiness probe determines when a pod running a PostgreSQL instance is
+prepared to accept traffic and serve requests.</p>
+<p>CloudNativePG uses the following default configuration for the readiness probe:</p>
+<pre><code class="language-yaml">failureThreshold: 3
+periodSeconds: 10
+successThreshold: 1
+timeoutSeconds: 5
+</code></pre>
+<p>If the default settings do not suit your requirements, you can fully customize
+the readiness probe by specifying parameters in the <code>.spec.probes.readiness</code>
+stanza. For example:</p>
+<pre><code class="language-yaml"># ... snip
+spec:
+  probes:
+    readiness:
+      periodSeconds: 3
+      timeoutSeconds: 3
+      failureThreshold: 10
+</code></pre>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Ensure that any custom probe settings are aligned with your cluster’s
+operational requirements to prevent unintended disruptions.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>For more information on configuring probes, see the
+<a href="../cloudnative-pg.v1/#postgresql-cnpg-io-v1-Probe">probe API</a>.</p>
 </div>
 <h2 id="shutdown-control">Shutdown control</h2>
 <p>When a Pod running Postgres is deleted, either manually or by Kubernetes
@@ -364,8 +460,9 @@ seconds.</p>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
 <p>In order to avoid any data loss in the Postgres cluster, which impacts
-the database RPO, don't delete the Pod where the primary instance is running.
-In this case, perform a switchover to another instance first.</p>
+the database <a href="../before_you_start/#rpo">RPO</a>, don't delete the Pod where
+the primary instance is running. In this case, perform a switchover to
+another instance first.</p>
 </div>
 <h3 id="shutdown-of-the-primary-during-a-switchover">Shutdown of the primary during a switchover</h3>
 <p>During a switchover, the shutdown procedure is slightly different from the
@@ -377,11 +474,12 @@ the  time given to the former primary to shut down gracefully and archive all
 the WAL files. By default it is set to <code>3600</code> (1 hour).</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>The <code>.spec.switchoverDelay</code> option affects the RPO and RTO of your
-PostgreSQL database. Setting it to a low value, might favor RTO over RPO
-but lead to data loss at cluster level and/or backup level. On the contrary,
-setting it to a high value, might remove the risk of data loss while leaving
-the cluster without an active primary for a longer time during the switchover.</p>
+<p>The <code>.spec.switchoverDelay</code> option affects the <a href="../before_you_start/#rpo">RPO</a>
+and <a href="../before_you_start/#rto">RTO</a> of your PostgreSQL database. Setting it to
+a low value, might favor RTO over RPO but lead to data loss at cluster level
+and/or backup level. On the contrary, setting it to a high value, might remove
+the risk of data loss while leaving the cluster without an active primary for a
+longer time during the switchover.</p>
 </div>
 <h2 id="failover">Failover</h2>
 <p>In case of primary pod failure, the cluster will go into failover mode.

@@ -361,11 +361,16 @@ Change it to suit your setup.</dd>
 applied and healthy.</dd>
 <dd><a href="backup-example.yaml"><code>backup-example.yaml</code></a>:
   An example of a backup that runs against the previous sample.</dd>
-<dt><strong>Simple cluster with backup configured</strong></dt>
+<dt><strong>Simple cluster with backup configured for minio</strong></dt>
 <dd><em>Prerequisites</em>: The configuration assumes minio is running and working.
 Update <code>backup.barmanObjectStore</code> with your minio parameters or your cloud solution.</dd>
 <dd><a href="cluster-example-with-backup.yaml"><code>cluster-example-with-backup.yaml</code></a>
    A basic cluster with backups configured.</dd>
+<dt><strong>Simple cluster with backup configured for Scaleway Object Storage</strong></dt>
+<dd><em>Prerequisites</em>: The configuration assumes a Scaleway Object Storage bucket exists.
+Update <code>backup.barmanObjectStore</code> with your Scaleway parameters.</dd>
+<dd><a href="cluster-example-with-backup-scaleway.yaml"><code>cluster-example-with-backup-scaleway.yaml</code></a>
+   A basic cluster with backups configured to work with Scaleway Object Storage..</dd>
 </dl>
 <h2 id="replica-clusters">Replica clusters</h2>
 <dl>

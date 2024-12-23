@@ -638,11 +638,12 @@ instance acting as a primary at all times. This means that applications can
 only write inside a single Kubernetes cluster, at any time.</p>
 <p>However, for business continuity objectives it is fundamental to:</p>
 <ul>
-<li>reduce global <strong>recovery point objectives</strong> (RPO) by storing PostgreSQL backup data
-  in multiple locations, regions and possibly using different providers
-  (Disaster Recovery)</li>
-<li>reduce global <strong>recovery time objectives</strong> (RTO) by taking advantage of PostgreSQL
-  replication beyond the primary Kubernetes cluster (High Availability)</li>
+<li>reduce global <strong>recovery point objectives</strong> (<a href="../before_you_start/#rpo">RPO</a>)
+  by storing PostgreSQL backup data in multiple locations, regions and possibly
+  using different providers (Disaster Recovery)</li>
+<li>reduce global <strong>recovery time objectives</strong> (<a href="../before_you_start/#rto">RTO</a>)
+  by taking advantage of PostgreSQL replication beyond the primary Kubernetes
+  cluster (High Availability)</li>
 </ul>
 <p>In order to address the above concerns, CloudNativePG introduces the concept of
 a PostgreSQL Topology that is distributed across different Kubernetes clusters

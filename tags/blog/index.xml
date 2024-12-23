@@ -1,47 +1,40 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>blog on CloudNativePG - PostgreSQL Operator for Kubernetes</title>
+    <title>Blog on CloudNativePG - PostgreSQL Operator for Kubernetes</title>
     <link>https://cloudnative-pg.io/tags/blog/</link>
-    <description>Recent content in blog on CloudNativePG - PostgreSQL Operator for Kubernetes</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Blog on CloudNativePG - PostgreSQL Operator for Kubernetes</description>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 08 Nov 2023 11:29:52 +0000</lastBuildDate><atom:link href="https://cloudnative-pg.io/tags/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 08 Nov 2023 11:29:52 +0000</lastBuildDate>
+    <atom:link href="https://cloudnative-pg.io/tags/blog/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Creating a custom container image for CloudNativePG</title>
       <link>https://cloudnative-pg.io/blog/creating-container-images/</link>
       <pubDate>Wed, 08 Nov 2023 11:29:52 +0000</pubDate>
-      
       <guid>https://cloudnative-pg.io/blog/creating-container-images/</guid>
       <description>Creating a container image for CloudNativePG Operator</description>
     </item>
-    
     <item>
       <title>Developing Webapps With CloudNativePG, or, Unlocking DevOps</title>
       <link>https://cloudnative-pg.io/blog/developing-webapps-with-cloudnative-pg/</link>
       <pubDate>Sat, 17 Jun 2023 11:29:52 +0200</pubDate>
-      
       <guid>https://cloudnative-pg.io/blog/developing-webapps-with-cloudnative-pg/</guid>
       <description>Bootstrap a simple webapp developed with PostgreSQL into a scalable app with CloudNativePG.</description>
     </item>
-    
     <item>
       <title>Introducing Ciclops, a new GitHub action to better understand CI/CD test results</title>
       <link>https://cloudnative-pg.io/blog/introducing-ciclops/</link>
       <pubDate>Wed, 25 Jan 2023 13:13:36 +0100</pubDate>
-      
       <guid>https://cloudnative-pg.io/blog/introducing-ciclops/</guid>
       <description>Introducing Ciclops, a GitHub Action to make sense of Testing</description>
     </item>
-    
     <item>
       <title>Running PostgreSQL the Kubernetes Way</title>
       <link>https://cloudnative-pg.io/blog/running-postgresql-the-kubernetes-way/</link>
       <pubDate>Wed, 11 May 2022 14:13:20 +0200</pubDate>
-      
       <guid>https://cloudnative-pg.io/blog/running-postgresql-the-kubernetes-way/</guid>
       <description>Welcome CloudNativePG as a new open source operator that orchestrates PostgreSQL clusters inside Kubernetes!</description>
     </item>
-    
   </channel>
 </rss>

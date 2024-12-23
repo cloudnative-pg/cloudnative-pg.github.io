@@ -4,34 +4,29 @@
     <title>Commercial Support on CloudNativePG - PostgreSQL Operator for Kubernetes</title>
     <link>https://cloudnative-pg.io/support/</link>
     <description>Recent content in Commercial Support on CloudNativePG - PostgreSQL Operator for Kubernetes</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="https://cloudnative-pg.io/support/index.xml" rel="self" type="application/rss+xml" />
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="https://cloudnative-pg.io/support/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>CYBERTEC</title>
       <link>https://cloudnative-pg.io/support/cybertec/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://cloudnative-pg.io/support/cybertec/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>Data Bene</title>
       <link>https://cloudnative-pg.io/support/data-bene/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://cloudnative-pg.io/support/data-bene/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>EDB</title>
       <link>https://cloudnative-pg.io/support/edb/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://cloudnative-pg.io/support/edb/</guid>
       <description></description>
     </item>
-    
   </channel>
 </rss>

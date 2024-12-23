@@ -449,11 +449,11 @@ instances using the <code>kubectl cnpg reload</code> subcommand.</p>
 <li><code>server.key</code> – The private key of the server TLS certificate.</li>
 </ul>
 <p>Create a secret containing the CA certificate:</p>
-<pre><code>kubectl create secret generic my-postgresql-server-ca \
+<pre><code class="language-sh">kubectl create secret generic my-postgresql-server-ca \
   --from-file=ca.crt=./server-ca.crt
 </code></pre>
 <p>Create a secret with the TLS certificate:</p>
-<pre><code>kubectl create secret tls my-postgresql-server \
+<pre><code class="language-sh">kubectl create secret tls my-postgresql-server \
   --cert=./server.crt --key=./server.key
 </code></pre>
 <p>Create a PostgreSQL cluster referencing those secrets:</p>

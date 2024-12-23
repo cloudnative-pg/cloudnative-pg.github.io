@@ -685,8 +685,8 @@ single cluster, namely:</p>
 <li>storage: use dedicated storage for each worker node running Postgres</li>
 </ul>
 <p>Use at least one standby, preferably at least two, so that you can configure
-synchronous replication in the cluster, introducing RPO=0 for high
-availability.</p>
+synchronous replication in the cluster, introducing <a href="../before_you_start/#rpo">RPO</a>=0
+for high availability.</p>
 <p>If you do not have availability zones - normally the case of on-premise
 installations - separate on worker nodes and storage.</p>
 <p>Properly setup continuous backup on a local/regional object store.</p>

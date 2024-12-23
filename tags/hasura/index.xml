@@ -1,21 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>hasura on CloudNativePG - PostgreSQL Operator for Kubernetes</title>
+    <title>Hasura on CloudNativePG - PostgreSQL Operator for Kubernetes</title>
     <link>https://cloudnative-pg.io/tags/hasura/</link>
-    <description>Recent content in hasura on CloudNativePG - PostgreSQL Operator for Kubernetes</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Hasura on CloudNativePG - PostgreSQL Operator for Kubernetes</description>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 01 May 2023 09:00:00 +0200</lastBuildDate><atom:link href="https://cloudnative-pg.io/tags/hasura/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 01 May 2023 09:00:00 +0200</lastBuildDate>
+    <atom:link href="https://cloudnative-pg.io/tags/hasura/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>CloudNativePG and Hasura: should we be scared by demons?</title>
       <link>https://cloudnative-pg.io/blog/hasura-graphql/</link>
       <pubDate>Mon, 01 May 2023 09:00:00 +0200</pubDate>
-      
       <guid>https://cloudnative-pg.io/blog/hasura-graphql/</guid>
-      <description>How to bootstrap a development environment for a modern application
-using GraphQL</description>
+      <description>How to bootstrap a development environment for a modern application&#xA;using GraphQL</description>
     </item>
-    
   </channel>
 </rss>

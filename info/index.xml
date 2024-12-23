@@ -4,70 +4,57 @@
     <title>Infoes on CloudNativePG - PostgreSQL Operator for Kubernetes</title>
     <link>https://cloudnative-pg.io/info/</link>
     <description>Recent content in Infoes on CloudNativePG - PostgreSQL Operator for Kubernetes</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="https://cloudnative-pg.io/info/index.xml" rel="self" type="application/rss+xml" />
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="https://cloudnative-pg.io/info/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Advanced Architectures</title>
       <link>https://cloudnative-pg.io/info/advanced-architectures/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://cloudnative-pg.io/info/advanced-architectures/</guid>
-      <description>You can extend the primary/standby architecture by adding a PgBouncer connection pooler between your application and your PostgreSQL database. Additionally, you can take advantage of replica clusters by creating one or more disaster recovery clusters in different regions, solely relying on file based WAL shipping from an object store or using a streaming replication connection.</description>
+      <description>&lt;p&gt;You can extend the primary/standby architecture by adding a PgBouncer&#xA;connection pooler between your application and your PostgreSQL database.&#xA;Additionally, you can take advantage of replica clusters by creating one or&#xA;more disaster recovery clusters in different regions, solely relying on file&#xA;based WAL shipping from an object store or using a streaming replication&#xA;connection.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Cloud Native</title>
       <link>https://cloudnative-pg.io/info/cloud-native/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://cloudnative-pg.io/info/cloud-native/</guid>
-      <description>Built on proven DevOps concepts like immutable infrastructure, declarative configuration, and microservice architecture, CloudNativePG exclusively relies on the Kubernetes API server to maintain the state of a PostgreSQL cluster. Additionally, CloudNativePG provides cloud native capabilities like self-healing, high availability, rolling updates, scale up/down of read-only replicas, affinity/anti-affinity/tolerations for scheduling, resource management, and so on.</description>
+      <description>&lt;p&gt;Built on proven DevOps concepts like immutable infrastructure, declarative&#xA;configuration, and microservice architecture, CloudNativePG exclusively relies&#xA;on the Kubernetes API server to maintain the state of a PostgreSQL cluster.&#xA;Additionally, CloudNativePG provides cloud native capabilities like self-healing,&#xA;high availability, rolling updates, scale up/down of read-only replicas,&#xA;affinity/anti-affinity/tolerations for scheduling, resource management, and so&#xA;on.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Disaster Recovery</title>
       <link>https://cloudnative-pg.io/info/disaster-recovery/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://cloudnative-pg.io/info/disaster-recovery/</guid>
-      <description>Define your disaster recovery objectives through continuous backup on object stores, and exploits the native Point-In-Time-Recovery capabilities of PostgreSQL by boostrapping a new cluster starting from a backup to a given timestamp.</description>
+      <description>&lt;p&gt;Define your disaster recovery objectives through continuous backup on object&#xA;stores, and exploits the native Point-In-Time-Recovery capabilities of&#xA;PostgreSQL by boostrapping a new cluster starting from a backup to a given&#xA;timestamp.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>High Availability</title>
       <link>https://cloudnative-pg.io/info/high-availability/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://cloudnative-pg.io/info/high-availability/</guid>
-      <description>PostgreSQL has a reliable foundation for high availability that is built on physical replication. CloudNativePG leverages streaming replication and a file-based one as a fallback method. You can tune synchronous replication to obtain zero data loss replicas.</description>
+      <description>&lt;p&gt;PostgreSQL has a reliable foundation for high availability that is built on&#xA;physical replication. CloudNativePG leverages streaming replication and a&#xA;file-based one as a fallback method. You can tune synchronous replication to&#xA;obtain zero data loss replicas.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Monitoring</title>
       <link>https://cloudnative-pg.io/info/monitoring/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://cloudnative-pg.io/info/monitoring/</guid>
-      <description>CloudNativePG has a built-in exporter for Prometheus that can be configured and customized through user defined metrics written in SQL. Logs, including database and audit, are transparently sent to stdout in JSON format for native integration with infrastructure log management pipelines.</description>
+      <description>&lt;p&gt;CloudNativePG has a built-in exporter for Prometheus that can be configured and&#xA;customized through user defined metrics written in SQL. Logs, including&#xA;database and audit, are transparently sent to stdout in JSON format for&#xA;native integration with infrastructure log management pipelines.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Postgres Operations</title>
       <link>https://cloudnative-pg.io/info/postgres-operations/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://cloudnative-pg.io/info/postgres-operations/</guid>
-      <description>Most Postgres related operations can be done in a declarative way, including management of superuser credentials, application user, and application database. Declarative configuration also covers Postgres configuration and some common extensions like pg_stat_statements.</description>
+      <description>&lt;p&gt;Most Postgres related operations can be done in a declarative way, including&#xA;management of superuser credentials, application user, and application&#xA;database. Declarative configuration also covers Postgres configuration and some&#xA;common extensions like &lt;code&gt;pg_stat_statements&lt;/code&gt;.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Security &amp; TLS Certificates</title>
       <link>https://cloudnative-pg.io/info/security/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://cloudnative-pg.io/info/security/</guid>
-      <description>CloudNativePG supports security contexts by default and implements in-transit encrypted TLS connections. If you are not happy with auto-generated certificates, you can bring your own and even integrate with cert-manager. TLS client authentication for PostgreSQL is also supported, and auditing with PGAudit can be easily enabled in a declarative way.</description>
+      <description>&lt;p&gt;CloudNativePG supports security contexts by default and implements in-transit&#xA;encrypted TLS connections. If you are not happy with auto-generated&#xA;certificates, you can bring your own and even integrate with cert-manager. TLS&#xA;client authentication for PostgreSQL is also supported, and auditing with PGAudit&#xA;can be easily enabled in a declarative way.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

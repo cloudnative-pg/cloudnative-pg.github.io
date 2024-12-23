@@ -4,269 +4,212 @@
     <title>Tags on CloudNativePG - PostgreSQL Operator for Kubernetes</title>
     <link>https://cloudnative-pg.io/tags/</link>
     <description>Recent content in Tags on CloudNativePG - PostgreSQL Operator for Kubernetes</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 09 Dec 2024 09:00:00 +0100</lastBuildDate><atom:link href="https://cloudnative-pg.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 09 Dec 2024 09:00:00 +0100</lastBuildDate>
+    <atom:link href="https://cloudnative-pg.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>cloudnativepg</title>
+      <title>Cloudnativepg</title>
       <link>https://cloudnative-pg.io/tags/cloudnativepg/</link>
       <pubDate>Mon, 09 Dec 2024 09:00:00 +0100</pubDate>
-      
       <guid>https://cloudnative-pg.io/tags/cloudnativepg/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>cnpg</title>
+      <title>Cnpg</title>
       <link>https://cloudnative-pg.io/tags/cnpg/</link>
       <pubDate>Mon, 09 Dec 2024 09:00:00 +0100</pubDate>
-      
       <guid>https://cloudnative-pg.io/tags/cnpg/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>k8s</title>
+      <title>K8s</title>
       <link>https://cloudnative-pg.io/tags/k8s/</link>
       <pubDate>Mon, 09 Dec 2024 09:00:00 +0100</pubDate>
-      
       <guid>https://cloudnative-pg.io/tags/k8s/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>kubernetes</title>
+      <title>Kubernetes</title>
       <link>https://cloudnative-pg.io/tags/kubernetes/</link>
       <pubDate>Mon, 09 Dec 2024 09:00:00 +0100</pubDate>
-      
       <guid>https://cloudnative-pg.io/tags/kubernetes/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>postgres</title>
+      <title>Postgres</title>
       <link>https://cloudnative-pg.io/tags/postgres/</link>
       <pubDate>Mon, 09 Dec 2024 09:00:00 +0100</pubDate>
-      
       <guid>https://cloudnative-pg.io/tags/postgres/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>postgresql</title>
+      <title>Postgresql</title>
       <link>https://cloudnative-pg.io/tags/postgresql/</link>
       <pubDate>Mon, 09 Dec 2024 09:00:00 +0100</pubDate>
-      
       <guid>https://cloudnative-pg.io/tags/postgresql/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>preview</title>
+      <title>Preview</title>
       <link>https://cloudnative-pg.io/tags/preview/</link>
       <pubDate>Mon, 09 Dec 2024 09:00:00 +0100</pubDate>
-      
       <guid>https://cloudnative-pg.io/tags/preview/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>release</title>
+      <title>Release</title>
       <link>https://cloudnative-pg.io/tags/release/</link>
       <pubDate>Mon, 09 Dec 2024 09:00:00 +0100</pubDate>
-      
       <guid>https://cloudnative-pg.io/tags/release/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>imagecatalog</title>
+      <title>Imagecatalog</title>
       <link>https://cloudnative-pg.io/tags/imagecatalog/</link>
       <pubDate>Thu, 25 Apr 2024 16:04:04 +0200</pubDate>
-      
       <guid>https://cloudnative-pg.io/tags/imagecatalog/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>pdb</title>
+      <title>Pdb</title>
       <link>https://cloudnative-pg.io/tags/pdb/</link>
       <pubDate>Thu, 25 Apr 2024 16:04:04 +0200</pubDate>
-      
       <guid>https://cloudnative-pg.io/tags/pdb/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>tablespaces</title>
+      <title>Tablespaces</title>
       <link>https://cloudnative-pg.io/tags/tablespaces/</link>
       <pubDate>Thu, 21 Dec 2023 14:51:33 +0100</pubDate>
-      
       <guid>https://cloudnative-pg.io/tags/tablespaces/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>applications</title>
+      <title>Applications</title>
       <link>https://cloudnative-pg.io/tags/applications/</link>
       <pubDate>Wed, 08 Nov 2023 11:29:52 +0000</pubDate>
-      
       <guid>https://cloudnative-pg.io/tags/applications/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>blog</title>
+      <title>Blog</title>
       <link>https://cloudnative-pg.io/tags/blog/</link>
       <pubDate>Wed, 08 Nov 2023 11:29:52 +0000</pubDate>
-      
       <guid>https://cloudnative-pg.io/tags/blog/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>containers</title>
+      <title>Containers</title>
       <link>https://cloudnative-pg.io/tags/containers/</link>
       <pubDate>Wed, 08 Nov 2023 11:29:52 +0000</pubDate>
-      
       <guid>https://cloudnative-pg.io/tags/containers/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>images</title>
+      <title>Images</title>
       <link>https://cloudnative-pg.io/tags/images/</link>
       <pubDate>Wed, 08 Nov 2023 11:29:52 +0000</pubDate>
-      
       <guid>https://cloudnative-pg.io/tags/images/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>information</title>
+      <title>Information</title>
       <link>https://cloudnative-pg.io/tags/information/</link>
       <pubDate>Wed, 08 Nov 2023 11:29:52 +0000</pubDate>
-      
       <guid>https://cloudnative-pg.io/tags/information/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>programming</title>
+      <title>Programming</title>
       <link>https://cloudnative-pg.io/tags/programming/</link>
       <pubDate>Wed, 08 Nov 2023 11:29:52 +0000</pubDate>
-      
       <guid>https://cloudnative-pg.io/tags/programming/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>tutorial</title>
+      <title>Tutorial</title>
       <link>https://cloudnative-pg.io/tags/tutorial/</link>
       <pubDate>Wed, 08 Nov 2023 11:29:52 +0000</pubDate>
-      
       <guid>https://cloudnative-pg.io/tags/tutorial/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>volumesnapshots</title>
+      <title>Volumesnapshots</title>
       <link>https://cloudnative-pg.io/tags/volumesnapshots/</link>
       <pubDate>Thu, 12 Oct 2023 13:46:12 +0200</pubDate>
-      
       <guid>https://cloudnative-pg.io/tags/volumesnapshots/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>devops</title>
+      <title>Devops</title>
       <link>https://cloudnative-pg.io/tags/devops/</link>
       <pubDate>Sat, 17 Jun 2023 11:29:52 +0200</pubDate>
-      
       <guid>https://cloudnative-pg.io/tags/devops/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>pg16beta1</title>
+      <title>Pg16beta1</title>
       <link>https://cloudnative-pg.io/tags/pg16beta1/</link>
       <pubDate>Wed, 07 Jun 2023 08:30:33 +0100</pubDate>
-      
       <guid>https://cloudnative-pg.io/tags/pg16beta1/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>graphql</title>
+      <title>Graphql</title>
       <link>https://cloudnative-pg.io/tags/graphql/</link>
       <pubDate>Mon, 01 May 2023 09:00:00 +0200</pubDate>
-      
       <guid>https://cloudnative-pg.io/tags/graphql/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>hasura</title>
+      <title>Hasura</title>
       <link>https://cloudnative-pg.io/tags/hasura/</link>
       <pubDate>Mon, 01 May 2023 09:00:00 +0200</pubDate>
-      
       <guid>https://cloudnative-pg.io/tags/hasura/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>continuous-delivery</title>
+      <title>Continuous-Delivery</title>
       <link>https://cloudnative-pg.io/tags/continuous-delivery/</link>
       <pubDate>Wed, 25 Jan 2023 13:13:36 +0100</pubDate>
-      
       <guid>https://cloudnative-pg.io/tags/continuous-delivery/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>continuous-integration</title>
+      <title>Continuous-Integration</title>
       <link>https://cloudnative-pg.io/tags/continuous-integration/</link>
       <pubDate>Wed, 25 Jan 2023 13:13:36 +0100</pubDate>
-      
       <guid>https://cloudnative-pg.io/tags/continuous-integration/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>testing</title>
+      <title>Testing</title>
       <link>https://cloudnative-pg.io/tags/testing/</link>
       <pubDate>Wed, 25 Jan 2023 13:13:36 +0100</pubDate>
-      
       <guid>https://cloudnative-pg.io/tags/testing/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>cncf</title>
+      <title>Cncf</title>
       <link>https://cloudnative-pg.io/tags/cncf/</link>
       <pubDate>Wed, 11 May 2022 14:13:20 +0200</pubDate>
-      
       <guid>https://cloudnative-pg.io/tags/cncf/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>failover</title>
+      <title>Failover</title>
       <link>https://cloudnative-pg.io/tags/failover/</link>
       <pubDate>Wed, 11 May 2022 14:13:20 +0200</pubDate>
-      
       <guid>https://cloudnative-pg.io/tags/failover/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>operator</title>
+      <title>Operator</title>
       <link>https://cloudnative-pg.io/tags/operator/</link>
       <pubDate>Wed, 11 May 2022 14:13:20 +0200</pubDate>
-      
       <guid>https://cloudnative-pg.io/tags/operator/</guid>
       <description></description>
     </item>
-    
   </channel>
 </rss>

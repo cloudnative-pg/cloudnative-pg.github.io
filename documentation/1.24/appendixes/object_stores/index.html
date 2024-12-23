@@ -274,6 +274,8 @@
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#other-s3-compatible-object-storages-providers">Other S3-compatible Object Storages providers</a>
     </li>
+    <li class="toctree-l3"><a class="reference internal" href="#using-object-storage-with-a-private-ca">Using Object Storage with a private CA</a>
+    </li>
         </ul>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#azure-blob-storage">Azure Blob Storage</a>
@@ -439,12 +441,28 @@ spec:
       s3Credentials:
         [...]
 </code></pre>
-<div class="admonition important">
-<p class="admonition-title">Important</p>
-<p>Suppose you configure an Object Storage provider which uses a certificate signed with a private CA,
-like when using MinIO via HTTPS. In that case, you need to set the option <code>endpointCA</code>
-referring to a secret containing the CA bundle so that Barman can verify the certificate correctly.</p>
-</div>
+<h3 id="using-object-storage-with-a-private-ca">Using Object Storage with a private CA</h3>
+<p>Suppose you configure an Object Storage provider which uses a certificate
+signed with a private CA, for example when using MinIO via HTTPS. In that case,
+you need to set the option <code>endpointCA</code> inside <code>barmanObjectStore</code> referring
+to a secret containing the CA bundle, so that Barman can verify the certificate
+correctly.
+You can find instructions on creating a secret using your cert files in the
+<a href="../../certificates/#example">certificates</a> document.
+Once you have created the secret, you can populate the <code>endpointCA</code> as in the
+following example:</p>
+<pre><code class="language-yaml">apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+[...]
+spec:
+  [...]
+  backup:
+    barmanObjectStore:
+      endpointURL: &lt;myEndpointURL&gt;
+      endpointCA:
+        name: my-ca-secret
+        key: ca.crt
+</code></pre>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>If you want ConfigMaps and Secrets to be <strong>automatically</strong> reloaded by instances, you can
@@ -479,7 +497,7 @@ spec:
 <p>On the other side, using both <strong>Storage account access key</strong> or <strong>Storage account SAS Token</strong>,
 the credentials need to be stored inside a Kubernetes Secret, adding data entries only when
 needed. The following command performs that:</p>
-<pre><code>kubectl create secret generic azure-creds \
+<pre><code class="language-sh">kubectl create secret generic azure-creds \
   --from-literal=AZURE_STORAGE_ACCOUNT=&lt;storage account name&gt; \
   --from-literal=AZURE_STORAGE_KEY=&lt;storage account key&gt; \
   --from-literal=AZURE_STORAGE_SAS_TOKEN=&lt;SAS token&gt; \
@@ -512,14 +530,14 @@ spec:
 </code></pre>
 <p>When using the Azure Blob Storage, the <code>destinationPath</code> fulfills the following
 structure:</p>
-<pre><code>&lt;http|https&gt;://&lt;account-name&gt;.&lt;service-name&gt;.core.windows.net/&lt;resource-path&gt;
+<pre><code class="language-sh">&lt;http|https&gt;://&lt;account-name&gt;.&lt;service-name&gt;.core.windows.net/&lt;resource-path&gt;
 </code></pre>
 <p>where <code>&lt;resource-path&gt;</code> is <code>&lt;container&gt;/&lt;blob&gt;</code>. The <strong>account name</strong>,
 which is also called <strong>storage account name</strong>, is included in the used host name.</p>
 <h3 id="other-azure-blob-storage-compatible-providers">Other Azure Blob Storage compatible providers</h3>
 <p>If you are using a different implementation of the Azure Blob Storage APIs,
 the <code>destinationPath</code> will have the following structure:</p>
-<pre><code>&lt;http|https&gt;://&lt;local-machine-address&gt;:&lt;port&gt;/&lt;account-name&gt;/&lt;resource-path&gt;
+<pre><code class="language-sh">&lt;http|https&gt;://&lt;local-machine-address&gt;:&lt;port&gt;/&lt;account-name&gt;/&lt;resource-path&gt;
 </code></pre>
 <p>In that case, <code>&lt;account-name&gt;</code> is the first component of the path.</p>
 <p>This is required if you are testing the Azure support via the Azure Storage
