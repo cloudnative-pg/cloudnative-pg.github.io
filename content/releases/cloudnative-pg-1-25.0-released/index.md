@@ -22,8 +22,8 @@ The **CloudNativePG Community** is delighted to announce the release of
 **CloudNativePG Operator** versions **1.25.0** and **1.24.2**!
 
 Additionally, we have released **1.23.6** as the final patch for the
-now-unsupported 1.23.x series to ensure a smooth transition for remaining
-users.
+now-unsupported 1.23.x series to ensure a smooth transition for users
+still on 1.23 or older releases.
 
 ---
 
