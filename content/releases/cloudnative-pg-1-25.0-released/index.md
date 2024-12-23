@@ -30,7 +30,7 @@ users.
 ## What’s New in CloudNativePG 1.25.0?
 
 Version 1.25.0 introduces groundbreaking features to simplify PostgreSQL
-operations and enhance data durability.
+operations and enhance data durability control.
 
 ### Major Highlights
 
@@ -39,16 +39,16 @@ operations and enhance data durability.
 - **Logical Replication Made Easy**: Manage logical replication with new
   `Publication` and `Subscription` CRDs. Ideal for online migrations, major
   version upgrades, and more.
-- **Fine-Tuned Data Durability**: Optimize synchronous replication strategies
-  with the `dataDurability` option for a balanced approach to data safety and
-  self-healing.
+- **Fine-Tuned Data Durability**: Optimize synchronous replication
+  configuration strategies with the `dataDurability` option for a balanced
+  approach to data safety and self-healing.
 
 ### Introducing CloudNativePG Interface (CNPG-I)
 
 This release marks a pivotal moment for CloudNativePG with the experimental
-introduction of **CNPG-I**. This new standard framework enables users to extend
-CloudNativePG with external plugins, unlocking vast possibilities for
-customization.
+introduction of [**CNPG-I**](https://github.com/cloudnative-pg/cnpg-i).
+This new standard framework enables users to extend CloudNativePG with external
+plugins, unlocking vast possibilities for customization.
 
 The [Barman Cloud Plugin](https://github.com/cloudnative-pg/plugin-barman-cloud)
 demonstrates CNPG-I's potential, showcasing how backup and recovery plugins can
