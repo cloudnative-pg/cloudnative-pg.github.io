@@ -118,7 +118,7 @@ the final release, currently planned for the end of August 2024.
 
 Become a valued member of our expanding open-source, vendor-neutral, and openly
 governed community! Engage with fellow users, exchange insights, and receive
-support. Join our [Slack channel](https://join.slack.com/t/cloudnativepg/shared_invite/zt-2ij5hagfo-B04EQ9DUlGFzD6GEHDqE0g)
+support. Join our [Slack channel](https://join.slack.com/t/cloudnativepg/shared_invite/zt-2vedd06pe-vMZf4wJ3l_H_hB3YCZ947A)
 and follow us on [Twitter](https://twitter.com/CloudNativePg) to stay informed
 about the latest news and announcements.
 
