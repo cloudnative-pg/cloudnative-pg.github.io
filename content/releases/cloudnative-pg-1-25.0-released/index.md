@@ -91,7 +91,7 @@ version 1.24 will continue until **March 23, 2025**.
 Join our vibrant, open-source community to connect with fellow CloudNativePG users, share insights, and get support:
 
 - **Slack**: Engage with us on
-  [Slack](https://join.slack.com/t/cloudnativepg/shared_invite/zt-2ij5hagfo-B04EQ9DUlGFzD6GEHDqE0g).
+  [Slack](https://join.slack.com/t/cloudnativepg/shared_invite/zt-2vedd06pe-vMZf4wJ3l_H_hB3YCZ947A).
 - **Twitter**: Follow
   [@CloudNativePg](https://twitter.com/CloudNativePg) for updates and news.
 

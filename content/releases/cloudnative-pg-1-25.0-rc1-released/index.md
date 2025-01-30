@@ -82,7 +82,7 @@ Additional RCs may follow as needed before the final release, planned in Decembe
 
 Join our vibrant, open-source, vendor-neutral community! Connect with us on:
 
-- [Slack](https://join.slack.com/t/cloudnativepg/shared_invite/zt-237bhehx3-htDW2kz2hKJxEhn1W4VTnw) for discussions and support.
+- [Slack](https://join.slack.com/t/cloudnativepg/shared_invite/zt-2vedd06pe-vMZf4wJ3l_H_hB3YCZ947A) for discussions and support.
 - [Twitter](https://twitter.com/CloudNativePg) for the latest updates and
   announcements.
 
