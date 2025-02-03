@@ -78,7 +78,7 @@ until November 22nd, 2024.
 
 Become an active member of our growing open-source, vendor-neutral, and openly
 governed community! Engage with fellow users, share insights, and receive
-support. Join our [Slack channel](https://join.slack.com/t/cloudnativepg/shared_invite/zt-2ij5hagfo-B04EQ9DUlGFzD6GEHDqE0g)
+support. Join our [Slack channel](https://join.slack.com/t/cloudnativepg/shared_invite/zt-2vedd06pe-vMZf4wJ3l_H_hB3YCZ947A)
 and follow us on [Twitter](https://twitter.com/CloudNativePg) to stay
 up-to-date with the latest news and announcements.
 
