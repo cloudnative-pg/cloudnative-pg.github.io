@@ -83,6 +83,10 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#container">Container</a>
         <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#image-signatures">Image Signatures</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#attestations">Attestations</a>
+    </li>
     <li class="toctree-l3"><a class="reference internal" href="#guidelines-and-frameworks-for-container-security">Guidelines and Frameworks for Container Security</a>
     </li>
         </ul>
@@ -396,22 +400,65 @@ the linters defined by GolangCI-Lint.</p>
 </div>
 <h2 id="container">Container</h2>
 <p>Every container image in CloudNativePG is automatically built via CI/CD
-pipelines following every commit. These images include not only the operator's
+pipelines after every commit. These images include not only the operator's
 image but also the operands' images, specifically for every supported
-PostgreSQL version. During the CI/CD process, images undergo scanning with the
-following tools:</p>
+PostgreSQL version.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>All operand images are automatically and regularly rebuilt by our pipelines
+to incorporate the latest security updates at both the base image and package
+levels. This ensures that container images distributed to the community receive
+<strong>patch-level updates</strong> regularly.</p>
+</div>
+<p>During the CI/CD process, images are scanned using the following tools:</p>
 <ul>
 <li><strong><a href="https://github.com/goodwithtech/dockle">Dockle</a>:</strong> Ensures best practices
   in the container build process.</li>
 <li><strong><a href="https://snyk.io/">Snyk</a>:</strong> Detects security issues within the container
   and reports findings via the GitHub interface.</li>
 </ul>
-<div class="admonition important">
-<p class="admonition-title">Important</p>
-<p>All operand images are automatically rebuilt daily by our pipelines to
-incorporate security updates at the base image and package level, providing
-<strong>patch-level updates</strong> for the container images distributed to the community.</p>
-</div>
+<h3 id="image-signatures">Image Signatures</h3>
+<p>The operator and <a href="https://github.com/cloudnative-pg/postgres-containers">operand
+images</a> are
+cryptographically signed using <a href="https://github.com/sigstore/cosign">cosign</a>, a
+signature tool from <a href="https://www.sigstore.dev/">sigstore</a>.
+This process is automated via GitHub Actions and leverages
+<a href="https://docs.github.com/en/actions/security-for-github-actions/security-hardening-your-deployments/about-security-hardening-with-openid-connect">short-lived tokens issued through OpenID Connect</a>.</p>
+<p>The token issuer is <code>https://token.actions.githubusercontent.com</code>, and the
+signing identity corresponds to a GitHub workflow executed under the
+<a href="https://github.com/cloudnative-pg/cloudnative-pg/">cloudnative-pg</a> repository.
+This workflow uses the <a href="https://github.com/marketplace/actions/cosign-installer">cosign-installer action</a>
+to streamline the signing process.</p>
+<p>To verify the authenticity of an operator image, use the following <code>cosign</code>
+command with the image digest:</p>
+<pre><code class="language-shell">cosign verify ghcr.io/cloudnative-pg/cloudnative-pg@sha256:&lt;DIGEST&gt; \
+  --certificate-identity-regexp=&quot;^https://github.com/cloudnative-pg/cloudnative-pg/&quot; \
+  --certificate-oidc-issuer=&quot;https://token.actions.githubusercontent.com&quot;
+</code></pre>
+<h3 id="attestations">Attestations</h3>
+<p>Container images include the following attestations for transparency and
+traceability:</p>
+<ul>
+<li><strong><a href="https://docs.docker.com/build/metadata/attestations/sbom/">Software Bill of Materials
+  (SBOM)</a>:</strong> A
+  comprehensive list of software artifacts included in the image or used during
+  its build process, formatted using the
+  <a href="https://github.com/in-toto/attestation/blob/main/spec/predicates/spdx.md">in-toto SPDX predicate standard</a>.</li>
+<li><strong><a href="https://docs.docker.com/build/metadata/attestations/slsa-provenance/">Provenance</a>:</strong>
+  Metadata detailing how the image was built, following the <a href="https://slsa.dev">SLSA Provenance</a>
+  framework.</li>
+</ul>
+<p>You can retrieve the SBOM for a specific image and platform using the following
+command:</p>
+<pre><code class="language-shell">docker buildx imagetools inspect &lt;IMAGE&gt; \
+  --format '{{ json (index .SBOM &quot;&lt;PLATFORM&gt;&quot;).SPDX }}'
+</code></pre>
+<p>This command outputs the SBOM in JSON format, providing a detailed view of the
+software components and build dependencies.</p>
+<p>For the provenance, use:</p>
+<pre><code class="language-shell">docker buildx imagetools inspect &lt;IMAGE&gt; \
+  --format '{{ json (index .Provenance &quot;&lt;PLATFORM&gt;&quot;).SLSA }}'
+</code></pre>
 <h3 id="guidelines-and-frameworks-for-container-security">Guidelines and Frameworks for Container Security</h3>
 <p>The following guidelines and frameworks have been considered for ensuring
 container-level security:</p>

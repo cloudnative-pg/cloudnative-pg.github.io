@@ -381,11 +381,11 @@ the selector.</p>
 <p>The <code>updateStrategy</code> field allows you to control how the operator
 updates a service definition. By default, the operator uses the <code>patch</code>
 strategy, applying changes directly to the service.
-Alternatively, the <code>recreate</code> strategy deletes the existing service and
+Alternatively, the <code>replace</code> strategy deletes the existing service and
 recreates it from the template.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>The <code>recreate</code> strategy will cause a service disruption with every
+<p>The <code>replace</code> strategy will cause a service disruption with every
 change.  However, it may be necessary for modifying certain
 parameters that can only be set during service creation.</p>
 </div>
