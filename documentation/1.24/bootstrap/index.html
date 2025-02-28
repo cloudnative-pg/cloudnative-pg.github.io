@@ -329,7 +329,7 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="bootstrap">Bootstrap</h1>
-<p>This section describes the options you have to create a new
+<p>This section describes the options available to create a new
 PostgreSQL cluster and the design rationale behind them.
 There are primarily two ways to bootstrap a new cluster:</p>
 <ul>
@@ -337,23 +337,24 @@ There are primarily two ways to bootstrap a new cluster:</p>
 <li>from an existing PostgreSQL cluster, either directly (<code>pg_basebackup</code>)
   or indirectly through a physical base backup (<code>recovery</code>)</li>
 </ul>
-<p>The <code>initdb</code> bootstrap also offers the possibility to import one or more
-databases from an existing Postgres cluster, even outside Kubernetes, and
-having a different major version of Postgres.
+<p>The <code>initdb</code> bootstrap also provides the option to import one or more
+databases from an existing PostgreSQL cluster, even if it's outside
+Kubernetes or running a different major version of PostgreSQL.
 For more detailed information about this feature, please refer to the
 <a href="../database_import/">"Importing Postgres databases"</a> section.</p>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
-<p>Bootstrapping from an existing cluster opens up the possibility
-to create a <strong>replica cluster</strong>, that is an independent PostgreSQL
-cluster which is in continuous recovery, synchronized with the source
-and that accepts read-only connections.</p>
+<p>Bootstrapping from an existing cluster enables the creation of a
+<strong>replica cluster</strong>—an independent PostgreSQL cluster that remains in
+continuous recovery, stays synchronized with the source cluster, and
+accepts read-only connections.
+For more details, refer to the <a href="../replica_cluster/">Replica Cluster section</a>.</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>CloudNativePG requires both the <code>postgres</code> user and database to
-always exists. Using the local Unix Domain Socket, it needs to connect
-as <code>postgres</code> user to the <code>postgres</code> database via <code>peer</code> authentication in
+always exist. Using the local Unix Domain Socket, it needs to connect
+as the <code>postgres</code> user to the <code>postgres</code> database via <code>peer</code> authentication in
 order to perform administrative tasks on the cluster.<br />
 <strong>DO NOT DELETE</strong> the <code>postgres</code> user or the <code>postgres</code> database!!!</p>
 </div>
@@ -375,26 +376,30 @@ specification. CloudNativePG currently supports the following bootstrap methods:
   existing cluster and, if needed, replaying all the available WAL files or up to
   a given <em>point in time</em></li>
 <li><code>pg_basebackup</code>: create a PostgreSQL cluster by cloning an existing one of
-  the same major version using <code>pg_basebackup</code> via streaming replication protocol -
-  useful if you want to migrate databases to CloudNativePG, even
-  from outside Kubernetes.</li>
+  the same major version using <code>pg_basebackup</code> through the streaming
+  replication protocol. This method is particularly useful for migrating
+  databases to CloudNativePG, although meeting all requirements can be
+  challenging. Be sure to review the warnings in the
+  <a href="#bootstrap-from-a-live-cluster-pg_basebackup"><code>pg_basebackup</code> subsection</a>
+  carefully.</li>
 </ul>
-<p>Differently from the <code>initdb</code> method, both <code>recovery</code> and <code>pg_basebackup</code>
+<p>In contrast to the <code>initdb</code> method, both <code>recovery</code> and <code>pg_basebackup</code>
 create a new cluster based on another one (either offline or online) and can be
 used to spin up replica clusters. They both rely on the definition of external
-clusters.</p>
-<p>Given that there are several possible backup methods and combinations of backup
-storage that the CloudNativePG operator provides, please refer to the
-<a href="../recovery/">"Recovery" section</a> for guidance on each method.</p>
+clusters.
+Refer to the <a href="../replica_cluster/">replica cluster section</a> for more information.</p>
+<p>Given the amount of possible backup methods and combinations of backup
+storage that the CloudNativePG operator provides for <code>recovery</code>, please refer to
+the dedicated <a href="../recovery/">"Recovery" section</a> for guidance on each method.</p>
 <div class="admonition seealso">
 <p class="admonition-title">API reference</p>
 <p>Please refer to the <a href="../cloudnative-pg.v1/#postgresql-cnpg-io-v1-BootstrapConfiguration">"API reference for the <code>bootstrap</code> section</a>
 for more information.</p>
 </div>
 <h2 id="the-externalclusters-section">The <code>externalClusters</code> section</h2>
-<p>The <code>externalClusters</code> section provides a mechanism for specifying one or more
-PostgreSQL clusters associated with the current configuration. Its primary use
-cases include:</p>
+<p>The <code>externalClusters</code> section of the cluster manifest can be used to configure
+access to one or more PostgreSQL clusters as <em>sources</em>.
+The primary use cases include:</p>
 <ol>
 <li><strong>Importing Databases:</strong> Specify an external source to be utilized during
   the <a href="../database_import/">importation of databases</a> via logical backup and
@@ -416,7 +421,7 @@ servers in future releases.</p>
 to define the source PostgreSQL cluster for either the <code>pg_basebackup</code>
 method or the <code>recovery</code> one. An external cluster needs to have:</p>
 <ul>
-<li>a name that identifies the origin cluster, to be used as a reference via the
+<li>a name that identifies the external cluster, to be used as a reference via the
   <code>source</code> option</li>
 <li>
 <p>at least one of the following:</p>
@@ -433,13 +438,40 @@ method or the <code>recovery</code> one. An external cluster needs to have:</p>
 </ul>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>A recovery object store is normally an AWS S3, or an Azure Blob Storage,
-or a Google Cloud Storage source that is managed by Barman Cloud.</p>
+<p>A recovery object store is normally an AWS S3, Azure Blob Storage,
+or Google Cloud Storage source that is managed by Barman Cloud.</p>
 </div>
 <p>When only the streaming connection is defined, the source can be used for the
 <code>pg_basebackup</code> method. When only the recovery object store is defined, the
-source can be used for the <code>recovery</code> method. When both are defined, any of the
-two bootstrap methods can be chosen.</p>
+source can be used for the <code>recovery</code> method. When both are defined, any of
+the two bootstrap methods can be chosen. The following table summarizes your
+options:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Content of externalClusters</th>
+<th style="text-align: center;">pg_basebackup</th>
+<th style="text-align: center;">recovery</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Only streaming</td>
+<td style="text-align: center;">✓</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Only object store</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✓</td>
+</tr>
+<tr>
+<td style="text-align: left;">Streaming and object store</td>
+<td style="text-align: center;">✓</td>
+<td style="text-align: center;">✓</td>
+</tr>
+</tbody>
+</table>
 <p>Furthermore, in case of <code>pg_basebackup</code> or full <code>recovery</code> point in time, the
 cluster is eligible for replica cluster mode. This means that the cluster is
 continuously fed from the source, either via streaming, via WAL shipping
@@ -453,7 +485,7 @@ for more information.</p>
 <p>Whenever a password is supplied within an <code>externalClusters</code> entry,
 CloudNativePG autonomously manages a <a href="https://www.postgresql.org/docs/current/libpq-pgpass.html">PostgreSQL password file</a>
 for it, residing at <code>/controller/external/NAME/pgpass</code> in each instance.</p>
-<p>This approach empowers CloudNativePG to securely establish connections with an
+<p>This approach enables CloudNativePG to securely establish connections with an
 external server without exposing any passwords in the connection string.
 Instead, the connection safely references the aforementioned file through the
 <code>passfile</code> connection parameter.</p>
@@ -670,9 +702,9 @@ server according to the <a href="https://www.postgresql.org/docs/current/protoco
 Comments can be included, but internal commands like <code>psql</code> cannot.</p>
 </div>
 <h2 id="bootstrap-from-another-cluster">Bootstrap from another cluster</h2>
-<p>CloudNativePG enables the bootstrap of a cluster starting from
+<p>CloudNativePG enables bootstrapping a cluster starting from
 another one of the same major version.
-This operation can happen by connecting directly to the source cluster via
+This operation can be carried out either connecting directly to the source cluster via
 streaming replication (<code>pg_basebackup</code>), or indirectly via an existing
 physical <em>base backup</em> (<code>recovery</code>).</p>
 <p>The source cluster must be defined in the <code>externalClusters</code> section, identified
@@ -687,16 +719,35 @@ for the name of the server. You can specify a different one with the
 value of <code>name</code> in the external cluster definition).</p>
 </div>
 <h3 id="bootstrap-from-a-backup-recovery">Bootstrap from a backup (<code>recovery</code>)</h3>
-<p>Given the several possibilities, methods, and combinations that the
-CloudNativePG operator provides in terms of backup and recovery, please refer
-to the <a href="../recovery/">"Recovery" section</a>.</p>
+<p>Given the variety of backup methods and combinations of backup storage
+options provided by the CloudNativePG operator for <code>recovery</code>, please refer
+to the dedicated <a href="../recovery/">"Recovery" section</a> for detailed guidance on
+each method.</p>
 <h3 id="bootstrap-from-a-live-cluster-pg_basebackup">Bootstrap from a live cluster (<code>pg_basebackup</code>)</h3>
 <p>The <code>pg_basebackup</code> bootstrap mode lets you create a new cluster (<em>target</em>) as
 an exact physical copy of an existing and <strong>binary compatible</strong> PostgreSQL
 instance (<em>source</em>), through a valid <em>streaming replication</em> connection.
 The source instance can be either a primary or a standby PostgreSQL server.</p>
-<p>The primary use case for this method is represented by <strong>migrations</strong> to CloudNativePG,
-either from outside Kubernetes or within Kubernetes (e.g., from another operator).</p>
+<ul>
+<li>Reporting and business intelligence clusters that need to be regenerated
+  periodically (daily, weekly)</li>
+<li>Test databases containing live data that require periodic regeneration
+  (daily, weekly, monthly) and anonymization</li>
+<li>Rapid spin-up of a standalone replica cluster</li>
+<li>Physical migrations of CloudNativePG clusters to different namespaces or
+  Kubernetes clusters</li>
+</ul>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Avoid using this method, based on physical replication, to migrate an
+existing PostgreSQL cluster outside of Kubernetes into CloudNativePG, unless you
+are completely certain that all <a href="#requirements">requirements</a> are met and
+the operation has been
+thoroughly tested. The CloudNativePG community does not endorse this approach
+for such use cases, and recommends using logical import instead. It is
+exceedingly rare that all requirements for physical replication are met in a
+way that seamlessly works with CloudNativePG.</p>
+</div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>The current implementation creates a <em>snapshot</em> of the origin PostgreSQL
@@ -792,7 +843,7 @@ file on the source PostgreSQL instance:</p>
 <pre><code># A more restrictive rule for TLS and IP of origin is recommended
 host replication streaming_replica all md5
 </code></pre>
-<p>The following manifest creates a new PostgreSQL 17.2 cluster,
+<p>The following manifest creates a new PostgreSQL 17.4 cluster,
 called <code>target-db</code>, using the <code>pg_basebackup</code> bootstrap method
 to clone an external PostgreSQL cluster defined as <code>source-db</code>
 (in the <code>externalClusters</code> array). As you can see, the <code>source-db</code>
@@ -805,7 +856,7 @@ metadata:
   name: target-db
 spec:
   instances: 3
-  imageName: ghcr.io/cloudnative-pg/postgresql:17.2
+  imageName: ghcr.io/cloudnative-pg/postgresql:17.4
 
   bootstrap:
     pg_basebackup:
@@ -824,7 +875,7 @@ spec:
       key: password
 </code></pre>
 <p>All the requirements must be met for the clone operation to work, including
-the same PostgreSQL version (in our case 17.2).</p>
+the same PostgreSQL version (in our case 17.4).</p>
 <h4 id="tls-certificate-authentication">TLS certificate authentication</h4>
 <p>The second authentication method supported by CloudNativePG
 with the <code>pg_basebackup</code> bootstrap is based on TLS client certificates.
@@ -836,7 +887,7 @@ in the same Kubernetes cluster.</p>
 <p>This example can be easily adapted to cover an instance that resides
 outside the Kubernetes cluster.</p>
 </div>
-<p>The manifest defines a new PostgreSQL 17.2 cluster called <code>cluster-clone-tls</code>,
+<p>The manifest defines a new PostgreSQL 17.4 cluster called <code>cluster-clone-tls</code>,
 which is bootstrapped using the <code>pg_basebackup</code> method from the <code>cluster-example</code>
 external cluster. The host is identified by the read/write service
 in the same cluster, while the <code>streaming_replica</code> user is authenticated
@@ -849,7 +900,7 @@ metadata:
   name: cluster-clone-tls
 spec:
   instances: 3
-  imageName: ghcr.io/cloudnative-pg/postgresql:17.2
+  imageName: ghcr.io/cloudnative-pg/postgresql:17.4
 
   bootstrap:
     pg_basebackup:
@@ -923,6 +974,8 @@ instance using a second connection (see the <code>--wal-method=stream</code> opt
 and diverge from the source.
 For this reason, it is advised to stop all write operations to the source database
 before migrating to the target database in Kubernetes.</p>
+<p>Note that this limitation applies only if the target cluster is not defined as
+a replica cluster.</p>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
 <p>Before you attempt a migration, you must test both the procedure

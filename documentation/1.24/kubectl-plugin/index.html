@@ -203,6 +203,8 @@
     </li>
         </ul>
     </li>
+    <li class="toctree-l3"><a class="reference internal" href="#using-the-arch-linux-user-repository-aur-package">Using the Arch Linux User Repository (AUR) Package</a>
+    </li>
     <li class="toctree-l3"><a class="reference internal" href="#using-krew">Using Krew</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#using-homebrew">Using Homebrew</a>
@@ -411,9 +413,9 @@ section. In that section are pre-built packages for a variety of systems.
 As a result, you can follow standard practices and instructions to install
 them in your systems.</p>
 <h4 id="debian-packages">Debian packages</h4>
-<p>For example, let's install the 1.24.2 release of the plugin, for an Intel based
+<p>For example, let's install the 1.24.3 release of the plugin, for an Intel based
 64 bit server. First, we download the right <code>.deb</code> file.</p>
-<pre><code class="language-sh">wget https://github.com/cloudnative-pg/cloudnative-pg/releases/download/v1.24.2/kubectl-cnpg_1.24.2_linux_x86_64.deb \
+<pre><code class="language-sh">wget https://github.com/cloudnative-pg/cloudnative-pg/releases/download/v1.24.3/kubectl-cnpg_1.24.3_linux_x86_64.deb \
   --output-document kube-plugin.deb
 </code></pre>
 <p>Then, with superuser privileges, install from the local file using <code>dpkg</code>:</p>
@@ -421,13 +423,13 @@ them in your systems.</p>
 Selecting previously unselected package cnpg.
 (Reading database ... 6688 files and directories currently installed.)
 Preparing to unpack kube-plugin.deb ...
-Unpacking cnpg (1.24.2) ...
-Setting up cnpg (1.24.2) ...
+Unpacking cnpg (1.24.3) ...
+Setting up cnpg (1.24.3) ...
 </code></pre>
 <h4 id="rpm-packages">RPM packages</h4>
-<p>As in the example for <code>.rpm</code> packages, let's install the 1.24.2 release for an
+<p>As in the example for <code>.rpm</code> packages, let's install the 1.24.3 release for an
 Intel 64 bit machine. Note the <code>--output</code> flag to provide a file name.</p>
-<pre><code class="language-sh">curl -L https://github.com/cloudnative-pg/cloudnative-pg/releases/download/v1.24.2/kubectl-cnpg_1.24.2_linux_x86_64.rpm \
+<pre><code class="language-sh">curl -L https://github.com/cloudnative-pg/cloudnative-pg/releases/download/v1.24.3/kubectl-cnpg_1.24.3_linux_x86_64.rpm \
   --output kube-plugin.rpm
 </code></pre>
 <p>Then, with superuser privileges, install with <code>yum</code>, and you're ready to use:</p>
@@ -438,7 +440,7 @@ Dependencies resolved.
  Package            Architecture         Version                   Repository                  Size
 ====================================================================================================
 Installing:
- cnpg               x86_64               1.24.2                  @commandline                20 M
+ cnpg               x86_64               1.24.3                  @commandline                20 M
 
 Transaction Summary
 ====================================================================================================
@@ -447,6 +449,15 @@ Install  1 Package
 Total size: 20 M
 Installed size: 78 M
 Is this ok [y/N]: y
+</code></pre>
+<h3 id="using-the-arch-linux-user-repository-aur-package">Using the Arch Linux User Repository (AUR) Package</h3>
+<p>To install the plugin from the <a href="https://aur.archlinux.org/packages/kubectl-cnpg">AUR</a>, follow these steps:</p>
+<pre><code class="language-sh">git clone https://aur.archlinux.org/kubectl-cnpg.git
+cd kubectl-cnpg
+makepkg -si
+</code></pre>
+<p>Or use your favorite AUR-helper, for example <a href="https://github.com/Morganamilo/paru">paru</a>:</p>
+<pre><code class="language-sh">paru -S kubectl-cnpg
 </code></pre>
 <h3 id="using-krew">Using Krew</h3>
 <p>If you already have <a href="https://krew.sigs.k8s.io/">Krew</a> installed, you can simply
@@ -620,9 +631,9 @@ sandbox-3  0/604DE38  0/604DE38  0/604DE38  0/604DE38   00:00:00   00:00:00   00
 Instances status
 Name       Current LSN  Replication role  Status  QoS         Manager Version  Node
 ----       -----------  ----------------  ------  ---         ---------------  ----
-sandbox-1  0/604DE38    Primary           OK      BestEffort  1.24.2           k8s-eu-worker
-sandbox-2  0/604DE38    Standby (async)   OK      BestEffort  1.24.2           k8s-eu-worker2
-sandbox-3  0/604DE38    Standby (async)   OK      BestEffort  1.24.2           k8s-eu-worker
+sandbox-1  0/604DE38    Primary           OK      BestEffort  1.24.3           k8s-eu-worker
+sandbox-2  0/604DE38    Standby (async)   OK      BestEffort  1.24.3           k8s-eu-worker2
+sandbox-3  0/604DE38    Standby (async)   OK      BestEffort  1.24.3           k8s-eu-worker
 </code></pre>
 <p>If you require more detailed status information, use the <code>--verbose</code> option (or
 <code>-v</code> for short). The level of detail increases each time the flag is repeated:</p>
@@ -671,9 +682,9 @@ sandbox-primary  primary  1              1                1                     
 Instances status
 Name       Current LSN  Replication role  Status  QoS         Manager Version  Node
 ----       -----------  ----------------  ------  ---         ---------------  ----
-sandbox-1  0/6053720    Primary           OK      BestEffort  1.24.2           k8s-eu-worker
-sandbox-2  0/6053720    Standby (async)   OK      BestEffort  1.24.2           k8s-eu-worker2
-sandbox-3  0/6053720    Standby (async)   OK      BestEffort  1.24.2           k8s-eu-worker
+sandbox-1  0/6053720    Primary           OK      BestEffort  1.24.3           k8s-eu-worker
+sandbox-2  0/6053720    Standby (async)   OK      BestEffort  1.24.3           k8s-eu-worker2
+sandbox-3  0/6053720    Standby (async)   OK      BestEffort  1.24.3           k8s-eu-worker
 </code></pre>
 <p>With an additional <code>-v</code> (e.g. <code>kubectl cnpg status sandbox -v -v</code>), you can
 also view PostgreSQL configuration, HBA settings, and certificates.</p>
@@ -824,8 +835,8 @@ directory tidy:</p>
   inflating: report_operator_&lt;TIMESTAMP&gt;/manifests/validating-webhook-configuration.yaml
   inflating: report_operator_&lt;TIMESTAMP&gt;/manifests/mutating-webhook-configuration.yaml
   inflating: report_operator_&lt;TIMESTAMP&gt;/manifests/webhook-service.yaml
-  inflating: report_operator_&lt;TIMESTAMP&gt;/manifests/cnpg-ca-secret.yaml
-  inflating: report_operator_&lt;TIMESTAMP&gt;/manifests/cnpg-webhook-cert.yaml
+  inflating: report_operator_&lt;TIMESTAMP&gt;/manifests/cnpg-ca-secret(secret).yaml
+  inflating: report_operator_&lt;TIMESTAMP&gt;/manifests/cnpg-webhook-cert(secret).yaml
 </code></pre>
 <p>If you activated the <code>--logs</code> option, you'd see an extra subdirectory:</p>
 <pre><code class="language-output">Archive:  report_operator_&lt;TIMESTAMP&gt;.zip
@@ -841,19 +852,19 @@ In all cases, it will also try to get the CURRENT operator logs. If current
 and previous logs are available, it will show them both.</p>
 </div>
 <pre><code class="language-output">====== Begin of Previous Log =====
-2023-03-28T12:56:41.251711811Z {&quot;level&quot;:&quot;info&quot;,&quot;ts&quot;:&quot;2023-03-28T12:56:41Z&quot;,&quot;logger&quot;:&quot;setup&quot;,&quot;msg&quot;:&quot;Starting CloudNativePG Operator&quot;,&quot;version&quot;:&quot;1.24.2&quot;,&quot;build&quot;:{&quot;Version&quot;:&quot;1.24.2+dev107&quot;,&quot;Commit&quot;:&quot;cc9bab17&quot;,&quot;Date&quot;:&quot;2023-03-28&quot;}}
+2023-03-28T12:56:41.251711811Z {&quot;level&quot;:&quot;info&quot;,&quot;ts&quot;:&quot;2023-03-28T12:56:41Z&quot;,&quot;logger&quot;:&quot;setup&quot;,&quot;msg&quot;:&quot;Starting CloudNativePG Operator&quot;,&quot;version&quot;:&quot;1.24.3&quot;,&quot;build&quot;:{&quot;Version&quot;:&quot;1.24.3+dev107&quot;,&quot;Commit&quot;:&quot;cc9bab17&quot;,&quot;Date&quot;:&quot;2023-03-28&quot;}}
 2023-03-28T12:56:41.251851909Z {&quot;level&quot;:&quot;info&quot;,&quot;ts&quot;:&quot;2023-03-28T12:56:41Z&quot;,&quot;logger&quot;:&quot;setup&quot;,&quot;msg&quot;:&quot;Starting pprof HTTP server&quot;,&quot;addr&quot;:&quot;0.0.0.0:6060&quot;}
   &lt;snipped …&gt;
 
 ====== End of Previous Log =====
-2023-03-28T12:57:09.854306024Z {&quot;level&quot;:&quot;info&quot;,&quot;ts&quot;:&quot;2023-03-28T12:57:09Z&quot;,&quot;logger&quot;:&quot;setup&quot;,&quot;msg&quot;:&quot;Starting CloudNativePG Operator&quot;,&quot;version&quot;:&quot;1.24.2&quot;,&quot;build&quot;:{&quot;Version&quot;:&quot;1.24.2+dev107&quot;,&quot;Commit&quot;:&quot;cc9bab17&quot;,&quot;Date&quot;:&quot;2023-03-28&quot;}}
+2023-03-28T12:57:09.854306024Z {&quot;level&quot;:&quot;info&quot;,&quot;ts&quot;:&quot;2023-03-28T12:57:09Z&quot;,&quot;logger&quot;:&quot;setup&quot;,&quot;msg&quot;:&quot;Starting CloudNativePG Operator&quot;,&quot;version&quot;:&quot;1.24.3&quot;,&quot;build&quot;:{&quot;Version&quot;:&quot;1.24.3+dev107&quot;,&quot;Commit&quot;:&quot;cc9bab17&quot;,&quot;Date&quot;:&quot;2023-03-28&quot;}}
 2023-03-28T12:57:09.854363943Z {&quot;level&quot;:&quot;info&quot;,&quot;ts&quot;:&quot;2023-03-28T12:57:09Z&quot;,&quot;logger&quot;:&quot;setup&quot;,&quot;msg&quot;:&quot;Starting pprof HTTP server&quot;,&quot;addr&quot;:&quot;0.0.0.0:6060&quot;}
 </code></pre>
 <p>If the operator hasn't been restarted, you'll still see the <code>====== Begin …</code>
 and  <code>====== End …</code> guards, with no content inside.</p>
 <p>You can verify that the confidential information is REDACTED by default:</p>
 <pre><code class="language-sh">cd report_operator_&lt;TIMESTAMP&gt;/manifests/
-head cnpg-ca-secret.yaml
+head cnpg-ca-secret\(secret\).yaml
 </code></pre>
 <pre><code class="language-yaml">data:
   ca.crt: &quot;&quot;
@@ -873,7 +884,7 @@ metadata:
 Successfully written report to &quot;reportNonRedacted.zip&quot; (format: &quot;yaml&quot;)
 </code></pre>
 <pre><code class="language-sh">unzip reportNonRedacted.zip
-head cnpg-ca-secret.yaml
+head cnpg-ca-secret\(secret\).yaml
 </code></pre>
 <pre><code class="language-yaml">data:
   ca.crt: LS0tLS1CRUdJTiBD…
@@ -1159,7 +1170,7 @@ method should be used with extreme care, by authorized personnel only.</p>
 </div>
 <pre><code class="language-console">$ kubectl cnpg psql cluster-example
 
-psql (17.2 (Debian 17.2-1.pgdg110+1))
+psql (17.4 (Debian 17.4-1.pgdg110+1))
 Type &quot;help&quot; for help.
 
 postgres=#
@@ -1168,7 +1179,7 @@ postgres=#
 select to work against a replica by using the <code>--replica</code> option:</p>
 <pre><code class="language-console">$ kubectl cnpg psql --replica cluster-example
 
-psql (17.2 (Debian 17.2-1.pgdg110+1))
+psql (17.4 (Debian 17.4-1.pgdg110+1))
 
 Type &quot;help&quot; for help.
 
