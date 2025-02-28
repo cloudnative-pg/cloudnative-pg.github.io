@@ -365,6 +365,14 @@ connection:</p>
   cluster-example \
   -- --time 30 --client 1 --jobs 1
 </code></pre>
+<p>By default, jobs do not expire. You can enable automatic deletion with the
+<code>--ttl</code> flag. The job will be deleted after the specified duration (in seconds).</p>
+<pre><code class="language-shell">kubectl cnpg pgbench \
+  --job-name pgbench-run \
+  --ttl 600 \
+  cluster-example \
+  -- --time 30 --client 1 --jobs 1
+</code></pre>
 <p>If you want to run a <code>pgbench</code> job on a specific worker node, you can use
 the <code>--node-selector</code> option. Suppose you want to run the previous
 initialization job on a node having the <code>workload=pgbench</code> label, you can run:</p>
