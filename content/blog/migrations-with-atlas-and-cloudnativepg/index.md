@@ -98,7 +98,8 @@ In addition to the `cluster-example-app` Secret, the CloudNativePG operator
 creates Services for Postgres. In particular, we will want to use the ReadWrite
 service called `cluster-example-rw` for the migrations.
 
-We're going to use the `credentials` stanza of the AtlasSchema CRD referencing
+We're going to use the [`credentials` object](https://atlasgo.io/integrations/kubernetes/declarative#credentials-object)
+from the AtlasSchema CRD referencing
 the password and the service. Following along the Atlas Operator Quickstart, we
 create a migration defining a table called `t1`. Save the following to a file
 named `atlas-schema.yaml`.
@@ -164,6 +165,35 @@ As suggested in the Atlas Quickstart, we can modify the schema in the
 `atlas-schema.yaml` file, and then re-apply:
 `kubectl apply -f atlas-schema.yaml`, and the Atlas operator will again
 reconcile the database to the desired state.
+
+## What's the point? DevOps
+
+Let's say you have an application that uses a database. In production, the
+database may hold your customers's data, purchase history, financial
+transactions, perhaps maps using PostGIS, etc.
+
+Application developers will regularly need to add functionality, and often
+that will involve creating new tables, schemas, procedures, indexes, perhaps
+doing some INSERT statements to populate static data, etc.
+The developers will be using a development database, possibly locally.
+There might be another database for the purpose of automated testing, and
+of course there's the production database, where the changes will need to be
+applied in the end. These different databases have different data in them,
+and different loads.
+Add time and other developers, and you have a lot of databases on your hands,
+and a big chance for "it works on my machine" snafus.
+
+Database migration tools manage this, bringing DevOps to this area of data.
+Atlas, by operating as a Kubernetes operator, makes the dev/prod transition even
+smoother.
+
+Using CloudNativePG, with its credentials secrets and services created out of
+the box, together with Atlas, will enable the developers to create migrations
+in their local Kubernetes clusters, update the YAML
+files for Atlas in version control, and apply the same files in the testing
+cluster, and then in the production cluster, with no changes.
+
+---
 
 This intro was just to whet your appetite. There is plenty more to learn with
 Atlas.
