@@ -704,6 +704,13 @@ instances adjusts based on the number of available standbys. PostgreSQL will
 attempt to replicate WAL records to the designated number of synchronous
 standbys, but write operations will continue even if fewer than the requested
 number of standbys are available.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Make sure you have a clear understanding of what <em>ready/available</em> means
+for a replica and set your expectations accordingly. By default, a replica is
+considered ready when it has successfully connected to the source at least
+once.</p>
+</div>
 <p>This setting balances data safety with availability, enabling applications to
 continue writing during temporary standby unavailability—hence, it’s also known
 as <em>self-healing mode</em>.</p>
@@ -726,7 +733,7 @@ spec:
     synchronous:
       method: any
       number: 2
-      dataDurability: required
+      dataDurability: preferred
 </code></pre>
 <ol>
 <li>
@@ -789,8 +796,8 @@ PostgreSQL to the following value:</p>
 </code></pre>
 <p>Where:</p>
 <ul>
-<li><code>q</code> is an integer automatically calculated by the operator to be:<br />
-<code>1 &lt;= minSyncReplicas &lt;= q &lt;= maxSyncReplicas &lt;= readyReplicas</code></li>
+<li><code>q</code> is an integer automatically calculated by the operator to be:
+  <code>1 &lt;= minSyncReplicas &lt;= q &lt;= maxSyncReplicas &lt;= readyReplicas</code></li>
 <li><code>pod1, pod2, ...</code> is the list of all PostgreSQL pods in the cluster</li>
 </ul>
 <div class="admonition warning">

@@ -433,17 +433,18 @@ the old, deprecated <code>cnpg.io/podEnvHash</code> annotation.</dd>
 <dt><code>cnpg.io/pvcStatus</code></dt>
 <dd>Current status of the PVC: <code>initializing</code>, <code>ready</code>, or <code>detached</code>.</dd>
 <dt><code>cnpg.io/reconcilePodSpec</code></dt>
-<dd>Annotation can be applied to a <code>Cluster</code> or <code>Pooler</code> to prevent restarts.</dd>
-</dl>
+<dd>
+<p>Annotation can be applied to a <code>Cluster</code> or <code>Pooler</code> to prevent restarts.</p>
 <p>When set to <code>disabled</code> on a <code>Cluster</code>, the operator prevents instances
-   from restarting due to changes in the PodSpec. This includes changes to:</p>
-<pre><code> - Topology or affinity
- - Scheduler
- - Volumes or containers
-</code></pre>
+from restarting due to changes in the PodSpec. This includes changes to:</p>
+<ul>
+<li>Topology or affinity</li>
+<li>Scheduler</li>
+<li>Volumes or containers</li>
+</ul>
 <p>When set to <code>disabled</code> on a <code>Pooler</code>, the operator restricts any modifications
-  to the deployment specification, except for changes to <code>spec.instances</code>.</p>
-<dl>
+to the deployment specification, except for changes to <code>spec.instances</code>.</p>
+</dd>
 <dt><code>cnpg.io/reconciliationLoop</code></dt>
 <dd>When set to <code>disabled</code> on a <code>Cluster</code>, the operator prevents the
 reconciliation loop from running.</dd>
