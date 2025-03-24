@@ -184,7 +184,7 @@ Add time and other developers, and you have a lot of databases on your hands,
 and a big chance for "it works on my machine" snafus.
 
 Database migration tools manage this, bringing DevOps to this area of data.
-Atlas, by operating as a Kubernetes operator, makes the dev/prod transition even
+Atlas, by working as a Kubernetes operator, makes the dev/prod transition even
 smoother.
 
 Using CloudNativePG, with its credentials secrets and services created out of
