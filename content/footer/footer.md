@@ -4,6 +4,8 @@ cta:
   content: View on GitHub
 ---
 
-&copy; 2019-2022 The CloudNativePG Contributors.
-The Linux Foundation has registered trademarks and uses trademarks.
+Copyright &copy; CloudNativePG a Series of LF Projects, LLC.
+
+For website terms of use, trademark policy and other project policies please see <a href="https://lfprojects.org/policies/">LF Projects, LLC Policies</a>.
+
 Postgres, PostgreSQL and the Slonik Logo are trademarks or registered trademarks of the PostgreSQL Community Association of Canada, and used with their permission.
