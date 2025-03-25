@@ -12,7 +12,7 @@
       <link>https://cloudnative-pg.io/footer/footer/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://cloudnative-pg.io/footer/footer/</guid>
-      <description>&lt;p&gt;© 2019-2022 The CloudNativePG Contributors.&#xA;The Linux Foundation has registered trademarks and uses trademarks.&#xA;Postgres, PostgreSQL and the Slonik Logo are trademarks or registered trademarks of the PostgreSQL Community Association of Canada, and used with their permission.&lt;/p&gt;</description>
+      <description>&lt;p&gt;Copyright © CloudNativePG a Series of LF Projects, LLC.&lt;/p&gt;&#xA;&lt;p&gt;For website terms of use, trademark policy and other project policies please see &lt;!-- raw HTML omitted --&gt;LF Projects, LLC Policies&lt;!-- raw HTML omitted --&gt;.&lt;/p&gt;&#xA;&lt;p&gt;Postgres, PostgreSQL and the Slonik Logo are trademarks or registered trademarks of the PostgreSQL Community Association of Canada, and used with their permission.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>
