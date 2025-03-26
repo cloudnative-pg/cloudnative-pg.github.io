@@ -62,7 +62,7 @@ carefully.
 
 We invite you to become an active member of our open-source, vendor-neutral
 community. Connect with us through our
-[Slack channel](https://join.slack.com/t/cloudnativepg/shared_invite/zt-30a6l6bp3-u1lNAmh~N02Cfiv2utKTFg)
+[Slack channel](https://join.slack.com/t/cloudnativepg/shared_invite/zt-32c83whjr-L4poobu8NEVGGXqF_Mu5VA)
 and stay informed about the latest developments by following us on
 [Twitter](https://twitter.com/CloudNativePg).
 
