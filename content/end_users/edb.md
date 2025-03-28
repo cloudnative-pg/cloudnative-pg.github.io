@@ -1,6 +1,6 @@
 ---
 title: EDB
-image: logo/edb.svg
+image: logo/edb.png
 homepage: https://www.enterprisedb.com/
 ---
 
