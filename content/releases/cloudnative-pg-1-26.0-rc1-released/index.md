@@ -31,8 +31,8 @@ launched. While refinements may still occur, here’s a look at what’s new.
 You can now trigger an [offline in-place major upgrade](https://cloudnative-pg.io/documentation/preview/postgres_upgrades/)
 by specifying a new operand container image with a higher PostgreSQL major
 version in a cluster, either directly or via image catalogs. During the
-upgrade, the cluster is shut down to ensure data consistency, and a
-`pg_upgrade` job performs the migration. This long-awaited feature simplifies
+upgrade, the cluster is shut down to ensure data consistency, and
+`pg_upgrade` is invoked to perform the migration. This long-awaited feature simplifies
 major upgrades while maintaining reliability.
 
 ### Enhanced Startup and Readiness Probes for Replicas
