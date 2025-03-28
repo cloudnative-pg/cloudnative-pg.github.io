@@ -7,14 +7,15 @@
     {{ $ps := .Paginate (union .Pages .Sections) }}
     {{ range sort $ps.Pages "Title" }}
     <hr>
-    {{ if .Params.image }}
-    <a href="{{ .Params.homepage }}">
-        <img src="{{.Params.image }}" alt="{{.Title}}" class="py-4" />
-    </a>
-    {{ else }}
-    <h2><a href="{{ .Params.homepage }}">{{ .Title }}</a></h2>
-    {{ end }}
-    {{.Content}}
+        {{ if .Params.image }}
+        <a href="{{ .Params.homepage }}">
+            <img src="{{.Params.image }}" alt="{{.Title}}" class="py-4" />
+        </a>
+        {{ else }}
+        <h2><a href="{{ .Params.homepage }}">{{ .Title }}</a></h2>
+        {{ end }}
+
+        {{.Content}}
     <p> For more information visit <a href="{{ .Params.homepage }}">{{ .Title }}</a>.</p>
     {{ end }}
 </div>
