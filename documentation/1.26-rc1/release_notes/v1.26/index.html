@@ -305,19 +305,43 @@
 
 <p>History of user-visible changes in the 1.26 minor release of CloudNativePG.</p>
 <p>For a complete list of changes, please refer to the
-[commits](https://github.com/cloudnative-pg/cloudnative-pg/commits/release-1.26
+<a href="https://github.com/cloudnative-pg/cloudnative-pg/commits/release-1.26">commits</a>
 on the release branch in GitHub.</p>
 <h2 id="version-1260-rc1">Version 1.26.0-rc1</h2>
-<p><strong>Release date:</strong> Mon DD, 20YY</p>
-<h3 id="important-changes">Important changes:</h3>
+<p><strong>Release date:</strong> Mar 28, 2025</p>
+<h3 id="important-changes">Important Changes</h3>
 <ul>
-<li>The <code>hibernate on/off</code> commands in the <code>cnpg</code> plugin for <code>kubectl</code> now serve
-  as shortcuts for the declarative hibernation procedure. The previously
-  available imperative implementation has been removed in favor of the
-  declarative approach. Additionally, the <code>hibernate status</code> command has been
-  removed in favor of the standard <code>status</code> command.
-  <strong>Do not upgrade to version 1.26 of both the plugin and the operator unless
-  you are prepared to migrate to the declarative method.</strong></li>
+<li>
+<p><strong>CloudNativePG is now officially a CNCF project</strong>: CloudNativePG has been
+  accepted into the Cloud Native Computing Foundation (CNCF), marking a
+  significant milestone in its evolution. As part of this transition, the project
+  is now governed under <strong>CloudNativePG, a Series of LF Projects, LLC</strong>, ensuring
+  long-term sustainability and community-driven innovation. (#7203)</p>
+</li>
+<li>
+<p><strong>Deprecation of Native Barman Cloud Support</strong>: Native support for Barman
+  Cloud backups and recovery is now deprecated and will be fully removed in
+  CloudNativePG 1.28.0. Users must begin migrating their existing clusters to the
+  new <a href="https://github.com/cloudnative-pg/plugin-barman-cloud">Barman Cloud Plugin</a>
+  to ensure a smooth transition. (#6876)</p>
+</li>
+<li>
+<p><strong>End of Support for Barman 3.4 and Earlier</strong>: CloudNativePG no longer
+  supports Barman versions 3.4 and earlier, including the capability detection
+  framework. Users running older operand versions (from before April 2023) must
+  update their operand before upgrading the operator to avoid compatibility
+  issues. (#7220)</p>
+</li>
+<li>
+<p><strong>Hibernation Command Changes</strong>: The <code>hibernate on</code> and <code>hibernate off</code>
+  commands in the <code>cnpg</code> plugin for <code>kubectl</code> now serve as shortcuts for
+  declarative hibernation. The previous imperative approach has been removed in
+  favor of this method. Additionally, the <code>hibernate status</code> command has been
+  removed, as its functionality is now covered by the standard <code>status</code>
+  command. <strong>Warning:</strong> Do not upgrade to version 1.26 of both the plugin and
+  the operator unless you are prepared to migrate to the declarative
+  hibernation method. (#7155)</p>
+</li>
 </ul>
 <h3 id="features">Features:</h3>
 <ul>
@@ -342,56 +366,100 @@ on the release branch in GitHub.</p>
   create, modify, and drop PostgreSQL extensions and schemas within a database. (#7062)</p>
 </li>
 </ul>
-<h3 id="enhancements">Enhancements:</h3>
+<h3 id="enhancements">Enhancements</h3>
 <ul>
 <li>
-<p>Implemented the <code>cnpg.io/validation</code> annotation, allowing users to disable
-  the validation webhook on CloudNativePG-managed resources. Use with caution,
-  as this can permit unrestricted changes. (#7196)</p>
+<p>Introduced the <code>STANDBY_TCP_USER_TIMEOUT</code> operator configuration setting,
+  allowing users to specify the <code>tcp_user_timeout</code> parameter on all standby
+  instances managed by the operator. (#7036) <!-- no 1.25 1.24 1.22 --></p>
 </li>
 <li>
-<p>Introduced the <code>STANDBY_TCP_USER_TIMEOUT</code> operator configuration setting,
-  which, if specified, sets the <code>tcp_user_timeout</code> parameter on all standby
-  instances managed by the operator.</p>
+<p>Added the <code>pg_extensions</code> metric, providing information about installed
+  PostgreSQL extensions and their latest available versions. (#7195) <!-- no 1.25 1.24 1.22 --></p>
+</li>
+<li>
+<p>Introduced the <code>DRAIN_TAINTS</code> operator configuration option, enabling users
+  to customize which node taints indicate a node is being drained. This
+  replaces the previous fixed behavior of only recognizing
+  <code>node.kubernetes.io/unschedulable</code> as a drain signal.</p>
 </li>
 <li>
 <p>Added the <code>KUBERNETES_CLUSTER_DOMAIN</code> configuration option to the operator,
   allowing users to specify the domain suffix for fully qualified domain names
   (FQDNs) generated within the Kubernetes cluster. If not set, it defaults to
-  <code>cluster.local</code>. (#6989)</p>
+  <code>cluster.local</code>. (#6989) <!-- no 1.22 --></p>
 </li>
 <li>
-<p>feat: support customizable pod patches via annotations (#6323)</p>
+<p>Added support for LZ4, XZ, and Zstandard compression methods when archiving
+  WAL files via Barman Cloud (<em>deprecated</em>). (#7151)</p>
 </li>
 <li>
-<p><code>cnpg</code> plugin updates:</p>
+<p>Implemented the <code>cnpg.io/validation</code> annotation, enabling users to disable
+  the validation webhook on CloudNativePG-managed resources. Use with caution,
+  as this allows unrestricted changes. (#7196)</p>
+</li>
+<li>
+<p>Added support for patching PostgreSQL instance pods using the
+  <code>cnpg.io/podPatch</code> annotation with a JSON Patch. This may introduce
+  discrepancies between the operator’s expectations and Kubernetes behavior, so
+  it should be used with caution. (#6323) <!-- no 1.25 1.24 1.22 --></p>
+</li>
+<li>
+<p>Added support for collecting <code>pg_stat_wal</code> metrics in PostgreSQL 18. (#7005)</p>
+</li>
+<li>
+<p>CloudNativePG Interface (CNPG-I):</p>
 <ul>
-<li>...</li>
+<li>A plugin can now trigger instance rollouts by implementing the <code>EVALUATE</code>
+  verb, ensuring that plugin-induced changes are properly reconciled. (#7126) <!-- no 1.24 1.22 --></li>
 </ul>
 </li>
 </ul>
-<h3 id="security">Security:</h3>
+<h3 id="fixes">Fixes</h3>
 <ul>
-<li>Add ...</li>
-<li>Improve ...</li>
+<li>
+<p>Resolved a race condition that caused the operator to perform two switchovers
+  when updating the PostgreSQL configuration. (#6991)</p>
+</li>
+<li>
+<p>Corrected the <code>PodMonitor</code> configuration by adjusting the <code>matchLabels</code> scope
+  for the targeted pooler and cluster pods. Previously, the <code>matchLabels</code> were
+  too broad, inadvertently inheriting labels from the cluster and leading to data
+  collection from unintended targets. (#7063)</p>
+</li>
+<li>
+<p>Added a webhook warning for clusters with a missing unit (e.g., MB, GB) in
+  the <code>shared_buffers</code> configuration. This will become an error in future
+  releases. Users should update their configurations to include explicit units
+  (e.g., <code>512MB</code> instead of <code>512</code>). (#7160)</p>
+</li>
+<li>
+<p>Treated timeout errors during volume snapshot creation as retryable to
+  prevent unnecessary backup failures. (#7010) <!-- no 1.24 1.22 --></p>
+</li>
+<li>
+<p><code>cnpg</code> plugin:</p>
+<ul>
+<li>Ensured that the primary Pod is recreated during an imperative restart when
+  <code>primaryUpdateMethod</code> is set to <code>restart</code>, aligning its definition with the
+  replicas. (#7122)</li>
 </ul>
-<h3 id="fixes">Fixes:</h3>
+</li>
+<li>
+<p>CloudNativePG Interface (CNPG-I):</p>
 <ul>
-<li>Enhance ...</li>
-<li>Disable ...</li>
-<li>Gracefully handle ...</li>
-<li>Wait ...</li>
-<li>Fix ...</li>
-<li>Address ...</li>
-<li><code>cnpg</code> plugin:<ul>
-<li>...</li>
-<li>...</li>
+<li>Implemented automatic reloading of TLS certificates for plugins when they
+  change. (#7029) <!-- no 1.22 --></li>
+<li>Ensured the operator properly closes the plugin connection when
+  performing a backup using the plugin. (#7095, #7096) <!-- no 1.22 --></li>
+<li>Fixed an issue that prevented WALs from being archived on a former
+  primary node when using a plugin. (#6964) <!-- no 1.25 1.24 1.22 --></li>
 </ul>
 </li>
 </ul>
 <h3 id="supported-versions">Supported versions</h3>
 <ul>
-<li>Kubernetes 1.31, 1.30, and 1.29</li>
+<li>Kubernetes 1.32, 1.31, and 1.30 <!-- 1.33? --></li>
 <li>PostgreSQL 17, 16, 15, 14, and 13<ul>
 <li>PostgreSQL 17.X is the default image</li>
 <li>PostgreSQL 13 support ends on November 12, 2025</li>

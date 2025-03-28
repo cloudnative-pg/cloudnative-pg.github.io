@@ -317,6 +317,13 @@
                 <h1 id="backup">Backup</h1>
 <!-- SPDX-License-Identifier: CC-BY-4.0 -->
 
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>With the deprecation of native Barman Cloud support in CloudNativePG in
+favor of the Barman Cloud Plugin, this page—and the backup and recovery
+documentation—may undergo changes before the official release of version
+1.26.0.</p>
+</div>
 <p>PostgreSQL natively provides first class backup and recovery capabilities based
 on file system level (physical) copy. These have been successfully used for
 more than 15 years in mission critical production databases, helping
@@ -343,7 +350,11 @@ up of the following resources:</p>
 <p>On the other hand, CloudNativePG supports two ways to store physical base backups:</p>
 <ul>
 <li>on <a href="../backup_barmanobjectstore/">object stores</a>, as tarballs - optionally
-  compressed</li>
+  compressed:<ul>
+<li>Using the Barman Cloud plugin</li>
+<li>Natively via <code>.spec.backup.barmanObjectStore</code> (<em>deprecated, to be removed in CloudNativePG 1.28</em>)</li>
+</ul>
+</li>
 <li>on <a href="../backup_volumesnapshot/">Kubernetes Volume Snapshots</a>, if supported by
   the underlying storage class</li>
 </ul>
@@ -358,12 +369,6 @@ hot and cold backups.</p>
 <p>Please refer to the official Kubernetes documentation for a list of all
 the supported <a href="https://kubernetes-csi.github.io/docs/drivers.html">Container Storage Interface (CSI) drivers</a>
 that provide snapshotting capabilities.</p>
-</div>
-<div class="admonition info">
-<p class="admonition-title">Info</p>
-<p>Starting with version 1.25, CloudNativePG includes experimental support for
-backup and recovery using plugins, such as the
-<a href="https://github.com/cloudnative-pg/plugin-barman-cloud">Barman Cloud plugin</a>.</p>
 </div>
 <h2 id="wal-archive">WAL archive</h2>
 <p>The WAL archive in PostgreSQL is at the heart of <strong>continuous backup</strong>, and it

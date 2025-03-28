@@ -315,6 +315,13 @@
                 <h1 id="backup-on-object-stores">Backup on object stores</h1>
 <!-- SPDX-License-Identifier: CC-BY-4.0 -->
 
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>With the deprecation of native Barman Cloud support in CloudNativePG in
+favor of the Barman Cloud Plugin, this page—and the backup and recovery
+documentation—may undergo changes before the official release of version
+1.26.0.</p>
+</div>
 <p>CloudNativePG natively supports <strong>online/hot backup</strong> of PostgreSQL
 clusters through continuous physical backup and WAL archiving on an object
 store. This means that the database is always up (no downtime required)

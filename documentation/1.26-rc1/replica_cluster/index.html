@@ -347,6 +347,13 @@
                 <h1 id="replica-clusters">Replica clusters</h1>
 <!-- SPDX-License-Identifier: CC-BY-4.0 -->
 
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>With the deprecation of native Barman Cloud support in CloudNativePG in
+favor of the Barman Cloud Plugin, this page—and the backup and recovery
+documentation—may undergo changes before the official release of version
+1.26.0.</p>
+</div>
 <p>A replica cluster is a CloudNativePG <code>Cluster</code> resource designed to
 replicate data from another PostgreSQL instance, ideally also managed by
 CloudNativePG.</p>
@@ -432,6 +439,8 @@ recovery. There are three main options:</p>
 </ol>
 <h3 id="defining-an-external-cluster">Defining an External Cluster</h3>
 <p>When configuring the external cluster, you have the following options:</p>
+<!-- TODO: Change before 1.26.0 -->
+
 <ul>
 <li><strong><code>barmanObjectStore</code> section</strong>:<ul>
 <li>Enables use of the WAL archive, with CloudNativePG automatically setting

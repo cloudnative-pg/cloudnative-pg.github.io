@@ -307,48 +307,42 @@
                 <h1 id="container-image-requirements">Container Image Requirements</h1>
 <!-- SPDX-License-Identifier: CC-BY-4.0 -->
 
-<p>The CloudNativePG operator for Kubernetes is designed to
-work with any compatible container image of PostgreSQL that complies
-with the following requirements:</p>
+<p>The CloudNativePG operator for Kubernetes is designed to work with any
+compatible PostgreSQL container image that meets the following requirements:</p>
 <ul>
-<li>PostgreSQL executables that must be in the path:<ul>
+<li>PostgreSQL executables must be available in the system path:</li>
 <li><code>initdb</code></li>
 <li><code>postgres</code></li>
 <li><code>pg_ctl</code></li>
 <li><code>pg_controldata</code></li>
 <li><code>pg_basebackup</code></li>
+<li>Proper locale settings configured</li>
 </ul>
-</li>
-<li>Barman Cloud executables that must be in the path:<ul>
-<li><code>barman-cloud-backup</code></li>
-<li><code>barman-cloud-backup-delete</code></li>
-<li><code>barman-cloud-backup-list</code></li>
-<li><code>barman-cloud-check-wal-archive</code></li>
-<li><code>barman-cloud-restore</code></li>
-<li><code>barman-cloud-wal-archive</code></li>
-<li><code>barman-cloud-wal-restore</code></li>
-</ul>
-</li>
-<li>PGAudit extension installed (optional - only if PGAudit is required
-  in the deployed clusters)</li>
-<li>Appropriate locale settings</li>
-<li><code>du</code> (optional, for <code>kubectl cnpg status</code>)</li>
+<p>Optional Components:</p>
+<ul>
+<li><a href="https://www.pgaudit.org/">PGAudit</a> extension (only required if audit logging
+  is needed)</li>
+<li><code>du</code> (used for <code>kubectl cnpg status</code>)</li>
 </ul>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
-<p>Only <a href="https://postgresql.org/">PostgreSQL versions supported by the PGDG</a> are allowed.</p>
+<p>Only <a href="https://postgresql.org/">PostgreSQL versions officially supported by PGDG</a> are allowed.</p>
 </div>
-<p>No entry point and/or command is required in the image definition, as
-CloudNativePG overrides it with its instance manager.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Barman Cloud executables are no longer required in CloudNativePG. The
+recommended approach is to use the dedicated <a href="https://github.com/cloudnative-pg/plugin-barman-cloud">Barman Cloud Plugin</a>.</p>
+</div>
+<p>No entry point or command is required in the image definition. CloudNativePG
+automatically overrides it with its instance manager.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>Application Container Images will be used by CloudNativePG
-in a <strong>Primary with multiple/optional Hot Standby Servers Architecture</strong>
-only.</p>
+<p>CloudNativePG only supports <strong>Primary with multiple/optional Hot Standby
+Servers architecture</strong> for PostgreSQL application container images.</p>
 </div>
-<p>The CloudNativePG community provides and supports
+<p>The CloudNativePG community provides and maintains
 <a href="https://github.com/cloudnative-pg/postgres-containers">public PostgreSQL container images</a>
-that work with CloudNativePG, and publishes them on
+that are fully compatible with CloudNativePG. These images are published on
 <a href="https://ghcr.io/cloudnative-pg/postgresql">ghcr.io</a>.</p>
 <h2 id="image-tag-requirements">Image Tag Requirements</h2>
 <p>To ensure the operator makes informed decisions, it must accurately detect the
