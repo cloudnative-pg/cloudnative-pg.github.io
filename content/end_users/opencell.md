@@ -1,6 +1,6 @@
 ---
 title: Opencell
-image: logo/edb.svg
+image: logo/opencell.svg
 homepage: https://opencellsoft.com/
 ---
 
