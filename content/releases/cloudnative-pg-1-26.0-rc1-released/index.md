@@ -28,17 +28,18 @@ launched. While refinements may still occur, here’s a look at what’s new.
 
 ### Declarative Offline In-Place Major Upgrades of PostgreSQL
 
-You can now trigger an offline in-place major upgrade by specifying a new
-operand container image with a higher PostgreSQL major version in a cluster,
-either directly or via image catalogs. During the upgrade, the cluster is shut
-down to ensure data consistency, and a `pg_upgrade` job performs the migration.
-This long-awaited feature simplifies major upgrades while maintaining
-reliability.
+You can now trigger an [offline in-place major upgrade](https://cloudnative-pg.io/documentation/preview/postgres_upgrades/)
+by specifying a new operand container image with a higher PostgreSQL major
+version in a cluster, either directly or via image catalogs. During the
+upgrade, the cluster is shut down to ensure data consistency, and a
+`pg_upgrade` job performs the migration. This long-awaited feature simplifies
+major upgrades while maintaining reliability.
 
 ### Enhanced Startup and Readiness Probes for Replicas
 
-We have improved Kubernetes startup and readiness probes for PostgreSQL
-instances, introducing a unique capability: the readiness of a replica can now
+We have improved Kubernetes
+[startup and readiness probes for PostgreSQL instances](https://cloudnative-pg.io/documentation/preview/instance_manager/),
+introducing a unique capability: the readiness of a replica can now
 be controlled based on its lag from the primary. For example, this allows you
 to ensure that only synchronous replicas with no lag are considered ready for
 promotion, improving high availability management.
@@ -46,9 +47,10 @@ promotion, improving high availability management.
 ### Declarative Management of Extensions and Schemas
 
 The `Database` resource now supports ensuring the presence of one or more
-extensions in a database and managing their versions. Additionally, you can
-declaratively define the existence of `SCHEMA` objects within a PostgreSQL
-database.
+[extensions](https://cloudnative-pg.io/documentation/preview/declarative_database_management/#managing-extensions-in-a-database)
+in a database and managing their versions. Additionally, you can declaratively
+define the existence of [`SCHEMA` objects](https://cloudnative-pg.io/documentation/preview/declarative_database_management/#managing-schemas-in-a-database)
+within a PostgreSQL database.
 
 ## Important Changes
 
