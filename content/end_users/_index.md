@@ -15,4 +15,4 @@ If you want to add your organization, please open a pull request for the
 [ADOPTERS file](https://github.com/cloudnative-pg/cloudnative-pg/blob/main/ADOPTERS.md).
 
 
-Below is a list of several CloudNativePG end users, in alphabetical order.
+Below is a list of several CloudNativePG end users, in chronological order.
