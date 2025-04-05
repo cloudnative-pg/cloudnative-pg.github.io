@@ -334,7 +334,7 @@ spec:
     - major: 15
       image: ghcr.io/cloudnative-pg/postgresql:15.6
     - major: 16
-      image: ghcr.io/cloudnative-pg/postgresql:17.2
+      image: ghcr.io/cloudnative-pg/postgresql:17.4
 </code></pre>
 <p><strong>Example of a Cluster-Wide Catalog using <code>ClusterImageCatalog</code> Resource:</strong></p>
 <pre><code class="language-yaml">apiVersion: postgresql.cnpg.io/v1
@@ -346,7 +346,7 @@ spec:
     - major: 15
       image: ghcr.io/cloudnative-pg/postgresql:15.6
     - major: 16
-      image: ghcr.io/cloudnative-pg/postgresql:17.2
+      image: ghcr.io/cloudnative-pg/postgresql:17.4
 </code></pre>
 <p>A <code>Cluster</code> resource has the flexibility to reference either an <code>ImageCatalog</code>
 or a <code>ClusterImageCatalog</code> to precisely specify the desired image.</p>
@@ -376,11 +376,11 @@ that their clusters are automatically updated to the latest version within the
 specified major release.</p>
 <h3 id="postgresql-container-images">PostgreSQL Container Images</h3>
 <p>You can install the
-<a href="https://raw.githubusercontent.com/cloudnative-pg/postgres-containers/main/Debian/ClusterImageCatalog.yaml">latest version of the cluster catalog for the PostgreSQL Container Images</a>
+<a href="https://raw.githubusercontent.com/cloudnative-pg/postgres-containers/main/Debian/ClusterImageCatalog-bookworm.yaml">latest version of the cluster catalog for the PostgreSQL Container Images</a>
 (<a href="https://github.com/cloudnative-pg/postgres-containers">cloudnative-pg/postgres-containers</a> repository)
 with:</p>
 <pre><code class="language-shell">kubectl apply \
-  -f https://raw.githubusercontent.com/cloudnative-pg/postgres-containers/main/Debian/ClusterImageCatalog.yaml
+  -f https://raw.githubusercontent.com/cloudnative-pg/postgres-containers/main/Debian/ClusterImageCatalog-bookworm.yaml
 </code></pre>
 <h3 id="postgis-container-images">PostGIS Container Images</h3>
 <p>You can install the

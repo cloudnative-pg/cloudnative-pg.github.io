@@ -83,7 +83,7 @@
               <ul class="current">
                 <li class="toctree-l1 current"><a class="reference internal current" href="#">Postgres instance manager</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#startup-liveness-and-readiness-probes">Startup, liveness and readiness probes</a>
+    <li class="toctree-l2"><a class="reference internal" href="#startup-liveness-and-readiness-probes">Startup, Liveness, and Readiness Probes</a>
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#startup-probe">Startup Probe</a>
     </li>
@@ -322,14 +322,22 @@ The field <code>.spec.instances</code> specifies how many instances to create.</
 main container, which in turn runs the PostgreSQL instance. During the lifetime
 of the Pod, the instance manager acts as a backend to handle the
 <a href="https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#container-probes">startup, liveness and readiness probes</a>.</p>
-<h2 id="startup-liveness-and-readiness-probes">Startup, liveness and readiness probes</h2>
-<p>The startup and liveness probes rely on <code>pg_isready</code>, while the readiness
-probe checks if the database is up and able to accept connections.</p>
+<h2 id="startup-liveness-and-readiness-probes">Startup, Liveness, and Readiness Probes</h2>
+<p>CloudNativePG leverages <a href="https://www.postgresql.org/docs/current/app-pg-isready.html">PostgreSQL's <code>pg_isready</code></a>
+to implement Kubernetes startup, liveness, and readiness probes.</p>
 <h3 id="startup-probe">Startup Probe</h3>
-<p>The <code>.spec.startDelay</code> parameter specifies the delay (in seconds) before the
-liveness probe activates after a PostgreSQL Pod starts. By default, this is set
-to <code>3600</code> seconds. You should adjust this value based on the time PostgreSQL
-requires to fully initialize in your environment.</p>
+<p>The startup probe ensures that a PostgreSQL instance, whether a primary or
+standby, has fully started according to <code>pg_isready</code>.
+While the startup probe is running, the liveness and readiness probes remain
+disabled. Following Kubernetes standards, if the startup probe fails, the
+kubelet will terminate the container, which will then be restarted.</p>
+<p>The startup probe provided by CloudNativePG is configurable via the
+parameter <code>.spec.startDelay</code>, which specifies the maximum time, in seconds,
+allowed for the startup probe to succeed. At a minimum, the probe requires
+<code>pg_isready</code> to return <code>0</code> or <code>1</code>.</p>
+<p>By default, the <code>startDelay</code> is set to <code>3600</code> seconds. It is recommended to
+adjust this setting based on the time PostgreSQL needs to fully initialize in
+your specific environment.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>Setting <code>.spec.startDelay</code> too low can cause the liveness probe to activate
@@ -342,23 +350,24 @@ periodSeconds: 10
 successThreshold: 1
 timeoutSeconds: 5
 </code></pre>
-<p>Here, <code>FAILURE_THRESHOLD</code> is calculated as <code>startDelay</code> divided by
-<code>periodSeconds</code>.</p>
-<p>If the default behavior based on <code>startDelay</code> is not suitable for your use
-case, you can take full control of the startup probe by specifying custom
-parameters in the <code>.spec.probes.startup</code> stanza. Note that defining this stanza
-will override the default behavior, including the use of <code>startDelay</code>.</p>
+<p>The <code>failureThreshold</code> value is automatically calculated by dividing
+<code>startDelay</code> by <code>periodSeconds</code>.</p>
+<p>You can customize any of the probe settings in the <code>.spec.probes.startup</code>
+section of your configuration.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>Ensure that any custom probe settings are aligned with your cluster’s
-operational requirements to prevent unintended disruptions.</p>
+<p>Be sure that any custom probe settings are tailored to your cluster's
+operational requirements to avoid unintended disruptions.</p>
 </div>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
-<p>For detailed information about probe configuration, refer to the
-<a href="../cloudnative-pg.v1/#postgresql-cnpg-io-v1-Probe">probe API</a>.</p>
+<p>For more details on probe configuration, refer to the
+<a href="../cloudnative-pg.v1/#postgresql-cnpg-io-v1-Probe">probe API documentation</a>.</p>
 </div>
-<p>For example, the following configuration bypasses <code>startDelay</code> entirely:</p>
+<p>If you manually specify <code>.spec.probes.startup.failureThreshold</code>, it will
+override the default behavior and disable the automatic use of <code>startDelay</code>.</p>
+<p>For example, the following configuration explicitly sets custom probe
+parameters, bypassing <code>startDelay</code>:</p>
 <pre><code class="language-yaml"># ... snip
 spec:
   probes:
@@ -368,9 +377,14 @@ spec:
       failureThreshold: 10
 </code></pre>
 <h3 id="liveness-probe">Liveness Probe</h3>
-<p>The liveness probe begins after the startup probe succeeds and is responsible
-for detecting if the PostgreSQL instance has entered a broken state that
-requires a restart of the pod.</p>
+<p>The liveness probe begins after the startup probe successfully completes. Its
+primary role is to ensure the PostgreSQL instance—whether primary or standby—is
+operating correctly. This is achieved using the <code>pg_isready</code> utility. Both exit
+codes <code>0</code> (indicating the server is accepting connections) and <code>1</code> (indicating
+the server is rejecting connections, such as during startup or a smart
+shutdown) are treated as valid outcomes.
+Following Kubernetes standards, if the liveness probe fails, the
+kubelet will terminate the container, which will then be restarted.</p>
 <p>The amount of time before a Pod is classified as not alive is configurable via
 the <code>.spec.livenessProbeTimeout</code> parameter.</p>
 <p>CloudNativePG configures the liveness probe with the following default
@@ -380,27 +394,28 @@ periodSeconds: 10
 successThreshold: 1
 timeoutSeconds: 5
 </code></pre>
-<p>Here, <code>FAILURE_THRESHOLD</code> is calculated as <code>livenessProbeTimeout</code> divided by
-<code>periodSeconds</code>.</p>
+<p>The <code>failureThreshold</code> value is automatically calculated by dividing
+<code>livenessProbeTimeout</code> by <code>periodSeconds</code>.</p>
 <p>By default, <code>.spec.livenessProbeTimeout</code> is set to <code>30</code> seconds. This means the
 liveness probe will report a failure if it detects three consecutive probe
 failures, with a 10-second interval between each check.</p>
-<p>If the default behavior using <code>livenessProbeTimeout</code> does not meet your needs,
-you can fully customize the liveness probe by defining parameters in the
-<code>.spec.probes.liveness</code> stanza. Keep in mind that specifying this stanza will
-override the default behavior, including the use of <code>livenessProbeTimeout</code>.</p>
+<p>You can customize any of the probe settings in the <code>.spec.probes.liveness</code>
+section of your configuration.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>Ensure that any custom probe settings are aligned with your cluster’s
-operational requirements to prevent unintended disruptions.</p>
+<p>Be sure that any custom probe settings are tailored to your cluster's
+operational requirements to avoid unintended disruptions.</p>
 </div>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
 <p>For more details on probe configuration, refer to the
-<a href="../cloudnative-pg.v1/#postgresql-cnpg-io-v1-Probe">probe API</a>.</p>
+<a href="../cloudnative-pg.v1/#postgresql-cnpg-io-v1-Probe">probe API documentation</a>.</p>
 </div>
-<p>For example, the following configuration overrides the default behavior and
-bypasses <code>livenessProbeTimeout</code>:</p>
+<p>If you manually specify <code>.spec.probes.liveness.failureThreshold</code>, it will
+override the default behavior and disable the automatic use of
+<code>livenessProbeTimeout</code>.</p>
+<p>For example, the following configuration explicitly sets custom probe
+parameters, bypassing <code>livenessProbeTimeout</code>:</p>
 <pre><code class="language-yaml"># ... snip
 spec:
   probes:
@@ -410,8 +425,12 @@ spec:
       failureThreshold: 10
 </code></pre>
 <h3 id="readiness-probe">Readiness Probe</h3>
-<p>The readiness probe determines when a pod running a PostgreSQL instance is
-prepared to accept traffic and serve requests.</p>
+<p>The readiness probe begins once the startup probe has successfully completed.
+Its purpose is to check whether the PostgreSQL instance is ready to accept
+traffic and serve requests.
+For streaming replicas, it also requires that they have connected to the source
+at least once. Following Kubernetes standards, if the readiness probe fails,
+the pod will be marked unready and will not receive traffic from any services.</p>
 <p>CloudNativePG uses the following default configuration for the readiness probe:</p>
 <pre><code class="language-yaml">failureThreshold: 3
 periodSeconds: 10
@@ -517,9 +536,11 @@ by verifying that there is enough space to store the next WAL segment,
 and avoids triggering a failover, which could complicate recovery.</p>
 <p>That allows a human administrator to address the root cause.</p>
 <p>In such a case, if supported by the storage class, the quickest course of action
-is currently to:
-1. Expand the storage size of the full PVC
-2. Increase the size in the <code>Cluster</code> resource to the same value</p>
+is currently to:</p>
+<ol>
+<li>Expand the storage size of the full PVC</li>
+<li>Increase the size in the <code>Cluster</code> resource to the same value</li>
+</ol>
 <p>Once the issue is resolved and there is sufficient free space for WAL segments,
 the Pod will restart and the cluster will become healthy.</p>
 <p>See also the <a href="../storage/#volume-expansion">"Volume expansion" section</a> of the

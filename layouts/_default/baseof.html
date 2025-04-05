@@ -27,6 +27,9 @@
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   {{ template "_internal/twitter_cards.html" . }}
   {{ template "_internal/opengraph.html" . }}
+  {{ if hugo.IsProduction -}}
+    {{ template "_internal/google_analytics.html" . -}}
+  {{ end -}}
 </head>
 
 <body>

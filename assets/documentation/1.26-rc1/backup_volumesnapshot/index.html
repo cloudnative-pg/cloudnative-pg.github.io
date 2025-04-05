@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="The CloudNativePG Contributors" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Backup on volume snapshots - CloudNativePG v1.26-rc1</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../css/override.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Backup on volume snapshots";
+        var mkdocs_page_input_path = "backup_volumesnapshot.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> CloudNativePG v1.26-rc1
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">CloudNativePG</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../before_you_start/">Before You Start</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../use_cases/">Use cases</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../architecture/">Architecture</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../installation_upgrade/">Installation and upgrades</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../quickstart/">Quickstart</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../image_catalog/">Image Catalog</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../bootstrap/">Bootstrap</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../database_import/">Importing Postgres databases</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../security/">Security</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../instance_manager/">Postgres instance manager</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../scheduling/">Scheduling</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../resource_management/">Resource management</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../failure_modes/">Failure Modes</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../rolling_update/">Rolling Updates</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../replication/">Replication</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../logical_replication/">Logical Replication</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../backup/">Backup</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../backup_barmanobjectstore/">Backup on object stores</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../wal_archiving/">WAL archiving</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Backup on volume snapshots</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#about-standard-volume-snapshots">About standard Volume Snapshots</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#requirements">Requirements</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#how-to-configure-volume-snapshot-backups">How to configure Volume Snapshot backups</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#hot-and-cold-backups">Hot and cold backups</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#overriding-the-default-behavior">Overriding the default behavior</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#persistence-of-volume-snapshot-objects">Persistence of volume snapshot objects</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#backup-volume-snapshot-deadlines">Backup Volume Snapshot Deadlines</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#error-handling">Error Handling</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#retryable-errors">Retryable Errors</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#examples">Examples</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#example-of-volume-snapshot-backup">Example of Volume Snapshot Backup</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../recovery/">Recovery</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../service_management/">Service Management</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../postgresql_conf/">PostgreSQL Configuration</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../declarative_role_management/">PostgreSQL Role Management</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../declarative_database_management/">PostgreSQL Database Management</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../tablespaces/">Tablespaces</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../operator_conf/">Operator configuration</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../cluster_conf/">Instance pod configuration</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../storage/">Storage</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../labels_annotations/">Labels and annotations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../monitoring/">Monitoring</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../logging/">Logging</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../certificates/">Certificates</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../ssl_connections/">Client TLS/SSL connections</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../applications/">Connecting from an application</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../connection_pooling/">Connection pooling</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../replica_cluster/">Replica clusters</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../kubernetes_upgrade/">Kubernetes Upgrade and Maintenance</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../postgres_upgrades/">PostgreSQL Upgrades</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../kubectl-plugin/">Kubectl Plugin</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../failover/">Automated failover</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../troubleshooting/">Troubleshooting</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../fencing/">Fencing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../declarative_hibernation/">Declarative hibernation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../postgis/">PostGIS</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../e2e/">End-to-End Tests</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../container_images/">Container Image Requirements</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../operator_capability_levels/">Operator capability levels</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../controller/">Custom Pod Controller</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../samples/">Examples</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../networking/">Networking</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../benchmarking/">Benchmarking</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../faq/">Frequently Asked Questions (FAQ)</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../cloudnative-pg.v1/">API Reference</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../supported_releases/">Supported releases</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../preview_version/">Preview Versions</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../release_notes/">Release notes</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Appendixes</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../appendixes/object_stores/">Appendix A - Common object stores for backups</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">CloudNativePG v1.26-rc1</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Backup on volume snapshots</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="backup-on-volume-snapshots">Backup on volume snapshots</h1>
+<!-- SPDX-License-Identifier: CC-BY-4.0 -->
+
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>As noted in the <a href="../backup/">backup document</a>, a cold snapshot explicitly
+set to target the primary will result in the primary being fenced for
+the duration of the backup, rendering the cluster read-only during that
+For safety, in a cluster already containing fenced instances, a cold
+snapshot is rejected.</p>
+</div>
+<p>CloudNativePG is one of the first known cases of database operators that
+directly leverages the Kubernetes native Volume Snapshot API for both
+backup and recovery operations, in an entirely declarative way.</p>
+<h2 id="about-standard-volume-snapshots">About standard Volume Snapshots</h2>
+<p>Volume snapshotting was first introduced in
+<a href="https://kubernetes.io/blog/2018/10/09/introducing-volume-snapshot-alpha-for-kubernetes/">Kubernetes 1.12 (2018) as alpha</a>,
+promoted to <a href="https://kubernetes.io/blog/2019/12/09/kubernetes-1-17-feature-cis-volume-snapshot-beta/">beta in 1.17 (2019)</a>,
+and <a href="https://kubernetes.io/blog/2020/12/10/kubernetes-1.20-volume-snapshot-moves-to-ga/">moved to GA in 1.20 (2020)</a>.
+It’s now stable, widely available, and standard, providing 3 custom resource
+definitions: <code>VolumeSnapshot</code>, <code>VolumeSnapshotContent</code> and
+<code>VolumeSnapshotClass</code>.</p>
+<p>This Kubernetes feature defines a generic interface for:</p>
+<ul>
+<li>the creation of a new volume snapshot, starting from a PVC</li>
+<li>the deletion of an existing snapshot</li>
+<li>the creation of a new volume from a snapshot</li>
+</ul>
+<p>Kubernetes delegates the actual implementation to the underlying CSI drivers
+(not all of them support volume snapshots). Normally, storage classes that
+provide volume snapshotting support <strong>incremental and differential block level
+backup in a transparent way for the application</strong>, which can delegate the
+complexity and the independent management down the stack, including
+cross-cluster availability of the snapshots.</p>
+<h2 id="requirements">Requirements</h2>
+<p>For Volume Snapshots to work with a CloudNativePG cluster, you need to ensure
+that each storage class used to dynamically provision the PostgreSQL volumes
+(namely, <code>storage</code> and <code>walStorage</code> sections) support volume snapshots.</p>
+<p>Given that instructions vary from storage class to storage class, please
+refer to the documentation of the specific storage class and related CSI
+drivers you have deployed in your Kubernetes system.</p>
+<p>Normally, it is the <a href="https://kubernetes.io/docs/concepts/storage/volume-snapshot-classes/"><code>VolumeSnapshotClass</code></a>
+that is responsible to ensure that snapshots can be taken from persistent
+volumes of a given storage class, and managed as <code>VolumeSnapshot</code> and
+<code>VolumeSnapshotContent</code> resources.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>It is your responsibility to verify with the third party vendor
+that volume snapshots are supported. CloudNativePG only interacts
+with the Kubernetes API on this matter and we cannot support issues
+at the storage level for each specific CSI driver.</p>
+</div>
+<h2 id="how-to-configure-volume-snapshot-backups">How to configure Volume Snapshot backups</h2>
+<!-- TODO: Change before 1.26.0 -->
+
+<p>CloudNativePG allows you to configure a given Postgres cluster for Volume
+Snapshot backups through the <code>backup.volumeSnapshot</code> stanza.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Please refer to <a href="../cloudnative-pg.v1/#postgresql-cnpg-io-v1-VolumeSnapshotConfiguration"><code>VolumeSnapshotConfiguration</code></a>
+in the API reference for a full list of options.</p>
+</div>
+<p>A generic example with volume snapshots (assuming that PGDATA and WALs share
+the same storage class) is the following:</p>
+<pre><code class="language-yaml">apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: snapshot-cluster
+spec:
+  instances: 3
+
+  storage:
+    storageClass: @STORAGE_CLASS@
+    size: 10Gi
+  walStorage:
+    storageClass: @STORAGE_CLASS@
+    size: 10Gi
+
+  backup:
+    # Volume snapshot backups
+    volumeSnapshot:
+       className: @VOLUME_SNAPSHOT_CLASS_NAME@
+    # WAL archive
+    barmanObjectStore:
+       # ...
+</code></pre>
+<p>As you can see, the <code>backup</code> section contains both the <code>volumeSnapshot</code> stanza
+(controlling physical base backups on volume snapshots) and the
+<code>barmanObjectStore</code> one (controlling the <a href="../wal_archiving/">WAL archive</a>).</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Once you have defined the <code>barmanObjectStore</code>, you can decide to use
+both volume snapshot and object store backup strategies simultaneously
+to take physical backups.</p>
+</div>
+<p>The <code>volumeSnapshot.className</code> option allows you to reference the default
+<code>VolumeSnapshotClass</code> object used for all the storage volumes you have
+defined in your PostgreSQL cluster.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>In case you are using a different storage class for <code>PGDATA</code> and
+WAL files, you can specify a separate <code>VolumeSnapshotClass</code> for
+that volume through the <code>walClassName</code> option (which defaults to
+the same value as <code>className</code>).</p>
+</div>
+<p>Once a cluster is defined for volume snapshot backups, you need to define
+a <code>ScheduledBackup</code> resource that requests such backups on a periodic basis.</p>
+<h2 id="hot-and-cold-backups">Hot and cold backups</h2>
+<p>By default, CloudNativePG requests an online/hot backup on volume snapshots, using the
+<a href="https://www.postgresql.org/docs/current/continuous-archiving.html#BACKUP-LOWLEVEL-BASE-BACKUP">PostgreSQL defaults of the low-level API for base backups</a>:</p>
+<ul>
+<li>it doesn't request an immediate checkpoint when starting the backup procedure</li>
+<li>it waits for the WAL archiver to archive the last segment of the backup when
+  terminating the backup procedure</li>
+</ul>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>The default values are suitable for most production environments. Hot
+backups are consistent and can be used to perform snapshot recovery, as we
+ensure WAL retention from the start of the backup through a temporary
+replication slot. However, our recommendation is to rely on cold backups for
+that purpose.</p>
+</div>
+<p>You can explicitly change the default behavior through the following options in
+the <code>.spec.backup.volumeSnapshot</code> stanza of the <code>Cluster</code> resource:</p>
+<ul>
+<li><code>online</code>: accepting <code>true</code> (default) or <code>false</code> as a value</li>
+<li><code>onlineConfiguration.immediateCheckpoint</code>: whether you want to request an
+  immediate checkpoint before you start the backup procedure or not;
+  technically, it corresponds to the <code>fast</code> argument you pass to the
+  <code>pg_backup_start</code>/<code>pg_start_backup()</code> function in PostgreSQL, accepting
+  <code>true</code> (default) or <code>false</code></li>
+<li><code>onlineConfiguration.waitForArchive</code>: whether you want to wait for the
+  archiver to process the last segment of the backup or not; technically, it
+  corresponds to the <code>wait_for_archive</code> argument you pass to the
+  <code>pg_backup_stop</code>/<code>pg_stop_backup()</code> function in PostgreSQL, accepting <code>true</code>
+  (default) or <code>false</code></li>
+</ul>
+<p>If you want to change the default behavior of your Postgres cluster to take
+cold backups by default, all you need to do is add the <code>online: false</code> option
+to your manifest, as follows:</p>
+<pre><code class="language-yaml">  # ...
+  backup:
+    volumeSnapshot:
+       online: false
+       # ...
+</code></pre>
+<p>If you are instead requesting an immediate checkpoint as the default behavior,
+you can add this section:</p>
+<pre><code class="language-yaml">  # ...
+  backup:
+    volumeSnapshot:
+       online: true
+       onlineConfiguration:
+         immediateCheckpoint: true
+       # ...
+</code></pre>
+<h3 id="overriding-the-default-behavior">Overriding the default behavior</h3>
+<p>You can change the default behavior defined in the cluster resource by setting
+different values for <code>online</code> and, if needed, <code>onlineConfiguration</code> in the <code>Backup</code> or <code>ScheduledBackup</code> objects.</p>
+<p>For example, in case you want to issue an on-demand cold backup, you can
+create a <code>Backup</code> object with <code>.spec.online: false</code>:</p>
+<pre><code class="language-yaml">apiVersion: postgresql.cnpg.io/v1
+kind: Backup
+metadata:
+  name: snapshot-cluster-cold-backup-example
+spec:
+  cluster:
+    name: snapshot-cluster
+  method: volumeSnapshot
+  online: false
+</code></pre>
+<p>Similarly, for the ScheduledBackup:</p>
+<pre><code class="language-yaml">apiVersion: postgresql.cnpg.io/v1
+kind: ScheduledBackup
+metadata:
+  name: snapshot-cluster-cold-backup-example
+spec:
+  schedule: &quot;0 0 0 * * *&quot;
+  backupOwnerReference: self
+  cluster:
+    name: snapshot-cluster
+  method: volumeSnapshot
+  online: false
+</code></pre>
+<h2 id="persistence-of-volume-snapshot-objects">Persistence of volume snapshot objects</h2>
+<p>By default, <code>VolumeSnapshot</code> objects created by CloudNativePG are retained after
+deleting the <code>Backup</code> object that originated them, or the <code>Cluster</code> they refer to.
+Such behavior is controlled by the <code>.spec.backup.volumeSnapshot.snapshotOwnerReference</code>
+option which accepts the following values:</p>
+<ul>
+<li><code>none</code>: no ownership is set, meaning that <code>VolumeSnapshot</code> objects persist
+   after the <code>Backup</code> and/or the <code>Cluster</code> resources are removed</li>
+<li><code>backup</code>: the <code>VolumeSnapshot</code> object is owned by the <code>Backup</code> resource that
+   originated it, and when the backup object is removed, the volume snapshot is
+   also removed</li>
+<li><code>cluster</code>: the <code>VolumeSnapshot</code> object is owned by the <code>Cluster</code> resource that
+   is backed up, and when the Postgres cluster is removed, the volume snapshot is
+   also removed</li>
+</ul>
+<p>In case a <code>VolumeSnapshot</code> is deleted, the <code>deletionPolicy</code> specified in the
+<code>VolumeSnapshotContent</code> is evaluated:</p>
+<ul>
+<li>if set to <code>Retain</code>, the <code>VolumeSnapshotContent</code> object is kept</li>
+<li>if set to <code>Delete</code>, the <code>VolumeSnapshotContent</code> object is removed as well</li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><code>VolumeSnapshotContent</code> objects do not keep all the information regarding the
+backup and the cluster they refer to (like the annotations and labels that
+are contained in the <code>VolumeSnapshot</code> object). Although possible, restoring
+from just this kind of object might not be straightforward. For this reason,
+our recommendation is to always backup the <code>VolumeSnapshot</code> definitions,
+even using a Kubernetes level data protection solution.</p>
+</div>
+<p>The value in <code>VolumeSnapshotContent</code> is determined by the <code>deletionPolicy</code> set
+in the corresponding <code>VolumeSnapshotClass</code> definition, which is
+referenced in the <code>.spec.backup.volumeSnapshot.className</code> option.</p>
+<p>Please refer to the <a href="https://kubernetes.io/docs/concepts/storage/volume-snapshot-classes/">Kubernetes documentation on Volume Snapshot Classes</a>
+for details on this standard behavior.</p>
+<h2 id="backup-volume-snapshot-deadlines">Backup Volume Snapshot Deadlines</h2>
+<p>CloudNativePG supports backups using the volume snapshot method. In some
+environments, volume snapshots may encounter temporary issues that can be
+retried.</p>
+<p>The <code>backup.cnpg.io/volumeSnapshotDeadline</code> annotation defines how long
+CloudNativePG should continue retrying recoverable errors before marking the
+backup as failed.</p>
+<p>You can add the <code>backup.cnpg.io/volumeSnapshotDeadline</code> annotation to both
+<code>Backup</code> and <code>ScheduledBackup</code> resources. For <code>ScheduledBackup</code> resources, this
+annotation is automatically inherited by any <code>Backup</code> resources created from
+the schedule.</p>
+<p>If not specified, the default retry deadline is <strong>10 minutes</strong>.</p>
+<h3 id="error-handling">Error Handling</h3>
+<p>When a retryable error occurs during a volume snapshot operation:</p>
+<ol>
+<li>CloudNativePG records the time of the first error.</li>
+<li>The system retries the operation every <strong>10 seconds</strong>.</li>
+<li>If the error persists beyond the specified deadline (or the default 10
+   minutes), the backup is marked as <strong>failed</strong>.</li>
+</ol>
+<h3 id="retryable-errors">Retryable Errors</h3>
+<p>CloudNativePG treats the following types of errors as retryable:</p>
+<ul>
+<li><strong>Server timeout errors</strong> (HTTP 408, 429, 500, 502, 503, 504)</li>
+<li><strong>Conflicts</strong> (optimistic locking errors)</li>
+<li><strong>Internal errors</strong></li>
+<li><strong>Context deadline exceeded errors</strong></li>
+<li><strong>Timeout errors from the CSI snapshot controller</strong></li>
+</ul>
+<h3 id="examples">Examples</h3>
+<p>You can add the annotation to a <code>ScheduledBackup</code> resource as follows:</p>
+<pre><code class="language-yaml">apiVersion: postgresql.cnpg.io/v1
+kind: ScheduledBackup
+metadata:
+  name: daily-backup-schedule
+  annotations:
+    backup.cnpg.io/volumeSnapshotDeadline: &quot;20&quot;
+spec:
+  schedule: &quot;0 0 * * *&quot;
+  backupOwnerReference: self
+  method: volumeSnapshot
+  # other configuration...
+</code></pre>
+<p>When you define a <code>ScheduledBackup</code> with the annotation, any <code>Backup</code> resources
+created from this schedule automatically inherit the specified timeout value.</p>
+<p>In the following example, all backups created from the schedule will have a
+30-minute timeout for retrying recoverable snapshot errors.</p>
+<pre><code class="language-yaml">apiVersion: postgresql.cnpg.io/v1
+kind: ScheduledBackup
+metadata:
+  name: weekly-backup
+  annotations:
+    backup.cnpg.io/volumeSnapshotDeadline: &quot;30&quot;
+spec:
+  schedule: &quot;0 0 * * 0&quot;  # Weekly backup on Sunday
+  method: volumeSnapshot
+  cluster:
+    name: my-postgresql-cluster
+</code></pre>
+<p>Alternatively, you can add the annotation directly to a <code>Backup</code> Resource:</p>
+<pre><code class="language-yaml">apiVersion: postgresql.cnpg.io/v1
+kind: Backup
+metadata:
+  name: my-backup
+  annotations:
+    backup.cnpg.io/volumeSnapshotDeadline: &quot;15&quot;
+spec:
+  method: volumeSnapshot
+  # other backup configuration...
+</code></pre>
+<h2 id="example-of-volume-snapshot-backup">Example of Volume Snapshot Backup</h2>
+<!-- TODO: Change before 1.26.0 -->
+
+<p>The following example shows how to configure volume snapshot base backups on an
+EKS cluster on AWS using the <code>ebs-sc</code> storage class and the <code>csi-aws-vsc</code>
+volume snapshot class.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>If you are interested in testing the example, please read
+<a href="https://github.com/kubernetes-sigs/aws-ebs-csi-driver/tree/master/examples/kubernetes/snapshot">"Volume Snapshots" for the Amazon Elastic Block Store (EBS) CSI driver</a> <!-- wokeignore:rule=master -->
+for detailed instructions on the installation process for the storage class and the snapshot class.</p>
+</div>
+<p>The following manifest creates a <code>Cluster</code> that is ready to be used for volume
+snapshots and that stores the WAL archive in a S3 bucket via IAM role for the
+Service Account (IRSA, see <a href="../appendixes/object_stores/#aws-s3">AWS S3</a>):</p>
+<pre><code class="language-yaml">apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: hendrix
+spec:
+  instances: 3
+
+  storage:
+    storageClass: ebs-sc
+    size: 10Gi
+  walStorage:
+    storageClass: ebs-sc
+    size: 10Gi
+
+  backup:
+    volumeSnapshot:
+       className: csi-aws-vsc
+    barmanObjectStore:
+      destinationPath: s3://@BUCKET_NAME@/
+      s3Credentials:
+        inheritFromIAMRole: true
+      wal:
+        compression: gzip
+        maxParallel: 2
+
+  serviceAccountTemplate:
+    metadata:
+      annotations:
+        eks.amazonaws.com/role-arn: &quot;@ARN@&quot;
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: ScheduledBackup
+metadata:
+  name: hendrix-vs-backup
+spec:
+  cluster:
+    name: hendrix
+  method: volumeSnapshot
+  schedule: '0 0 0 * * *'
+  backupOwnerReference: cluster
+  immediate: true
+</code></pre>
+<p>The last resource defines daily volume snapshot backups at midnight, requesting
+one immediately after the cluster is created.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../wal_archiving/" class="btn btn-neutral float-left" title="WAL archiving"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../recovery/" class="btn btn-neutral float-right" title="Recovery">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+      <p>Copyright © CloudNativePG a Series of LF Projects, LLC</p>
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../wal_archiving/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../recovery/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

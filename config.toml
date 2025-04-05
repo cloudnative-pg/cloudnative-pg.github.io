@@ -9,7 +9,10 @@ staticDir = ['assets']
 [project]
   name = 'CloudNativePG'
 
+[services]
+  [services.googleAnalytics]
+    id = 'G-SJWWHL48V3'
+
 [params]
   description = 'CloudNativePG - PostgreSQL Operator for Kubernetes'
   images = ['images/hero_image.png']
-
