@@ -15,7 +15,7 @@ should have a `weight` in the Hugo preamble, like so:
 title: Shinkansen
 image: logo/shinkansen.png
 homepage: https://shinkansen.finance/
-weight: 44
+weight: 11
 ---
 ```
 
@@ -28,4 +28,5 @@ To ensure the weights of end-users don't need modification as more and more are
 added, we should use as `weight` of an end user, the line it appears in, in the
 ADOPTERS file.
 
-E.g. Shinkansen is in line 44, whereas EDB is in line 34.
+E.g. Shinkansen is in line 44, whereas EDB is in line 34. We subtract 33 so we
+begin at 1. So, for EDB `weight: 1`, and for Shinkansen, `weight: 11`.
