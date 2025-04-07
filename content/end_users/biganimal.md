@@ -2,6 +2,7 @@
 title: BigAnimal
 image: logo/biganimal.svg
 homepage: https://biganimal.com
+weight: 34
 ---
 
 BigAnimal is a fully managed database-as-a-service with built-in Oracle
