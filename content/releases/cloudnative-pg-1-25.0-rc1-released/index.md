@@ -80,11 +80,10 @@ Additional RCs may follow as needed before the final release, planned in Decembe
 
 ## Join the Community
 
-Join our vibrant, open-source, vendor-neutral community! Connect with us on:
+Join our vibrant, open-source, vendor-neutral community! [Connect with us](https://github.com/cloudnative-pg/cloudnative-pg?tab=readme-ov-file#communications)!
 
-- [Slack](https://join.slack.com/t/cloudnativepg/shared_invite/zt-237bhehx3-htDW2kz2hKJxEhn1W4VTnw) for discussions and support.
-- [Twitter](https://twitter.com/CloudNativePg) for the latest updates and
-  announcements.
+Stay informed about the latest developments by following us on
+[Twitter](https://twitter.com/CloudNativePg).
 
 Thank you for your continued support of CloudNativePG. Your contributions help
 us advance the Kubernetes-native PostgreSQL experience!

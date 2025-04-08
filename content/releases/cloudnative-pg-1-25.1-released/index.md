@@ -60,10 +60,9 @@ carefully.
 
 ## Join Our Community
 
-We invite you to become an active member of our open-source, vendor-neutral
-community. Connect with us through our
-[Slack channel](https://join.slack.com/t/cloudnativepg/shared_invite/zt-32c83whjr-L4poobu8NEVGGXqF_Mu5VA)
-and stay informed about the latest developments by following us on
+Join our vibrant, open-source, vendor-neutral community! [Connect with us](https://github.com/cloudnative-pg/cloudnative-pg?tab=readme-ov-file#communications)!
+
+Stay informed about the latest developments by following us on
 [Twitter](https://twitter.com/CloudNativePg).
 
 If you're using CloudNativePG in production, consider
