@@ -55,10 +55,10 @@ Note that 1.23 will be supported until **November 22, 2024**.
 
 ## Join the Community
 
-Become part of our open-source, vendor-neutral community! Join our
-[Slack channel](https://join.slack.com/t/cloudnativepg/shared_invite/zt-2ij5hagfo-B04EQ9DUlGFzD6GEHDqE0g)
-and follow us on [Twitter](https://twitter.com/CloudNativePg) to stay updated
-on the latest news and developments.
+Join our vibrant, open-source, vendor-neutral community! [Connect with us](https://github.com/cloudnative-pg/cloudnative-pg?tab=readme-ov-file#communications)!
+
+Stay informed about the latest developments by following us on
+[Twitter](https://twitter.com/CloudNativePg).
 
 Thank you for supporting CloudNativePG. Upgrade today to unlock the full
 potential of your PostgreSQL clusters!

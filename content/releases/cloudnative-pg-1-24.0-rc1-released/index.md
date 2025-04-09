@@ -116,11 +116,10 @@ the final release, currently planned for the end of August 2024.
 
 ## Join the Community
 
-Become a valued member of our expanding open-source, vendor-neutral, and openly
-governed community! Engage with fellow users, exchange insights, and receive
-support. Join our [Slack channel](https://join.slack.com/t/cloudnativepg/shared_invite/zt-2ij5hagfo-B04EQ9DUlGFzD6GEHDqE0g)
-and follow us on [Twitter](https://twitter.com/CloudNativePg) to stay informed
-about the latest news and announcements.
+Join our vibrant, open-source, vendor-neutral community! [Connect with us](https://github.com/cloudnative-pg/cloudnative-pg?tab=readme-ov-file#communications)!
+
+Stay informed about the latest developments by following us on
+[Twitter](https://twitter.com/CloudNativePg).
 
 Thank you for your ongoing support and engagement with CloudNativePG!
 

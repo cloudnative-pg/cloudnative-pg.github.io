@@ -88,12 +88,10 @@ version 1.24 will continue until **March 23, 2025**.
 
 ## Get Involved with the Community
 
-Join our vibrant, open-source community to connect with fellow CloudNativePG users, share insights, and get support:
+Join our vibrant, open-source, vendor-neutral community! [Connect with us](https://github.com/cloudnative-pg/cloudnative-pg?tab=readme-ov-file#communications)!
 
-- **Slack**: Engage with us on
-  [Slack](https://join.slack.com/t/cloudnativepg/shared_invite/zt-2ij5hagfo-B04EQ9DUlGFzD6GEHDqE0g).
-- **Twitter**: Follow
-  [@CloudNativePg](https://twitter.com/CloudNativePg) for updates and news.
+Stay informed about the latest developments by following us on
+[Twitter](https://twitter.com/CloudNativePg).
 
 Thank you for your continued support! Upgrade today and discover how
 CloudNativePG can elevate your PostgreSQL experience to new heights.

@@ -76,13 +76,12 @@ security.
 
 ## Join the Community
 
-Become a valued member of our expanding open-source, vendor-neutral, and openly
-governed Community! Engage with fellow users, exchange insights, and receive
-support! Join our [Slack channel](https://cloudnativepg.slack.com/join/shared_invite/zt-237bhehx3-htDW2kz2hKJxEhn1W4VTnw#/shared-invite/email)
-and follow us on [Twitter](https://twitter.com/CloudNativePg) to stay informed
-about the latest news and announcements.
+Join our vibrant, open-source, vendor-neutral community! [Connect with us](https://github.com/cloudnative-pg/cloudnative-pg?tab=readme-ov-file#communications)!
 
-## Release Notes
+Stay informed about the latest developments by following us on
+[Twitter](https://twitter.com/CloudNativePg).
+
+## Release Notes
 
 For a comprehensive list of changes and bug fixes, check out the release notes
 for:

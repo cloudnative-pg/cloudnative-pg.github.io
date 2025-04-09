@@ -76,11 +76,10 @@ until November 22nd, 2024.
 
 ## Join the Community
 
-Become an active member of our growing open-source, vendor-neutral, and openly
-governed community! Engage with fellow users, share insights, and receive
-support. Join our [Slack channel](https://join.slack.com/t/cloudnativepg/shared_invite/zt-2ij5hagfo-B04EQ9DUlGFzD6GEHDqE0g)
-and follow us on [Twitter](https://twitter.com/CloudNativePg) to stay
-up-to-date with the latest news and announcements.
+Join our vibrant, open-source, vendor-neutral community! [Connect with us](https://github.com/cloudnative-pg/cloudnative-pg?tab=readme-ov-file#communications)!
+
+Stay informed about the latest developments by following us on
+[Twitter](https://twitter.com/CloudNativePg).
 
 Thank you for your continued support and engagement with CloudNativePG. Upgrade
 today and unlock the full potential of your PostgreSQL deployments!
