@@ -2,6 +2,7 @@
 title: Shinkansen
 image: logo/shinkansen.png
 homepage: https://shinkansen.finance/
+weight: 11
 ---
 
 Shinkansen moves your money at the speed of the internet
