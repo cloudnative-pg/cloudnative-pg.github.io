@@ -1,4 +1,10 @@
-# Cloud Native Postgres
+# CloudNativePG Website
+
+Welcome to the **CloudNativePG Website** Project! Are you interested in helping
+improve the CloudNativePG website or documentation? We’d love your support!
+
+Join the conversation and collaborate with us in the
+[#cloudnativepg-www Slack channel](https://cloud-native.slack.com/archives/C08LV0CMNMD).
 
 ## Requirements
 
