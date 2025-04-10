@@ -1,0 +1,14 @@
+{{ define "main" }}
+
+<div class="mx-auto md:w-1/2 px-4 well">
+    <h2 class="text-xl mt-6">{{.Title}}</h2>
+    <p>{{.Content}}</p>
+    <ul>
+    {{ $ps := .Paginate (union .Pages .Sections) }}
+    {{ range sort $ps.Pages "Title" }}
+        <li><a href="{{ .Params.homepage }}">{{ .Title }}</a></li>
+    {{ end }}  
+    </ul>
+    <hr>
+</div>
+{{ end }}

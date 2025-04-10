@@ -1,6 +1,6 @@
 ---
 Title: Commercial Support
-type: paged_content
+type: support
 ---
 
 **CloudNativePG** is an independent open-source project and does not endorse
