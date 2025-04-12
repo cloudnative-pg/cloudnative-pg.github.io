@@ -15,27 +15,25 @@ summary: Doing schema migrations on CloudNativePG clusters using the Atlas opera
 
 One of the most important practices when developing code that relies on
 databases is to use *database migration tools* for change management.
-It's something you *will* learn, even if it has to be the hard way. I hope
-you didn't have to learn it the hard way though!
+It's something you *will* learn, even if it has to be the hard way.
 (Another thing I see too many newcomers learning the hard way is to take backups
-often, and to test those backups with some regularity.)
+often, and to test those backups regularly.)
 
 In the post [*Developing webapps with CloudNativePG*]({{% ref "/blog/developing-webapps-with-cloudnative-pg" %}}),
-we mentioned [Liquibase](https://www.liquibase.com), which is one of the best
-known database migration tools.
+we mentioned [Liquibase](https://www.liquibase.com), which is one of the most
+popular database migration tools.
 
 Traditional database migration tools assume a connection is available to the
-database one wants to perform migrations on. In the context of Kubernetes,
-and of Postgresql clusters built using CloudNativePG,
-we would need to expose the database service beyond the Kubernetes cluster,
+target database. In the context of Kubernetes,
+and of Postgresql clusters built using CloudNativePG, to use such a tool
+we would need to expose the database *service* outside the Kubernetes cluster,
 for example via
 [port forwarding](https://kubernetes.io/docs/tasks/access-application-cluster/port-forward-access-application-cluster/),
 an [ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/),
 or similar solutions.
 
 The [Atlas database migration tool](https://atlasgo.io) includes a Kubernetes
-operator that allows us to manage database migrations in a Kubernetes-native
-way.
+operator that lets us manage database migrations within Kubernetes.
 Let's see an example of how to do that:
 
 ## Step 0:  install CloudNativePG and create a Postgres cluster
@@ -46,8 +44,8 @@ If you don't yet have this, you can follow the
 [CloudNativePG quickstart](https://cloudnative-pg.io/documentation/current/quickstart/).
 
 Whether you follow the quickstart or you already had a CloudNativePG/Postgres
-cluster up and running, let's assume your CloudNativePG cluster is called
-`cluster-example`.
+cluster up and running, we'll assume for the rest of this post that your
+CloudNativePG cluster is called `cluster-example`.
 
 ## Step 1: install the Atlas operator
 
@@ -58,7 +56,7 @@ helm install atlas-operator oci://ghcr.io/ariga/charts/atlas-operator
 ```
 
 Note that you may need an access token to retrieve the image from
-the GHCR registry (please see the [documentation](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-container-registry#authenticating-to-the-container-registry)
+the GHCR registry (please see the [GHCR documentation](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-container-registry#authenticating-to-the-container-registry)
 for details).
 
 After Atlas is installed, you will notice new CRDs in your Kubernetes
@@ -76,13 +74,13 @@ We will use the *Atlas Schema* CRD to manage migrations. You may want
 to open the [Atlas operator quickstart](https://atlasgo.io/integrations/kubernetes/quickstart)
 for reference, though we're not going to follow it exactly.
 
-To apply a migration, we connect to our target database, for which
-we need credentials. The Atlas operator quickstart uses the `urlFrom`
+To apply a migration, we need credentials to access our target database.
+The Atlas operator quickstart uses the `urlFrom`
 stanza, but with CloudNativePG there is a more convenient way.
 
 From Step 0, we assumed we have a CloudNativePG cluster called
 `cluster-example`.
-CloudNativePG, by default, creates a database called `app` on the cluster, and
+CloudNativePG, by default, creates a database called `app` on clusters, and
 a user `app` whose credentials are held in a Secret called
 `cluster-example-app`:
 
@@ -91,7 +89,7 @@ a user `app` whose credentials are held in a Secret called
 cluster-example-app                    kubernetes.io/basic-auth   9      18h
 ```
 
-You may inspect the contents of the secret running `kubectl get secrets cluster-example-app -o yaml`,
+You can inspect the contents of the secret running `kubectl get secrets cluster-example-app -o yaml`,
 and you will find that it contains a key called `password`, holding of course
 the password for the `app` user (base64 encoded).
 In addition to the `cluster-example-app` Secret, the CloudNativePG operator
@@ -99,10 +97,12 @@ creates Services for Postgres. In particular, we will want to use the ReadWrite
 service called `cluster-example-rw` for the migrations.
 
 We're going to use the [`credentials` object](https://atlasgo.io/integrations/kubernetes/declarative#credentials-object)
-from the AtlasSchema CRD referencing
+from the AtlasSchema CRD to reference
 the password and the service. Following along the Atlas Operator Quickstart, we
 create a migration defining a table called `t1`. Save the following to a file
 named `atlas-schema.yaml`.
+Notice how CloudNativePG automatically produced the values we need to put
+in the `passwordFrom` and `host` fields:
 
 ``` yaml
 apiVersion: db.atlasgo.io/v1alpha1
@@ -139,7 +139,8 @@ NAME                 READY   REASON
 atlasschema-pg       True    Applied
 ```
 
-To see the results, let's get a `psql` session open on one of our instances:
+To verify the effects on the database, let's get a `psql` session open on one
+of our instances:
 
 ``` console
 > kubectl exec -ti cluster-example-1 -- psql app
@@ -162,7 +163,7 @@ app=# \d t1
 ```
 
 As suggested in the Atlas Quickstart, we can modify the schema in the
-`atlas-schema.yaml` file, and then re-apply:
+`atlas-schema.yaml` file, and then re-apply with
 `kubectl apply -f atlas-schema.yaml`, and the Atlas operator will again
 reconcile the database to the desired state.
 
@@ -175,23 +176,24 @@ transactions, perhaps maps using PostGIS, etc.
 Application developers will regularly need to add functionality, and often
 that will involve creating new tables, schemas, procedures, indexes, perhaps
 doing some INSERT statements to populate static data, etc.
-The developers will be using a development database, possibly locally.
+The developers will be using a development database, probably hosted in their
+dev machines.
 There might be another database for the purpose of automated testing, and
 of course there's the production database, where the changes will need to be
-applied in the end. These different databases have different data in them,
+applied in the end. These different databases will have different data in them,
 and different loads.
-Add time and other developers, and you have a lot of databases on your hands,
-and a big chance for "it works on my machine" snafus.
+Add time and other developers, and you have a big chance for snafus of the type
+"but it worked on my machine!"
 
 Database migration tools manage this, bringing DevOps to this area of data.
 Atlas, by working as a Kubernetes operator, makes the dev/prod transition even
 smoother.
 
-Using CloudNativePG, with its credentials secrets and services created out of
+Using CloudNativePG, with its services and credentials secrets created out of
 the box, together with Atlas, will enable the developers to create migrations
-in their local Kubernetes clusters, update the YAML
-files for Atlas in version control, and apply the same files in the testing
-cluster, and then in the production cluster, with no changes.
+in their development Kubernetes installations, update the YAML
+files for Atlas in version control to share with the other devs, and eventually
+apply to the production database smoothly.
 
 ---
 
