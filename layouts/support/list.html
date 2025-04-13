@@ -4,8 +4,7 @@
     <h2 class="text-xl mt-6">{{.Title}}</h2>
     <p>{{.Content}}</p>
     <ul>
-    {{ $ps := .Paginate (union .Pages .Sections) }}
-    {{ range sort $ps.Pages "Title" }}
+    {{ range sort .Pages "Title" }}
         <li><a href="{{ .Params.homepage }}">{{ .Title }}</a></li>
     {{ end }}  
     </ul>
