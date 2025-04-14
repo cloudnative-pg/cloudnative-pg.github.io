@@ -2,9 +2,25 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://cloudnative-pg.io/end_users/biganimal/</loc>
+    <loc>https://cloudnative-pg.io/end_users/edb/</loc>
+  </url><url>
+    <loc>https://cloudnative-pg.io/end_users/tembo/</loc>
+  </url><url>
+    <loc>https://cloudnative-pg.io/end_users/cndi/</loc>
+  </url><url>
+    <loc>https://cloudnative-pg.io/end_users/optimadata/</loc>
   </url><url>
     <loc>https://cloudnative-pg.io/end_users/shinkansen/</loc>
+  </url><url>
+    <loc>https://cloudnative-pg.io/end_users/paradedb/</loc>
+  </url><url>
+    <loc>https://cloudnative-pg.io/end_users/rewe/</loc>
+  </url><url>
+    <loc>https://cloudnative-pg.io/end_users/cambium/</loc>
+  </url><url>
+    <loc>https://cloudnative-pg.io/end_users/docaposte/</loc>
+  </url><url>
+    <loc>https://cloudnative-pg.io/end_users/hitachi/</loc>
   </url><url>
     <loc>https://cloudnative-pg.io/</loc>
     <lastmod>2025-03-28T11:03:23+01:00</lastmod>
