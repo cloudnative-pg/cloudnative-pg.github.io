@@ -366,3 +366,9 @@ pre code {
 pre {
     overflow: scroll;
 }
+
+.logo {
+    max-width: 400px;
+    max-height: 300px;
+    display: inline-block;
+}

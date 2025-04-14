@@ -7,9 +7,11 @@
     {{ range .Pages }}
     <hr>
     {{ if .Params.image }}
+    <span class="logo">
     <a href="{{ .Params.homepage }}">
         <img src="{{.Params.image }}" alt="{{.Title}}" class="py-4" />
     </a>
+    </span>
     {{ else }}
     <h2><a href="{{ .Params.homepage }}">{{ .Title }}</a></h2>
     {{ end }}
