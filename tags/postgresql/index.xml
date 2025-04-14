@@ -6,8 +6,15 @@
     <description>Recent content in Postgresql on CloudNativePG - PostgreSQL Operator for Kubernetes</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 28 Mar 2025 11:03:23 +0100</lastBuildDate>
+    <lastBuildDate>Mon, 14 Apr 2025 14:51:43 +0200</lastBuildDate>
     <atom:link href="https://cloudnative-pg.io/tags/postgresql/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Contributor Spotlight: Itay Grudev</title>
+      <link>https://cloudnative-pg.io/blog/contributor-highlight-itay/</link>
+      <pubDate>Mon, 14 Apr 2025 14:51:43 +0200</pubDate>
+      <guid>https://cloudnative-pg.io/blog/contributor-highlight-itay/</guid>
+      <description>In a mini-series on this blog we highlight the work of the community. First up is Itay Grudev, component owner for the Operator chart and PostgreSQL Cluster Chart and the Grafana Dashboard for CloudNativePG.</description>
+    </item>
     <item>
       <title>CloudNativePG 1.26.0 RC1 Released!</title>
       <link>https://cloudnative-pg.io/releases/cloudnative-pg-1-26.0-rc1-released/</link>
