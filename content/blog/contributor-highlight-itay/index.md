@@ -21,7 +21,7 @@ We start with [Itay Grudev](https://github.com/itay-grudev). Why? Because he was
 Itay loves computers and has been fascinated with them since he was just a kid. It's no surprise then that he ended up working in Tech (and Kubernetes and DevOps in specific). He suspects that "some degree of autism helps getting along with computers too".
 
 ## Why CloudNativePG
-Itay works as a Software Engineering Consultant at Verito Digital, a web agency. He first heard about CloudNativePG when he was looking for a well-designed PostgreSQL operator. "The company I worked for at the time became the second CloudNativePG adopter, after EDB came first."
+Itay works as a Software Engineering Consultant at Verito Digital, a web agency. He first heard about CloudNativePG when he was looking for a well-designed PostgreSQL operator. "The company I worked for at the time became the second CloudNativePG adopter, after EDB."
 
 ## Known for...
 Itay then got involved as a contributor developing a Cluster Helm chart to complement the Operator Helm chart. Yep, he's the one to thank for that! 
