@@ -11,7 +11,7 @@ tags:
  - grafana
  - postgresql
  - open-source
-summary: In a mini-series on this blog we highlight the work of the community. First up is Itay Grudev, component owner for the Operator chart and PostgreSQL Cluster Chart and the Grafana Dashboard for CLoudNativePG.
+summary: In a mini-series on this blog we highlight the work of the community. First up is Itay Grudev, component owner for the Operator chart and PostgreSQL Cluster Chart and the Grafana Dashboard for CloudNativePG.
 ---
 
 Building and maintaining and open source project takes a village. In a mini-series on this blog we would like to highlight the work of our maintainers, component owners, and members of the larger community. 
@@ -24,7 +24,7 @@ Itay loves computers and has been fascinated with them since he was just a kid. 
 Itay works as a Software Engineering Consultant at Verito Digital, a web agency. He first heard about CloudNativePG when he was looking for a well-designed PostgreSQL operator. "The company I worked for at the time became the second CloudNativePG adopter, after EDB came first."
 
 ## Known for...
-Itay then got involved as a contributor developing a Cluster helm chart to complement the Operator helm chart. Yep, he's the one to thank for that! 
+Itay then got involved as a contributor developing a Cluster Helm chart to complement the Operator Helm chart. Yep, he's the one to thank for that! 
 
 If there's anything he could change, it would be to speed up Barman, and he also believes it should _not_ be implemented in Python. "Kudos to Gabriele Bartolini and Marco Nenciarini for building it and getting us to the point where we can complain about it, but it's time we replace it!" Message received, Itay!
 
