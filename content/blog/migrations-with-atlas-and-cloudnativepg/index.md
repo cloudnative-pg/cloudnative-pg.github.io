@@ -64,8 +64,8 @@ installation:
 
 ``` console
 > kubectl get crd | grep atlas
-atlasmigrations.db.atlasgo.io                    2025-03-18T16:49:08Z
-atlasschemas.db.atlasgo.io                       2025-03-18T16:49:08Z
+atlasmigrations.db.atlasgo.io                    <timestamp>
+atlasschemas.db.atlasgo.io                       <timestamp>
 ```
 
 ## Step 2: make changes to the database using Atlas
