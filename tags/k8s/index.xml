@@ -6,8 +6,15 @@
     <description>Recent content in K8s on CloudNativePG - PostgreSQL Operator for Kubernetes</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 28 Mar 2025 11:03:23 +0100</lastBuildDate>
+    <lastBuildDate>Thu, 17 Apr 2025 09:11:57 +0200</lastBuildDate>
     <atom:link href="https://cloudnative-pg.io/tags/k8s/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CloudNativePG 1.26.0 RC2 Released!</title>
+      <link>https://cloudnative-pg.io/releases/cloudnative-pg-1-26.0-rc2-released/</link>
+      <pubDate>Thu, 17 Apr 2025 09:11:57 +0200</pubDate>
+      <guid>https://cloudnative-pg.io/releases/cloudnative-pg-1-26.0-rc2-released/</guid>
+      <description>The CloudNativePG community is excited to announce the second release candidate of CloudNativePG 1.26! This version fixes a few issues in the major upgrade process as well as in the integration of volume snapshot recovery with WALs via plugin. Join us in testing these updates to shape the final release.</description>
+    </item>
     <item>
       <title>CloudNativePG 1.26.0 RC1 Released!</title>
       <link>https://cloudnative-pg.io/releases/cloudnative-pg-1-26.0-rc1-released/</link>
