@@ -6,8 +6,15 @@
     <description>Recent content in Kubernetes on CloudNativePG - PostgreSQL Operator for Kubernetes</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 17 Apr 2025 09:11:57 +0200</lastBuildDate>
+    <lastBuildDate>Tue, 22 Apr 2025 14:51:43 +0200</lastBuildDate>
     <atom:link href="https://cloudnative-pg.io/tags/kubernetes/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Contributor Spotlight: Jonathan Gonzalez</title>
+      <link>https://cloudnative-pg.io/blog/contributor-highlight-jonathan-gonzalez/</link>
+      <pubDate>Tue, 22 Apr 2025 14:51:43 +0200</pubDate>
+      <guid>https://cloudnative-pg.io/blog/contributor-highlight-jonathan-gonzalez/</guid>
+      <description>In a mini-series on this blog we highlight the work of the community. Today we meet Jonathan Gonzalez, Senior Kubernetes Developer at EDB and CloudNativePG maintainer.</description>
+    </item>
     <item>
       <title>CloudNativePG 1.26.0 RC2 Released!</title>
       <link>https://cloudnative-pg.io/releases/cloudnative-pg-1-26.0-rc2-released/</link>

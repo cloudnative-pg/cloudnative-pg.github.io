@@ -1,26 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Containers on CloudNativePG - PostgreSQL Operator for Kubernetes</title>
-    <link>https://cloudnative-pg.io/tags/containers/</link>
-    <description>Recent content in Containers on CloudNativePG - PostgreSQL Operator for Kubernetes</description>
+    <title>Pgbouncer on CloudNativePG - PostgreSQL Operator for Kubernetes</title>
+    <link>https://cloudnative-pg.io/tags/pgbouncer/</link>
+    <description>Recent content in Pgbouncer on CloudNativePG - PostgreSQL Operator for Kubernetes</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 22 Apr 2025 14:51:43 +0200</lastBuildDate>
-    <atom:link href="https://cloudnative-pg.io/tags/containers/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://cloudnative-pg.io/tags/pgbouncer/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Contributor Spotlight: Jonathan Gonzalez</title>
       <link>https://cloudnative-pg.io/blog/contributor-highlight-jonathan-gonzalez/</link>
       <pubDate>Tue, 22 Apr 2025 14:51:43 +0200</pubDate>
       <guid>https://cloudnative-pg.io/blog/contributor-highlight-jonathan-gonzalez/</guid>
       <description>In a mini-series on this blog we highlight the work of the community. Today we meet Jonathan Gonzalez, Senior Kubernetes Developer at EDB and CloudNativePG maintainer.</description>
-    </item>
-    <item>
-      <title>Creating a custom container image for CloudNativePG</title>
-      <link>https://cloudnative-pg.io/blog/creating-container-images/</link>
-      <pubDate>Wed, 08 Nov 2023 11:29:52 +0000</pubDate>
-      <guid>https://cloudnative-pg.io/blog/creating-container-images/</guid>
-      <description>Creating a container image for CloudNativePG Operator</description>
     </item>
   </channel>
 </rss>
