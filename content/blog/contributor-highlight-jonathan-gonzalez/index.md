@@ -1,6 +1,6 @@
 ---
 title: "Contributor Spotlight: Jonathan Gonzalez"
-date: 2025-04-16T14:51:43+02:00
+date: 2025-04-22T14:51:43+02:00
 draft: false
 image:
     url: jonathan.jpg
