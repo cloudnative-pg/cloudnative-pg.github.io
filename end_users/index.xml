@@ -36,6 +36,13 @@
       <description>&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;em&gt;OptimaData as the Dutch database expert company has done several projects running CloudNativePG for managing Postgres clusters. We were the first to use CloudNativePG in a production environment, even before the operator was released as open source. Back then we did a &lt;a href=&#34;https://www.optimadata.nl/en/blogs/kubernetes-operators-and-postgres-which-of-the-three/&#34;&gt;benchmark between Zalando&amp;rsquo;s operator, Crunchy Data and CloudNativePG&lt;/a&gt;.&lt;/em&gt;&#xA;&lt;br&gt;&#xA;— Edco Wallet, Co-founder OptimaData BV&lt;/p&gt;&#xA;&lt;/blockquote&gt;</description>
     </item>
     <item>
+      <title>Enix</title>
+      <link>https://cloudnative-pg.io/end_users/enix/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://cloudnative-pg.io/end_users/enix/</guid>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;em&gt;At Enix, we&amp;rsquo;ve been using CloudNativePG since its early versions in 2022.&#xA;It&amp;rsquo;s the most comprehensive and relevant operator for deploying PostgreSQL&#xA;databases within Kubernetes clusters. We use it in production on the IT&#xA;platforms we manage for our clients, where high availability and scalability&#xA;are critical requirements.&lt;/em&gt;&#xA;&lt;br&gt;&#xA;— Romain Degez, Managing Partner at Enix France&lt;/p&gt;&#xA;&lt;/blockquote&gt;</description>
+    </item>
+    <item>
       <title>Shinkansen</title>
       <link>https://cloudnative-pg.io/end_users/shinkansen/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
