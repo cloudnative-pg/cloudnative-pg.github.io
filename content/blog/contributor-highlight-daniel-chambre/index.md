@@ -23,16 +23,19 @@ maintainers, component owners, and members of the larger community.
 
 Today we're meeting Daniel Chambre, better known under his handle: 
 [smiyc](https://github.com/smiyc/). Daniel is a DBA at WienIT, working part 
-remotely from "the outskirts of Vienna". He first learned about CNP by/for EDB 
-in late 2021, and then CloudNativePG at the time it was released. 
+remotely from "the outskirts of Vienna". He first learned about CNP, EDB's 
+Kubernetes operator for Postgres, in late 2021. The CloudNativePG project was 
+spun off not much later. 
 
-Daniel first got involved with the project by filing an Issue, that resulted 
-in a discussion, in November 2022. He's been active in the project and the 
-project's Slack channel(s) ever since. A new thing, previously Daniel wasn't 
-really involved in any communities. What got Daniel interested in technology 
-in the first place was "fixing broken stuff", like VCRs, with his dad, and 
-also a Commodore 64 (giving away his age there). Later Daniel got into PS2 
-soldering shenanigans. 
+Daniel first got involved with the project back in November 2022, by starting 
+a discussion around how the controller manager demanded pvc resizing which 
+was unsupported by the storageclass. He's been active in the project and the 
+project's Slack channel(s) ever since. This is the first open-source community 
+Daniel has been an active part of.
+
+What got Daniel interested in technology in the first place was "fixing broken 
+stuff", like VCRs, with his dad, and also a Commodore 64 (giving away his 
+age there). Later Daniel got into PS2 soldering shenanigans. 
 
 What he wishes hardest for that would get implemented in CloudNativePG are 
 automated switchover / failover, to distributed replica cluster via service 
