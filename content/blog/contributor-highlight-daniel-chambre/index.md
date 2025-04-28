@@ -1,6 +1,6 @@
 ---
 title: "Contributor Spotlight: Daniel Chambre"
-date: 2025-04-25T14:51:43+02:00
+date: 2025-04-28T14:51:43+02:00
 draft: false
 image:
     url: daniel.jpg
