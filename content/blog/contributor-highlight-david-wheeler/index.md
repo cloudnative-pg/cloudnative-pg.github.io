@@ -17,7 +17,7 @@ summary: "In a mini-series on this blog we highlight the work of the community.
   maintainer."
 ---
 
-Building and maintaining and open source project takes a village. In a
+Building and maintaining an open source project takes a village. In a
 mini-series on this blog we would like to highlight the work of our
 maintainers, component owners, and members of the larger community.
 
