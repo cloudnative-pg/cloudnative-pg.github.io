@@ -6,8 +6,15 @@
     <description>Recent content in Postgresql on CloudNativePG - PostgreSQL Operator for Kubernetes</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 28 Apr 2025 14:51:43 +0200</lastBuildDate>
+    <lastBuildDate>Sun, 04 May 2025 14:51:43 +0200</lastBuildDate>
     <atom:link href="https://cloudnative-pg.io/tags/postgresql/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Contributor Spotlight: Philippe Scorsolini</title>
+      <link>https://cloudnative-pg.io/blog/contributor-highlight-philippe-scorsolini/</link>
+      <pubDate>Sun, 04 May 2025 14:51:43 +0200</pubDate>
+      <guid>https://cloudnative-pg.io/blog/contributor-highlight-philippe-scorsolini/</guid>
+      <description>In a mini-series on this blog we highlight the work of the community. Today we meet Philippe Scorsolini, Staff Software Engineer and Tech Lead at Upbound, and CloudNativePG maintainer.</description>
+    </item>
     <item>
       <title>Contributor Spotlight: Daniel Chambre</title>
       <link>https://cloudnative-pg.io/blog/contributor-highlight-daniel-chambre/</link>

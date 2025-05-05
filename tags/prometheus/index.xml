@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Prometheus on CloudNativePG - PostgreSQL Operator for Kubernetes</title>
+    <link>https://cloudnative-pg.io/tags/prometheus/</link>
+    <description>Recent content in Prometheus on CloudNativePG - PostgreSQL Operator for Kubernetes</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 04 May 2025 14:51:43 +0200</lastBuildDate>
+    <atom:link href="https://cloudnative-pg.io/tags/prometheus/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Contributor Spotlight: Philippe Scorsolini</title>
+      <link>https://cloudnative-pg.io/blog/contributor-highlight-philippe-scorsolini/</link>
+      <pubDate>Sun, 04 May 2025 14:51:43 +0200</pubDate>
+      <guid>https://cloudnative-pg.io/blog/contributor-highlight-philippe-scorsolini/</guid>
+      <description>In a mini-series on this blog we highlight the work of the community. Today we meet Philippe Scorsolini, Staff Software Engineer and Tech Lead at Upbound, and CloudNativePG maintainer.</description>
+    </item>
+  </channel>
+</rss>
