@@ -1,6 +1,6 @@
 ---
 title: "Contributor Spotlight: Philippe Scorsolini"
-date: 2025-05-05T14:51:43+02:00
+date: 2025-05-04T14:51:43+02:00
 draft: false
 image:
     url: philippe.png
