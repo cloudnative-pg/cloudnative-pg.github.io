@@ -32,7 +32,7 @@ I was always fascinated by PostgreSQL!" So, when the team at EDB reached
 out for a position working on a Kubernetes controller for it, he accepted 
 right away. That operator of course is now known as CloudNativePG. "Once 
 it was open-sourced, although I wasn’t working on it full-time anymore, 
-they honored me by making me a maintainer."
+they made me a maintainer, which I feel honored by."
 
 His first contribution to the project was small, just adding a name to 
 the metrics port to allow it to be easily discovered by the Prometheus 
