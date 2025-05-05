@@ -27,7 +27,7 @@ Upbound, working on their Spaces product, and maintaining the Crossplane
 project.
 
 Coming from an infrastructure background, Philippe focused on Kubernetes 
-and only used PostgreSQL as a user, not as an administrator. "However, 
+and knew PostgreSQL as a user, but not as an administrator. "However, 
 I was always fascinated by PostgreSQL!" So, when the team at EDB reached 
 out for a position working on a Kubernetes controller for it, he accepted 
 right away. That operator of course is now known as CloudNativePG. "Once 
