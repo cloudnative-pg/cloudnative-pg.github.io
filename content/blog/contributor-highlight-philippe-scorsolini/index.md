@@ -36,7 +36,7 @@ they made me a maintainer, which I feel honored by."
 
 His first contribution to the project was small, just adding a name to 
 the metrics port to allow it to be easily discovered by the Prometheus 
-operator. The next one was more interesting since Philippe was one of the 
+operator. The next one was more interesting: Philippe was one of the 
 people introducing the current framework used to parse Postgres logs and 
 output them in JSON. If he could ask for one thing to be improved in 
 CloudNativePG, it would have to be the Pooler resource. "Through the years, 
