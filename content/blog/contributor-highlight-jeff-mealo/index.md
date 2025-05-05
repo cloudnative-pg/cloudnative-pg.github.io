@@ -32,15 +32,15 @@ and relies on it to keep the lights on for themselves and their customers.
 
 It's no wonder Jeff ended up in Tech, he has always had an insatiable 
 curiosity to figure out how things work:
-> "We got our first home computer at 8, and the internet at 9. The internet 
-was one of those things, and I found myself creating video game fan sites 
-using HTML and Perl from ages 9-10. One game wasn’t enough and this exploded 
-in scope to helping create the largest database of video game cheat codes 
-using PHP, and my ambitions quickly exceeded what free hosting could achieve 
-at the time. So I did what any 11 year old would do, start a computer salvage 
-operation on eBay using old gear that folks in my community had donated to me 
-to get a dedicated server and then sell enough web hosting to keep the lights 
-on!"
+> "We got our first home computer at 8, and the internet at 9. The internet
+> was one of those things, and I found myself creating video game fan sites
+> using HTML and Perl from ages 9-10. One game wasn’t enough and this exploded
+> in scope to helping create the largest database of video game cheat codes
+> using PHP, and my ambitions quickly exceeded what free hosting could achieve
+> at the time. So I did what any 11 year old would do, start a computer salvage
+> operation on eBay using old gear that folks in my community had donated to me
+> to get a dedicated server and then sell enough web hosting to keep the lights
+> on!"
 
 He tells me that because he didn’t have any real life mentors, only strangers 
 helping him on IRC, he was unaware that this was a career path. While working 
