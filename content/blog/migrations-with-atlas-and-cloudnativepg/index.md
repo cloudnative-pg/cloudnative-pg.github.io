@@ -187,9 +187,13 @@ and different loads.
 Add time and other developers, and you have a big chance for snafus of the type
 *"but it worked on my machine!"*
 
-Database migration tools manage this, bringing DevOps to this area of databases.
-Atlas, by working as a Kubernetes operator, makes the dev/prod transition even
-smoother.
+Database migration tools help manage this, bringing DevOps to this area of
+databases. Atlas, by working as a Kubernetes operator, makes the dev/prod
+transition even smoother. \
+But it's not enough to use good tools. Remember the Agile manifesto:
+*"individuals and interactions over processes and tools"*.
+You can find an overview of the challenges posed by database change management
+at [DORA](https://dora.dev/capabilities/database-change-management/).
 
 Using CloudNativePG, with its services and credentials secrets created out of
 the box, together with Atlas, will enable the developers to create migrations
