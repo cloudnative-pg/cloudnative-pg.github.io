@@ -26,8 +26,8 @@ maintainers, component owners, and members of the larger community.
 Today it's my great pleasure to introduce [Francesco Canovai](https://github.com/fcanovai/), 
 my colleage at EDB. Francesco is a Senior Software Development Engineer, 
 living in Prato, Italy. No point asking when he first found out about 
-CloudNativePG, he was in the room when/where the project started! The 
-first commit with his name on it is the initial suite of e2e tests.
+CloudNativePG: he was in the room when/where the project started! The 
+first commit with his name on it is the initial suite of end-to-end tests.
 
 One dream he has for the project is to rework the tests to use a configuration 
 and avoid the GitHub Actions + Makefile + shell scripts + Ginkgo Frankenstein 
