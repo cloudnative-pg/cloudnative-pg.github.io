@@ -4,7 +4,7 @@ avatar: jsilvela-gh.jpeg
 github: jsilvela
 ---
 
-Jaime Silvela has been around. In a career spanning three decades writing code,
+Jaime Silvela has been around. In a long and varied career writing code,
 he has lived in the US and Europe, worked for big corporations like Amazon and
 Microsoft, as an early startup employee, in industries including Wall Street and
 catastrophe insurance.
