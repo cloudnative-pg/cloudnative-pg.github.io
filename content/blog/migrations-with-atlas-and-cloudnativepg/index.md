@@ -8,6 +8,7 @@ image:
 author: jsilvela
 tags:
  - blog
+ - tutorial
  - migrations
  - devops
 summary: Doing schema migrations on CloudNativePG clusters using the Atlas operator
@@ -78,7 +79,7 @@ To apply a migration, we need credentials to access our target database.
 The Atlas operator quickstart uses the `urlFrom`
 stanza, but with CloudNativePG there is a more convenient way.
 
-From Step 0, we assumed we have a CloudNativePG cluster called
+From Step 0, we have assumed we have a CloudNativePG cluster called
 `cluster-example`.
 CloudNativePG, by default, creates a database called `app` on clusters, and
 a user `app` whose credentials are held in a Secret called
@@ -89,12 +90,13 @@ a user `app` whose credentials are held in a Secret called
 cluster-example-app                    kubernetes.io/basic-auth   9      18h
 ```
 
-You can inspect the contents of the secret running `kubectl get secrets cluster-example-app -o yaml`,
+You can inspect the contents of the secret running
+`kubectl get secrets cluster-example-app -o yaml`,
 and you will find that it contains a key called `password`, holding of course
 the password for the `app` user (base64 encoded).
 In addition to the `cluster-example-app` Secret, the CloudNativePG operator
 creates Services for Postgres. In particular, we will want to use the ReadWrite
-service called `cluster-example-rw` for the migrations.
+service, called `cluster-example-rw`, for the migrations.
 
 We're going to use the [`credentials` object](https://atlasgo.io/integrations/kubernetes/declarative#credentials-object)
 from the AtlasSchema CRD to reference
@@ -131,7 +133,7 @@ spec:
 
 Then apply it: `kubectl apply -f atlas-schema.yaml`.
 
-You should soon be able to see the Schema has been applied:
+In a few seconds, you should be able to see the Schema has been reconciled:
 
 ``` console
 > kubectl get atlasschemas.db.atlasgo.io
@@ -175,7 +177,7 @@ transactions, perhaps maps using PostGIS, etc.
 
 Application developers will regularly need to add functionality, and often
 that will involve creating new tables, schemas, procedures, indexes, perhaps
-doing some INSERT statements to populate static data, etc.
+doing some `INSERT` statements to populate static data, etc.
 The developers will be using a development database, probably hosted in their
 dev machines.
 There might be another database for the purpose of automated testing, and
@@ -183,9 +185,9 @@ of course there's the production database, where the changes will need to be
 applied in the end. These different databases will have different data in them,
 and different loads.
 Add time and other developers, and you have a big chance for snafus of the type
-"but it worked on my machine!"
+*"but it worked on my machine!"*
 
-Database migration tools manage this, bringing DevOps to this area of data.
+Database migration tools manage this, bringing DevOps to this area of databases.
 Atlas, by working as a Kubernetes operator, makes the dev/prod transition even
 smoother.
 
