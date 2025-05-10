@@ -1,4 +1,4 @@
-	---
+---
 title: "Contributor Spotlight: Itay Grudev"
 date: 2025-04-14T14:51:43+02:00
 draft: false
