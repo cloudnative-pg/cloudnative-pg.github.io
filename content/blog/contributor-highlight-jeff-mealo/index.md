@@ -1,6 +1,6 @@
 ---
 title: "Contributor Spotlight: Jeff Mealo"
-date: 2025-05-14T14:51:43+02:00
+date: 2025-05-11T14:51:43+02:00
 draft: false
 image:
     url: jeff.jpeg
@@ -18,17 +18,18 @@ summary: "In a mini-series on this blog we highlight the work of the community.
   Today we meet Jeff Mealo, Senior Software Engineer at Gisual."
 ---
 
-Building and maintaining and open source project takes a village. In a
+Building and maintaining an open source project takes a village. In a
 mini-series on this blog we would like to highlight the work of our
 maintainers, component owners, and members of the larger community.
 
 Today's superstar: [Jeff Mealo](https://github.com/jmealo/). Jeff is a 
-Senior Software Engineer at Gisual, where they specialize in detecting and 
-diagnosing infrastructure outages through automation. Their outage analytics 
-platform is powered by CloudNativePG, enabling organizations to quickly 
-identify network issues and achieve significant truck roll reduction. 
-Gisual both contributes engineering resources to CloudNativePG's development 
-and relies on it to keep the lights on for themselves and their customers.
+Senior Software Engineer at Gisual, where a CloudNativePG-powered 
+outage-analytics platform turns hours of triage into minutes of insight. 
+Any business that can’t afford downtime due to power outages, fiber cuts, 
+or other faults can pinpoint the issue in minutes and dispatch the right 
+technicians only when needed. Gisual doesn't just use CloudNativePG to keep 
+the lights on for themselves and their customers; they actively contribute 
+engineering to ensure it shines brightly for the entire community.
 
 It's no wonder Jeff ended up in Tech, he has always had an insatiable 
 curiosity to figure out how things work:
@@ -54,7 +55,7 @@ CloudNativePG was the only operator that ticked all the boxes and it had a
 thriving open source community. "With CloudNativePG now under the CNCF umbrella, 
 we feel like we made the right choice!"
 
-While vetting CloudNativeNPG for production usage, Jeff did a lot of chaos 
+While vetting CloudNativePG for production usage, Jeff did a lot of chaos 
 engineering and really put it through its paces before deciding to migrate 
 away from the safety of managed Postgres. "It met and exceeded our 
 expectations, but we continued to have issues with volume snapshots and a 
@@ -76,8 +77,8 @@ on all the moving parts to get things right the first time!
 guidelines for production usage. 
 
 Anyone interested working on the above topics, find Jeff in the CloudNativePG 
-channels on the CNCF Slack workspace, or on [Bluesky](@jmealo.bsky.social)! 
-Jeff's also active in the #postgresql channel on freenode, and while he's 
+channels on the CNCF Slack workspace, or on [Bluesky]([https://bsky.app/profile/jmealo.bsky.social)! 
+Jeff's also active in the #postgresql channel on Libera, and while he's 
 still getting used to chatting on Slack and Discord for Open Source, he is 
 a member of the gophers.slack.com, victoriametrics.slack.com, 
 postgresteam.slack.com, and cloud-native.slack.com.
