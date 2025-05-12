@@ -14,6 +14,7 @@ tags:
  - CNCF
  - postgresql
  - open-source
+ - spotlight
 summary: "In a mini-series on this blog we highlight the work of the community.
   Today we meet Jeff Mealo, Senior Software Engineer at Gisual."
 ---
