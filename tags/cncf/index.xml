@@ -6,8 +6,15 @@
     <description>Recent content in Cncf on CloudNativePG - PostgreSQL Operator for Kubernetes</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 11 May 2022 14:13:20 +0200</lastBuildDate>
+    <lastBuildDate>Sun, 11 May 2025 14:51:43 +0200</lastBuildDate>
     <atom:link href="https://cloudnative-pg.io/tags/cncf/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Contributor Spotlight: Jeff Mealo</title>
+      <link>https://cloudnative-pg.io/blog/contributor-highlight-jeff-mealo/</link>
+      <pubDate>Sun, 11 May 2025 14:51:43 +0200</pubDate>
+      <guid>https://cloudnative-pg.io/blog/contributor-highlight-jeff-mealo/</guid>
+      <description>In a mini-series on this blog we highlight the work of the community. Today we meet Jeff Mealo, Senior Software Engineer at Gisual.</description>
+    </item>
     <item>
       <title>Running PostgreSQL the Kubernetes Way</title>
       <link>https://cloudnative-pg.io/blog/running-postgresql-the-kubernetes-way/</link>
