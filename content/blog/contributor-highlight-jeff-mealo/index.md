@@ -78,7 +78,7 @@ on all the moving parts to get things right the first time!
 guidelines for production usage. 
 
 Anyone interested working on the above topics, find Jeff in the CloudNativePG 
-channels on the CNCF Slack workspace, or on [Bluesky]([https://bsky.app/profile/jmealo.bsky.social)! 
+channels on the CNCF Slack workspace, or on [Bluesky](https://bsky.app/profile/jmealo.bsky.social)! 
 Jeff's also active in the #postgresql channel on Libera, and while he's 
 still getting used to chatting on Slack and Discord for Open Source, he is 
 a member of the gophers.slack.com, victoriametrics.slack.com, 
