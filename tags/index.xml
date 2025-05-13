@@ -44,6 +44,48 @@
       <description></description>
     </item>
     <item>
+      <title>Cloudnativepg</title>
+      <link>https://cloudnative-pg.io/tags/cloudnativepg/</link>
+      <pubDate>Tue, 13 May 2025 10:50:17 +0200</pubDate>
+      <guid>https://cloudnative-pg.io/tags/cloudnativepg/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Cnpg</title>
+      <link>https://cloudnative-pg.io/tags/cnpg/</link>
+      <pubDate>Tue, 13 May 2025 10:50:17 +0200</pubDate>
+      <guid>https://cloudnative-pg.io/tags/cnpg/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>K8s</title>
+      <link>https://cloudnative-pg.io/tags/k8s/</link>
+      <pubDate>Tue, 13 May 2025 10:50:17 +0200</pubDate>
+      <guid>https://cloudnative-pg.io/tags/k8s/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Postgres</title>
+      <link>https://cloudnative-pg.io/tags/postgres/</link>
+      <pubDate>Tue, 13 May 2025 10:50:17 +0200</pubDate>
+      <guid>https://cloudnative-pg.io/tags/postgres/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Preview</title>
+      <link>https://cloudnative-pg.io/tags/preview/</link>
+      <pubDate>Tue, 13 May 2025 10:50:17 +0200</pubDate>
+      <guid>https://cloudnative-pg.io/tags/preview/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Release</title>
+      <link>https://cloudnative-pg.io/tags/release/</link>
+      <pubDate>Tue, 13 May 2025 10:50:17 +0200</pubDate>
+      <guid>https://cloudnative-pg.io/tags/release/</guid>
+      <description></description>
+    </item>
+    <item>
       <title>Alerts</title>
       <link>https://cloudnative-pg.io/tags/alerts/</link>
       <pubDate>Sun, 11 May 2025 14:51:43 +0200</pubDate>
@@ -132,48 +174,6 @@
       <link>https://cloudnative-pg.io/tags/pgbouncer/</link>
       <pubDate>Tue, 22 Apr 2025 14:51:43 +0200</pubDate>
       <guid>https://cloudnative-pg.io/tags/pgbouncer/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Cloudnativepg</title>
-      <link>https://cloudnative-pg.io/tags/cloudnativepg/</link>
-      <pubDate>Thu, 17 Apr 2025 09:11:57 +0200</pubDate>
-      <guid>https://cloudnative-pg.io/tags/cloudnativepg/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Cnpg</title>
-      <link>https://cloudnative-pg.io/tags/cnpg/</link>
-      <pubDate>Thu, 17 Apr 2025 09:11:57 +0200</pubDate>
-      <guid>https://cloudnative-pg.io/tags/cnpg/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>K8s</title>
-      <link>https://cloudnative-pg.io/tags/k8s/</link>
-      <pubDate>Thu, 17 Apr 2025 09:11:57 +0200</pubDate>
-      <guid>https://cloudnative-pg.io/tags/k8s/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Postgres</title>
-      <link>https://cloudnative-pg.io/tags/postgres/</link>
-      <pubDate>Thu, 17 Apr 2025 09:11:57 +0200</pubDate>
-      <guid>https://cloudnative-pg.io/tags/postgres/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Preview</title>
-      <link>https://cloudnative-pg.io/tags/preview/</link>
-      <pubDate>Thu, 17 Apr 2025 09:11:57 +0200</pubDate>
-      <guid>https://cloudnative-pg.io/tags/preview/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Release</title>
-      <link>https://cloudnative-pg.io/tags/release/</link>
-      <pubDate>Thu, 17 Apr 2025 09:11:57 +0200</pubDate>
-      <guid>https://cloudnative-pg.io/tags/release/</guid>
       <description></description>
     </item>
     <item>

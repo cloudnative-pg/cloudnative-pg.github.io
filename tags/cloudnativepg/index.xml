@@ -6,8 +6,15 @@
     <description>Recent content in Cloudnativepg on CloudNativePG - PostgreSQL Operator for Kubernetes</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 17 Apr 2025 09:11:57 +0200</lastBuildDate>
+    <lastBuildDate>Tue, 13 May 2025 10:50:17 +0200</lastBuildDate>
     <atom:link href="https://cloudnative-pg.io/tags/cloudnativepg/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CloudNativePG 1.26.0 RC3 Released!</title>
+      <link>https://cloudnative-pg.io/releases/cloudnative-pg-1-26.0-rc3-released/</link>
+      <pubDate>Tue, 13 May 2025 10:50:17 +0200</pubDate>
+      <guid>https://cloudnative-pg.io/releases/cloudnative-pg-1-26.0-rc3-released/</guid>
+      <description>CloudNativePG 1.26.0 RC3 is out, featuring key fixes for major upgrades and Barman Cloud plugin migration—test it now and help shape the final release!</description>
+    </item>
     <item>
       <title>CloudNativePG 1.26.0 RC2 Released!</title>
       <link>https://cloudnative-pg.io/releases/cloudnative-pg-1-26.0-rc2-released/</link>
