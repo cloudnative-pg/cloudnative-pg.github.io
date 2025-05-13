@@ -6,7 +6,7 @@
 <html lang="en">
 
 <head>
-  <title>Contributor Spotlight: Itay Grudev | CloudNativePG - PostgreSQL Operator for Kubernetes</title>
+  <title>CloudNativePG part of LFX Mentorship - sign up as a mentee! | CloudNativePG - PostgreSQL Operator for Kubernetes</title>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
@@ -20,23 +20,23 @@
   
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://cloudnative-pg.io/images/hero_image.png">
-  <meta name="twitter:title" content="Contributor Spotlight: Itay Grudev">
-  <meta name="twitter:description" content="In a mini-series on this blog we highlight the work of the community. First up is Itay Grudev, component owner for the Operator chart and PostgreSQL Cluster Chart and the Grafana Dashboard for CloudNativePG.">
+  <meta name="twitter:title" content="CloudNativePG part of LFX Mentorship - sign up as a mentee!">
+  <meta name="twitter:description" content="We have proposed a project for the June cohort of the CNCF’s LFX Mentorship program, and we’re looking for mentees to sign up and receive a stipend for their work.">
 
-  <meta property="og:url" content="https://cloudnative-pg.io/blog/contributor-highlight-itay/">
+  <meta property="og:url" content="https://cloudnative-pg.io/blog/lfx-cncf-mentorship/">
   <meta property="og:site_name" content="CloudNativePG - PostgreSQL Operator for Kubernetes">
-  <meta property="og:title" content="Contributor Spotlight: Itay Grudev">
-  <meta property="og:description" content="In a mini-series on this blog we highlight the work of the community. First up is Itay Grudev, component owner for the Operator chart and PostgreSQL Cluster Chart and the Grafana Dashboard for CloudNativePG.">
+  <meta property="og:title" content="CloudNativePG part of LFX Mentorship - sign up as a mentee!">
+  <meta property="og:description" content="We have proposed a project for the June cohort of the CNCF’s LFX Mentorship program, and we’re looking for mentees to sign up and receive a stipend for their work.">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="blog">
-    <meta property="article:published_time" content="2025-04-14T14:51:43+02:00">
-    <meta property="article:modified_time" content="2025-04-14T14:51:43+02:00">
-    <meta property="article:tag" content="Helm">
-    <meta property="article:tag" content="Grafana">
+    <meta property="article:published_time" content="2025-05-13T14:51:43+02:00">
+    <meta property="article:modified_time" content="2025-05-13T14:51:43+02:00">
+    <meta property="article:tag" content="Mentorship">
+    <meta property="article:tag" content="Lfx">
+    <meta property="article:tag" content="Cncf">
     <meta property="article:tag" content="Postgresql">
-    <meta property="article:tag" content="Open-Source">
-    <meta property="article:tag" content="Spotlight">
+    <meta property="article:tag" content="Kubernetes">
     <meta property="og:image" content="https://cloudnative-pg.io/images/hero_image.png">
 
   
@@ -141,25 +141,25 @@
 
 
     
-<h1 class="h1 text-center mx-auto md:w-3/5">Contributor Spotlight: Itay Grudev</h1>
+<h1 class="h1 text-center mx-auto md:w-3/5">CloudNativePG part of LFX Mentorship - sign up as a mentee!</h1>
 <div class="md:w-3/5 mx-auto">
     <div class="px-4">
         
         <div class="flex gap-3 my-10 mx-auto flex justify-center">
             
 <div class="my-auto">
-    <img src="/authors/fdrees//floor.jpg" class="w-10 h-10 rounded-full"
-        alt="Floor Drees">
+    <img src="/authors/jgonzalez//jgonzalez-gh.jpeg" class="w-10 h-10 rounded-full"
+        alt="Jonathan Gonzalez V.">
 </div>
 <div>
     <div>
         <h1 class="text-lg charcoal font-bold">
-            <a href="/authors/fdrees">Floor Drees</a>
+            <a href="/authors/jgonzalez">Jonathan Gonzalez V.</a>
         </h1>
     </div>
     <div class="flex gap-2 text-sm charcoal opacity-75">
     <h6 class="flex gap-2 text-sm charcoal">
-        April 14, 2025
+        May 13, 2025
         •
         2 minutes
     </h6>
@@ -170,40 +170,52 @@
 
         
         <div>
-            <img src="itay.jpg" alt="blog image" class="mx-auto">
+            <img src="lfx_mentorship.png" alt="blog image" class="mx-auto">
         </div>
         
 
         
         <div class="mx-auto my-10">
-            <p>Building and maintaining an open source project takes a village. In a
-mini-series on this blog we would like to highlight the work of our
-maintainers, component owners, and members of the larger community.</p>
-<p>We start with <a href="https://github.com/itay-grudev">Itay Grudev</a>. Why? Because he
-was the first to reply: &ldquo;You caught me at the perfect time, I was just drinking
-my morning coffee with not much else going on.&rdquo;</p>
-<p>Itay loves computers and has been fascinated with them since he was just a kid.
-It&rsquo;s no surprise then that he ended up working in Tech (and Kubernetes and
-DevOps in specific). He suspects that &ldquo;some degree of autism helps getting
-along with computers too&rdquo;.</p>
-<h2 id="why-cloudnativepg">Why CloudNativePG</h2>
-<p>Itay works as a Software Engineering Consultant at Verito Digital, a web
-agency. He first heard about CloudNativePG when he was looking for a
-well-designed PostgreSQL operator. &ldquo;The company I worked for at the time became
-the second CloudNativePG adopter, after EDB.&rdquo;</p>
-<h2 id="known-for">Known for&hellip;</h2>
-<p>Itay then got involved as a contributor developing a Cluster Helm chart to
-complement the Operator Helm chart. Yep, he&rsquo;s the one to thank for that!</p>
-<p>If there&rsquo;s anything he could change, it would be to speed up Barman, and he
-also believes it should <em>not</em> be implemented in Python. &ldquo;Kudos to Gabriele
-Bartolini and Marco Nenciarini for building it and getting us to the point
-where we can complain about it, but it&rsquo;s time we replace it!&rdquo; Message received,
-Itay!</p>
-<p>Today Itay is a component owner for the
-<a href="https://github.com/cloudnative-pg/charts">Operator chart and PostgreSQL Cluster Chart</a>,
-and for the <a href="https://github.com/cloudnative-pg/grafana-dashboards">Grafana Dashboard for CloudNativePG</a></p>
-<p>He tries to avoid social media - it&rsquo;s too addictive - but you can find Itay in
-the CloudNativePG channels on the CNCF Slack workspace, or <a href="https://github.com/itay-grudev">on GitHub</a>.</p>
+            <p><a href="https://lfx.linuxfoundation.org/tools/mentorship/">LFX Mentorship</a> is a Cloud Native Computing Foundation mentorship
+platform that spans across the CNCF projects. More than 190 mentees have been
+accepted since the programs started in 2019, participating in 96 mentorship
+programs. We have proposed a project for the June cohort, and we’re looking
+for mentees to sign up and receive a stipend for their work!</p>
+<h2 id="implementing-declarative-management-of-postgresql-foreign-data-wrappers">Implementing “Declarative Management of PostgreSQL Foreign Data Wrappers”</h2>
+<p>The project we proposed aims to extend the CloudNativePG operator to support
+declarative configuration of foreign data wrappers through its Database custom
+resource (<a href="http://cloudnative-pg/cloudnative-pg#4683">Upstream Issue</a>).
+PostgreSQL supports the SQL/MED (Management of External Data) specification,
+enabling access to external data sources through standard SQL queries. These
+sources—known as foreign data—are accessed via foreign data wrappers (FDWs),
+which are libraries that handle the connection and data exchange with the
+external systems. A variety of FDWs are available for PostgreSQL.
+Of particular interest for this project is the postgres_fdw extension,
+which facilitates access to other PostgreSQL instances.</p>
+<p>We’re looking forward to an elaborate design discussion in the upstream issue
+in CloudNativePG GitHub repository, involving mentors, maintainers, and the
+community. And ultimately of course, a fully working pull request implementing
+support for declarative foreign data wrappers, complete with reconciliation
+logic for the Database resource controller, Documentation, and automated tests
+integrated into the CI/CD pipeline.</p>
+<h2 id="sign-up-as-a-mentee">Sign up as a mentee</h2>
+<p>Up for the task? You&rsquo;ll have to apply as a mentee on the <a href="https://lfx.linuxfoundation.org/tools/mentorship/">LFX Mentorship website</a>.
+Please see the <a href="https://docs.linuxfoundation.org/lfx/mentorship/mentee-guide">LFX Mentorship guidelines</a> for more details.</p>
+<p>Applications are open from May 14 until May 27, with the selection
+notifications going out on June 4, and the program starting June 9.
+The stipend guides and amounts are listed <a href="https://docs.linuxfoundation.org/lfx/mentorship/mentee-stipends">here</a>.</p>
+<p>We are specifically looking for the following skills / existing knowledge of:</p>
+<ul>
+<li>Go programming (operator development)</li>
+<li>Kubernetes and CRDs (Custom Resource Definitions)</li>
+<li>Git and GitHub workflows</li>
+<li>CloudNativePG</li>
+<li>Familiarity with PostgreSQL internals and SQL syntax</li>
+</ul>
+<p>&hellip; please also see the full eligibility criteria in the <a href="https://docs.linuxfoundation.org/lfx/mentorship/mentees">LFX Mentorship documentation</a>.</p>
+<p>You’ll receive the expert guidance of 4 of CloudNativePG’s maintainers:
+<a href="https://github.com/gbartolini">Gabriele Bartolini</a>, <a href="https://github.com/leonardoce">Leonardo Cecchi</a>, <a href="https://github.com/mnencia">Marco Nenciarini</a>, and <a href="https://github.com/armru">Armando Ruocco</a>.</p>
+<p>We look forward to seeing what we can build together!</p>
 
         </div>
         
@@ -214,20 +226,20 @@ the CloudNativePG channels on the CNCF Slack workspace, or <a href="https://gith
         <div class="text-xs space-y-1.5 mb-14">
             <ul class="text-sm">
                 
-                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/helm"
-                        class="mr-2">helm</a></li>
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/mentorship"
+                        class="mr-2">mentorship</a></li>
                 
-                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/grafana"
-                        class="mr-2">grafana</a></li>
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/lfx"
+                        class="mr-2">lfx</a></li>
                 
-                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/postgresql"
-                        class="mr-2">postgresql</a></li>
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/cncf"
+                        class="mr-2">cncf</a></li>
                 
-                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/open-source"
-                        class="mr-2">open-source</a></li>
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/PostgreSQL"
+                        class="mr-2">PostgreSQL</a></li>
                 
-                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/spotlight"
-                        class="mr-2">spotlight</a></li>
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/Kubernetes"
+                        class="mr-2">Kubernetes</a></li>
                 
             </ul>
 

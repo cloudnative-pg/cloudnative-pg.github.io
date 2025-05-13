@@ -6,8 +6,15 @@
     <description>Recent content in Blog posts on CloudNativePG - PostgreSQL Operator for Kubernetes</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 11 May 2025 14:51:43 +0200</lastBuildDate>
+    <lastBuildDate>Tue, 13 May 2025 14:51:43 +0200</lastBuildDate>
     <atom:link href="https://cloudnative-pg.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CloudNativePG part of LFX Mentorship - sign up as a mentee!</title>
+      <link>https://cloudnative-pg.io/blog/lfx-cncf-mentorship/</link>
+      <pubDate>Tue, 13 May 2025 14:51:43 +0200</pubDate>
+      <guid>https://cloudnative-pg.io/blog/lfx-cncf-mentorship/</guid>
+      <description>We have proposed a project for the June cohort of the CNCF&amp;rsquo;s LFX Mentorship program, and we’re looking for mentees to sign up and receive a stipend for their work.</description>
+    </item>
     <item>
       <title>Contributor Spotlight: Jeff Mealo</title>
       <link>https://cloudnative-pg.io/blog/contributor-highlight-jeff-mealo/</link>

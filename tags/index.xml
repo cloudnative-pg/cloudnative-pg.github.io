@@ -6,8 +6,43 @@
     <description>Recent content in Tags on CloudNativePG - PostgreSQL Operator for Kubernetes</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 11 May 2025 14:51:43 +0200</lastBuildDate>
+    <lastBuildDate>Tue, 13 May 2025 14:51:43 +0200</lastBuildDate>
     <atom:link href="https://cloudnative-pg.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Cncf</title>
+      <link>https://cloudnative-pg.io/tags/cncf/</link>
+      <pubDate>Tue, 13 May 2025 14:51:43 +0200</pubDate>
+      <guid>https://cloudnative-pg.io/tags/cncf/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Kubernetes</title>
+      <link>https://cloudnative-pg.io/tags/kubernetes/</link>
+      <pubDate>Tue, 13 May 2025 14:51:43 +0200</pubDate>
+      <guid>https://cloudnative-pg.io/tags/kubernetes/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Lfx</title>
+      <link>https://cloudnative-pg.io/tags/lfx/</link>
+      <pubDate>Tue, 13 May 2025 14:51:43 +0200</pubDate>
+      <guid>https://cloudnative-pg.io/tags/lfx/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Mentorship</title>
+      <link>https://cloudnative-pg.io/tags/mentorship/</link>
+      <pubDate>Tue, 13 May 2025 14:51:43 +0200</pubDate>
+      <guid>https://cloudnative-pg.io/tags/mentorship/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Postgresql</title>
+      <link>https://cloudnative-pg.io/tags/postgresql/</link>
+      <pubDate>Tue, 13 May 2025 14:51:43 +0200</pubDate>
+      <guid>https://cloudnative-pg.io/tags/postgresql/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Alerts</title>
       <link>https://cloudnative-pg.io/tags/alerts/</link>
@@ -20,13 +55,6 @@
       <link>https://cloudnative-pg.io/tags/chaos-engineering/</link>
       <pubDate>Sun, 11 May 2025 14:51:43 +0200</pubDate>
       <guid>https://cloudnative-pg.io/tags/chaos-engineering/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Cncf</title>
-      <link>https://cloudnative-pg.io/tags/cncf/</link>
-      <pubDate>Sun, 11 May 2025 14:51:43 +0200</pubDate>
-      <guid>https://cloudnative-pg.io/tags/cncf/</guid>
       <description></description>
     </item>
     <item>
@@ -51,24 +79,10 @@
       <description></description>
     </item>
     <item>
-      <title>Postgresql</title>
-      <link>https://cloudnative-pg.io/tags/postgresql/</link>
-      <pubDate>Sun, 11 May 2025 14:51:43 +0200</pubDate>
-      <guid>https://cloudnative-pg.io/tags/postgresql/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>Spotlight</title>
       <link>https://cloudnative-pg.io/tags/spotlight/</link>
       <pubDate>Sun, 11 May 2025 14:51:43 +0200</pubDate>
       <guid>https://cloudnative-pg.io/tags/spotlight/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Kubernetes</title>
-      <link>https://cloudnative-pg.io/tags/kubernetes/</link>
-      <pubDate>Sun, 04 May 2025 14:51:43 +0200</pubDate>
-      <guid>https://cloudnative-pg.io/tags/kubernetes/</guid>
       <description></description>
     </item>
     <item>
