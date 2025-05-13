@@ -26,7 +26,7 @@ for mentees to sign up and receive a stipend for their work!
 ## Implementing “Declarative Management of PostgreSQL Foreign Data Wrappers” 
 The project we proposed aims to extend the CloudNativePG operator to support 
 declarative configuration of foreign data wrappers through its Database custom 
-resource ([Upstream Issue](http://cloudnative-pg/cloudnative-pg#4683)). 
+resource ([Upstream Issue](https://github.com/cloudnative-pg/cloudnative-pg/issues/4683)).
 PostgreSQL supports the SQL/MED (Management of External Data) specification, 
 enabling access to external data sources through standard SQL queries. These 
 sources—known as foreign data—are accessed via foreign data wrappers (FDWs), 
