@@ -6,8 +6,36 @@
     <description>Recent content in Tags on CloudNativePG - PostgreSQL Operator for Kubernetes</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 13 May 2025 14:51:43 +0200</lastBuildDate>
+    <lastBuildDate>Wed, 14 May 2025 22:34:18 +0200</lastBuildDate>
     <atom:link href="https://cloudnative-pg.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Blog</title>
+      <link>https://cloudnative-pg.io/tags/blog/</link>
+      <pubDate>Wed, 14 May 2025 22:34:18 +0200</pubDate>
+      <guid>https://cloudnative-pg.io/tags/blog/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Devops</title>
+      <link>https://cloudnative-pg.io/tags/devops/</link>
+      <pubDate>Wed, 14 May 2025 22:34:18 +0200</pubDate>
+      <guid>https://cloudnative-pg.io/tags/devops/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Migrations</title>
+      <link>https://cloudnative-pg.io/tags/migrations/</link>
+      <pubDate>Wed, 14 May 2025 22:34:18 +0200</pubDate>
+      <guid>https://cloudnative-pg.io/tags/migrations/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Tutorial</title>
+      <link>https://cloudnative-pg.io/tags/tutorial/</link>
+      <pubDate>Wed, 14 May 2025 22:34:18 +0200</pubDate>
+      <guid>https://cloudnative-pg.io/tags/tutorial/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Cncf</title>
       <link>https://cloudnative-pg.io/tags/cncf/</link>
@@ -219,13 +247,6 @@
       <description></description>
     </item>
     <item>
-      <title>Blog</title>
-      <link>https://cloudnative-pg.io/tags/blog/</link>
-      <pubDate>Wed, 08 Nov 2023 11:29:52 +0000</pubDate>
-      <guid>https://cloudnative-pg.io/tags/blog/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>Images</title>
       <link>https://cloudnative-pg.io/tags/images/</link>
       <pubDate>Wed, 08 Nov 2023 11:29:52 +0000</pubDate>
@@ -247,24 +268,10 @@
       <description></description>
     </item>
     <item>
-      <title>Tutorial</title>
-      <link>https://cloudnative-pg.io/tags/tutorial/</link>
-      <pubDate>Wed, 08 Nov 2023 11:29:52 +0000</pubDate>
-      <guid>https://cloudnative-pg.io/tags/tutorial/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>Volumesnapshots</title>
       <link>https://cloudnative-pg.io/tags/volumesnapshots/</link>
       <pubDate>Thu, 12 Oct 2023 13:46:12 +0200</pubDate>
       <guid>https://cloudnative-pg.io/tags/volumesnapshots/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Devops</title>
-      <link>https://cloudnative-pg.io/tags/devops/</link>
-      <pubDate>Sat, 17 Jun 2023 11:29:52 +0200</pubDate>
-      <guid>https://cloudnative-pg.io/tags/devops/</guid>
       <description></description>
     </item>
     <item>

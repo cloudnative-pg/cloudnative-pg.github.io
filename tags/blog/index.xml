@@ -6,8 +6,15 @@
     <description>Recent content in Blog on CloudNativePG - PostgreSQL Operator for Kubernetes</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 08 Nov 2023 11:29:52 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 14 May 2025 22:34:18 +0200</lastBuildDate>
     <atom:link href="https://cloudnative-pg.io/tags/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Migrations With Atlas and CloudNativePG</title>
+      <link>https://cloudnative-pg.io/blog/migrations-with-atlas-and-cloudnativepg/</link>
+      <pubDate>Wed, 14 May 2025 22:34:18 +0200</pubDate>
+      <guid>https://cloudnative-pg.io/blog/migrations-with-atlas-and-cloudnativepg/</guid>
+      <description>Doing schema migrations on CloudNativePG clusters using the Atlas operator</description>
+    </item>
     <item>
       <title>Creating a custom container image for CloudNativePG</title>
       <link>https://cloudnative-pg.io/blog/creating-container-images/</link>

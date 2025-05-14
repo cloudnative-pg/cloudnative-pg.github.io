@@ -6,7 +6,7 @@
 <html lang="en">
 
 <head>
-  <title>CloudNativePG 1.23.3 and 1.22.5 Released! | CloudNativePG - PostgreSQL Operator for Kubernetes</title>
+  <title>Migrations With Atlas and CloudNativePG | CloudNativePG - PostgreSQL Operator for Kubernetes</title>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
@@ -20,24 +20,22 @@
   
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://cloudnative-pg.io/images/hero_image.png">
-  <meta name="twitter:title" content="CloudNativePG 1.23.3 and 1.22.5 Released!">
-  <meta name="twitter:description" content="The CloudNativePG community has released a new update for the supported 1.23 and 1.22 versions of the CloudNativePG operator. Version 1.22 has reached End-of-Life (EOL).">
+  <meta name="twitter:title" content="Migrations With Atlas and CloudNativePG">
+  <meta name="twitter:description" content="Doing schema migrations on CloudNativePG clusters using the Atlas operator">
 
-  <meta property="og:url" content="https://cloudnative-pg.io/releases/cloudnative-pg-1-23.3-released/">
+  <meta property="og:url" content="https://cloudnative-pg.io/blog/migrations-with-atlas-and-cloudnativepg/">
   <meta property="og:site_name" content="CloudNativePG - PostgreSQL Operator for Kubernetes">
-  <meta property="og:title" content="CloudNativePG 1.23.3 and 1.22.5 Released!">
-  <meta property="og:description" content="The CloudNativePG community has released a new update for the supported 1.23 and 1.22 versions of the CloudNativePG operator. Version 1.22 has reached End-of-Life (EOL).">
+  <meta property="og:title" content="Migrations With Atlas and CloudNativePG">
+  <meta property="og:description" content="Doing schema migrations on CloudNativePG clusters using the Atlas operator">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
-    <meta property="article:section" content="releases">
-    <meta property="article:published_time" content="2024-07-29T18:27:49+02:00">
-    <meta property="article:modified_time" content="2024-07-29T18:27:49+02:00">
-    <meta property="article:tag" content="Release">
-    <meta property="article:tag" content="Postgresql">
-    <meta property="article:tag" content="Postgres">
-    <meta property="article:tag" content="Kubernetes">
-    <meta property="article:tag" content="K8s">
-    <meta property="article:tag" content="Cloudnativepg">
+    <meta property="article:section" content="blog">
+    <meta property="article:published_time" content="2025-05-14T22:34:18+02:00">
+    <meta property="article:modified_time" content="2025-05-14T22:34:18+02:00">
+    <meta property="article:tag" content="Blog">
+    <meta property="article:tag" content="Tutorial">
+    <meta property="article:tag" content="Migrations">
+    <meta property="article:tag" content="Devops">
     <meta property="og:image" content="https://cloudnative-pg.io/images/hero_image.png">
 
   
@@ -142,27 +140,27 @@
 
 
     
-<h1 class="h1 text-center mx-auto md:w-3/5">CloudNativePG 1.23.3 and 1.22.5 Released!</h1>
+<h1 class="h1 text-center mx-auto md:w-3/5">Migrations With Atlas and CloudNativePG</h1>
 <div class="md:w-3/5 mx-auto">
     <div class="px-4">
         
         <div class="flex gap-3 my-10 mx-auto flex justify-center">
             
 <div class="my-auto">
-    <img src="/authors/gbartolini//gb.png" class="w-10 h-10 rounded-full"
-        alt="Gabriele Bartolini">
+    <img src="/authors/jsilvela//jsilvela-gh.jpeg" class="w-10 h-10 rounded-full"
+        alt="Jaime Silvela">
 </div>
 <div>
     <div>
         <h1 class="text-lg charcoal font-bold">
-            <a href="/authors/gbartolini">Gabriele Bartolini</a>
+            <a href="/authors/jsilvela">Jaime Silvela</a>
         </h1>
     </div>
     <div class="flex gap-2 text-sm charcoal opacity-75">
     <h6 class="flex gap-2 text-sm charcoal">
-        July 29, 2024
+        May 14, 2025
         •
-        1 minute
+        5 minutes
     </h6>
 </div>
 </div>
@@ -171,34 +169,158 @@
 
         
         <div>
-            <img src="58364dde1adc4a0a8.37186404-2048x1445.jpg" alt="blog image" class="mx-auto">
+            <img src="elephant-migration.jpg" alt="blog image" class="mx-auto">
         </div>
         
 
         
         <div class="mx-auto my-10">
-            <p>We are delighted to announce the latest updates for the <strong>CloudNativePG
-Operator</strong>, now available for versions 1.23 and 1.22.</p>
-<p><strong>Patch releases 1.23.3 and 1.22.5</strong> bring essential bug fixes and enhancements
-to ensure greater stability and resilience for your systems.</p>
-<p><strong>Important Notice:</strong> Version 1.22 has now reached End-of-Life (EOL). The
-1.22.5 release is the final update for this version.</p>
-<p><strong>Upgrade Now:</strong> We strongly recommend updating your operator to take advantage
-of these improvements and ensure your system remains robust.</p>
-<p>For comprehensive details on the changes, please review the release notes:</p>
-<ul>
-<li><a href="https://cloudnative-pg.io/documentation/1.23/release_notes/v1.23/">Release Notes for 1.23.3</a></li>
-<li><a href="https://cloudnative-pg.io/documentation/1.22/release_notes/v1.22/">Release Notes for 1.22.5</a></li>
-</ul>
-<p>Thank you for your continued support. We are committed to providing you with a
-seamless experience with the CloudNativePG Operator. If you are using our
-operator in production, we invite you to
-<a href="https://github.com/cloudnative-pg/cloudnative-pg/blob/main/ADOPTERS.md">add your organization as an adopter of the project</a>.</p>
-<p>Your support is invaluable to us and helps us grow and improve!</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+            <p>One of the most important practices when developing code that relies on
+databases is to use <em>database migration tools</em> for change management.
+It&rsquo;s something you <em>will</em> learn, even if it has to be the hard way.
+(Another thing I see too many newcomers learning the hard way is to take backups
+often, and to test those backups regularly.)</p>
+<p>In the post <a href="https://cloudnative-pg.io/blog/developing-webapps-with-cloudnative-pg/"><em>Developing webapps with CloudNativePG</em></a>,
+we mentioned <a href="https://www.liquibase.com">Liquibase</a>, which is one of the most
+popular database migration tools.</p>
+<p>Traditional database migration tools assume a connection is available to the
+target database. In the context of Kubernetes,
+and of Postgresql clusters built using CloudNativePG, to use such a tool
+we would need to expose the database <em>service</em> outside the Kubernetes cluster,
+for example via
+<a href="https://kubernetes.io/docs/tasks/access-application-cluster/port-forward-access-application-cluster/">port forwarding</a>,
+an <a href="https://kubernetes.io/docs/concepts/services-networking/ingress/">ingress</a>,
+or similar solutions.</p>
+<p>The <a href="https://atlasgo.io">Atlas database migration tool</a> includes a Kubernetes
+operator that lets us manage database migrations within Kubernetes.
+Let&rsquo;s see an example of how to do that:</p>
+<h2 id="step-0--install-cloudnativepg-and-create-a-postgres-cluster">Step 0:  install CloudNativePG and create a Postgres cluster</h2>
+<p>First of all, you should have CloudNativePG running on your kubernetes cluster,
+and a Postgres cluster created with CloudNativePG.
+If you don&rsquo;t yet have this, you can follow the
+<a href="https://cloudnative-pg.io/documentation/current/quickstart/">CloudNativePG quickstart</a>.</p>
+<p>Whether you follow the quickstart or you already had a CloudNativePG/Postgres
+cluster up and running, we&rsquo;ll assume for the rest of this post that your
+CloudNativePG cluster is called <code>cluster-example</code>.</p>
+<h2 id="step-1-install-the-atlas-operator">Step 1: install the Atlas operator</h2>
+<p>To install the Atlas operator, you can use Helm:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>helm install atlas-operator oci://ghcr.io/ariga/charts/atlas-operator
+</span></span></code></pre></div><p>Note that you may need an access token to retrieve the image from
+the GHCR registry (please see the <a href="https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-container-registry#authenticating-to-the-container-registry">GHCR documentation</a>
+for details).</p>
+<p>After Atlas is installed, you will notice new CRDs in your Kubernetes
+installation:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>&gt; kubectl get crd | grep atlas
+</span></span><span style="display:flex;"><span>atlasmigrations.db.atlasgo.io                    &lt;timestamp&gt;
+</span></span><span style="display:flex;"><span>atlasschemas.db.atlasgo.io                       &lt;timestamp&gt;
+</span></span></code></pre></div><h2 id="step-2-make-changes-to-the-database-using-atlas">Step 2: make changes to the database using Atlas</h2>
+<p>We will use the <em>Atlas Schema</em> CRD to manage migrations. You may want
+to open the <a href="https://atlasgo.io/integrations/kubernetes/quickstart">Atlas operator quickstart</a>
+for reference, though we&rsquo;re not going to follow it exactly.</p>
+<p>To apply a migration, we need credentials to access our target database.
+The Atlas operator quickstart uses the <code>urlFrom</code>
+stanza, but with CloudNativePG there is a more convenient way.</p>
+<p>From Step 0, we have assumed we have a CloudNativePG cluster called
+<code>cluster-example</code>.
+CloudNativePG, by default, creates a database called <code>app</code> on clusters, and
+a user <code>app</code> whose credentials are held in a Secret called
+<code>cluster-example-app</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>&gt; kubectl get secrets | grep app
+</span></span><span style="display:flex;"><span>cluster-example-app                    kubernetes.io/basic-auth   9      18h
+</span></span></code></pre></div><p>You can inspect the contents of the secret running
+<code>kubectl get secrets cluster-example-app -o yaml</code>,
+and you will find that it contains a key called <code>password</code>, holding of course
+the password for the <code>app</code> user (base64 encoded).
+In addition to the <code>cluster-example-app</code> Secret, the CloudNativePG operator
+creates Services for Postgres. In particular, we will want to use the ReadWrite
+service, called <code>cluster-example-rw</code>, for the migrations.</p>
+<p>We&rsquo;re going to use the <a href="https://atlasgo.io/integrations/kubernetes/declarative#credentials-object"><code>credentials</code> object</a>
+from the AtlasSchema CRD to reference
+the password and the service. Following along the Atlas Operator Quickstart, we
+create a migration defining a table called <code>t1</code>. Save the following to a file
+named <code>atlas-schema.yaml</code>.
+Notice how CloudNativePG automatically produced the values we need to put
+in the <code>passwordFrom</code> and <code>host</code> fields:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">db.atlasgo.io/v1alpha1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">AtlasSchema</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">atlasschema-pg</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">credentials</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">scheme</span>: <span style="color:#ae81ff">postgres</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">host</span>: <span style="color:#ae81ff">cluster-example-rw.default</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">user</span>: <span style="color:#ae81ff">app</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">passwordFrom</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">secretKeyRef</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">key</span>: <span style="color:#ae81ff">password</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">name</span>: <span style="color:#ae81ff">cluster-example-app</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">database</span>: <span style="color:#ae81ff">app</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">port</span>: <span style="color:#ae81ff">5432</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">parameters</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">sslmode</span>: <span style="color:#ae81ff">disable</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">schema</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">sql</span>: |<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      create table t1 (
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        id int
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      );</span>      
+</span></span></code></pre></div><p>Then apply it: <code>kubectl apply -f atlas-schema.yaml</code>.</p>
+<p>In a few seconds, you should be able to see the Schema has been reconciled:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>&gt; kubectl get atlasschemas.db.atlasgo.io
+</span></span><span style="display:flex;"><span>NAME                 READY   REASON
+</span></span><span style="display:flex;"><span>atlasschema-pg       True    Applied
+</span></span></code></pre></div><p>To verify the effects on the database, let&rsquo;s get a <code>psql</code> session open on one
+of our instances:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>&gt; kubectl exec -ti cluster-example-1 -- psql app
+</span></span><span style="display:flex;"><span>Defaulted container &#34;postgres&#34; out of: postgres, bootstrap-controller (init)
+</span></span><span style="display:flex;"><span>psql (17.4 (Debian 17.4-1.pgdg110+2))
+</span></span><span style="display:flex;"><span>Type &#34;help&#34; for help.
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>app=# \dt
+</span></span><span style="display:flex;"><span>       List of relations
+</span></span><span style="display:flex;"><span> Schema | Name | Type  | Owner
+</span></span><span style="display:flex;"><span>--------+------+-------+-------
+</span></span><span style="display:flex;"><span> public | t1   | table | app
+</span></span><span style="display:flex;"><span>(1 row)
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>app=# \d t1
+</span></span><span style="display:flex;"><span>                 Table &#34;public.t1&#34;
+</span></span><span style="display:flex;"><span> Column |  Type   | Collation | Nullable | Default
+</span></span><span style="display:flex;"><span>--------+---------+-----------+----------+---------
+</span></span><span style="display:flex;"><span> id     | integer |           |          |
+</span></span></code></pre></div><p>As suggested in the Atlas Quickstart, we can modify the schema in the
+<code>atlas-schema.yaml</code> file, and then re-apply with
+<code>kubectl apply -f atlas-schema.yaml</code>, and the Atlas operator will again
+reconcile the database to the desired state.</p>
+<h2 id="whats-the-point-devops">What&rsquo;s the point? DevOps</h2>
+<p>Let&rsquo;s say you have an application that uses a database. In production, the
+database may hold your customers&rsquo;s data, purchase history, financial
+transactions, perhaps maps using PostGIS, etc.</p>
+<p>Application developers will regularly need to add functionality, and often
+that will involve creating new tables, schemas, procedures, indexes, perhaps
+doing some <code>INSERT</code> statements to populate static data, etc.
+The developers will be using a development database, probably hosted in their
+dev machines.
+There might be another database for the purpose of automated testing, and
+of course there&rsquo;s the production database, where the changes will need to be
+applied in the end. These different databases will have different data in them,
+and different loads.
+Add time and other developers, and you have a big chance for snafus of the type
+<em>&ldquo;but it worked on my machine!&rdquo;</em></p>
+<p>Database migration tools help manage this, bringing DevOps to this area of
+databases. Atlas, by working as a Kubernetes operator, makes the dev/prod
+transition even smoother. <br>
+But it&rsquo;s not enough to use good tools. Remember the Agile manifesto:
+<em>&ldquo;individuals and interactions over processes and tools&rdquo;</em>.
+You can find an overview of the challenges posed by database change management
+at <a href="https://dora.dev/capabilities/database-change-management/">DORA</a>.</p>
+<p>Using CloudNativePG, with its services and credentials secrets created out of
+the box, together with Atlas, will enable the developers to create migrations
+in their development Kubernetes installations, update the YAML
+files for Atlas in version control to share with the other devs, and eventually
+apply to the production database smoothly.</p>
+<hr>
+<p>This intro was just to whet your appetite. There is plenty more to learn with
+Atlas.</p>
 
         </div>
         
@@ -209,23 +331,17 @@ operator in production, we invite you to
         <div class="text-xs space-y-1.5 mb-14">
             <ul class="text-sm">
                 
-                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/release"
-                        class="mr-2">release</a></li>
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/blog"
+                        class="mr-2">blog</a></li>
                 
-                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/postgresql"
-                        class="mr-2">postgresql</a></li>
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/tutorial"
+                        class="mr-2">tutorial</a></li>
                 
-                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/postgres"
-                        class="mr-2">postgres</a></li>
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/migrations"
+                        class="mr-2">migrations</a></li>
                 
-                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/kubernetes"
-                        class="mr-2">kubernetes</a></li>
-                
-                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/k8s"
-                        class="mr-2">k8s</a></li>
-                
-                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/cloudnativepg"
-                        class="mr-2">cloudnativepg</a></li>
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/devops"
+                        class="mr-2">devops</a></li>
                 
             </ul>
 

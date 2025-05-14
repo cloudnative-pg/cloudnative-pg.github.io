@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Migrations on CloudNativePG - PostgreSQL Operator for Kubernetes</title>
+    <link>https://cloudnative-pg.io/tags/migrations/</link>
+    <description>Recent content in Migrations on CloudNativePG - PostgreSQL Operator for Kubernetes</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 14 May 2025 22:34:18 +0200</lastBuildDate>
+    <atom:link href="https://cloudnative-pg.io/tags/migrations/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Migrations With Atlas and CloudNativePG</title>
+      <link>https://cloudnative-pg.io/blog/migrations-with-atlas-and-cloudnativepg/</link>
+      <pubDate>Wed, 14 May 2025 22:34:18 +0200</pubDate>
+      <guid>https://cloudnative-pg.io/blog/migrations-with-atlas-and-cloudnativepg/</guid>
+      <description>Doing schema migrations on CloudNativePG clusters using the Atlas operator</description>
+    </item>
+  </channel>
+</rss>

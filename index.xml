@@ -6,7 +6,16 @@
     <description>Recent content on CloudNativePG - PostgreSQL Operator for Kubernetes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 13 May 2025 14:51:43 +0200</lastBuildDate><atom:link href="https://cloudnative-pg.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 14 May 2025 22:34:18 +0200</lastBuildDate><atom:link href="https://cloudnative-pg.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Migrations With Atlas and CloudNativePG</title>
+      <link>https://cloudnative-pg.io/blog/migrations-with-atlas-and-cloudnativepg/</link>
+      <pubDate>Wed, 14 May 2025 22:34:18 +0200</pubDate>
+      
+      <guid>https://cloudnative-pg.io/blog/migrations-with-atlas-and-cloudnativepg/</guid>
+      <description>Doing schema migrations on CloudNativePG clusters using the Atlas operator</description>
+    </item>
+    
     <item>
       <title>CloudNativePG part of LFX Mentorship - sign up as a mentee!</title>
       <link>https://cloudnative-pg.io/blog/lfx-cncf-mentorship/</link>

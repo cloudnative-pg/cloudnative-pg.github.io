@@ -25,10 +25,28 @@
     <loc>https://cloudnative-pg.io/end_users/hitachi/</loc>
   </url><url>
     <loc>https://cloudnative-pg.io/</loc>
-    <lastmod>2025-05-13T14:51:43+02:00</lastmod>
+    <lastmod>2025-05-14T22:34:18+02:00</lastmod>
+  </url><url>
+    <loc>https://cloudnative-pg.io/tags/blog/</loc>
+    <lastmod>2025-05-14T22:34:18+02:00</lastmod>
   </url><url>
     <loc>https://cloudnative-pg.io/blog/</loc>
-    <lastmod>2025-05-13T14:51:43+02:00</lastmod>
+    <lastmod>2025-05-14T22:34:18+02:00</lastmod>
+  </url><url>
+    <loc>https://cloudnative-pg.io/tags/devops/</loc>
+    <lastmod>2025-05-14T22:34:18+02:00</lastmod>
+  </url><url>
+    <loc>https://cloudnative-pg.io/tags/migrations/</loc>
+    <lastmod>2025-05-14T22:34:18+02:00</lastmod>
+  </url><url>
+    <loc>https://cloudnative-pg.io/blog/migrations-with-atlas-and-cloudnativepg/</loc>
+    <lastmod>2025-05-14T22:34:18+02:00</lastmod>
+  </url><url>
+    <loc>https://cloudnative-pg.io/tags/</loc>
+    <lastmod>2025-05-14T22:34:18+02:00</lastmod>
+  </url><url>
+    <loc>https://cloudnative-pg.io/tags/tutorial/</loc>
+    <lastmod>2025-05-14T22:34:18+02:00</lastmod>
   </url><url>
     <loc>https://cloudnative-pg.io/blog/lfx-cncf-mentorship/</loc>
     <lastmod>2025-05-13T14:51:43+02:00</lastmod>
@@ -46,9 +64,6 @@
     <lastmod>2025-05-13T14:51:43+02:00</lastmod>
   </url><url>
     <loc>https://cloudnative-pg.io/tags/postgresql/</loc>
-    <lastmod>2025-05-13T14:51:43+02:00</lastmod>
-  </url><url>
-    <loc>https://cloudnative-pg.io/tags/</loc>
     <lastmod>2025-05-13T14:51:43+02:00</lastmod>
   </url><url>
     <loc>https://cloudnative-pg.io/tags/cloudnativepg/</loc>
@@ -189,9 +204,6 @@
     <loc>https://cloudnative-pg.io/tags/applications/</loc>
     <lastmod>2023-11-08T11:29:52+00:00</lastmod>
   </url><url>
-    <loc>https://cloudnative-pg.io/tags/blog/</loc>
-    <lastmod>2023-11-08T11:29:52+00:00</lastmod>
-  </url><url>
     <loc>https://cloudnative-pg.io/blog/creating-container-images/</loc>
     <lastmod>2023-11-08T11:29:52+00:00</lastmod>
   </url><url>
@@ -204,9 +216,6 @@
     <loc>https://cloudnative-pg.io/tags/programming/</loc>
     <lastmod>2023-11-08T11:29:52+00:00</lastmod>
   </url><url>
-    <loc>https://cloudnative-pg.io/tags/tutorial/</loc>
-    <lastmod>2023-11-08T11:29:52+00:00</lastmod>
-  </url><url>
     <loc>https://cloudnative-pg.io/releases/cloudnative-pg-1-21.1-released/</loc>
     <lastmod>2023-11-03T15:43:07+01:00</lastmod>
   </url><url>
@@ -217,9 +226,6 @@
     <lastmod>2023-10-12T13:46:12+02:00</lastmod>
   </url><url>
     <loc>https://cloudnative-pg.io/blog/developing-webapps-with-cloudnative-pg/</loc>
-    <lastmod>2023-06-17T11:29:52+02:00</lastmod>
-  </url><url>
-    <loc>https://cloudnative-pg.io/tags/devops/</loc>
     <lastmod>2023-06-17T11:29:52+02:00</lastmod>
   </url><url>
     <loc>https://cloudnative-pg.io/releases/cloudnative-pg-1-20-1-released/</loc>
