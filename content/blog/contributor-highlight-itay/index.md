@@ -1,4 +1,4 @@
-	---
+---
 title: "Contributor Spotlight: Itay Grudev"
 date: 2025-04-14T14:51:43+02:00
 draft: false
@@ -11,12 +11,13 @@ tags:
  - grafana
  - postgresql
  - open-source
+ - spotlight
 summary: "In a mini-series on this blog we highlight the work of the community.
   First up is Itay Grudev, component owner for the Operator chart and PostgreSQL
   Cluster Chart and the Grafana Dashboard for CloudNativePG."
 ---
 
-Building and maintaining and open source project takes a village. In a
+Building and maintaining an open source project takes a village. In a
 mini-series on this blog we would like to highlight the work of our
 maintainers, component owners, and members of the larger community.
 
