@@ -6,8 +6,15 @@
     <description>Recent content in Postgresql on CloudNativePG - PostgreSQL Operator for Kubernetes</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 13 May 2025 14:51:43 +0200</lastBuildDate>
+    <lastBuildDate>Wed, 21 May 2025 13:51:43 +0200</lastBuildDate>
     <atom:link href="https://cloudnative-pg.io/tags/postgresql/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Contributor Spotlight: Francesco Canovai</title>
+      <link>https://cloudnative-pg.io/blog/contributor-highlight-francesco-canovai/</link>
+      <pubDate>Wed, 21 May 2025 13:51:43 +0200</pubDate>
+      <guid>https://cloudnative-pg.io/blog/contributor-highlight-francesco-canovai/</guid>
+      <description>In a mini-series on this blog we highlight the work of the community. Today we meet Francesco Canovai, Senior Software Development Engineer at EDB, and CloudNativePG maintainer.</description>
+    </item>
     <item>
       <title>CloudNativePG part of LFX Mentorship - sign up as a mentee!</title>
       <link>https://cloudnative-pg.io/blog/lfx-cncf-mentorship/</link>

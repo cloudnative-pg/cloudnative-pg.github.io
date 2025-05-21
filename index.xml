@@ -6,7 +6,16 @@
     <description>Recent content on CloudNativePG - PostgreSQL Operator for Kubernetes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 14 May 2025 22:34:18 +0200</lastBuildDate><atom:link href="https://cloudnative-pg.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 21 May 2025 13:51:43 +0200</lastBuildDate><atom:link href="https://cloudnative-pg.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Contributor Spotlight: Francesco Canovai</title>
+      <link>https://cloudnative-pg.io/blog/contributor-highlight-francesco-canovai/</link>
+      <pubDate>Wed, 21 May 2025 13:51:43 +0200</pubDate>
+      
+      <guid>https://cloudnative-pg.io/blog/contributor-highlight-francesco-canovai/</guid>
+      <description>In a mini-series on this blog we highlight the work of the community. Today we meet Francesco Canovai, Senior Software Development Engineer at EDB, and CloudNativePG maintainer.</description>
+    </item>
+    
     <item>
       <title>Migrations With Atlas and CloudNativePG</title>
       <link>https://cloudnative-pg.io/blog/migrations-with-atlas-and-cloudnativepg/</link>

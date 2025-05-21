@@ -1,26 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Testing on CloudNativePG - PostgreSQL Operator for Kubernetes</title>
-    <link>https://cloudnative-pg.io/tags/testing/</link>
-    <description>Recent content in Testing on CloudNativePG - PostgreSQL Operator for Kubernetes</description>
+    <title>Github on CloudNativePG - PostgreSQL Operator for Kubernetes</title>
+    <link>https://cloudnative-pg.io/tags/github/</link>
+    <description>Recent content in Github on CloudNativePG - PostgreSQL Operator for Kubernetes</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 21 May 2025 13:51:43 +0200</lastBuildDate>
-    <atom:link href="https://cloudnative-pg.io/tags/testing/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://cloudnative-pg.io/tags/github/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Contributor Spotlight: Francesco Canovai</title>
       <link>https://cloudnative-pg.io/blog/contributor-highlight-francesco-canovai/</link>
       <pubDate>Wed, 21 May 2025 13:51:43 +0200</pubDate>
       <guid>https://cloudnative-pg.io/blog/contributor-highlight-francesco-canovai/</guid>
       <description>In a mini-series on this blog we highlight the work of the community. Today we meet Francesco Canovai, Senior Software Development Engineer at EDB, and CloudNativePG maintainer.</description>
-    </item>
-    <item>
-      <title>Introducing Ciclops, a new GitHub action to better understand CI/CD test results</title>
-      <link>https://cloudnative-pg.io/blog/introducing-ciclops/</link>
-      <pubDate>Wed, 25 Jan 2023 13:13:36 +0100</pubDate>
-      <guid>https://cloudnative-pg.io/blog/introducing-ciclops/</guid>
-      <description>Introducing Ciclops, a GitHub Action to make sense of Testing</description>
     </item>
   </channel>
 </rss>
