@@ -3,7 +3,7 @@ title: "Contributor Spotlight: Francesco Canovai"
 date: 2025-05-21T13:51:43+02:00
 draft: false
 image:
-    url: 
+    url: fcanovai.jpg
     attribution:
 author: fdrees
 tags:
