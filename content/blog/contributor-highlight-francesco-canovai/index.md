@@ -1,6 +1,6 @@
 ---
 title: "Contributor Spotlight: Francesco Canovai"
-date: 2025-05-07T14:51:43+02:00
+date: 2025-05-21T13:51:43+02:00
 draft: false
 image:
     url: 
@@ -29,15 +29,16 @@ living in Prato, Italy. No point asking when he first found out about
 CloudNativePG: he was in the room when/where the project started! The 
 first commit with his name on it is the initial suite of end-to-end tests.
 
-One dream he has for the project is to rework the tests to use a configuration 
-and avoid the GitHub Actions + Makefile + shell scripts + Ginkgo Frankenstein 
-mix currently used. If only there were unlimited hours in the day!
+One dream he has for the project is to rework the tests so they are driven 
+by a single unified configuration file, instead of the Frankenstein approach 
+in current use entailing GH actions, Makefiles, shell scripts,... If only 
+there were unlimited hours in the day!
 
 Francesco got into technology in the first place playing videogames (of the 
 rpg and grand strategy genre). At 15 he was sure he wanted to study computer 
 science, and in his early twenties he really wanted to teach maths. It's 
-never too late to switch, I don't think the world is saturated for math 
-teachers. 
+never too late to switch, Francesco, I don't think the world is saturated for 
+math teachers! 
 
 Today what he's really interested in, is the human side of tech and open 
 source: "It amazes me to see where things go when multiple people work in 
