@@ -78,7 +78,7 @@ core. You have until then to complete your migration.
 This marks a significant milestone in CloudNativePG’s evolution—the culmination
 of a multi-year effort that introduced CNPG-I, our extensible plugin interface.
 It is a crucial step toward making CloudNativePG a backup-agnostic solution
-while also enabling leaner operand images by removing the need to bundle Barman
+while enabling leaner operand images by removing the need to bundle Barman
 Cloud directly. It also paves the way for future plugin support for volume
 snapshot backups and restores.
 
@@ -131,44 +131,6 @@ to help shape the future of cloud-native Postgres!
 
 Thank you for your continued support! Upgrade today and discover how
 CloudNativePG can elevate your PostgreSQL experience to new heights.
-
-<!--
-# About CloudNativePG
-
-[CloudNativePG](https://cloudnative-pg.io) is an open-source Kubernetes
-Operator specifically designed for PostgreSQL workloads. It manages the entire
-lifecycle of a PostgreSQL cluster, including bootstrapping, configuration, high
-availability, connection routing, and comprehensive backup and disaster
-recovery mechanisms. By leveraging PostgreSQL's native streaming replication,
-CloudNativePG efficiently distributes data across pods, nodes, and zones using
-standard Kubernetes patterns, enabling seamless scaling of replicas in a
-Kubernetes-native manner. Originally developed and supported by
-[EDB](https://www.enterprisedb.com/), CloudNativePG is a
-[CNCF Sandbox project](https://www.cncf.io/projects/cloudnativepg/)
-and the sole PostgreSQL operator in this category.
-
--->
-<!--
-Tweet
-🚀 Exciting news! CloudNativePG 1.26.0 is here with exciting new features like major in-place upgrades, startup and readiness probes for replicas, and declarative extensions management.
-
-LINK
-
-#CloudNativePG #PostgreSQL #Kubernetes #OpenSource
-
---->
-<!--
-LinkedIn
-🚀 **Exciting News! CloudNativePG 1.26.0 and 1.25.2 Released!** 🚀
-
-The CloudNativePG Community is thrilled to announce the release of CloudNativePG 1.26.0! This release introduces powerful new features, including:
-
-🔹 Declarative offline in-place PostgreSQL major upgrades
-🔹 Smarter startup and readiness probes for replicas
-🔹 Declarative management of extensions and schemas
-🔹 The new Barman Cloud Plugin for backup and recovery via object stores
-
-LINK
 
 Join our vibrant community, share your insights, and stay updated on the latest developments by following us and joining our Slack channel.
 
