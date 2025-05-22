@@ -133,7 +133,3 @@ Thank you for your continued support! Upgrade today and discover how
 CloudNativePG can elevate your PostgreSQL experience to new heights.
 
 Join our vibrant community, share your insights, and stay updated on the latest developments by following us and joining our Slack channel.
-
-#CloudNativePG #PostgreSQL #Kubernetes #OpenSource
--->
-
