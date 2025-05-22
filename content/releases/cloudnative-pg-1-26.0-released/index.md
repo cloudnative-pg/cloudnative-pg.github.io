@@ -30,7 +30,7 @@ reinforces our commitment to sustainable, community-driven innovation.
 
 ---
 
-## What’s New in CloudNativePG 1.26.0?
+## What's New in CloudNativePG 1.26.0?
 
 ### Declarative Offline In-Place Major Upgrades of PostgreSQL
 
