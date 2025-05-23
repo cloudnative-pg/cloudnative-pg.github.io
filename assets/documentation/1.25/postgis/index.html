@@ -274,6 +274,11 @@
                 <li class="toctree-l1"><a class="reference internal" href="../release_notes/">Release notes</a>
                 </li>
               </ul>
+              <p class="caption"><span class="caption-text">CNCF Projects Integrations</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../cncf-projects/external-secrets/">External Secrets</a>
+                  </li>
+              </ul>
               <p class="caption"><span class="caption-text">Appendixes</span></p>
               <ul>
                   <li class="toctree-l1"><a class="reference internal" href="../appendixes/object_stores/">Appendix A - Common object stores for backups</a>
@@ -303,6 +308,8 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="postgis">PostGIS</h1>
+<!-- SPDX-License-Identifier: CC-BY-4.0 -->
+
 <p><a href="https://postgis.net/">PostGIS</a> is a very popular open source extension
 for PostgreSQL that introduces support for storing GIS (Geographic Information
 Systems) objects in the database and be queried via SQL.</p>
@@ -395,7 +402,7 @@ container, by connecting to the <code>app</code> database (you might obtain diff
 values from the ones in this document):</p>
 <pre><code class="language-console">$ kubectl exec -ti postgis-example-1 -- psql app
 Defaulted container &quot;postgres&quot; out of: postgres, bootstrap-controller (init)
-psql (17.4 (Debian 17.4-1.pgdg110+1))
+psql (17.5 (Debian 17.5-1.pgdg110+1))
 Type &quot;help&quot; for help.
 
 app=# SELECT * FROM pg_available_extensions WHERE name ~ '^postgis' ORDER BY 1;
@@ -446,6 +453,7 @@ database.</p>
 
   <div role="contentinfo">
     <!-- Copyright etc -->
+      <p>Copyright © CloudNativePG a Series of LF Projects, LLC</p>
   </div>
 
   Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.

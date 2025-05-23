@@ -133,7 +133,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../declarative_role_management/">Database Role Management</a>
+                <li class="toctree-l1"><a class="reference internal" href="../declarative_role_management/">PostgreSQL Role Management</a>
                 </li>
               </ul>
               <ul>
@@ -266,6 +266,11 @@
                 <li class="toctree-l1"><a class="reference internal" href="../release_notes/">Release notes</a>
                 </li>
               </ul>
+              <p class="caption"><span class="caption-text">CNCF Projects Integrations</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../cncf-projects/external-secrets/">External Secrets</a>
+                  </li>
+              </ul>
               <p class="caption"><span class="caption-text">Appendixes</span></p>
               <ul>
                   <li class="toctree-l1"><a class="reference internal" href="../appendixes/object_stores/">Appendix A - Common object stores for backups</a>
@@ -295,6 +300,8 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="declarative-hibernation">Declarative hibernation</h1>
+<!-- SPDX-License-Identifier: CC-BY-4.0 -->
+
 <p>CloudNativePG is designed to keep PostgreSQL clusters up, running and available
 anytime.</p>
 <p>There are some kinds of workloads that require the database to be up only when
@@ -339,7 +346,7 @@ condition:</p>
 Cluster Summary
 Name:              cluster-example
 Namespace:         default
-PostgreSQL Image:  ghcr.io/cloudnative-pg/postgresql:17.4
+PostgreSQL Image:  ghcr.io/cloudnative-pg/postgresql:17.5
 Primary instance:  cluster-example-2
 Status:            Cluster in healthy state 
 Instances:         3
@@ -371,6 +378,7 @@ Time     2023-03-05 16:43:35 +0000 UTC
 
   <div role="contentinfo">
     <!-- Copyright etc -->
+      <p>Copyright © CloudNativePG a Series of LF Projects, LLC</p>
   </div>
 
   Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.

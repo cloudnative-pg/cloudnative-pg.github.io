@@ -133,7 +133,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../declarative_role_management/">Database Role Management</a>
+                <li class="toctree-l1"><a class="reference internal" href="../declarative_role_management/">PostgreSQL Role Management</a>
                 </li>
               </ul>
               <ul>
@@ -272,6 +272,11 @@
                 <li class="toctree-l1"><a class="reference internal" href="../release_notes/">Release notes</a>
                 </li>
               </ul>
+              <p class="caption"><span class="caption-text">CNCF Projects Integrations</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../cncf-projects/external-secrets/">External Secrets</a>
+                  </li>
+              </ul>
               <p class="caption"><span class="caption-text">Appendixes</span></p>
               <ul>
                   <li class="toctree-l1"><a class="reference internal" href="../appendixes/object_stores/">Appendix A - Common object stores for backups</a>
@@ -301,6 +306,8 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="operator-configuration">Operator configuration</h1>
+<!-- SPDX-License-Identifier: CC-BY-4.0 -->
+
 <p>The operator for CloudNativePG is installed from a standard
 deployment manifest and follows the convention over configuration paradigm.
 While this is fine in most cases, there are some scenarios where you want
@@ -362,6 +369,10 @@ As a result, if a parameter is defined in both places, the one in the Secret wil
 <td>when set to <code>true</code>, enables in-place updates of the instance manager after an update of the operator, avoiding rolling updates of the cluster (default <code>false</code>)</td>
 </tr>
 <tr>
+<td><code>KUBERNETES_CLUSTER_DOMAIN</code></td>
+<td>Defines the domain suffix for service FQDNs within the Kubernetes cluster. If left unset, it defaults to "cluster.local".</td>
+</tr>
+<tr>
 <td><code>MONITORING_QUERIES_CONFIGMAP</code></td>
 <td>The name of a ConfigMap in the operator's namespace with a set of default queries (to be specified under the key <code>queries</code>) to be applied to all created Clusters</td>
 </tr>
@@ -376,6 +387,14 @@ As a result, if a parameter is defined in both places, the one in the Secret wil
 <tr>
 <td><code>EXPIRING_CHECK_THRESHOLD</code></td>
 <td>Determines the threshold, in days, for identifying a certificate as expiring. Default is 7.</td>
+</tr>
+<tr>
+<td><code>OPERATOR_IMAGE_NAME</code></td>
+<td>The name of the operator image used to bootstrap Pods. Defaults to the image specified during installation.</td>
+</tr>
+<tr>
+<td><code>POSTGRES_IMAGE_NAME</code></td>
+<td>The name of the PostgreSQL image used by default for new clusters. Defaults to the version specified in the operator.</td>
 </tr>
 <tr>
 <td><code>CREATE_ANY_SERVICE</code></td>
@@ -491,6 +510,7 @@ will have the PPROF server enabled.</p>
 
   <div role="contentinfo">
     <!-- Copyright etc -->
+      <p>Copyright © CloudNativePG a Series of LF Projects, LLC</p>
   </div>
 
   Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.

@@ -133,7 +133,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../declarative_role_management/">Database Role Management</a>
+                <li class="toctree-l1"><a class="reference internal" href="../declarative_role_management/">PostgreSQL Role Management</a>
                 </li>
               </ul>
               <ul>
@@ -278,6 +278,11 @@
                 <li class="toctree-l1"><a class="reference internal" href="../release_notes/">Release notes</a>
                 </li>
               </ul>
+              <p class="caption"><span class="caption-text">CNCF Projects Integrations</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../cncf-projects/external-secrets/">External Secrets</a>
+                  </li>
+              </ul>
               <p class="caption"><span class="caption-text">Appendixes</span></p>
               <ul>
                   <li class="toctree-l1"><a class="reference internal" href="../appendixes/object_stores/">Appendix A - Common object stores for backups</a>
@@ -307,6 +312,8 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="supported-releases">Supported releases</h1>
+<!-- SPDX-License-Identifier: CC-BY-4.0 -->
+
 <!-- Inspired by https://github.com/istio/istio.io/blob/933b896c/content/en/docs/releases/supported-releases/index.md -->
 <!-- Inspired by https://github.com/cert-manager/website/blob/009c5e41/content/docs/installation/supported-releases.md -->
 
@@ -410,12 +417,21 @@ following the patch version, as specified in <a href="https://semver.org/#spec-i
 </thead>
 <tbody>
 <tr>
+<td>1.26.x</td>
+<td>Yes</td>
+<td>May 23, 2025</td>
+<td>~ Nov 2025</td>
+<td>1.30, 1.31, 1.32, 1.33</td>
+<td>1.29</td>
+<td>13 - 17</td>
+</tr>
+<tr>
 <td>1.25.x</td>
 <td>Yes</td>
 <td>Dec 23, 2024</td>
-<td>~ May/Jun, 2025</td>
+<td>22 Aug 2025</td>
 <td>1.29, 1.30, 1.31, 1.32</td>
-<td>1.27, 1.28</td>
+<td>1.33</td>
 <td>13 - 17</td>
 </tr>
 <tr>
@@ -424,7 +440,7 @@ following the patch version, as specified in <a href="https://semver.org/#spec-i
 <td>Aug 22, 2024</td>
 <td>Mar 23, 2025</td>
 <td>1.28, 1.29, 1.30, 1.31</td>
-<td>1.27</td>
+<td></td>
 <td>13 - 17</td>
 </tr>
 <tr>
@@ -474,19 +490,19 @@ version of PostgreSQL, we might not be able to help you.</p>
 </thead>
 <tbody>
 <tr>
-<td>1.26.0</td>
-<td>Mar, 2025</td>
-<td>Aug/Sep, 2025</td>
-</tr>
-<tr>
 <td>1.27.0</td>
-<td>Jun, 2025</td>
-<td>Dec, 2025</td>
+<td>~ Aug, 2025</td>
+<td>~ Feb, 2026</td>
 </tr>
 <tr>
 <td>1.28.0</td>
-<td>Sep, 2025</td>
-<td>Mar/Apr, 2025</td>
+<td>~ Nov, 2025</td>
+<td>~ May, 2026</td>
+</tr>
+<tr>
+<td>1.29.0</td>
+<td>~ Feb, 2025</td>
+<td>~ Aug, 2026</td>
 </tr>
 </tbody>
 </table>
@@ -594,20 +610,24 @@ release every two months.</p>
 <p>We offer two types of support:</p>
 <dl>
 <dt>Technical support</dt>
-<dd>Technical assistance is offered on a best-effort basis for supported
-releases only. You can request support from the community on the
-<a href="https://cloudnativepg.slack.com/">CloudNativePG Slack</a> (in the <code>#general</code> channel),
-or using <a href="https://github.com/cloudnative-pg/cloudnative-pg/discussions">GitHub Discussions</a>.</dd>
+<dd>Technical assistance is offered on a best-effort basis and is limited to
+supported releases only.  For help, you can reach out to the community via the
+<a href="https://cloud-native.slack.com/archives/C08MAUJ7NPM">#cloudnativepg-users</a>
+channel on the CNCF Slack workspace (if you're not yet a member, you can
+<a href="https://communityinviter.com/apps/cloud-native/cncf">join the workspace</a>).
+Alternatively, you can post your questions in
+the <a href="https://github.com/cloudnative-pg/cloudnative-pg/discussions">GitHub Discussions</a>
+section of the CloudNativePG repository.</dd>
 <dt>Security and bug fixes</dt>
 <dd>We backport important bug fixes — including security fixes - to all
 currently supported releases. Before backporting a patch, we ask ourselves:
 <em>"Does this backport improve <code>CloudNativePG</code>, bearing in mind that we really
 value stability for already-released versions?"</em></dd>
 </dl>
-<p>If you're looking for professional support, see the
-<a href="https://cloudnative-pg.io/support/">Support page in the website</a>.
-The vendors listed there might provide service level agreements that included
-extended support timeframes.</p>
+<p>If you’re looking for professional support, please refer to the
+<a href="https://cloudnative-pg.io/support/">Support page on our website</a>.
+The vendors listed there may offer service level agreements (SLA), including
+extended support periods and additional services.</p>
               
             </div>
           </div><footer>
@@ -620,6 +640,7 @@ extended support timeframes.</p>
 
   <div role="contentinfo">
     <!-- Copyright etc -->
+      <p>Copyright © CloudNativePG a Series of LF Projects, LLC</p>
   </div>
 
   Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.

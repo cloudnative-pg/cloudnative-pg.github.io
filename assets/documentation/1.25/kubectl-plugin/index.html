@@ -370,6 +370,11 @@
                 <li class="toctree-l1"><a class="reference internal" href="../release_notes/">Release notes</a>
                 </li>
               </ul>
+              <p class="caption"><span class="caption-text">CNCF Projects Integrations</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../cncf-projects/external-secrets/">External Secrets</a>
+                  </li>
+              </ul>
               <p class="caption"><span class="caption-text">Appendixes</span></p>
               <ul>
                   <li class="toctree-l1"><a class="reference internal" href="../appendixes/object_stores/">Appendix A - Common object stores for backups</a>
@@ -399,6 +404,8 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="kubectl-plugin">Kubectl Plugin</h1>
+<!-- SPDX-License-Identifier: CC-BY-4.0 -->
+
 <p>CloudNativePG provides a plugin for <code>kubectl</code> to manage a cluster in Kubernetes.</p>
 <h2 id="install">Install</h2>
 <p>You can install the <code>cnpg</code> plugin using a variety of methods.</p>
@@ -421,9 +428,9 @@ section. In that section are pre-built packages for a variety of systems.
 As a result, you can follow standard practices and instructions to install
 them in your systems.</p>
 <h4 id="debian-packages">Debian packages</h4>
-<p>For example, let's install the 1.25.1 release of the plugin, for an Intel based
+<p>For example, let's install the 1.25.2 release of the plugin, for an Intel based
 64 bit server. First, we download the right <code>.deb</code> file.</p>
-<pre><code class="language-sh">wget https://github.com/cloudnative-pg/cloudnative-pg/releases/download/v1.25.1/kubectl-cnpg_1.25.1_linux_x86_64.deb \
+<pre><code class="language-sh">wget https://github.com/cloudnative-pg/cloudnative-pg/releases/download/v1.25.2/kubectl-cnpg_1.25.2_linux_x86_64.deb \
   --output-document kube-plugin.deb
 </code></pre>
 <p>Then, with superuser privileges, install from the local file using <code>dpkg</code>:</p>
@@ -431,13 +438,13 @@ them in your systems.</p>
 Selecting previously unselected package cnpg.
 (Reading database ... 6688 files and directories currently installed.)
 Preparing to unpack kube-plugin.deb ...
-Unpacking cnpg (1.25.1) ...
-Setting up cnpg (1.25.1) ...
+Unpacking cnpg (1.25.2) ...
+Setting up cnpg (1.25.2) ...
 </code></pre>
 <h4 id="rpm-packages">RPM packages</h4>
-<p>As in the example for <code>.rpm</code> packages, let's install the 1.25.1 release for an
+<p>As in the example for <code>.rpm</code> packages, let's install the 1.25.2 release for an
 Intel 64 bit machine. Note the <code>--output</code> flag to provide a file name.</p>
-<pre><code class="language-sh">curl -L https://github.com/cloudnative-pg/cloudnative-pg/releases/download/v1.25.1/kubectl-cnpg_1.25.1_linux_x86_64.rpm \
+<pre><code class="language-sh">curl -L https://github.com/cloudnative-pg/cloudnative-pg/releases/download/v1.25.2/kubectl-cnpg_1.25.2_linux_x86_64.rpm \
   --output kube-plugin.rpm
 </code></pre>
 <p>Then, with superuser privileges, install with <code>yum</code>, and you're ready to use:</p>
@@ -448,7 +455,7 @@ Dependencies resolved.
  Package            Architecture         Version                   Repository                  Size
 ====================================================================================================
 Installing:
- cnpg               x86_64               1.25.1                  @commandline                20 M
+ cnpg               x86_64               1.25.2                  @commandline                20 M
 
 Transaction Summary
 ====================================================================================================
@@ -639,9 +646,9 @@ sandbox-3  0/604DE38  0/604DE38  0/604DE38  0/604DE38   00:00:00   00:00:00   00
 Instances status
 Name       Current LSN  Replication role  Status  QoS         Manager Version  Node
 ----       -----------  ----------------  ------  ---         ---------------  ----
-sandbox-1  0/604DE38    Primary           OK      BestEffort  1.25.1           k8s-eu-worker
-sandbox-2  0/604DE38    Standby (async)   OK      BestEffort  1.25.1           k8s-eu-worker2
-sandbox-3  0/604DE38    Standby (async)   OK      BestEffort  1.25.1           k8s-eu-worker
+sandbox-1  0/604DE38    Primary           OK      BestEffort  1.25.2           k8s-eu-worker
+sandbox-2  0/604DE38    Standby (async)   OK      BestEffort  1.25.2           k8s-eu-worker2
+sandbox-3  0/604DE38    Standby (async)   OK      BestEffort  1.25.2           k8s-eu-worker
 </code></pre>
 <p>If you require more detailed status information, use the <code>--verbose</code> option (or
 <code>-v</code> for short). The level of detail increases each time the flag is repeated:</p>
@@ -690,9 +697,9 @@ sandbox-primary  primary  1              1                1                     
 Instances status
 Name       Current LSN  Replication role  Status  QoS         Manager Version  Node
 ----       -----------  ----------------  ------  ---         ---------------  ----
-sandbox-1  0/6053720    Primary           OK      BestEffort  1.25.1           k8s-eu-worker
-sandbox-2  0/6053720    Standby (async)   OK      BestEffort  1.25.1           k8s-eu-worker2
-sandbox-3  0/6053720    Standby (async)   OK      BestEffort  1.25.1           k8s-eu-worker
+sandbox-1  0/6053720    Primary           OK      BestEffort  1.25.2           k8s-eu-worker
+sandbox-2  0/6053720    Standby (async)   OK      BestEffort  1.25.2           k8s-eu-worker2
+sandbox-3  0/6053720    Standby (async)   OK      BestEffort  1.25.2           k8s-eu-worker
 </code></pre>
 <p>With an additional <code>-v</code> (e.g. <code>kubectl cnpg status sandbox -v -v</code>), you can
 also view PostgreSQL configuration, HBA settings, and certificates.</p>
@@ -859,13 +866,13 @@ when investigating restarted operators.
 In all cases, it will also try to get the CURRENT operator logs. If current
 and previous logs are available, it will show them both.</p>
 </div>
-<pre><code class="language-output">====== Begin of Previous Log =====
-2023-03-28T12:56:41.251711811Z {&quot;level&quot;:&quot;info&quot;,&quot;ts&quot;:&quot;2023-03-28T12:56:41Z&quot;,&quot;logger&quot;:&quot;setup&quot;,&quot;msg&quot;:&quot;Starting CloudNativePG Operator&quot;,&quot;version&quot;:&quot;1.25.1&quot;,&quot;build&quot;:{&quot;Version&quot;:&quot;1.25.1+dev107&quot;,&quot;Commit&quot;:&quot;cc9bab17&quot;,&quot;Date&quot;:&quot;2023-03-28&quot;}}
+<pre><code class="language-output">====== Beginning of Previous Log =====
+2023-03-28T12:56:41.251711811Z {&quot;level&quot;:&quot;info&quot;,&quot;ts&quot;:&quot;2023-03-28T12:56:41Z&quot;,&quot;logger&quot;:&quot;setup&quot;,&quot;msg&quot;:&quot;Starting CloudNativePG Operator&quot;,&quot;version&quot;:&quot;1.25.2&quot;,&quot;build&quot;:{&quot;Version&quot;:&quot;1.25.2+dev107&quot;,&quot;Commit&quot;:&quot;cc9bab17&quot;,&quot;Date&quot;:&quot;2023-03-28&quot;}}
 2023-03-28T12:56:41.251851909Z {&quot;level&quot;:&quot;info&quot;,&quot;ts&quot;:&quot;2023-03-28T12:56:41Z&quot;,&quot;logger&quot;:&quot;setup&quot;,&quot;msg&quot;:&quot;Starting pprof HTTP server&quot;,&quot;addr&quot;:&quot;0.0.0.0:6060&quot;}
   &lt;snipped …&gt;
 
 ====== End of Previous Log =====
-2023-03-28T12:57:09.854306024Z {&quot;level&quot;:&quot;info&quot;,&quot;ts&quot;:&quot;2023-03-28T12:57:09Z&quot;,&quot;logger&quot;:&quot;setup&quot;,&quot;msg&quot;:&quot;Starting CloudNativePG Operator&quot;,&quot;version&quot;:&quot;1.25.1&quot;,&quot;build&quot;:{&quot;Version&quot;:&quot;1.25.1+dev107&quot;,&quot;Commit&quot;:&quot;cc9bab17&quot;,&quot;Date&quot;:&quot;2023-03-28&quot;}}
+2023-03-28T12:57:09.854306024Z {&quot;level&quot;:&quot;info&quot;,&quot;ts&quot;:&quot;2023-03-28T12:57:09Z&quot;,&quot;logger&quot;:&quot;setup&quot;,&quot;msg&quot;:&quot;Starting CloudNativePG Operator&quot;,&quot;version&quot;:&quot;1.25.2&quot;,&quot;build&quot;:{&quot;Version&quot;:&quot;1.25.2+dev107&quot;,&quot;Commit&quot;:&quot;cc9bab17&quot;,&quot;Date&quot;:&quot;2023-03-28&quot;}}
 2023-03-28T12:57:09.854363943Z {&quot;level&quot;:&quot;info&quot;,&quot;ts&quot;:&quot;2023-03-28T12:57:09Z&quot;,&quot;logger&quot;:&quot;setup&quot;,&quot;msg&quot;:&quot;Starting pprof HTTP server&quot;,&quot;addr&quot;:&quot;0.0.0.0:6060&quot;}
 </code></pre>
 <p>If the operator hasn't been restarted, you'll still see the <code>====== Begin …</code>
@@ -1178,7 +1185,7 @@ method should be used with extreme care, by authorized personnel only.</p>
 </div>
 <pre><code class="language-console">$ kubectl cnpg psql cluster-example
 
-psql (17.4 (Debian 17.4-1.pgdg110+1))
+psql (17.5 (Debian 17.5-1.pgdg110+1))
 Type &quot;help&quot; for help.
 
 postgres=#
@@ -1187,7 +1194,7 @@ postgres=#
 select to work against a replica by using the <code>--replica</code> option:</p>
 <pre><code class="language-console">$ kubectl cnpg psql --replica cluster-example
 
-psql (17.4 (Debian 17.4-1.pgdg110+1))
+psql (17.5 (Debian 17.5-1.pgdg110+1))
 
 Type &quot;help&quot; for help.
 
@@ -1649,6 +1656,7 @@ prevent inadvertently granting more than intended permissions.</p>
 
   <div role="contentinfo">
     <!-- Copyright etc -->
+      <p>Copyright © CloudNativePG a Series of LF Projects, LLC</p>
   </div>
 
   Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
