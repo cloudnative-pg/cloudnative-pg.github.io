@@ -1,6 +1,6 @@
 ---
 title: "CloudNativePG 1.26.0 and 1.25.2 Released!"
-date: 2025-05-22
+date: 2025-05-23
 draft: false
 author: gbartolini
 image:
