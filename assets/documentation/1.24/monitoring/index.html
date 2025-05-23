@@ -133,7 +133,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../declarative_role_management/">Database Role Management</a>
+                <li class="toctree-l1"><a class="reference internal" href="../declarative_role_management/">PostgreSQL Role Management</a>
                 </li>
               </ul>
               <ul>
@@ -161,7 +161,7 @@
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#monitoring-instances">Monitoring Instances</a>
         <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#prometheus-operator-example">Prometheus Operator example</a>
+    <li class="toctree-l3"><a class="reference internal" href="#monitoring-with-the-prometheus-operator">Monitoring with the Prometheus operator</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#enabling-tls-on-the-metrics-port">Enabling TLS on the Metrics Port</a>
     </li>
@@ -187,13 +187,19 @@
     </li>
         </ul>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#monitoring-the-operator">Monitoring the operator</a>
+    <li class="toctree-l2"><a class="reference internal" href="#monitoring-the-cloudnativepg-operator">Monitoring the CloudNativePG operator</a>
         <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#prometheus-operator-example_1">Prometheus Operator example</a>
+    <li class="toctree-l3"><a class="reference internal" href="#monitoring-the-operator-with-prometheus">Monitoring the operator with Prometheus</a>
     </li>
         </ul>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#how-to-inspect-the-exported-metrics">How to inspect the exported metrics</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#using-port-forwarding">Using port forwarding</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#using-curl">Using curl</a>
+    </li>
+        </ul>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#auxiliary-resources">Auxiliary resources</a>
     </li>
@@ -300,6 +306,11 @@
                 <li class="toctree-l1"><a class="reference internal" href="../release_notes/">Release notes</a>
                 </li>
               </ul>
+              <p class="caption"><span class="caption-text">CNCF Projects Integrations</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../cncf-projects/external-secrets/">External Secrets</a>
+                  </li>
+              </ul>
               <p class="caption"><span class="caption-text">Appendixes</span></p>
               <ul>
                   <li class="toctree-l1"><a class="reference internal" href="../appendixes/object_stores/">Appendix A - Common object stores for backups</a>
@@ -329,11 +340,13 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="monitoring">Monitoring</h1>
+<!-- SPDX-License-Identifier: CC-BY-4.0 -->
+
 <div class="admonition important">
 <p class="admonition-title">Important</p>
 <p>Installing Prometheus and Grafana is beyond the scope of this project.
 We assume they are correctly installed in your system. However, for
-experimentation we provide instructions in 
+experimentation we provide instructions in
 <a href="../quickstart/#part-4-monitor-clusters-with-prometheus-and-grafana">Part 4 of the Quickstart</a>.</p>
 </div>
 <h2 id="monitoring-instances">Monitoring Instances</h2>
@@ -383,9 +396,9 @@ by specifying a list of one or more databases in the <code>target_databases</cod
 with Prometheus and Grafana, you can find a quick setup guide
 in <a href="../quickstart/#part-4-monitor-clusters-with-prometheus-and-grafana">Part 4 of the quickstart</a></p>
 </div>
-<h3 id="prometheus-operator-example">Prometheus Operator example</h3>
+<h3 id="monitoring-with-the-prometheus-operator">Monitoring with the Prometheus operator</h3>
 <p>A specific PostgreSQL cluster can be monitored using the
-<a href="https://github.com/prometheus-operator/prometheus-operator">Prometheus Operator's</a> resource 
+<a href="https://github.com/prometheus-operator/prometheus-operator">Prometheus Operator's</a> resource
 <a href="https://github.com/prometheus-operator/prometheus-operator/blob/v0.75.1/Documentation/api.md#podmonitor">PodMonitor</a>.</p>
 <p>A <code>PodMonitor</code> that correctly points to the Cluster can be automatically created by the operator by setting
 <code>.spec.monitoring.enablePodMonitor</code> to <code>true</code> in the Cluster resource itself (default: <code>false</code>).</p>
@@ -541,7 +554,7 @@ cnpg_collector_up{cluster=&quot;cluster-example&quot;} 1
 
 # HELP cnpg_collector_postgres_version Postgres version
 # TYPE cnpg_collector_postgres_version gauge
-cnpg_collector_postgres_version{cluster=&quot;cluster-example&quot;,full=&quot;17.4&quot;} 17.4
+cnpg_collector_postgres_version{cluster=&quot;cluster-example&quot;,full=&quot;17.5&quot;} 17.5
 
 # HELP cnpg_collector_last_failed_backup_timestamp The last failed backup as a unix timestamp
 # TYPE cnpg_collector_last_failed_backup_timestamp gauge
@@ -987,7 +1000,7 @@ cnpg_pg_replication_streaming_replicas 2
 cnpg_pg_replication_is_wal_receiver_up 0
 </code></pre>
 <h3 id="default-set-of-metrics">Default set of metrics</h3>
-<p>The operator can be configured to automatically inject in a Cluster a set of 
+<p>The operator can be configured to automatically inject in a Cluster a set of
 monitoring queries defined in a ConfigMap or a Secret, inside the operator's namespace.
 You have to set the <code>MONITORING_QUERIES_CONFIGMAP</code> or
 <code>MONITORING_QUERIES_SECRET</code> key in the <a href="../operator_conf/">"operator configuration"</a>,
@@ -995,13 +1008,15 @@ respectively to the name of the ConfigMap or the Secret;
 the operator will then use the content of the <code>queries</code> key.</p>
 <p>Any change to the <code>queries</code> content will be immediately reflected on all the
 deployed Clusters using it.</p>
-<p>The operator installation manifests come with a predefined ConfigMap, 
+<p>The operator installation manifests come with a predefined ConfigMap,
 called <code>cnpg-default-monitoring</code>, to be used by all Clusters.
 <code>MONITORING_QUERIES_CONFIGMAP</code> is by default set to <code>cnpg-default-monitoring</code> in the operator configuration.</p>
-<p>If you want to disable the default set of metrics, you can:
-- disable it at operator level: set the <code>MONITORING_QUERIES_CONFIGMAP</code>/<code>MONITORING_QUERIES_SECRET</code> key to <code>""</code>
-  (empty string), in the operator ConfigMap. Changes to operator ConfigMap require an operator restart.
-- disable it for a specific Cluster: set <code>.spec.monitoring.disableDefaultQueries</code> to <code>true</code> in the Cluster.</p>
+<p>If you want to disable the default set of metrics, you can:</p>
+<ul>
+<li>disable it at operator level: set the <code>MONITORING_QUERIES_CONFIGMAP</code>/<code>MONITORING_QUERIES_SECRET</code> key to <code>""</code>
+  (empty string), in the operator ConfigMap. Changes to operator ConfigMap require an operator restart.</li>
+<li>disable it for a specific Cluster: set <code>.spec.monitoring.disableDefaultQueries</code> to <code>true</code> in the Cluster.</li>
+</ul>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
 <p>The ConfigMap or Secret specified via <code>MONITORING_QUERIES_CONFIGMAP</code>/<code>MONITORING_QUERIES_SECRET</code>
@@ -1012,7 +1027,7 @@ So that, if you intend to have default metrics, you should not create a ConfigMa
 <p>CloudNativePG is inspired by the PostgreSQL Prometheus Exporter, but
 presents some differences. In particular, the <code>cache_seconds</code> field is not implemented
 in CloudNativePG's exporter.</p>
-<h2 id="monitoring-the-operator">Monitoring the operator</h2>
+<h2 id="monitoring-the-cloudnativepg-operator">Monitoring the CloudNativePG operator</h2>
 <p>The operator internally exposes <a href="https://prometheus.io/">Prometheus</a> metrics
 via HTTP on port 8080, named <code>metrics</code>.</p>
 <div class="admonition info">
@@ -1021,14 +1036,18 @@ via HTTP on port 8080, named <code>metrics</code>.</p>
 the <a href="#how-to-inspect-the-exported-metrics">"How to inspect the exported metrics"</a>
 section below.</p>
 </div>
-<p>Currently, the operator exposes default <code>kubebuilder</code> metrics, see
-<a href="https://book.kubebuilder.io/reference/metrics.html">kubebuilder documentation</a> for more details.</p>
-<h3 id="prometheus-operator-example_1">Prometheus Operator example</h3>
-<p>The operator deployment can be monitored using the
-<a href="https://github.com/prometheus-operator/prometheus-operator">Prometheus Operator</a> by defining the following
+<p>Currently, the operator exposes default <code>kubebuilder</code> metrics. See
+<a href="https://book.kubebuilder.io/reference/metrics.html">kubebuilder documentation</a>
+for more details.</p>
+<h3 id="monitoring-the-operator-with-prometheus">Monitoring the operator with Prometheus</h3>
+<p>The operator can be monitored using the
+<a href="https://github.com/prometheus-operator/prometheus-operator">Prometheus Operator</a> by defining a
 <a href="https://github.com/prometheus-operator/prometheus-operator/blob/v0.47.1/Documentation/api.md#podmonitor">PodMonitor</a>
-resource:</p>
-<pre><code class="language-yaml">apiVersion: monitoring.coreos.com/v1
+pointing to the operator pod(s), as follows (note it's applied in the same
+namespace as the operator):</p>
+<pre><code class="language-yaml">kubectl -n cnpg-system apply -f - &lt;&lt;EOF
+---
+apiVersion: monitoring.coreos.com/v1
 kind: PodMonitor
 metadata:
   name: cnpg-controller-manager
@@ -1038,20 +1057,39 @@ spec:
       app.kubernetes.io/name: cloudnative-pg
   podMetricsEndpoints:
     - port: metrics
+EOF
 </code></pre>
 <h2 id="how-to-inspect-the-exported-metrics">How to inspect the exported metrics</h2>
-<p>In this section we provide some basic instructions on how to inspect
+<p>In this section we provide basic instructions on how to inspect
 the metrics exported by a specific PostgreSQL instance manager (primary
-or replica) or the operator, using a temporary pod running <code>curl</code> in
-the same namespace.</p>
+or replica) or the operator.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>In the example below we assume we are working in the default namespace,
-alongside with the PostgreSQL cluster. Please feel free to adapt
-this example to your use case, by applying basic Kubernetes knowledge.</p>
+<p>In the examples below we assume we are working in the default namespace, and
+with the operator installed in the <code>cnpg-system</code> namespace.
+Please adapt to your use case.</p>
 </div>
-<p>Create the <code>curl.yaml</code> file with this content:</p>
-<pre><code class="language-yaml">apiVersion: v1
+<h3 id="using-port-forwarding">Using port forwarding</h3>
+<p>The simplest way to inspect the metrics is to port-forward the metrics ports
+of the pods involved.</p>
+<p>For example, to inspect the metrics on the <code>-1</code> instance of <code>cluster-example</code>,
+we port-forward the 9187 port:</p>
+<pre><code class="language-sh">kubectl port-forward cluster-example-1 9187:9187
+</code></pre>
+<p>With port-forwarding active, the metrics can be inspected easily, for
+example on a web browser, using HTTP or HTTPS depending on the configuration,
+with address: <code>localhost:9187/metrics</code>.</p>
+<p>The operator pod also exports metrics, on port 8080. Similarly to instances, we
+port-forward the operator pod, which is located in the operator namespace:</p>
+<pre><code class="language-sh">kubectl -n cnpg-system port-forward pod/&lt;CONTROLLER-MANAGER-POD&gt; 8080:8080
+</code></pre>
+<p>With port forwarding active, the metrics are easily viewable on a browser at
+<a href="http://localhost:8080/metrics"><code>localhost:8080/metrics</code></a>.</p>
+<h3 id="using-curl">Using curl</h3>
+<p>Create the <code>curl</code> pod with the following command:</p>
+<pre><code class="language-yaml">kubectl apply -f - &lt;&lt;EOF
+---
+apiVersion: v1
 kind: Pod
 metadata:
   name: curl
@@ -1060,13 +1098,12 @@ spec:
   - name: curl
     image: curlimages/curl:8.2.1
     command: ['sleep', '3600']
+EOF
 </code></pre>
-<p>Then create the pod:</p>
-<pre><code class="language-shell">kubectl apply -f curl.yaml
-</code></pre>
-<p>In case you want to inspect the metrics exported by an instance, you need
-to connect to port 9187 of the target pod. This is the generic command to be
-run (make sure you use the correct IP for the pod):</p>
+<p>To inspect the metrics exported by an instance, you need
+to connect to port 9187 of the target pod. You will need to know the pod's
+IP address, which you can find easily by running <code>kubectl get pod -o wide</code>.
+The following generic command will run <code>curl</code> on the desired pod:</p>
 <pre><code class="language-shell">kubectl exec -ti curl -- curl -s &lt;pod_ip&gt;:9187/metrics
 </code></pre>
 <p>For example, if your PostgreSQL cluster is called <code>cluster-example</code> and
@@ -1081,9 +1118,9 @@ that pod:</p>
 <p>If you enabled TLS metrics, run instead:</p>
 <pre><code class="language-shell">kubectl exec -ti curl -- curl -sk https://${POD_IP}:9187/metrics
 </code></pre>
-<p>In case you want to access the metrics of the operator, you need to point
+<p>To access the metrics of the operator, you need to point
 to the pod where the operator is running, and use TCP port 8080 as target.</p>
-<p>At the end of the inspection, please make sure you delete the <code>curl</code> pod:</p>
+<p>When you're done inspecting metrics, please remember to delete the <code>curl</code> pod:</p>
 <pre><code class="language-shell">kubectl delete -f curl.yaml
 </code></pre>
 <h2 id="auxiliary-resources">Auxiliary resources</h2>
@@ -1106,13 +1143,17 @@ section for context:</p>
 </ul>
 <p>In addition, we provide the "raw" sources for the Prometheus alert rules in the
 <code>alerts.yaml</code> file.</p>
-<p>The <a href="https://github.com/cloudnative-pg/grafana-dashboards/blob/main/charts/cluster/grafana-dashboard.json">Grafana dashboard</a> has a dedicated repository now.</p>
-<p>Note that, for the configuration of <code>kube-prometheus-stack</code>, other fields and
-settings are available over what we provide in <code>kube-stack-config.yaml</code>.</p>
-<p>You can execute <code>helm show values prometheus-community/kube-prometheus-stack</code>
-to view them. For further information, please refer to the
+<p>A Grafana dashboard for CloudNativePG clusters and operator, is kept in the
+dedicated repository <a href="https://github.com/cloudnative-pg/grafana-dashboards/tree/main"><code>cloudnative-pg/grafana-dashboards</code></a>
+as a dashboard JSON configuration:
+<a href="https://github.com/cloudnative-pg/grafana-dashboards/blob/main/charts/cluster/grafana-dashboard.json"><code>grafana-dashboard.json</code></a>.
+The file can be downloaded, and imported into Grafana
+(menus: Dashboard &gt; New &gt; Import).</p>
+<p>For a general reference on the settings available on <code>kube-prometheus-stack</code>,
+you can execute <code>helm show values prometheus-community/kube-prometheus-stack</code>.
+Please refer to the
 <a href="https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack">kube-prometheus-stack</a>
-page.</p>
+page for more detail.</p>
               
             </div>
           </div><footer>
@@ -1125,6 +1166,7 @@ page.</p>
 
   <div role="contentinfo">
     <!-- Copyright etc -->
+      <p>Copyright © CloudNativePG a Series of LF Projects, LLC</p>
   </div>
 
   Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.

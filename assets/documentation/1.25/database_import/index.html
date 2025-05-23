@@ -282,6 +282,11 @@
                 <li class="toctree-l1"><a class="reference internal" href="../release_notes/">Release notes</a>
                 </li>
               </ul>
+              <p class="caption"><span class="caption-text">CNCF Projects Integrations</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../cncf-projects/external-secrets/">External Secrets</a>
+                  </li>
+              </ul>
               <p class="caption"><span class="caption-text">Appendixes</span></p>
               <ul>
                   <li class="toctree-l1"><a class="reference internal" href="../appendixes/object_stores/">Appendix A - Common object stores for backups</a>
@@ -311,6 +316,8 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="importing-postgres-databases">Importing Postgres databases</h1>
+<!-- SPDX-License-Identifier: CC-BY-4.0 -->
+
 <p>This section describes how to import one or more existing PostgreSQL
 databases inside a brand new CloudNativePG cluster.</p>
 <p>The import operation is based on the concept of online logical backups in PostgreSQL,
@@ -325,8 +332,8 @@ perform major upgrades of PostgreSQL versions.</p>
 <li>importing one or more databases from an existing PostgreSQL instance, even
   outside Kubernetes</li>
 <li>importing the database from any PostgreSQL version to one that is either the
-  same or newer, enabling <em>major upgrades</em> of PostgreSQL (e.g. from version 11.x
-  to version 15.x)</li>
+  same or newer, enabling <em>major upgrades</em> of PostgreSQL (e.g. from version 13.x
+  to version 17.x)</li>
 </ul>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
@@ -532,7 +539,7 @@ spec:
 <li>Any role that is required by the imported databases must be specified inside
   <code>initdb.import.roles</code>, with the limitations below:<ul>
 <li>The following roles, if present, are not imported:
-  <code>postgres</code>, <code>streaming_replica</code>, <code>cnp_pooler_pgbouncer</code></li>
+  <code>postgres</code>, <code>streaming_replica</code>, <code>cnpg_pooler_pgbouncer</code></li>
 <li>The <code>SUPERUSER</code> option is removed from any imported role</li>
 </ul>
 </li>
@@ -623,6 +630,7 @@ upgrades.</p>
 
   <div role="contentinfo">
     <!-- Copyright etc -->
+      <p>Copyright © CloudNativePG a Series of LF Projects, LLC</p>
   </div>
 
   Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.

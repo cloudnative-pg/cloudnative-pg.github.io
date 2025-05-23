@@ -336,6 +336,11 @@
                 <li class="toctree-l1"><a class="reference internal" href="../release_notes/">Release notes</a>
                 </li>
               </ul>
+              <p class="caption"><span class="caption-text">CNCF Projects Integrations</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../cncf-projects/external-secrets/">External Secrets</a>
+                  </li>
+              </ul>
               <p class="caption"><span class="caption-text">Appendixes</span></p>
               <ul>
                   <li class="toctree-l1"><a class="reference internal" href="../appendixes/object_stores/">Appendix A - Common object stores for backups</a>
@@ -365,6 +370,8 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="troubleshooting">Troubleshooting</h1>
+<!-- SPDX-License-Identifier: CC-BY-4.0 -->
+
 <p>In this page, you can find some basic information on how to troubleshoot
 CloudNativePG in your Kubernetes cluster deployment.</p>
 <div class="admonition hint">
@@ -541,7 +548,7 @@ Those pods are managed by a deployment named <code>cnpg-controller-manager</code
 Name:               cluster-example
 Namespace:          default
 System ID:          7044925089871458324
-PostgreSQL Image:   ghcr.io/cloudnative-pg/postgresql:17.4-3
+PostgreSQL Image:   ghcr.io/cloudnative-pg/postgresql:17.5-3
 Primary instance:   cluster-example-1
 Instances:          3
 Ready instances:    3
@@ -590,7 +597,7 @@ of the <code>Cluster</code> resource:</p>
 <pre><code class="language-shell">kubectl describe cluster &lt;CLUSTER_NAME&gt; -n &lt;NAMESPACE&gt; | grep &quot;Image Name&quot;
 </code></pre>
 <p>Output:</p>
-<pre><code class="language-shell">  Image Name:    ghcr.io/cloudnative-pg/postgresql:17.4-3
+<pre><code class="language-shell">  Image Name:    ghcr.io/cloudnative-pg/postgresql:17.5-3
 </code></pre>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -976,6 +983,7 @@ For more details, consult the
 
   <div role="contentinfo">
     <!-- Copyright etc -->
+      <p>Copyright © CloudNativePG a Series of LF Projects, LLC</p>
   </div>
 
   Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.

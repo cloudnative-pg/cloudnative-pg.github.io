@@ -137,7 +137,17 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#persistence-of-volume-snapshot-objects">Persistence of volume snapshot objects</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#example">Example</a>
+    <li class="toctree-l2"><a class="reference internal" href="#backup-volume-snapshot-deadlines">Backup Volume Snapshot Deadlines</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#error-handling">Error Handling</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#retryable-errors">Retryable Errors</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#examples">Examples</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#example-of-volume-snapshot-backup">Example of Volume Snapshot Backup</a>
     </li>
     </ul>
                 </li>
@@ -286,6 +296,11 @@
                 <li class="toctree-l1"><a class="reference internal" href="../release_notes/">Release notes</a>
                 </li>
               </ul>
+              <p class="caption"><span class="caption-text">CNCF Projects Integrations</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../cncf-projects/external-secrets/">External Secrets</a>
+                  </li>
+              </ul>
               <p class="caption"><span class="caption-text">Appendixes</span></p>
               <ul>
                   <li class="toctree-l1"><a class="reference internal" href="../appendixes/object_stores/">Appendix A - Common object stores for backups</a>
@@ -315,6 +330,8 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="backup-on-volume-snapshots">Backup on volume snapshots</h1>
+<!-- SPDX-License-Identifier: CC-BY-4.0 -->
+
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>As noted in the <a href="../backup/">backup document</a>, a cold snapshot explicitly
@@ -530,7 +547,77 @@ in the corresponding <code>VolumeSnapshotClass</code> definition, which is
 referenced in the <code>.spec.backup.volumeSnapshot.className</code> option.</p>
 <p>Please refer to the <a href="https://kubernetes.io/docs/concepts/storage/volume-snapshot-classes/">Kubernetes documentation on Volume Snapshot Classes</a>
 for details on this standard behavior.</p>
-<h2 id="example">Example</h2>
+<h2 id="backup-volume-snapshot-deadlines">Backup Volume Snapshot Deadlines</h2>
+<p>CloudNativePG supports backups using the volume snapshot method. In some
+environments, volume snapshots may encounter temporary issues that can be
+retried.</p>
+<p>The <code>backup.cnpg.io/volumeSnapshotDeadline</code> annotation defines how long
+CloudNativePG should continue retrying recoverable errors before marking the
+backup as failed.</p>
+<p>You can add the <code>backup.cnpg.io/volumeSnapshotDeadline</code> annotation to both
+<code>Backup</code> and <code>ScheduledBackup</code> resources. For <code>ScheduledBackup</code> resources, this
+annotation is automatically inherited by any <code>Backup</code> resources created from
+the schedule.</p>
+<p>If not specified, the default retry deadline is <strong>10 minutes</strong>.</p>
+<h3 id="error-handling">Error Handling</h3>
+<p>When a retryable error occurs during a volume snapshot operation:</p>
+<ol>
+<li>CloudNativePG records the time of the first error.</li>
+<li>The system retries the operation every <strong>10 seconds</strong>.</li>
+<li>If the error persists beyond the specified deadline (or the default 10
+   minutes), the backup is marked as <strong>failed</strong>.</li>
+</ol>
+<h3 id="retryable-errors">Retryable Errors</h3>
+<p>CloudNativePG treats the following types of errors as retryable:</p>
+<ul>
+<li><strong>Server timeout errors</strong> (HTTP 408, 429, 500, 502, 503, 504)</li>
+<li><strong>Conflicts</strong> (optimistic locking errors)</li>
+<li><strong>Internal errors</strong></li>
+<li><strong>Context deadline exceeded errors</strong></li>
+<li><strong>Timeout errors from the CSI snapshot controller</strong></li>
+</ul>
+<h3 id="examples">Examples</h3>
+<p>You can add the annotation to a <code>ScheduledBackup</code> resource as follows:</p>
+<pre><code class="language-yaml">apiVersion: postgresql.cnpg.io/v1
+kind: ScheduledBackup
+metadata:
+  name: daily-backup-schedule
+  annotations:
+    backup.cnpg.io/volumeSnapshotDeadline: &quot;20&quot;
+spec:
+  schedule: &quot;0 0 * * *&quot;
+  backupOwnerReference: self
+  method: volumeSnapshot
+  # other configuration...
+</code></pre>
+<p>When you define a <code>ScheduledBackup</code> with the annotation, any <code>Backup</code> resources
+created from this schedule automatically inherit the specified timeout value.</p>
+<p>In the following example, all backups created from the schedule will have a
+30-minute timeout for retrying recoverable snapshot errors.</p>
+<pre><code class="language-yaml">apiVersion: postgresql.cnpg.io/v1
+kind: ScheduledBackup
+metadata:
+  name: weekly-backup
+  annotations:
+    backup.cnpg.io/volumeSnapshotDeadline: &quot;30&quot;
+spec:
+  schedule: &quot;0 0 * * 0&quot;  # Weekly backup on Sunday
+  method: volumeSnapshot
+  cluster:
+    name: my-postgresql-cluster
+</code></pre>
+<p>Alternatively, you can add the annotation directly to a <code>Backup</code> Resource:</p>
+<pre><code class="language-yaml">apiVersion: postgresql.cnpg.io/v1
+kind: Backup
+metadata:
+  name: my-backup
+  annotations:
+    backup.cnpg.io/volumeSnapshotDeadline: &quot;15&quot;
+spec:
+  method: volumeSnapshot
+  # other backup configuration...
+</code></pre>
+<h2 id="example-of-volume-snapshot-backup">Example of Volume Snapshot Backup</h2>
 <p>The following example shows how to configure volume snapshot base backups on an
 EKS cluster on AWS using the <code>ebs-sc</code> storage class and the <code>csi-aws-vsc</code>
 volume snapshot class.</p>
@@ -599,6 +686,7 @@ one immediately after the cluster is created.</p>
 
   <div role="contentinfo">
     <!-- Copyright etc -->
+      <p>Copyright © CloudNativePG a Series of LF Projects, LLC</p>
   </div>
 
   Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.

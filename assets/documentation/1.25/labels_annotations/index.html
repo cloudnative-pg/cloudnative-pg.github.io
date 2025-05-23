@@ -280,6 +280,11 @@
                 <li class="toctree-l1"><a class="reference internal" href="../release_notes/">Release notes</a>
                 </li>
               </ul>
+              <p class="caption"><span class="caption-text">CNCF Projects Integrations</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../cncf-projects/external-secrets/">External Secrets</a>
+                  </li>
+              </ul>
               <p class="caption"><span class="caption-text">Appendixes</span></p>
               <ul>
                   <li class="toctree-l1"><a class="reference internal" href="../appendixes/object_stores/">Appendix A - Common object stores for backups</a>
@@ -309,6 +314,8 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="labels-and-annotations">Labels and annotations</h1>
+<!-- SPDX-License-Identifier: CC-BY-4.0 -->
+
 <p>Resources in Kubernetes are organized in a flat structure, with no hierarchical
 information or relationship between them. However, such resources and objects
 can be linked together and put in relationship through <em>labels</em> and
@@ -336,38 +343,43 @@ they're inherited by all resources created by it (including pods).</p>
 instead of alternative approaches such as pod templates.</p>
 </div>
 <h2 id="predefined-labels">Predefined labels</h2>
-<p>These predefined labels are managed by CloudNativePG.</p>
+<p>CloudNativePG manages the following predefined labels:</p>
 <dl>
 <dt><code>cnpg.io/backupDate</code></dt>
-<dd>The date of the backup in ISO 8601 format (<code>YYYYMMDD</code>)</dd>
+<dd>The date of the backup in ISO 8601 format (<code>YYYYMMDD</code>).
+  This label is available only on <code>VolumeSnapshot</code> resources.</dd>
 <dt><code>cnpg.io/backupName</code></dt>
-<dd>Backup identifier, available only on <code>Backup</code> and <code>VolumeSnapshot</code>
-  resources</dd>
+<dd>Backup identifier.
+  This label is available only on <code>VolumeSnapshot</code> resources.</dd>
 <dt><code>cnpg.io/backupMonth</code></dt>
-<dd>The year/month when a backup was taken</dd>
+<dd>The year/month when a backup was taken.
+  This label is available only on <code>VolumeSnapshot</code> resources.</dd>
 <dt><code>cnpg.io/backupTimeline</code></dt>
-<dd>The timeline of the instance when a backup was taken</dd>
+<dd>The timeline of the instance when a backup was taken.
+  This label is available only on <code>VolumeSnapshot</code> resources.</dd>
 <dt><code>cnpg.io/backupYear</code></dt>
-<dd>The year a backup was taken</dd>
+<dd>The year a backup was taken.
+  This label is available only on <code>VolumeSnapshot</code> resources.</dd>
 <dt><code>cnpg.io/cluster</code></dt>
-<dd>Name of the cluster</dd>
+<dd>Name of the cluster.</dd>
 <dt><code>cnpg.io/immediateBackup</code></dt>
 <dd>Applied to a <code>Backup</code> resource if the backup is the first one created from
-  a <code>ScheduledBackup</code> object having <code>immediate</code> set to <code>true</code></dd>
+  a <code>ScheduledBackup</code> object having <code>immediate</code> set to <code>true</code>.</dd>
 <dt><code>cnpg.io/instanceName</code></dt>
 <dd>Name of the PostgreSQL instance (replaces the old and
-  deprecated <code>postgresql</code> label)</dd>
+  deprecated <code>postgresql</code> label).</dd>
 <dt><code>cnpg.io/jobRole</code></dt>
 <dd>Role of the job (that is, <code>import</code>, <code>initdb</code>, <code>join</code>, ...)</dd>
 <dt><code>cnpg.io/onlineBackup</code></dt>
-<dd>Whether the backup is online (hot) or taken when Postgres is down (cold)</dd>
+<dd>Whether the backup is online (hot) or taken when Postgres is down (cold).
+  This label is available only on <code>VolumeSnapshot</code> resources.</dd>
 <dt><code>cnpg.io/podRole</code></dt>
 <dd>Distinguishes pods dedicated to pooler deployment from those used for
-  database instances</dd>
+  database instances.</dd>
 <dt><code>cnpg.io/poolerName</code></dt>
-<dd>Name of the PgBouncer pooler</dd>
+<dd>Name of the PgBouncer pooler.</dd>
 <dt><code>cnpg.io/pvcRole</code></dt>
-<dd>Purpose of the PVC, such as <code>PG_DATA</code> or <code>PG_WAL</code></dd>
+<dd>Purpose of the PVC, such as <code>PG_DATA</code> or <code>PG_WAL</code>.</dd>
 <dt><code>cnpg.io/reload</code></dt>
 <dd>Available on <code>ConfigMap</code> and <code>Secret</code> resources. When set to <code>true</code>,
   a change in the resource is automatically reloaded by the operator.</dd>
@@ -381,25 +393,28 @@ instead of alternative approaches such as pod templates.</p>
    This label is deprecated, you should use <code>cnpg.io/instanceRole</code> instead.</dd>
 <dt><code>cnpg.io/scheduled-backup</code></dt>
 <dd>When available, name of the <code>ScheduledBackup</code> resource that created a given
-   <code>Backup</code> object</dd>
+   <code>Backup</code> object.</dd>
 <dt><code>cnpg.io/instanceRole</code></dt>
 <dd>Whether the instance running in a pod is a <code>primary</code> or a <code>replica</code>.</dd>
 </dl>
 <h2 id="predefined-annotations">Predefined annotations</h2>
-<p>These predefined annotations are managed by CloudNativePG.</p>
+<p>CloudNativePG manages the following predefined annotations:</p>
 <dl>
 <dt><code>container.apparmor.security.beta.kubernetes.io/*</code></dt>
 <dd>Name of the AppArmor profile to apply to the named container.
 See <a href="../security/#restricting-pod-access-using-apparmor">AppArmor</a>
 for details.</dd>
 <dt><code>cnpg.io/backupEndTime</code></dt>
-<dd>The time a backup ended.</dd>
+<dd>The time a backup ended.
+  This annotation is available only on <code>VolumeSnapshot</code> resources.</dd>
 <dt><code>cnpg.io/backupEndWAL</code></dt>
-<dd>The WAL at the conclusion of a backup.</dd>
+<dd>The WAL at the conclusion of a backup.
+  This annotation is available only on <code>VolumeSnapshot</code> resources.</dd>
 <dt><code>cnpg.io/backupStartTime</code></dt>
 <dd>The time a backup started.</dd>
 <dt><code>cnpg.io/backupStartWAL</code></dt>
-<dd>The WAL at the start of a backup.</dd>
+<dd>The WAL at the start of a backup.
+  This annotation is available only on <code>VolumeSnapshot</code> resources.</dd>
 <dt><code>cnpg.io/coredumpFilter</code></dt>
 <dd>Filter to control the coredump of Postgres processes, expressed with a
 bitmask. By default it's set to <code>0x31</code> to exclude shared memory
@@ -459,7 +474,7 @@ reconciliation loop from running.</dd>
 <dt><code>cnpg.io/reloadedAt</code></dt>
 <dd>Contains the latest cluster <code>reload</code> time. <code>reload</code> is triggered by the user through a plugin.</dd>
 <dt><code>cnpg.io/skipEmptyWalArchiveCheck</code></dt>
-<dd>When set to <code>true</code> on a <code>Cluster</code> resource, the operator disables the check
+<dd>When set to <code>enabled</code> on a <code>Cluster</code> resource, the operator disables the check
 that ensures that the WAL archive is empty before writing data. Use at your own
 risk.</dd>
 <dt><code>cnpg.io/skipWalArchiving</code></dt>
@@ -470,6 +485,17 @@ instances. Use at your own risk.</dd>
 <dd>The time a snapshot started.</dd>
 <dt><code>cnpg.io/snapshotEndTime</code></dt>
 <dd>The time a snapshot was marked as ready to use.</dd>
+<dt><code>cnpg.io/validation</code></dt>
+<dd>
+<p>When set to <code>disabled</code> on a CloudNativePG-managed custom resource, the
+validation webhook allows all changes without restriction.</p>
+<p><strong>⚠️ WARNING:</strong> Disabling validation may permit unsafe or destructive
+operations. Use this setting with caution and at your own risk.</p>
+</dd>
+<dt><code>cnpg.io/volumeSnapshotDeadline</code></dt>
+<dd>Applied to <code>Backup</code> and <code>ScheduledBackup</code> resources, allows you to control
+how long the operator should retry recoverable errors before considering the
+volume snapshot backup failed. In minutes, defaulting to 10.</dd>
 <dt><code>kubectl.kubernetes.io/restartedAt</code></dt>
 <dd>When available, the time of last requested restart of a Postgres cluster.</dd>
 </dl>
@@ -527,6 +553,7 @@ doesn't remove it on the associated resources.</p>
 
   <div role="contentinfo">
     <!-- Copyright etc -->
+      <p>Copyright © CloudNativePG a Series of LF Projects, LLC</p>
   </div>
 
   Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
