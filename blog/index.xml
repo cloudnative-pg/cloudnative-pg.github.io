@@ -6,8 +6,15 @@
     <description>Recent content in Blog posts on CloudNativePG - PostgreSQL Operator for Kubernetes</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 21 May 2025 13:51:43 +0200</lastBuildDate>
+    <lastBuildDate>Mon, 26 May 2025 13:51:43 +0200</lastBuildDate>
     <atom:link href="https://cloudnative-pg.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Contributor Spotlight: David Wheeler</title>
+      <link>https://cloudnative-pg.io/blog/contributor-highlight-david-wheeler/</link>
+      <pubDate>Mon, 26 May 2025 13:51:43 +0200</pubDate>
+      <guid>https://cloudnative-pg.io/blog/contributor-highlight-david-wheeler/</guid>
+      <description>In a mini-series on this blog we highlight the work of the community. Today we meet David Wheeler, Principal Architect at Tembo, and PGXN maintainer.</description>
+    </item>
     <item>
       <title>Contributor Spotlight: Francesco Canovai</title>
       <link>https://cloudnative-pg.io/blog/contributor-highlight-francesco-canovai/</link>
