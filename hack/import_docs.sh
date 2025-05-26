@@ -52,7 +52,7 @@ popd
 rm -rf $WORKDIR
 
 # Detect the current version (one with the highest release number that is not RC)
-latest_version=$(ls $DOCDIR | sort -n | grep -v '\-rc\?' | tail -1)
+latest_version=$(ls $DOCDIR | grep '^[0-9]' | grep -v '\-rc\?' | sort -V | tail -1)
 LATEST_VERSION_LINK_DIR=current
 
 # Preview release

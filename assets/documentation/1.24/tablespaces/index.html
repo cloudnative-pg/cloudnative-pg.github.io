@@ -133,7 +133,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../declarative_role_management/">Database Role Management</a>
+                <li class="toctree-l1"><a class="reference internal" href="../declarative_role_management/">PostgreSQL Role Management</a>
                 </li>
               </ul>
               <ul class="current">
@@ -280,6 +280,11 @@
                 <li class="toctree-l1"><a class="reference internal" href="../release_notes/">Release notes</a>
                 </li>
               </ul>
+              <p class="caption"><span class="caption-text">CNCF Projects Integrations</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../cncf-projects/external-secrets/">External Secrets</a>
+                  </li>
+              </ul>
               <p class="caption"><span class="caption-text">Appendixes</span></p>
               <ul>
                   <li class="toctree-l1"><a class="reference internal" href="../appendixes/object_stores/">Appendix A - Common object stores for backups</a>
@@ -309,6 +314,8 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="tablespaces">Tablespaces</h1>
+<!-- SPDX-License-Identifier: CC-BY-4.0 -->
+
 <p>A tablespace is a robust and widely embraced feature in database
 management systems. It offers a powerful means to enhance the vertical
 scalability of a database by decoupling the physical and logical modeling of
@@ -432,11 +439,13 @@ spec:
     size: 10Gi
   tablespaces:
     - name: current
-      size: 100Gi
-      storageClass: fastest
+      storage:        
+        size: 100Gi
+        storageClass: fastest
     - name: this_year
-      size: 500Gi
-      storageClass: balanced
+      storage:
+        size: 500Gi
+        storageClass: balanced
 </code></pre>
 <p>The <code>yardbirds</code> cluster example requests 4 persistent volume claims using
 3 different storage classes:</p>
@@ -610,7 +619,7 @@ cluster.</p>
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../declarative_role_management/" class="btn btn-neutral float-left" title="Database Role Management"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../declarative_role_management/" class="btn btn-neutral float-left" title="PostgreSQL Role Management"><span class="icon icon-circle-arrow-left"></span> Previous</a>
         <a href="../operator_conf/" class="btn btn-neutral float-right" title="Operator configuration">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
@@ -618,6 +627,7 @@ cluster.</p>
 
   <div role="contentinfo">
     <!-- Copyright etc -->
+      <p>Copyright © CloudNativePG a Series of LF Projects, LLC</p>
   </div>
 
   Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.

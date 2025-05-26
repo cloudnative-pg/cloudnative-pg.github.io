@@ -6,3 +6,4 @@ Disallow: /documentation/1.24.0-rc1/
 Disallow: /documentation/1.25.0-rc1/
 Disallow: /documentation/1.26.0-rc1/
 Disallow: /documentation/1.26.0-rc2/
+Disallow: /documentation/1.26.0-rc3/

@@ -292,6 +292,11 @@
                 <li class="toctree-l1"><a class="reference internal" href="../release_notes/">Release notes</a>
                 </li>
               </ul>
+              <p class="caption"><span class="caption-text">CNCF Projects Integrations</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../cncf-projects/external-secrets/">External Secrets</a>
+                  </li>
+              </ul>
               <p class="caption"><span class="caption-text">Appendixes</span></p>
               <ul>
                   <li class="toctree-l1"><a class="reference internal" href="../appendixes/object_stores/">Appendix A - Common object stores for backups</a>
@@ -321,6 +326,8 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="quickstart">Quickstart</h1>
+<!-- SPDX-License-Identifier: CC-BY-4.0 -->
+
 <p>This section guides you through testing a PostgreSQL cluster on your local machine by
 deploying CloudNativePG on a local Kubernetes cluster
 using either <a href="https://kind.sigs.k8s.io/">Kind</a> or
@@ -451,7 +458,7 @@ illustration only.</p>
 <p>In this section we show how to deploy Prometheus and Grafana for observability,
 and how to create a Grafana Dashboard to monitor CloudNativePG clusters, and a
 set of Prometheus Rules defining alert conditions.</p>
-<p>We leverage the <a href="https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack">Kube-Prometheus stack</a>,
+<p>We leverage the <a href="https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack">Kube-Prometheus stack</a>
 Helm chart, which is maintained by the <a href="https://github.com/prometheus-community">Prometheus Community</a>.
 Please refer to the project website for additional documentation and background.</p>
 <p>The Kube-Prometheus-stack Helm chart installs the <a href="https://prometheus-operator.dev">Prometheus Operator</a>,
@@ -464,7 +471,8 @@ provide useful initial settings for observability of CloudNativePG clusters.</p>
 <a href="https://helm.sh/docs/intro/quickstart/">instructions</a> to install it in your
 system.</p>
 <p>We need to add the <code>prometheus-community</code> helm chart repository, and then
-install the <em>Kube Prometheus stack</em> using the sample configuration we provide:</p>
+install the <em>Kube Prometheus stack</em> with our sample configuration
+<a href="../samples/monitoring/kube-stack-config.yaml"><code>kube-stack-config.yaml</code></a>.</p>
 <p>We can accomplish this with the following commands:</p>
 <pre><code class="language-sh">helm repo add prometheus-community \
   https://prometheus-community.github.io/helm-charts
@@ -474,17 +482,18 @@ helm upgrade --install \
   prometheus-community \
   prometheus-community/kube-prometheus-stack
 </code></pre>
-<p>After completion, you will have Prometheus, Grafana and Alert Manager installed with values from the
-<code>kube-stack-config.yaml</code> file:</p>
+<p>After completion, you will have Prometheus, Grafana, and Alert Manager,
+configured with the <code>kube-stack-config.yaml</code> file:</p>
 <ul>
-<li>From the Prometheus installation, you will have the Prometheus Operator watching for <strong>any</strong> <code>PodMonitor</code>
-  (see <a href="../monitoring/"><em>monitoring</em></a>).</li>
-<li>The Grafana installation will be watching for a Grafana dashboard <code>ConfigMap</code>.</li>
+<li>From the Prometheus installation, you will have the Prometheus Operator
+  watching for <strong>any</strong> <code>PodMonitor</code> (see <a href="../monitoring/"><em>monitoring</em></a>).</li>
+<li>Alert Manager and Grafana are both enabled.</li>
 </ul>
 <div class="admonition seealso">
 <p class="admonition-title">Seealso</p>
-<p>For further information about the above command, refer to the <a href="https://helm.sh/docs/helm/helm_install/">helm install</a>
-documentation. </p>
+<p>For further information about the above helm commands, refer to the <a href="https://helm.sh/docs/helm/helm_install/">helm
+install</a>
+documentation.</p>
 </div>
 <p>You can see several Custom Resources have been created:</p>
 <pre><code class="language-sh">% kubectl get crds
@@ -506,7 +515,7 @@ prometheus-community-kube-operator        ClusterIP   443/TCP
 prometheus-community-kube-prometheus      ClusterIP   9090/TCP
 </code></pre>
 <h3 id="viewing-with-prometheus">Viewing with Prometheus</h3>
-<p>At this point, a CloudNativePG cluster deployed with Monitoring activated
+<p>At this point, a CloudNativePG cluster deployed with monitoring activated
 would be observable via Prometheus.</p>
 <p>For example, you could deploy a simple cluster with <code>PodMonitor</code> enabled:</p>
 <pre><code class="language-sh">kubectl apply -f - &lt;&lt;EOF
@@ -529,11 +538,12 @@ EOF
 <pre><code class="language-sh">kubectl port-forward svc/prometheus-community-kube-prometheus 9090
 </code></pre>
 <p>Then access the Prometheus console locally at: <a href="http://localhost:9090/"><code>http://localhost:9090/</code></a></p>
-<p>Assuming that the monitoring stack was successfully deployed, and you have a Cluster with <code>enablePodMonitor: true</code>,
-you should find a series of metrics relating to CloudNativePG clusters. Again, please
-refer to the <a href="../monitoring/"><em>monitoring section</em></a> for more information.</p>
+<p>You should find a series of metrics relating to CloudNativePG clusters.
+Please refer to the <a href="../monitoring/">monitoring section</a> for more information.</p>
 <p><img alt="local prometheus" src="../images/prometheus-local.png" /></p>
-<p>You can now define some alerts by creating a <code>prometheusRule</code>:</p>
+<p>You can also monitor the CloudNativePG operator by creating a PodMonitor to
+target it. See the relevant section in the <a href="../monitoring/#monitoring-the-operator-with-prometheus">monitoring page</a>.</p>
+<p>You can define some alerts by creating a <code>prometheusRule</code>:</p>
 <pre><code class="language-sh">kubectl apply -f \
   https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/main/docs/src/samples/monitoring/prometheusrule.yaml
 </code></pre>
@@ -545,25 +555,29 @@ cnpg-default-alerts                                        3m27s
 <p>In the Prometheus console, you can click on the <em>Alerts</em> menu to see the alerts
 we just installed.</p>
 <h3 id="grafana-dashboard">Grafana Dashboard</h3>
-<p>In our "plain" installation, Grafana is deployed with no predefined dashboards.</p>
-<p>You can port-forward:</p>
+<p>In our installation so far, Grafana is deployed with no predefined dashboards.</p>
+<p>To open Grafana, you can port-forward the grafana service:</p>
 <pre><code class="language-sh">kubectl port-forward svc/prometheus-community-grafana 3000:80
 </code></pre>
-<p>And access Grafana locally at <a href="http://localhost:3000/"><code>http://localhost:3000/</code></a>
-providing the credentials <code>admin</code> as username, <code>prom-operator</code> as password (defined in <code>kube-stack-config.yaml</code>).</p>
-<p>CloudNativePG provides a default dashboard for Grafana as part of the official
-<a href="https://github.com/cloudnative-pg/charts">Helm chart</a>. You can also download the
+<p>and access Grafana locally at <a href="http://localhost:3000/"><code>http://localhost:3000/</code></a>
+providing the credentials <code>admin</code> as username, <code>prom-operator</code> as password
+(defined in <code>kube-stack-config.yaml</code>).</p>
+<p>CloudNativePG provides a default dashboard for Grafana in the dedicated
+<a href="https://github.com/cloudnative-pg/grafana-dashboards"><code>grafana-dashboards</code> repository</a>.
+You can download the file
 <a href="https://github.com/cloudnative-pg/grafana-dashboards/blob/main/charts/cluster/grafana-dashboard.json">grafana-dashboard.json</a>
-file and manually importing it via the GUI.</p>
+and manually import it via the GUI (menu: Dashboards &gt; New &gt; Import).
+You can now click on the <code>CloudNativePG</code> dashboard just created:</p>
+<p><img alt="local grafana" src="../images/grafana-local.png" /></p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>Some graphs in the previous dashboard make use of metrics that are in alpha stage by the time
 this was created, like <code>kubelet_volume_stats_available_bytes</code> and <code>kubelet_volume_stats_capacity_bytes</code>
 producing some graphs to show <code>No data</code>.</p>
 </div>
-<p><img alt="local grafana" src="../images/grafana-local.png" /></p>
-<p>Note that in our local setup, Prometheus and Grafana are configured to automatically discover
-and monitor any CloudNativePG clusters deployed with the Monitoring feature enabled.</p>
+<p>Note that in our local setup, Prometheus and Grafana are configured to
+automatically discover and monitor any CloudNativePG clusters deployed with the
+Monitoring feature enabled.</p>
               
             </div>
           </div><footer>
@@ -576,6 +590,7 @@ and monitor any CloudNativePG clusters deployed with the Monitoring feature enab
 
   <div role="contentinfo">
     <!-- Copyright etc -->
+      <p>Copyright © CloudNativePG a Series of LF Projects, LLC</p>
   </div>
 
   Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
