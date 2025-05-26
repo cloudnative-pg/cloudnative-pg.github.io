@@ -1,6 +1,6 @@
 ---
 title: "Contributor Spotlight: David Wheeler"
-date: 2025-05-14T21:51:43+02:00
+date: 2025-05-26T13:51:43+02:00
 draft: false
 image:
     url: theory.jpg
@@ -26,7 +26,8 @@ Principal Architect at Tembo, and PGXN maintainer. You might have heard of
 David's work on pgTAP, a suite of database functions that make it easy to 
 write TAP-emitting unit tests in `psql` scripts or xUnit-style test functions. 
 Or Sqitch, the database change management application. He's also the "bull-
-headed guy who ported SQL/JSON Path to Go" (WIP). The man keeps busy... 
+headed guy who ported SQL/JSON Path to Go" ([Playground](https://theory.github.io/sqljson/)). 
+The man keeps busy... 
 
 He's not quite sure where he first heard about CloudNativePG; maybe at a 
 PGConf? "I was kind of aware of it as a thing when I started at Tembo, which 
