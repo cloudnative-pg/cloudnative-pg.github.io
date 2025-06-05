@@ -1,6 +1,6 @@
 ---
 title: WienIT
-image: logo/wienit.svg
+image: logo/wienit.jpg
 homepage: https://www.wienit.at/
 weight: 10
 ---
