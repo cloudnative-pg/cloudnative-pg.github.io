@@ -17,7 +17,7 @@ tags:
  - spotlight
 summary: "In a mini-series on this blog we highlight the work of the community.
   Today we meet Jonathan Battiato, who sums up his contributions to the project 
-  as: "I help"."
+  as: 'I help'."
 ---
 
 Building and maintaining an open source project takes a village. In a
