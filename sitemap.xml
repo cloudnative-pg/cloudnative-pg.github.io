@@ -12,6 +12,8 @@
   </url><url>
     <loc>https://cloudnative-pg.io/end_users/enix/</loc>
   </url><url>
+    <loc>https://cloudnative-pg.io/end_users/wienit/</loc>
+  </url><url>
     <loc>https://cloudnative-pg.io/end_users/shinkansen/</loc>
   </url><url>
     <loc>https://cloudnative-pg.io/end_users/paradedb/</loc>
@@ -25,15 +27,42 @@
     <loc>https://cloudnative-pg.io/end_users/hitachi/</loc>
   </url><url>
     <loc>https://cloudnative-pg.io/</loc>
-    <lastmod>2025-05-26T13:51:43+02:00</lastmod>
+    <lastmod>2025-06-10T13:00:43+02:00</lastmod>
+  </url><url>
+    <loc>https://cloudnative-pg.io/tags/benchmarks/</loc>
+    <lastmod>2025-06-10T13:00:43+02:00</lastmod>
   </url><url>
     <loc>https://cloudnative-pg.io/blog/</loc>
-    <lastmod>2025-05-26T13:51:43+02:00</lastmod>
+    <lastmod>2025-06-10T13:00:43+02:00</lastmod>
   </url><url>
-    <loc>https://cloudnative-pg.io/blog/contributor-highlight-david-wheeler/</loc>
-    <lastmod>2025-05-26T13:51:43+02:00</lastmod>
+    <loc>https://cloudnative-pg.io/blog/contributor-highlight-jonathan-battiato/</loc>
+    <lastmod>2025-06-10T13:00:43+02:00</lastmod>
+  </url><url>
+    <loc>https://cloudnative-pg.io/tags/debian/</loc>
+    <lastmod>2025-06-10T13:00:43+02:00</lastmod>
+  </url><url>
+    <loc>https://cloudnative-pg.io/tags/kubernetes/</loc>
+    <lastmod>2025-06-10T13:00:43+02:00</lastmod>
+  </url><url>
+    <loc>https://cloudnative-pg.io/tags/linux/</loc>
+    <lastmod>2025-06-10T13:00:43+02:00</lastmod>
   </url><url>
     <loc>https://cloudnative-pg.io/tags/open-source/</loc>
+    <lastmod>2025-06-10T13:00:43+02:00</lastmod>
+  </url><url>
+    <loc>https://cloudnative-pg.io/tags/postgresql/</loc>
+    <lastmod>2025-06-10T13:00:43+02:00</lastmod>
+  </url><url>
+    <loc>https://cloudnative-pg.io/tags/spotlight/</loc>
+    <lastmod>2025-06-10T13:00:43+02:00</lastmod>
+  </url><url>
+    <loc>https://cloudnative-pg.io/tags/</loc>
+    <lastmod>2025-06-10T13:00:43+02:00</lastmod>
+  </url><url>
+    <loc>https://cloudnative-pg.io/tags/ux/</loc>
+    <lastmod>2025-06-10T13:00:43+02:00</lastmod>
+  </url><url>
+    <loc>https://cloudnative-pg.io/blog/contributor-highlight-david-wheeler/</loc>
     <lastmod>2025-05-26T13:51:43+02:00</lastmod>
   </url><url>
     <loc>https://cloudnative-pg.io/tags/pgtap/</loc>
@@ -42,13 +71,7 @@
     <loc>https://cloudnative-pg.io/tags/pgxn/</loc>
     <lastmod>2025-05-26T13:51:43+02:00</lastmod>
   </url><url>
-    <loc>https://cloudnative-pg.io/tags/postgresql/</loc>
-    <lastmod>2025-05-26T13:51:43+02:00</lastmod>
-  </url><url>
     <loc>https://cloudnative-pg.io/tags/sqitch/</loc>
-    <lastmod>2025-05-26T13:51:43+02:00</lastmod>
-  </url><url>
-    <loc>https://cloudnative-pg.io/tags/</loc>
     <lastmod>2025-05-26T13:51:43+02:00</lastmod>
   </url><url>
     <loc>https://cloudnative-pg.io/tags/cloudnativepg/</loc>
@@ -61,9 +84,6 @@
     <lastmod>2025-05-23T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://cloudnative-pg.io/tags/k8s/</loc>
-    <lastmod>2025-05-23T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://cloudnative-pg.io/tags/kubernetes/</loc>
     <lastmod>2025-05-23T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://cloudnative-pg.io/tags/postgres/</loc>
@@ -132,9 +152,6 @@
     <loc>https://cloudnative-pg.io/tags/performance/</loc>
     <lastmod>2025-05-11T14:51:43+02:00</lastmod>
   </url><url>
-    <loc>https://cloudnative-pg.io/tags/spotlight/</loc>
-    <lastmod>2025-05-11T14:51:43+02:00</lastmod>
-  </url><url>
     <loc>https://cloudnative-pg.io/blog/contributor-highlight-philippe-scorsolini/</loc>
     <lastmod>2025-05-04T14:51:43+02:00</lastmod>
   </url><url>
@@ -157,9 +174,6 @@
     <lastmod>2025-04-22T14:51:43+02:00</lastmod>
   </url><url>
     <loc>https://cloudnative-pg.io/blog/contributor-highlight-jonathan-gonzalez/</loc>
-    <lastmod>2025-04-22T14:51:43+02:00</lastmod>
-  </url><url>
-    <loc>https://cloudnative-pg.io/tags/linux/</loc>
     <lastmod>2025-04-22T14:51:43+02:00</lastmod>
   </url><url>
     <loc>https://cloudnative-pg.io/tags/pgbouncer/</loc>

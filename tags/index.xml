@@ -6,13 +6,62 @@
     <description>Recent content in Tags on CloudNativePG - PostgreSQL Operator for Kubernetes</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 26 May 2025 13:51:43 +0200</lastBuildDate>
+    <lastBuildDate>Tue, 10 Jun 2025 13:00:43 +0200</lastBuildDate>
     <atom:link href="https://cloudnative-pg.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Benchmarks</title>
+      <link>https://cloudnative-pg.io/tags/benchmarks/</link>
+      <pubDate>Tue, 10 Jun 2025 13:00:43 +0200</pubDate>
+      <guid>https://cloudnative-pg.io/tags/benchmarks/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Debian</title>
+      <link>https://cloudnative-pg.io/tags/debian/</link>
+      <pubDate>Tue, 10 Jun 2025 13:00:43 +0200</pubDate>
+      <guid>https://cloudnative-pg.io/tags/debian/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Kubernetes</title>
+      <link>https://cloudnative-pg.io/tags/kubernetes/</link>
+      <pubDate>Tue, 10 Jun 2025 13:00:43 +0200</pubDate>
+      <guid>https://cloudnative-pg.io/tags/kubernetes/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Linux</title>
+      <link>https://cloudnative-pg.io/tags/linux/</link>
+      <pubDate>Tue, 10 Jun 2025 13:00:43 +0200</pubDate>
+      <guid>https://cloudnative-pg.io/tags/linux/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Open-Source</title>
       <link>https://cloudnative-pg.io/tags/open-source/</link>
-      <pubDate>Mon, 26 May 2025 13:51:43 +0200</pubDate>
+      <pubDate>Tue, 10 Jun 2025 13:00:43 +0200</pubDate>
       <guid>https://cloudnative-pg.io/tags/open-source/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Postgresql</title>
+      <link>https://cloudnative-pg.io/tags/postgresql/</link>
+      <pubDate>Tue, 10 Jun 2025 13:00:43 +0200</pubDate>
+      <guid>https://cloudnative-pg.io/tags/postgresql/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Spotlight</title>
+      <link>https://cloudnative-pg.io/tags/spotlight/</link>
+      <pubDate>Tue, 10 Jun 2025 13:00:43 +0200</pubDate>
+      <guid>https://cloudnative-pg.io/tags/spotlight/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>UX</title>
+      <link>https://cloudnative-pg.io/tags/ux/</link>
+      <pubDate>Tue, 10 Jun 2025 13:00:43 +0200</pubDate>
+      <guid>https://cloudnative-pg.io/tags/ux/</guid>
       <description></description>
     </item>
     <item>
@@ -27,13 +76,6 @@
       <link>https://cloudnative-pg.io/tags/pgxn/</link>
       <pubDate>Mon, 26 May 2025 13:51:43 +0200</pubDate>
       <guid>https://cloudnative-pg.io/tags/pgxn/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Postgresql</title>
-      <link>https://cloudnative-pg.io/tags/postgresql/</link>
-      <pubDate>Mon, 26 May 2025 13:51:43 +0200</pubDate>
-      <guid>https://cloudnative-pg.io/tags/postgresql/</guid>
       <description></description>
     </item>
     <item>
@@ -62,13 +104,6 @@
       <link>https://cloudnative-pg.io/tags/k8s/</link>
       <pubDate>Fri, 23 May 2025 00:00:00 +0000</pubDate>
       <guid>https://cloudnative-pg.io/tags/k8s/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Kubernetes</title>
-      <link>https://cloudnative-pg.io/tags/kubernetes/</link>
-      <pubDate>Fri, 23 May 2025 00:00:00 +0000</pubDate>
-      <guid>https://cloudnative-pg.io/tags/kubernetes/</guid>
       <description></description>
     </item>
     <item>
@@ -184,13 +219,6 @@
       <description></description>
     </item>
     <item>
-      <title>Spotlight</title>
-      <link>https://cloudnative-pg.io/tags/spotlight/</link>
-      <pubDate>Sun, 11 May 2025 14:51:43 +0200</pubDate>
-      <guid>https://cloudnative-pg.io/tags/spotlight/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>Pooler</title>
       <link>https://cloudnative-pg.io/tags/pooler/</link>
       <pubDate>Sun, 04 May 2025 14:51:43 +0200</pubDate>
@@ -223,13 +251,6 @@
       <link>https://cloudnative-pg.io/tags/containers/</link>
       <pubDate>Tue, 22 Apr 2025 14:51:43 +0200</pubDate>
       <guid>https://cloudnative-pg.io/tags/containers/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Linux</title>
-      <link>https://cloudnative-pg.io/tags/linux/</link>
-      <pubDate>Tue, 22 Apr 2025 14:51:43 +0200</pubDate>
-      <guid>https://cloudnative-pg.io/tags/linux/</guid>
       <description></description>
     </item>
     <item>
