@@ -11,7 +11,9 @@ tags:
  - UX
  - postgresql
  - open-source
- - 
+ - Linux
+ - Debian
+ - benchmarks
  - spotlight
 summary: "In a mini-series on this blog we highlight the work of the community.
   Today we meet Jonathan Battiato, who sums up his contributions to the project 
@@ -29,12 +31,12 @@ conceived. His first contribution to the project must have been reported a bug,
 Jonathan says he's "good at breaking things". Most of his contributions since 
 then have been in improving the user experience.
 
-Even though the CloudNativePG Operator is really a great, stable, easy-to-use, 
-and a production-ready product, there are many aspects of the project that 
-still require improvements and/or rewriting. Most of them are already on the 
-roadmap. Jonathan is keen to improve the user experience for the docs. "The 
-documentation is... a lot. Sometimes I worry one could get lost in it." Jonathan 
-had hoped to work on some hands-on-labs style tutorials to be published on the 
+Even though the CloudNativePG Operator is a stable, easy-to-use, and a 
+production-ready product, there are many aspects of the project that still 
+require improvements and/or rewriting. Most of them are already on the roadmap. 
+Jonathan is keen to improve the user experience for the docs. "The documentation 
+is... a lot. Sometimes I worry one could get lost in it." Jonathan had hoped 
+to work on some hands-on-labs style tutorials to be published on the 
 website, but simply hasn't had the time to dedicate to it. 
 
 Jonathan is as a long-time member of the local Linux User Group (in Prato). 
