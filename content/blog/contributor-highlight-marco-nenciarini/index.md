@@ -1,6 +1,6 @@
 ---
 title: "Contributor Spotlight: Marco Nenciarini"
-date: 2025-06-17T13:51:43+02:00
+date: 2025-06-16T11:51:43+02:00
 draft: false
 image:
     url: marco.jpg
@@ -22,8 +22,8 @@ maintainers, component owners, and members of the larger community.
 This week the spotlight shines on [Marco Nenciarini](https://github.com/mnencia), 
 Esteemed Senior Principal Engineer at EDB. A title Marco doesn't like to use, 
 since to him it sounds "a bit pretentious". Marco is one of the original creators 
-of CloudNativePG. He was part of the initial team at 2ndQuadrant that began 
-exploring how to run PostgreSQL effectively on Kubernetes, back in 2019. 
+of CloudNativePG. He was part of the initial team at 2ndQuadrant that, back in 2019, 
+began exploring how to run PostgreSQL effectively on Kubernetes. 
 
 Marco contributed to the initial architecture and codebase and had "countless 
 discussions" with Leonardo (Cecchi) and Gabriele (Bartolini) about the 
