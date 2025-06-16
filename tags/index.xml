@@ -6,8 +6,36 @@
     <description>Recent content in Tags on CloudNativePG - PostgreSQL Operator for Kubernetes</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 10 Jun 2025 13:00:43 +0200</lastBuildDate>
+    <lastBuildDate>Mon, 16 Jun 2025 11:51:43 +0200</lastBuildDate>
     <atom:link href="https://cloudnative-pg.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Debian</title>
+      <link>https://cloudnative-pg.io/tags/debian/</link>
+      <pubDate>Mon, 16 Jun 2025 11:51:43 +0200</pubDate>
+      <guid>https://cloudnative-pg.io/tags/debian/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Kubernetes</title>
+      <link>https://cloudnative-pg.io/tags/kubernetes/</link>
+      <pubDate>Mon, 16 Jun 2025 11:51:43 +0200</pubDate>
+      <guid>https://cloudnative-pg.io/tags/kubernetes/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Open-Source</title>
+      <link>https://cloudnative-pg.io/tags/open-source/</link>
+      <pubDate>Mon, 16 Jun 2025 11:51:43 +0200</pubDate>
+      <guid>https://cloudnative-pg.io/tags/open-source/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Postgresql</title>
+      <link>https://cloudnative-pg.io/tags/postgresql/</link>
+      <pubDate>Mon, 16 Jun 2025 11:51:43 +0200</pubDate>
+      <guid>https://cloudnative-pg.io/tags/postgresql/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Benchmarks</title>
       <link>https://cloudnative-pg.io/tags/benchmarks/</link>
@@ -16,38 +44,10 @@
       <description></description>
     </item>
     <item>
-      <title>Debian</title>
-      <link>https://cloudnative-pg.io/tags/debian/</link>
-      <pubDate>Tue, 10 Jun 2025 13:00:43 +0200</pubDate>
-      <guid>https://cloudnative-pg.io/tags/debian/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Kubernetes</title>
-      <link>https://cloudnative-pg.io/tags/kubernetes/</link>
-      <pubDate>Tue, 10 Jun 2025 13:00:43 +0200</pubDate>
-      <guid>https://cloudnative-pg.io/tags/kubernetes/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>Linux</title>
       <link>https://cloudnative-pg.io/tags/linux/</link>
       <pubDate>Tue, 10 Jun 2025 13:00:43 +0200</pubDate>
       <guid>https://cloudnative-pg.io/tags/linux/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Open-Source</title>
-      <link>https://cloudnative-pg.io/tags/open-source/</link>
-      <pubDate>Tue, 10 Jun 2025 13:00:43 +0200</pubDate>
-      <guid>https://cloudnative-pg.io/tags/open-source/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Postgresql</title>
-      <link>https://cloudnative-pg.io/tags/postgresql/</link>
-      <pubDate>Tue, 10 Jun 2025 13:00:43 +0200</pubDate>
-      <guid>https://cloudnative-pg.io/tags/postgresql/</guid>
       <description></description>
     </item>
     <item>
