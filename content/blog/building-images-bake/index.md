@@ -31,6 +31,7 @@ allows you to build multiple images at once in a simple way.
 ## Ingredients
 
 - A Bake file. We will use the one provided in the [CloudNativePG repository](https://github.com/cloudnative-pg/postgres-containers/blob/main/docker-bake.hcl)
+- Another Bake file, but this time a local one, this one is to overwrite the previous one.
 
 Cooking time: 5 minutes.
 
@@ -38,7 +39,7 @@ Cooking time: 5 minutes.
 
 ### Step 1: Prepare local Bake file
 
-In a local file with name `bake.hcl`, we add the following content, which is a simple Bake file that will build a custom image
+In a local file with name [bake.hcl](bake.hcl), we add the following content, which is a simple Bake file that will build a custom image
 
 ```hcl
 extensions = [
@@ -132,8 +133,8 @@ But, how does this magic happen? Let's take a look at the Bake and the Docker fi
 
 ### Bake file
 
-The magic starts with our postgres-containers repository, where we have a `docker-bake.hcl` file
-that is being used to build the images provided by the CloudNativePG project.
+The magic starts with our [postgres-containers repository](https://github.com/cloudnative-pg/postgres-containers),
+where we have a `docker-bake.hcl` file that is being used to build the images provided by the CloudNativePG project.
 It's the base for our custom Bake file.
 
 The `docker-bake.hcl` file contains a lot of functions that are used to build the images. One of them is the `getExtensionsString()`.
@@ -154,7 +155,7 @@ on the CloudNativePG images, and we can add the extensions we want to use in our
 
 ## There's more!
 
-You may want to avoid building arm64 image by adding the following:
+You may want to avoid building arm64 images by adding the following:
 
 ```hcl
 platforms = ["linux/amd64"]
