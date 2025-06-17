@@ -22,7 +22,7 @@ summary: Creating a container image for CloudNativePG Operator v2.0
 ## Summary
 In an almost [two years old blog post]({{% ref "/blog/creating-container-images/" %}}), we explained how
 to build a custom container image for CloudNativePG. After two years, many things have changed in the world of containers.
-One of those things has been the introduction of [Bake](https://docs.docker.com/build/) in Docker, which allows you to build
+One of those things has been the introduction of [Bake](https://docs.docker.com/build/bake/) in Docker, which allows you to build
 images using a simple configuration file. Bake is now our recommended way to build images for CloudNativePG.
 
 We will follow a simple cooking recipe to create a custom container image or a set of container images, since Bake
