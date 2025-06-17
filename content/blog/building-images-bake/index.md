@@ -25,7 +25,7 @@ to build a custom container image for CloudNativePG. After two years, many thing
 One of those things has been the introduction of [Bake](https://docs.docker.com/build/bake/) in Docker, which allows you to build
 images using a simple configuration file. Bake is now our recommended way to build images for CloudNativePG.
 
-We will follow a simple cooking recipe to create a custom container image or a set of container images, since Bake
+We will follow a simple baking recipe to create a custom container image or a set of container images, since Bake
 allows you to build multiple images at once in a simple way.
 
 ## Ingredients
@@ -33,7 +33,7 @@ allows you to build multiple images at once in a simple way.
 - A Bake file. We will use the one provided in the [CloudNativePG repository](https://github.com/cloudnative-pg/postgres-containers/blob/main/docker-bake.hcl)
 - Another Bake file, but this time a local one, this one is to overwrite the previous one.
 
-Cooking time: 5 minutes.
+Baking time: 5 minutes.
 
 ## Instructions
 
