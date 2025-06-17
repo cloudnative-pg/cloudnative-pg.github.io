@@ -22,7 +22,7 @@ summary: Creating a container image for CloudNativePG Operator v2.0
 ## Summary
 In an almost [two years old blog post]({{% ref "/blog/creating-container-images/" %}}), we explained how
 to build a custom container image for CloudNativePG. After two years, many things have changed in the world of containers.
-One of those things was the introduction of [Bake](https://www.docker.com/blog/bake/) in Docker, which allows you to build
+One of those things was the introduction of [Bake](https://docs.docker.com/build/) in Docker, which allows you to build
 images using a simple configuration file. Bake is now our recommended way to build images for CloudNativePG.
 
 We will follow a simple cooking recipe to create a custom container image or a set of container images, since Bake
@@ -30,15 +30,15 @@ allows you to build multiple images at once in a simple way.
 
 ## Ingredients
 
-- A bake file. We will use the one provided in the [CloudNativePG repository](https://github.com/cloudnative-pg/postgres-containers/blob/main/docker-bake.hcl)
+- A Bake file. We will use the one provided in the [CloudNativePG repository](https://github.com/cloudnative-pg/postgres-containers/blob/main/docker-bake.hcl)
 
 Cooking time: 5 minutes.
 
 ## Instructions
 
-### Step 1: Prepare local bake file
+### Step 1: Prepare local Bake file
 
-In a local file with name `bake.hcl`, we add the following content, which is a simple bake file that will build a custom image
+In a local file with name `bake.hcl`, we add the following content, which is a simple Bake file that will build a custom image
 
 ```hcl
 extensions = [
@@ -84,7 +84,7 @@ There are a few things that we should remark here:
 - The `pgVersion` is a variable list that contains basically, the MAJOR.MINOR version of PostgreSQL
 - The `name` is the name that we will use later to refer to one element of the matrix that we created
 - The `args` lists all the arguments passed to the Dockerfile. We will talk more about this later.
-- The function `getExtensionsString()` is inherited from the bake file that we reference in the [Ingredients](#ingredients) section
+- The function `getExtensionsString()` is inherited from the Bake file that we reference in the [Ingredients](#ingredients) section
 
 ### Step 2: Build the image
 
@@ -94,15 +94,15 @@ We can now build the image using the following command:
 docker buildx bake -f docker-bake.hcl -f cwd://bake.hcl "https://github.com/cloudnative-pg/postgres-containers.git" myimage
 ```
 This will, by default, build the image for the bake matrix we previously created, and will try to push the image to the registry at
-`localhost:5000`, which is the default registry defined for testing environments in the parent bake file. Let's explain the full command first.
+`localhost:5000`, which is the default registry defined for testing environments in the parent Bake file. Let's explain the full command first.
 
 As is defined in the [Bake documentation about remote definitions](https://docs.docker.com/build/bake/remote-definition/)
-you can use a remote bake definition with all the functions and default targets, and attach another local one that you can use to override
+you can use a remote Bake definition with all the functions and default targets, and attach another local one that you can use to override
 all the default values.
 In the command above, `-f cwd://bake.hcl` is the local file that we created in the previous step, and
 `-f docker-bake.hcl` is the remote file that we're using to build the image, which is in the git repo.
 
-You can explore more about all the content generated and used inside the bake file by appending the `--print` flag, as in the following command:
+You can explore more about all the content generated and used inside the Bake file by appending the `--print` flag, as in the following command:
 
 ```bash
 docker buildx bake -f docker-bake.hcl -f cwd://bake.hcl "https://github.com/cloudnative-pg/postgres-containers.git" myimage --print
@@ -117,7 +117,7 @@ registry=your/registry:5000 docker buildx bake -f docker-bake.hcl -f cwd://bake.
 ```
 
 The previous command will push the images in the following format: `your/registry:5000/postgresql-testing:17-standard-bookworm`.
-Using the `--print` flag you can explore the full list of tags created that are in the parent bake file.
+Using the `--print` flag you can explore the full list of tags created that are in the parent Bake file.
 
 ### Step 4: Serve the image
 
@@ -131,7 +131,7 @@ But, how does this magic happen? Let's take a look at the Bake and the Docker fi
 
 ### Bake file
 
-This is the base of our magic, but that magic starts in our postgres-containers repository, where we have a `docker-bake.hcl` file
+This is where the magic starts with our postgres-containers repository, where we have a `docker-bake.hcl` file
 that is being used to build the images provided by the CloudNativePG project, and it's the base for our custom Bake file.
 
 The `docker-bake.hcl` file contains a lot of functions that are used to build the images, and one of them is the `getExtensionsString()`.
@@ -141,9 +141,8 @@ So the `pg_vector` extension will be translated into
 `postgresql-16-pgvector` which is the name of the package for pgvector extensions for PostgreSQL 16 in the Debian
 Bookworm distribution.
 
-Even the variables that are passed in the `args` variable to the Dockerfile are processed by the Bake file, in this case,
-the variables we add, are being added and the ones we overwrite are being overwritten, so we can use the same variables
-and content used in the parent Bake file.
+When we add elements to, for example, the `args` variable, those variables are processed by the Bake file, and will be
+merged, meaning that the non existent variables will be added, and the existing ones will be overwritten.
 
 ### Dockerfile file
 
