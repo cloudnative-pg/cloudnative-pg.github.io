@@ -133,7 +133,8 @@ But, how does this magic happen? Let's take a look at the Bake and the Docker fi
 ### Bake file
 
 The magic starts with our postgres-containers repository, where we have a `docker-bake.hcl` file
-that is being used to build the images provided by the CloudNativePG project.It's the base for our custom Bake file.
+that is being used to build the images provided by the CloudNativePG project.
+It's the base for our custom Bake file.
 
 The `docker-bake.hcl` file contains a lot of functions that are used to build the images. One of them is the `getExtensionsString()`.
 This function, given the list of extensions we provided, will return a string of the extensions with the correct package name
