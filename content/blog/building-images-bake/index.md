@@ -16,6 +16,8 @@ tags:
  - postgres
  - images
  - tutorial
+ - bake
+ - docker
 summary: Creating a container image for CloudNativePG Operator v2.0
 ---
 
