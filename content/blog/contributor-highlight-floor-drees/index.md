@@ -38,7 +38,7 @@ My contributions to the project are mostly in communication and community.
 I talk to end users and write about their use case, I find events for us to 
 speak at, and I interview people for this series!
 
-One question we like to ask is: if you'd have all the time/skills/money in the 
+One question we like to ask is: if you had all the time/skills/money in the 
 world, what would you most like to change about CloudNativePG? Floor's answer 
 is this: "I'd like to onboard more contributors to the project and make sure 
 they feel enabled to take on more impactful roles. And also just for everyone 
@@ -68,4 +68,4 @@ both?
  
 If you wanted to get in touch with Floor, you can find her in the 
 CloudNativePG channels on the CNCF Slack workspace, or on [Bluesky](https://bsky.app/profile/floord.bsky.social), 
-[Mastodon](https://hachyderm.io/@floord), or [LinkedIn](https://www.linkedin.com/in/floordrees/). You can follow the CloudNativePG project on [Bluesky](https://cloudnativepg.bsky.social) and [Mastodon](https://cloudnativepg mastodon.social) too! 
+[Mastodon](https://hachyderm.io/@floord), or [LinkedIn](https://www.linkedin.com/in/floordrees/). You can follow the CloudNativePG project on [Bluesky](https://cloudnativepg.bsky.social) and [Mastodon](https://mastodon.social/@CloudNativePG) too! 
