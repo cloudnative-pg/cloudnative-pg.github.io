@@ -1,6 +1,6 @@
 ---
 title: "Creating a custom container image for CloudNativePG v2.0"
-date: 2025-06-17
+date: 2025-06-23
 draft: false
 image:
     url: 
@@ -18,15 +18,15 @@ tags:
  - tutorial
  - bake
  - docker
-summary: Creating a container image for CloudNativePG Operator v2.0
+summary: Using Docker's Bake to create container images for the CloudNativePG Operator v2.0.
 ---
 
 ## Summary
-Almost two years ago, we wrote a [blog post on
-building custom container images for CloudNativePG]({{% ref "/blog/creating-container-images/" %}}).
-Since then, many things have changed in the world of containers.
-One of those things has been the introduction of [Bake](https://docs.docker.com/build/bake/) in Docker, which allows you to build
-images using a simple configuration file. Bake is now our recommended way to build images for CloudNativePG.
+Almost two years ago, we wrote a [blog post on building custom container images 
+for CloudNativePG]({{% ref "/blog/creating-container-images/" %}}). Since then, many things have changed in the world of containers.
+One of those things has been the introduction of [Bake](https://docs.docker.com/build/bake/) in Docker, 
+which allows you to build images using a simple configuration file. Bake is now 
+our recommended way to build images for CloudNativePG.
 
 We will follow a simple baking recipe to create a custom container image.
 Bake will also allow you to easily build multiple images at the same time.
@@ -34,7 +34,7 @@ Bake will also allow you to easily build multiple images at the same time.
 ## Ingredients
 
 - A Bake file. We will use the one provided in the [CloudNativePG repository](https://github.com/cloudnative-pg/postgres-containers/blob/main/docker-bake.hcl)
-- Another Bake file, but this time a local one, this one is to overwrite the previous one.
+- Another (local) Bake file, to overwrite the previous one and have a Bake file with your changes applied and build the container images
 
 Baking time: 5 minutes.
 
@@ -42,7 +42,7 @@ Baking time: 5 minutes.
 
 ### Step 1: Prepare local Bake file
 
-In a local file with name [bake.hcl](bake.hcl), we add the following content, which is a simple Bake file that will build a custom image
+To build a custom image we add the following content in a local file with name [bake.hcl](bake.hcl):
 
 ```hcl
 extensions = [
@@ -81,12 +81,11 @@ EOT
 
 There are a few things that we should remark here:
 
-- The `extensions` variable is a list of extensions that we want to include in the image. In our recipe we are using `pg_vector`,
-  but you can add any other extension you want.
+- The `extensions` variable is a list of extensions that we want to include in the image. In our recipe we are using `pgvector`. But you can add any other extension you want.
 - The `dockerfile-inline` variable contains our Dockerfile definition, which cannot be used remotely. We will explain more about this later.
-- The `target` and the `tgt` have the same name, you can use whatever you want here as a name
-- The `pgVersion` variable is a list that contains basically the MAJOR.MINOR version of PostgreSQL
-- The `name` is the name that we will use later to refer to one element of the matrix that we created
+- The `target` and the `tgt` have the same name. You can use whatever you want here as a name.
+- The `pgVersion` variable is a list that contains basically the MAJOR.MINOR version of PostgreSQL.
+- The `name` is the name that we will use later to refer to one element of the matrix that we created.
 - The variable `args` lists all the arguments passed to the Dockerfile. We will talk more about this later.
 - The function `getExtensionsString()` is inherited from the Bake file that we reference in the [Ingredients](#ingredients) section
 
@@ -101,9 +100,9 @@ docker buildx bake -f docker-bake.hcl -f cwd://bake.hcl "https://github.com/clou
 This will, by default, build the image for the bake matrix we previously created, and will try to push the image to the registry at
 `localhost:5000`, which is the default registry defined for testing environments in the parent Bake file. Let's explain the full command:
 
-As is defined in the [Bake documentation about remote definitions](https://docs.docker.com/build/bake/remote-definition/)
-you can use a remote Bake definition with all the functions and default targets, and attach another local one that you can use to override
-all the default values.
+As explained in the [Bake documentation about remote definitions](https://docs.docker.com/build/bake/remote-definition/) you can use a remote Bake definition with all the functions and default targets, and attach another local one to override  
+all the default values. 
+
 In the command above, `-f cwd://bake.hcl` is the local file that we created in Step 1, and
 `-f docker-bake.hcl` is the remote file in the git repo, that we're using to build the image.
 
@@ -126,13 +125,11 @@ Using the `--print` flag you can explore the full list of tags created that are 
 
 ### Step 4: Serve the image
 
-You can now let your clusters use the image that we've built based on the CloudNativePG operand images provided
-by the CloudNativePG project.
+You can now let your clusters use the image that we've built based on the CloudNativePG operand images.  
 
 ## Deep dive into the Bake and Dockerfile
 
-The simplicity of Bake to do even more stuff is amazing, and allows you to create custom images easily.
-But, how does this magic happen? Let's take a look at the Bake and the Docker file.
+The simplicity of Bake to do even more stuff is amazing, and allows you to create custom images easily.  
 
 ### Bake file
 
@@ -143,7 +140,7 @@ It's the base for our custom Bake file.
 The `docker-bake.hcl` file contains a lot of functions that are used to build the images. One of them is the `getExtensionsString()`.
 This function, given the list of extensions we provided, will return a string of the extensions with the correct package name
 for a Debian-based distribution, in our case, Debian Bookworm.
-For example, the `pg_vector` extension will be translated into
+For example, the `pgvector` extension will be translated into
 `postgresql-16-pgvector,` which is the name of the package for pgvector extensions for PostgreSQL 16 in the Debian
 Bookworm distribution.
 
