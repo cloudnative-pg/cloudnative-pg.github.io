@@ -32,10 +32,10 @@ competitor, when they did a research of the different Kubernetes operators
 available." Since, she's met several of the project's maintainers at events - 
 certainly at KubeCon Europe this April there was a high concentration of them 
 in host city London! These days, Floor gets to work with the project's 
-maintainers directly!
+maintainers directly.
 
 My contributions to the project are mostly in communication and community. 
-I talk to end users and write about their use case, I find events for us to 
+I talk to end-users and write about their use case, I find events for us to 
 speak at, and I interview people for this series!
 
 One question we like to ask is: if you had all the time/skills/money in the 
