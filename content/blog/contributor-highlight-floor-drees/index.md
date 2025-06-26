@@ -1,6 +1,6 @@
 ---
 title: "Contributor Spotlight: Floor Drees"
-date: 2025-06-23T13:51:43+02:00
+date: 2025-06-26T13:51:43+02:00
 draft: false
 image:
     url: floor.jpg
