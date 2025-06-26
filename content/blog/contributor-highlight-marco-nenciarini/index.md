@@ -11,6 +11,7 @@ tags:
  - Kubernetes
  - postgresql
  - open-source
+ - spotlight
 summary: "In a mini-series on this blog we highlight the work of the community.
   Today we meet Marco Nenciarini, one of the original creators of CloudNativePG."
 ---
