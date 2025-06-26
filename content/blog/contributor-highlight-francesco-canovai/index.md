@@ -12,12 +12,11 @@ tags:
  - kubernetes
  - postgresql
  - open-source
+ - spotlight
 summary: "In a mini-series on this blog we highlight the work of the community.
   Today we meet Francesco Canovai, Senior Software Development Engineer at EDB, 
   and CloudNativePG maintainer." 
 ---
-
-# Contributor Spotlight: 
 
 Building and maintaining an open source project takes a village. In a
 mini-series on this blog we would like to highlight the work of our
