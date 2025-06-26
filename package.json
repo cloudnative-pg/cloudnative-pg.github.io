@@ -1,4 +1,29 @@
 {
+  "name": "cloudnative-pg",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/EnterpriseDB/temp-cnp-webpage#readme",
+  "bugs": {
+    "url": "https://github.com/EnterpriseDB/temp-cnp-webpage/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EnterpriseDB/temp-cnp-webpage.git"
+  },
+  "license": "ASF v2",
+  "author": "",
+  "main": "postcss.config.js",
+  "scripts": {
+    "build": "NODE_ENV=production npm run css && hugo -e production",
+    "build-dev": "NODE_ENV=development npm run css && hugo -D -e development --disableFastRender",
+    "css": "npx tailwindcss build -i assets/css/main.css -o assets/css/output.css",
+    "dev": "NODE_ENV=development npm run css && hugo server -D -e development --disableFastRender",
+    "prod": "NODE_ENV=production npm run css && hugo server -e production"
+  },
+  "dependencies": {
+    "postcss": "^8.3.11",
+    "postcss-scss": "^4.0.2"
+  },
   "devDependencies": {
     "@babel/cli": "^7.12.8",
     "@babel/core": "^7.12.9",
@@ -10,31 +35,5 @@
     "postcss-object-fit-images": "^1.1.2",
     "postcss-preset-env": "^6.7.0",
     "tailwindcss": "^3.0.23"
-  },
-  "dependencies": {
-    "postcss": "^8.3.11",
-    "postcss-scss": "^4.0.2",
-    "tailwindcss": "^3.0.23"
-  },
-  "name": "cloudnative-pg",
-  "description": "",
-  "version": "1.0.0",
-  "main": "postcss.config.js",
-  "scripts": {
-    "css": "npx tailwindcss build -i assets/css/main.css -o assets/css/output.css",
-    "prod": "NODE_ENV=production npm run css && hugo server -e production",
-    "build": "NODE_ENV=production npm run css && hugo -e production",
-    "dev": "NODE_ENV=development npm run css && hugo server -D -e development --disableFastRender",
-    "build-dev": "NODE_ENV=development npm run css && hugo -D -e development --disableFastRender"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/EnterpriseDB/temp-cnp-webpage.git"
-  },
-  "author": "",
-  "license": "ASF v2",
-  "bugs": {
-    "url": "https://github.com/EnterpriseDB/temp-cnp-webpage/issues"
-  },
-  "homepage": "https://github.com/EnterpriseDB/temp-cnp-webpage#readme"
+  }
 }
