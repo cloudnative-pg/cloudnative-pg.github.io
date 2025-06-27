@@ -34,9 +34,9 @@ certainly at KubeCon Europe this April there was a high concentration of them
 in host city London! These days, Floor gets to work with the project's 
 maintainers directly.
 
-My contributions to the project are mostly in communication and community. 
+"My contributions to the project are mostly in communication and community. 
 I talk to end-users and write about their use case, I find events for us to 
-speak at, and I interview people for this series!
+speak at, and I interview people for this series!"
 
 One question we like to ask is: if you had all the time/skills/money in the 
 world, what would you most like to change about CloudNativePG? Floor's answer 
@@ -44,7 +44,7 @@ is this: "I'd like to onboard more contributors to the project and make sure
 they feel enabled to take on more impactful roles. And also just for everyone 
 to get a chance to meet the other members. I'm trying with the idea of 
 organizing a contributor summit around PGDay Napoli in September, since so 
-many of our maintainers are based in Italy anyway.
+many of our maintainers are based in Italy anyway."
 
 What first got Floor into technology was her blog. To bend the WordPress beast 
 to her will, she had to learn just enough PHP to copy and paste code snippets 
