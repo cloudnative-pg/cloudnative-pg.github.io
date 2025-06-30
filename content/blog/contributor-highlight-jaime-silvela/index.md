@@ -47,8 +47,7 @@ Like many in his generation, from a young age Jaime was attracted to computers,
 which still felt arcane and unexplored. "I have fond memories of my family's 
 Commodore VIC-20. But it was not until reading [*Structure and Interpretation 
 of Computer Programs*](https://mitp-content-server.mit.edu/books/content/sectbyfn/books_pres_0/6515/sicp.zip/index.html) in my early twenties that I thought of writing code for 
-a living." That book also motivated him to move to the US for graduate school, 
-which he did in 2003. 
+a living." That book also motivated him to move to the US for graduate school. 
 
 To the question what he wants to be when he grows up, Jaime answers: "I just 
 turned 50, and you don't find so many developers of that age. But I intend 
