@@ -48,11 +48,11 @@ looking forward to more contributions to the project in those areas by Ying!
 
 What first got Ying in technology was playing Minecraft. "I was the leader of 
 the Minecraft club during my undergraduate years. It was so much fun to program 
-mods and set up multiplayer servers for others to enjoy， where led me to pursue 
+mods and set up multiplayer servers for others to enjoy. This led me to pursue 
 a path in programming technology."
 
-After graduation, Ying would love to work as an infrastructure engineer working 
-on scalable and reliable systems. While contributing to open-source tools that 
+After graduation, Ying would love to work as an infrastructure engineer,
+on scalable and reliable systems. And keep contributing to open-source tools that 
 power modern cloud-native applications, as that's her passion!
 
 If you want to get in touch with Ying, you can find her in the 
