@@ -2,13 +2,13 @@
   "name": "cloudnative-pg",
   "version": "1.0.0",
   "description": "",
-  "homepage": "https://github.com/EnterpriseDB/temp-cnp-webpage#readme",
+  "homepage": "https://github.com/cloudnative-pg/cloudnative-pg.github.io#readme",
   "bugs": {
-    "url": "https://github.com/EnterpriseDB/temp-cnp-webpage/issues"
+    "url": "https://github.com/cloudnative-pg/cloudnative-pg.github.io/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/EnterpriseDB/temp-cnp-webpage.git"
+    "url": "git+https://github.com/cloudnative-pg/cloudnative-pg.github.io.git"
   },
   "license": "ASF v2",
   "author": "",
