@@ -6,8 +6,57 @@
     <description>Recent content in Tags on CloudNativePG - PostgreSQL Operator for Kubernetes</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 26 Jun 2025 13:51:43 +0200</lastBuildDate>
+    <lastBuildDate>Tue, 01 Jul 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://cloudnative-pg.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Kubernetes</title>
+      <link>https://cloudnative-pg.io/tags/kubernetes/</link>
+      <pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>https://cloudnative-pg.io/tags/kubernetes/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Lfx</title>
+      <link>https://cloudnative-pg.io/tags/lfx/</link>
+      <pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>https://cloudnative-pg.io/tags/lfx/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Mentorship</title>
+      <link>https://cloudnative-pg.io/tags/mentorship/</link>
+      <pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>https://cloudnative-pg.io/tags/mentorship/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Minecraft</title>
+      <link>https://cloudnative-pg.io/tags/minecraft/</link>
+      <pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>https://cloudnative-pg.io/tags/minecraft/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Open-Source</title>
+      <link>https://cloudnative-pg.io/tags/open-source/</link>
+      <pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>https://cloudnative-pg.io/tags/open-source/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Postgresql</title>
+      <link>https://cloudnative-pg.io/tags/postgresql/</link>
+      <pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>https://cloudnative-pg.io/tags/postgresql/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Spotlight</title>
+      <link>https://cloudnative-pg.io/tags/spotlight/</link>
+      <pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>https://cloudnative-pg.io/tags/spotlight/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Community</title>
       <link>https://cloudnative-pg.io/tags/community/</link>
@@ -16,38 +65,10 @@
       <description></description>
     </item>
     <item>
-      <title>Kubernetes</title>
-      <link>https://cloudnative-pg.io/tags/kubernetes/</link>
-      <pubDate>Thu, 26 Jun 2025 13:51:43 +0200</pubDate>
-      <guid>https://cloudnative-pg.io/tags/kubernetes/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Open-Source</title>
-      <link>https://cloudnative-pg.io/tags/open-source/</link>
-      <pubDate>Thu, 26 Jun 2025 13:51:43 +0200</pubDate>
-      <guid>https://cloudnative-pg.io/tags/open-source/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Postgresql</title>
-      <link>https://cloudnative-pg.io/tags/postgresql/</link>
-      <pubDate>Thu, 26 Jun 2025 13:51:43 +0200</pubDate>
-      <guid>https://cloudnative-pg.io/tags/postgresql/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>Ruby</title>
       <link>https://cloudnative-pg.io/tags/ruby/</link>
       <pubDate>Thu, 26 Jun 2025 13:51:43 +0200</pubDate>
       <guid>https://cloudnative-pg.io/tags/ruby/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Spotlight</title>
-      <link>https://cloudnative-pg.io/tags/spotlight/</link>
-      <pubDate>Thu, 26 Jun 2025 13:51:43 +0200</pubDate>
-      <guid>https://cloudnative-pg.io/tags/spotlight/</guid>
       <description></description>
     </item>
     <item>
@@ -188,20 +209,6 @@
       <link>https://cloudnative-pg.io/tags/cncf/</link>
       <pubDate>Tue, 13 May 2025 14:51:43 +0200</pubDate>
       <guid>https://cloudnative-pg.io/tags/cncf/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Lfx</title>
-      <link>https://cloudnative-pg.io/tags/lfx/</link>
-      <pubDate>Tue, 13 May 2025 14:51:43 +0200</pubDate>
-      <guid>https://cloudnative-pg.io/tags/lfx/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Mentorship</title>
-      <link>https://cloudnative-pg.io/tags/mentorship/</link>
-      <pubDate>Tue, 13 May 2025 14:51:43 +0200</pubDate>
-      <guid>https://cloudnative-pg.io/tags/mentorship/</guid>
       <description></description>
     </item>
     <item>

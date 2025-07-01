@@ -6,7 +6,16 @@
     <description>Recent content on CloudNativePG - PostgreSQL Operator for Kubernetes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 26 Jun 2025 13:51:43 +0200</lastBuildDate><atom:link href="https://cloudnative-pg.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 01 Jul 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://cloudnative-pg.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Contributor Spotlight: Ying Zhu</title>
+      <link>https://cloudnative-pg.io/blog/contributor-highlight-ying-zhu/</link>
+      <pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate>
+      
+      <guid>https://cloudnative-pg.io/blog/contributor-highlight-ying-zhu/</guid>
+      <description>In a mini-series on this blog we highlight the work of the community. Today we meet Ying Zhu, student at Carnegie Mellon University, and CNCF mentee.</description>
+    </item>
+    
     <item>
       <title>Contributor Spotlight: Floor Drees</title>
       <link>https://cloudnative-pg.io/blog/contributor-highlight-floor-drees/</link>

@@ -6,7 +6,7 @@
 <html lang="en">
 
 <head>
-  <title>CloudNativePG 1.18.0, 1.17.2 and 1.16.4 Released! | CloudNativePG - PostgreSQL Operator for Kubernetes</title>
+  <title>Contributor Spotlight: Ying Zhu | CloudNativePG - PostgreSQL Operator for Kubernetes</title>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
@@ -20,24 +20,24 @@
   
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://cloudnative-pg.io/images/hero_image.png">
-  <meta name="twitter:title" content="CloudNativePG 1.18.0, 1.17.2 and 1.16.4 Released!">
-  <meta name="twitter:description" content="The CloudNativePG community has released the new 1.18 minor version and a new update for the supported 1.17 and 1.16 versions of the CloudNativePG operator.">
+  <meta name="twitter:title" content="Contributor Spotlight: Ying Zhu">
+  <meta name="twitter:description" content="In a mini-series on this blog we highlight the work of the community. Today we meet Ying Zhu, student at Carnegie Mellon University, and CNCF mentee.">
 
-  <meta property="og:url" content="https://cloudnative-pg.io/releases/cloudnative-pg-1-18-0-released/">
+  <meta property="og:url" content="https://cloudnative-pg.io/blog/contributor-highlight-ying-zhu/">
   <meta property="og:site_name" content="CloudNativePG - PostgreSQL Operator for Kubernetes">
-  <meta property="og:title" content="CloudNativePG 1.18.0, 1.17.2 and 1.16.4 Released!">
-  <meta property="og:description" content="The CloudNativePG community has released the new 1.18 minor version and a new update for the supported 1.17 and 1.16 versions of the CloudNativePG operator.">
+  <meta property="og:title" content="Contributor Spotlight: Ying Zhu">
+  <meta property="og:description" content="In a mini-series on this blog we highlight the work of the community. Today we meet Ying Zhu, student at Carnegie Mellon University, and CNCF mentee.">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
-    <meta property="article:section" content="releases">
-    <meta property="article:published_time" content="2022-11-10T17:45:03+01:00">
-    <meta property="article:modified_time" content="2022-11-10T17:45:03+01:00">
-    <meta property="article:tag" content="Release">
-    <meta property="article:tag" content="Postgresql">
-    <meta property="article:tag" content="Postgres">
+    <meta property="article:section" content="blog">
+    <meta property="article:published_time" content="2025-07-01T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-07-01T00:00:00+00:00">
+    <meta property="article:tag" content="Minecraft">
+    <meta property="article:tag" content="Lfx">
+    <meta property="article:tag" content="Mentorship">
     <meta property="article:tag" content="Kubernetes">
-    <meta property="article:tag" content="K8s">
-    <meta property="article:tag" content="Cloudnativepg">
+    <meta property="article:tag" content="Postgresql">
+    <meta property="article:tag" content="Open-Source">
     <meta property="og:image" content="https://cloudnative-pg.io/images/hero_image.png">
 
   
@@ -144,27 +144,27 @@
 
 
     
-<h1 class="h1 text-center mx-auto md:w-3/5">CloudNativePG 1.18.0, 1.17.2 and 1.16.4 Released!</h1>
+<h1 class="h1 text-center mx-auto md:w-3/5">Contributor Spotlight: Ying Zhu</h1>
 <div class="md:w-3/5 mx-auto">
     <div class="px-4">
         
         <div class="flex gap-3 my-10 mx-auto flex justify-center">
             
 <div class="my-auto">
-    <img src="/authors/gbartolini//gb.png" class="w-10 h-10 rounded-full"
-        alt="Gabriele Bartolini">
+    <img src="/authors/fdrees//floor.jpg" class="w-10 h-10 rounded-full"
+        alt="Floor Drees">
 </div>
 <div>
     <div>
         <h1 class="text-lg charcoal font-bold">
-            <a href="/authors/gbartolini">Gabriele Bartolini</a>
+            <a href="/authors/fdrees">Floor Drees</a>
         </h1>
     </div>
     <div class="flex gap-2 text-sm charcoal opacity-75">
     <h6 class="flex gap-2 text-sm charcoal">
-        November 10, 2022
+        July 1, 2025
         •
-        1 minute
+        2 minutes
     </h6>
 </div>
 </div>
@@ -173,43 +173,43 @@
 
         
         <div>
-            <img src="wildlife-zoo-mammal-fauna-elephant-sri-lanka-988769-pxhere.com.jpg" alt="blog image" class="mx-auto">
+            <img src="ying.jpeg" alt="blog image" class="mx-auto">
         </div>
         
 
         
         <div class="mx-auto my-10">
-            <p>The <strong>CloudNativePG Community</strong> has announced version 1.18.0, a new minor
-release of the <strong>CloudNativePG Operator</strong>, which introduces support for
-<strong>cluster-managed physical replication slots</strong> to automatically manage physical
-replication slots for each hot standby replica in a High Availability
-cluster, failover events included.</p>
-<p>The <code>cnpg</code> plugin for <code>kubectl</code> has been enhanced with the introduction of 3
-new commands:</p>
-<ul>
-<li><code>hibernate</code>: destroy all the resources generated by a <code>Cluster</code>, except the
-PVCs that belong to the PostgreSQL primary instance (<code>hibernate on</code>), and
-re-create the cluster (<code>hibernate off</code>)</li>
-<li><code>install</code>: generate manifests to override the default configuration options
-for an operator deployment, such as namespaces to watch, replicas, and so on</li>
-<li><code>pgbench</code>: generate jobs to run <code>pgbench</code> against a given cluster</li>
-</ul>
-<p>Some minor bugs have been fixed, in particular importing a database with
-<code>plpgsql</code> functions and finding the closest backup when doing PITR.</p>
-<p>New patch releases are available for all the supported versions, including
-1.17.2 and 1.16.4.</p>
-<p>With the release of 1.18.0, the 1.16.x minor version will be
-<a href="https://cloudnative-pg.io/documentation/1.18/supported_releases/#support-status-of-cloudnativepg-releases">end of life</a>
-from 10 December, 2022.</p>
-<p>We encourage you to update the operator at your earliest possible convenience.</p>
-<p>For a complete list of changes, please refer to:</p>
-<ul>
-<li><a href="https://cloudnative-pg.io/documentation/1.18/release_notes/v1.18/">release notes for 1.18.0</a></li>
-<li><a href="https://cloudnative-pg.io/documentation/1.17/release_notes/v1.17/">release notes for 1.17.2</a></li>
-<li><a href="https://cloudnative-pg.io/documentation/1.16/release_notes/v1.16/">release notes for 1.16.4</a></li>
-</ul>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+            <p>Building and maintaining an open source project takes a village. In a
+mini-series on this blog we would like to highlight the work of our
+maintainers, component owners, and members of the larger community.</p>
+<p>This week the spotlight shines on Ying Zhu (<a href="https://github.com/EdwinaZhu">EdwinaZhu on GitHub</a>), student at Carnegie
+Mellon University, graduating next year (if all goes well, of course). In June
+2024 Ying graduated from Nanjing University a Bachelor of Science (Computer
+Science).</p>
+<p>Ying joined the CloudNativePG project as a mentee through the <a href="https://cloudnative-pg.io/blog/lfx-cncf-mentorship/">LFX program</a>.
+LFX Mentorship is a Cloud Native Computing Foundation mentorship platform that
+spans across the CNCF projects. More than 190 mentees have been accepted since
+the programs started in 2019, participating in 96 mentorship programs. Ying will
+be working with <a href="https://github.com/gbartolini">Gabriele Bartolini</a>, <a href="https://github.com/leonardoce">Leonardo Cecchi</a>, <a href="https://github.com/mnencia">Marco Nenciarini</a>,
+and <a href="https://github.com/armru">Armando Ruocco</a>. When browsing CNCF projects to contribute to,
+CloudNativePG&rsquo;s focus on Postgres and Kubernetes immediately caught her interest
+since she&rsquo;s already involved in those communities.</p>
+<p>She&rsquo;s currently working on implementing declarative support for managing
+PostgreSQL Foreign Data Wrappers (FDWs) through the Database custom resource.
+&ldquo;First I&rsquo;m focused on learning and understanding the system deeply. It&rsquo;s still
+in progress, but I&rsquo;m learning a lot and enjoying every step!&rdquo;</p>
+<p>Ying is especially interested in areas like extensibility, observability, and
+making it easier for users to declaratively manage PostgreSQL features. We&rsquo;re
+looking forward to more contributions to the project in those areas by Ying!</p>
+<p>What first got Ying in technology was playing Minecraft. &ldquo;I was the leader of
+the Minecraft club during my undergraduate years. It was so much fun to program
+mods and set up multiplayer servers for others to enjoy. This led me to pursue
+a path in programming technology.&rdquo;</p>
+<p>After graduation, Ying would love to work as an infrastructure engineer,
+on scalable and reliable systems. And keep contributing to open-source tools that
+power modern cloud-native applications, as that&rsquo;s her passion!</p>
+<p>If you want to get in touch with Ying, you can find her in the
+CloudNativePG channels on the CNCF Slack workspace, or on <a href="https://www.linkedin.com/in/yingzhu03/">LinkedIn</a>. You can follow the CloudNativePG project on <a href="https://cloudnativepg.bsky.social">Bluesky</a> and <a href="https://mastodon.social/@CloudNativePG">Mastodon</a> too!</p>
 
         </div>
         
@@ -220,23 +220,26 @@ from 10 December, 2022.</p>
         <div class="text-xs space-y-1.5 mb-14">
             <ul class="text-sm">
                 
-                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/release"
-                        class="mr-2">release</a></li>
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/minecraft"
+                        class="mr-2">minecraft</a></li>
                 
-                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/postgresql"
-                        class="mr-2">postgresql</a></li>
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/lfx"
+                        class="mr-2">lfx</a></li>
                 
-                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/postgres"
-                        class="mr-2">postgres</a></li>
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/mentorship"
+                        class="mr-2">mentorship</a></li>
                 
                 <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/kubernetes"
                         class="mr-2">kubernetes</a></li>
                 
-                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/k8s"
-                        class="mr-2">k8s</a></li>
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/postgresql"
+                        class="mr-2">postgresql</a></li>
                 
-                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/cloudnativepg"
-                        class="mr-2">cloudnativepg</a></li>
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/open-source"
+                        class="mr-2">open-source</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/spotlight"
+                        class="mr-2">spotlight</a></li>
                 
             </ul>
 
