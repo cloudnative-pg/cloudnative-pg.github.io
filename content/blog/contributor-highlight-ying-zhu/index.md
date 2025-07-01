@@ -1,5 +1,5 @@
 ---
-title: "Contributor Spotlight: Floor Drees"
+title: "Contributor Spotlight: Ying Zhu"
 date: 2025-07-01
 draft: false
 image:
@@ -24,7 +24,7 @@ mini-series on this blog we would like to highlight the work of our
 maintainers, component owners, and members of the larger community.
 
 This week the spotlight shines on Ying Zhu ([EdwinaZhu on GitHub](https://github.com/EdwinaZhu)), student at Carnegie 
-Mellon University, graduating next year (if all goes well, ofcourse). In June 
+Mellon University, graduating next year (if all goes well, of course). In June
 2024 Ying graduated from Nanjing University a Bachelor of Science (Computer 
 Science).
 
@@ -56,4 +56,4 @@ on scalable and reliable systems. And keep contributing to open-source tools tha
 power modern cloud-native applications, as that's her passion!
 
 If you want to get in touch with Ying, you can find her in the 
-CloudNativePG channels on the CNCF Slack workspace, or on [LinkedIn](https://www.linkedin.com/in/yingzhu03/). You can follow the CloudNativePG project on [Bluesky](https://cloudnativepg.bsky.social) and [Mastodon](https://mastodon.social/@CloudNativePG) too! 
+CloudNativePG channels on the CNCF Slack workspace, or on [LinkedIn](https://www.linkedin.com/in/yingzhu03/). You can follow the CloudNativePG project on [Bluesky](https://cloudnativepg.bsky.social) and [Mastodon](https://mastodon.social/@CloudNativePG) too!
