@@ -1,6 +1,6 @@
 ---
 title: "Contributor Spotlight: Jaime Silvela"
-date: 2025-07-08
+date: 2025-07-07
 draft: false
 image:
     url: jaime.jpg
