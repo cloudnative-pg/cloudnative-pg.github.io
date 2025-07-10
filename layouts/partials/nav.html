@@ -1,7 +1,7 @@
 <!--Navbar starts here-->
 <nav>
   <header>
-    <div class="md:flex md:flex-row md:px-16 md:justify-between py-5">
+    <div class="md:flex md:flex-row md:px-16 md:justify-between py-5 items-center">
       <div class="flex justify-between px-4 md:hidden">
         <div>
           {{ $image := resources.Get "logo/large_logo.svg" }}
@@ -20,7 +20,7 @@
       </div>
 
       <div class="hidden md:block">
-        <ul class="md:flex gap-14 text-2xl medium-gray my-5">
+        <ul class="md:flex gap-14 text-2xl medium-gray my-5 pb-0">
           <li><a href="/blog">Blog</a></li>
           <li><a href="/tags/tutorial">Tutorials</a></li>
           <li><a href="/releases">Releases</a></li>
@@ -56,19 +56,10 @@
       </div>
       <!--For hamburger click -->
 
-      <div class="flex gap-5 my-4 fill-cnp-blue hidden md:flex">
+      <div class="my-4 hidden md:flex">
         <a class="github-button" href="https://github.com/cloudnative-pg/cloudnative-pg"
           data-color-scheme="no-preference: light; light: light; dark: dark;" data-size="large" data-show-count="true"
           aria-label="Star cloudnative-pg/cloudnative-pg on GitHub">Star</a>
-        <a href="https://cloud-native.slack.com/archives/C08MAUJ7NPM">
-          <img src="/icons/Slack.svg" alt="Slack" title="Join our Slack channel now!">
-        </a>
-        <a href="https://twitter.com/CloudNativePg">
-          <img src="/icons/Twitter.svg" alt="Twitter">
-        </a>
-        <a href="https://www.youtube.com/channel/UCTGH88W1BiuRRPTzJUDPJyA">
-          <img src="/icons/YouTube.svg" alt="YouTube">
-        </a>
       </div>
     </div>
   </header>
