@@ -91,5 +91,12 @@
       <guid>https://cloudnative-pg.io/end_users/hitachi/</guid>
       <description>&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;em&gt;We&amp;rsquo;ve been using CloudNativePG at Japan area since January 2024. Currently they have been establishing the production system with CNPG. CNPG changes our daily operation like health check and backup. So we are really excited about the future function of CNPG like off-line upgrade, etc.&lt;/em&gt;&#xA;&lt;br&gt;&#xA;— Hitachi, Ltd.&lt;/p&gt;&#xA;&lt;/blockquote&gt;</description>
     </item>
+    <item>
+      <title>Rubin Observatory</title>
+      <link>https://cloudnative-pg.io/end_users/rubin/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://cloudnative-pg.io/end_users/rubin/</guid>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;em&gt;At Rubin Observatory, we adopted CloudNativePG in November 2022 to manage our PostgreSQL databases on our on-premises Kubernetes clusters. It was actually my first project after joining Rubin, and from the very beginning, CloudNativePG stood out for its simplicity and how seamlessly it fit into our workflow. One feature we really appreciate is how well it works with our custom PostgreSQL images, which include several specialized extensions we need for astronomy data. Having PgBouncer integration available out of the box is a great bonus and something we actively use. Today, CloudNativePG is at the core of all the data collected by the telescope and replicated to SLAC, powering our science platform for millions of users around the world. For us, it’s a straightforward, reliable solution that just works—even at the scale of modern astronomy.&lt;/em&gt;&#xA;&lt;br&gt;&#xA;— Carlos Ignacio Barría Young, Senior DevOps Engineer at Rubin Observatory&lt;/p&gt;</description>
+    </item>
   </channel>
 </rss>
