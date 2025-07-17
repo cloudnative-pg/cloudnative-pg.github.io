@@ -1,6 +1,6 @@
 ---
 title: "Creating a custom container image for CloudNativePG v2.0"
-date: 2025-06-23
+date: 2025-07-22
 draft: false
 image:
     url: 
@@ -22,19 +22,21 @@ summary: Using Docker's Bake to create container images for the CloudNativePG Op
 ---
 
 ## Summary
-Almost two years ago, we wrote a [blog post on building custom container images 
-for CloudNativePG]({{% ref "/blog/creating-container-images/" %}}). Since then, many things have changed in the world of containers.
-One of those things has been the introduction of [Bake](https://docs.docker.com/build/bake/) in Docker, 
-which allows you to build images using a simple configuration file. Bake is now 
-our recommended way to build images for CloudNativePG.
+Nearly two years ago, we shared a [blog post on building custom container 
+images for CloudNativePG]({{% ref "/blog/creating-container-images/" %}}). Since then, the container ecosystem has evolved 
+significantly—one notable development being the introduction of [Docker Bake]((https://docs.docker.com/build/bake/)).
 
-We will follow a simple baking recipe to create a custom container image.
-Bake will also allow you to easily build multiple images at the same time.
+Docker Bake simplifies image builds using a straightforward configuration file, 
+and it’s now our recommended approach for building CloudNativePG images.
+
+In this post, we’ll walk through a simple baking recipe to create a custom 
+container image. With Bake, you can also easily build multiple images in 
+parallel.
 
 ## Ingredients
 
-- A Bake file. We will use the one provided in the [CloudNativePG repository](https://github.com/cloudnative-pg/postgres-containers/blob/main/docker-bake.hcl)
-- Another (local) Bake file, to overwrite the previous one and have a Bake file with your changes applied and build the container images
+- A Bake file, using the one provided in the [CloudNativePG repository](https://github.com/cloudnative-pg/postgres-containers/blob/main/docker-bake.hcl) as a base.
+- A second, local Bake file to override the base configuration—this lets you apply your custom changes and build the container images accordingly.
 
 Baking time: 5 minutes.
 
@@ -79,15 +81,16 @@ EOT
 }
 ```
 
-There are a few things that we should remark here:
+There are a few important points to highlight:
 
-- The `extensions` variable is a list of extensions that we want to include in the image. In our recipe we are using `pgvector`. But you can add any other extension you want.
-- The `dockerfile-inline` variable contains our Dockerfile definition, which cannot be used remotely. We will explain more about this later.
-- The `target` and the `tgt` have the same name. You can use whatever you want here as a name.
-- The `pgVersion` variable is a list that contains basically the MAJOR.MINOR version of PostgreSQL.
-- The `name` is the name that we will use later to refer to one element of the matrix that we created.
-- The variable `args` lists all the arguments passed to the Dockerfile. We will talk more about this later.
-- The function `getExtensionsString()` is inherited from the Bake file that we reference in the [Ingredients](#ingredients) section
+- The `extensions` variable is a list of extensions that we want to include in the image. In our recipe we are using `pgvector`, but you can add any others as needed.
+- The `dockerfile-inline` variable contains our Dockerfile definition, which cannot be used remotely. We will explain why later.
+- The `target` and the `tgt` values share the same name, but you can use any name you prefer.
+- The `pgVersion` variable is a list specifying the PostgreSQL version(s) in MAJOR.MINOR format.
+- The `name` field is used to identify individual entries in the matrix we’ve defined.
+- The `args` variable contains the arguments passed to the Dockerfile—more on this later.
+- The `getExtensionsString()` function is inherited from the base Bake file mentioned in the [Ingredients](#ingredients) section
+
 
 ### Step 2: Build the image
 
@@ -97,11 +100,10 @@ We can now build the image using the following command:
 docker buildx bake -f docker-bake.hcl -f cwd://bake.hcl "https://github.com/cloudnative-pg/postgres-containers.git" myimage
 ```
 
-This will, by default, build the image for the bake matrix we previously created, and will try to push the image to the registry at
+This will build the image for the bake matrix we previously created, and will try to push the image to the registry at
 `localhost:5000`, which is the default registry defined for testing environments in the parent Bake file. Let's explain the full command:
 
-As explained in the [Bake documentation about remote definitions](https://docs.docker.com/build/bake/remote-definition/) you can use a remote Bake definition with all the functions and default targets, and attach another local one to override  
-all the default values. 
+As outlined in the [Bake documentation on remote definitions](https://docs.docker.com/build/bake/remote-definition/), you can use a remote Bake file that includes functions and default targets, then attach a local Bake file to override any default values as needed.
 
 In the command above, `-f cwd://bake.hcl` is the local file that we created in Step 1, and
 `-f docker-bake.hcl` is the remote file in the git repo, that we're using to build the image.
@@ -144,14 +146,12 @@ For example, the `pgvector` extension will be translated into
 `postgresql-16-pgvector,` which is the name of the package for pgvector extensions for PostgreSQL 16 in the Debian
 Bookworm distribution.
 
-When we add elements to, for example, the `args` variable, those elements are processed by the Bake file, and will be
+When we add elements to, for example, the `args` variable, those elements are processed by the Docker bake command, and will be
 merged, meaning that the new elements will be added, and the existing ones will be overwritten.
 
 ### Dockerfile file
 
-The Dockerfile is simply a heredoc string, because of the limitations of Bake to overwrite the remote Dockerfile with a
-local one, but it allows us to change the FROM in the image, which means we can create an image that it's directly based
-on the CloudNativePG images, and we can add the extensions we want to use in our image, without building all of them.
+The Dockerfile is defined as a heredoc string due to Bake's limitation in overriding a remote Dockerfile with a local one. However, this approach still lets us modify the FROM directive, allowing us to base our image directly on the CloudNativePG images and add only the specific extensions we need—without rebuilding all of them.
 
 ## There's more!
 
@@ -161,7 +161,6 @@ You may want to avoid building arm64 images by adding the following:
 platforms = ["linux/amd64"]
 ```
 
-This will overwrite the platforms variable and so, will build only for one platform.
+This will override the platforms variable, so the image will be built for a single platform only.
 
-Also, if you want to build everything into your own repository and manage the same tags, it's possible. In the future
-we may write another post explaining this.
+If you’d like to build everything into your own repository while managing the same tags, that’s also possible. We may cover that in a future post.
