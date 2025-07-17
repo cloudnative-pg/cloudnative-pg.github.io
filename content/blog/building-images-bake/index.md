@@ -101,9 +101,11 @@ docker buildx bake -f docker-bake.hcl -f cwd://bake.hcl "https://github.com/clou
 ```
 
 This will build the image for the bake matrix we previously created, and will try to push the image to the registry at
-`localhost:5000`, which is the default registry defined for testing environments in the parent Bake file. Let's explain the full command:
+`localhost:5000`, which is the default registry defined for testing environments in the parent Bake file. Let's explain
+the full command:
 
-As outlined in the [Bake documentation on remote definitions](https://docs.docker.com/build/bake/remote-definition/), you can use a remote Bake file that includes functions and default targets, then attach a local Bake file to override any default values as needed.
+As outlined in the [Bake documentation on remote definitions](https://docs.docker.com/build/bake/remote-definition/), you can use a remote Bake file that includes
+functions and default targets, then attach a local Bake file to override any default values as needed.
 
 In the command above, `-f cwd://bake.hcl` is the local file that we created in Step 1, and
 `-f docker-bake.hcl` is the remote file in the git repo, that we're using to build the image.
@@ -151,16 +153,18 @@ merged, meaning that the new elements will be added, and the existing ones will 
 
 ### Dockerfile file
 
-The Dockerfile is defined as a heredoc string due to Bake's limitation in overriding a remote Dockerfile with a local one. However, this approach still lets us modify the FROM directive, allowing us to base our image directly on the CloudNativePG images and add only the specific extensions we need—without rebuilding all of them.
+The Dockerfile is defined as a heredoc string due to Bake's limitation in overriding a remote Dockerfile with a local
+one. However, this approach still lets us modify the FROM directive, allowing us to base our image directly on the
+CloudNativePG images and add only the specific extensions we need—without rebuilding all of them.
 
-## There's more!
+## Making your images for specific architectures
 
-You may want to avoid building arm64 images by adding the following:
+By default, we build the images for `amd64` and `arm64` architectures, which is the recommended approach for most users.
+However, if you want to build images for your specific architecture and so, saving some space, you can override the
+`platforms` variable in your local Bake file.
 
 ```hcl
 platforms = ["linux/amd64"]
 ```
-
-This will override the platforms variable, so the image will be built for a single platform only.
 
 If you’d like to build everything into your own repository while managing the same tags, that’s also possible. We may cover that in a future post.
