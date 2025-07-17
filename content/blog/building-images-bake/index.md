@@ -2,9 +2,6 @@
 title: "Creating a custom container image for CloudNativePG v2.0"
 date: 2025-07-22
 draft: false
-image:
-    url: 
-    attribution: 
 author: jgonzalez
 tags:
  - blog
@@ -37,8 +34,6 @@ parallel.
 
 - A Bake file, using the one provided in the [CloudNativePG repository](https://github.com/cloudnative-pg/postgres-containers/blob/main/docker-bake.hcl) as a base.
 - A second, local Bake file to override the base configuration—this lets you apply your custom changes and build the container images accordingly.
-
-Baking time: 5 minutes.
 
 ## Instructions
 
@@ -83,8 +78,10 @@ EOT
 
 There are a few important points to highlight:
 
-- The `extensions` variable is a list of extensions that we want to include in the image. In our recipe we are using `pgvector`, but you can add any others as needed.
-- The `dockerfile-inline` variable contains our Dockerfile definition, which cannot be used remotely. We will explain why later.
+- The `extensions` variable is a list of extensions that we want to include in the image. In our recipe we are using
+  `pgvector`, but you can add any others as needed.
+- The `dockerfile-inline` variable contains our Dockerfile definition, which cannot be used remotely. We will explain
+  why later.
 - The `target` and the `tgt` values share the same name, but you can use any name you prefer.
 - The `pgVersion` variable is a list specifying the PostgreSQL version(s) in MAJOR.MINOR format.
 - The `name` field is used to identify individual entries in the matrix we’ve defined.
@@ -110,7 +107,8 @@ functions and default targets, then attach a local Bake file to override any def
 In the command above, `-f cwd://bake.hcl` is the local file that we created in Step 1, and
 `-f docker-bake.hcl` is the remote file in the git repo, that we're using to build the image.
 
-You can explore more about all the content generated and used inside the Bake file by appending the `--print` flag, as in the following command:
+You can explore more about all the content generated and used inside the Bake file by appending the `--print` flag, as
+in the following command:
 
 ```bash
 docker buildx bake -f docker-bake.hcl -f cwd://bake.hcl "https://github.com/cloudnative-pg/postgres-containers.git" myimage --print
@@ -145,7 +143,7 @@ The `docker-bake.hcl` file contains a lot of functions that are used to build th
 This function, given the list of extensions we provided, will return a string of the extensions with the correct package name
 for a Debian-based distribution, in our case, Debian Bookworm.
 For example, the `pgvector` extension will be translated into
-`postgresql-16-pgvector,` which is the name of the package for pgvector extensions for PostgreSQL 16 in the Debian
+`postgresql-16-pgvector`, which is the name of the package for pgvector extensions for PostgreSQL 16 in the Debian
 Bookworm distribution.
 
 When we add elements to, for example, the `args` variable, those elements are processed by the Docker bake command, and will be
@@ -159,12 +157,13 @@ CloudNativePG images and add only the specific extensions we need—without rebu
 
 ## Making your images for specific architectures
 
-By default, we build the images for `amd64` and `arm64` architectures, which is the recommended approach for most users.
-However, if you want to build images for your specific architecture and so, saving some space, you can override the
-`platforms` variable in your local Bake file.
+By default, images are built for both `amd64` and `arm64` architectures, which is the recommended setup for most users.
+However, if you want to target a specific architecture and reduce image size, you can override the `platforms` variable
+in your local Bake file.
 
 ```hcl
 platforms = ["linux/amd64"]
 ```
 
-If you’d like to build everything into your own repository while managing the same tags, that’s also possible. We may cover that in a future post.
+If you’d like to build everything into your own repository while managing the same tags, that’s also possible.
+We may cover that in a future post.
