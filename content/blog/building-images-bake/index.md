@@ -125,7 +125,7 @@ Using the `--print` flag you can explore the full list of tags created that are 
 
 ### Step 4: Serve the image
 
-You can now let your clusters use the image that we've built based on the CloudNativePG operand images.  
+You can now use the image that we've built for your clusters.  
 
 ## Deep dive into the Bake and Dockerfile
 
@@ -134,7 +134,7 @@ The simplicity of Bake to do even more stuff is amazing, and allows you to creat
 ### Bake file
 
 The magic starts with our [postgres-containers repository](https://github.com/cloudnative-pg/postgres-containers),
-where we have a `docker-bake.hcl` file that is being used to build the images provided by the CloudNativePG project.
+where we have a `docker-bake.hcl` file that is being used to build the images for the CloudNativePG project.
 It's the base for our custom Bake file.
 
 The `docker-bake.hcl` file contains a lot of functions that are used to build the images. One of them is the `getExtensionsString()`.
