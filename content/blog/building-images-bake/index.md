@@ -1,6 +1,6 @@
 ---
 title: "Creating a custom container image for CloudNativePG v2.0"
-date: 2025-07-22
+date: 2025-07-23
 draft: false
 author: jgonzalez
 tags:
@@ -39,7 +39,7 @@ parallel.
 
 ### Step 1: Prepare local Bake file
 
-To build a custom image we add the following content in a local file with name [bake.hcl](bake.hcl):
+To build a custom image we add the following content in a local file with name `bake.hcl`:
 
 ```hcl
 extensions = [
@@ -153,13 +153,13 @@ merged, meaning that the new elements will be added, and the existing ones will 
 
 The Dockerfile is defined as a heredoc string due to Bake's limitation in overriding a remote Dockerfile with a local
 one. However, this approach still lets us modify the FROM directive, allowing us to base our image directly on the
-CloudNativePG images and add only the specific extensions we need—without rebuilding all of them.
+CloudNativePG images and add only the extensions we need—without rebuilding everything.
 
 ## Making your images for specific architectures
 
 By default, images are built for both `amd64` and `arm64` architectures, which is the recommended setup for most users.
-However, if you want to target a specific architecture and reduce image size, you can override the `platforms` variable
-in your local Bake file.
+However, if you want to build images only for one specific architecture, saving some space, you can override the
+`platforms` variable in your local Bake file.
 
 ```hcl
 platforms = ["linux/amd64"]
