@@ -3,8 +3,8 @@ extensions = [
 ]
 target "myimage" {
   dockerfile-inline = <<EOT
-ARG BASEIMAGE="ghcr.io/cloudnative-pg/postgresql:16.9-standard-bookworm"
-FROM $BASEIMAGE AS myimage
+ARG BASE_IMAGE="ghcr.io/cloudnative-pg/postgresql:16.9-standard-bookworm"
+FROM $BASE_IMAGE AS myimage
 ARG EXTENSIONS
 USER root
 RUN apt-get update && \
