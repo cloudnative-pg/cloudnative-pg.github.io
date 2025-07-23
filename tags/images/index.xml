@@ -6,8 +6,15 @@
     <description>Recent content in Images on CloudNativePG - PostgreSQL Operator for Kubernetes</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 08 Nov 2023 11:29:52 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 23 Jul 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://cloudnative-pg.io/tags/images/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Creating a custom container image for CloudNativePG v2.0</title>
+      <link>https://cloudnative-pg.io/blog/building-images-bake/</link>
+      <pubDate>Wed, 23 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>https://cloudnative-pg.io/blog/building-images-bake/</guid>
+      <description>Using Docker&amp;rsquo;s Bake to create container images for the CloudNativePG Operator v2.0.</description>
+    </item>
     <item>
       <title>Creating a custom container image for CloudNativePG</title>
       <link>https://cloudnative-pg.io/blog/creating-container-images/</link>

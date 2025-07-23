@@ -6,7 +6,16 @@
     <description>Recent content on CloudNativePG - PostgreSQL Operator for Kubernetes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 07 Jul 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://cloudnative-pg.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 23 Jul 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://cloudnative-pg.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Creating a custom container image for CloudNativePG v2.0</title>
+      <link>https://cloudnative-pg.io/blog/building-images-bake/</link>
+      <pubDate>Wed, 23 Jul 2025 00:00:00 +0000</pubDate>
+      
+      <guid>https://cloudnative-pg.io/blog/building-images-bake/</guid>
+      <description>Using Docker&amp;rsquo;s Bake to create container images for the CloudNativePG Operator v2.0.</description>
+    </item>
+    
     <item>
       <title>Contributor Spotlight: Jaime Silvela</title>
       <link>https://cloudnative-pg.io/blog/contributor-highlight-jaime-silvela/</link>
