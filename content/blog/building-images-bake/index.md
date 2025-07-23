@@ -79,7 +79,7 @@ EOT
 There are a few important points to highlight:
 
 - The `extensions` variable is a list of extensions that we want to include in the image. In our recipe we are using
-  `pgvector`, but you can add any others as needed.
+  `pgvector`, but you can add others as needed.
 - The `dockerfile-inline` variable contains our Dockerfile definition, which cannot be used remotely. We will explain
   why later.
 - The `target` and the `tgt` values share the same name, but you can use any name you prefer.
