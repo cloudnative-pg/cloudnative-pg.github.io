@@ -14,9 +14,10 @@
         </div>
 
         <h3 class="text-xl font-bold mb-6">Posts by {{ .Params.name }}</h3>
-        {{ $this_author := .Params.github }}
+        {{ $author_git := .Params.github }}
+        {{ $author_id := .Params.id }}
         {{ range (.Site.GetPage "/blog").Pages}}
-            {{ if eq .Params.author $this_author }}
+            {{ if or (eq .Params.author $author_git) (eq .Params.author $author_id) }}
             <div class="column is-half">
                 <a href="{{ .RelPermalink }}">{{ .Params.title}}</a>
                 {{ partial "blog_datetime.html" . }}
