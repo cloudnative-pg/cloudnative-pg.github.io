@@ -2,6 +2,7 @@
 name:  Jonathan Gonzalez V.
 avatar: jgonzalez-gh.jpeg
 github: sxd
+id: jgonzalez
 ---
 
 A free software lover, passionate about OpenSource and all the tools that
