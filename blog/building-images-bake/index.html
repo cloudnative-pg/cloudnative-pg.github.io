@@ -164,7 +164,7 @@
 
         
         <div>
-            <img src="" alt="blog image" class="mx-auto">
+            <img src="baked_elephant.png" alt="blog image" class="mx-auto">
         </div>
         
 
@@ -173,7 +173,7 @@
             <h2 id="summary">Summary</h2>
 <p>Nearly two years ago, we shared a <a href="https://cloudnative-pg.io/blog/creating-container-images/">blog post on building custom container
 images for CloudNativePG</a>. Since then, the container ecosystem has evolved
-significantly—one notable development being the introduction of <a href="(https://docs.docker.com/build/bake/)">Docker Bake</a>.</p>
+significantly—one notable development being the introduction of <a href="https://docs.docker.com/build/bake/">Docker Bake</a>.</p>
 <p>Docker Bake simplifies image builds using a straightforward configuration file,
 and it’s now our recommended approach for building CloudNativePG images.</p>
 <p>In this post, we’ll walk through a simple baking recipe to create a custom
@@ -193,7 +193,7 @@ parallel.</p>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">target</span> <span style="color:#e6db74">&#34;myimage&#34;</span> {
 </span></span><span style="display:flex;"><span>  dockerfile-inline <span style="color:#f92672">=</span> <span style="color:#960050;background-color:#1e0010">&lt;&lt;</span><span style="color:#66d9ef">EOT</span>
 </span></span><span style="display:flex;"><span>ARG BASE_IMAGE<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;ghcr.io/cloudnative-pg/postgresql:16.9-standard-bookworm&#34;</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#66d9ef">BAS_EIMAGE</span> <span style="color:#66d9ef">AS</span> <span style="color:#66d9ef">myimage</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#66d9ef">BASE_IMAGE</span> <span style="color:#66d9ef">AS</span> <span style="color:#66d9ef">myimage</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">ARG</span> <span style="color:#66d9ef">EXTENSIONS</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">USER</span> <span style="color:#66d9ef">root</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">RUN</span> <span style="color:#66d9ef">apt</span><span style="color:#960050;background-color:#1e0010">-</span><span style="color:#66d9ef">get</span> <span style="color:#66d9ef">update</span> <span style="color:#960050;background-color:#1e0010">&amp;&amp;</span> \
@@ -547,7 +547,7 @@ We may cover that in a future post.</p>
                 <a href="/blog/building-images-bake/">
                     
                     <div>
-                        <img src="/blog/building-images-bake//" class="object-fill"
+                        <img src="/blog/building-images-bake//baked_elephant.png" class="object-fill"
                             alt="Blog image">
                     </div>
                     <div class="charcoal">
