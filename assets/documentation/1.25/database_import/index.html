@@ -81,6 +81,8 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#the-monolith-type">The monolith type</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#a-practical-example">A practical example</a>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#import-optimizations">Import optimizations</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#customizing-pg_dump-and-pg_restore-behavior">Customizing pg_dump and pg_restore Behavior</a>
@@ -286,6 +288,8 @@
               <ul>
                   <li class="toctree-l1"><a class="reference internal" href="../cncf-projects/external-secrets/">External Secrets</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cncf-projects/cilium/">Cilium</a>
+                  </li>
               </ul>
               <p class="caption"><span class="caption-text">Appendixes</span></p>
               <ul>
@@ -372,14 +376,14 @@ into the destination cluster:</p>
   databases and different users, imported from the source cluster</p>
 </li>
 </ul>
-<p>The first import method is available via the <code>microservice</code> type, while the
-latter by the <code>monolith</code> type.</p>
+<p>The first import method is available via the <code>microservice</code> type, the
+second via the <code>monolith</code> type.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>It is your responsibility to ensure that the destination cluster can
 access the source cluster with a superuser or a user having enough
 privileges to take a logical backup with <code>pg_dump</code>. Please refer to the
-<a href="https://www.postgresql.org/docs/current/app-pgdump.html">PostgreSQL documentation on "SQL Dump"</a>
+<a href="https://www.postgresql.org/docs/current/app-pgdump.html">PostgreSQL documentation on <code>pg_dump</code></a>
 for further information.</p>
 </div>
 <h2 id="the-microservice-type">The <code>microservice</code> type</h2>
@@ -397,6 +401,9 @@ performed in 4 steps:</p>
   database via the <code>postImportApplicationSQL</code> parameter</li>
 <li>execution of <code>ANALYZE VERBOSE</code> on the imported database</li>
 </ul>
+<p>In the figure below, a single PostgreSQL cluster containing <em>N</em> databases is
+imported into separate CloudNativePG clusters, with each cluster using a
+microservice import for one of the <em>N</em> source databases.</p>
 <p><img alt="Example of microservice import type" src="../images/microservice-import.png" /></p>
 <p>For example, the YAML below creates a new 3 instance PostgreSQL cluster (latest
 available major version at the time the operator was released) called
@@ -447,7 +454,7 @@ Based on our experience, this way of exporting data should work on older
 and unsupported versions of Postgres too, giving you the chance to move your
 legacy data to a better system, inside Kubernetes.
 This is the main reason why we used 9.6 in the examples of this section.
-We'd be interested to hear from you should you experience any issues in this area.</p>
+We'd be interested to hear from you, should you experience any issues in this area.</p>
 </div>
 <p>There are a few things you need to be aware of when using the <code>microservice</code> type:</p>
 <ul>
@@ -466,6 +473,13 @@ We'd be interested to hear from you should you experience any issues in this are
 <li>Only one database can be specified inside the <code>initdb.import.databases</code> array</li>
 <li>Roles are not imported - and as such they cannot be specified inside <code>initdb.import.roles</code></li>
 </ul>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>The microservice approach adheres to CloudNativePG conventions and defaults
+for the destination cluster. If you do not set <code>initdb.database</code> or
+<code>initdb.owner</code> for the destination cluster, both parameters will default to
+<code>app</code>.</p>
+</div>
 <h2 id="the-monolith-type">The <code>monolith</code> type</h2>
 <p>With the monolith approach, you can specify a set of roles and databases you
 want to import from the source cluster into the destination cluster.
@@ -531,7 +545,8 @@ spec:
   that needs to run <code>pg_dump</code> and retrieve roles information (<em>superuser</em> is
   OK)</li>
 <li>Currently, the <code>pg_dump -Fd</code> result is stored temporarily inside the <code>dumps</code>
-  folder in the <code>PGDATA</code> volume, so there should be enough available space to
+  folder in the <code>PGDATA</code> volume of the destination cluster's instances, so
+  there should be enough available space to
   temporarily contain the dump result on the assigned node, as well as the
   restored data and indexes. Once the import operation is completed, this
   folder is automatically deleted by the operator.</li>
@@ -549,7 +564,107 @@ spec:
   and those databases not allowing connections</li>
 <li>After the clone procedure is done, <code>ANALYZE VERBOSE</code> is executed for every
   database.</li>
-<li><code>postImportApplicationSQL</code> field is not supported</li>
+<li>The <code>postImportApplicationSQL</code> field is not supported</li>
+</ul>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>The databases and their owners are preserved exactly as they exist in the
+source cluster—no <code>app</code> database or user will be created during import. If your
+<code>bootstrap.initdb</code> stanza specifies custom <code>database</code> and <code>owner</code> values that
+do not match any of the databases or users being imported, the instance
+manager will create a new, empty application database and owner role with those
+specified names, while leaving the imported databases and owners unchanged.</p>
+</div>
+<h2 id="a-practical-example">A practical example</h2>
+<p>There is nothing to stop you from using the <code>monolith</code> approach to import a
+single database. It is interesting to see how the results of doing so would
+differ from using the <code>microservice</code> approach.</p>
+<p>Given a source cluster, for example the following, with a database named
+<code>mydb</code> owned by role <code>me</code>:</p>
+<pre><code class="language-yaml">apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: cluster-example
+spec:
+  instances: 1
+
+  postgresql:
+    pg_hba:
+      - host all all all trust
+
+  storage:
+    size: 1Gi
+
+  bootstrap:
+    initdb:
+      database: mydb
+      owner: me
+</code></pre>
+<p>We can import it via <code>microservice</code>:</p>
+<pre><code class="language-yaml">apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: cluster-example-microservice
+spec:
+  instances: 1
+
+  storage:
+    size: 1Gi
+
+  bootstrap:
+    initdb:
+      import:
+        type: microservice
+        databases:
+          - mydb
+        source:
+          externalCluster: cluster-example
+
+  externalClusters:
+    - name: cluster-example
+      connectionParameters:
+        host: cluster-example-rw
+        dbname: postgres
+</code></pre>
+<p>as well as via monolith:</p>
+<pre><code class="language-yaml">apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: cluster-example-monolith
+spec:
+  instances: 1
+
+  storage:
+    size: 1Gi
+
+  bootstrap:
+    initdb:
+      import:
+        type: monolith
+        databases:
+          - mydb
+        roles:
+          - me
+        source:
+          externalCluster: cluster-example
+
+  externalClusters:
+    - name: cluster-example
+      connectionParameters:
+        host: cluster-example-rw
+        dbname: postgres
+</code></pre>
+<p>In both cases, the database's contents will be imported, but:</p>
+<ul>
+<li>In the microservice case, the imported database's name and owner both become
+  <code>app</code>, or whichever configuration for the fields <code>database</code> and <code>owner</code> are
+  set in the <code>bootstrap.initdb</code> stanza.</li>
+<li>In the monolith case, the database and owner are kept exactly as in the source
+  cluster, i.e. <code>mydb</code> and <code>me</code> respectively. No <code>app</code> database nor user will be
+  created. If there are custom settings for <code>database</code> and <code>owner</code> in the
+  <code>bootstrap.initdb</code> stanza that don't match the source databases/owners to
+  import, the instance manager will create a new empty application database and
+  owner role, but will leave the imported databases/owners intact.</li>
 </ul>
 <h2 id="import-optimizations">Import optimizations</h2>
 <p>During the logical import of a database, CloudNativePG optimizes the

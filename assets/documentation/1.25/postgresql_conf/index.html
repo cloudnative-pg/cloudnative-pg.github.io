@@ -137,7 +137,9 @@
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#the-postgresql-section">The postgresql section</a>
         <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#replication-settings">Replication settings</a>
+    <li class="toctree-l3"><a class="reference internal" href="#write-ahead-log-level">Write-Ahead Log Level</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#replication-settings">Replication Settings</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#log-control-settings">Log control settings</a>
     </li>
@@ -318,6 +320,8 @@
               <ul>
                   <li class="toctree-l1"><a class="reference internal" href="../cncf-projects/external-secrets/">External Secrets</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cncf-projects/cilium/">Cilium</a>
+                  </li>
               </ul>
               <p class="caption"><span class="caption-text">Appendixes</span></p>
               <ul>
@@ -463,7 +467,27 @@ unix_socket_directories = '/controller/run'
 <p>Since the fixed parameters are added at the end, they can't be overridden by the
 user via the YAML configuration. Those parameters are required for correct WAL
 archiving and replication.</p>
-<h3 id="replication-settings">Replication settings</h3>
+<h3 id="write-ahead-log-level">Write-Ahead Log Level</h3>
+<p>The <a href="https://www.postgresql.org/docs/current/runtime-config-wal.html"><code>wal_level</code></a>
+parameter in PostgreSQL determines the amount of information written to the
+Write-Ahead Log (WAL). It accepts the following values:</p>
+<ul>
+<li><code>minimal</code>: Writes only the information required for crash recovery.</li>
+<li><code>replica</code>: Adds sufficient information to support WAL archiving and streaming
+  replication, including the ability to run read-only queries on standby
+  instances.</li>
+<li><code>logical</code>: Includes all information from <code>replica</code>, plus additional information
+  required for logical decoding and replication.</li>
+</ul>
+<p>By default, upstream PostgreSQL sets <code>wal_level</code> to <code>replica</code>. CloudNativePG,
+instead, sets <code>wal_level</code> to <code>logical</code> by default to enable logical replication
+out of the box. This makes it easier to support use cases such as migrations
+from external PostgreSQL servers.</p>
+<p>If your cluster does not require logical replication, it is recommended to set
+<code>wal_level</code> to <code>replica</code> to reduce WAL volume and overhead.</p>
+<p>Finally, CloudNativePG allows <code>wal_level</code> to be set to <code>minimal</code> only for
+single-instance clusters with WAL archiving disabled.</p>
+<h3 id="replication-settings">Replication Settings</h3>
 <p>The <code>primary_conninfo</code>, <code>restore_command</code>,  and <code>recovery_target_timeline</code>
 parameters are managed automatically by the operator according to the state of
 the instance in the cluster.</p>

@@ -308,6 +308,8 @@
               <ul>
                   <li class="toctree-l1"><a class="reference internal" href="../cncf-projects/external-secrets/">External Secrets</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cncf-projects/cilium/">Cilium</a>
+                  </li>
               </ul>
               <p class="caption"><span class="caption-text">Appendixes</span></p>
               <ul>
@@ -398,6 +400,8 @@ specification. CloudNativePG currently supports the following bootstrap methods:
   <a href="#bootstrap-from-a-live-cluster-pg_basebackup"><code>pg_basebackup</code> subsection</a>
   carefully.</li>
 </ul>
+<p>Only one bootstrap method can be specified in the manifest.
+Attempting to define multiple bootstrap methods will result in validation errors.</p>
 <p>In contrast to the <code>initdb</code> method, both <code>recovery</code> and <code>pg_basebackup</code>
 create a new cluster based on another one (either offline or online) and can be
 used to spin up replica clusters. They both rely on the definition of external

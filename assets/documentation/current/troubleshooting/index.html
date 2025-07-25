@@ -336,6 +336,8 @@
               <ul>
                   <li class="toctree-l1"><a class="reference internal" href="../cncf-projects/external-secrets/">External Secrets</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cncf-projects/cilium/">Cilium</a>
+                  </li>
               </ul>
               <p class="caption"><span class="caption-text">Appendixes</span></p>
               <ul>
@@ -423,13 +425,6 @@ Please refer to the <a href="../kubectl-plugin/">plugin document</a> for complet
 <h2 id="are-there-backups">Are there backups?</h2>
 <p>After getting the cluster manifest with the plugin, you should verify if backups
 are set up and working.</p>
-<p>In a cluster with backups set up, you will find, in the cluster Status, the fields
-<code>lastSuccessfulBackup</code> and <code>firstRecoverabilityPoint</code>. You should make sure
-there is a recent <code>lastSuccessfulBackup</code>.</p>
-<p>A cluster lacking the <code>.spec.backup</code> stanza won't have backups. 
-An insistent message will appear in the PostgreSQL logs:</p>
-<pre><code>Backup not configured, skip WAL archiving.
-</code></pre>
 <p>Before proceeding with troubleshooting operations, it may be advisable
 to perform an emergency backup depending on your findings regarding backups.
 Refer to the following section for instructions.</p>
