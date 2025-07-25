@@ -33,6 +33,9 @@ Read the full release notes for details:
 Thank you for your continued support and for being part of the CloudNativePG
 community!
 
+*This release is dedicated to the memory of our dear contributor
+[DJ Walker-Morgan](https://www.linkedin.com/in/codepope/).*
+
 ---
 
 ## Upgrade Recommendations
