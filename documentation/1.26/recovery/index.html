@@ -294,6 +294,8 @@
               <ul>
                   <li class="toctree-l1"><a class="reference internal" href="../cncf-projects/external-secrets/">External Secrets</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cncf-projects/cilium/">Cilium</a>
+                  </li>
               </ul>
               <p class="caption"><span class="caption-text">Appendixes</span></p>
               <ul>
@@ -670,6 +672,13 @@ the volume snapshot containing the <code>PGWAL</code> directory, as mentioned in
 <p class="admonition-title">Warning</p>
 <p>It's your responsibility to ensure that the end time of the base backup in
 the volume snapshot is before the recovery target timestamp.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If you added or removed a <a href="../tablespaces/">tablespace</a> in your cluster
+since the last base backup, replaying the WAL will fail. You need a base
+backup between the time of the tablespace change and the recovery target
+timestamp.</p>
 </div>
 <h3 id="recovery-targets">Recovery targets</h3>
 <p>Here are the recovery target criteria you can use:</p>

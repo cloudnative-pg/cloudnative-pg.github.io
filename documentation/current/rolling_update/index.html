@@ -274,6 +274,8 @@
               <ul>
                   <li class="toctree-l1"><a class="reference internal" href="../cncf-projects/external-secrets/">External Secrets</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cncf-projects/cilium/">Cilium</a>
+                  </li>
               </ul>
               <p class="caption"><span class="caption-text">Appendixes</span></p>
               <ul>
@@ -310,38 +312,34 @@
                 <h1 id="rolling-updates">Rolling Updates</h1>
 <!-- SPDX-License-Identifier: CC-BY-4.0 -->
 
-<p>The operator allows changing the PostgreSQL version used in a cluster while
-applications are running against it.</p>
-<div class="admonition important">
-<p class="admonition-title">Important</p>
-<p>Only upgrades for PostgreSQL minor releases are supported.</p>
-</div>
-<p>Rolling upgrades are started when:</p>
+<p>The operator allows you to change the PostgreSQL version used in a cluster
+while applications continue running against it.</p>
+<p>Rolling upgrades are triggered when:</p>
 <ul>
 <li>
-<p>the user changes the <code>imageName</code> attribute of the cluster specification;</p>
+<p>you change the <code>imageName</code> attribute in the cluster specification;</p>
 </li>
 <li>
-<p>the <a href="../image_catalog/">image catalog</a> is updated with a new image for the major used by the cluster;</p>
+<p>the <a href="../image_catalog/">image catalog</a> is updated with a new image for the
+  major version used by the cluster;</p>
 </li>
 <li>
-<p>a change in the PostgreSQL configuration requires a restart to be
-  applied;</p>
+<p>a change in the PostgreSQL configuration requires a restart to apply;</p>
 </li>
 <li>
-<p>a change on the <code>Cluster</code> <code>.spec.resources</code> values</p>
+<p>you change the <code>Cluster</code> <code>.spec.resources</code> values;</p>
 </li>
 <li>
-<p>a change in size of the persistent volume claim on AKS</p>
+<p>you resize the persistent volume claim on AKS;</p>
 </li>
 <li>
-<p>after the operator is updated, to ensure the Pods run the latest instance
-  manager (unless <a href="../installation_upgrade/#in-place-updates-of-the-instance-manager">in-place updates are enabled</a>).</p>
+<p>the operator is updated, ensuring Pods run the latest instance manager
+  (unless <a href="../installation_upgrade/#in-place-updates-of-the-instance-manager">in-place updates are enabled</a>).</p>
 </li>
 </ul>
-<p>The operator starts upgrading all the replicas, one Pod at a time, and begins
-from the one with the highest serial.</p>
-<p>The primary is the last node to be upgraded.</p>
+<p>During a rolling upgrade, the operator upgrades all replicas one Pod at a time,
+starting from the one with the highest serial.</p>
+<p>The primary is always the last node to be upgraded.</p>
 <p>Rolling updates are configurable and can be either entirely automated
 (<code>unsupervised</code>) or requiring human intervention (<code>supervised</code>).</p>
 <p>The upgrade keeps the CloudNativePG identity, without re-cloning the

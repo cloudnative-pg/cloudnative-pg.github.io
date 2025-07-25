@@ -274,6 +274,8 @@
               <ul>
                   <li class="toctree-l1"><a class="reference internal" href="../cncf-projects/external-secrets/">External Secrets</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cncf-projects/cilium/">Cilium</a>
+                  </li>
               </ul>
               <p class="caption"><span class="caption-text">Appendixes</span></p>
               <ul>
@@ -337,13 +339,26 @@ available memory to satisfy the pod's memory request.</p>
 <p>For more details, please refer to the <a href="https://kubernetes.io/docs/tasks/configure-pod-container/quality-service-pod/#qos-classes">"Configure Quality of Service for Pods"</a>
 section in the Kubernetes documentation.</p>
 <p>For a PostgreSQL workload it is recommended to set a "Guaranteed" QoS.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>When the quality of service is set to "Guaranteed", CloudNativePG sets the
+<code>PG_OOM_ADJUST_VALUE</code> for the <code>postmaster</code> process to <code>0</code>, in line with the
+<a href="https://www.postgresql.org/docs/current/kernel-resources.html#LINUX-MEMORY-OVERCOMMIT">PostgreSQL documentation</a>.
+This allows the <code>postmaster</code> to retain its low Out-Of-Memory (OOM) score of
+<code>-997</code>, while its child processes run with an OOM score adjustment of <code>0</code>. As a
+result, if the OOM killer is triggered, it will terminate the child processes
+before the <code>postmaster</code>. This behavior helps keep the PostgreSQL instance
+alive for as long as possible and enables a clean shutdown procedure in the
+event of an eviction.</p>
+</div>
 <p>To avoid resources related issues in Kubernetes, we can refer to the best practices for "out of resource" handling
 while creating a cluster:</p>
 <ul>
 <li>Specify your required values for memory and CPU in the resources section of the manifest file.
-   This way, you can avoid the <code>OOM Killed</code> (where "OOM" stands for Out Of Memory) and <code>CPU throttle</code> or any other
+   This way, you can avoid the <code>OOM Killed</code> and <code>CPU throttle</code> or any other
    resource-related issues on running instances.</li>
-<li>For your cluster's pods to get assigned to the "Guaranteed" QoS class, you must set limits and requests
+<li>For your cluster's pods to get assigned to the "Guaranteed" QoS class, you
+   must set limits and requests
    for both memory and CPU to the same value.</li>
 <li>Specify your required PostgreSQL memory parameters consistently with the pod resources (as you would do
    in a VM or physical machine scenario - see below).</li>

@@ -292,6 +292,8 @@
               <ul>
                   <li class="toctree-l1"><a class="reference internal" href="../cncf-projects/external-secrets/">External Secrets</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cncf-projects/cilium/">Cilium</a>
+                  </li>
               </ul>
               <p class="caption"><span class="caption-text">Appendixes</span></p>
               <ul>
@@ -542,6 +544,11 @@ after creating tablespaces in a cluster can result in an
 incomplete view of the tablespaces from the replica and thus an incomplete
 backup. The lag will be resolved in a maximum of 5 minutes, with the next
 reconciliation.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>When you add or remove a tablespace in an existing cluster, recovery
+from WAL will fail until you take a new base backup.</p>
 </div>
 <p>Once a cluster with tablespaces has a base backup, you can restore a
 new cluster from it. When it comes to the recovery side, it's your

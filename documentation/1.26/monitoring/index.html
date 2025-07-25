@@ -314,6 +314,8 @@
               <ul>
                   <li class="toctree-l1"><a class="reference internal" href="../cncf-projects/external-secrets/">External Secrets</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cncf-projects/cilium/">Cilium</a>
+                  </li>
               </ul>
               <p class="caption"><span class="caption-text">Appendixes</span></p>
               <ul>
@@ -564,15 +566,15 @@ cnpg_collector_up{cluster=&quot;cluster-example&quot;} 1
 # TYPE cnpg_collector_postgres_version gauge
 cnpg_collector_postgres_version{cluster=&quot;cluster-example&quot;,full=&quot;17.5&quot;} 17.5
 
-# HELP cnpg_collector_last_failed_backup_timestamp The last failed backup as a unix timestamp
+# HELP cnpg_collector_last_failed_backup_timestamp The last failed backup as a unix timestamp (Deprecated)
 # TYPE cnpg_collector_last_failed_backup_timestamp gauge
 cnpg_collector_last_failed_backup_timestamp 0
 
-# HELP cnpg_collector_last_available_backup_timestamp The last available backup as a unix timestamp
+# HELP cnpg_collector_last_available_backup_timestamp The last available backup as a unix timestamp (Deprecated)
 # TYPE cnpg_collector_last_available_backup_timestamp gauge
 cnpg_collector_last_available_backup_timestamp 1.63238406e+09
 
-# HELP cnpg_collector_first_recoverability_point The first point of recoverability for the cluster as a unix timestamp
+# HELP cnpg_collector_first_recoverability_point The first point of recoverability for the cluster as a unix timestamp (Deprecated)
 # TYPE cnpg_collector_first_recoverability_point gauge
 cnpg_collector_first_recoverability_point 1.63238406e+09
 
@@ -742,10 +744,17 @@ the <code>Major.Minor</code> version of PostgreSQL. The full semantic version
 <code>Major.Minor.Patch</code> can be found inside one of its label field
 named <code>full</code>.</p>
 </div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p><code>cnpg_collector_first_recoverability_point</code> and <code>cnpg_collector_last_available_backup_timestamp</code>
-will be zero until your first backup to the object store. This is separate from the WAL archival.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The metrics <code>cnpg_collector_last_failed_backup_timestamp</code>,
+<code>cnpg_collector_last_available_backup_timestamp</code>, and
+<code>cnpg_collector_first_recoverability_point</code> have been deprecated starting
+from version 1.26. These metrics will continue to function with native backup
+solutions such as in-core Barman Cloud (deprecated) and volume snapshots. Note
+that for these cases, <code>cnpg_collector_first_recoverability_point</code> and
+<code>cnpg_collector_last_available_backup_timestamp</code> will remain zero until the
+first backup is completed to the object store. This is separate from WAL
+archiving.</p>
 </div>
 <h3 id="user-defined-metrics">User defined metrics</h3>
 <p>This feature is currently in <em>beta</em> state and the format is inspired by the
