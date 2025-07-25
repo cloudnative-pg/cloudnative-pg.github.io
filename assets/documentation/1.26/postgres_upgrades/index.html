@@ -290,6 +290,8 @@
               <ul>
                   <li class="toctree-l1"><a class="reference internal" href="../cncf-projects/external-secrets/">External Secrets</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cncf-projects/cilium/">Cilium</a>
+                  </li>
               </ul>
               <p class="caption"><span class="caption-text">Appendixes</span></p>
               <ul>
@@ -376,6 +378,16 @@ requested for a cluster.</p>
 <p>Major upgrades are only supported between images based on the same
 operating system distribution. For example, if your previous version uses a
 <code>bullseye</code> image, you cannot upgrade to a <code>bookworm</code> image.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>There is a bug in PostgreSQL 17.0 through 17.5 that prevents successful upgrades
+if the <code>max_slot_wal_keep_size</code> parameter is set to any value other than <code>-1</code>.
+The upgrade process will fail with an error related to replication slot configuration.
+This issue has been <a href="https://github.com/postgres/postgres/commit/f36e5774">fixed in PostgreSQL 17.6 and 18beta2 or later versions</a>.
+If you are using PostgreSQL 17.0 through 17.5, ensure that you upgrade to at least
+PostgreSQL 17.6 before attempting a major upgrade, or make sure to temporarily set
+the <code>max_slot_wal_keep_size</code> parameter to <code>-1</code> in your cluster configuration.</p>
 </div>
 <p>You can trigger the upgrade in one of two ways:</p>
 <ul>
