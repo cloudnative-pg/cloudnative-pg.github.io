@@ -2,6 +2,9 @@
 title: "Customizing the docker build bake hcl file"
 date: 2025-07-23
 draft: true
+image:
+    url: 
+    attribution:
 author: dchambre
 tags:
  - blog
@@ -21,6 +24,8 @@ summary: How I used Jonathans blog post to create an hcl for my needs.
 ## Summary
 Last week [Jonathan Gonzalez]((https://cloudnative-pg.io/authors/jgonzalez/)) wrote an [article]((https://cloudnative-pg.io/blog/building-images-bake/)) on how to customize docker images using an override hcl file.
 So I started with the [hcl file]((https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg.github.io/refs/heads/main/content/blog/building-images-bake/bake.hcl)) he worte and adopted it to fit my needs.
+After a troubleshooting session, he ask me to share the changes I did.
+So here we are.
 
 ## Instructions
 
@@ -113,9 +118,9 @@ Starting at the beginning of the file:
 - The `extensions` variable contains some extensions I use regularly.
 - The `dockerfile-inline` part is extended with binaries, some of them are handy to have, some needed by extensions or other tools I use.
 - With the `sed` command I add needed locales and build them.
-- With the `ADD` commands I add
--- .psqlrc file, to have a nice psql commandline even when connecting via `kubectl cnpg psql XXX`
--- ldap.conf and the needed certs
+- With the `ADD` commands I extend the image with
+  - .psqlrc file, to have a nice psql Command-line even when connecting via `kubectl cnpg psql XXX`
+  - ldap.conf and the needed certs
 
 ### Step 2: Build the image
 
