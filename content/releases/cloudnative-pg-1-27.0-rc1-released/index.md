@@ -15,6 +15,9 @@ tags:
  - cloudnativepg
  - preview
  - cnpg
+ - extensions
+ - ImageVolume
+ - FailoverQuorum
 summary: "The CloudNativePG community is excited to announce the first release candidate of CloudNativePG 1.27! This preview introduces features like the dynamic loading of PostgreSQL extensions, and the automatic synchronization of logical decoding slots across high-availability clusters. Join us in testing these updates to shape the final release."
 ---
 
@@ -29,37 +32,39 @@ While refinements may still occur, here’s a look at what’s new.
 
 We introduced the `.spec.postgresql.extensions` field to support mounting 
 PostgreSQL extensions—packaged as OCI-compliant container images—as read-only, 
-immutable volumes within instance pods. This enables dynamic extension 
-management without the need to rebuild base images.
+immutable volumes within instance pods. This enables [dynamic extension management](/documentation/preview/imagevolume_extensions/)
+without the need to rebuild base images.
 
 ### Logical decoding slot synchronization 
 
 We added the `synchronizeLogicalDecoding` field under 
-`spec.replicationSlots.highAvailability` to enable automatic synchronization 
-of logical decoding slots across high-availability clusters. This ensures 
-seamless continuity for logical replication subscribers after a publisher 
-failover.
+`spec.replicationSlots.highAvailability` to enable
+[automatic synchronization of logical decoding slots](/documentation/preview/replication/#logical-decoding-slot-synchronization)
+across high-availability clusters. This ensures seamless continuity for logical
+replication subscribers after a publisher failover.
 
 ### Primary Isolation Check 
 
 The liveness pinger, introduced as an experimental feature in 1.26, has 
 been promoted to stable. A new `.spec.probes.liveness.isolationCheck` section 
-enables primary isolation checks in the liveness probe by default, improving 
-detection and handling of primary connectivity issues in Kubernetes environments.
+enables [primary isolation checks in the liveness probe](/documentation/preview/instance_manager/#primary-isolation)
+by default, improving detection and handling of primary connectivity issues in
+Kubernetes environments.
 
 ## There’s More…
 
 Explore other improvements in this release, including:
 
-- An opt-in, experimental feature that enables quorum-based failover to improve 
-safety and data durability during failover events.
+- An opt-in, experimental feature that enables [quorum-based failover](/documentation/preview/failover/#failover-quorum-quorum-based-failover)
+  to improve safety and data durability during failover events.
 - Added support for user maps for predefined users such as `streaming_replica`, 
-allowing the use of self-managed client certificates with different Common Names 
-in environments with strict policies or shared CAs.
+  allowing the use of self-managed client certificates with different Common Names 
+  in environments with strict policies or shared CAs.
 - Added a new `PhaseFailurePlugin` phase in the `Cluster status` to improve 
-observability of plugin-related failures.
+  observability of plugin-related failures.
 
-Dive into the full details in the [release notes for 1.27 RC1](https://cloudnative-pg.io/documentation/preview/release_notes/v1.27/).
+Dive into the full details in the
+[release notes for 1.27 RC1](https://cloudnative-pg.io/documentation/preview/release_notes/v1.27/).
 
 ## Testing
 
