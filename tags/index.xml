@@ -6,47 +6,82 @@
     <description>Recent content in Tags on CloudNativePG - PostgreSQL Operator for Kubernetes</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 25 Jul 2025 14:15:33 +0200</lastBuildDate>
+    <lastBuildDate>Tue, 29 Jul 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://cloudnative-pg.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Cloudnativepg</title>
       <link>https://cloudnative-pg.io/tags/cloudnativepg/</link>
-      <pubDate>Fri, 25 Jul 2025 14:15:33 +0200</pubDate>
+      <pubDate>Tue, 29 Jul 2025 00:00:00 +0000</pubDate>
       <guid>https://cloudnative-pg.io/tags/cloudnativepg/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Cnpg</title>
+      <link>https://cloudnative-pg.io/tags/cnpg/</link>
+      <pubDate>Tue, 29 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>https://cloudnative-pg.io/tags/cnpg/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Extensions</title>
+      <link>https://cloudnative-pg.io/tags/extensions/</link>
+      <pubDate>Tue, 29 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>https://cloudnative-pg.io/tags/extensions/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>FailoverQuorum</title>
+      <link>https://cloudnative-pg.io/tags/failoverquorum/</link>
+      <pubDate>Tue, 29 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>https://cloudnative-pg.io/tags/failoverquorum/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>ImageVolume</title>
+      <link>https://cloudnative-pg.io/tags/imagevolume/</link>
+      <pubDate>Tue, 29 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>https://cloudnative-pg.io/tags/imagevolume/</guid>
       <description></description>
     </item>
     <item>
       <title>K8s</title>
       <link>https://cloudnative-pg.io/tags/k8s/</link>
-      <pubDate>Fri, 25 Jul 2025 14:15:33 +0200</pubDate>
+      <pubDate>Tue, 29 Jul 2025 00:00:00 +0000</pubDate>
       <guid>https://cloudnative-pg.io/tags/k8s/</guid>
       <description></description>
     </item>
     <item>
       <title>Kubernetes</title>
       <link>https://cloudnative-pg.io/tags/kubernetes/</link>
-      <pubDate>Fri, 25 Jul 2025 14:15:33 +0200</pubDate>
+      <pubDate>Tue, 29 Jul 2025 00:00:00 +0000</pubDate>
       <guid>https://cloudnative-pg.io/tags/kubernetes/</guid>
       <description></description>
     </item>
     <item>
       <title>Postgres</title>
       <link>https://cloudnative-pg.io/tags/postgres/</link>
-      <pubDate>Fri, 25 Jul 2025 14:15:33 +0200</pubDate>
+      <pubDate>Tue, 29 Jul 2025 00:00:00 +0000</pubDate>
       <guid>https://cloudnative-pg.io/tags/postgres/</guid>
       <description></description>
     </item>
     <item>
       <title>Postgresql</title>
       <link>https://cloudnative-pg.io/tags/postgresql/</link>
-      <pubDate>Fri, 25 Jul 2025 14:15:33 +0200</pubDate>
+      <pubDate>Tue, 29 Jul 2025 00:00:00 +0000</pubDate>
       <guid>https://cloudnative-pg.io/tags/postgresql/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Preview</title>
+      <link>https://cloudnative-pg.io/tags/preview/</link>
+      <pubDate>Tue, 29 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>https://cloudnative-pg.io/tags/preview/</guid>
       <description></description>
     </item>
     <item>
       <title>Release</title>
       <link>https://cloudnative-pg.io/tags/release/</link>
-      <pubDate>Fri, 25 Jul 2025 14:15:33 +0200</pubDate>
+      <pubDate>Tue, 29 Jul 2025 00:00:00 +0000</pubDate>
       <guid>https://cloudnative-pg.io/tags/release/</guid>
       <description></description>
     </item>
@@ -223,20 +258,6 @@
       <link>https://cloudnative-pg.io/tags/sqitch/</link>
       <pubDate>Mon, 26 May 2025 13:51:43 +0200</pubDate>
       <guid>https://cloudnative-pg.io/tags/sqitch/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Cnpg</title>
-      <link>https://cloudnative-pg.io/tags/cnpg/</link>
-      <pubDate>Fri, 23 May 2025 00:00:00 +0000</pubDate>
-      <guid>https://cloudnative-pg.io/tags/cnpg/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Preview</title>
-      <link>https://cloudnative-pg.io/tags/preview/</link>
-      <pubDate>Fri, 23 May 2025 00:00:00 +0000</pubDate>
-      <guid>https://cloudnative-pg.io/tags/preview/</guid>
       <description></description>
     </item>
     <item>
