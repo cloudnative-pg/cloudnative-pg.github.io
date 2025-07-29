@@ -1171,6 +1171,10 @@ video {
   text-transform: uppercase;
 }
 
+.lowercase {
+  text-transform: lowercase;
+}
+
 .leading-10 {
   line-height: 2.5rem;
 }
