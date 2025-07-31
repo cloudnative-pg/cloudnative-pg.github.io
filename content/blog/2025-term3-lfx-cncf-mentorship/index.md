@@ -36,7 +36,7 @@ to modernize the codebase, enhance its usefulness as a learning and prototyping
 tool, and improve documentation and examples to better support developers 
 working with CNPG-I.
 
-Mentors: [Armando Ruocco](https://github.com/armru), [Gabriele Bartolini](https://github.com/gbartolini), [Marco Nenciarini](https://github.com/mnencia)
+Mentors: [Armando Ruocco](https://github.com/armru), [Gabriele Bartolini](https://github.com/gbartolini), [Marco Nenciarini](https://github.com/mnencia), [Leonardo Cecchi](https://github.com/leonardoce)
 
 
 ### [Chaos Testing](https://mentorship.lfx.linuxfoundation.org/project/0858ce07-0c90-47fa-a1a0-95c6762f00ff) 
@@ -51,7 +51,7 @@ observability metrics like failover time and data consistency.
 Clear documentation and contributor guidelines will support the safe creation 
 and execution of future chaos tests.
 
-Mentors: [Gabriele Bartolini](https://github.com/gbartolini), [Marco Nenciarini](https://github.com/mnencia)
+Mentors: [Gabriele Bartolini](https://github.com/gbartolini), [Marco Nenciarini](https://github.com/mnencia), [Francesco Canovai](https://github.com/fcanovai), [Jonathan Gonzalez](https://github.com/sxd)
 
 ### [Rebuild documentation for multi-version support with Docusaurus](https://mentorship.lfx.linuxfoundation.org/project/86a647c1-88c7-474f-b093-6abb58197083)
 
@@ -65,7 +65,7 @@ hosted on GitHub Pages, with a new deployment workflow using Dagger and GitHub
 Actions. The outcome will include a working version selector, a cleaner content 
 structure, and a contributor guide to support ongoing maintenance and updates.
 
-Mentor: [Gabriele Bartolini](https://github.com/gbartolini)
+Mentor: [Gabriele Bartolini](https://github.com/gbartolini), [Francesco Canovai](https://github.com/fcanovai), [Leonardo Cecchi](https://github.com/leonardoce)
 
 ## Sign up as a mentee
 
