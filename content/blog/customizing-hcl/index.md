@@ -47,7 +47,6 @@ variable "registry" {
   ]
 
 extensions = [
-  "pgvector",
   "dbgsym",
   "partman",
   "oracle-fdw",
