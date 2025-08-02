@@ -115,7 +115,7 @@ Starting at the beginning of the file:
 - The `registry` variable contains the repo upload url, so I don't have to add this information every time I build an image.
 - The `platforms` variable is `linux/amd64` for all of my images.
 - The `extensions` variable contains some extensions I use regularly.
-- The `dockerfile-inline` part is extended with binaries, some of them are handy to have, some needed by extensions or other tools I use.
+- The `dockerfile-inline` part is extended with binaries, some of them are handy to have, some needed by extensions or other tools I use e.g. [pgwatch]((https://github.com/cybertec-postgresql/pgwatch)).
 - With the `sed` command I add needed locales and build them.
 - With the `ADD` commands I extend the image with
   - .psqlrc file, to have a nice psql Command-line even when connecting via `kubectl cnpg psql XXX`
