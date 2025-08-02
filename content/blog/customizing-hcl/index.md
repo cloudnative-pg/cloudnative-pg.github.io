@@ -1,6 +1,6 @@
 ---
 title: "Customizing the docker build bake hcl file"
-date: 2025-07-23
+date: 2025-08-02
 draft: true
 image:
     url: elephant_cookie.jpg
@@ -18,7 +18,7 @@ tags:
  - tutorial
  - bake
  - docker
-summary: How I used Jonathans blog post to create an hcl for my needs.
+summary: How I used Jonathan's blog post to create an hcl for my needs.
 ---
 
 ## Summary
