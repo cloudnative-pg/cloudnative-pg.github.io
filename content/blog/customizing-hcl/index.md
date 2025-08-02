@@ -3,8 +3,8 @@ title: "Customizing the docker build bake hcl file"
 date: 2025-07-23
 draft: true
 image:
-    url: 
-    attribution:
+    url: elephant_cookie.jpg
+    attribution: https://www.wallpaperflare.com/cookies-elephant-breakfast-for-children-dessert-food-sweet-food-wallpaper-asujf/download
 author: dchambre
 tags:
  - blog
