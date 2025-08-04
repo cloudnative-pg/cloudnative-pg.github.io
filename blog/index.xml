@@ -6,8 +6,15 @@
     <description>Recent content in Blog posts on CloudNativePG - PostgreSQL Operator for Kubernetes</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 23 Jul 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 04 Aug 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://cloudnative-pg.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CloudNativePG part of LFX Mentorship again - sign up as a mentee!</title>
+      <link>https://cloudnative-pg.io/blog/2025-term3-lfx-cncf-mentorship/</link>
+      <pubDate>Mon, 04 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://cloudnative-pg.io/blog/2025-term3-lfx-cncf-mentorship/</guid>
+      <description>We have proposed 3 projects for the September cohort of the CNCF&amp;rsquo;s LFX Mentorship program, and we’re looking for mentees to sign up and receive a stipend for their work.</description>
+    </item>
     <item>
       <title>Creating a custom container image for CloudNativePG v2.0</title>
       <link>https://cloudnative-pg.io/blog/building-images-bake/</link>
