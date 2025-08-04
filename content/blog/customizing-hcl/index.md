@@ -22,7 +22,7 @@ summary: How I used Jonathan's blog post to create an hcl for my needs.
 ---
 
 ## Summary
-The other week [Jonathan Gonzalez]((https://cloudnative-pg.io/authors/jgonzalez/)) wrote an [article]((https://cloudnative-pg.io/blog/building-images-bake/)) on how to customize docker images using an override hcl file.
+The other week [Jonathan Gonzalez]({{% ref "/authors/jgonzalez/" %}}) wrote an [article]({{% ref "/blog/building-images-bake/" %}}) on how to customize docker images using an override hcl file.
 So I started with the [hcl file]((https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg.github.io/refs/heads/main/content/blog/building-images-bake/bake.hcl)) he worte and adopted it to fit my needs.
 After a troubleshooting session, he ask me to share the changes I did.
 So here we are.
