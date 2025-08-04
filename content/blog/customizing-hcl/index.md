@@ -22,8 +22,22 @@ summary: How I used Jonathan's blog post to create an hcl for my needs.
 ---
 
 ## Summary
-The other week [Jonathan Gonzalez]({{% ref "/authors/jgonzalez/" %}}) wrote an [article]({{% ref "/blog/building-images-bake/" %}}) on how to customize docker images using an override hcl file.
-So I started with the [hcl file]((https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg.github.io/refs/heads/main/content/blog/building-images-bake/bake.hcl)) he wrote and adopted it to fit my needs.
+The other week [Jonathan Gonzalez]({{% ref "/authors/jgonzalez/" %}}) wrote an [article]({{% ref "/blog/building-images-bake/" %}})
+on how to customize docker images using an override hcl file. 
+
+Before the [postgres-containers repo]((https://github.com/cloudnative-pg/postgres-containers))
+was extended by the option to build the images with `docker build bake`, I had to do this steps, for each PostgreSQL version.
+
+  - clone the repo
+  - edit the dockerfile
+  - build the image
+  - push it to the registry
+
+So a lot of boring work needed to be done in order to have updated images.
+
+The chance to avoid this work sounds prommising to me, so I started with the [hcl file]((https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg.github.io/refs/heads/main/content/blog/building-images-bake/bake.hcl)) 
+ 
+ The wrote and adopted it to fit my needs.
 After a troubleshooting session, he asked me to share the changes I made.
 So here we are.
 
@@ -128,3 +142,14 @@ We can now build the image using the following command:
 ```bash
 docker buildx bake -f docker-bake.hcl -f cwd://bake.hcl "https://github.com/cloudnative-pg/postgres-containers.git" myimage
 ```
+
+### Step 3: Use them
+
+The only missing step to use the images is to update your [Image Catalog / Cluster Image Catalog]((https://cloudnative-pg.io/documentation/current/image_catalog/)) with the newly built images.
+Test them and stage them through your environment.
+
+## Conclusion
+
+Once you prepared the override file to fit to your needs, the only manual setps to build new images are
+  - udpate the `pgVersion` variable
+  - run the `docker buildx bake` command
