@@ -26,7 +26,7 @@ The other week [Jonathan Gonzalez]({{% ref "/authors/jgonzalez/" %}}) wrote an
 article on
 [how to customize docker images using an override hcl file]({{% ref "/blog/building-images-bake/" %}}) .
 Before the [postgres-containers repo]((https://github.com/cloudnative-pg/postgres-containers))
-was extended by the option to build the images with `docker build bake`, 
+was enhanced with the option to build the images with `docker build bake`, 
 I had to do this steps, for each PostgreSQL version.
 
   - clone the repo
