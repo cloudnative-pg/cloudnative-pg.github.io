@@ -44,7 +44,7 @@ So here are my detailed instructions, in case they could prove useful to others.
 
 ## Instructions
 
-### Step 1: Prepare local Bake file
+### Step 1: Prepare the local Bake file
 
 To build a custom image we add the following content in a local file with name 
 `bake.hcl`:
