@@ -22,11 +22,12 @@ summary: How I used Jonathan's blog post to create an hcl for my needs.
 ---
 
 ## Summary
-The other week [Jonathan Gonzalez]({{% ref "/authors/jgonzalez/" %}}) wrote an [article]({{% ref "/blog/building-images-bake/" %}})
-on how to customize docker images using an override hcl file. 
-
+The other week [Jonathan Gonzalez]({{% ref "/authors/jgonzalez/" %}}) wrote an 
+[article]({{% ref "/blog/building-images-bake/" %}}) 
+on how to customize docker images using an override hcl file.
 Before the [postgres-containers repo]((https://github.com/cloudnative-pg/postgres-containers))
-was extended by the option to build the images with `docker build bake`, I had to do this steps, for each PostgreSQL version.
+was extended by the option to build the images with `docker build bake`, 
+I had to do this steps, for each PostgreSQL version.
 
   - clone the repo
   - edit the dockerfile
@@ -34,10 +35,10 @@ was extended by the option to build the images with `docker build bake`, I had t
   - push it to the registry
 
 So a lot of boring work needed to be done in order to have updated images.
-
-The chance to avoid this work sounds prommising to me, so I started with the [hcl file]((https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg.github.io/refs/heads/main/content/blog/building-images-bake/bake.hcl)) 
+The chance to avoid this work sounds prommising to me, so I started with the 
+[hcl file]((https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg.github.io/refs/heads/main/content/blog/building-images-bake/bake.hcl)) 
  
- The wrote and adopted it to fit my needs.
+The wrote and adopted it to fit my needs.
 After a troubleshooting session, he asked me to share the changes I made.
 So here we are.
 
@@ -45,7 +46,8 @@ So here we are.
 
 ### Step 1: Prepare local Bake file
 
-To build a custom image we add the following content in a local file with name `bake.hcl`:
+To build a custom image we add the following content in a local file with name 
+`bake.hcl`:
 
 ```hcl
 variable "environment" {
@@ -125,14 +127,18 @@ EOT
 
 Starting at the beginning of the file:
 
-- The `environment` variable is set to `production` for all of my images, because I use the same image to stage it through dev/test/prod.
-- The `registry` variable contains the repo upload url, so I don't have to add this information every time I build an image.
+- The `environment` variable is set to `production` for all of my images, 
+because I use the same image to stage it through dev/test/prod.
+- The `registry` variable contains the repo upload url, so I don't have to add 
+this information every time I build an image.
 - The `platforms` variable is `linux/amd64` for all of my images.
 - The `extensions` variable contains some extensions I use regularly.
-- The `dockerfile-inline` part is extended with binaries, some of them are handy to have, some needed by extensions or other tools I use e.g. [pgwatch]((https://github.com/cybertec-postgresql/pgwatch)).
+- The `dockerfile-inline` part is extended with binaries, some of them are handy
+ to have, some needed by extensions or other tools I use e.g. [pgwatch]((https://github.com/cybertec-postgresql/pgwatch)).
 - With the `sed` command I add needed locales and build them.
 - With the `ADD` commands I extend the image with
-  - .psqlrc file, to have a nice psql Command-line even when connecting via `kubectl cnpg psql XXX`
+  - .psqlrc file, to have a nice psql Command-line even when connecting via 
+  `kubectl cnpg psql XXX`
   - ldap.conf and the needed certs
 
 ### Step 2: Build the image
@@ -145,11 +151,14 @@ docker buildx bake -f docker-bake.hcl -f cwd://bake.hcl "https://github.com/clou
 
 ### Step 3: Use them
 
-The only missing step to use the images is to update your [Image Catalog / Cluster Image Catalog]((https://cloudnative-pg.io/documentation/current/image_catalog/)) with the newly built images.
+The only missing step to use the images is to update your 
+[Image Catalog / Cluster Image Catalog]((https://cloudnative-pg.io/documentation/current/image_catalog/)) 
+with the newly built images.
 Test them and stage them through your environment.
 
 ## Conclusion
 
-Once you prepared the override file to fit to your needs, the only manual setps to build new images are
+Once you prepared the override file to fit to your needs, the only manual setps 
+to build new images are
   - udpate the `pgVersion` variable
   - run the `docker buildx bake` command
