@@ -40,7 +40,7 @@ The chance to avoid this work sounds promising to me, so I started with the
  
 The wrote and adopted it to fit my needs.
 After a troubleshooting session, he asked me to share the changes I made.
-So here we are.
+So here are my detailed instructions, in case they could prove useful to others.
 
 ## Instructions
 
