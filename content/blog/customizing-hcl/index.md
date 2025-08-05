@@ -35,7 +35,7 @@ I had to do this steps, for each PostgreSQL version.
   - push it to the registry
 
 So a lot of boring work needed to be done in order to have updated images.
-The chance to avoid this work sounds prommising to me, so I started with the 
+The chance to avoid this work sounds promising to me, so I started with the 
 [hcl file]((https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg.github.io/refs/heads/main/content/blog/building-images-bake/bake.hcl)) 
  
 The wrote and adopted it to fit my needs.
