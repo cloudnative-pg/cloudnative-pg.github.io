@@ -158,7 +158,7 @@ Test them and stage them through your environment.
 
 ## Conclusion
 
-Once you prepared the override file to fit to your needs, the only manual setps 
+Once you prepare the override file to fit to your needs, the only manual steps 
 to build new images are
   - udpate the `pgVersion` variable
   - run the `docker buildx bake` command
