@@ -22,12 +22,12 @@ summary: How I used Jonathan's blog post to create an hcl for my needs.
 ---
 
 ## Summary
+
 The other week [Jonathan Gonzalez]({{% ref "/authors/jgonzalez/" %}}) wrote an 
 article on
 [how to customize docker images using an override hcl file]({{% ref "/blog/building-images-bake/" %}}) .
-Before the [postgres-containers repo]((https://github.com/cloudnative-pg/postgres-containers))
-was enhanced with the option to build the images with `docker build bake`, 
-I had to do this steps manually in order to have custom images for our workloads.
+Before the [postgres-containers repo](https://github.com/cloudnative-pg/postgres-containers)
+I had to follow these steps manually in order to have custom images for our workloads.
 
   - clone the repo
   - edit the dockerfile
@@ -36,9 +36,9 @@ I had to do this steps manually in order to have custom images for our workloads
 
 Edit, build and push had to be done for each PostgreSQL version.
 So a lot of boring work needed to be done in order to have updated images.
-The chance to avoid this work sounds promising to me, so I started with the 
-[hcl file]((https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg.github.io/refs/heads/main/content/blog/building-images-bake/bake.hcl)) 
-Jonathan wrote and adopted it to fit my needs.
+The chance to avoid this work sounded promising to me, so I started with the 
+[hcl file](https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg.github.io/refs/heads/main/content/blog/building-images-bake/bake.hcl) 
+Jonathan wrote, and adapted it to fit my needs.
 After a troubleshooting session, he asked me to share the changes I made.
 So here are my detailed instructions, in case they could prove useful to others.
 
@@ -134,7 +134,7 @@ this information every time I build an image.
 - The `platforms` variable is `linux/amd64` for all of my images.
 - The `extensions` variable contains some extensions I use regularly.
 - The `dockerfile-inline` part is extended with binaries, some of them are handy
- to have, some needed by extensions or other tools I use e.g. [pgwatch]((https://github.com/cybertec-postgresql/pgwatch)).
+ to have, some needed by extensions or other tools I use e.g. [pgwatch](https://github.com/cybertec-postgresql/pgwatch).
 - With the `sed` command I add needed locales and build them.
 - With the `ADD` commands I extend the image with
   - .psqlrc file, to have a nice psql Command-line even when connecting via 
@@ -152,7 +152,7 @@ docker buildx bake -f docker-bake.hcl -f cwd://bake.hcl "https://github.com/clou
 ### Step 3: Use it
 
 The only missing step to use the images is to update your 
-[Image Catalog / Cluster Image Catalog]((https://cloudnative-pg.io/documentation/current/image_catalog/)) 
+[Image Catalog / Cluster Image Catalog](https://cloudnative-pg.io/documentation/current/image_catalog/) 
 with the newly built images.
 Test them and stage them through your environment.
 
