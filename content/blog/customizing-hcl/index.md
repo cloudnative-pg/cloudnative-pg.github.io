@@ -27,18 +27,18 @@ The other week [Jonathan Gonzalez]({{% ref "/authors/jgonzalez/" %}}) wrote an
 on how to customize docker images using an override hcl file.
 Before the [postgres-containers repo]((https://github.com/cloudnative-pg/postgres-containers))
 was extended by the option to build the images with `docker build bake`, 
-I had to do this steps, for each PostgreSQL version.
+I had to do this steps manually in order to have custom images for our workloads.
 
   - clone the repo
   - edit the dockerfile
   - build the image
   - push it to the registry
 
+Edit, build and push had to be done for each PostgreSQL version.
 So a lot of boring work needed to be done in order to have updated images.
 The chance to avoid this work sounds prommising to me, so I started with the 
 [hcl file]((https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg.github.io/refs/heads/main/content/blog/building-images-bake/bake.hcl)) 
- 
-The wrote and adopted it to fit my needs.
+Jonathan wrote and adopted it to fit my needs.
 After a troubleshooting session, he asked me to share the changes I made.
 So here we are.
 
@@ -149,7 +149,7 @@ We can now build the image using the following command:
 docker buildx bake -f docker-bake.hcl -f cwd://bake.hcl "https://github.com/cloudnative-pg/postgres-containers.git" myimage
 ```
 
-### Step 3: Use them
+### Step 3: Use it
 
 The only missing step to use the images is to update your 
 [Image Catalog / Cluster Image Catalog]((https://cloudnative-pg.io/documentation/current/image_catalog/)) 
