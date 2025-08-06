@@ -23,10 +23,10 @@ summary: How I used Jonathan's blog post to create an hcl for my needs.
 
 ## Summary
 The other week [Jonathan Gonzalez]({{% ref "/authors/jgonzalez/" %}}) wrote an 
-[article]({{% ref "/blog/building-images-bake/" %}}) 
-on how to customize docker images using an override hcl file.
+article on
+[how to customize docker images using an override hcl file]({{% ref "/blog/building-images-bake/" %}}) .
 Before the [postgres-containers repo]((https://github.com/cloudnative-pg/postgres-containers))
-was extended by the option to build the images with `docker build bake`, 
+was enhanced with the option to build the images with `docker build bake`, 
 I had to do this steps manually in order to have custom images for our workloads.
 
   - clone the repo
@@ -36,15 +36,15 @@ I had to do this steps manually in order to have custom images for our workloads
 
 Edit, build and push had to be done for each PostgreSQL version.
 So a lot of boring work needed to be done in order to have updated images.
-The chance to avoid this work sounds prommising to me, so I started with the 
+The chance to avoid this work sounds promising to me, so I started with the 
 [hcl file]((https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg.github.io/refs/heads/main/content/blog/building-images-bake/bake.hcl)) 
 Jonathan wrote and adopted it to fit my needs.
 After a troubleshooting session, he asked me to share the changes I made.
-So here we are.
+So here are my detailed instructions, in case they could prove useful to others.
 
 ## Instructions
 
-### Step 1: Prepare local Bake file
+### Step 1: Prepare the local Bake file
 
 To build a custom image we add the following content in a local file with name 
 `bake.hcl`:
@@ -158,7 +158,7 @@ Test them and stage them through your environment.
 
 ## Conclusion
 
-Once you prepared the override file to fit to your needs, the only manual setps 
+Once you prepare the override file to fit to your needs, the only manual steps 
 to build new images are
   - udpate the `pgVersion` variable
   - run the `docker buildx bake` command
