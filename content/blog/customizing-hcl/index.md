@@ -39,7 +39,7 @@ So a lot of boring work needed to be done in order to have updated images.
 The chance to avoid this work sounded promising to me, so I started with the 
 [hcl file](https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg.github.io/refs/heads/main/content/blog/building-images-bake/bake.hcl) 
 Jonathan wrote, and adapted it to fit my needs.
-After a troubleshooting session, he asked me to share the changes I made.
+After a troubleshooting session with Jonathan, he asked me to share the changes I made.
 So here are my detailed instructions, in case they could prove useful to others.
 
 ## Instructions
