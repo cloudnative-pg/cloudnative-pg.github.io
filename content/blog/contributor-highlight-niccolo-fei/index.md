@@ -7,12 +7,13 @@ image:
     attribution:
 author: fdrees
 tags:
+ - extensions
  - kubernetes
  - postgresql
  - open-source
  - spotlight
 summary: "In a mini-series on this blog we highlight the work of the community.
-  Today we meet Niccolò Fei, ." 
+  Today we meet Niccolò Fei, Kubernetes Administrator and Automation Engineer at EDB." 
 ---
 
 Building and maintaining an open source project takes a village. In a 
@@ -36,8 +37,8 @@ contributing to the project.
 If he had unlimited time and skills to dedicate, Niccolò says he would focus 
 on improving support for dynamically loading PostgreSQL extensions in running 
 clusters—a feature he has recently been working on. In fact, the first 
-implementation of this capability has just been included in the 1.27.0 release 
-candidate!
+implementation of this capability has just been included in the [1.27.0 release 
+candidate](https://cloudnative-pg.io/releases/cloudnative-pg-1-27.0-rc1-released/)!
 
 "Looking ahead, I expect to see many additional features and refinements in 
 this area, such as support for extensions in ImageCatalogs." PostgreSQL’s 
