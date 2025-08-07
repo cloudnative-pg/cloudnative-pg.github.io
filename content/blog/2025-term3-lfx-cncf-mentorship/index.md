@@ -24,11 +24,11 @@ mentorships. [CloudNativePG joined the program for the first time in the June co
 and had a fantastic experience. We're excited to return for Term 3 starting in
 September, this time with three proposed projects!
 
-Learn more about the projects below:
+Learn more about the projects below.
 
-### [Refresh cnpg-i-hello-world to align with current CNPG-I](https://mentorship.lfx.linuxfoundation.org/project/cabc7391-4956-42b2-b91c-d261816b7289)
+## [Refresh cnpg-i-hello-world to align with current CNPG-I](https://mentorship.lfx.linuxfoundation.org/project/cabc7391-4956-42b2-b91c-d261816b7289)
 
-The cnpg-i-hello-world project was originally designed to help developers get
+The `cnpg-i-hello-world` project was originally designed to help developers get
 started with building plugins for CloudNativePG using the CNPG-I framework.
 However, it's now outdated and in need of a thorough update to align with the
 current CNPG-I interface, best practices, and development patterns. The goal is
@@ -39,7 +39,7 @@ working with CNPG-I.
 Mentors: [Armando Ruocco](https://github.com/armru), [Gabriele Bartolini](https://github.com/gbartolini), [Marco Nenciarini](https://github.com/mnencia), [Leonardo Cecchi](https://github.com/leonardoce)
 
 
-### [Chaos Testing](https://mentorship.lfx.linuxfoundation.org/project/0858ce07-0c90-47fa-a1a0-95c6762f00ff)
+## [Chaos Testing](https://mentorship.lfx.linuxfoundation.org/project/0858ce07-0c90-47fa-a1a0-95c6762f00ff)
 
 We aim to enhance CloudNativePG's test coverage by introducing a comprehensive
 chaos testing framework to validate its resilience, fault tolerance, and
@@ -53,7 +53,7 @@ and execution of future chaos tests.
 
 Mentors: [Gabriele Bartolini](https://github.com/gbartolini), [Marco Nenciarini](https://github.com/mnencia), [Francesco Canovai](https://github.com/fcanovai), [Jonathan Gonzalez](https://github.com/sxd)
 
-### [Rebuild documentation for multi-version support with Docusaurus](https://mentorship.lfx.linuxfoundation.org/project/86a647c1-88c7-474f-b093-6abb58197083)
+## [Rebuild documentation for multi-version support with Docusaurus](https://mentorship.lfx.linuxfoundation.org/project/86a647c1-88c7-474f-b093-6abb58197083)
 
 We plan to modernize the CloudNativePG documentation by rebuilding the site
 using Docusaurus (or a similar static site generator) to support multi-version
@@ -72,6 +72,10 @@ Mentor: [Gabriele Bartolini](https://github.com/gbartolini), [Francesco Canovai]
 Up for the task? You'll have to apply as a mentee on the [LFX Mentorship website](https://lfx.linuxfoundation.org/tools/mentorship/).
 
 Please see the [LFX Mentorship guidelines](https://docs.linuxfoundation.org/lfx/mentorship/mentee-guide) for more details.
+
+We also recommend reading the tips and recommendations on
+[CloudNativePG's LFX Mentorship Program page](https://github.com/cloudnative-pg/cloudnative-pg/blob/main/contribute/lfx-mentorship-program.md)
+to better prepare for your application.
 
 Applications opened July 31, you have until August 12 to apply, with the selection
 notifications going out on August 27, and the program starting on September 8.
