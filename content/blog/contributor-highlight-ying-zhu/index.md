@@ -5,7 +5,8 @@ draft: false
 image:
     url: ying.jpeg
     attribution:
-author: fdrees
+authors:
+ - fdrees
 tags:
  - minecraft
  - lfx

@@ -5,7 +5,8 @@ draft: false
 image:
     url: jaime.jpg
     attribution:
-author: fdrees
+authors:
+ - fdrees
 tags:
  - kubectl
  - ciclops

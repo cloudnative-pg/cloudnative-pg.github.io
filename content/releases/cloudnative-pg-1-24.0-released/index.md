@@ -2,7 +2,8 @@
 title: "CloudNativePG 1.24.0 and 1.23.4 Released!"
 date: 2024-08-22
 draft: false
-author: gbartolini
+authors:
+ - gbartolini
 image:
     url: 58364dde1adc4a0a8.37186404-2048x1445.jpg
     attribution: from <a href="https://wordpress.org/photos/photo/58364dde1a/">Saurabh</a>
