@@ -5,7 +5,8 @@ draft: false
 image:
     url: fcanovai.jpg
     attribution:
-author: fdrees
+authors:
+ - fdrees
 tags:
  - testing
  - github
