@@ -5,7 +5,8 @@ draft: false
 image:
     url: marco.jpg
     attribution:
-author: fdrees
+authors:
+ - fdrees
 tags:
  - Debian
  - Kubernetes

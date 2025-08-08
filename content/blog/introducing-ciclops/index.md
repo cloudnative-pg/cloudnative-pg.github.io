@@ -5,7 +5,8 @@ draft: false
 image:
     url: 7th_voyage_of_Sinbad_-_Cyclops.png
     attribution: from <strong><a href="https://commons.wikimedia.org/wiki/File:7th_voyage_of_Sinbad_-_Cyclops.png">Wikimedia Commons</a></strong>
-author: jsilvela
+authors:
+ - jsilvela
 tags:
  - blog
  - continuous-integration
