@@ -18,7 +18,9 @@ tags:
  - tutorial
  - bake
  - docker
-summary: How I used Jonathan's blog post to create an hcl for my needs.
+summary: Jonathan Gonzalez wrote a guide on this blog detailing how to customize Docker images by using an override hcl file. I tried it for a spin.
+
+
 ---
 
 ## Summary
@@ -162,3 +164,6 @@ Once you prepare the override file to fit to your needs, the only manual steps
 to build new images are
   - udpate the `pgVersion` variable
   - run the `docker buildx bake` command
+   I hope this helps streamline your image customization process as much as it 
+   did mine—feel free to build on it, and share your own improvements too! 
+   You can find the supportive team in the CloudNativePG channels on the CNCF Slack workspace.
