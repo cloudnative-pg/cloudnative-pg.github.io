@@ -1,5 +1,5 @@
 ---
-name:  Jonathan Gonzalez V.
+title:  Jonathan Gonzalez V.
 avatar: jgonzalez-gh.jpeg
 github: sxd
 id: jgonzalez

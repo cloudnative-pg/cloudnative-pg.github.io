@@ -1,5 +1,5 @@
 ---
-name: Floor Drees
+title: Floor Drees
 avatar: floor.jpg
 github: floord
 id: fdrees
