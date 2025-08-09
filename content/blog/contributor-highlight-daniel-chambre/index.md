@@ -5,7 +5,8 @@ draft: false
 image:
     url: daniel.jpg
     attribution:
-author: fdrees
+authors:
+ - fdrees
 tags:
  - kubernetes
  - service-mesh

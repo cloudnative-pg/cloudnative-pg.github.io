@@ -5,7 +5,8 @@ draft: false
 image:
     url: elephant-drawing-small.jpg
     attribution: https://openverse.org/image/919258ef-8e18-4638-90e1-05f52de32dbf?q=elephant%20container
-author: jgonzalez
+authors:
+ - jgonzalez
 tags:
  - blog
  - information

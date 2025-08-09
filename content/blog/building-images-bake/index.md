@@ -6,7 +6,8 @@ image:
     url: baked_elephant.png
     alt: "Baked elephant cookies"
     attribution:
-author: jgonzalez
+authors:
+ - jgonzalez
 tags:
  - blog
  - information

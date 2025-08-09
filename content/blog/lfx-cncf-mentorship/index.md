@@ -5,7 +5,8 @@ draft: false
 image:
     url: lfx_mentorship.png
     attribution:
-author: jgonzalez
+authors:
+ - jgonzalez
 tags:
  - mentorship
  - lfx

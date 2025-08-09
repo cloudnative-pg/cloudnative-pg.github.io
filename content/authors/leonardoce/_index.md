@@ -1,5 +1,5 @@
 ---
-name:  Leonardo Cecchi
+title:  Leonardo Cecchi
 avatar: leonardoce-gh.jpeg
 github: leonardoce
 ---
