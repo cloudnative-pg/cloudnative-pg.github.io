@@ -8,7 +8,6 @@ image:
     attribution:
 authors:
  - jgonzalez
- - fdrees
 tags:
  - blog
  - information
