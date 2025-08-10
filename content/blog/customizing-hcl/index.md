@@ -27,8 +27,9 @@ summary: Jonathan Gonzalez wrote a guide on this blog detailing how to customize
 
 The other week [Jonathan Gonzalez]({{% ref "/authors/jgonzalez/" %}}) wrote an 
 article on
-[how to customize docker images using an override hcl file]({{% ref "/blog/building-images-bake/" %}}) .
-Before the [postgres-containers repo](https://github.com/cloudnative-pg/postgres-containers)
+[how to customize docker images using an override hcl file]({{% ref "/blog/building-images-bake/" %}}).
+Before the [postgres-containers repo](https://github.com/cloudnative-pg/postgres-containers) 
+was enhanced with the option to build the images with `docker build bake`, 
 I had to follow these steps manually in order to have custom images for our workloads.
 
   - clone the repo
@@ -164,6 +165,6 @@ Once you prepare the override file to fit to your needs, the only manual steps
 to build new images are
   - udpate the `pgVersion` variable
   - run the `docker buildx bake` command
-   I hope this helps streamline your image customization process as much as it 
-   did mine—feel free to build on it, and share your own improvements too! 
-   You can find the supportive team in the CloudNativePG channels on the CNCF Slack workspace.
+I hope this helps streamline your image customization process as much as it 
+did mine—feel free to build on it, and share your own improvements too! 
+You can find the supportive team in the CloudNativePG channels on the CNCF Slack workspace.
