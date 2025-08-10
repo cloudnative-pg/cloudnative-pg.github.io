@@ -163,8 +163,10 @@ Test them and stage them through your environment.
 
 Once you prepare the override file to fit to your needs, the only manual steps 
 to build new images are
+
   - udpate the `pgVersion` variable
   - run the `docker buildx bake` command
+  
 I hope this helps streamline your image customization process as much as it 
 did mine—feel free to build on it, and share your own improvements too! 
 You can find the supportive team in the CloudNativePG channels on the CNCF Slack workspace.
