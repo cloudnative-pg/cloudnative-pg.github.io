@@ -32,10 +32,10 @@ Before the [postgres-containers repo](https://github.com/cloudnative-pg/postgres
 was enhanced with the option to build the images with `docker build bake`, 
 I had to follow these steps manually in order to have custom images for our workloads.
 
-  - clone the repo
-  - edit the dockerfile
-  - build the image
-  - push it to the registry
+- clone the repo
+- edit the dockerfile
+- build the image
+- push it to the registry
 
 Edit, build and push had to be done for each PostgreSQL version.
 So a lot of boring work needed to be done in order to have updated images.
@@ -158,8 +158,8 @@ Test them and stage them through your environment.
 Once you prepare the override file to fit to your needs, the only manual steps 
 to build new images are
 
-  - udpate the `pgVersion` variable
-  - run the `docker buildx bake` command
+- udpate the `pgVersion` variable
+- run the `docker buildx bake` command
   
 I hope this helps streamline your image customization process as much as it 
 did mine—feel free to build on it, and share your own improvements too! 
