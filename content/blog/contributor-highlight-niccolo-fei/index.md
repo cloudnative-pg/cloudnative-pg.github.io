@@ -1,6 +1,6 @@
 ---
 title: "Contributor Spotlight: Niccolò Fei"
-date: 2025-08-08
+date: 2025-08-11
 draft: false
 image:
     url: niccolo.jpg
