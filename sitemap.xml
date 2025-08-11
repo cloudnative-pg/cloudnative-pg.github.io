@@ -31,10 +31,31 @@
     <loc>https://cloudnative-pg.io/end_users/rubin/</loc>
   </url><url>
     <loc>https://cloudnative-pg.io/</loc>
-    <lastmod>2025-08-04T00:00:00+00:00</lastmod>
+    <lastmod>2025-08-11T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://cloudnative-pg.io/blog/</loc>
-    <lastmod>2025-08-04T00:00:00+00:00</lastmod>
+    <lastmod>2025-08-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://cloudnative-pg.io/blog/contributor-highlight-niccolo-fei/</loc>
+    <lastmod>2025-08-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://cloudnative-pg.io/tags/extensions/</loc>
+    <lastmod>2025-08-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://cloudnative-pg.io/tags/kubernetes/</loc>
+    <lastmod>2025-08-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://cloudnative-pg.io/tags/open-source/</loc>
+    <lastmod>2025-08-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://cloudnative-pg.io/tags/postgresql/</loc>
+    <lastmod>2025-08-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://cloudnative-pg.io/tags/spotlight/</loc>
+    <lastmod>2025-08-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://cloudnative-pg.io/tags/</loc>
+    <lastmod>2025-08-11T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://cloudnative-pg.io/blog/2025-term3-lfx-cncf-mentorship/</loc>
     <lastmod>2025-08-04T00:00:00+00:00</lastmod>
@@ -42,19 +63,10 @@
     <loc>https://cloudnative-pg.io/tags/cncf/</loc>
     <lastmod>2025-08-04T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://cloudnative-pg.io/tags/kubernetes/</loc>
-    <lastmod>2025-08-04T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://cloudnative-pg.io/tags/lfx/</loc>
     <lastmod>2025-08-04T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://cloudnative-pg.io/tags/mentorship/</loc>
-    <lastmod>2025-08-04T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://cloudnative-pg.io/tags/postgresql/</loc>
-    <lastmod>2025-08-04T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://cloudnative-pg.io/tags/</loc>
     <lastmod>2025-08-04T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://cloudnative-pg.io/tags/cloudnativepg/</loc>
@@ -64,9 +76,6 @@
     <lastmod>2025-07-29T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://cloudnative-pg.io/tags/cnpg/</loc>
-    <lastmod>2025-07-29T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://cloudnative-pg.io/tags/extensions/</loc>
     <lastmod>2025-07-29T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://cloudnative-pg.io/tags/failoverquorum/</loc>
@@ -130,12 +139,6 @@
     <lastmod>2025-07-07T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://cloudnative-pg.io/tags/kubectl/</loc>
-    <lastmod>2025-07-07T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://cloudnative-pg.io/tags/open-source/</loc>
-    <lastmod>2025-07-07T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://cloudnative-pg.io/tags/spotlight/</loc>
     <lastmod>2025-07-07T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://cloudnative-pg.io/blog/contributor-highlight-ying-zhu/</loc>

@@ -6,8 +6,15 @@
     <description>Recent content in Postgresql on CloudNativePG - PostgreSQL Operator for Kubernetes</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 04 Aug 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 11 Aug 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://cloudnative-pg.io/tags/postgresql/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Contributor Spotlight: Niccolò Fei</title>
+      <link>https://cloudnative-pg.io/blog/contributor-highlight-niccolo-fei/</link>
+      <pubDate>Mon, 11 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://cloudnative-pg.io/blog/contributor-highlight-niccolo-fei/</guid>
+      <description>In a mini-series on this blog we highlight the work of the community. Today we meet Niccolò Fei, Kubernetes Administrator and Automation Engineer at EDB.</description>
+    </item>
     <item>
       <title>CloudNativePG part of LFX Mentorship again - sign up as a mentee!</title>
       <link>https://cloudnative-pg.io/blog/2025-term3-lfx-cncf-mentorship/</link>

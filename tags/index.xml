@@ -6,20 +6,48 @@
     <description>Recent content in Tags on CloudNativePG - PostgreSQL Operator for Kubernetes</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 04 Aug 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 11 Aug 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://cloudnative-pg.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Cncf</title>
-      <link>https://cloudnative-pg.io/tags/cncf/</link>
-      <pubDate>Mon, 04 Aug 2025 00:00:00 +0000</pubDate>
-      <guid>https://cloudnative-pg.io/tags/cncf/</guid>
+      <title>Extensions</title>
+      <link>https://cloudnative-pg.io/tags/extensions/</link>
+      <pubDate>Mon, 11 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://cloudnative-pg.io/tags/extensions/</guid>
       <description></description>
     </item>
     <item>
       <title>Kubernetes</title>
       <link>https://cloudnative-pg.io/tags/kubernetes/</link>
-      <pubDate>Mon, 04 Aug 2025 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 11 Aug 2025 00:00:00 +0000</pubDate>
       <guid>https://cloudnative-pg.io/tags/kubernetes/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Open-Source</title>
+      <link>https://cloudnative-pg.io/tags/open-source/</link>
+      <pubDate>Mon, 11 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://cloudnative-pg.io/tags/open-source/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Postgresql</title>
+      <link>https://cloudnative-pg.io/tags/postgresql/</link>
+      <pubDate>Mon, 11 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://cloudnative-pg.io/tags/postgresql/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Spotlight</title>
+      <link>https://cloudnative-pg.io/tags/spotlight/</link>
+      <pubDate>Mon, 11 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://cloudnative-pg.io/tags/spotlight/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Cncf</title>
+      <link>https://cloudnative-pg.io/tags/cncf/</link>
+      <pubDate>Mon, 04 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://cloudnative-pg.io/tags/cncf/</guid>
       <description></description>
     </item>
     <item>
@@ -37,13 +65,6 @@
       <description></description>
     </item>
     <item>
-      <title>Postgresql</title>
-      <link>https://cloudnative-pg.io/tags/postgresql/</link>
-      <pubDate>Mon, 04 Aug 2025 00:00:00 +0000</pubDate>
-      <guid>https://cloudnative-pg.io/tags/postgresql/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>Cloudnativepg</title>
       <link>https://cloudnative-pg.io/tags/cloudnativepg/</link>
       <pubDate>Tue, 29 Jul 2025 00:00:00 +0000</pubDate>
@@ -55,13 +76,6 @@
       <link>https://cloudnative-pg.io/tags/cnpg/</link>
       <pubDate>Tue, 29 Jul 2025 00:00:00 +0000</pubDate>
       <guid>https://cloudnative-pg.io/tags/cnpg/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Extensions</title>
-      <link>https://cloudnative-pg.io/tags/extensions/</link>
-      <pubDate>Tue, 29 Jul 2025 00:00:00 +0000</pubDate>
-      <guid>https://cloudnative-pg.io/tags/extensions/</guid>
       <description></description>
     </item>
     <item>
@@ -181,20 +195,6 @@
       <link>https://cloudnative-pg.io/tags/kubectl/</link>
       <pubDate>Mon, 07 Jul 2025 00:00:00 +0000</pubDate>
       <guid>https://cloudnative-pg.io/tags/kubectl/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Open-Source</title>
-      <link>https://cloudnative-pg.io/tags/open-source/</link>
-      <pubDate>Mon, 07 Jul 2025 00:00:00 +0000</pubDate>
-      <guid>https://cloudnative-pg.io/tags/open-source/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Spotlight</title>
-      <link>https://cloudnative-pg.io/tags/spotlight/</link>
-      <pubDate>Mon, 07 Jul 2025 00:00:00 +0000</pubDate>
-      <guid>https://cloudnative-pg.io/tags/spotlight/</guid>
       <description></description>
     </item>
     <item>

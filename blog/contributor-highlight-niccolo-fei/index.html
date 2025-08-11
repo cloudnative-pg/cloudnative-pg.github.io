@@ -6,7 +6,7 @@
 <html lang="en">
 
 <head>
-  <title>CloudNativePG - PostgreSQL Operator for Kubernetes</title>
+  <title>Contributor Spotlight: Niccolò Fei | CloudNativePG - PostgreSQL Operator for Kubernetes</title>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
@@ -20,18 +20,23 @@
   
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://cloudnative-pg.io/images/hero_image.png">
-  <meta name="twitter:title" content="CloudNativePG - PostgreSQL Operator for Kubernetes">
-  <meta name="twitter:description" content="Jaime Silvela has been around. In a long and varied career writing code, he has lived in the US and Europe, worked for big corporations like Amazon and Microsoft, as an early startup employee, in industries including Wall Street and catastrophe insurance.
-Early in his career he discovered a fondness for databases, PostgreSQL in particular. He started using Go professionally in 2014, a relief after having suffered the Java monoculture at Amazon.">
+  <meta name="twitter:title" content="Contributor Spotlight: Niccolò Fei">
+  <meta name="twitter:description" content="In a mini-series on this blog we highlight the work of the community. Today we meet Niccolò Fei, Kubernetes Administrator and Automation Engineer at EDB.">
 
-  <meta property="og:url" content="https://cloudnative-pg.io/authors/jsilvela/">
+  <meta property="og:url" content="https://cloudnative-pg.io/blog/contributor-highlight-niccolo-fei/">
   <meta property="og:site_name" content="CloudNativePG - PostgreSQL Operator for Kubernetes">
-  <meta property="og:title" content="CloudNativePG - PostgreSQL Operator for Kubernetes">
-  <meta property="og:description" content="Jaime Silvela has been around. In a long and varied career writing code, he has lived in the US and Europe, worked for big corporations like Amazon and Microsoft, as an early startup employee, in industries including Wall Street and catastrophe insurance.
-Early in his career he discovered a fondness for databases, PostgreSQL in particular. He started using Go professionally in 2014, a relief after having suffered the Java monoculture at Amazon.">
+  <meta property="og:title" content="Contributor Spotlight: Niccolò Fei">
+  <meta property="og:description" content="In a mini-series on this blog we highlight the work of the community. Today we meet Niccolò Fei, Kubernetes Administrator and Automation Engineer at EDB.">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
-    <meta property="article:section" content="authors">
+    <meta property="article:section" content="blog">
+    <meta property="article:published_time" content="2025-08-11T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-08-11T00:00:00+00:00">
+    <meta property="article:tag" content="Extensions">
+    <meta property="article:tag" content="Kubernetes">
+    <meta property="article:tag" content="Postgresql">
+    <meta property="article:tag" content="Open-Source">
+    <meta property="article:tag" content="Spotlight">
     <meta property="og:image" content="https://cloudnative-pg.io/images/hero_image.png">
 
   
@@ -129,113 +134,107 @@ Early in his career he discovered a fondness for databases, PostgreSQL in partic
 
 
     
-<h1 class="h1 text-center mx-auto md:w-3/5"></h1>
+<h1 class="h1 text-center mx-auto md:w-3/5">Contributor Spotlight: Niccolò Fei</h1>
 <div class="md:w-3/5 mx-auto">
     <div class="px-4">
+        
+        <div class="flex gap-3 my-10 mx-auto flex justify-center">
+            
+<div class="my-auto">
+    <img src="/authors/fdrees//floor.jpg" class="w-10 h-10 rounded-full"
+        alt="Floor Drees">
+</div>
+<div>
+    <div>
+        <h1 class="text-lg charcoal font-bold">
+            <a href="/authors/fdrees">Floor Drees</a>
+        </h1>
+    </div>
+    <div class="flex gap-2 text-sm charcoal opacity-75">
+    <h6 class="flex gap-2 text-sm charcoal">
+        August 11, 2025
+        •
+        2 minutes
+    </h6>
+</div>
+</div>
+        </div>
+        
+
+        
         <div>
-            <img src="jsilvela-gh.jpeg" alt="blog image" class="mx-auto">
+            <img src="niccolo.jpg" alt="blog image" class="mx-auto">
         </div>
         
 
+        
         <div class="mx-auto my-10">
-            <h3><a href="https://github.com/jsilvela">Jaime Silvela</a></h3>
-
-            <p>Jaime Silvela has been around. In a long and varied career writing code,
-he has lived in the US and Europe, worked for big corporations like Amazon and
-Microsoft, as an early startup employee, in industries including Wall Street and
-catastrophe insurance.</p>
-<p>Early in his career he discovered a fondness for databases, PostgreSQL in
-particular. He started using Go professionally in 2014, a relief after having
-suffered the Java monoculture at Amazon.</p>
-<p>Jaime joined EDB in 2021, and he is very proud to be able to put his skills to
-use on Kubernetes operators for databases, including CloudNativePG for PostgreSQL
-workloads.</p>
+            <p>Building and maintaining an open source project takes a village. In a
+mini-series on this blog we would like to highlight the work of our
+maintainers, component owners, and members of the larger community.</p>
+<p>Niccolò Fei (<a href="https://github.com/niccolofei">niccolofei</a> on GitHub) is a Kubernetes Administrator and Automation Engineer
+at EDB. Like some of the other CloudNativePG maintainers and contributors,
+Niccolò was part of the team at 2ndQuadrant (acquired by EDB in 2020) when
+the initial project (CNP / Cloud Native PostgreSQL) started.</p>
+<p>Niccolò made his first contribution to the CloudNativePG project in December
+2020, when he developed a set of end-to-end (E2E) tests to verify core
+functionalities such as configuration changes, rolling updates, switchover,
+and synchronous replication. This initial contribution not only served as a
+practical introduction to the project’s E2E testing suite but also offered
+valuable insight into the fundamental principles behind CloudNativePG. To this
+day, Niccolò considers it a great starting point for anyone looking to begin
+contributing to the project.</p>
+<p>If he had unlimited time and skills to dedicate, Niccolò says he would focus
+on improving support for dynamically loading PostgreSQL extensions in running
+clusters—a feature he has recently been working on. In fact, the first
+implementation of this capability has just been included in the <a href="https://cloudnative-pg.io/releases/cloudnative-pg-1-27.0-rc1-released/">1.27.0 release
+candidate</a>!</p>
+<p>&ldquo;Looking ahead, I expect to see many additional features and refinements in
+this area, such as support for extensions in ImageCatalogs.&rdquo; PostgreSQL’s
+extensibility and adaptability are some of its greatest strengths, and this
+new approach to managing extensions introduces meaningful improvements in
+security, maintainability, and overall flexibility.</p>
+<p>Active in the Postgres and Kubernetes communities, Niccolò has a strong
+interest in automation and DevOps tooling. His passion for technology began
+early: “I’ve been fascinated by computers since childhood—mostly because of
+video games and my love for sci-fi movies and books. Growing up, I started
+buying and selling hardware, building PCs for myself and friends, and
+experimenting with different Linux distributions. I always knew I wanted to
+work in this field, so when the opportunity to work with PostgreSQL and
+databases came along, I jumped at the chance!”</p>
+<p>Niccolò&rsquo;s future is almost certainly intertwined with OSS: &ldquo;I will continue
+to contribute to open source—it&rsquo;s a fantastic way to keep learning while
+building things that can help others.&rdquo;</p>
+<p>If you wanted to get in touch with Niccolò, you can find him in the
+CloudNativePG channels on the CNCF Slack workspace, or on <a href="https://bsky.app/profile/niccolofei.bsky.social">Bluesky</a>, or <a href="https://www.linkedin.com/in/niccolofei/">LinkedIn</a>. You can follow the CloudNativePG project on <a href="https://cloudnativepg.bsky.social">Bluesky</a> and <a href="https://mastodon.social/@CloudNativePG">Mastodon</a> too!</p>
 
         </div>
+        
+    </div>
 
-        <h3 class="text-xl font-bold mb-6">Posts by Jaime Silvela</h3>
-        
-        
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-            <div class="column is-half">
-                <a href="/blog/migrations-with-atlas-and-cloudnativepg/">Migrations With Atlas and CloudNativePG</a>
-                <div class="flex gap-2 text-sm charcoal opacity-75">
-    <h6 class="flex gap-2 text-sm charcoal">
-        May 14, 2025
-        •
-        5 minutes
-    </h6>
-</div>
-            </div>
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-            <div class="column is-half">
-                <a href="/blog/developing-webapps-with-cloudnative-pg/">Developing Webapps With CloudNativePG, or, Unlocking DevOps</a>
-                <div class="flex gap-2 text-sm charcoal opacity-75">
-    <h6 class="flex gap-2 text-sm charcoal">
-        June 17, 2023
-        •
-        10 minutes
-    </h6>
-</div>
-            </div>
-            
-        
-            
-        
-            
-        
-            
-            <div class="column is-half">
-                <a href="/blog/introducing-ciclops/">Introducing Ciclops, a new GitHub action to better understand CI/CD test results</a>
-                <div class="flex gap-2 text-sm charcoal opacity-75">
-    <h6 class="flex gap-2 text-sm charcoal">
-        January 25, 2023
-        •
-        5 minutes
-    </h6>
-</div>
-            </div>
-            
-        
-            
-        
+    <div class="px-4">
+        <h3 class="text-xl font-bold mb-6">Categories in this blog post</h3>
+        <div class="text-xs space-y-1.5 mb-14">
+            <ul class="text-sm">
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/extensions"
+                        class="mr-2">extensions</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/kubernetes"
+                        class="mr-2">kubernetes</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/postgresql"
+                        class="mr-2">postgresql</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/open-source"
+                        class="mr-2">open-source</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/spotlight"
+                        class="mr-2">spotlight</a></li>
+                
+            </ul>
+
+        </div>
     </div>
 
     

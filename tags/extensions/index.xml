@@ -6,8 +6,15 @@
     <description>Recent content in Extensions on CloudNativePG - PostgreSQL Operator for Kubernetes</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 29 Jul 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 11 Aug 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://cloudnative-pg.io/tags/extensions/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Contributor Spotlight: Niccolò Fei</title>
+      <link>https://cloudnative-pg.io/blog/contributor-highlight-niccolo-fei/</link>
+      <pubDate>Mon, 11 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://cloudnative-pg.io/blog/contributor-highlight-niccolo-fei/</guid>
+      <description>In a mini-series on this blog we highlight the work of the community. Today we meet Niccolò Fei, Kubernetes Administrator and Automation Engineer at EDB.</description>
+    </item>
     <item>
       <title>CloudNativePG 1.27.0 RC1 Released!</title>
       <link>https://cloudnative-pg.io/releases/cloudnative-pg-1-27.0-rc1-released/</link>
