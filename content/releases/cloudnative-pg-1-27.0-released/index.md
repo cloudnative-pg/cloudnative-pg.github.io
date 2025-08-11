@@ -89,13 +89,45 @@ for a smooth transition.
 
 ## Get Involved with the Community
 
-CloudNativePG is a **vendor-neutral, open-source** project backed by a vibrant
-community of PostgreSQL and Kubernetes enthusiasts.
 [Join us](https://github.com/cloudnative-pg/cloudnative-pg?tab=readme-ov-file#communications)
 to help shape the future of cloud-native Postgres!
+
+If you're using CloudNativePG in production, consider
+[adding your organization as an adopter](https://github.com/cloudnative-pg/cloudnative-pg/blob/main/ADOPTERS.md)
+to support the project's growth and evolution.
 
 Thank you for your continued support! Upgrade today and discover how
 CloudNativePG can elevate your PostgreSQL experience to new heights.
 
-Join our vibrant community, share your insights, and stay updated on the latest
-developments by following us and joining our Slack channel.
+<!--
+## About CloudNativePG
+
+[CloudNativePG](https://cloudnative-pg.io) is an open-source Kubernetes
+Operator specifically designed for PostgreSQL workloads. It manages the entire
+lifecycle of a PostgreSQL cluster, including bootstrapping, configuration, high
+availability, connection routing, and comprehensive backup and disaster
+recovery mechanisms. By leveraging PostgreSQL's native streaming replication,
+CloudNativePG efficiently distributes data across pods, nodes, and zones using
+standard Kubernetes patterns, enabling seamless scaling of replicas in a
+Kubernetes-native manner. Originally developed and supported by
+[EDB](https://www.enterprisedb.com/), CloudNativePG is a CNCF Sandbox project
+and the sole PostgreSQL operator in this category.
+-->
+<!--
+Tweet
+
+🚀 CloudNativePG 1.27.0 is out!
+
+What’s new:
+
+🔹 Dynamic extensions — run OCI-packaged PostgreSQL extensions instantly, no rebuilds needed.
+🔹 Logical decoding slot sync — failovers without disruption, with better CDC tool compatibility.
+🔹 Primary isolation checks — now stable, catching connectivity issues faster.
+
+Also included: experimental quorum-based failover, user maps for predefined users, and improved plugin failure insights.
+
+Read the full story: URL
+
+#PostgreSQL #Kubernetes #CloudNativePG #OpenSource #CDC #CNPG #k8s #postgres
+
+--->
