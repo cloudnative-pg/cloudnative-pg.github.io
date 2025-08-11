@@ -1,14 +1,6 @@
-variable "environment" {
-  default = "production"
-}
-
-variable "registry" {
-  default = "your.repo.url/cnpg"
-}
-
-  platforms = [
-    "linux/amd64",
-  ]
+platforms = [
+  "linux/amd64",
+]
 
 extensions = [
   "dbgsym",

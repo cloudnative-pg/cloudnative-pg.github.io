@@ -53,17 +53,9 @@ To build a custom image we add the following content in a local file with name
 `bake.hcl`:
 
 ```hcl
-variable "environment" {
-  default = "production"
-}
-
-variable "registry" {
-  default = "your.repo.url/cnpg"
-}
-
-  platforms = [
-    "linux/amd64",
-  ]
+platforms = [
+  "linux/amd64",
+]
 
 extensions = [
   "dbgsym",
@@ -130,10 +122,6 @@ EOT
 
 Starting at the beginning of the file:
 
-- The `environment` variable is set to `production` for all of my images, 
-because I use the same image to stage it through dev/test/prod.
-- The `registry` variable contains the repo upload url, so I don't have to add 
-this information every time I build an image.
 - The `platforms` variable is `linux/amd64` for all of my images.
 - The `extensions` variable contains some extensions I use regularly.
 - The `dockerfile-inline` part is extended with binaries, some of them are handy
@@ -149,8 +137,14 @@ this information every time I build an image.
 We can now build the image using the following command:
 
 ```bash
-docker buildx bake -f docker-bake.hcl -f cwd://bake.hcl "https://github.com/cloudnative-pg/postgres-containers.git" myimage
+environment=production registry=your.repo.url docker buildx bake -f docker-bake.hcl -f cwd://bake.hcl "https://github.com/cloudnative-pg/postgres-containers.git" myimage
 ```
+
+- The `environment` variable is set to `production` for all of my images, 
+because I use the same image to stage it through dev/test/prod.
+- The `registry` variable contains the repo upload url, so the images get 
+uploaded there instead of the `localhost:5000` registry used in the 
+[hcl file](https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg.github.io/refs/heads/main/content/blog/building-images-bake/bake.hcl).
 
 ### Step 3: Use it
 
