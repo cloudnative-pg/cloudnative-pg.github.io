@@ -1,6 +1,6 @@
 ---
 title: "Beyond the Patch: Continuing our LFX Mentorship"
-date: 2025-08-12
+date: 2025-08-14
 draft: false
 image:
     url: patch.png
@@ -26,18 +26,24 @@ Curious about our work with [Ying](https://cloudnative-pg.io/blog/contributor-hi
 
 Ying Zhu ([EdwinaZhu](https://github.com/EdwinaZhu) on GitHub), a student at Carnegie Mellon University, was 
 immediately drawn to CloudNativePG when she was looking for CNCF (Cloud Native 
-Computing Foundation) projects to contribute to-since she’s already involved in 
+Computing Foundation) projects to contribute to, since she’s already involved in 
 the PostgreSQL _and_ Kubernetes communities.
 
-Ying worked on implementing “Declarative Management of PostgreSQL Foreign Data 
-Wrappers”. The project aimed to extend the CloudNativePG operator to support 
+Ying worked on implementing [“Declarative Management of PostgreSQL Foreign Data 
+Wrappers”](https://github.com/cloudnative-pg/cloudnative-pg/issues/8063). The project aimed to extend the CloudNativePG operator to support 
 declarative configuration of foreign data wrappers through its Database custom 
 resource. 
 
 ## On mentoring
 
-Four CloudNativePG maintainers—Gabriele Bartolini, Leonardo Cecchi, Marco 
-Nenciarini, and Armando Ruocco—supported Ying in her journey.
+Four CloudNativePG maintainers, Gabriele Bartolini, Leonardo Cecchi, Marco 
+Nenciarini, and Armando Ruocco, supported Ying in her journey.
+
+Gabriele shares how Ying worked hard, studied diligently, sought feedback, 
+and grew visibly throughout the program. "Her curiosity, passion, and initiative 
+stood out, and I hope that the the psychologically safe environment we tried to 
+created played a key role in her progress." Gabriele is confident Ying will 
+continue to make valuable contributions to the project and the wider community.
 
 Reflecting on the collaboration, Leonardo said:
 
