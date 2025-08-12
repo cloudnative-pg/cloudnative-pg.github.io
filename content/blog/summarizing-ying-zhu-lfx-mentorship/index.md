@@ -24,7 +24,7 @@ Curious about our work with [Ying](https://cloudnative-pg.io/blog/contributor-hi
 
 ## Summer 2025: Declarative Management of Foreign Data Wrappers
 
-Ying Zhu ([EdwinaZhu](https://github.com/EdwinaZhu) on GitHub), student at Carnegie Mellon University, was 
+Ying Zhu ([EdwinaZhu](https://github.com/EdwinaZhu) on GitHub), a student at Carnegie Mellon University, was 
 immediately drawn to CloudNativePG when she was looking for CNCF (Cloud Native 
 Computing Foundation) projects to contribute to-since she’s already involved in 
 the PostgreSQL _and_ Kubernetes communities.
