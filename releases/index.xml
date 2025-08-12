@@ -6,8 +6,15 @@
     <description>Recent content in Releases on CloudNativePG - PostgreSQL Operator for Kubernetes</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 29 Jul 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 12 Aug 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://cloudnative-pg.io/releases/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CloudNativePG 1.27.0 Released!</title>
+      <link>https://cloudnative-pg.io/releases/cloudnative-pg-1-27.0-released/</link>
+      <pubDate>Tue, 12 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://cloudnative-pg.io/releases/cloudnative-pg-1-27.0-released/</guid>
+      <description>The CloudNativePG community is excited to announce version 1.27.0, featuring powerful new capabilities for PostgreSQL on Kubernetes.</description>
+    </item>
     <item>
       <title>CloudNativePG 1.27.0 RC1 Released!</title>
       <link>https://cloudnative-pg.io/releases/cloudnative-pg-1-27.0-rc1-released/</link>

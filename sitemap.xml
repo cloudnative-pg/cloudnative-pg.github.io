@@ -31,7 +31,37 @@
     <loc>https://cloudnative-pg.io/end_users/rubin/</loc>
   </url><url>
     <loc>https://cloudnative-pg.io/</loc>
-    <lastmod>2025-08-11T00:00:00+00:00</lastmod>
+    <lastmod>2025-08-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://cloudnative-pg.io/tags/cloudnativepg/</loc>
+    <lastmod>2025-08-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://cloudnative-pg.io/releases/cloudnative-pg-1-27.0-released/</loc>
+    <lastmod>2025-08-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://cloudnative-pg.io/tags/cnpg/</loc>
+    <lastmod>2025-08-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://cloudnative-pg.io/tags/k8s/</loc>
+    <lastmod>2025-08-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://cloudnative-pg.io/tags/kubernetes/</loc>
+    <lastmod>2025-08-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://cloudnative-pg.io/tags/postgres/</loc>
+    <lastmod>2025-08-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://cloudnative-pg.io/tags/postgresql/</loc>
+    <lastmod>2025-08-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://cloudnative-pg.io/tags/release/</loc>
+    <lastmod>2025-08-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://cloudnative-pg.io/releases/</loc>
+    <lastmod>2025-08-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://cloudnative-pg.io/tags/</loc>
+    <lastmod>2025-08-12T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://cloudnative-pg.io/blog/</loc>
     <lastmod>2025-08-11T00:00:00+00:00</lastmod>
@@ -42,19 +72,10 @@
     <loc>https://cloudnative-pg.io/tags/extensions/</loc>
     <lastmod>2025-08-11T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://cloudnative-pg.io/tags/kubernetes/</loc>
-    <lastmod>2025-08-11T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://cloudnative-pg.io/tags/open-source/</loc>
     <lastmod>2025-08-11T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://cloudnative-pg.io/tags/postgresql/</loc>
-    <lastmod>2025-08-11T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://cloudnative-pg.io/tags/spotlight/</loc>
-    <lastmod>2025-08-11T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://cloudnative-pg.io/tags/</loc>
     <lastmod>2025-08-11T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://cloudnative-pg.io/blog/2025-term3-lfx-cncf-mentorship/</loc>
@@ -69,13 +90,7 @@
     <loc>https://cloudnative-pg.io/tags/mentorship/</loc>
     <lastmod>2025-08-04T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://cloudnative-pg.io/tags/cloudnativepg/</loc>
-    <lastmod>2025-07-29T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://cloudnative-pg.io/releases/cloudnative-pg-1-27.0-rc1-released/</loc>
-    <lastmod>2025-07-29T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://cloudnative-pg.io/tags/cnpg/</loc>
     <lastmod>2025-07-29T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://cloudnative-pg.io/tags/failoverquorum/</loc>
@@ -84,19 +99,7 @@
     <loc>https://cloudnative-pg.io/tags/imagevolume/</loc>
     <lastmod>2025-07-29T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://cloudnative-pg.io/tags/k8s/</loc>
-    <lastmod>2025-07-29T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://cloudnative-pg.io/tags/postgres/</loc>
-    <lastmod>2025-07-29T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://cloudnative-pg.io/tags/preview/</loc>
-    <lastmod>2025-07-29T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://cloudnative-pg.io/tags/release/</loc>
-    <lastmod>2025-07-29T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://cloudnative-pg.io/releases/</loc>
     <lastmod>2025-07-29T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://cloudnative-pg.io/releases/cloudnative-pg-1-26.1-released/</loc>
@@ -407,7 +410,7 @@
   </url><url>
     <loc>https://cloudnative-pg.io/docs/1.26/</loc>
   </url><url>
-    <loc>https://cloudnative-pg.io/docs/preview/</loc>
+    <loc>https://cloudnative-pg.io/docs/1.27/</loc>
   </url><url>
     <loc>https://cloudnative-pg.io/footer/footer/</loc>
   </url><url>
