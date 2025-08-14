@@ -41,8 +41,8 @@ Nenciarini, and Armando Ruocco, supported Ying in her journey.
 
 Gabriele shares how Ying worked hard, studied diligently, sought feedback, 
 and grew visibly throughout the program. "Her curiosity, passion, and initiative 
-stood out, and I hope that the the psychologically safe environment we tried to 
-created played a key role in her progress." Gabriele is confident Ying will 
+stood out, and I hope that the psychologically safe environment we tried to 
+create played a key role in her progress." Gabriele is confident Ying will 
 continue to make valuable contributions to the project and the wider community.
 
 Reflecting on the collaboration, Leonardo said:
