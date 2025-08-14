@@ -1,12 +1,10 @@
-{{ $author := $.Site.GetPage (path.Join "authors" .Params.author)}}
-<div class="my-auto">
-    <img src="{{ $author.RelPermalink }}/{{ $author.Params.avatar }}" class="w-10 h-10 rounded-full"
-        alt="{{$author.Params.name}}">
+{{ with .GetTerms "authors" }}
+<div class="flex gap-3">
+    {{ range . }}
+      <div class="my-auto">
+      <img src="{{ .RelPermalink }}/{{ .Params.avatar }}" class="w-10 h-10 rounded-full"
+          alt="{{.LinkTitle}}">
+      </div>
+    {{ end }}
 </div>
-<div class="my-auto">
-    <div>
-        <h1 class="text-lg charcoal font-bold">
-            {{$author.Params.name}}
-        </h1>
-    </div>
-</div>
+{{ end }}
