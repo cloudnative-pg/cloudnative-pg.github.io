@@ -5,7 +5,8 @@ draft: false
 image:
     url: jeff.jpeg
     attribution:
-author: fdrees
+authors:
+ - fdrees
 tags:
  - alerts
  - dashboards

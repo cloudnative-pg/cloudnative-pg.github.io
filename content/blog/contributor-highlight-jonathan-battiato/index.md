@@ -5,7 +5,8 @@ draft: false
 image:
     url: johnny.png
     attribution:
-author: fdrees
+authors:
+ - fdrees
 tags:
  - kubernetes
  - UX

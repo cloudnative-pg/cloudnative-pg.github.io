@@ -5,7 +5,8 @@ draft: false
 image:
     url: philippe.png
     attribution:
-author: fdrees
+authors:
+ - fdrees
 tags:
  - prometheus
  - pooler

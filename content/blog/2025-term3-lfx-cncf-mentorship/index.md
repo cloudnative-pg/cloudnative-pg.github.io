@@ -5,7 +5,8 @@ draft: false
 image:
     url: lfx-cncf-cnpg.png
     attribution:
-author: fdrees
+authors:
+  - fdrees
 tags:
  - mentorship
  - lfx

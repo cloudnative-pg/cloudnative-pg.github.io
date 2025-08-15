@@ -16,3 +16,7 @@ staticDir = ['assets']
 [params]
   description = 'CloudNativePG - PostgreSQL Operator for Kubernetes'
   images = ['images/hero_image.png']
+
+[taxonomies]
+  author = 'authors'
+  tag = 'tags'
