@@ -51,7 +51,7 @@ benefits: better specs, three-node PostgreSQL clusters instead of one, seamless
 failovers, point-in-time recovery, S3-compatible backups, and horizontal read 
 scaling.
 
-By contrast, Cloud SQL often caused downtime even with high availability 
+By contrast, Cloud SQL often caused downtime, even with high availability 
 enabled, limiting flexibility and delaying updates. CloudNativePG’s Kubernetes 
 native design aligned perfectly with Vito’s goal of running all services 
 (including the database) inside Kubernetes.
