@@ -3,7 +3,7 @@ title: "Unlocking full Kubernetes functionality at Brella with CloudNativePG and
 date: 2025-08-19
 draft: false
 image:
-    url: 
+    url: brella_cloudnativepg.jpg
     attribution:
 author: fdrees
 tags:
@@ -58,11 +58,12 @@ native design aligned perfectly with Vito’s goal of running all services
 
 ## Keeping it simple for the team
 
-As the only team member with deep Kubernetes experience, Vito values 
-CloudNativePG’s simplicity. It helps keep Brella’s architecture approachable 
-for teammates who are still learning infrastructure administration. Compared 
-to other PostgreSQL operators like Zalando or Crunchy, Vito finds CloudNativePG 
-more streamlined and better integrated into Kubernetes from the ground up.
+Vito, who is the Brella team member with the deepest Kubernetes experience, 
+values CloudNativePG's simplicity. It helps keep Brella’s architecture 
+approachable for teammates who are still learning infrastructure administration. 
+Compared to other PostgreSQL operators like Zalando or Crunchy, Vito finds 
+CloudNativePG more streamlined and better integrated into Kubernetes from the 
+ground up.
 
 ## A lifelong passion for technology
 Vito’s fascination with computers began at age six. By eight, he was developing 
