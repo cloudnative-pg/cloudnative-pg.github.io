@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Floor Drees on CloudNativePG - PostgreSQL Operator for Kubernetes</title>
+    <link>https://cloudnative-pg.io/authors/fdrees/</link>
+    <description>Recent content in Floor Drees on CloudNativePG - PostgreSQL Operator for Kubernetes</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 14 Aug 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://cloudnative-pg.io/authors/fdrees/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Beyond the Patch: Continuing our LFX Mentorship</title>
+      <link>https://cloudnative-pg.io/blog/summarizing-ying-zhu-lfx-mentorship/</link>
+      <pubDate>Thu, 14 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://cloudnative-pg.io/blog/summarizing-ying-zhu-lfx-mentorship/</guid>
+      <description>This summer marked our first time joining the CNCF’s LFX mentorship program—and it was such a great experience that we couldn’t wait to share it with you.</description>
+    </item>
+    <item>
+      <title>Contributor Spotlight: Niccolò Fei</title>
+      <link>https://cloudnative-pg.io/blog/contributor-highlight-niccolo-fei/</link>
+      <pubDate>Mon, 11 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://cloudnative-pg.io/blog/contributor-highlight-niccolo-fei/</guid>
+      <description>In a mini-series on this blog we highlight the work of the community. Today we meet Niccolò Fei, Kubernetes Administrator and Automation Engineer at EDB.</description>
+    </item>
+    <item>
+      <title>CloudNativePG part of LFX Mentorship again - sign up as a mentee!</title>
+      <link>https://cloudnative-pg.io/blog/2025-term3-lfx-cncf-mentorship/</link>
+      <pubDate>Mon, 04 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://cloudnative-pg.io/blog/2025-term3-lfx-cncf-mentorship/</guid>
+      <description>We have proposed 3 projects for the September cohort of the CNCF&amp;rsquo;s LFX Mentorship program, and we’re looking for mentees to sign up and receive a stipend for their work.</description>
+    </item>
+    <item>
+      <title>CloudNativePG 1.27.0 RC1 Released!</title>
+      <link>https://cloudnative-pg.io/releases/cloudnative-pg-1-27.0-rc1-released/</link>
+      <pubDate>Tue, 29 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>https://cloudnative-pg.io/releases/cloudnative-pg-1-27.0-rc1-released/</guid>
+      <description>The CloudNativePG community is excited to announce the first release candidate of CloudNativePG 1.27! This preview introduces features like the dynamic loading of PostgreSQL extensions, and the automatic synchronization of logical decoding slots across high-availability clusters. Join us in testing these updates to shape the final release.</description>
+    </item>
+    <item>
+      <title>Contributor Spotlight: Jaime Silvela</title>
+      <link>https://cloudnative-pg.io/blog/contributor-highlight-jaime-silvela/</link>
+      <pubDate>Mon, 07 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>https://cloudnative-pg.io/blog/contributor-highlight-jaime-silvela/</guid>
+      <description>In a mini-series on this blog we highlight the work of the community. Today we meet Jaime Silvela, experienced software developer and system builder and CloudNativePG component owner.</description>
+    </item>
+    <item>
+      <title>Contributor Spotlight: Ying Zhu</title>
+      <link>https://cloudnative-pg.io/blog/contributor-highlight-ying-zhu/</link>
+      <pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>https://cloudnative-pg.io/blog/contributor-highlight-ying-zhu/</guid>
+      <description>In a mini-series on this blog we highlight the work of the community. Today we meet Ying Zhu, student at Carnegie Mellon University, and CNCF mentee.</description>
+    </item>
+    <item>
+      <title>Contributor Spotlight: Marco Nenciarini</title>
+      <link>https://cloudnative-pg.io/blog/contributor-highlight-marco-nenciarini/</link>
+      <pubDate>Mon, 16 Jun 2025 11:51:43 +0200</pubDate>
+      <guid>https://cloudnative-pg.io/blog/contributor-highlight-marco-nenciarini/</guid>
+      <description>In a mini-series on this blog we highlight the work of the community. Today we meet Marco Nenciarini, one of the original creators of CloudNativePG.</description>
+    </item>
+    <item>
+      <title>Contributor Spotlight: Jonathan Battiato</title>
+      <link>https://cloudnative-pg.io/blog/contributor-highlight-jonathan-battiato/</link>
+      <pubDate>Tue, 10 Jun 2025 13:00:43 +0200</pubDate>
+      <guid>https://cloudnative-pg.io/blog/contributor-highlight-jonathan-battiato/</guid>
+      <description>In a mini-series on this blog we highlight the work of the community. Today we meet Jonathan Battiato, who sums up his contributions to the project as: &amp;lsquo;I help&amp;rsquo;.</description>
+    </item>
+    <item>
+      <title>Contributor Spotlight: David Wheeler</title>
+      <link>https://cloudnative-pg.io/blog/contributor-highlight-david-wheeler/</link>
+      <pubDate>Mon, 26 May 2025 13:51:43 +0200</pubDate>
+      <guid>https://cloudnative-pg.io/blog/contributor-highlight-david-wheeler/</guid>
+      <description>In a mini-series on this blog we highlight the work of the community. Today we meet David Wheeler, Principal Architect at Tembo, and PGXN maintainer.</description>
+    </item>
+    <item>
+      <title>Contributor Spotlight: Francesco Canovai</title>
+      <link>https://cloudnative-pg.io/blog/contributor-highlight-francesco-canovai/</link>
+      <pubDate>Wed, 21 May 2025 13:51:43 +0200</pubDate>
+      <guid>https://cloudnative-pg.io/blog/contributor-highlight-francesco-canovai/</guid>
+      <description>In a mini-series on this blog we highlight the work of the community. Today we meet Francesco Canovai, Senior Software Development Engineer at EDB, and CloudNativePG maintainer.</description>
+    </item>
+    <item>
+      <title>Contributor Spotlight: Jeff Mealo</title>
+      <link>https://cloudnative-pg.io/blog/contributor-highlight-jeff-mealo/</link>
+      <pubDate>Sun, 11 May 2025 14:51:43 +0200</pubDate>
+      <guid>https://cloudnative-pg.io/blog/contributor-highlight-jeff-mealo/</guid>
+      <description>In a mini-series on this blog we highlight the work of the community. Today we meet Jeff Mealo, Senior Software Engineer at Gisual.</description>
+    </item>
+    <item>
+      <title>Contributor Spotlight: Philippe Scorsolini</title>
+      <link>https://cloudnative-pg.io/blog/contributor-highlight-philippe-scorsolini/</link>
+      <pubDate>Sun, 04 May 2025 14:51:43 +0200</pubDate>
+      <guid>https://cloudnative-pg.io/blog/contributor-highlight-philippe-scorsolini/</guid>
+      <description>In a mini-series on this blog we highlight the work of the community. Today we meet Philippe Scorsolini, Staff Software Engineer and Tech Lead at Upbound, and CloudNativePG maintainer.</description>
+    </item>
+    <item>
+      <title>Contributor Spotlight: Daniel Chambre</title>
+      <link>https://cloudnative-pg.io/blog/contributor-highlight-daniel-chambre/</link>
+      <pubDate>Mon, 28 Apr 2025 14:51:43 +0200</pubDate>
+      <guid>https://cloudnative-pg.io/blog/contributor-highlight-daniel-chambre/</guid>
+      <description>In a mini-series on this blog we highlight the work of the community. Today we meet Daniel Chambre (aka smiyc), a DBA at WienIT.</description>
+    </item>
+    <item>
+      <title>Contributor Spotlight: Jonathan Gonzalez</title>
+      <link>https://cloudnative-pg.io/blog/contributor-highlight-jonathan-gonzalez/</link>
+      <pubDate>Tue, 22 Apr 2025 14:51:43 +0200</pubDate>
+      <guid>https://cloudnative-pg.io/blog/contributor-highlight-jonathan-gonzalez/</guid>
+      <description>In a mini-series on this blog we highlight the work of the community. Today we meet Jonathan Gonzalez, Senior Kubernetes Developer at EDB and CloudNativePG maintainer.</description>
+    </item>
+    <item>
+      <title>Contributor Spotlight: Itay Grudev</title>
+      <link>https://cloudnative-pg.io/blog/contributor-highlight-itay/</link>
+      <pubDate>Mon, 14 Apr 2025 14:51:43 +0200</pubDate>
+      <guid>https://cloudnative-pg.io/blog/contributor-highlight-itay/</guid>
+      <description>In a mini-series on this blog we highlight the work of the community. First up is Itay Grudev, component owner for the Operator chart and PostgreSQL Cluster Chart and the Grafana Dashboard for CloudNativePG.</description>
+    </item>
+  </channel>
+</rss>
