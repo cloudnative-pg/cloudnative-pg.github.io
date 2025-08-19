@@ -1,0 +1,23 @@
+{{ define "main" }}
+<div class="mx-auto w-1/2">
+    <div class="section">
+        {{ if eq .Type "blog" }}
+        <a href="/tags/">Back to tags</a>
+        {{ end }}
+        <div class="content">
+            <h2>Category: {{ .Title |title }}</h2>
+            {{ .Content }}
+        </div>
+        <div class="columns is-multiline">
+            {{ range .Paginator.Pages }}
+            <div class="column is-half">
+                <a href="{{ .RelPermalink }}">{{ .Title |title}}</a>
+                {{ if eq .Type "blog" }}
+                {{ partial "blog_datetime.html" . }}
+                {{ end }}
+            </div>
+            {{ end }}
+        </div>
+    </div>
+</div>
+{{ end }}

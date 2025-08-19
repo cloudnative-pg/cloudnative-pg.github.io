@@ -2,8 +2,11 @@
 <div class="flex gap-3">  
     {{ range . }}
       <div class="my-auto">
-      <img src="{{ .RelPermalink }}/{{ .Params.avatar }}" class="w-10 h-10 rounded-full"
-          alt="{{.LinkTitle}}">
+        {{ $authorPage := . }}
+        {{ with .Resources.Get .Params.avatar}}
+        <img src="{{ .RelPermalink }}" class="w-10 h-10 rounded-full"
+            alt="{{$authorPage.LinkTitle}}">
+        {{ end }}
       </div>
 
       <div>
