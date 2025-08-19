@@ -5,7 +5,8 @@ draft: false
 image:
     url: itay.jpg
     attribution:
-author: fdrees
+authors:
+ - fdrees
 tags:
  - helm
  - grafana

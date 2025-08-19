@@ -5,7 +5,8 @@ draft: false
 image:
     url: niccolo.jpg
     attribution:
-author: fdrees
+authors:
+ - fdrees
 tags:
  - extensions
  - kubernetes

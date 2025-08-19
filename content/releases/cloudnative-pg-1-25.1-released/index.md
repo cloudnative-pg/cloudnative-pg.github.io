@@ -5,7 +5,8 @@ draft: false
 image:
     url: pexels-chris-clark-1933184-16116726.jpg
     attribution: from <a href="https://www.pexels.com/photo/large-elephant-on-grassland-16116726/">Chris Clark</a>
-author: gbartolini
+authors:
+ - gbartolini
 tags:
  - release
  - postgresql

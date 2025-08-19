@@ -5,7 +5,8 @@ draft: false
 image:
     url: patch.png
     attribution:
-author: fdrees
+authors:
+ - fdrees
 tags:
  - mentorship
  - lfx

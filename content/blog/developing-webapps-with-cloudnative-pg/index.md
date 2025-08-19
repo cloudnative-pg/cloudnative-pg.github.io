@@ -5,7 +5,8 @@ draft: false
 image:
     url: elephants-spider-web.gif
     attribution: Image by <a href="https://saintsandspinners.blogspot.com/2009/07/song-of-week-five-elephants-on-one.html">Saints and Spinners</a>
-author: jsilvela
+authors:
+ - jsilvela
 tags:
  - blog
  - information
