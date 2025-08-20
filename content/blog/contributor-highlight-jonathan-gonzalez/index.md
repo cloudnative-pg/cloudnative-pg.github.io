@@ -5,7 +5,8 @@ draft: false
 image:
     url: jonathan.jpg
     attribution:
-author: fdrees
+authors:
+ - fdrees
 tags:
  - containers
  - kubernetes

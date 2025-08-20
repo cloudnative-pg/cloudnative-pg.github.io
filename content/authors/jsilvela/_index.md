@@ -1,5 +1,5 @@
 ---
-name:  Jaime Silvela
+title:  Jaime Silvela
 avatar: jsilvela-gh.jpeg
 github: jsilvela
 ---

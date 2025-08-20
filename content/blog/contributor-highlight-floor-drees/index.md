@@ -5,7 +5,8 @@ draft: false
 image:
     url: floor.jpg
     attribution:
-author: jgonzalez
+authors:
+ - jgonzalez
 tags:
  - ruby
  - community

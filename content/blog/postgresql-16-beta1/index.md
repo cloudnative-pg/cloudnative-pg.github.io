@@ -5,7 +5,8 @@ draft: false
 image:
     url: elephant-ship.png
     attribution: from <a href="https://jenikirbyhistory.getarchive.net/amp/media/a-cargo-of-seventy-elephants-landing-from-burmah-during-the-1857-mutiny-3ff978">Metropolitan Museum of Art</a>
-author: gbartolini
+authors:
+ - gbartolini
 tags:
  - postgresql
  - postgres

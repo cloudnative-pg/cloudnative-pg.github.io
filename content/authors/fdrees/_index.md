@@ -1,8 +1,7 @@
 ---
-name: Floor Drees
+title: Floor Drees
 avatar: floor.jpg
 github: floord
-id: fdrees
 ---
 
 Open Source community advocate and Principal Program Manager at EDB. PostgreSQL Code of Conduct Committee member, PG EU Diversity Committee member, PGDay Lowlands organizer. 

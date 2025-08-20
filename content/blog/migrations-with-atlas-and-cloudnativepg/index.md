@@ -5,7 +5,8 @@ draft: false
 image:
     url: elephant-migration.jpg
     attribution: from <strong><a href="https://commons.wikimedia.org/w/index.php?curid=101232202">Wikimedia Commons</a></strong>
-author: jsilvela
+authors:
+ - jsilvela
 tags:
  - blog
  - tutorial

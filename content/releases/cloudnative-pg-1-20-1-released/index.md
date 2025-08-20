@@ -5,7 +5,8 @@ draft: false
 image:
     url: wildlife-zoo-mammal-fauna-elephant-sri-lanka-988769-pxhere.com.jpg
     attribution: from <strong><a href="https://pxhere.com/en/photo/988769?utm_content=clipUser&utm_medium=referral&utm_source=pxhere">PxHere</a></strong>
-author: gbartolini
+authors:
+ - gbartolini
 tags:
  - release
  - postgresql
