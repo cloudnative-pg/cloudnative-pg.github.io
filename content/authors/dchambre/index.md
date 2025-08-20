@@ -1,5 +1,5 @@
 ---
-name:  Daniel Chambre
+title:  Daniel Chambre
 avatar: daniel.jpg
 github: smiyc
 ---
