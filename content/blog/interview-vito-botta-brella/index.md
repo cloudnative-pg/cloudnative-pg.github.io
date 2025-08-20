@@ -42,10 +42,9 @@ the community quickly grew, with companies using it to migrate from costly
 hyperscalers while retaining necessary features. The project now boasts nearly 
 2,700 GitHub stars and an active, growing user base.
 
-
 ## Why CloudNativePG works for Brella
 
-For Vito, CloudNativePG “just works.” It’s easy to set up, maintain, and 
+For Vito, CloudNativePG “just works”. It’s easy to set up, maintain, and
 integrate into Brella’s architecture. The migration from Cloud SQL brought major 
 benefits: better specs, three-node PostgreSQL clusters instead of one, seamless 
 failovers, point-in-time recovery, S3-compatible backups, and horizontal read 
