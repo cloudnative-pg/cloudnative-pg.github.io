@@ -5,7 +5,8 @@ draft: true
 image:
     url: elephant_cookie.jpg
     attribution: https://www.wallpaperflare.com/cookies-elephant-breakfast-for-children-dessert-food-sweet-food-wallpaper-asujf/download
-author: dchambre
+authors:
+ - dchambre
 tags:
  - blog
  - information
