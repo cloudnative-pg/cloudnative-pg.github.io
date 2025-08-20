@@ -6,8 +6,15 @@
     <description>Recent content in Open-Source on CloudNativePG - PostgreSQL Operator for Kubernetes</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 11 Aug 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 19 Aug 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://cloudnative-pg.io/tags/open-source/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Unlocking full Kubernetes functionality at Brella with CloudNativePG and Hetzner</title>
+      <link>https://cloudnative-pg.io/blog/interview-vito-botta-brella/</link>
+      <pubDate>Tue, 19 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://cloudnative-pg.io/blog/interview-vito-botta-brella/</guid>
+      <description>We talked to Vito Botta, Lead Platform Architect for the event management platform Brella, about how CloudNativePG fits in their technology stack.</description>
+    </item>
     <item>
       <title>Contributor Spotlight: Niccolò Fei</title>
       <link>https://cloudnative-pg.io/blog/contributor-highlight-niccolo-fei/</link>
