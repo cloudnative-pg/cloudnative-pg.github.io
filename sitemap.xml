@@ -33,7 +33,13 @@
     <loc>https://cloudnative-pg.io/</loc>
     <lastmod>2025-08-19T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>https://cloudnative-pg.io/authors/</loc>
+    <lastmod>2025-08-19T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://cloudnative-pg.io/blog/</loc>
+    <lastmod>2025-08-19T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://cloudnative-pg.io/authors/fdrees/</loc>
     <lastmod>2025-08-19T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://cloudnative-pg.io/tags/hetzner/</loc>
@@ -60,16 +66,10 @@
     <loc>https://cloudnative-pg.io/blog/interview-vito-botta-brella/</loc>
     <lastmod>2025-08-19T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://cloudnative-pg.io/authors/</loc>
-    <lastmod>2025-08-14T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://cloudnative-pg.io/blog/summarizing-ying-zhu-lfx-mentorship/</loc>
     <lastmod>2025-08-14T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://cloudnative-pg.io/tags/cncf/</loc>
-    <lastmod>2025-08-14T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://cloudnative-pg.io/authors/fdrees/</loc>
     <lastmod>2025-08-14T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://cloudnative-pg.io/tags/lfx/</loc>

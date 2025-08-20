@@ -6,8 +6,15 @@
     <description>Recent content in Floor Drees on CloudNativePG - PostgreSQL Operator for Kubernetes</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 14 Aug 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 19 Aug 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://cloudnative-pg.io/authors/fdrees/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Unlocking full Kubernetes functionality at Brella with CloudNativePG and Hetzner</title>
+      <link>https://cloudnative-pg.io/blog/interview-vito-botta-brella/</link>
+      <pubDate>Tue, 19 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://cloudnative-pg.io/blog/interview-vito-botta-brella/</guid>
+      <description>We talked to Vito Botta, Lead Platform Architect for the event management platform Brella, about how CloudNativePG fits in their technology stack.</description>
+    </item>
     <item>
       <title>Beyond the Patch: Continuing our LFX Mentorship</title>
       <link>https://cloudnative-pg.io/blog/summarizing-ying-zhu-lfx-mentorship/</link>
