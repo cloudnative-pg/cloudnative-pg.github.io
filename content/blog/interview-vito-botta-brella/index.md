@@ -5,7 +5,8 @@ draft: false
 image:
     url: brella_cloudnativepg.jpg
     attribution:
-author: fdrees
+authors:
+ - fdrees
 tags:
  - react
  - Rails
