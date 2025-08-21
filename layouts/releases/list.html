@@ -18,21 +18,21 @@
                 <div class="charcoal">
                     <dl>
                         <dt class="text-3xl my-5 font-bold">{{ .Title }}</dt>
-                        <div class="flex text-xs gap-1.5">
+                        <dd class="flex text-xs gap-1.5">
                             <ul class="text-sm">
                                 {{ range .Params.tags }}
                                 <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2">{{ . }}</li>
                                 {{ end }}
                             </ul>
-                        </div>
+                        </dd>
                         <dd class="text-2xl my-5">{{ .Params.summary }}</dd>
                     </dl>
                 </div>
 
                 <!--CTA-->
                 <div class="pt-10">
-                    <a href="{{ .RelPermalink }}"
-                        class="bg-rose-600 py-4 px-12 rounded-full text-white text-xl">Continue Reading</a>
+                    <span
+                        class="bg-rose-600 py-4 px-12 rounded-full text-white text-xl">Continue Reading</span>
                 </div>
                 <!--CTA-->
             </a>
