@@ -2,7 +2,7 @@
 
 <div class="mx-auto md:w-1/2 px-4 well">
     <h2 class="text-xl mt-6">{{.Title}}</h2>
-    <p>{{.Content}}</p>
+    {{.Content}}
     <ul>
     {{ range sort .Pages "Title" }}
         <li><a href="{{ .Params.homepage }}">{{ .Title }}</a></li>
