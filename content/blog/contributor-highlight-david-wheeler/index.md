@@ -5,7 +5,8 @@ draft: false
 image:
     url: theory.jpg
     attribution:
-author: fdrees
+authors:
+ - fdrees
 tags:
  - PGXN
  - pgTAP

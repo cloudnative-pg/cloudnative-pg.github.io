@@ -272,6 +272,8 @@
               <ul>
                   <li class="toctree-l1"><a class="reference internal" href="../../cncf-projects/external-secrets/">External Secrets</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cncf-projects/cilium/">Cilium</a>
+                  </li>
               </ul>
               <p class="caption"><span class="caption-text">Appendixes</span></p>
               <ul>
@@ -308,6 +310,86 @@
 <p>For a complete list of changes, please refer to the
 <a href="https://github.com/cloudnative-pg/cloudnative-pg/commits/release-1.25">commits</a>
 on the release branch in GitHub.</p>
+<h2 id="version-1253">Version 1.25.3</h2>
+<p><strong>Release date:</strong> Jul 25, 2025</p>
+<p><em>In memory of <a href="https://www.linkedin.com/in/codepope/">DJ Walker-Morgan</a>.</em></p>
+<h3 id="changes">Changes</h3>
+<ul>
+<li>Removed <code>386</code> and ARM (v5/v6/v7) architectures from the <code>cnpg</code> plugin build
+  matrix, reducing the number of published binaries
+  (<a href="https://github.com/cloudnative-pg/cloudnative-pg/pull/7648">#7648</a>).</li>
+</ul>
+<h3 id="enhancements">Enhancements</h3>
+<ul>
+<li>
+<p>Improved validation of <code>shared_buffers</code> by correctly considering <code>HugePages</code>
+  settings, ensuring accurate memory configuration checks
+  (<a href="https://github.com/cloudnative-pg/cloudnative-pg/pull/7864">#7864</a>).</p>
+</li>
+<li>
+<p>Set <code>oom_score_adj</code> for PostgreSQL worker processes to improve prioritization
+  during out-of-memory situations
+  (<a href="https://github.com/cloudnative-pg/cloudnative-pg/pull/7891">#7891</a>).</p>
+</li>
+<li>
+<p>Added <code>fqdn-uri</code> and <code>fqdn-jdbc-uri</code> fields in user secrets to simplify
+  application connection string management and align with DNS-based connection
+  best practices (<a href="https://github.com/cloudnative-pg/cloudnative-pg/pull/7852">#7852</a>).</p>
+</li>
+<li>
+<p>Added the <code>systemID</code> field and related condition in the <code>Cluster</code> status to track
+  the PostgreSQL system identifier.
+  (<a href="https://github.com/cloudnative-pg/cloudnative-pg/pull/7717">#7717</a>).</p>
+</li>
+</ul>
+<h3 id="fixes">Fixes</h3>
+<ul>
+<li>
+<p>Added a mutex in the connection pooler to protect concurrent access to the
+  connections map, improving stability in high-concurrency environments
+  (<a href="https://github.com/cloudnative-pg/cloudnative-pg/pull/7804">#7804</a>).</p>
+</li>
+<li>
+<p>Fixed replica cluster instance ordering by correctly detecting the designated
+  primary, improving replica cluster stability and switchover operations
+  (<a href="https://github.com/cloudnative-pg/cloudnative-pg/pull/8108">#8108</a>).</p>
+</li>
+<li>
+<p>Added support for reconciling <code>VolumeAttributesClass</code> for PVCs, enhancing
+  storage compatibility and lifecycle management
+  (<a href="https://github.com/cloudnative-pg/cloudnative-pg/pull/7885">#7885</a>).</p>
+</li>
+<li>
+<p>Made the internal webserver routines non-blocking to improve responsiveness
+  under load (<a href="https://github.com/cloudnative-pg/cloudnative-pg/pull/8071">#8071</a>).</p>
+</li>
+<li>
+<p>Fixed an issue where the <code>ensureReplicationClientLeafCertificate</code> error did
+  not display the correct <code>secretName</code> in the not found message
+  (<a href="https://github.com/cloudnative-pg/cloudnative-pg/pull/8086">#8086</a>).</p>
+</li>
+<li>
+<p>Prevented invalid <code>ALTER SUBSCRIPTION</code> statements by updating only
+  PostgreSQL‑supported parameters; unsupported options like <code>copy_data</code> are
+  ignored to avoid reconciliation failures
+  (<a href="https://github.com/cloudnative-pg/cloudnative-pg/pull/7844">7844</a>).</p>
+</li>
+<li>
+<p>Fixed an issue where the <code>bootstrap-controller</code> in the connection pooler did
+  not apply <code>resources</code> settings correctly
+  (<a href="https://github.com/cloudnative-pg/cloudnative-pg/pull/7922">#7922</a>).</p>
+</li>
+<li>
+<p>Ensured online backups fail cleanly if the <code>targetPod</code> becomes unhealthy
+  during backup, preventing partial or misleading backups
+  (<a href="https://github.com/cloudnative-pg/cloudnative-pg/pull/7944">#7944</a>).</p>
+</li>
+<li>
+<p>Ensured the Backup resource status is set properly after a failure, improving
+  observability and scripting reliability
+  (<a href="https://github.com/cloudnative-pg/cloudnative-pg/pull/7898">#7898</a>).</p>
+</li>
+</ul>
 <h2 id="version-1252">Version 1.25.2</h2>
 <p><strong>Release date:</strong> May 23, 2025</p>
 <h3 id="important-changes">Important Changes</h3>
@@ -318,7 +400,7 @@ on the release branch in GitHub.</p>
   is now governed under <strong>CloudNativePG, a Series of LF Projects, LLC</strong>, ensuring
   long-term sustainability and community-driven innovation. (#7203)</li>
 </ul>
-<h3 id="enhancements">Enhancements</h3>
+<h3 id="enhancements_1">Enhancements</h3>
 <ul>
 <li>
 <p>Added the <code>KUBERNETES_CLUSTER_DOMAIN</code> configuration option to the operator,
@@ -356,7 +438,7 @@ on the release branch in GitHub.</p>
   images are always pulled from the registry, reducing the risk of using
   outdated or potentially unsafe local images. (#7250)</li>
 </ul>
-<h3 id="fixes">Fixes</h3>
+<h3 id="fixes_1">Fixes</h3>
 <ul>
 <li>
 <p>Fixed native replication slot synchronization and logical replication
@@ -434,7 +516,7 @@ on the release branch in GitHub.</p>
     replicas. (#7122)</p>
 </li>
 </ul>
-<h3 id="changes">Changes</h3>
+<h3 id="changes_1">Changes</h3>
 <ul>
 <li>
 <p>Updated the default PostgreSQL version to 17.5 for new cluster
@@ -447,7 +529,7 @@ on the release branch in GitHub.</p>
 </ul>
 <h2 id="version-1251">Version 1.25.1</h2>
 <p><strong>Release Date:</strong> February 28, 2025</p>
-<h3 id="enhancements_1">Enhancements</h3>
+<h3 id="enhancements_2">Enhancements</h3>
 <ul>
 <li>Introduced a startup probe for the operator to enhance reliability and
   prevent premature liveness probe failures during initialization. (#7008)</li>
@@ -553,7 +635,7 @@ on the release branch in GitHub.</p>
   feedback and contributions to shape this exciting new capability.</p>
 </li>
 </ul>
-<h3 id="enhancements_2">Enhancements</h3>
+<h3 id="enhancements_3">Enhancements</h3>
 <ul>
 <li>Add the <code>dataDurability</code> option to the <code>.spec.postgresql.synchronous</code> stanza,
   allowing users to choose between <code>required</code> (default) or <code>preferred</code>

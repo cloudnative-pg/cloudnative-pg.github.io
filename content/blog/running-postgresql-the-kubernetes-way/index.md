@@ -5,7 +5,8 @@ draft: false
 image:
     url: 30385097358_6728a49544_c.jpg
     attribution: Photo by <a href="https://www.flickr.com/photos/21186555@N07/30385097358" target="_blank" rel="noopener noreferrer">"African Sunrise, Amboseli National Park"</a> by <a href="https://www.flickr.com/photos/21186555@N07" target="_blank" rel="noopener noreferrer">Ray in Manila</a>
-author: gbartolini
+authors:
+ - gbartolini
 tags:
  - blog
  - postgresql

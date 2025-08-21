@@ -2,7 +2,12 @@
 title: "Creating a custom container image for CloudNativePG v2.0"
 date: 2025-07-23
 draft: false
-author: jgonzalez
+image:
+    url: baked_elephant.png
+    alt: "Baked elephant cookies"
+    attribution:
+authors:
+ - jgonzalez
 tags:
  - blog
  - information
@@ -21,7 +26,7 @@ summary: Using Docker's Bake to create container images for the CloudNativePG Op
 ## Summary
 Nearly two years ago, we shared a [blog post on building custom container 
 images for CloudNativePG]({{% ref "/blog/creating-container-images/" %}}). Since then, the container ecosystem has evolved 
-significantly—one notable development being the introduction of [Docker Bake]((https://docs.docker.com/build/bake/)).
+significantly—one notable development being the introduction of [Docker Bake](https://docs.docker.com/build/bake/).
 
 Docker Bake simplifies image builds using a straightforward configuration file, 
 and it’s now our recommended approach for building CloudNativePG images.
@@ -48,7 +53,7 @@ extensions = [
 target "myimage" {
   dockerfile-inline = <<EOT
 ARG BASE_IMAGE="ghcr.io/cloudnative-pg/postgresql:16.9-standard-bookworm"
-FROM $BAS_EIMAGE AS myimage
+FROM $BASE_IMAGE AS myimage
 ARG EXTENSIONS
 USER root
 RUN apt-get update && \
