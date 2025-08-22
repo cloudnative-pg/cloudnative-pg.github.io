@@ -6,8 +6,85 @@
     <description>Recent content in Tags on CloudNativePG - PostgreSQL Operator for Kubernetes</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 19 Aug 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 22 Aug 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://cloudnative-pg.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Applications</title>
+      <link>https://cloudnative-pg.io/tags/applications/</link>
+      <pubDate>Fri, 22 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://cloudnative-pg.io/tags/applications/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Bake</title>
+      <link>https://cloudnative-pg.io/tags/bake/</link>
+      <pubDate>Fri, 22 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://cloudnative-pg.io/tags/bake/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Blog</title>
+      <link>https://cloudnative-pg.io/tags/blog/</link>
+      <pubDate>Fri, 22 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://cloudnative-pg.io/tags/blog/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Containers</title>
+      <link>https://cloudnative-pg.io/tags/containers/</link>
+      <pubDate>Fri, 22 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://cloudnative-pg.io/tags/containers/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Docker</title>
+      <link>https://cloudnative-pg.io/tags/docker/</link>
+      <pubDate>Fri, 22 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://cloudnative-pg.io/tags/docker/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Images</title>
+      <link>https://cloudnative-pg.io/tags/images/</link>
+      <pubDate>Fri, 22 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://cloudnative-pg.io/tags/images/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Information</title>
+      <link>https://cloudnative-pg.io/tags/information/</link>
+      <pubDate>Fri, 22 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://cloudnative-pg.io/tags/information/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Postgres</title>
+      <link>https://cloudnative-pg.io/tags/postgres/</link>
+      <pubDate>Fri, 22 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://cloudnative-pg.io/tags/postgres/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Postgresql</title>
+      <link>https://cloudnative-pg.io/tags/postgresql/</link>
+      <pubDate>Fri, 22 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://cloudnative-pg.io/tags/postgresql/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Programming</title>
+      <link>https://cloudnative-pg.io/tags/programming/</link>
+      <pubDate>Fri, 22 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://cloudnative-pg.io/tags/programming/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Tutorial</title>
+      <link>https://cloudnative-pg.io/tags/tutorial/</link>
+      <pubDate>Fri, 22 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://cloudnative-pg.io/tags/tutorial/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Hetzner</title>
       <link>https://cloudnative-pg.io/tags/hetzner/</link>
@@ -27,13 +104,6 @@
       <link>https://cloudnative-pg.io/tags/open-source/</link>
       <pubDate>Tue, 19 Aug 2025 00:00:00 +0000</pubDate>
       <guid>https://cloudnative-pg.io/tags/open-source/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Postgresql</title>
-      <link>https://cloudnative-pg.io/tags/postgresql/</link>
-      <pubDate>Tue, 19 Aug 2025 00:00:00 +0000</pubDate>
-      <guid>https://cloudnative-pg.io/tags/postgresql/</guid>
       <description></description>
     </item>
     <item>
@@ -93,13 +163,6 @@
       <description></description>
     </item>
     <item>
-      <title>Postgres</title>
-      <link>https://cloudnative-pg.io/tags/postgres/</link>
-      <pubDate>Tue, 12 Aug 2025 00:00:00 +0000</pubDate>
-      <guid>https://cloudnative-pg.io/tags/postgres/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>Release</title>
       <link>https://cloudnative-pg.io/tags/release/</link>
       <pubDate>Tue, 12 Aug 2025 00:00:00 +0000</pubDate>
@@ -139,69 +202,6 @@
       <link>https://cloudnative-pg.io/tags/preview/</link>
       <pubDate>Tue, 29 Jul 2025 00:00:00 +0000</pubDate>
       <guid>https://cloudnative-pg.io/tags/preview/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Applications</title>
-      <link>https://cloudnative-pg.io/tags/applications/</link>
-      <pubDate>Wed, 23 Jul 2025 00:00:00 +0000</pubDate>
-      <guid>https://cloudnative-pg.io/tags/applications/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Bake</title>
-      <link>https://cloudnative-pg.io/tags/bake/</link>
-      <pubDate>Wed, 23 Jul 2025 00:00:00 +0000</pubDate>
-      <guid>https://cloudnative-pg.io/tags/bake/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Blog</title>
-      <link>https://cloudnative-pg.io/tags/blog/</link>
-      <pubDate>Wed, 23 Jul 2025 00:00:00 +0000</pubDate>
-      <guid>https://cloudnative-pg.io/tags/blog/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Containers</title>
-      <link>https://cloudnative-pg.io/tags/containers/</link>
-      <pubDate>Wed, 23 Jul 2025 00:00:00 +0000</pubDate>
-      <guid>https://cloudnative-pg.io/tags/containers/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Docker</title>
-      <link>https://cloudnative-pg.io/tags/docker/</link>
-      <pubDate>Wed, 23 Jul 2025 00:00:00 +0000</pubDate>
-      <guid>https://cloudnative-pg.io/tags/docker/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Images</title>
-      <link>https://cloudnative-pg.io/tags/images/</link>
-      <pubDate>Wed, 23 Jul 2025 00:00:00 +0000</pubDate>
-      <guid>https://cloudnative-pg.io/tags/images/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Information</title>
-      <link>https://cloudnative-pg.io/tags/information/</link>
-      <pubDate>Wed, 23 Jul 2025 00:00:00 +0000</pubDate>
-      <guid>https://cloudnative-pg.io/tags/information/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Programming</title>
-      <link>https://cloudnative-pg.io/tags/programming/</link>
-      <pubDate>Wed, 23 Jul 2025 00:00:00 +0000</pubDate>
-      <guid>https://cloudnative-pg.io/tags/programming/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Tutorial</title>
-      <link>https://cloudnative-pg.io/tags/tutorial/</link>
-      <pubDate>Wed, 23 Jul 2025 00:00:00 +0000</pubDate>
-      <guid>https://cloudnative-pg.io/tags/tutorial/</guid>
       <description></description>
     </item>
     <item>

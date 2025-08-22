@@ -6,7 +6,7 @@
 <html lang="en">
 
 <head>
-  <title>Contributor Spotlight: David Wheeler | CloudNativePG - PostgreSQL Operator for Kubernetes</title>
+  <title>Customizing the docker build bake hcl file | CloudNativePG - PostgreSQL Operator for Kubernetes</title>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
@@ -20,23 +20,24 @@
   
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://cloudnative-pg.io/images/hero_image.png">
-  <meta name="twitter:title" content="Contributor Spotlight: David Wheeler">
-  <meta name="twitter:description" content="In a mini-series on this blog we highlight the work of the community. Today we meet David Wheeler, Principal Architect at Tembo, and PGXN maintainer.">
+  <meta name="twitter:title" content="Customizing the docker build bake hcl file">
+  <meta name="twitter:description" content="Jonathan Gonzalez wrote a guide on this blog detailing how to customize Docker images by using an override hcl file. I tried it for a spin.">
 
-  <meta property="og:url" content="https://cloudnative-pg.io/blog/contributor-highlight-david-wheeler/">
+  <meta property="og:url" content="https://cloudnative-pg.io/blog/customizing-hcl/">
   <meta property="og:site_name" content="CloudNativePG - PostgreSQL Operator for Kubernetes">
-  <meta property="og:title" content="Contributor Spotlight: David Wheeler">
-  <meta property="og:description" content="In a mini-series on this blog we highlight the work of the community. Today we meet David Wheeler, Principal Architect at Tembo, and PGXN maintainer.">
+  <meta property="og:title" content="Customizing the docker build bake hcl file">
+  <meta property="og:description" content="Jonathan Gonzalez wrote a guide on this blog detailing how to customize Docker images by using an override hcl file. I tried it for a spin.">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="blog">
-    <meta property="article:published_time" content="2025-05-26T13:51:43+02:00">
-    <meta property="article:modified_time" content="2025-05-26T13:51:43+02:00">
-    <meta property="article:tag" content="PGXN">
-    <meta property="article:tag" content="PgTAP">
-    <meta property="article:tag" content="Sqitch">
+    <meta property="article:published_time" content="2025-08-22T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-08-22T00:00:00+00:00">
+    <meta property="article:tag" content="Blog">
+    <meta property="article:tag" content="Information">
+    <meta property="article:tag" content="Programming">
+    <meta property="article:tag" content="Applications">
+    <meta property="article:tag" content="Containers">
     <meta property="article:tag" content="Postgresql">
-    <meta property="article:tag" content="Open-Source">
     <meta property="og:image" content="https://cloudnative-pg.io/images/hero_image.png">
 
   
@@ -134,7 +135,7 @@
 
 
     
-<h1 class="h1 text-center mx-auto md:w-3/5">Contributor Spotlight: David Wheeler</h1>
+<h1 class="h1 text-center mx-auto md:w-3/5">Customizing the docker build bake hcl file</h1>
 <div class="md:w-3/5 mx-auto">
     <div class="px-4">
         
@@ -143,13 +144,13 @@
 <div class="flex gap-3">  
     
       <div class="my-auto">
-      <img src="/authors/fdrees//floor.jpg" class="w-10 h-10 rounded-full"
-          alt="Floor Drees">
+      <img src="/authors/dchambre//daniel.jpg" class="w-10 h-10 rounded-full"
+          alt="Daniel Chambre">
       </div>
 
       <div>
           <h1 class="text-lg charcoal font-bold">
-              <a href="/authors/fdrees/">Floor Drees</a>
+              <a href="/authors/dchambre/">Daniel Chambre</a>
           </h1>
       </div>
     
@@ -158,9 +159,9 @@
 
 <div class="block gap-2 text-sm charcoal opacity-75">
     <h6 class="block gap-2 text-sm charcoal">
-        May 26, 2025
+        August 22, 2025
         •
-        2 minutes
+        3 minutes
     </h6>
 </div>
 
@@ -169,46 +170,141 @@
 
         
         <div>
-            <img src="theory.jpg" alt="blog image" class="mx-auto">
+            <img src="elephant_cookie.jpg" alt="blog image" class="mx-auto">
         </div>
         
 
         
         <div class="mx-auto my-10">
-            <p>Building and maintaining an open source project takes a village. In a
-mini-series on this blog we would like to highlight the work of our
-maintainers, component owners, and members of the larger community.</p>
-<p>This week the spotlight shines on David Wheeler, or: <a href="https://github.com/theory"><em>theory</em></a>,
-Principal Architect at Tembo, and PGXN maintainer. You might have heard of
-David&rsquo;s work on pgTAP, a suite of database functions that make it easy to
-write TAP-emitting unit tests in <code>psql</code> scripts or xUnit-style test functions.
-Or Sqitch, the database change management application. He&rsquo;s also the &ldquo;bull-
-headed guy who ported SQL/JSON Path to Go&rdquo; (<a href="https://theory.github.io/sqljson/">Playground</a>).
-The man keeps busy&hellip;</p>
-<p>He&rsquo;s not quite sure where he first heard about CloudNativePG; maybe at a
-PGConf? &ldquo;I was kind of aware of it as a thing when I started at Tembo, which
-is where I actually got to know it.&rdquo;</p>
-<p>His first formal contributions to the project were documentation improvements:
-defining RPO and RTO. David also advocated for <a href="https://commitfest.postgresql.org/patch/4913/">the extension search path patch</a>,
-a game-changing&hellip; change!</p>
-<p>On his list of improvements he wishes for in CloudNativePG: &ldquo;I&rsquo;d like to
-get the Postgres core and CloudNativePG to the point where extensions can
-be &lsquo;installed&rsquo; via immutable Docker images without requiring cluster
-configuration changes (and a service restart)!&rdquo;</p>
-<p>David first got into Tech building web pages for himself and fellow grad
-students that anyone on the internet could look at in NCSA Mosaic, anywhere
-in the world. It checks out then when he next shares that he has &ldquo;no intention
-of growing up&rdquo;, and that he&rsquo;d like his legacy to be that he inspired people
-through empathy, compassion, creativity, and passion.</p>
-<p>David is a member of several communities, including but not limited to the
-XOXO Festival, the Rands Leadership Slack, and of course the Postgres
-community. He&rsquo;s also himself building quite a community around the Postgres
-tooling ecosystem, organizing virtual and in-person events to discuss the
-current state and future of Postgres extension registration, packaging, and
-distribution. Keep an eye on <a href="https://justatheory.com/">https://justatheory.com/</a> so you don&rsquo;t miss out
-on any of the fun!</p>
-<p>You can find David in the CloudNativePG channels on the CNCF Slack workspace,
-or <a href="https://xoxo.zone/@theory/">on Mastodon</a> or <a href="https://bsky.app/profile/theory.fyi">Bluesky</a>.</p>
+            <h2 id="summary">Summary</h2>
+<p>The other week <a href="https://cloudnative-pg.io/authors/jgonzalez/">Jonathan Gonzalez</a> wrote an
+article on
+<a href="https://cloudnative-pg.io/blog/building-images-bake/">how to customize docker images using an override hcl file</a>.
+Before the <a href="https://github.com/cloudnative-pg/postgres-containers">postgres-containers repo</a>
+was enhanced with the option to build the images with <code>docker build bake</code>,
+I had to follow these steps manually in order to have custom images for our workloads.</p>
+<ul>
+<li>clone the repo</li>
+<li>edit the dockerfile</li>
+<li>build the image</li>
+<li>push it to the registry</li>
+</ul>
+<p>Edit, build and push had to be done for each PostgreSQL version.
+So a lot of boring work needed to be done in order to have updated images.
+The chance to avoid this work sounded promising to me, so I started with the
+<a href="https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg.github.io/refs/heads/main/content/blog/building-images-bake/bake.hcl">hcl file</a>
+Jonathan wrote, and adapted it to fit my needs.
+After a troubleshooting session with Jonathan, he asked me to share the changes I made.
+So here are my detailed instructions, in case they could prove useful to others.</p>
+<h2 id="instructions">Instructions</h2>
+<h3 id="step-1-prepare-the-local-bake-file">Step 1: Prepare the local Bake file</h3>
+<p>To build a custom image we add the following content in a local file with name
+<code>bake.hcl</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-hcl" data-lang="hcl"><span style="display:flex;"><span>platforms <span style="color:#f92672">=</span> [
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;linux/amd64&#34;</span>,
+</span></span><span style="display:flex;"><span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>extensions <span style="color:#f92672">=</span> [
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;dbgsym&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;partman&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;oracle-fdw&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;squeeze&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;show-plans&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;cron&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;tds-fdw&#34;</span>,
+</span></span><span style="display:flex;"><span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">target</span> <span style="color:#e6db74">&#34;myimage&#34;</span> {
+</span></span><span style="display:flex;"><span>  dockerfile-inline <span style="color:#f92672">=</span> <span style="color:#960050;background-color:#1e0010">&lt;&lt;</span><span style="color:#66d9ef">EOT</span>
+</span></span><span style="display:flex;"><span>ARG BASE_IMAGE<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;ghcr.io/cloudnative-pg/postgresql:16.9-standard-bookworm&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#66d9ef">BASE_IMAGE</span> <span style="color:#66d9ef">AS</span> <span style="color:#66d9ef">myimage</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">ARG</span> <span style="color:#66d9ef">EXTENSIONS</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">USER</span> <span style="color:#66d9ef">root</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">RUN</span> <span style="color:#66d9ef">apt</span><span style="color:#960050;background-color:#1e0010">-</span><span style="color:#66d9ef">get</span> <span style="color:#66d9ef">update</span> <span style="color:#960050;background-color:#1e0010">&amp;&amp;</span> \
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">apt</span><span style="color:#960050;background-color:#1e0010">-</span><span style="color:#66d9ef">get</span> <span style="color:#66d9ef">install</span> <span style="color:#960050;background-color:#1e0010">-</span><span style="color:#66d9ef">y</span> <span style="color:#960050;background-color:#1e0010">--</span><span style="color:#66d9ef">no</span><span style="color:#960050;background-color:#1e0010">-</span><span style="color:#66d9ef">install</span><span style="color:#960050;background-color:#1e0010">-</span><span style="color:#66d9ef">recommends</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#66d9ef">EXTENSIONS</span> \
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">ldap</span><span style="color:#960050;background-color:#1e0010">-</span><span style="color:#66d9ef">utils</span> \
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">ca</span><span style="color:#960050;background-color:#1e0010">-</span><span style="color:#66d9ef">certificates</span> \
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">openssl</span> \
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">procps</span> \
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">postgresql</span><span style="color:#960050;background-color:#1e0010">-</span><span style="color:#66d9ef">plpython3</span><span style="color:#960050;background-color:#1e0010">-</span><span style="color:#e6db74">&#34;${getMajor(pgVersion)}&#34;</span> \
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">python3</span><span style="color:#960050;background-color:#1e0010">-</span><span style="color:#66d9ef">psutil</span> \
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">pgtop</span> \
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">pg</span><span style="color:#960050;background-color:#1e0010">-</span><span style="color:#66d9ef">activity</span> \
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">nmon</span> \
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">libsybdb5</span> \
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">freetds</span><span style="color:#960050;background-color:#1e0010">-</span><span style="color:#66d9ef">dev</span> \
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">freetds</span><span style="color:#960050;background-color:#1e0010">-</span><span style="color:#66d9ef">common</span> <span style="color:#960050;background-color:#1e0010">&amp;&amp;</span> \
+</span></span><span style="display:flex;"><span>    apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant<span style="color:#f92672">=</span><span style="color:#66d9ef">false</span> <span style="color:#960050;background-color:#1e0010">&amp;&amp;</span> \
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">rm</span> <span style="color:#960050;background-color:#1e0010">-</span><span style="color:#66d9ef">rf</span> <span style="color:#960050;background-color:#1e0010">/</span><span style="color:#66d9ef">var</span><span style="color:#960050;background-color:#1e0010">/</span><span style="color:#66d9ef">lib</span><span style="color:#960050;background-color:#1e0010">/</span><span style="color:#66d9ef">apt</span><span style="color:#960050;background-color:#1e0010">/</span><span style="color:#66d9ef">lists</span><span style="color:#75715e">/* /var/cache/* /var/log/*
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">RUN sed -i -e &#39;s/# de_AT.UTF-8 UTF-8/de_AT.UTF-8 UTF-8/&#39; /etc/locale.gen &amp;&amp; \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        locale-gen
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">ADD https://your.git.url/postgresql/-/blob/main/.psqlrc?ref_type=heads /var/lib/postgresql/
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">ADD https://your.git.url/cloudnativepg/-/blob/main/bake/files/etc/ldap/ldap.conf?ref_type=heads /etc/ldap/
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">ADD https://your.git.url/cloudnativepg/-/blob/main/bake/files/usr/local/share/ca-certificates/EuropeanSSLServerCA2.crt?ref_type=heads /usr/local/share/ca-certificates/
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">ADD https://your.git.url/cloudnativepg/-/blob/main/bake/files/usr/local/share/ca-certificates/RootCA1v0.crt?ref_type=heads /usr/local/share/ca-certificates/
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">ADD https://your.git.url/cloudnativepg/-/blob/main/bake/files/usr/local/share/ca-certificates/SubCA1v1.crt?ref_type=heads /usr/local/share/ca-certificates/
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">RUN update-ca-certificates 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">USER 26
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">EOT
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  matrix = {
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    tgt = [
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">      &#34;myimage&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    ]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    pgVersion = [
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">      &#34;13.21&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">      &#34;14.18&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">      &#34;15.13&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">      &#34;16.9&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">      &#34;17.5&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    ]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  }
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  name = &#34;postgresql-${index(split(&#34;.&#34;,cleanVersion(pgVersion)),0)}-standard-bookworm&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  target = &#34;${tgt}&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  args = {
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    BASE_IMAGE = &#34;ghcr.io/cloudnative-pg/postgresql:${cleanVersion(pgVersion)}-standard-bookworm&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    EXTENSIONS = &#34;${getExtensionsString(pgVersion, extensions)}&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  }
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">}
+</span></span></span></code></pre></div><p>Starting at the beginning of the file:</p>
+<ul>
+<li>The <code>platforms</code> variable is <code>linux/amd64</code> for all of my images.</li>
+<li>The <code>extensions</code> variable contains some extensions I use regularly.</li>
+<li>The <code>dockerfile-inline</code> part is extended with binaries, some of them are handy
+to have, some needed by extensions or other tools I use e.g. <a href="https://github.com/cybertec-postgresql/pgwatch">pgwatch</a>.</li>
+<li>With the <code>sed</code> command I add needed locales and build them.</li>
+<li>With the <code>ADD</code> commands I extend the image with
+<ul>
+<li>.psqlrc file, to have a nice psql Command-line even when connecting via
+<code>kubectl cnpg psql XXX</code></li>
+<li>ldap.conf and the needed certs</li>
+</ul>
+</li>
+</ul>
+<h3 id="step-2-build-the-image">Step 2: Build the image</h3>
+<p>We can now build the image using the following command:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>environment<span style="color:#f92672">=</span>production registry<span style="color:#f92672">=</span>your.repo.url docker buildx bake -f docker-bake.hcl -f cwd://bake.hcl <span style="color:#e6db74">&#34;https://github.com/cloudnative-pg/postgres-containers.git&#34;</span> myimage
+</span></span></code></pre></div><ul>
+<li>The <code>environment</code> variable is set to <code>production</code> for all of my images,
+because I use the same image to stage it through dev/test/prod.</li>
+<li>The <code>registry</code> variable contains the repo upload url, so the images get
+uploaded there instead of the <code>localhost:5000</code> registry used in the
+<a href="https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg.github.io/refs/heads/main/content/blog/building-images-bake/bake.hcl">hcl file</a>.</li>
+</ul>
+<h3 id="step-3-use-it">Step 3: Use it</h3>
+<p>The only missing step to use the images is to update your
+<a href="https://cloudnative-pg.io/documentation/current/image_catalog/">Image Catalog / Cluster Image Catalog</a>
+with the newly built images.
+Test them and stage them through your environment.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Once you prepare the override file to fit to your needs, the only manual steps
+to build new images are</p>
+<ul>
+<li>udpate the <code>pgVersion</code> variable</li>
+<li>run the <code>docker buildx bake</code> command</li>
+</ul>
+<p>I hope this helps streamline your image customization process as much as it
+did mine—feel free to build on it, and share your own improvements too!
+You can find the supportive team in the CloudNativePG channels on the CNCF Slack workspace.</p>
 
         </div>
         
@@ -219,20 +315,38 @@ or <a href="https://xoxo.zone/@theory/">on Mastodon</a> or <a href="https://bsky
         <div class="text-xs space-y-1.5 mb-14">
             <ul class="text-sm">
                 
-                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/PGXN"
-                        class="mr-2">PGXN</a></li>
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/blog"
+                        class="mr-2">blog</a></li>
                 
-                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/pgTAP"
-                        class="mr-2">pgTAP</a></li>
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/information"
+                        class="mr-2">information</a></li>
                 
-                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/Sqitch"
-                        class="mr-2">Sqitch</a></li>
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/programming"
+                        class="mr-2">programming</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/applications"
+                        class="mr-2">applications</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/containers"
+                        class="mr-2">containers</a></li>
                 
                 <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/postgresql"
                         class="mr-2">postgresql</a></li>
                 
-                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/open-source"
-                        class="mr-2">open-source</a></li>
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/postgres"
+                        class="mr-2">postgres</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/images"
+                        class="mr-2">images</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/tutorial"
+                        class="mr-2">tutorial</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/bake"
+                        class="mr-2">bake</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/docker"
+                        class="mr-2">docker</a></li>
                 
             </ul>
 
