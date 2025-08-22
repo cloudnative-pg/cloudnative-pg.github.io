@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Daniel Chambre on CloudNativePG - PostgreSQL Operator for Kubernetes</title>
+    <link>https://cloudnative-pg.io/authors/dchambre/</link>
+    <description>Recent content in Daniel Chambre on CloudNativePG - PostgreSQL Operator for Kubernetes</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 22 Aug 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://cloudnative-pg.io/authors/dchambre/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Customizing the docker build bake hcl file</title>
+      <link>https://cloudnative-pg.io/blog/customizing-hcl/</link>
+      <pubDate>Fri, 22 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://cloudnative-pg.io/blog/customizing-hcl/</guid>
+      <description>Jonathan Gonzalez wrote a guide on this blog detailing how to customize Docker images by using an override hcl file. I tried it for a spin.</description>
+    </item>
+  </channel>
+</rss>
