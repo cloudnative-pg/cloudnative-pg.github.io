@@ -27,7 +27,7 @@ Gabriele Quaresima ([gabriele-wolfox](https://github.com/gabriele-wolfox) on Git
 at EDB, where he builds products on top of CloudNativePG. When he joined the 
 company, he immediately started to work with the CloudNativePG team. The open 
 source operator and the closed source ones running on top of it represent his 
-learning path and entry point to the Kubernetes, and the PostgreSQL world.
+learning path and entry point to Kubernetes and the PostgreSQL world.
 
 Gabriele now feels at home in the PostgreSQL and the Kubernetes communities. 
 "I attended several PGDays and KCD / CND (Kubernetes Community Days / Cloud 
@@ -37,17 +37,17 @@ His first contribution to CloudNativePG was [feat: customize labels and
 annotations for the service account #1105](https://github.com/cloudnative-pg/cloudnative-pg/pull/1105), regarding customization 
 of labels and annotations for the service account. But reviewing PRs opened 
 by others has been the main way Gabriele has contributed to the project - at 
-the same time it has been the thing that contributed to his own development as 
+the same time it has been the thing that contributed most to his own development as 
 well. 
 
 Given a magic wand, the one thing Gabriele would like to improve is the project 
-adopting tools like [modernize](https://pkg.go.dev/golang.org/x/tools/gopls/internal/analysis/modernize/cmd/modernize) and linters to optimize workflows.
+adopting tools like [modernize](https://pkg.go.dev/golang.org/x/tools/gopls/internal/analysis/modernize/cmd/modernize) and new linters to improve the codebase.
 
 How he got interested in technology is a familiar story. "I started playing 
 with my Commodore 64 at 5 years old. I spent at least 1 to 2 hours in front of 
 a monitor from an early age on." Gabriele then started using Linux at University, 
 and discovered the world of open source. His dream however was to become a writer 
-and win the Nobel prize, so exactly how he got into software engineering is fuzzy. 
+and win the Nobel Prize, so exactly how he got into software engineering is fuzzy. 
 
 "I have always loved doing nerdy stuff, like playing board games, attending World 
 Championship of sudoku and logic puzzles, but I guess playing saxophones and flutes 
