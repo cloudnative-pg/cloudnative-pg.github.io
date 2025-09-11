@@ -6,8 +6,15 @@
     <description>Recent content in Postgresql on CloudNativePG - PostgreSQL Operator for Kubernetes</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 22 Aug 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 11 Sep 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://cloudnative-pg.io/tags/postgresql/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Contributor Spotlight: Gabriele Quaresima</title>
+      <link>https://cloudnative-pg.io/blog/contributor-highlight-gabriele-quaresima/</link>
+      <pubDate>Thu, 11 Sep 2025 00:00:00 +0000</pubDate>
+      <guid>https://cloudnative-pg.io/blog/contributor-highlight-gabriele-quaresima/</guid>
+      <description>In a mini-series on this blog we highlight the work of the community. Today we meet Gabriele Quaresima, Staff Software Engineer at EDB, where he builds products on top of CloudNativePG.</description>
+    </item>
     <item>
       <title>Customizing the docker build bake hcl file</title>
       <link>https://cloudnative-pg.io/blog/customizing-hcl/</link>

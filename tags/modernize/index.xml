@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Modernize on CloudNativePG - PostgreSQL Operator for Kubernetes</title>
+    <link>https://cloudnative-pg.io/tags/modernize/</link>
+    <description>Recent content in Modernize on CloudNativePG - PostgreSQL Operator for Kubernetes</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 11 Sep 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://cloudnative-pg.io/tags/modernize/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Contributor Spotlight: Gabriele Quaresima</title>
+      <link>https://cloudnative-pg.io/blog/contributor-highlight-gabriele-quaresima/</link>
+      <pubDate>Thu, 11 Sep 2025 00:00:00 +0000</pubDate>
+      <guid>https://cloudnative-pg.io/blog/contributor-highlight-gabriele-quaresima/</guid>
+      <description>In a mini-series on this blog we highlight the work of the community. Today we meet Gabriele Quaresima, Staff Software Engineer at EDB, where he builds products on top of CloudNativePG.</description>
+    </item>
+  </channel>
+</rss>

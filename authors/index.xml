@@ -6,21 +6,21 @@
     <description>Recent content in Authors on CloudNativePG - PostgreSQL Operator for Kubernetes</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 22 Aug 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 11 Sep 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://cloudnative-pg.io/authors/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Floor Drees</title>
+      <link>https://cloudnative-pg.io/authors/fdrees/</link>
+      <pubDate>Thu, 11 Sep 2025 00:00:00 +0000</pubDate>
+      <guid>https://cloudnative-pg.io/authors/fdrees/</guid>
+      <description>&lt;p&gt;Open Source community advocate and Principal Program Manager at EDB. PostgreSQL Code of Conduct Committee member, PG EU Diversity Committee member, PGDay Lowlands organizer.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Daniel Chambre</title>
       <link>https://cloudnative-pg.io/authors/dchambre/</link>
       <pubDate>Fri, 22 Aug 2025 00:00:00 +0000</pubDate>
       <guid>https://cloudnative-pg.io/authors/dchambre/</guid>
       <description>&lt;p&gt;A DBA and Open Source enthusiast.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Floor Drees</title>
-      <link>https://cloudnative-pg.io/authors/fdrees/</link>
-      <pubDate>Tue, 19 Aug 2025 00:00:00 +0000</pubDate>
-      <guid>https://cloudnative-pg.io/authors/fdrees/</guid>
-      <description>&lt;p&gt;Open Source community advocate and Principal Program Manager at EDB. PostgreSQL Code of Conduct Committee member, PG EU Diversity Committee member, PGDay Lowlands organizer.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Gabriele Bartolini</title>
