@@ -4083,7 +4083,7 @@ not using the core data types.</p>
    <p>Map of string keys and values that can be used to organize and categorize
 (scope and select) objects. May match selectors of replication controllers
 and services.
-More info: http://kubernetes.io/docs/user-guide/labels</p>
+More info: <a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/">https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/</a></p>
 </td>
 </tr>
 <tr><td><code>annotations</code><br/>
@@ -4093,7 +4093,7 @@ More info: http://kubernetes.io/docs/user-guide/labels</p>
    <p>Annotations is an unstructured key value map stored with a resource that may be
 set by external tools to store and retrieve arbitrary metadata. They are not
 queryable and should be preserved when modifying objects.
-More info: http://kubernetes.io/docs/user-guide/annotations</p>
+More info: <a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/">https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/</a></p>
 </td>
 </tr>
 </tbody>
@@ -4517,10 +4517,12 @@ a template for Pod generation.</p>
 <p>Unfortunately we can't use the corev1.PodTemplateSpec
 type because the generated CRD won't have the field for the
 metadata section.</p>
-<p>References:
-https://github.com/kubernetes-sigs/controller-tools/issues/385
-https://github.com/kubernetes-sigs/controller-tools/issues/448
-https://github.com/prometheus-operator/prometheus-operator/issues/3041</p>
+<p>References:</p>
+<ul>
+  <li><a href="https://github.com/kubernetes-sigs/controller-tools/issues/385" target="_blank">https://github.com/kubernetes-sigs/controller-tools/issues/385</a></li>
+  <li><a href="https://github.com/kubernetes-sigs/controller-tools/issues/448" target="_blank">https://github.com/kubernetes-sigs/controller-tools/issues/448</a></li>
+  <li><a href="https://github.com/prometheus-operator/prometheus-operator/issues/3041" target="_blank">https://github.com/prometheus-operator/prometheus-operator/issues/3041</a></li>
+</ul>
 
 <table class="table">
 <thead><tr><th width="30%">Field</th><th>Description</th></tr></thead>
@@ -4530,7 +4532,7 @@ https://github.com/prometheus-operator/prometheus-operator/issues/3041</p>
 </td>
 <td>
    <p>Standard object's metadata.
-More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata</p>
+More info: <a href="https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata">https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata</a></p>
 </td>
 </tr>
 <tr><td><code>spec</code><br/>
