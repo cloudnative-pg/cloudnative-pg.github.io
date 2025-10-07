@@ -14,18 +14,26 @@
 
             <!--Image and content preview starts here-->
 
-            <a href="{{ .RelPermalink }}">
+            <div>
                 <div class="charcoal">
                     <dl>
-                        <dt class="text-3xl my-5 font-bold">{{ .Title }}</dt>
-                        <div class="flex text-xs gap-1.5">
+                        <dt class="text-3xl my-5 font-bold">
+                            <a href="{{ .RelPermalink }}" class="text-black">{{ .Title }}</a>
+                        </dt>
+                        <dt class="flex text-xs gap-1.5">
                             <ul class="text-sm">
-                                {{ range .Params.tags }}
-                                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2">{{ . }}</li>
+                                {{ with .GetTerms "tags" }}
+                                    {{ range . }}
+                                    <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2">
+                                        <a href="{{ .RelPermalink }}" class="text-black">{{ .LinkTitle }}</a>
+                                    </li>
+                                    {{ end }}
                                 {{ end }}
                             </ul>
-                        </div>
-                        <dd class="text-2xl my-5">{{ .Params.summary }}</dd>
+                        </dt>
+                        <dd class="text-2xl my-5">
+                            <a href="{{ .RelPermalink }}" class="text-black">{{ .Params.summary }}</a>
+                        </dd>
                     </dl>
                 </div>
 
@@ -35,7 +43,7 @@
                         class="bg-rose-600 py-4 px-12 rounded-full text-white text-xl">Continue Reading</a>
                 </div>
                 <!--CTA-->
-            </a>
+            </div>
 
             <!--Image and content preview ends here-->
         </div>
