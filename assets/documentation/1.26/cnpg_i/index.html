@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="The CloudNativePG Contributors" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Benchmarking - CloudNativePG v1.26</title>
+    <title>CNPG-I - CloudNativePG v1.26</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
@@ -13,8 +13,8 @@
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Benchmarking";
-        var mkdocs_page_input_path = "benchmarking.md";
+        var mkdocs_page_name = "CNPG-I";
+        var mkdocs_page_input_path = "cnpg_i.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -224,8 +224,26 @@
                 <li class="toctree-l1"><a class="reference internal" href="../container_images/">Container Image Requirements</a>
                 </li>
               </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../cnpg_i/">CNPG-I</a>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">CNPG-I</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#why-cnpg-i">Why CNPG-I?</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#registering-a-plugin">Registering a plugin</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#sidecar-container">Sidecar Container</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#standalone-deployment-recommended">Standalone Deployment (recommended)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#configuring-tls-certificates">Configuring TLS Certificates</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#using-a-plugin">Using a plugin</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#community-plugins">Community plugins</a>
+    </li>
+    </ul>
                 </li>
               </ul>
               <ul>
@@ -244,14 +262,8 @@
                 <li class="toctree-l1"><a class="reference internal" href="../networking/">Networking</a>
                 </li>
               </ul>
-              <ul class="current">
-                <li class="toctree-l1 current"><a class="reference internal current" href="#">Benchmarking</a>
-    <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#pgbench">pgbench</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#fio">fio</a>
-    </li>
-    </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../benchmarking/">Benchmarking</a>
                 </li>
               </ul>
               <ul>
@@ -304,7 +316,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
-      <li class="breadcrumb-item active">Benchmarking</li>
+      <li class="breadcrumb-item active">CNPG-I</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -313,165 +325,187 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="benchmarking">Benchmarking</h1>
+                <h1 id="cnpg-i">CNPG-I</h1>
 <!-- SPDX-License-Identifier: CC-BY-4.0 -->
 
-<p>The CNPG kubectl plugin provides an easy way for benchmarking a PostgreSQL deployment in Kubernetes using CloudNativePG.</p>
-<p>Benchmarking is focused on two aspects:</p>
+<p>The <strong>CloudNativePG Interface</strong> (<a href="https://github.com/cloudnative-pg/cnpg-i">CNPG-I</a>)
+is a standard way to extend and customize CloudNativePG without modifying its
+core codebase.</p>
+<h2 id="why-cnpg-i">Why CNPG-I?</h2>
+<p>CloudNativePG supports a wide range of use cases, but sometimes its built-in
+functionality isn’t enough, or adding certain features directly to the main
+project isn’t practical.</p>
+<p>Before CNPG-I, users had two main options:</p>
 <ul>
-<li>the <strong>database</strong>, by relying on <a href="https://www.postgresql.org/docs/current/pgbench.html">pgbench</a></li>
-<li>the <strong>storage</strong>, by relying on <a href="https://fio.readthedocs.io/en/latest/fio_doc.html">fio</a></li>
+<li>Fork the project to add custom behavior, or</li>
+<li>Extend the upstream codebase by writing custom components on top of it.</li>
 </ul>
-<div class="admonition important">
-<p class="admonition-title">Important</p>
-<p><code>pgbench</code> and <code>fio</code> must be run in a staging or pre-production environment.
-Do not use these plugins in a production environment, as it might have
-catastrophic consequences on your databases and the other
-workloads/applications that run in the same shared environment.</p>
-</div>
-<h3 id="pgbench">pgbench</h3>
-<p>The <code>kubectl</code> CNPG plugin command <code>pgbench</code> executes a user-defined <code>pgbench</code> job
-against an existing Postgres Cluster.</p>
-<p>Through the <code>--dry-run</code> flag you can generate the manifest of the job for later
-modification/execution.</p>
-<p>A common command structure with <code>pgbench</code> is the following:</p>
-<pre><code class="language-shell">kubectl cnpg pgbench \
-  -n &lt;namespace&gt; &lt;cluster-name&gt; \
-  --job-name &lt;pgbench-job&gt; \
-  --db-name &lt;db-name&gt; \
-  -- &lt;pgbench options&gt;
+<p>Both approaches created maintenance overhead, slowed upgrades, and delayed delivery of critical features.</p>
+<p>CNPG-I solves these problems by providing a stable, gRPC-based integration
+point for extending CloudNativePG at key points in a cluster’s lifecycle —such
+as backups, recovery, and sub-resource reconciliation— without disrupting the
+core project.</p>
+<p>CNPG-I can extend:</p>
+<ul>
+<li>The operator, and/or</li>
+<li>The instance manager running inside PostgreSQL pods.</li>
+</ul>
+<h2 id="registering-a-plugin">Registering a plugin</h2>
+<p>CNPG-I is inspired by the Kubernetes
+<a href="https://kubernetes.io/blog/2019/01/15/container-storage-interface-ga/">Container Storage Interface (CSI)</a>.
+The operator communicates with registered plugins using <strong>gRPC</strong>, following the
+<a href="https://github.com/cloudnative-pg/cnpg-i/blob/main/docs/protocol.md">CNPG-I protocol</a>.</p>
+<p>CloudNativePG discovers plugins <strong>at startup</strong>. You can register them in one of two ways:</p>
+<ul>
+<li>Sidecar container – run the plugin inside the operator’s Deployment</li>
+<li>Standalone Deployment – run the plugin as a separate workload in the same
+  namespace</li>
+</ul>
+<p>In both cases, the plugin must be packaged as a container image.</p>
+<h3 id="sidecar-container">Sidecar Container</h3>
+<p>When running as a sidecar, the plugin must expose its gRPC server via a <strong>Unix
+domain socket</strong>. This socket must be placed in a directory shared with the
+operator container, mounted at the path set in <code>PLUGIN_SOCKET_DIR</code> (default:
+<code>/plugin</code>).</p>
+<p>Example:</p>
+<pre><code class="language-yaml">apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: controller-manager
+spec:
+  template:
+    spec:
+      containers:
+      - image: cloudnative-pg:latest
+        [...]
+        name: manager
+        volumeMounts:
+        - mountPath: /plugins
+          name: cnpg-i-plugins
+
+      - image: cnpg-i-plugin-example:latest
+        name: cnpg-i-plugin-example
+        volumeMounts:
+        - mountPath: /plugins
+          name: cnpg-i-plugins
+      volumes:
+      - name: cnpg-i-plugins
+        emptyDir: {}
 </code></pre>
-<div class="admonition important">
-<p class="admonition-title">Important</p>
-<p>Please refer to the <a href="https://www.postgresql.org/docs/current/pgbench.html"><code>pgbench</code> documentation</a>
-for information about the specific options to be used in your jobs.</p>
+<h3 id="standalone-deployment-recommended">Standalone Deployment (recommended)</h3>
+<p>Running a plugin as its own Deployment decouples its lifecycle from the
+operator’s and allows independent scaling. In this setup, the plugin exposes a
+TCP gRPC endpoint behind a Service, with <strong>mTLS</strong> for secure communication.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>CloudNativePG does <strong>not</strong> discover plugins dynamically. If you deploy a new
+plugin, you must <strong>restart the operator</strong> to detect it.</p>
 </div>
-<p>This example creates a job called <code>pgbench-init</code> that initializes for <code>pgbench</code>
-OLTP-like purposes the <code>app</code> database in a <code>Cluster</code> named <code>cluster-example</code>,
-using a scale factor of 1000:</p>
-<pre><code class="language-shell">kubectl cnpg pgbench \
-  --job-name pgbench-init \
-  cluster-example \
-  -- --initialize --scale 1000
+<p>Example Deployment:</p>
+<pre><code class="language-yaml">apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cnpg-i-plugin-example
+spec:
+  template:
+    [...]
+    spec:
+      containers:
+      - name: cnpg-i-plugin-example
+        image: cnpg-i-plugin-example:latest
+        ports:
+        - containerPort: 9090
+          protocol: TCP
+</code></pre>
+<p>The related Service for the plugin must include:</p>
+<ul>
+<li>The label <code>cnpg.io/plugin: &lt;plugin-name&gt;</code> — required for CloudNativePG to
+  discover the plugin</li>
+<li>The annotation <code>cnpg.io/pluginPort: &lt;port&gt;</code> — specifies the port where the
+  plugin’s gRPC server is exposed</li>
+</ul>
+<p>Example Service:</p>
+<pre><code class="language-yaml">apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    cnpg.io/pluginPort: &quot;9090&quot;
+  labels:
+    cnpg.io/pluginName: cnpg-i-plugin-example.my-org.io
+  name: cnpg-i-plugin-example
+spec:
+  ports:
+  - port: 9090
+    protocol: TCP
+    targetPort: 9090
+  selector:
+    app: cnpg-i-plugin-example
+</code></pre>
+<h3 id="configuring-tls-certificates">Configuring TLS Certificates</h3>
+<p>When a plugin runs as a <code>Deployment</code>, communication with CloudNativePG happens
+over the network. To secure it, <strong>mTLS is enforced</strong>, requiring TLS
+certificates for both sides.</p>
+<p>Certificates must be stored as <a href="https://kubernetes.io/docs/concepts/configuration/secret/#tls-secrets">Kubernetes TLS Secrets</a>
+and referenced in the plugin’s Service annotations
+(<code>cnpg.io/pluginClientSecret</code> and <code>cnpg.io/pluginServerSecret</code>):</p>
+<pre><code class="language-yaml">apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    cnpg.io/pluginClientSecret: cnpg-i-plugin-example-client-tls
+    cnpg.io/pluginServerSecret: cnpg-i-plugin-example-server-tls
+    cnpg.io/pluginPort: &quot;9090&quot;
+  name: barman-cloud
+  namespace: postgresql-operator-system
+spec:
+    [...]
 </code></pre>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>This will generate a database with 100000000 records, taking approximately 13GB
-of space on disk.</p>
+<p>You can provide your own certificate bundles, but the recommended method is
+to use <a href="https://cert-manager.io">Cert-manager</a>.</p>
 </div>
-<p>You can see the progress of the job with:</p>
-<pre><code class="language-shell">kubectl logs jobs/pgbench-run
+<h2 id="using-a-plugin">Using a plugin</h2>
+<p>To enable a plugin, configure the <code>.spec.plugins</code> section in your <code>Cluster</code>
+resource. Refer to the CloudNativePG API Reference for the full
+<a href="https://cloudnative-pg.io/documentation/current/cloudnative-pg.v1/#postgresql-cnpg-io-v1-PluginConfiguration">PluginConfiguration</a>
+specification.</p>
+<p>Example:</p>
+<pre><code class="language-yaml">apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: cluster-with-plugins
+spec:
+  instances: 1
+  storage:
+    size: 1Gi
+  plugins:
+  - name: cnpg-i-plugin-example.my-org.io
+    enabled: true
+    parameters:
+      key1: value1
+      key2: value2
 </code></pre>
-<p>The following example creates a job called <code>pgbench-run</code> executing <code>pgbench</code>
-against the previously initialized database for 30 seconds, using a single
-connection:</p>
-<pre><code class="language-shell">kubectl cnpg pgbench \
-  --job-name pgbench-run \
-  cluster-example \
-  -- --time 30 --client 1 --jobs 1
-</code></pre>
-<p>The next example runs <code>pgbench</code> against an existing database by using the
-<code>--db-name</code> flag and the <code>pgbench</code> namespace:</p>
-<pre><code class="language-shell">kubectl cnpg pgbench \
-  --db-name pgbench \
-  --job-name pgbench-job \
-  cluster-example \
-  -- --time 30 --client 1 --jobs 1
-</code></pre>
-<p>By default, jobs do not expire. You can enable automatic deletion with the
-<code>--ttl</code> flag. The job will be deleted after the specified duration (in seconds).</p>
-<pre><code class="language-shell">kubectl cnpg pgbench \
-  --job-name pgbench-run \
-  --ttl 600 \
-  cluster-example \
-  -- --time 30 --client 1 --jobs 1
-</code></pre>
-<p>If you want to run a <code>pgbench</code> job on a specific worker node, you can use
-the <code>--node-selector</code> option. Suppose you want to run the previous
-initialization job on a node having the <code>workload=pgbench</code> label, you can run:</p>
-<pre><code class="language-shell">kubectl cnpg pgbench \
-  --db-name pgbench \
-  --job-name pgbench-init \
-  --node-selector workload=pgbench \
-  cluster-example \
-  -- --initialize --scale 1000
-</code></pre>
-<p>The job status can be fetched by running:</p>
-<pre><code>kubectl get job/pgbench-job -n &lt;namespace&gt;
-
-NAME       COMPLETIONS   DURATION   AGE
-job-name   1/1           15s        41s
-</code></pre>
-<p>Once the job is completed the results can be gathered by executing:</p>
-<pre><code>kubectl logs job/pgbench-job -n &lt;namespace&gt;
-</code></pre>
-<h3 id="fio">fio</h3>
-<p>The kubectl CNPG plugin command <code>fio</code> executes a fio job with default values
-and read operations.
-Through the <code>--dry-run</code> flag you can generate the manifest of the job for later
-modification/execution.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>The kubectl plugin command <code>fio</code> will create a deployment with predefined
-fio job values using a ConfigMap. If you want to provide custom job values, we
-recommend generating a manifest using the <code>--dry-run</code> flag and providing your
-custom job values in the generated ConfigMap.</p>
-</div>
-<p>Example of default usage:</p>
-<pre><code class="language-shell">kubectl cnpg fio &lt;fio-name&gt;
-</code></pre>
-<p>Example with custom values:</p>
-<pre><code class="language-shell">kubectl cnpg fio &lt;fio-name&gt; \
-  -n &lt;namespace&gt;  \
-  --storageClass &lt;name&gt; \
-  --pvcSize &lt;size&gt;
-</code></pre>
-<p>Example of how to run the <code>fio</code> command against a <code>StorageClass</code> named
-<code>standard</code> and <code>pvcSize: 2Gi</code> in the <code>fio</code> namespace:</p>
-<pre><code class="language-shell">kubectl cnpg fio fio-job \
-  -n fio  \
-  --storageClass standard \
-  --pvcSize 2Gi
-</code></pre>
-<p>The deployment status can be fetched by running:</p>
-<pre><code class="language-shell">kubectl get deployment/fio-job -n fio
-
-NAME          READY   UP-TO-DATE   AVAILABLE   AGE
-fio-job        1/1     1            1           14s
-
-</code></pre>
-<p>After running kubectl plugin command <code>fio</code>.</p>
-<p>It will:</p>
-<ol>
-<li>Create a PVC</li>
-<li>Create a ConfigMap representing the configuration of a fio job</li>
-<li>Create a fio deployment composed by a single Pod, which will run fio on
-   the PVC, create graphs after completing the benchmark and start serving the
-   generated files with a webserver. We use the
-   <a href="https://github.com/wallnerryan/fio-tools"><code>fio-tools</code></a> image for that.</li>
-</ol>
-<p>The Pod created by the deployment will be ready when it starts serving the
-results. You can forward the port of the pod created by the deployment</p>
-<pre><code>kubectl port-forward -n &lt;namespace&gt; deployment/&lt;fio-name&gt; 8000
-</code></pre>
-<p>and then use a browser and connect to <code>http://localhost:8000/</code> to get the data.</p>
-<p>The default 8k block size has been chosen to emulate a PostgreSQL workload.
-Disks that cap the amount of available IOPS can show very different throughput
-values when changing this parameter.</p>
-<p>Below is an example diagram of sequential writes on a local disk
-mounted on a dedicated Kubernetes node
-(1 hour benchmark):</p>
-<p><img alt="Sequential writes bandwidth" src="../images/write_bw.1-2Draw.png" /></p>
-<p>After all testing is done, fio deployment and resources can be deleted by:</p>
-<pre><code class="language-shell">kubectl cnpg fio &lt;fio-job-name&gt; --dry-run | kubectl delete -f -
-</code></pre>
-<p>make sure use the same name which was used to create the fio deployment and add namespace if applicable.</p>
+<p>Each plugin may have its own parameters—check the plugin’s documentation for
+details. The <code>name</code> field in <code>spec.plugins</code> depends on how the plugin is
+deployed:</p>
+<ul>
+<li>Sidecar container: use the Unix socket file name</li>
+<li>Deployment: use the value from the Service’s <code>cnpg.io/pluginName</code> label</li>
+</ul>
+<h2 id="community-plugins">Community plugins</h2>
+<p>The CNPG-I protocol has quickly become a proven and reliable pattern for
+extending CloudNativePG while keeping the core project maintainable.
+Over time, the community has built and shared plugins that address real-world
+needs and serve as examples for developers.</p>
+<p>For a complete and up-to-date list of plugins built with CNPG-I, please refer to the
+<a href="https://github.com/cloudnative-pg/cnpg-i?tab=readme-ov-file#projects-built-with-cnpg-i">CNPG-I GitHub page</a>.</p>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../networking/" class="btn btn-neutral float-left" title="Networking"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../faq/" class="btn btn-neutral float-right" title="Frequently Asked Questions (FAQ)">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../container_images/" class="btn btn-neutral float-left" title="Container Image Requirements"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../operator_capability_levels/" class="btn btn-neutral float-right" title="Operator capability levels">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -495,10 +529,10 @@ mounted on a dedicated Kubernetes node
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../networking/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../container_images/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../faq/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../operator_capability_levels/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>

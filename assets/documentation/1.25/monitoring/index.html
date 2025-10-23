@@ -170,6 +170,12 @@
     <li class="toctree-l2"><a class="reference internal" href="#monitoring-instances">Monitoring Instances</a>
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#monitoring-with-the-prometheus-operator">Monitoring with the Prometheus operator</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#creating-a-podmonitor">Creating a PodMonitor</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#deprecation-of-automatic-podmonitor-creation">Deprecation of Automatic PodMonitor Creation</a>
+    </li>
+        </ul>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#enabling-tls-on-the-metrics-port">Enabling TLS on the Metrics Port</a>
     </li>
@@ -272,6 +278,10 @@
               </ul>
               <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../container_images/">Container Image Requirements</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../cnpg_i/">CNPG-I</a>
                 </li>
               </ul>
               <ul>
@@ -407,17 +417,16 @@ with Prometheus and Grafana, you can find a quick setup guide
 in <a href="../quickstart/#part-4-monitor-clusters-with-prometheus-and-grafana">Part 4 of the quickstart</a></p>
 </div>
 <h3 id="monitoring-with-the-prometheus-operator">Monitoring with the Prometheus operator</h3>
-<p>A specific PostgreSQL cluster can be monitored using the
-<a href="https://github.com/prometheus-operator/prometheus-operator">Prometheus Operator's</a> resource
-<a href="https://github.com/prometheus-operator/prometheus-operator/blob/v0.75.1/Documentation/api.md#podmonitor">PodMonitor</a>.</p>
-<p>A <code>PodMonitor</code> that correctly points to the Cluster can be automatically created by the operator by setting
-<code>.spec.monitoring.enablePodMonitor</code> to <code>true</code> in the Cluster resource itself (default: <code>false</code>).</p>
-<div class="admonition important">
-<p class="admonition-title">Important</p>
-<p>Any change to the <code>PodMonitor</code> created automatically will be overridden by the Operator at the next reconciliation
-cycle, in case you need to customize it, you can do so as described below.</p>
-</div>
-<p>To deploy a <code>PodMonitor</code> for a specific Cluster manually, define it as follows and adjust as needed:</p>
+<p>You can monitor a specific PostgreSQL cluster using the
+<a href="https://github.com/prometheus-operator/prometheus-operator">Prometheus Operator's</a>
+<a href="https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api-reference/api.md#monitoring.coreos.com/v1.PodMonitor"><code>PodMonitor</code> resource</a>.</p>
+<p>The recommended approach is to manually create and manage a <code>PodMonitor</code> for
+each CloudNativePG cluster. This method provides you with full control over the
+monitoring configuration and lifecycle.</p>
+<h4 id="creating-a-podmonitor">Creating a <code>PodMonitor</code></h4>
+<p>To monitor your cluster, define a <code>PodMonitor</code> resource as follows. Be sure to
+deploy it in the same namespace where your Prometheus Operator is configured to
+find <code>PodMonitor</code> resources.</p>
 <pre><code class="language-yaml">apiVersion: monitoring.coreos.com/v1
 kind: PodMonitor
 metadata:
@@ -425,21 +434,31 @@ metadata:
 spec:
   selector:
     matchLabels:
-      &quot;cnpg.io/cluster&quot;: cluster-example
+      cnpg.io/cluster: cluster-example
   podMetricsEndpoints:
   - port: metrics
 </code></pre>
 <div class="admonition important">
-<p class="admonition-title">Important</p>
-<p>Ensure you modify the example above with a unique name, as well as the
-correct cluster's namespace and labels (e.g., <code>cluster-example</code>).</p>
+<p class="admonition-title">Important Configuration Details</p>
+<ul>
+<li><code>metadata.name</code>: Give your <code>PodMonitor</code> a unique name.</li>
+<li><code>spec.namespaceSelector</code>: Use this to specify the namespace where
+  your PostgreSQL cluster is running.</li>
+<li><code>spec.selector.matchLabels</code>: You must use the <code>cnpg.io/cluster: &lt;cluster-name&gt;</code>
+  label to correctly target the PostgreSQL instances.</li>
+</ul>
 </div>
-<div class="admonition important">
-<p class="admonition-title">Important</p>
-<p>The <code>postgresql</code> label, used in previous versions of this document, is deprecated
-and will be removed in the future. Please use the <code>cnpg.io/cluster</code> label
-instead to select the instances.</p>
+<h4 id="deprecation-of-automatic-podmonitor-creation">Deprecation of Automatic <code>PodMonitor</code> Creation</h4>
+<div class="admonition warning">
+<p class="admonition-title">Feature Deprecation Notice</p>
+<p>The <code>.spec.monitoring.enablePodMonitor</code> field in the <code>Cluster</code> resource is
+now deprecated and will be removed in a future version of the operator.</p>
 </div>
+<p>If you are currently using this feature, we strongly recommend you either
+remove or set <code>.spec.monitoring.enablePodMonitor</code> to <code>false</code> and manually
+create a <code>PodMonitor</code> resource for your cluster as described above.
+This change ensures that you have complete ownership of your monitoring
+configuration, preventing it from being managed or overwritten by the operator.</p>
 <h3 id="enabling-tls-on-the-metrics-port">Enabling TLS on the Metrics Port</h3>
 <p>To enable TLS communication on the metrics port, configure the <code>.spec.monitoring.tls.enabled</code>
 setting to <code>true</code>. This setup ensures that the metrics exporter uses the same
@@ -564,7 +583,7 @@ cnpg_collector_up{cluster=&quot;cluster-example&quot;} 1
 
 # HELP cnpg_collector_postgres_version Postgres version
 # TYPE cnpg_collector_postgres_version gauge
-cnpg_collector_postgres_version{cluster=&quot;cluster-example&quot;,full=&quot;17.5&quot;} 17.5
+cnpg_collector_postgres_version{cluster=&quot;cluster-example&quot;,full=&quot;18.0&quot;} 18.0
 
 # HELP cnpg_collector_last_failed_backup_timestamp The last failed backup as a unix timestamp
 # TYPE cnpg_collector_last_failed_backup_timestamp gauge
@@ -1106,7 +1125,7 @@ metadata:
 spec:
   containers:
   - name: curl
-    image: curlimages/curl:8.2.1
+    image: curlimages/curl:8.16.0
     command: ['sleep', '3600']
 EOF
 </code></pre>

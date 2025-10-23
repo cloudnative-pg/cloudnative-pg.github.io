@@ -1182,7 +1182,7 @@ method should be used with extreme care, by authorized personnel only.</p>
 </div>
 <pre><code class="language-console">$ kubectl cnpg psql cluster-example
 
-psql (17.5 (Debian 17.5-1.pgdg110+1))
+psql (18.0 (Debian 18.0-1.pgdg110+1))
 Type &quot;help&quot; for help.
 
 postgres=#
@@ -1191,7 +1191,7 @@ postgres=#
 select to work against a replica by using the <code>--replica</code> option:</p>
 <pre><code class="language-console">$ kubectl cnpg psql --replica cluster-example
 
-psql (17.5 (Debian 17.5-1.pgdg110+1))
+psql (18.0 (Debian 18.0-1.pgdg110+1))
 
 Type &quot;help&quot; for help.
 
@@ -1548,7 +1548,7 @@ table contains the full details:</p>
 </tr>
 <tr>
 <td style="text-align: left;">status</td>
-<td style="text-align: left;">clusters: get<br/>pods: list<br/>pods/exec: create<br/>pods/proxy: create<br/>PDBs: list</td>
+<td style="text-align: left;">clusters: get<br/>pods: list<br/>pods/exec: create<br/>pods/proxy: create<br/>PDBs: list<br/>objectstores.barmancloud.cnpg.io: get</td>
 </tr>
 <tr>
 <td style="text-align: left;">subscription</td>
@@ -1635,6 +1635,12 @@ rules:
       - policy
     resources:
       - poddisruptionbudgets
+  - verbs:
+      - get
+    apiGroups:
+      - barmancloud.cnpg.io
+    resources:
+      - objectstores
 </code></pre>
 <div class="admonition important">
 <p class="admonition-title">Important</p>

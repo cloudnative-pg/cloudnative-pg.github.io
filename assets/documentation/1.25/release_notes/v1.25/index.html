@@ -229,6 +229,10 @@
                 </li>
               </ul>
               <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../cnpg_i/">CNPG-I</a>
+                </li>
+              </ul>
+              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../../operator_capability_levels/">Operator capability levels</a>
                 </li>
               </ul>
@@ -310,16 +314,155 @@
 <p>For a complete list of changes, please refer to the
 <a href="https://github.com/cloudnative-pg/cloudnative-pg/commits/release-1.25">commits</a>
 on the release branch in GitHub.</p>
+<h2 id="version-1254">Version 1.25.4</h2>
+<p><strong>Release date:</strong> Oct 23, 2025</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This is the final release in the 1.25.x series.
+Users are strongly encouraged to upgrade to a newer minor version, as 1.25
+is no longer supported.</p>
+</div>
+<h3 id="changes">Changes</h3>
+<ul>
+<li>
+<p>Adopted the new format of <code>postgres-containers</code> and <code>postgis-containers</code>
+  images and image catalog artifacts, and <strong>updated</strong> the default PostgreSQL
+  version to <code>18.0-system-trixie</code> (PostgreSQL 18 is now supported).
+  (<a href="https://github.com/cloudnative-pg/cloudnative-pg/pull/8578">#8578</a>,
+  <a href="https://github.com/cloudnative-pg/cloudnative-pg/pull/8760">#8760</a>,
+  <a href="https://github.com/cloudnative-pg/cloudnative-pg/pull/8558">#8558</a>)</p>
+</li>
+<li>
+<p>Deprecated the <code>monitoring.enablePodMonitor</code> field in the <code>Cluster</code> and
+  <code>Pooler</code> resources. This field will be removed in a future release. Users who
+  rely on <code>PodMonitor</code> resources should create them manually instead.
+  (<a href="https://github.com/cloudnative-pg/cloudnative-pg/pull/8753">#8753</a>)</p>
+</li>
+</ul>
+<h3 id="enhancements">Enhancements</h3>
+<ul>
+<li>
+<p>Added support for overriding the PgBouncer <code>auth_type</code>, <code>server_tls_sslmode</code>,
+  and <code>client_tls_sslmode</code> settings, which were previously hardcoded. Default
+  values remain consistent with the former behavior but can now be customized
+  when required.
+  (<a href="https://github.com/cloudnative-pg/cloudnative-pg/pull/8674">#8674</a>)</p>
+</li>
+<li>
+<p>Added a <code>CHECKPOINT</code> step before PostgreSQL smart and fast shutdowns to
+  reduce shutdown duration and replica promotion time, especially on systems
+  with a high <code>checkpoint_timeout</code>.
+  (<a href="https://github.com/cloudnative-pg/cloudnative-pg/pull/8867">#8867</a>)</p>
+</li>
+<li>
+<p>Added a warning in the instance manager for deprecated or unsupported OS
+  versions, based on the official <code>postgres-containers</code> project.
+  (<a href="https://github.com/cloudnative-pg/cloudnative-pg/pull/8601">#8601</a>)</p>
+</li>
+<li>
+<p>Improved certificate parsing error reporting. Failures now log specific
+  errors instead of a generic message, aiding troubleshooting. This is
+  particularly relevant after the CVE-2025-58187 fix in Go 1.25.2 and 1.24.8,
+  which may trigger parsing failures for invalid DNS SANs.
+  (<a href="https://github.com/cloudnative-pg/cloudnative-pg/pull/8801">#8801</a>)</p>
+</li>
+<li>
+<p>Added a check to ensure the destination WAL archive path is empty when
+  bootstrapping a cluster using the <code>pg_basebackup</code> method, consistent with
+  other bootstrap methods.
+  (<a href="https://github.com/cloudnative-pg/cloudnative-pg/pull/8895">#8895</a>)</p>
+</li>
+<li>
+<p>Added validation to prevent backups from running on hibernated clusters.
+  Backups attempted on such clusters now fail with reason
+  <code>ClusterIsHibernated</code>, following the standard prerequisite check pattern.
+  (<a href="https://github.com/cloudnative-pg/cloudnative-pg/pull/8870">#8870</a>)</p>
+</li>
+<li>
+<p>Added support for <code>pprof</code> profiling. Instances can now enable the <code>pprof</code>
+  tool by adding the <code>alpha.cnpg.io/enableInstancePprof</code> annotation to the
+  <code>Cluster</code> resource for advanced debugging.
+  (<a href="https://github.com/cloudnative-pg/cloudnative-pg/pull/7876">#7876</a>)</p>
+</li>
+<li>
+<p><code>cnpg</code> plugin:</p>
+</li>
+<li>
+<p>Updated the Flexible I/O Tester (FIO) image to
+     <code>wallnerryan/fiotools-aio:v2</code>, as provided by Ryan Wallner.
+     (<a href="https://github.com/cloudnative-pg/cloudnative-pg/pull/8847">#8847</a>)</p>
+</li>
+<li>
+<p>Enhanced the <code>cnpg status backup</code> command to provide more detailed status
+     information when using a <code>barman-cloud</code>-based backup plugin.
+     (<a href="https://github.com/cloudnative-pg/cloudnative-pg/pull/8780">#8780</a>,
+     <a href="https://github.com/cloudnative-pg/cloudnative-pg/pull/8690">#8690</a>)</p>
+</li>
+</ul>
+<h3 id="fixes">Fixes</h3>
+<ul>
+<li>
+<p>Fixed backup restoration failures when using custom WAL segment sizes with
+  parallel WAL recovery. The operator no longer manages the end-of-WAL file
+  marker during restoration, preventing errors when backups span multiple WAL
+  segments.
+  (<a href="https://github.com/cloudnative-pg/cloudnative-pg/pull/8873">#8873</a>)</p>
+</li>
+<li>
+<p>Fixed a bug in major upgrades where a volume snapshot from a previous minor
+  version could be incorrectly used to optimize replica creation.
+  (<a href="https://github.com/cloudnative-pg/cloudnative-pg/pull/8475">#8475</a>)</p>
+</li>
+<li>
+<p>Fixed <code>initdb</code> to wait for the application user secret before bootstrapping
+  a new cluster, preventing potential race conditions.
+  (<a href="https://github.com/cloudnative-pg/cloudnative-pg/pull/8663">#8663</a>)</p>
+</li>
+<li>
+<p>Fixed the connection retry logic in the <code>cnpgi</code> plugin. The reconciliation
+  loop now detects connection pool changes correctly and uses exponential
+  backoff to reduce "closed pool" errors.
+  (<a href="https://github.com/cloudnative-pg/cloudnative-pg/pull/8554">#8554</a>)</p>
+</li>
+<li>
+<p>Fixed volume snapshot usage during replica scaling to work with backup plugins.
+  Previously, this optimization was only available with the in-tree backup
+  implementation, but now clusters using backup plugins can also leverage volume
+  snapshots when creating new replicas.
+  (<a href="https://github.com/cloudnative-pg/cloudnative-pg/pull/8506">#8506</a>)</p>
+</li>
+<li>
+<p>Fixed the <code>Pooler</code> templating to correctly inherit settings for the
+  bootstrap controller init container.
+  (<a href="https://github.com/cloudnative-pg/cloudnative-pg/pull/8394">#8394</a>)</p>
+</li>
+<li>
+<p>Fixed webhook errors to use the correct API group (<code>postgresql.cnpg.io</code>) in
+  <code>Pooler</code> and backup webhooks, ensuring consistent API error reporting.
+  (<a href="https://github.com/cloudnative-pg/cloudnative-pg/pull/8485">#8485</a>)</p>
+</li>
+<li>
+<p>Fixed a potential nil pointer dereference in the hibernation reconciler when
+  handling errors. Contributed by @PascalBourdier.
+  (<a href="https://github.com/cloudnative-pg/cloudnative-pg/pull/8756">#8756</a>)</p>
+</li>
+<li>
+<p>Fixed an issue in the environment cache where callers could inadvertently
+  modify shared data. The <code>LoadEnv</code> function now returns a copy of cached
+  environment slices to prevent mutations from affecting the cache.
+  (<a href="https://github.com/cloudnative-pg/cloudnative-pg/pull/8880">#8880</a>)</p>
+</li>
+</ul>
 <h2 id="version-1253">Version 1.25.3</h2>
 <p><strong>Release date:</strong> Jul 25, 2025</p>
 <p><em>In memory of <a href="https://www.linkedin.com/in/codepope/">DJ Walker-Morgan</a>.</em></p>
-<h3 id="changes">Changes</h3>
+<h3 id="changes_1">Changes</h3>
 <ul>
 <li>Removed <code>386</code> and ARM (v5/v6/v7) architectures from the <code>cnpg</code> plugin build
   matrix, reducing the number of published binaries
   (<a href="https://github.com/cloudnative-pg/cloudnative-pg/pull/7648">#7648</a>).</li>
 </ul>
-<h3 id="enhancements">Enhancements</h3>
+<h3 id="enhancements_1">Enhancements</h3>
 <ul>
 <li>
 <p>Improved validation of <code>shared_buffers</code> by correctly considering <code>HugePages</code>
@@ -342,7 +485,7 @@ on the release branch in GitHub.</p>
   (<a href="https://github.com/cloudnative-pg/cloudnative-pg/pull/7717">#7717</a>).</p>
 </li>
 </ul>
-<h3 id="fixes">Fixes</h3>
+<h3 id="fixes_1">Fixes</h3>
 <ul>
 <li>
 <p>Added a mutex in the connection pooler to protect concurrent access to the
@@ -400,7 +543,7 @@ on the release branch in GitHub.</p>
   is now governed under <strong>CloudNativePG, a Series of LF Projects, LLC</strong>, ensuring
   long-term sustainability and community-driven innovation. (#7203)</li>
 </ul>
-<h3 id="enhancements_1">Enhancements</h3>
+<h3 id="enhancements_2">Enhancements</h3>
 <ul>
 <li>
 <p>Added the <code>KUBERNETES_CLUSTER_DOMAIN</code> configuration option to the operator,
@@ -438,7 +581,7 @@ on the release branch in GitHub.</p>
   images are always pulled from the registry, reducing the risk of using
   outdated or potentially unsafe local images. (#7250)</li>
 </ul>
-<h3 id="fixes_1">Fixes</h3>
+<h3 id="fixes_2">Fixes</h3>
 <ul>
 <li>
 <p>Fixed native replication slot synchronization and logical replication
@@ -516,7 +659,7 @@ on the release branch in GitHub.</p>
     replicas. (#7122)</p>
 </li>
 </ul>
-<h3 id="changes_1">Changes</h3>
+<h3 id="changes_2">Changes</h3>
 <ul>
 <li>
 <p>Updated the default PostgreSQL version to 17.5 for new cluster
@@ -529,7 +672,7 @@ on the release branch in GitHub.</p>
 </ul>
 <h2 id="version-1251">Version 1.25.1</h2>
 <p><strong>Release Date:</strong> February 28, 2025</p>
-<h3 id="enhancements_2">Enhancements</h3>
+<h3 id="enhancements_3">Enhancements</h3>
 <ul>
 <li>Introduced a startup probe for the operator to enhance reliability and
   prevent premature liveness probe failures during initialization. (#7008)</li>
@@ -635,7 +778,7 @@ on the release branch in GitHub.</p>
   feedback and contributions to shape this exciting new capability.</p>
 </li>
 </ul>
-<h3 id="enhancements_3">Enhancements</h3>
+<h3 id="enhancements_4">Enhancements</h3>
 <ul>
 <li>Add the <code>dataDurability</code> option to the <code>.spec.postgresql.synchronous</code> stanza,
   allowing users to choose between <code>required</code> (default) or <code>preferred</code>
