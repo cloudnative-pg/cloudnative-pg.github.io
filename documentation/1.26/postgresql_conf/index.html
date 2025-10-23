@@ -273,6 +273,10 @@
                 </li>
               </ul>
               <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../cnpg_i/">CNPG-I</a>
+                </li>
+              </ul>
+              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../operator_capability_levels/">Operator capability levels</a>
                 </li>
               </ul>
@@ -506,8 +510,8 @@ network disruptions. For more details, refer to the
 <h3 id="log-control-settings">Log control settings</h3>
 <p>The operator requires PostgreSQL to output its log in CSV format, and the
 instance manager automatically parses it and outputs it in JSON format.
-For this reason, all log settings in PostgreSQL are fixed and cannot be
-changed.</p>
+As a result, certain PostgreSQL log settings, listed in <a href="#fixed-parameters">this section</a>,
+are fixed and cannot be modified.</p>
 <p>For further information, please refer to the <a href="../logging/">"Logging" section</a>.</p>
 <h3 id="shared-preload-libraries">Shared Preload Libraries</h3>
 <p>The <code>shared_preload_libraries</code> option in PostgreSQL exists to specify one or

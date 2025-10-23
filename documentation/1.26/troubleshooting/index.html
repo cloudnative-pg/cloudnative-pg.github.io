@@ -249,6 +249,14 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#postgresql-core-dumps">PostgreSQL core dumps</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#visualizing-and-analyzing-profiling-data">Visualizing and Analyzing Profiling Data</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#example">Example</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#troubleshooting_1">Troubleshooting</a>
+    </li>
+        </ul>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#some-known-issues">Some known issues</a>
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#storage-is-full">Storage is full</a>
@@ -290,6 +298,10 @@
               </ul>
               <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../container_images/">Container Image Requirements</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../cnpg_i/">CNPG-I</a>
                 </li>
               </ul>
               <ul>
@@ -543,7 +555,7 @@ Those pods are managed by a deployment named <code>cnpg-controller-manager</code
 Name:               cluster-example
 Namespace:          default
 System ID:          7044925089871458324
-PostgreSQL Image:   ghcr.io/cloudnative-pg/postgresql:17.5-3
+PostgreSQL Image:   ghcr.io/cloudnative-pg/postgresql:18.0-system-trixie
 Primary instance:   cluster-example-1
 Instances:          3
 Ready instances:    3
@@ -592,7 +604,7 @@ of the <code>Cluster</code> resource:</p>
 <pre><code class="language-shell">kubectl describe cluster &lt;CLUSTER_NAME&gt; -n &lt;NAMESPACE&gt; | grep &quot;Image Name&quot;
 </code></pre>
 <p>Output:</p>
-<pre><code class="language-shell">  Image Name:    ghcr.io/cloudnative-pg/postgresql:17.5-3
+<pre><code class="language-shell">  Image Name:    ghcr.io/cloudnative-pg/postgresql:18.0-system-trixie
 </code></pre>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -829,6 +841,68 @@ core dump on your machine through <code>kubectl cp</code> as follows:</p>
 </code></pre>
 <p>You now have the file. Make sure you free the space on the server by
 removing the core dumps.</p>
+<h2 id="visualizing-and-analyzing-profiling-data">Visualizing and Analyzing Profiling Data</h2>
+<p>CloudNativePG integrates with <a href="https://github.com/google/pprof">pprof</a> to
+collect and analyze profiling data at two levels:</p>
+<ul>
+<li><strong>Operator level</strong> – enable by adding the <code>--pprof-server=true</code> option to the
+  operator deployment (see <a href="../operator_conf/#profiling-tools">Operator configuration</a>).</li>
+<li><strong>Postgres cluster level</strong> – enable by adding the
+  <code>alpha.cnpg.io/enableInstancePprof</code> annotation to a <code>Cluster</code> resource
+  (described below).</li>
+</ul>
+<p>When the <code>alpha.cnpg.io/enableInstancePprof</code> annotation is set to <code>"true"</code>,
+each instance pod exposes a Go pprof HTTP server provided by the instance
+manager.</p>
+<ul>
+<li>The server listens on <code>0.0.0.0:6060</code> inside the pod.</li>
+<li>A container port named <code>pprof</code> (<code>6060/TCP</code>) is automatically added to the pod
+  spec.</li>
+</ul>
+<p>You can disable pprof at any time by either removing the annotation or setting
+it to <code>"false"</code>. The operator will roll out changes automatically to remove the
+pprof port and flag.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>The pprof server only serves plain HTTP on port <code>6060</code>.</p>
+</div>
+<h3 id="example">Example</h3>
+<p>Enable pprof on a cluster by adding the annotation:</p>
+<pre><code class="language-yaml">apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: cluster-example
+  annotations:
+    alpha.cnpg.io/enableInstancePprof: &quot;true&quot;
+spec:
+  instances: 3
+  # ...
+</code></pre>
+<p>Changing this annotation updates the instance pod spec (adds port <code>6060</code> and
+the corresponding flag) and triggers a rolling update.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The example below uses <code>kubectl port-forward</code> for local testing only.
+This is <strong>not</strong> the intended way to expose the feature in production.
+Treat pprof as a sensitive debugging interface and never expose it publicly.
+If you must access it remotely, secure it with proper network policies and access controls.</p>
+</div>
+<p>Use port-forwarding to access the pprof endpoints:</p>
+<pre><code class="language-bash">kubectl port-forward -n &lt;namespace&gt; pod/&lt;instance-pod&gt; 6060
+curl -sS http://localhost:6060/debug/pprof/
+go tool pprof http://localhost:6060/debug/pprof/profile?seconds=30
+</code></pre>
+<p>You can also access pprof using the browser at <a href="http://localhost:6060/debug/pprof/">http://localhost:6060/debug/pprof/</a>.</p>
+<h3 id="troubleshooting_1">Troubleshooting</h3>
+<p>First, verify that the cluster has the <code>alpha.cnpg.io/enableInstancePprof:
+"true"</code> annotation set.</p>
+<p>Next, check that the instance manager command includes the <code>--pprof-server</code>
+flag and that port <code>6060/TCP</code> is exposed. You can do this by running:</p>
+<pre><code class="language-bash">kubectl -n &lt;namespace&gt; describe pod &lt;instance-pod&gt;
+</code></pre>
+<p>Then review the <strong>Command</strong> and <strong>Ports</strong> sections in the output.</p>
+<p>Finally, if you are not using port-forwarding, make sure that your
+NetworkPolicies allow access to port <code>6060/TCP</code>.</p>
 <h2 id="some-known-issues">Some known issues</h2>
 <h3 id="storage-is-full">Storage is full</h3>
 <p>In case the storage is full, the PostgreSQL pods will not be able to write new

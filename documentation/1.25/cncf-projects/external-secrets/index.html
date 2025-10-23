@@ -229,6 +229,10 @@
                 </li>
               </ul>
               <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../cnpg_i/">CNPG-I</a>
+                </li>
+              </ul>
+              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../../operator_capability_levels/">Operator capability levels</a>
                 </li>
               </ul>
@@ -412,7 +416,7 @@ letters.</p>
 <code>cluster-example-app-secret</code>, which refreshes the password every 24 hours. It
 uses a <code>Merge</code> policy to update only the specified fields (<code>password</code>, <code>pgpass</code>,
 <code>jdbc-uri</code> and <code>uri</code>) in the <code>cluster-example-app</code> secret.</p>
-<pre><code class="language-yaml">apiVersion: external-secrets.io/v1beta1
+<pre><code class="language-yaml">apiVersion: external-secrets.io/v1
 kind: ExternalSecret
 metadata:
   name: cluster-example-app-secret
@@ -482,7 +486,7 @@ Vault.</p>
 namespace at <code>http://vault.vault.svc:8200</code>, and that a Kubernetes <code>Secret</code>
 named <code>vault-token</code> exists in the same namespace, containing the token used to
 authenticate with Vault.</p>
-<pre><code class="language-yaml">apiVersion: external-secrets.io/v1beta1
+<pre><code class="language-yaml">apiVersion: external-secrets.io/v1
 kind: SecretStore
 metadata:
   name: vault-backend

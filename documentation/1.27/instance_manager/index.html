@@ -636,9 +636,9 @@ to 180 and 1800 seconds, respectively.</p>
 <p>The shutdown procedure is composed of two steps:</p>
 <ol>
 <li>
-<p>The instance manager requests a <strong>smart</strong> shut down, disallowing any
-new connection to PostgreSQL. This step will last for up to
-<code>.spec.smartShutdownTimeout</code> seconds.</p>
+<p>The instance manager first issues a <code>CHECKPOINT</code>, then initiates a <strong>smart</strong>
+shut down, disallowing any new connection to PostgreSQL. This step will last
+for up to <code>.spec.smartShutdownTimeout</code> seconds.</p>
 </li>
 <li>
 <p>If PostgreSQL is still up, the instance manager requests a <strong>fast</strong>
@@ -657,10 +657,11 @@ the primary instance is running. In this case, perform a switchover to
 another instance first.</p>
 </div>
 <h3 id="shutdown-of-the-primary-during-a-switchover">Shutdown of the primary during a switchover</h3>
-<p>During a switchover, the shutdown procedure is slightly different from the
-general case. Indeed, the operator requires the former primary to issue a
-<strong>fast</strong> shut down before the selected new primary can be promoted,
-in order to ensure that all the data are available on the new primary.</p>
+<p>During a switchover, the shutdown procedure slightly differs from the general
+case. The instance manager of the former primary first issues a <code>CHECKPOINT</code>,
+then initiates a <strong>fast</strong> shutdown of PostgreSQL before the designated new
+primary is promoted, ensuring that all data are safely available on the new
+primary.</p>
 <p>For this reason, the <code>.spec.switchoverDelay</code>, expressed in seconds, controls
 the  time given to the former primary to shut down gracefully and archive all
 the WAL files. By default it is set to <code>3600</code> (1 hour).</p>

@@ -380,6 +380,9 @@ instead of alternative approaches such as pod templates.</p>
   deprecated <code>postgresql</code> label).</dd>
 <dt><code>cnpg.io/jobRole</code></dt>
 <dd>Role of the job (that is, <code>import</code>, <code>initdb</code>, <code>join</code>, ...)</dd>
+<dt><code>cnpg.io/majorVersion</code></dt>
+<dd>Integer PostgreSQL major version of the backup's data directory (for example, <code>17</code>).
+This label is available only on <code>VolumeSnapshot</code> resources.</dd>
 <dt><code>cnpg.io/onlineBackup</code></dt>
 <dd>Whether the backup is online (hot) or taken when Postgres is down (cold).
   This label is available only on <code>VolumeSnapshot</code> resources.</dd>

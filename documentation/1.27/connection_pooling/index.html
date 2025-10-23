@@ -202,6 +202,10 @@
     <li class="toctree-l2"><a class="reference internal" href="#pgbouncer-configuration-options">PgBouncer configuration options</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#monitoring">Monitoring</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#deprecation-of-automatic-podmonitor-creation">Deprecation of Automatic PodMonitor Creation</a>
+    </li>
+        </ul>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#logging">Logging</a>
     </li>
@@ -640,11 +644,13 @@ operator doesn't validate them.</p>
 documentation for each parameter. Unless stated otherwise, the default values
 are the ones directly set by PgBouncer.</p>
 <ul>
+<li><a href="https://www.pgbouncer.org/config.html#auth_type"><code>auth_type</code></a></li>
 <li><a href="https://www.pgbouncer.org/config.html#application_name_add_host"><code>application_name_add_host</code></a></li>
 <li><a href="https://www.pgbouncer.org/config.html#autodb_idle_timeout"><code>autodb_idle_timeout</code></a></li>
 <li><a href="https://www.pgbouncer.org/config.html#cancel_wait_timeout"><code>cancel_wait_timeout</code></a></li>
 <li><a href="https://www.pgbouncer.org/config.html#client_idle_timeout"><code>client_idle_timeout</code></a></li>
 <li><a href="https://www.pgbouncer.org/config.html#client_login_timeout"><code>client_login_timeout</code></a></li>
+<li><a href="https://www.pgbouncer.org/config.html#client_tls_sslmode"><code>client_tls_sslmode</code></a></li>
 <li><a href="https://www.pgbouncer.org/config.html#default_pool_size"><code>default_pool_size</code></a></li>
 <li><a href="https://www.pgbouncer.org/config.html#disable_pqexec"><code>disable_pqexec</code></a></li>
 <li><a href="https://www.pgbouncer.org/config.html#dns_max_ttl"><code>dns_max_ttl</code></a></li>
@@ -683,6 +689,7 @@ are the ones directly set by PgBouncer.</p>
 <li><a href="https://www.pgbouncer.org/config.html#server_round_robin"><code>server_round_robin</code></a></li>
 <li><a href="https://www.pgbouncer.org/config.html#server_tls_ciphers"><code>server_tls_ciphers</code></a></li>
 <li><a href="https://www.pgbouncer.org/config.html#server_tls_protocols"><code>server_tls_protocols</code></a></li>
+<li><a href="https://www.pgbouncer.org/config.html#server_tls_sslmode"><code>server_tls_sslmode</code></a></li>
 <li><a href="https://www.pgbouncer.org/config.html#stats_period"><code>stats_period</code></a></li>
 <li><a href="https://www.pgbouncer.org/config.html#suspend_timeout"><code>suspend_timeout</code></a></li>
 <li><a href="https://www.pgbouncer.org/config.html#tcp_defer_accept"><code>tcp_defer_accept</code></a></li>
@@ -888,18 +895,9 @@ cnpg_pgbouncer_stats_total_xact_time{database=&quot;pgbouncer&quot;} 0
 <p>For a better understanding of the metrics please refer to the PgBouncer documentation.</p>
 </div>
 <p>As for clusters, a specific pooler can be monitored using the
-<a href="https://github.com/prometheus-operator/prometheus-operator">Prometheus operator's</a> resource
-<a href="https://github.com/prometheus-operator/prometheus-operator/blob/v0.47.1/Documentation/api.md#podmonitor">PodMonitor</a>.
-A <code>PodMonitor</code> correctly pointing to a pooler can be created by the operator by setting
-<code>.spec.monitoring.enablePodMonitor</code> to <code>true</code> in the <code>Pooler</code> resource. The default is <code>false</code>.</p>
-<div class="admonition important">
-<p class="admonition-title">Important</p>
-<p>Any change to <code>PodMonitor</code> created automatically is overridden by the
-operator at the next reconciliation cycle. If you need to customize it, you can
-do so as shown in the following example.</p>
-</div>
-<p>To deploy a <code>PodMonitor</code> for a specific pooler manually, you can define it as
-follows and change it as needed:</p>
+<a href="https://github.com/prometheus-operator/prometheus-operator">Prometheus operator's</a>
+<a href="https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api-reference/api.md#monitoring.coreos.com/v1.PodMonitor"><code>PodMonitor</code> resource</a>.</p>
+<p>You can deploy a <code>PodMonitor</code> for a specific pooler using the following basic example, and change it as needed:</p>
 <pre><code class="language-yaml">apiVersion: monitoring.coreos.com/v1
 kind: PodMonitor
 metadata:
@@ -911,6 +909,17 @@ spec:
   podMetricsEndpoints:
   - port: metrics
 </code></pre>
+<h3 id="deprecation-of-automatic-podmonitor-creation">Deprecation of Automatic <code>PodMonitor</code> Creation</h3>
+<div class="admonition warning">
+<p class="admonition-title">Feature Deprecation Notice</p>
+<p>The <code>.spec.monitoring.enablePodMonitor</code> field in the <code>Pooler</code> resource is
+now deprecated and will be removed in a future version of the operator.</p>
+</div>
+<p>If you are currently using this feature, we strongly recommend you either
+remove or set <code>.spec.monitoring.enablePodMonitor</code> to <code>false</code> and manually
+create a <code>PodMonitor</code> resource for your pooler as described above.
+This change ensures that you have complete ownership of your monitoring
+configuration, preventing it from being managed or overwritten by the operator.</p>
 <h2 id="logging">Logging</h2>
 <p>Logs are directly sent to standard output, in JSON format, like in the
 following example:</p>

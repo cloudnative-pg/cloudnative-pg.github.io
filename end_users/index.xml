@@ -26,21 +26,21 @@
       <link>https://cloudnative-pg.io/end_users/cndi/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://cloudnative-pg.io/end_users/cndi/</guid>
-      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;em&gt;At cndi.dev, we build interactive Templates for best-in-class cloud-native applications, and CloudNativePG has proven to be an exceptional solution for running PostgreSQL on Kubernetes. Its robust performance and seamless integration—as showcased in our CloudNativePG support at cndi.dev/templates/postgres—make it not only the most effective way to manage PostgreSQL in Kubernetes but also one of the most well-built and well-supported Kubernetes Operators in the ecosystem.&lt;/em&gt;&#xA;&lt;br&gt;&#xA;— Matt Johnston, CTO Polyseam/CNDI&lt;/p&gt;&#xA;&lt;/blockquote&gt;</description>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;em&gt;At cndi.dev, we build interactive Templates for best-in-class cloud-native applications, and CloudNativePG has proven to be an exceptional solution for running PostgreSQL on Kubernetes. Its robust performance and seamless integration—as showcased in our CloudNativePG support at cndi.dev/templates/postgres—make it not only the most effective way to manage PostgreSQL in Kubernetes but also one of the most well-built and well-supported Kubernetes Operators in the ecosystem.&lt;/em&gt;&#xA;&lt;br&gt;&#xA;— Matt Johnston, CTO Polyseam/CNDI&lt;/p&gt;&lt;/blockquote&gt;</description>
     </item>
     <item>
       <title>OptimaData</title>
       <link>https://cloudnative-pg.io/end_users/optimadata/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://cloudnative-pg.io/end_users/optimadata/</guid>
-      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;em&gt;OptimaData as the Dutch database expert company has done several projects running CloudNativePG for managing Postgres clusters. We were the first to use CloudNativePG in a production environment, even before the operator was released as open source. Back then we did a &lt;a href=&#34;https://www.optimadata.nl/en/blogs/kubernetes-operators-and-postgres-which-of-the-three/&#34;&gt;benchmark between Zalando&amp;rsquo;s operator, Crunchy Data and CloudNativePG&lt;/a&gt;.&lt;/em&gt;&#xA;&lt;br&gt;&#xA;— Edco Wallet, Co-founder OptimaData BV&lt;/p&gt;&#xA;&lt;/blockquote&gt;</description>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;em&gt;OptimaData as the Dutch database expert company has done several projects running CloudNativePG for managing Postgres clusters. We were the first to use CloudNativePG in a production environment, even before the operator was released as open source. Back then we did a &lt;a href=&#34;https://www.optimadata.nl/en/blogs/kubernetes-operators-and-postgres-which-of-the-three/&#34;&gt;benchmark between Zalando&amp;rsquo;s operator, Crunchy Data and CloudNativePG&lt;/a&gt;.&lt;/em&gt;&#xA;&lt;br&gt;&#xA;— Edco Wallet, Co-founder OptimaData BV&lt;/p&gt;&lt;/blockquote&gt;</description>
     </item>
     <item>
       <title>Enix</title>
       <link>https://cloudnative-pg.io/end_users/enix/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://cloudnative-pg.io/end_users/enix/</guid>
-      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;em&gt;At Enix, we&amp;rsquo;ve been using CloudNativePG since its early versions in 2022.&#xA;It&amp;rsquo;s the most comprehensive and relevant operator for deploying PostgreSQL&#xA;databases within Kubernetes clusters. We use it in production on the IT&#xA;platforms we manage for our clients, where high availability and scalability&#xA;are critical requirements.&lt;/em&gt;&#xA;&lt;br&gt;&#xA;— Romain Degez, Managing Partner at Enix France&lt;/p&gt;&#xA;&lt;/blockquote&gt;</description>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;em&gt;At Enix, we&amp;rsquo;ve been using CloudNativePG since its early versions in 2022.&#xA;It&amp;rsquo;s the most comprehensive and relevant operator for deploying PostgreSQL&#xA;databases within Kubernetes clusters. We use it in production on the IT&#xA;platforms we manage for our clients, where high availability and scalability&#xA;are critical requirements.&lt;/em&gt;&#xA;&lt;br&gt;&#xA;— Romain Degez, Managing Partner at Enix France&lt;/p&gt;&lt;/blockquote&gt;</description>
     </item>
     <item>
       <title>WienIT</title>
@@ -54,35 +54,35 @@
       <link>https://cloudnative-pg.io/end_users/shinkansen/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://cloudnative-pg.io/end_users/shinkansen/</guid>
-      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;em&gt;Shinkansen moves your money at the speed of the internet. Our riels move money to your customers, suppliers, banks and traditionals rails (or networks). Our modern API&amp;rsquo;s free your engineers, makes cheaper the transaction cost, and automatize the clearing process. Our platform runs on the cloud using Postgres and CloudNativePG to scale clusters multizone and multiregion.&lt;/em&gt;&#xA;&lt;br&gt;&#xA;— Shinkansen&lt;/p&gt;&#xA;&lt;/blockquote&gt;</description>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;em&gt;Shinkansen moves your money at the speed of the internet. Our riels move money to your customers, suppliers, banks and traditionals rails (or networks). Our modern API&amp;rsquo;s free your engineers, makes cheaper the transaction cost, and automatize the clearing process. Our platform runs on the cloud using Postgres and CloudNativePG to scale clusters multizone and multiregion.&lt;/em&gt;&#xA;&lt;br&gt;&#xA;— Shinkansen&lt;/p&gt;&lt;/blockquote&gt;</description>
     </item>
     <item>
       <title>ParadeDB</title>
       <link>https://cloudnative-pg.io/end_users/paradedb/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://cloudnative-pg.io/end_users/paradedb/</guid>
-      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;em&gt;At ParadeDB, we&amp;rsquo;ve been using CloudNativePG since summer 2024 to support our bring-your-own-cloud database deployments. We evaluated other Postgres Kubernetes operators and concluded that CloudNativePG was the right solution due to being vendor-neutral and battle tested in production. We&amp;rsquo;ve been particularly happy with the responsiveness of the operator and have not looked back since.&lt;/em&gt;&#xA;&lt;br&gt;&#xA;— Philippe Noël, Co-founder &amp;amp; CEO ParadeDB&lt;/p&gt;&#xA;&lt;/blockquote&gt;</description>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;em&gt;At ParadeDB, we&amp;rsquo;ve been using CloudNativePG since summer 2024 to support our bring-your-own-cloud database deployments. We evaluated other Postgres Kubernetes operators and concluded that CloudNativePG was the right solution due to being vendor-neutral and battle tested in production. We&amp;rsquo;ve been particularly happy with the responsiveness of the operator and have not looked back since.&lt;/em&gt;&#xA;&lt;br&gt;&#xA;— Philippe Noël, Co-founder &amp;amp; CEO ParadeDB&lt;/p&gt;&lt;/blockquote&gt;</description>
     </item>
     <item>
       <title>REWE International AG</title>
       <link>https://cloudnative-pg.io/end_users/rewe/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://cloudnative-pg.io/end_users/rewe/</guid>
-      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;em&gt;We&amp;rsquo;ve been using CloudNativePG since 2023 to support highly available databases and it&amp;rsquo;s so much better than installing Postgres on VMs as it makes our life as DBAs and Platform Engineers so much easier. We had it up&amp;amp;running in no time and we&amp;rsquo;re really excited about the future of the project especially now with the support of major upgrades.&lt;/em&gt;&#xA;&lt;br&gt;&#xA;— Ing. Marijo Kristo, Expert IT Operations, REWE International AG&lt;/p&gt;&#xA;&lt;/blockquote&gt;</description>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;em&gt;We&amp;rsquo;ve been using CloudNativePG since 2023 to support highly available databases and it&amp;rsquo;s so much better than installing Postgres on VMs as it makes our life as DBAs and Platform Engineers so much easier. We had it up&amp;amp;running in no time and we&amp;rsquo;re really excited about the future of the project especially now with the support of major upgrades.&lt;/em&gt;&#xA;&lt;br&gt;&#xA;— Ing. Marijo Kristo, Expert IT Operations, REWE International AG&lt;/p&gt;&lt;/blockquote&gt;</description>
     </item>
     <item>
       <title>Cambium</title>
       <link>https://cloudnative-pg.io/end_users/cambium/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://cloudnative-pg.io/end_users/cambium/</guid>
-      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;em&gt;We switched to CloudNativePG 1.5 years ago, using it for all our &amp;ldquo;gold&amp;rdquo; layers. It&amp;rsquo;ss the main source that we connect to business / location (geospatial) intelligence layers. Our &amp;ldquo;alternative&amp;rdquo; was a single node dockerized vm, but CloudNativePG excels at making it really easy to scale, configure tablespaces, backups, perform migrations, you name it!&lt;/em&gt;&#xA;&lt;br&gt;&#xA;— Miguel Moncada Isla, Tech Lead, Cambium&lt;/p&gt;&#xA;&lt;/blockquote&gt;</description>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;em&gt;We switched to CloudNativePG 1.5 years ago, using it for all our &amp;ldquo;gold&amp;rdquo; layers. It&amp;rsquo;ss the main source that we connect to business / location (geospatial) intelligence layers. Our &amp;ldquo;alternative&amp;rdquo; was a single node dockerized vm, but CloudNativePG excels at making it really easy to scale, configure tablespaces, backups, perform migrations, you name it!&lt;/em&gt;&#xA;&lt;br&gt;&#xA;— Miguel Moncada Isla, Tech Lead, Cambium&lt;/p&gt;&lt;/blockquote&gt;</description>
     </item>
     <item>
       <title>Docaposte</title>
       <link>https://cloudnative-pg.io/end_users/docaposte/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://cloudnative-pg.io/end_users/docaposte/</guid>
-      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;em&gt;At Docaposte, we have been using CloudNativePG in production since January 2024 to manage our PostgreSQL workloads on Kubernetes. We chose CloudNativePG over other solutions because it offers the most elegant and efficient way to run PostgreSQL on Kubernetes. Today, in our business unit, most of our projects—whether for private customers or the French government—rely on CloudNativePG.&lt;/em&gt;&#xA;&lt;br&gt;&#xA;— Grégoire Bellon-Gervais, Cloud Architect / Platform Engineer, Docaposte&lt;/p&gt;&#xA;&lt;/blockquote&gt;</description>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;em&gt;At Docaposte, we have been using CloudNativePG in production since January 2024 to manage our PostgreSQL workloads on Kubernetes. We chose CloudNativePG over other solutions because it offers the most elegant and efficient way to run PostgreSQL on Kubernetes. Today, in our business unit, most of our projects—whether for private customers or the French government—rely on CloudNativePG.&lt;/em&gt;&#xA;&lt;br&gt;&#xA;— Grégoire Bellon-Gervais, Cloud Architect / Platform Engineer, Docaposte&lt;/p&gt;&lt;/blockquote&gt;</description>
     </item>
     <item>
       <title>MIRAKL</title>
@@ -96,7 +96,7 @@
       <link>https://cloudnative-pg.io/end_users/hitachi/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://cloudnative-pg.io/end_users/hitachi/</guid>
-      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;em&gt;We&amp;rsquo;ve been using CloudNativePG at Japan area since January 2024. Currently they have been establishing the production system with CNPG. CNPG changes our daily operation like health check and backup. So we are really excited about the future function of CNPG like off-line upgrade, etc.&lt;/em&gt;&#xA;&lt;br&gt;&#xA;— Hitachi, Ltd.&lt;/p&gt;&#xA;&lt;/blockquote&gt;</description>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;em&gt;We&amp;rsquo;ve been using CloudNativePG at Japan area since January 2024. Currently they have been establishing the production system with CNPG. CNPG changes our daily operation like health check and backup. So we are really excited about the future function of CNPG like off-line upgrade, etc.&lt;/em&gt;&#xA;&lt;br&gt;&#xA;— Hitachi, Ltd.&lt;/p&gt;&lt;/blockquote&gt;</description>
     </item>
     <item>
       <title>Rubin Observatory</title>
