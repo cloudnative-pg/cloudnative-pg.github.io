@@ -241,6 +241,10 @@
                 </li>
               </ul>
               <ul>
+                <li class="toctree-l1"><a class="reference internal" href="cnpg_i/">CNPG-I</a>
+                </li>
+              </ul>
+              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="operator_capability_levels/">Operator capability levels</a>
                 </li>
               </ul>
@@ -377,17 +381,31 @@ in three different flavors:</p>
 <p>All container images are signed and include SBOM and provenance attestations,
 provided separately for each architecture.</p>
 <h3 id="operands">Operands</h3>
-<p>The PostgreSQL operand container images are available for all
-<a href="https://www.postgresql.org/">PGDG supported versions of PostgreSQL</a>,
-across multiple architectures, directly from the
-<a href="https://github.com/cloudnative-pg/postgres-containers/pkgs/container/postgresql"><code>postgres-containers</code> project's GitHub Container Registry</a>.</p>
-<p>The <a href="https://github.com/cloudnative-pg/postgres-containers#minimal-images"><code>minimal</code></a>
-and <a href="https://github.com/cloudnative-pg/postgres-containers#standard-images"><code>standard</code></a>
-container images are signed and include SBOM and provenance attestations,
-provided separately for each architecture.</p>
-<p>Weekly jobs ensure that critical vulnerabilities (CVEs) in the entire stack are
-promptly addressed.</p>
-<p>Additionally, the community provides images for the <a href="postgis/">PostGIS extension</a>.</p>
+<p>The CloudNativePG project provides and maintains PostgreSQL operand container
+images, built on top of the official <a href="https://hub.docker.com/_/debian">Debian <code>slim</code> base image</a>,
+for both <code>linux/amd64</code> and <code>linux/arm64</code> architectures.</p>
+<p>Images are published for all <a href="https://www.debian.org/releases/">Debian supported releases</a>
+(<a href="https://www.debian.org/releases/stable/"><code>stable</code></a>,
+<a href="https://www.debian.org/releases/oldstable/"><code>oldstable</code></a>) and for
+<a href="https://www.postgresql.org/">PostgreSQL versions supported by PGDG</a>.
+They are distributed via the <a href="https://github.com/cloudnative-pg/postgres-containers/pkgs/container/postgresql"><code>postgres-containers</code> GitHub Container Registry</a>.</p>
+<p>Three image flavors are available, each extending the previous one:</p>
+<ul>
+<li><a href="https://github.com/cloudnative-pg/postgres-containers#minimal-images"><code>minimal</code></a></li>
+<li><a href="https://github.com/cloudnative-pg/postgres-containers#standard-images"><code>standard</code></a></li>
+<li><a href="https://github.com/cloudnative-pg/postgres-containers#system-images"><code>system</code></a> <em>(deprecated)</em></li>
+</ul>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>The <code>system</code> images are deprecated and will be removed once in-core
+Barman Cloud support is phased out. They remain usable for now, but you may
+want to plan a future migration to <code>minimal</code> or <code>standard</code> images with the
+Barman Cloud plugin, or another supported backup solution.</p>
+</div>
+<p>By default, this version of CloudNativePG deploys <code>ghcr.io/cloudnative-pg/postgresql:18.0-system-trixie</code>.</p>
+<p>All images are signed and shipped with SBOM and provenance attestations.
+Weekly automated builds ensure that critical vulnerabilities (CVEs) are promptly fixed.</p>
+<p>For details and support, see the <a href="https://github.com/cloudnative-pg/postgres-containers?tab=readme-ov-file#cnpg-postgresql-container-images"><code>postgres-containers</code> project</a>.</p>
 <h2 id="main-features">Main features</h2>
 <ul>
 <li>Direct integration with the Kubernetes API server for High Availability,
@@ -552,5 +570,5 @@ of Canada, and used with their permission.</em></p>
 
 <!--
 MkDocs version : 1.6.1
-Build Date UTC : 2025-07-25 12:06:46.657994+00:00
+Build Date UTC : 2025-10-23 13:23:25.100117+00:00
 -->

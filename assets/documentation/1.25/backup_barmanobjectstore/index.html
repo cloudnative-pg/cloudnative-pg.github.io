@@ -241,6 +241,10 @@
                 </li>
               </ul>
               <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../cnpg_i/">CNPG-I</a>
+                </li>
+              </ul>
+              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../operator_capability_levels/">Operator capability levels</a>
                 </li>
               </ul>
@@ -340,6 +344,16 @@ as it is composed of a community PostgreSQL image and the latest
 <p>Always ensure that you are running the latest version of the operands
 in your system to take advantage of the improvements introduced in
 Barman cloud (as well as improve the security aspects of your cluster).</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Changes in Barman Cloud 3.16+ and Bucket Creation</p>
+<p>Starting with Barman Cloud 3.16, most Barman Cloud commands no longer
+automatically create the target bucket, assuming it already exists. Only the
+<code>barman-cloud-check-wal-archive</code> command creates the bucket now. Whenever this
+is not the first operation run on an empty bucket, CloudNativePG will throw an
+error. As a result, to ensure reliable, future-proof operations and avoid
+potential issues, we strongly recommend that you create and configure your
+object store bucket <em>before</em> creating a <code>Cluster</code> resource that references it.</p>
 </div>
 <p>A backup is performed from a primary or a designated primary instance in a
 <code>Cluster</code> (please refer to

@@ -618,10 +618,10 @@ manually restart the cluster (e.g., using <code>cnpg restart</code>) after modif
 <p>A standard extension container image for CloudNativePG includes two
 required directories at its root:</p>
 <ul>
-<li><code>share</code>: contains the extension control file (e.g., <code>&lt;EXTENSION&gt;.control</code>)
-  and any SQL files.</li>
-<li><code>lib</code>: contains the extension's shared library (e.g., <code>&lt;EXTENSION&gt;.so</code>) and
-  any additional required libraries.</li>
+<li><code>/share/</code>: contains an <code>extension</code> subdirectory with the extension control
+  file (e.g. <code>&lt;EXTENSION&gt;.control</code>) and the corresponding SQL files.</li>
+<li><code>/lib/</code>: contains the extension’s shared library (e.g. <code>&lt;EXTENSION&gt;.so</code>) as
+  well as any other required libraries.</li>
 </ul>
 <p>Following this structure ensures that the extension will be automatically
 discoverable and usable by PostgreSQL within CloudNativePG without requiring

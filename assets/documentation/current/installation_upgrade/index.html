@@ -83,21 +83,13 @@
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#compatibility-among-versions">Compatibility among versions</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#upgrading-to-1270-or-1261">Upgrading to 1.27.0 or 1.26.1</a>
+    <li class="toctree-l3"><a class="reference internal" href="#upgrading-to-127-from-a-previous-minor-version">Upgrading to 1.27 from a previous minor version</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#upgrading-to-126-from-a-previous-minor-version">Upgrading to 1.26 from a previous minor version</a>
         <ul>
     <li class="toctree-l4"><a class="reference internal" href="#deprecation-of-backup-metrics-and-fields-in-the-cluster-status">Deprecation of backup metrics and fields in the Cluster .status</a>
     </li>
     <li class="toctree-l4"><a class="reference internal" href="#declarative-hibernation-in-the-cnpg-plugin">Declarative Hibernation in the cnpg plugin</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#upgrading-to-125-from-a-previous-minor-version">Upgrading to 1.25 from a previous minor version</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#upgrading-to-124-from-a-previous-minor-version">Upgrading to 1.24 from a previous minor version</a>
-        <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#from-replica-clusters-to-distributed-topology">From Replica Clusters to Distributed Topology</a>
     </li>
         </ul>
     </li>
@@ -572,7 +564,7 @@ only the operator itself.</p>
 
 -->
 
-<h3 id="upgrading-to-1270-or-1261">Upgrading to 1.27.0 or 1.26.1</h3>
+<h3 id="upgrading-to-127-from-a-previous-minor-version">Upgrading to 1.27 from a previous minor version</h3>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
 <p>We strongly recommend that all CloudNativePG users upgrade to version
@@ -592,12 +584,6 @@ within the <code>livenessProbeTimeout</code> (30 seconds).</p>
         enabled: false
 </code></pre>
 <h3 id="upgrading-to-126-from-a-previous-minor-version">Upgrading to 1.26 from a previous minor version</h3>
-<div class="admonition important">
-<p class="admonition-title">Important</p>
-<p>We strongly recommend that all CloudNativePG users upgrade to version
-1.26.1, or at a minimum, to the latest stable version of your current minor
-release (for example, 1.25.x).</p>
-</div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>Due to changes in the startup probe for the manager component
@@ -649,52 +635,6 @@ The <code>hibernate on</code> and <code>hibernate off</code> commands are now co
 that apply declarative changes to enable or disable hibernation.
 The <code>hibernate status</code> command has been removed, as its purpose is now
 fulfilled by the standard <code>status</code> command.</p>
-<h3 id="upgrading-to-125-from-a-previous-minor-version">Upgrading to 1.25 from a previous minor version</h3>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Every time you are upgrading to a higher minor release, make sure you
-go through the release notes and upgrade instructions of all the
-intermediate minor releases. For example, if you want to move
-from 1.23.x to 1.25, make sure you go through the release notes
-and upgrade instructions for 1.24 and 1.25.</p>
-</div>
-<p>No changes to existing 1.24 cluster configurations are required when upgrading
-to 1.25.</p>
-<h3 id="upgrading-to-124-from-a-previous-minor-version">Upgrading to 1.24 from a previous minor version</h3>
-<h4 id="from-replica-clusters-to-distributed-topology">From Replica Clusters to Distributed Topology</h4>
-<p>One of the key enhancements in CloudNativePG 1.24.0 is the upgrade of the
-replica cluster feature.</p>
-<p>The former replica cluster feature, now referred to as the "Standalone Replica
-Cluster," is no longer recommended for Disaster Recovery (DR) and High
-Availability (HA) scenarios that span multiple Kubernetes clusters. Standalone
-replica clusters are best suited for read-only workloads, such as reporting,
-OLAP, or creating development environments with test data.</p>
-<p>For DR and HA purposes, CloudNativePG now introduces the Distributed Topology
-strategy for replica clusters. This new strategy allows you to build PostgreSQL
-clusters across private, public, hybrid, and multi-cloud environments, spanning
-multiple regions and potentially different cloud providers. It also provides an
-API to control the switchover operation, ensuring that only one cluster acts as
-the primary at any given time.</p>
-<p>This Distributed Topology strategy enhances resilience and scalability, making
-it a robust solution for modern, distributed applications that require high
-availability and disaster recovery capabilities across diverse infrastructure
-setups.</p>
-<p>You can seamlessly transition from a previous replica cluster configuration to a
-distributed topology by modifying all the <code>Cluster</code> resources involved in the
-distributed PostgreSQL setup. Ensure the following steps are taken:</p>
-<ul>
-<li>Configure the <code>externalClusters</code> section to include all the clusters involved
-  in the distributed topology. We strongly suggest using the same configuration
-  across all <code>Cluster</code> resources for maintainability and consistency.</li>
-<li>Configure the <code>primary</code> and <code>source</code> fields in the <code>.spec.replica</code> stanza to
-  reflect the distributed topology. The <code>primary</code> field should contain the name
-  of the current primary cluster in the distributed topology, while the <code>source</code>
-  field should contain the name of the cluster each <code>Cluster</code> resource is
-  replicating from. It is important to note that the <code>enabled</code> field, which was
-  previously set to <code>true</code> or <code>false</code>, should now be unset (default).</li>
-</ul>
-<p>For more information, please refer to
-the <a href="../replica_cluster/#distributed-topology">"Distributed Topology" section for replica clusters</a>.</p>
               
             </div>
           </div><footer>
