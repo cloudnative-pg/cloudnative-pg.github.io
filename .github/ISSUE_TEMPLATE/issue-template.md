@@ -1,7 +1,7 @@
 ---
 name: Issue template
 about: 'Issue template for cloudnative-pg.io '
-title: Issue cloudnative-pg website
+title: Issue for the cloudnative-pg website
 labels: ''
 assignees: ''
 
