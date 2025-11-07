@@ -43,7 +43,7 @@ for high-availability clusters.
 We introduced comprehensive declarative management for Foreign Data Wrappers
 (FDW) by extending the `Database` CRD. This feature adds the `.spec.fdws`
 and `.spec.servers` fields, allowing you to
-[manage FDW extensions and foreign servers](/documentation/preview/database_crd/#foreign-data-wrappers)
+[manage FDW extensions and foreign servers](/documentation/preview/declarative_database_management/#managing-foreign-data-wrappers-fdws-in-a-database)
 directly from the `Database` resource.
 This work was implemented by Ying Zhu ([@EdwinaZhu](https://github.com/EdwinaZhu))
 as part of the [LFX Mentorship Program 2025 Term 2](https://mentorship.lfx.linuxfoundation.org/project/53fa853e-b5fa-4d68-be71-f005c75aea89).
@@ -52,19 +52,19 @@ as part of the [LFX Mentorship Program 2025 Term 2](https://mentorship.lfx.linux
 
 Explore other improvements in this release, including:
 
-- Introduced granular control over [fine-grained security contexts](/documentation/preview/cluster_spec/#security-contexts),
+- Introduced granular control over [fine-grained security contexts](/documentation/preview/security/#customizing-security-contexts),
   allowing `securityContext` at the pod level and `containerSecurityContext`
   for individual containers.
-- Allowed providing [custom TLS for PgBouncer](/documentation/preview/pooler_spec/#custom-tls)
+- Allowed providing [custom TLS for PgBouncer](/documentation/preview/cloudnative-pg.v1/#postgresql-cnpg-io-v1-PgBouncerSpe)
   for both client-to-pooler and pooler-to-server connections,
   taking precedence over operator-generated certificates.
-- Added optional [TLS support for the operator's metrics server](/documentation/preview/operator_config/#metrics-tls),
+- Added optional [TLS support for the operator's metrics server](/documentation/preview/monitoring/#enabling-tls-for-operator-metrics),
   enabled via the `METRICS_CERT_DIR` environment variable.
 - Enabled the `cnpg report operator` command to work with
-  [minimal, least-privileged access](/documentation/preview/cnpg_plugin/#report),
+  [minimal, least-privileged access](/documentation/preview/kubectl-plugin/#report),
   gracefully handling permission errors.
 - Introduced the `alpha.cnpg.io/unrecoverable=true` annotation to
-  [automatically delete and recreate a replica pod](/documentation/preview/instance_management/#unrecoverable-replicas)
+  [automatically delete and recreate a replica pod](/documentation/preview/labels_annotations/#predefined-annotations)
   and its PVCs.
 
 Dive into the full details in the
@@ -76,7 +76,7 @@ The stability of each CloudNativePG release relies on the community’s
 engagement. Testing your workloads with this release candidate helps
 identify bugs and regressions early.
 
-- View the [open issues for the 1.28 release](https://github.com/cloudnative-pg/cloudnative-pg/milestone/29).
+- View the [open issues for the 1.28 release](https://github.com/cloudnative-pg/cloudnative-pg/milestone/30).
 - Report bugs directly on [GitHub](https://github.com/cloudnative-pg/cloudnative-pg/issues/new/choose).
 
 ## Release Timeline
