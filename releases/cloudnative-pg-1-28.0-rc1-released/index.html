@@ -194,26 +194,26 @@ for high-availability clusters.</p>
 <p>We introduced comprehensive declarative management for Foreign Data Wrappers
 (FDW) by extending the <code>Database</code> CRD. This feature adds the <code>.spec.fdws</code>
 and <code>.spec.servers</code> fields, allowing you to
-<a href="/documentation/preview/database_crd/#foreign-data-wrappers">manage FDW extensions and foreign servers</a>
+<a href="/documentation/preview/declarative_database_management/#managing-foreign-data-wrappers-fdws-in-a-database">manage FDW extensions and foreign servers</a>
 directly from the <code>Database</code> resource.
 This work was implemented by Ying Zhu (<a href="https://github.com/EdwinaZhu">@EdwinaZhu</a>)
 as part of the <a href="https://mentorship.lfx.linuxfoundation.org/project/53fa853e-b5fa-4d68-be71-f005c75aea89">LFX Mentorship Program 2025 Term 2</a>.</p>
 <h2 id="theres-more">There’s More…</h2>
 <p>Explore other improvements in this release, including:</p>
 <ul>
-<li>Introduced granular control over <a href="/documentation/preview/cluster_spec/#security-contexts">fine-grained security contexts</a>,
+<li>Introduced granular control over <a href="/documentation/preview/security/#customizing-security-contexts">fine-grained security contexts</a>,
 allowing <code>securityContext</code> at the pod level and <code>containerSecurityContext</code>
 for individual containers.</li>
-<li>Allowed providing <a href="/documentation/preview/pooler_spec/#custom-tls">custom TLS for PgBouncer</a>
+<li>Allowed providing <a href="/documentation/preview/cloudnative-pg.v1/#postgresql-cnpg-io-v1-PgBouncerSpe">custom TLS for PgBouncer</a>
 for both client-to-pooler and pooler-to-server connections,
 taking precedence over operator-generated certificates.</li>
-<li>Added optional <a href="/documentation/preview/operator_config/#metrics-tls">TLS support for the operator&rsquo;s metrics server</a>,
+<li>Added optional <a href="/documentation/preview/monitoring/#enabling-tls-for-operator-metrics">TLS support for the operator&rsquo;s metrics server</a>,
 enabled via the <code>METRICS_CERT_DIR</code> environment variable.</li>
 <li>Enabled the <code>cnpg report operator</code> command to work with
-<a href="/documentation/preview/cnpg_plugin/#report">minimal, least-privileged access</a>,
+<a href="/documentation/preview/kubectl-plugin/#report">minimal, least-privileged access</a>,
 gracefully handling permission errors.</li>
 <li>Introduced the <code>alpha.cnpg.io/unrecoverable=true</code> annotation to
-<a href="/documentation/preview/instance_management/#unrecoverable-replicas">automatically delete and recreate a replica pod</a>
+<a href="/documentation/preview/labels_annotations/#predefined-annotations">automatically delete and recreate a replica pod</a>
 and its PVCs.</li>
 </ul>
 <p>Dive into the full details in the
@@ -223,7 +223,7 @@ and its PVCs.</li>
 engagement. Testing your workloads with this release candidate helps
 identify bugs and regressions early.</p>
 <ul>
-<li>View the <a href="https://github.com/cloudnative-pg/cloudnative-pg/milestone/29">open issues for the 1.28 release</a>.</li>
+<li>View the <a href="https://github.com/cloudnative-pg/cloudnative-pg/milestone/30">open issues for the 1.28 release</a>.</li>
 <li>Report bugs directly on <a href="https://github.com/cloudnative-pg/cloudnative-pg/issues/new/choose">GitHub</a>.</li>
 </ul>
 <h2 id="release-timeline">Release Timeline</h2>
