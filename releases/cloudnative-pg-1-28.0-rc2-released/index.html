@@ -6,7 +6,7 @@
 <html lang="en">
 
 <head>
-  <title>Gabriele Bartolini | CloudNativePG - PostgreSQL Operator for Kubernetes</title>
+  <title>CloudNativePG 1.28.0 RC2 Released! | CloudNativePG - PostgreSQL Operator for Kubernetes</title>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
@@ -14,22 +14,30 @@
   <meta name="keywords" content="" />
   <link rel="preload" href="/fonts/Supreme-Variable.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet" />
-  <link rel="alternate" type="application/rss+xml" href="https://cloudnative-pg.io/authors/gbartolini/index.xml" title="CloudNativePG - PostgreSQL Operator for Kubernetes" />
   <link href="/main.min.css" rel="stylesheet" />
   <link rel="favicon" href="/favicon/favicon.ico">
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://cloudnative-pg.io/images/hero_image.png">
-  <meta name="twitter:title" content="Gabriele Bartolini">
-  <meta name="twitter:description" content="A long time open source programmer and entrepreneur, Gabriele has a degree in Statistics from the University of Florence. After having consistently contributed to the growth of 2ndQuadrant and its members through nurturing a lean and devops culture, he is now leading the Cloud Native initiative at EDB. Gabriele lives in Prato, a small but vibrant city located in the northern part of Tuscany, Italy - known for having hosted the first European PostgreSQL conferences. His second home is Melbourne, Australia, where he studied at Monash University and worked in the ICT sector. He loves playing the Blues with his Fender Stratocaster, but his major passions are called Elisabeth and Charlotte!">
+  <meta name="twitter:title" content="CloudNativePG 1.28.0 RC2 Released!">
+  <meta name="twitter:description" content="The CloudNativePG community is excited to announce the second release candidate of CloudNativePG 1.28! Join us in testing these updates to shape the final release.">
 
-  <meta property="og:url" content="https://cloudnative-pg.io/authors/gbartolini/">
+  <meta property="og:url" content="https://cloudnative-pg.io/releases/cloudnative-pg-1-28.0-rc2-released/">
   <meta property="og:site_name" content="CloudNativePG - PostgreSQL Operator for Kubernetes">
-  <meta property="og:title" content="Gabriele Bartolini">
-  <meta property="og:description" content="A long time open source programmer and entrepreneur, Gabriele has a degree in Statistics from the University of Florence. After having consistently contributed to the growth of 2ndQuadrant and its members through nurturing a lean and devops culture, he is now leading the Cloud Native initiative at EDB. Gabriele lives in Prato, a small but vibrant city located in the northern part of Tuscany, Italy - known for having hosted the first European PostgreSQL conferences. His second home is Melbourne, Australia, where he studied at Monash University and worked in the ICT sector. He loves playing the Blues with his Fender Stratocaster, but his major passions are called Elisabeth and Charlotte!">
+  <meta property="og:title" content="CloudNativePG 1.28.0 RC2 Released!">
+  <meta property="og:description" content="The CloudNativePG community is excited to announce the second release candidate of CloudNativePG 1.28! Join us in testing these updates to shape the final release.">
   <meta property="og:locale" content="en_us">
-  <meta property="og:type" content="website">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="releases">
+    <meta property="article:published_time" content="2025-11-28T18:21:37+01:00">
+    <meta property="article:modified_time" content="2025-11-28T18:21:37+01:00">
+    <meta property="article:tag" content="Release">
+    <meta property="article:tag" content="Postgresql">
+    <meta property="article:tag" content="Postgres">
+    <meta property="article:tag" content="Kubernetes">
+    <meta property="article:tag" content="K8s">
+    <meta property="article:tag" content="Cloudnativepg">
     <meta property="og:image" content="https://cloudnative-pg.io/images/hero_image.png">
 
   
@@ -126,430 +134,129 @@
 </script>
 
     
-
+<h1 class="h1 text-center mx-auto md:w-3/5">CloudNativePG 1.28.0 RC2 Released!</h1>
 <div class="md:w-3/5 mx-auto">
     <div class="px-4">
         
-        <div>
-          <img src="/authors/gbartolini/gb.png" width="288" height="288"  alt="blog image" class="mx-auto">
-        </div>
+        <div class="grid gap-3 my-10 mx-auto justify-center">
+            
+<div class="flex gap-3">  
+    
+      <div class="my-auto">
         
         
+        <img src="/authors/gbartolini/gb.png" class="w-10 h-10 rounded-full"
+            alt="Gabriele Bartolini">
+        
+      </div>
 
-        <div class="mx-auto my-10">
-            <h3><a href="https://github.com/gbartolini">Gabriele Bartolini</a></h3>
+      <div>
+          <h1 class="text-lg charcoal font-bold">
+              <a href="/authors/gbartolini/">Gabriele Bartolini</a>
+          </h1>
+      </div>
+    
+</div>
 
-            <p>A long time open source programmer and entrepreneur, Gabriele has a degree in
-Statistics from the University of Florence. After having consistently
-contributed to the growth of 2ndQuadrant and its members through nurturing a
-lean and devops culture, he is now leading the Cloud Native initiative at EDB.
-Gabriele lives in Prato, a small but vibrant city located in the northern part
-of Tuscany, Italy - known for having hosted the first European PostgreSQL
-conferences. His second home is Melbourne, Australia, where he studied at
-Monash University and worked in the ICT sector. He loves playing the Blues with
-his Fender Stratocaster, but his major passions are called Elisabeth and
-Charlotte!</p>
 
-        </div>
-
-        <h3 class="text-xl font-bold mb-6">Posts by Gabriele Bartolini</h3>
-          
-            <div class="column is-half">
-                <a href="/releases/cloudnative-pg-1-28.0-rc2-released/">CloudNativePG 1.28.0 RC2 Released!</a>
-                <div class="block gap-2 text-sm charcoal opacity-75">
+<div class="block gap-2 text-sm charcoal opacity-75">
     <h6 class="block gap-2 text-sm charcoal">
         November 28, 2025
         •
         2 minutes
     </h6>
 </div>
-            </div>
-          
-            <div class="column is-half">
-                <a href="/releases/cloudnative-pg-1-28.0-rc1-released/">CloudNativePG 1.28.0 RC1 Released!</a>
-                <div class="block gap-2 text-sm charcoal opacity-75">
-    <h6 class="block gap-2 text-sm charcoal">
-        November 7, 2025
-        •
-        2 minutes
-    </h6>
-</div>
-            </div>
-          
-            <div class="column is-half">
-                <a href="/releases/cloudnative-pg-1-27.1-released/">CloudNativePG 1.27.1, 1.26.2 and 1.25.4 released!</a>
-                <div class="block gap-2 text-sm charcoal opacity-75">
-    <h6 class="block gap-2 text-sm charcoal">
-        October 23, 2025
-        •
-        2 minutes
-    </h6>
-</div>
-            </div>
-          
-            <div class="column is-half">
-                <a href="/releases/cloudnative-pg-1-27.0-released/">CloudNativePG 1.27.0 Released!</a>
-                <div class="block gap-2 text-sm charcoal opacity-75">
-    <h6 class="block gap-2 text-sm charcoal">
-        August 12, 2025
-        •
-        2 minutes
-    </h6>
-</div>
-            </div>
-          
-            <div class="column is-half">
-                <a href="/releases/cloudnative-pg-1-26.1-released/">CloudNativePG 1.26.1 and 1.25.3 Released!</a>
-                <div class="block gap-2 text-sm charcoal opacity-75">
-    <h6 class="block gap-2 text-sm charcoal">
-        July 25, 2025
-        •
-        1 minute
-    </h6>
-</div>
-            </div>
-          
-            <div class="column is-half">
-                <a href="/releases/cloudnative-pg-1-26.0-released/">CloudNativePG 1.26.0 and 1.25.2 Released!</a>
-                <div class="block gap-2 text-sm charcoal opacity-75">
-    <h6 class="block gap-2 text-sm charcoal">
-        May 23, 2025
-        •
-        3 minutes
-    </h6>
-</div>
-            </div>
-          
-            <div class="column is-half">
-                <a href="/releases/cloudnative-pg-1-26.0-rc3-released/">CloudNativePG 1.26.0 RC3 Released!</a>
-                <div class="block gap-2 text-sm charcoal opacity-75">
-    <h6 class="block gap-2 text-sm charcoal">
-        May 13, 2025
-        •
-        2 minutes
-    </h6>
-</div>
-            </div>
-          
-            <div class="column is-half">
-                <a href="/releases/cloudnative-pg-1-26.0-rc2-released/">CloudNativePG 1.26.0 RC2 Released!</a>
-                <div class="block gap-2 text-sm charcoal opacity-75">
-    <h6 class="block gap-2 text-sm charcoal">
-        April 17, 2025
-        •
-        2 minutes
-    </h6>
-</div>
-            </div>
-          
-            <div class="column is-half">
-                <a href="/releases/cloudnative-pg-1-26.0-rc1-released/">CloudNativePG 1.26.0 RC1 Released!</a>
-                <div class="block gap-2 text-sm charcoal opacity-75">
-    <h6 class="block gap-2 text-sm charcoal">
-        March 28, 2025
-        •
-        3 minutes
-    </h6>
-</div>
-            </div>
-          
-            <div class="column is-half">
-                <a href="/releases/cloudnative-pg-1-25.1-released/">CloudNativePG 1.25.1 and 1.24.3 Released!</a>
-                <div class="block gap-2 text-sm charcoal opacity-75">
-    <h6 class="block gap-2 text-sm charcoal">
-        February 28, 2025
-        •
-        2 minutes
-    </h6>
-</div>
-            </div>
-          
-            <div class="column is-half">
-                <a href="/releases/cloudnative-pg-1-25.0-released/">CloudNativePG 1.25.0 and 1.24.2 Released!</a>
-                <div class="block gap-2 text-sm charcoal opacity-75">
-    <h6 class="block gap-2 text-sm charcoal">
-        December 23, 2024
-        •
-        2 minutes
-    </h6>
-</div>
-            </div>
-          
-            <div class="column is-half">
-                <a href="/releases/cloudnative-pg-1-25.0-rc1-released/">CloudNativePG 1.25.0 RC1 Released!</a>
-                <div class="block gap-2 text-sm charcoal opacity-75">
-    <h6 class="block gap-2 text-sm charcoal">
-        December 9, 2024
-        •
-        2 minutes
-    </h6>
-</div>
-            </div>
-          
-            <div class="column is-half">
-                <a href="/releases/cloudnative-pg-1-24.1-released/">CloudNativePG 1.24.1 and 1.23.5 Released!</a>
-                <div class="block gap-2 text-sm charcoal opacity-75">
-    <h6 class="block gap-2 text-sm charcoal">
-        October 16, 2024
-        •
-        1 minute
-    </h6>
-</div>
-            </div>
-          
-            <div class="column is-half">
-                <a href="/releases/cloudnative-pg-1-24.0-released/">CloudNativePG 1.24.0 and 1.23.4 Released!</a>
-                <div class="block gap-2 text-sm charcoal opacity-75">
-    <h6 class="block gap-2 text-sm charcoal">
-        August 22, 2024
-        •
-        2 minutes
-    </h6>
-</div>
-            </div>
-          
-            <div class="column is-half">
-                <a href="/releases/cloudnative-pg-1-24.0-rc1-released/">CloudNativePG 1.24.0 RC1 Released!</a>
-                <div class="block gap-2 text-sm charcoal opacity-75">
-    <h6 class="block gap-2 text-sm charcoal">
-        July 30, 2024
-        •
-        3 minutes
-    </h6>
-</div>
-            </div>
-          
-            <div class="column is-half">
-                <a href="/releases/cloudnative-pg-1-23.3-released/">CloudNativePG 1.23.3 and 1.22.5 Released!</a>
-                <div class="block gap-2 text-sm charcoal opacity-75">
-    <h6 class="block gap-2 text-sm charcoal">
-        July 29, 2024
-        •
-        1 minute
-    </h6>
-</div>
-            </div>
-          
-            <div class="column is-half">
-                <a href="/releases/cloudnative-pg-1-23.2-released/">CloudNativePG 1.23.2, 1.22.4 and 1.21.6 Released!</a>
-                <div class="block gap-2 text-sm charcoal opacity-75">
-    <h6 class="block gap-2 text-sm charcoal">
-        June 12, 2024
-        •
-        2 minutes
-    </h6>
-</div>
-            </div>
-          
-            <div class="column is-half">
-                <a href="/releases/cloudnative-pg-1-23.0-released/">CloudNativePG 1.23.0, 1.22.3 and 1.21.5 Released!</a>
-                <div class="block gap-2 text-sm charcoal opacity-75">
-    <h6 class="block gap-2 text-sm charcoal">
-        April 25, 2024
-        •
-        2 minutes
-    </h6>
-</div>
-            </div>
-          
-            <div class="column is-half">
-                <a href="/releases/cloudnative-pg-1-22.2-released/">CloudNativePG 1.22.2 and 1.21.4 Released!</a>
-                <div class="block gap-2 text-sm charcoal opacity-75">
-    <h6 class="block gap-2 text-sm charcoal">
-        March 14, 2024
-        •
-        2 minutes
-    </h6>
-</div>
-            </div>
-          
-            <div class="column is-half">
-                <a href="/releases/cloudnative-pg-1-22.1-released/">CloudNativePG 1.22.1, 1.21.3 and 1.20.6 Released!</a>
-                <div class="block gap-2 text-sm charcoal opacity-75">
-    <h6 class="block gap-2 text-sm charcoal">
-        February 2, 2024
-        •
-        2 minutes
-    </h6>
-</div>
-            </div>
-          
-            <div class="column is-half">
-                <a href="/releases/cloudnative-pg-1-22.0-released/">CloudNativePG 1.22.0, 1.21.2 and 1.20.5 Released!</a>
-                <div class="block gap-2 text-sm charcoal opacity-75">
-    <h6 class="block gap-2 text-sm charcoal">
-        December 21, 2023
-        •
-        2 minutes
-    </h6>
-</div>
-            </div>
-          
-            <div class="column is-half">
-                <a href="/releases/cloudnative-pg-1-21.1-released/">CloudNativePG 1.21.1, 1.20.4 and 1.19.6 Released!</a>
-                <div class="block gap-2 text-sm charcoal opacity-75">
-    <h6 class="block gap-2 text-sm charcoal">
-        November 3, 2023
-        •
-        1 minute
-    </h6>
-</div>
-            </div>
-          
-            <div class="column is-half">
-                <a href="/releases/cloudnative-pg-1-21.0-released/">CloudNativePG 1.21.0, 1.20.3 and 1.19.5 Released!</a>
-                <div class="block gap-2 text-sm charcoal opacity-75">
-    <h6 class="block gap-2 text-sm charcoal">
-        October 12, 2023
-        •
-        2 minutes
-    </h6>
-</div>
-            </div>
-          
-            <div class="column is-half">
-                <a href="/releases/cloudnative-pg-1-20-1-released/">CloudNativePG 1.20.1, 1.19.3 and 1.18.5 Released!</a>
-                <div class="block gap-2 text-sm charcoal opacity-75">
-    <h6 class="block gap-2 text-sm charcoal">
-        June 12, 2023
-        •
-        1 minute
-    </h6>
-</div>
-            </div>
-          
-            <div class="column is-half">
-                <a href="/blog/postgresql-16-beta1/">How to test PostgreSQL 16 beta in your Kubernetes cluster</a>
-                <div class="block gap-2 text-sm charcoal opacity-75">
-    <h6 class="block gap-2 text-sm charcoal">
-        June 7, 2023
-        •
-        2 minutes
-    </h6>
-</div>
-            </div>
-          
-            <div class="column is-half">
-                <a href="/releases/cloudnative-pg-1-20-0-released/">CloudNativePG 1.20.0, 1.19.2 and 1.18.4 Released!</a>
-                <div class="block gap-2 text-sm charcoal opacity-75">
-    <h6 class="block gap-2 text-sm charcoal">
-        April 27, 2023
-        •
-        1 minute
-    </h6>
-</div>
-            </div>
-          
-            <div class="column is-half">
-                <a href="/releases/cloudnative-pg-1-19-1-released/">CloudNativePG 1.19.1, 1.18.3 and 1.17.5 Released!</a>
-                <div class="block gap-2 text-sm charcoal opacity-75">
-    <h6 class="block gap-2 text-sm charcoal">
-        March 20, 2023
-        •
-        1 minute
-    </h6>
-</div>
-            </div>
-          
-            <div class="column is-half">
-                <a href="/releases/cloudnative-pg-1-19-0-released/">CloudNativePG 1.19.0, 1.18.2 and 1.17.4 Released!</a>
-                <div class="block gap-2 text-sm charcoal opacity-75">
-    <h6 class="block gap-2 text-sm charcoal">
-        February 14, 2023
-        •
-        1 minute
-    </h6>
-</div>
-            </div>
-          
-            <div class="column is-half">
-                <a href="/releases/cloudnative-pg-1-18-1-released/">CloudNativePG 1.18.1, 1.17.3 and 1.16.5 Released!</a>
-                <div class="block gap-2 text-sm charcoal opacity-75">
-    <h6 class="block gap-2 text-sm charcoal">
-        December 21, 2022
-        •
-        1 minute
-    </h6>
-</div>
-            </div>
-          
-            <div class="column is-half">
-                <a href="/releases/cloudnative-pg-1-18-0-released/">CloudNativePG 1.18.0, 1.17.2 and 1.16.4 Released!</a>
-                <div class="block gap-2 text-sm charcoal opacity-75">
-    <h6 class="block gap-2 text-sm charcoal">
-        November 10, 2022
-        •
-        1 minute
-    </h6>
-</div>
-            </div>
-          
-            <div class="column is-half">
-                <a href="/releases/cloudnative-pg-1-17-1-released/">CloudNativePG 1.17.1, 1.16.3 and 1.15.5 Released!</a>
-                <div class="block gap-2 text-sm charcoal opacity-75">
-    <h6 class="block gap-2 text-sm charcoal">
-        October 6, 2022
-        •
-        1 minute
-    </h6>
-</div>
-            </div>
-          
-            <div class="column is-half">
-                <a href="/releases/cloudnative-pg-1-17-0-released/">CloudNativePG 1.17.0, 1.16.2 and 1.15.4 Released!</a>
-                <div class="block gap-2 text-sm charcoal opacity-75">
-    <h6 class="block gap-2 text-sm charcoal">
-        September 4, 2022
-        •
-        1 minute
-    </h6>
-</div>
-            </div>
-          
-            <div class="column is-half">
-                <a href="/releases/cloudnative-pg-1-16-1-released/">CloudNativePG 1.16.1 and 1.15.3 Released!</a>
-                <div class="block gap-2 text-sm charcoal opacity-75">
-    <h6 class="block gap-2 text-sm charcoal">
-        August 11, 2022
-        •
-        1 minute
-    </h6>
-</div>
-            </div>
-          
-            <div class="column is-half">
-                <a href="/releases/cloudnative-pg-1-16-0-released/">CloudNativePG 1.16.0 and 1.15.2 Released!</a>
-                <div class="block gap-2 text-sm charcoal opacity-75">
-    <h6 class="block gap-2 text-sm charcoal">
-        July 7, 2022
-        •
-        2 minutes
-    </h6>
-</div>
-            </div>
-          
-            <div class="column is-half">
-                <a href="/releases/cloudnative-pg-1-15-1-released/">CloudNativePG 1.15.1 Released!</a>
-                <div class="block gap-2 text-sm charcoal opacity-75">
-    <h6 class="block gap-2 text-sm charcoal">
-        May 30, 2022
-        •
-        1 minute
-    </h6>
-</div>
-            </div>
-          
-            <div class="column is-half">
-                <a href="/blog/running-postgresql-the-kubernetes-way/">Running PostgreSQL the Kubernetes Way</a>
-                <div class="block gap-2 text-sm charcoal opacity-75">
-    <h6 class="block gap-2 text-sm charcoal">
-        May 11, 2022
-        •
-        2 minutes
-    </h6>
-</div>
-            </div>
-          
+
+        </div>
+        
+
+        
+        <div>
+            <img src="58364dde1adc4a0a8.37186404-2048x1445.jpg" alt="blog image" class="mx-auto">
+        </div>
+        
+
+        
+        <div class="mx-auto my-10">
+            <p>The <strong>CloudNativePG Community</strong> is delighted to announce the availability of
+<strong>CloudNativePG 1.28.0 Release Candidate 2</strong>!</p>
+<p>This RC builds on the first round of large-scale testing by addressing several
+issues and introducing targeted improvements. For full details, please refer to
+the <a href="https://cloudnative-pg.io/documentation/preview/release_notes/v1.28/">1.28.0 RC2 release notes</a>.</p>
+<p>A heartfelt thank you to everyone who participated in the preview programme so
+far. Your insights, reports, and suggestions are directly shaping the quality
+and stability of this release.</p>
+<p>We encourage you to continue testing <strong>1.28.0 RC2</strong> in your <strong>non-production
+environments</strong>. Your feedback is essential to delivering a robust, reliable
+final release and ensuring that CloudNativePG 1.28 maintains its position as
+the leading Kubernetes-native Postgres operator.</p>
+<p><a href="https://cloudnative-pg.io/documentation/preview/preview_version/">Learn how to test and contribute</a>.</p>
+<h2 id="testing">Testing</h2>
+<p>Each CloudNativePG release depends on thorough validation by our community.
+By testing this release candidate against your real workloads, you help us
+detect regressions and improve behaviour before the final release.</p>
+<ul>
+<li>Review the <a href="https://github.com/cloudnative-pg/cloudnative-pg/milestone/30">open issues for the 1.28 milestone</a>.</li>
+<li><a href="https://github.com/cloudnative-pg/cloudnative-pg/issues/new/choose">Report bugs or share feedback</a>
+directly on GitHub.</li>
+</ul>
+<h2 id="release-timeline">Release Timeline</h2>
+<p>RC2 is the latest step in the 1.28 release cycle.
+Additional release candidates may follow if needed.
+The final release is currently planned for <strong>early December 2025</strong>.</p>
+<h2 id="join-the-community">Join the Community</h2>
+<p>CloudNativePG thrives thanks to a welcoming, vendor-neutral community of
+contributors and practitioners.
+<a href="https://github.com/cloudnative-pg/cloudnative-pg?tab=readme-ov-file#communications">Join the conversation</a>
+and help shape the future of PostgreSQL on Kubernetes.</p>
+<p>Thank you once again for your trust, enthusiasm, and contributions.
+Together, we’re building the future of Postgres on Kubernetes.</p>
+
+        </div>
+        
+    </div>
+
+    <div class="px-4">
+        <h3 class="text-xl font-bold mb-6">Categories in this blog post</h3>
+        <div class="text-xs space-y-1.5 mb-14">
+            <ul class="text-sm">
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/release"
+                        class="mr-2">release</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/postgresql"
+                        class="mr-2">postgresql</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/postgres"
+                        class="mr-2">postgres</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/kubernetes"
+                        class="mr-2">kubernetes</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/k8s"
+                        class="mr-2">k8s</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/cloudnativepg"
+                        class="mr-2">cloudnativepg</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/preview"
+                        class="mr-2">preview</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/cnpg"
+                        class="mr-2">cnpg</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/FailoverQuorum"
+                        class="mr-2">FailoverQuorum</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/FDW"
+                        class="mr-2">FDW</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/ForeignData"
+                        class="mr-2">ForeignData</a></li>
+                
+            </ul>
+
+        </div>
     </div>
 
     
