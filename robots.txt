@@ -9,3 +9,5 @@ Disallow: /documentation/1.26.0-rc2/
 Disallow: /documentation/1.26.0-rc3/
 Disallow: /documentation/1.27.0-rc1/
 Disallow: /documentation/1.28.0-rc1/
+Disallow: /documentation/preview/
+Disallow: /documentation/1.28.0-rc2/
