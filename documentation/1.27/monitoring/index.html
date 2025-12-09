@@ -45,7 +45,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../before_you_start/">Before You Start</a>
+                <li class="toctree-l1"><a class="reference internal" href="../before_you_start/">Before you start</a>
                 </li>
               </ul>
               <ul>
@@ -81,7 +81,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../instance_manager/">Postgres instance manager</a>
+                <li class="toctree-l1"><a class="reference internal" href="../instance_manager/">Postgres Instance Manager</a>
                 </li>
               </ul>
               <ul>
@@ -97,7 +97,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../rolling_update/">Rolling Updates</a>
+                <li class="toctree-l1"><a class="reference internal" href="../rolling_update/">Rolling updates</a>
                 </li>
               </ul>
               <ul>
@@ -121,7 +121,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../service_management/">Service Management</a>
+                <li class="toctree-l1"><a class="reference internal" href="../service_management/">Service management</a>
                 </li>
               </ul>
               <ul>
@@ -129,11 +129,11 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../declarative_role_management/">PostgreSQL Role Management</a>
+                <li class="toctree-l1"><a class="reference internal" href="../declarative_role_management/">PostgreSQL Role management</a>
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../declarative_database_management/">PostgreSQL Database Management</a>
+                <li class="toctree-l1"><a class="reference internal" href="../declarative_database_management/">PostgreSQL Database management</a>
                 </li>
               </ul>
               <ul>
@@ -145,7 +145,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../cluster_conf/">Instance pod configuration</a>
+                <li class="toctree-l1"><a class="reference internal" href="../cluster_conf/">Instance Pod configuration</a>
                 </li>
               </ul>
               <ul>
@@ -153,7 +153,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../labels_annotations/">Labels and annotations</a>
+                <li class="toctree-l1"><a class="reference internal" href="../labels_annotations/">Labels and Annotations</a>
                 </li>
               </ul>
               <ul class="current">
@@ -229,7 +229,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../connection_pooling/">Connection pooling</a>
+                <li class="toctree-l1"><a class="reference internal" href="../connection_pooling/">Connection Pooling</a>
                 </li>
               </ul>
               <ul>
@@ -237,11 +237,11 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../kubernetes_upgrade/">Kubernetes Upgrade and Maintenance</a>
+                <li class="toctree-l1"><a class="reference internal" href="../kubernetes_upgrade/">Kubernetes upgrade and maintenance</a>
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../postgres_upgrades/">PostgreSQL Upgrades</a>
+                <li class="toctree-l1"><a class="reference internal" href="../postgres_upgrades/">PostgreSQL upgrades</a>
                 </li>
               </ul>
               <ul>
@@ -383,7 +383,7 @@ more <code>ConfigMap</code> or <code>Secret</code> resources (see the
 <div class="admonition important">
 <p class="admonition-title">Important</p>
 <p>CloudNativePG, by default, installs a set of <a href="#default-set-of-metrics">predefined metrics</a>
-in a <code>ConfigMap</code> named <code>default-monitoring</code>.</p>
+in a <code>ConfigMap</code> named <code>cnpg-default-monitoring</code>.</p>
 </div>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
@@ -587,7 +587,7 @@ cnpg_collector_up{cluster=&quot;cluster-example&quot;} 1
 
 # HELP cnpg_collector_postgres_version Postgres version
 # TYPE cnpg_collector_postgres_version gauge
-cnpg_collector_postgres_version{cluster=&quot;cluster-example&quot;,full=&quot;18.0&quot;} 18.0
+cnpg_collector_postgres_version{cluster=&quot;cluster-example&quot;,full=&quot;18.1&quot;} 18.1
 
 # HELP cnpg_collector_last_failed_backup_timestamp The last failed backup as a unix timestamp (Deprecated)
 # TYPE cnpg_collector_last_failed_backup_timestamp gauge
@@ -1136,7 +1136,7 @@ metadata:
 spec:
   containers:
   - name: curl
-    image: curlimages/curl:8.16.0
+    image: curlimages/curl:8.17.0
     command: ['sleep', '3600']
 EOF
 </code></pre>
@@ -1198,7 +1198,7 @@ page for more detail.</p>
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../labels_annotations/" class="btn btn-neutral float-left" title="Labels and annotations"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../labels_annotations/" class="btn btn-neutral float-left" title="Labels and Annotations"><span class="icon icon-circle-arrow-left"></span> Previous</a>
         <a href="../logging/" class="btn btn-neutral float-right" title="Logging">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 

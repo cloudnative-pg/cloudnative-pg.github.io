@@ -105,5 +105,12 @@
       <guid>https://cloudnative-pg.io/end_users/rubin/</guid>
       <description>&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;em&gt;At Rubin Observatory, we adopted CloudNativePG in November 2022 to manage our PostgreSQL databases on our on-premises Kubernetes clusters. It was actually my first project after joining Rubin, and from the very beginning, CloudNativePG stood out for its simplicity and how seamlessly it fit into our workflow. One feature we really appreciate is how well it works with our custom PostgreSQL images, which include several specialized extensions we need for astronomy data. Having PgBouncer integration available out of the box is a great bonus and something we actively use. Today, CloudNativePG is at the core of all the data collected by the telescope and replicated to SLAC, powering our science platform for millions of users around the world. For us, it’s a straightforward, reliable solution that just works—even at the scale of modern astronomy.&lt;/em&gt;&#xA;&lt;br&gt;&#xA;— Carlos Ignacio Barría Young, Senior DevOps Engineer at Rubin Observatory&lt;/p&gt;</description>
     </item>
+    <item>
+      <title>pgEdge</title>
+      <link>https://cloudnative-pg.io/end_users/pgedge/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://cloudnative-pg.io/end_users/pgedge/</guid>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;em&gt;CloudNativePG gives us the mature, production-ready Postgres operator we can depend on. Using the pgEdge Helm chart, our customers can run either single-region setups or multi-region, active-active pgEdge Enterprise Postgres deployments, powered by CloudNativePG. By leaning on CloudNativePG for lifecycle management and day 2 operations, we can focus our energy on delivering advanced distributed Postgres capabilities instead of rebuilding core operational plumbing.&lt;/em&gt;&#xA;&lt;br&gt;&#xA;— Dave Page, VP of Engineering at pgEdge&lt;/p&gt;</description>
+    </item>
   </channel>
 </rss>

@@ -45,7 +45,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../before_you_start/">Before You Start</a>
+                <li class="toctree-l1"><a class="reference internal" href="../before_you_start/">Before you start</a>
                 </li>
               </ul>
               <ul>
@@ -81,7 +81,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../instance_manager/">Postgres instance manager</a>
+                <li class="toctree-l1"><a class="reference internal" href="../instance_manager/">Postgres Instance Manager</a>
                 </li>
               </ul>
               <ul>
@@ -97,7 +97,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../rolling_update/">Rolling Updates</a>
+                <li class="toctree-l1"><a class="reference internal" href="../rolling_update/">Rolling updates</a>
                 </li>
               </ul>
               <ul>
@@ -109,6 +109,8 @@
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#publications">Publications</a>
         <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#fine-grained-control-over-publication-tables">Fine-grained control over publication tables</a>
+    </li>
     <li class="toctree-l3"><a class="reference internal" href="#required-fields-in-the-publication-manifest">Required Fields in the Publication Manifest</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#reconciliation-and-status">Reconciliation and Status</a>
@@ -159,7 +161,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../service_management/">Service Management</a>
+                <li class="toctree-l1"><a class="reference internal" href="../service_management/">Service management</a>
                 </li>
               </ul>
               <ul>
@@ -167,11 +169,11 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../declarative_role_management/">PostgreSQL Role Management</a>
+                <li class="toctree-l1"><a class="reference internal" href="../declarative_role_management/">PostgreSQL Role management</a>
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../declarative_database_management/">PostgreSQL Database Management</a>
+                <li class="toctree-l1"><a class="reference internal" href="../declarative_database_management/">PostgreSQL Database management</a>
                 </li>
               </ul>
               <ul>
@@ -183,7 +185,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../cluster_conf/">Instance pod configuration</a>
+                <li class="toctree-l1"><a class="reference internal" href="../cluster_conf/">Instance Pod configuration</a>
                 </li>
               </ul>
               <ul>
@@ -191,7 +193,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../labels_annotations/">Labels and annotations</a>
+                <li class="toctree-l1"><a class="reference internal" href="../labels_annotations/">Labels and Annotations</a>
                 </li>
               </ul>
               <ul>
@@ -215,7 +217,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../connection_pooling/">Connection pooling</a>
+                <li class="toctree-l1"><a class="reference internal" href="../connection_pooling/">Connection Pooling</a>
                 </li>
               </ul>
               <ul>
@@ -223,11 +225,11 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../kubernetes_upgrade/">Kubernetes Upgrade and Maintenance</a>
+                <li class="toctree-l1"><a class="reference internal" href="../kubernetes_upgrade/">Kubernetes upgrade and maintenance</a>
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../postgres_upgrades/">PostgreSQL Upgrades</a>
+                <li class="toctree-l1"><a class="reference internal" href="../postgres_upgrades/">PostgreSQL upgrades</a>
                 </li>
               </ul>
               <ul>
@@ -416,14 +418,41 @@ spec:
 <li>It includes all tables (<code>spec.target.allTables: true</code>) from the <code>app</code>
   database (<code>spec.dbname</code>).</li>
 </ul>
+<h3 id="fine-grained-control-over-publication-tables">Fine-grained control over publication tables</h3>
+<p>While the <code>allTables</code> option provides a convenient way to replicate all tables
+in a database, PostgreSQL version 15 and later introduce enhanced flexibility
+through the <a href="https://www.postgresql.org/docs/current/sql-createpublication.html"><code>CREATE PUBLICATION</code></a>
+command. This allows you to precisely define which tables, or even which types
+of data changes, should be included in a publication.</p>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
-<p>While <code>allTables</code> simplifies configuration, PostgreSQL offers fine-grained
-control for replicating specific tables or targeted data changes. For advanced
-configurations, consult the <a href="https://www.postgresql.org/docs/current/logical-replication.html">PostgreSQL documentation</a>.
-Additionally, refer to the <a href="../cloudnative-pg.v1/#postgresql-cnpg-io-v1-PublicationTarget">CloudNativePG API reference</a>
-for details on declaratively customizing replication targets.</p>
+<p>If you are using PostgreSQL versions earlier than 15, review the syntax and
+options available for <code>CREATE PUBLICATION</code> in your specific release. Some
+parameters and features may not be supported.</p>
 </div>
+<p>For complex or tailored replication setups, refer to the
+<a href="https://www.postgresql.org/docs/current/logical-replication.html">PostgreSQL logical replication documentation</a>.</p>
+<p>Additionally, refer to the <a href="../cloudnative-pg.v1/#postgresql-cnpg-io-v1-PublicationTarget">CloudNativePG API reference</a>
+for details on declaratively customizing replication targets.</p>
+<p>The following example defines a publication that replicates all tables in the
+<code>portal</code> schema of the <code>app</code> database, along with the <code>users</code> table from the
+<code>access</code> schema:</p>
+<pre><code class="language-yaml">apiVersion: postgresql.cnpg.io/v1
+kind: Publication
+metadata:
+  name: publisher
+spec:
+  cluster:
+    name: freddie
+  dbname: app
+  name: publisher
+  target:
+    objects:
+      - tablesInSchema: portal
+      - table:
+          name: users
+          schema: access
+</code></pre>
 <h3 id="required-fields-in-the-publication-manifest">Required Fields in the <code>Publication</code> Manifest</h3>
 <p>The following fields are required for a <code>Publication</code> object:</p>
 <ul>
@@ -636,7 +665,7 @@ metadata:
 spec:
   instances: 1
 
-  imageName: ghcr.io/cloudnative-pg/postgresql:16
+  imageName: ghcr.io/cloudnative-pg/postgresql:16-standard-trixie
 
   storage:
     size: 1Gi
@@ -679,6 +708,8 @@ metadata:
   name: king
 spec:
   instances: 1
+
+  imageName: ghcr.io/cloudnative-pg/postgresql:18-standard-trixie
 
   storage:
     size: 1Gi

@@ -6,8 +6,15 @@
     <description>Recent content in Postgresql on CloudNativePG - PostgreSQL Operator for Kubernetes</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 28 Nov 2025 18:21:37 +0100</lastBuildDate>
+    <lastBuildDate>Tue, 09 Dec 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://cloudnative-pg.io/tags/postgresql/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CloudNativePG 1.28.0 Released!</title>
+      <link>https://cloudnative-pg.io/releases/cloudnative-pg-1-28.0-released/</link>
+      <pubDate>Tue, 09 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>https://cloudnative-pg.io/releases/cloudnative-pg-1-28.0-released/</guid>
+      <description>CloudNativePG 1.28 is here! This stable release promotes Quorum-Based Failover and introduces Declarative Foreign Data Management for FDWs and foreign servers via the &lt;code&gt;Database&lt;/code&gt; CRD. We also announce maintenance releases 1.27.2 and the final 1.26.3. Upgrade today for enhanced stability, security, and networking resilience.</description>
+    </item>
     <item>
       <title>CloudNativePG 1.28.0 RC2 Released!</title>
       <link>https://cloudnative-pg.io/releases/cloudnative-pg-1-28.0-rc2-released/</link>
