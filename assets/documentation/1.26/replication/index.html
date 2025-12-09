@@ -45,7 +45,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../before_you_start/">Before You Start</a>
+                <li class="toctree-l1"><a class="reference internal" href="../before_you_start/">Before you start</a>
                 </li>
               </ul>
               <ul>
@@ -81,7 +81,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../instance_manager/">Postgres instance manager</a>
+                <li class="toctree-l1"><a class="reference internal" href="../instance_manager/">Postgres Instance Manager</a>
                 </li>
               </ul>
               <ul>
@@ -97,7 +97,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../rolling_update/">Rolling Updates</a>
+                <li class="toctree-l1"><a class="reference internal" href="../rolling_update/">Rolling updates</a>
                 </li>
               </ul>
               <ul class="current">
@@ -181,7 +181,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../service_management/">Service Management</a>
+                <li class="toctree-l1"><a class="reference internal" href="../service_management/">Service management</a>
                 </li>
               </ul>
               <ul>
@@ -189,11 +189,11 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../declarative_role_management/">PostgreSQL Role Management</a>
+                <li class="toctree-l1"><a class="reference internal" href="../declarative_role_management/">PostgreSQL Role management</a>
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../declarative_database_management/">PostgreSQL Database Management</a>
+                <li class="toctree-l1"><a class="reference internal" href="../declarative_database_management/">PostgreSQL Database management</a>
                 </li>
               </ul>
               <ul>
@@ -205,7 +205,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../cluster_conf/">Instance pod configuration</a>
+                <li class="toctree-l1"><a class="reference internal" href="../cluster_conf/">Instance Pod configuration</a>
                 </li>
               </ul>
               <ul>
@@ -213,7 +213,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../labels_annotations/">Labels and annotations</a>
+                <li class="toctree-l1"><a class="reference internal" href="../labels_annotations/">Labels and Annotations</a>
                 </li>
               </ul>
               <ul>
@@ -237,7 +237,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../connection_pooling/">Connection pooling</a>
+                <li class="toctree-l1"><a class="reference internal" href="../connection_pooling/">Connection Pooling</a>
                 </li>
               </ul>
               <ul>
@@ -245,11 +245,11 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../kubernetes_upgrade/">Kubernetes Upgrade and Maintenance</a>
+                <li class="toctree-l1"><a class="reference internal" href="../kubernetes_upgrade/">Kubernetes upgrade and maintenance</a>
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../postgres_upgrades/">PostgreSQL Upgrades</a>
+                <li class="toctree-l1"><a class="reference internal" href="../postgres_upgrades/">PostgreSQL upgrades</a>
                 </li>
               </ul>
               <ul>
@@ -548,7 +548,7 @@ spec:
   maxSyncReplicas: 1
 
   storage:
-    size: 1G
+    size: 1Gi
 </code></pre>
 <p>You can update it to the new format as follows:</p>
 <pre><code class="language-yaml">apiVersion: postgresql.cnpg.io/v1
@@ -559,7 +559,7 @@ spec:
   instances: 3
 
   storage:
-    size: 1G
+    size: 1Gi
 
   postgresql:
     synchronous:
@@ -812,7 +812,7 @@ PostgreSQL to the following value:</p>
 <p>Where:</p>
 <ul>
 <li><code>q</code> is an integer automatically calculated by the operator to be:
-  <code>1 &lt;= minSyncReplicas &lt;= q &lt;= maxSyncReplicas &lt;= readyReplicas</code></li>
+  <code>1 ≤ minSyncReplicas ≤ q ≤ maxSyncReplicas ≤ readyReplicas</code></li>
 <li><code>pod1, pod2, ...</code> is the list of all PostgreSQL pods in the cluster</li>
 </ul>
 <div class="admonition warning">
@@ -1059,7 +1059,7 @@ how to monitor a CloudNativePG deployment.</p>
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../rolling_update/" class="btn btn-neutral float-left" title="Rolling Updates"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../rolling_update/" class="btn btn-neutral float-left" title="Rolling updates"><span class="icon icon-circle-arrow-left"></span> Previous</a>
         <a href="../logical_replication/" class="btn btn-neutral float-right" title="Logical Replication">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 

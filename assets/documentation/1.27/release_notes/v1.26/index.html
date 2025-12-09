@@ -45,7 +45,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../../before_you_start/">Before You Start</a>
+                <li class="toctree-l1"><a class="reference internal" href="../../before_you_start/">Before you start</a>
                 </li>
               </ul>
               <ul>
@@ -81,7 +81,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../../instance_manager/">Postgres instance manager</a>
+                <li class="toctree-l1"><a class="reference internal" href="../../instance_manager/">Postgres Instance Manager</a>
                 </li>
               </ul>
               <ul>
@@ -97,7 +97,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../../rolling_update/">Rolling Updates</a>
+                <li class="toctree-l1"><a class="reference internal" href="../../rolling_update/">Rolling updates</a>
                 </li>
               </ul>
               <ul>
@@ -121,7 +121,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../../service_management/">Service Management</a>
+                <li class="toctree-l1"><a class="reference internal" href="../../service_management/">Service management</a>
                 </li>
               </ul>
               <ul>
@@ -129,11 +129,11 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../../declarative_role_management/">PostgreSQL Role Management</a>
+                <li class="toctree-l1"><a class="reference internal" href="../../declarative_role_management/">PostgreSQL Role management</a>
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../../declarative_database_management/">PostgreSQL Database Management</a>
+                <li class="toctree-l1"><a class="reference internal" href="../../declarative_database_management/">PostgreSQL Database management</a>
                 </li>
               </ul>
               <ul>
@@ -145,7 +145,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../../cluster_conf/">Instance pod configuration</a>
+                <li class="toctree-l1"><a class="reference internal" href="../../cluster_conf/">Instance Pod configuration</a>
                 </li>
               </ul>
               <ul>
@@ -153,7 +153,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../../labels_annotations/">Labels and annotations</a>
+                <li class="toctree-l1"><a class="reference internal" href="../../labels_annotations/">Labels and Annotations</a>
                 </li>
               </ul>
               <ul>
@@ -177,7 +177,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../../connection_pooling/">Connection pooling</a>
+                <li class="toctree-l1"><a class="reference internal" href="../../connection_pooling/">Connection Pooling</a>
                 </li>
               </ul>
               <ul>
@@ -185,11 +185,11 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../../kubernetes_upgrade/">Kubernetes Upgrade and Maintenance</a>
+                <li class="toctree-l1"><a class="reference internal" href="../../kubernetes_upgrade/">Kubernetes upgrade and maintenance</a>
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../../postgres_upgrades/">PostgreSQL Upgrades</a>
+                <li class="toctree-l1"><a class="reference internal" href="../../postgres_upgrades/">PostgreSQL upgrades</a>
                 </li>
               </ul>
               <ul>
@@ -318,9 +318,102 @@
 <p>For a complete list of changes, please refer to the
 <a href="https://github.com/cloudnative-pg/cloudnative-pg/commits/release-1.26">commits</a>
 on the release branch in GitHub.</p>
+<h2 id="version-1263">Version 1.26.3</h2>
+<p><strong>Release date:</strong> Dec 9, 2025</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This is the final release in the 1.26.x series.
+Users are strongly encouraged to upgrade to a newer minor version, as 1.26
+is no longer supported.</p>
+</div>
+<h3 id="changes">Changes</h3>
+<ul>
+<li>
+<p>Updated the default PostgreSQL version to <code>18.1-system-trixie</code>.
+  (<a href="https://github.com/cloudnative-pg/cloudnative-pg/pull/9178">#9178</a>) <!-- 1.27 1.26 1.25 --></p>
+</li>
+<li>
+<p>Updated the default PgBouncer version to <strong>1.25.1</strong> for new <code>Pooler</code>
+  deployments.
+  (<a href="https://github.com/cloudnative-pg/cloudnative-pg/pull/9367">#9367</a>) <!-- 1.27 1.26 1.25 --></p>
+</li>
+</ul>
+<h3 id="enhancements">Enhancements</h3>
+<ul>
+<li>
+<p>Added the PostgreSQL <code>majorVersion</code> to the <code>Backup</code> object's status for
+  easier identification and management.
+  (<a href="https://github.com/cloudnative-pg/cloudnative-pg/pull/8464">#8464</a>) <!-- 1.27 1.26 --></p>
+</li>
+<li>
+<p>Added the <code>PGBOUNCER_IMAGE_NAME</code> operator configuration parameter to allow
+  overriding the default PgBouncer image. This is useful for air-gapped
+  environments or when using internal registries.
+  (<a href="https://github.com/cloudnative-pg/cloudnative-pg/pull/9232">#9232</a>) <!-- 1.27 1.26 1.25 --></p>
+</li>
+<li>
+<p><code>cnpg</code> plugin:</p>
+<ul>
+<li>Improved <code>cnpg report</code> to generate more shell-friendly file names.
+  (<a href="https://github.com/cloudnative-pg/cloudnative-pg/pull/8984">#8984</a>) <!-- 1.27 1.26 1.25 --></li>
+</ul>
+</li>
+</ul>
+<h3 id="fixes">Fixes</h3>
+<ul>
+<li>
+<p>Fixed the <code>CheckEmptyWalArchive</code> safeguard to run correctly when restoring
+  from a volume snapshot using CNPG-I backup/WAL plugins (e.g.,
+  <code>plugin-barman-cloud</code>). Previously, this check was skipped for plugin-based
+  implementations.
+  (<a href="https://github.com/cloudnative-pg/cloudnative-pg/pull/9306">#9306</a>) <!-- 1.27 1.26 1.25 --></p>
+</li>
+<li>
+<p>Fixed TLS certificate verification issues when connecting to CNPG-I plugins
+  by adding the <code>cnpg.io/pluginServerName</code> annotation. This allows customizing
+  the DNS name used for certificate verification in environments where the
+  plugin's certificate uses a different DNS name than the Service name.
+  (<a href="https://github.com/cloudnative-pg/cloudnative-pg/pull/9222">#9222</a>) <!-- 1.27 1.26 1.25 --></p>
+</li>
+<li>
+<p>Fixed an issue where the instance manager controller could fail to restart
+  after an error, reporting a "controller already exists" message. The
+  controller now uses <code>SkipNameValidation</code> for subsequent initialization
+  attempts. Contributed by @mateusoliveira43.
+  (<a href="https://github.com/cloudnative-pg/cloudnative-pg/pull/9123">#9123</a>) <!-- 1.27 1.26 1.25 --></p>
+</li>
+<li>
+<p>Fixed incorrect WAL restore path handling in plugins when the destination
+  path is absolute, preventing path duplication issues. Contributed by
+  @Endevir.
+  (<a href="https://github.com/cloudnative-pg/cloudnative-pg/pull/9093">#9093</a>) <!-- 1.27 1.26 1.25 --></p>
+</li>
+<li>
+<p>Fixed the <code>CREATE PUBLICATION</code> SQL generation for multi-table publications to
+  be backward-compatible with PostgreSQL 13+. The previously generated syntax
+  was only valid for PostgreSQL 15+ and caused syntax errors on older versions.
+  (<a href="https://github.com/cloudnative-pg/cloudnative-pg/pull/8888">#8888</a>) <!-- 1.27 1.26 1.25 --></p>
+</li>
+<li>
+<p>Fixed backup failures in complex pod definitions by reliably selecting the
+  <code>postgres</code> container by name instead of by index. Contributed by @Joda89.
+  (<a href="https://github.com/cloudnative-pg/cloudnative-pg/pull/8964">#8964</a>) <!-- 1.27 1.26 1.25 --></p>
+</li>
+<li>
+<p><code>cnpg</code> plugin:</p>
+<ul>
+<li>Fixed bugs in <code>cnpg report</code> log collection, especially when fetching previous
+  logs. The collector now correctly fetches previous and current logs in
+  separate requests and gracefully handles missing previous logs (e.g., on
+  containers with no restart history), ensuring current logs are always
+  collected.
+  (<a href="https://github.com/cloudnative-pg/cloudnative-pg/pull/8992">#8992</a>) <!-- 1.27 1.26 1.25 --></li>
+</ul>
+</li>
+</ul>
 <h2 id="version-1262">Version 1.26.2</h2>
 <p><strong>Release date:</strong> Oct 23, 2025</p>
-<h3 id="changes">Changes</h3>
+<h3 id="changes_1">Changes</h3>
 <ul>
 <li>
 <p>Delayed the decommissioning of native in-core support for Barman Cloud to at
@@ -342,7 +435,7 @@ on the release branch in GitHub.</p>
   (<a href="https://github.com/cloudnative-pg/cloudnative-pg/pull/8753">#8753</a>)</p>
 </li>
 </ul>
-<h3 id="enhancements">Enhancements</h3>
+<h3 id="enhancements_1">Enhancements</h3>
 <ul>
 <li>
 <p>Added support for overriding the PgBouncer <code>auth_type</code>, <code>server_tls_sslmode</code>,
@@ -402,7 +495,7 @@ on the release branch in GitHub.</p>
      <a href="https://github.com/cloudnative-pg/cloudnative-pg/pull/8690">#8690</a>)</p>
 </li>
 </ul>
-<h3 id="fixes">Fixes</h3>
+<h3 id="fixes_1">Fixes</h3>
 <ul>
 <li>
 <p>Fixed backup restoration failures when using custom WAL segment sizes with
@@ -489,13 +582,13 @@ production</strong> to ensure your workflows and observability integration conti
 to meet your needs. Thank you for your understanding and for working with us
 as CloudNativePG evolves to provide a more modular and robust experience.</p>
 </blockquote>
-<h3 id="changes_1">Changes</h3>
+<h3 id="changes_2">Changes</h3>
 <ul>
 <li>Removed <code>386</code> and ARM (v5/v6/v7) architectures from the <code>cnpg</code> plugin build
   matrix, reducing the number of published binaries
   (<a href="https://github.com/cloudnative-pg/cloudnative-pg/pull/7648">#7648</a>).</li>
 </ul>
-<h3 id="enhancements_1">Enhancements</h3>
+<h3 id="enhancements_2">Enhancements</h3>
 <ul>
 <li>
 <p>Improved validation of <code>shared_buffers</code> by correctly considering <code>HugePages</code>
@@ -518,7 +611,7 @@ as CloudNativePG evolves to provide a more modular and robust experience.</p>
   (<a href="https://github.com/cloudnative-pg/cloudnative-pg/pull/7717">#7717</a>).</p>
 </li>
 </ul>
-<h3 id="fixes_1">Fixes</h3>
+<h3 id="fixes_2">Fixes</h3>
 <ul>
 <li>
 <p>Added a mutex in the connection pooler to protect concurrent access to the
@@ -633,7 +726,7 @@ as CloudNativePG evolves to provide a more modular and robust experience.</p>
   create, modify, and drop PostgreSQL extensions and schemas within a database. (#7062)</p>
 </li>
 </ul>
-<h3 id="enhancements_2">Enhancements</h3>
+<h3 id="enhancements_3">Enhancements</h3>
 <ul>
 <li>
 <p>Introduced an opt-in experimental feature to enhance the liveness probe with
@@ -714,7 +807,7 @@ as CloudNativePG evolves to provide a more modular and robust experience.</p>
   images are always pulled from the registry, reducing the risk of using
   outdated or potentially unsafe local images. (#7250)</li>
 </ul>
-<h3 id="fixes_2">Fixes</h3>
+<h3 id="fixes_3">Fixes</h3>
 <ul>
 <li>
 <p>Fixed native replication slot synchronization and logical replication
@@ -800,7 +893,7 @@ as CloudNativePG evolves to provide a more modular and robust experience.</p>
 </ul>
 </li>
 </ul>
-<h3 id="changes_2">Changes</h3>
+<h3 id="changes_3">Changes</h3>
 <ul>
 <li>
 <p>Updated the default PostgreSQL version to 17.5 for new cluster
