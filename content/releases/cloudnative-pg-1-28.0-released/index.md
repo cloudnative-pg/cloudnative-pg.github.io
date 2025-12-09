@@ -76,7 +76,7 @@ and network resilience:
 
 - **Granular Security Contexts:** Introduced fine-grained security contexts,
   allowing `securityContext` at the Pod level and `containerSecurityContext`
-for individual containers (`postgres`, `init`, sidecars).
+  for individual containers (`postgres`, `init`, sidecars).
 - **Custom PgBouncer TLS:** Allowed providing fine-grained custom TLS
   certificates for PgBouncer (client-to-pooler and pooler-to-server
   connections), overriding operator-generated certificates for better security
