@@ -23,7 +23,7 @@ Yash Agarwal worked with mentors and CloudNativePG maintainers Gabriele Bartolin
 
 ## Start at the beginning
 
-Yash's venture into programming started when he got introduced to Python in 11th grade. He was always fascinated by technology, and whenever he and his [cousin Amit](https://www.linkedin.com/in/amitpagrawal/) (now a software developer as well) met, he asked him a lot of questions "about everything".
+Yash's venture into programming started when he got introduced to Python in 11th grade. He was always fascinated by technology, and whenever he and his cousin Amit (now a software developer as well) met, he asked him a lot of questions "about everything".
 
 Today Yash is a full stack developer intern at Seeqlo, where he, among other things, focuses on streamlining cloud operations and optimizing performance. Based in Bengaluru, India, Yash is a member of Point Blank, a student-run tech community dedicated to learning together. 
 
