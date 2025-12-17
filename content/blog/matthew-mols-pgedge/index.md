@@ -35,7 +35,7 @@ pgEdge uses CloudNativePG in their [Helm chart](https://docs.pgedge.com/pgedge-c
 
 ## Getting started with CloudNativePG
 
-Before CloudNativePG, Matt and his team leveraged other operators, and a mix of custom Helm charts that leveraged Kubernetes primitives to deploy Postgres instances. CloudNativePG's popularity and stability, and its acceptance into the CNCF confirmed that it was the right choice to switch to as the default.
+Before CloudNativePG, Matt and his team used other operators, and a mix of custom Helm charts that leveraged Kubernetes primitives to deploy Postgres instances. CloudNativePG's popularity and stability, and its acceptance into the CNCF, confirmed that it was the right choice to switch to as the default.
 
 "Working with CloudNativePG has been really straightforward for us since we've moved to it exclusively. In particular, the documentation is very well done, with a combination of "start from here" examples, combined with in-depth guides for every feature. Deploying Postgres comes with a lot of choices on specific configuration, and it does a great job of laying out why you would choose from one option or the other, with sensible defaults!"
 
