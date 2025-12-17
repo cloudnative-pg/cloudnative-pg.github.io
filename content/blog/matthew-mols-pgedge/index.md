@@ -27,7 +27,7 @@ We had a chance to talk to Matt about their use of CloudNativePG.
 
 Matt loves learning about customers' challenges with using Postgres, and thinking about how they can build or suggest tools and approaches to make their lives easier. "I'm continuously surprised by the different ways folks are leveraging Postgres in their businesses!"
 
-Matt's role is focused on developing tools that enable pgEdge's customers to effectively deploy Postgres, whether that’s on Kubernetes, VMs, Bare Metal, or in the Cloud. A lot of this work is centered around making it easier to use tools together to meet the requirements of different shapes of customers. 
+Matt's role is focused on developing tools that enable pgEdge's customers to effectively deploy Postgres, whether that’s on Kubernetes, VMs, bare metal, or in the Cloud. A lot of this work is centered around making it easier to use tools together to meet the requirements of different kinds of customers. 
 
 "We are fully committed to open source and tend to utilize a combination of open source extensions and tools that we've developed and released, like Spock for multi-master (active-active) logical replication, combined with stable community tools like CloudNativePG." 
 
