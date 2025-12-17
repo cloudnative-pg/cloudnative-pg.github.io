@@ -19,7 +19,7 @@ summary: "We talked to Matthew Mols, Sr. Director of Engineering at pgEdge, abou
 
 [Matthew Mols](https://www.linkedin.com/in/mmols/) is the Sr. Director of Engineering at pgEdge, a team of engineers and entrepreneurs on a mission to make it easy to build, deploy and manage enterprise grade applications at scale on Postgres. 
 
-Recently pgEdge announced their [CloudNativePG intergration](https://www.postgresql.org/about/news/pgedge-announces-cloudnativepg-integration-simplifying-postgres-on-kubernetes-3166/) and them joining the Cloud Native Computing Foundation (CNCF). 
+Recently pgEdge announced their [CloudNativePG integration](https://www.postgresql.org/about/news/pgedge-announces-cloudnativepg-integration-simplifying-postgres-on-kubernetes-3166/) and them joining the Cloud Native Computing Foundation (CNCF). 
 
 We had a chance to talk to Matt about their use of CloudNativePG.
 
