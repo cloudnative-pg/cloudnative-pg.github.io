@@ -31,7 +31,7 @@ Matt's role is focused on developing tools that enable pgEdge's customers to eff
 
 "We are fully committed to open source and tend to utilize a combination of open source extensions and tools that we've developed and released, like Spock for multi-master (active-active) logical replication, combined with stable community tools like CloudNativePG." 
 
-pgEdge utilizes CloudNativePG in our their [Helm chart](https://docs.pgedge.com/pgedge-containers/), which allows for users to deploy active-active databases into multiple Kubernetes clusters, and keep them in sync. 
+pgEdge uses CloudNativePG in their [Helm chart](https://docs.pgedge.com/pgedge-containers/), which allows users deploy active-active databases into multiple Kubernetes clusters, and keep them in sync. 
 
 ## Getting started with CloudNativePG
 
