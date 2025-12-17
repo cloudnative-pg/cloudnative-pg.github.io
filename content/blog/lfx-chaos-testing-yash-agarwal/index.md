@@ -17,7 +17,7 @@ tags:
 summary: "Meet the mentee: Yash Agarwal worked with the project maintainers on adding chaos testing to CloudNativePG, as part of the LFX mentorship program." 
 ---
 
-In summer we wrote about how CloudNativePG was back for the September-October-November LFX term, with [several projects for mentoring](https://cloudnative-pg.io/blog/2025-term3-lfx-cncf-mentorship/). One of them around Chaos Testing. 
+In the summer we wrote about how CloudNativePG was back for the September-October-November LFX term with [several projects for mentoring](https://cloudnative-pg.io/blog/2025-term3-lfx-cncf-mentorship/). One of them was around Chaos Testing. 
 
 Yash Agarwal worked with mentors and CloudNativePG maintainers Gabriele Bartolini, Marco Nenciarini, Francesco Canovai, and Jonathan Gonzalez, to enhance the project's test coverage. Introducing LitmusChaos, a comprehensive chaos testing framework, the team designed automated chaos experiments for common failure scenarios, integrated them into CI/CD workflows, and collected observability metrics like failover time and data consistency. I had a chat with Yash about his work, and about how he got into Tech in the first place. 
 
