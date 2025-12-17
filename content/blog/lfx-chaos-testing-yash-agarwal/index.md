@@ -41,7 +41,7 @@ You can read more about the project in the repository's [README](https://github.
 
 ## Contributing to Litmus itself
 
-Yash wasn't able to find how to get the chaos engine to target the primary pods since the appKind CloudNativePG uses isn't natively supported by Litmus. "I tried many things, but when I tried AppKind as "Cluster" with capital C it worked! I read the Litmus code and found that there was some validations which prevented "cluster" to work. This behavior is not described in Litmus' documentation, which meant I could submit a PR and prevent the next person from running into the same issue!"
+Yash wasn't able to find how to get the chaos engine to target the primary pods since the appKind CloudNativePG uses isn't natively supported by Litmus. "I tried many things, but when I tried AppKind as "Cluster" with capital C it worked! I read the Litmus code and found that there were some validations which prevented "cluster" from working. This behavior was not described in Litmus' documentation, which meant I could submit a PR and prevent the next person from running into the same issue!"
 
 ## What's next?
 
