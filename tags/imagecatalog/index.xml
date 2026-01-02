@@ -6,8 +6,15 @@
     <description>Recent content in Imagecatalog on CloudNativePG - PostgreSQL Operator for Kubernetes</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 25 Apr 2024 16:04:04 +0200</lastBuildDate>
+    <lastBuildDate>Fri, 02 Jan 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://cloudnative-pg.io/tags/imagecatalog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Sticking with Open Source: pgEdge and CloudNativePG</title>
+      <link>https://cloudnative-pg.io/blog/matthew-mols-pgedge/</link>
+      <pubDate>Fri, 02 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>https://cloudnative-pg.io/blog/matthew-mols-pgedge/</guid>
+      <description>We talked to Matthew Mols, Sr. Director of Engineering at pgEdge, about how CloudNativePG enables them to meet the requirements of their customers using just open source.</description>
+    </item>
     <item>
       <title>CloudNativePG 1.23.0, 1.22.3 and 1.21.5 Released!</title>
       <link>https://cloudnative-pg.io/releases/cloudnative-pg-1-23.0-released/</link>

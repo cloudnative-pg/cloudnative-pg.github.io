@@ -6,7 +6,7 @@
 <html lang="en">
 
 <head>
-  <title>Floor Drees | CloudNativePG - PostgreSQL Operator for Kubernetes</title>
+  <title>Sticking with Open Source: pgEdge and CloudNativePG | CloudNativePG - PostgreSQL Operator for Kubernetes</title>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
@@ -14,22 +14,30 @@
   <meta name="keywords" content="" />
   <link rel="preload" href="/fonts/Supreme-Variable.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet" />
-  <link rel="alternate" type="application/rss+xml" href="https://cloudnative-pg.io/authors/fdrees/index.xml" title="CloudNativePG - PostgreSQL Operator for Kubernetes" />
   <link href="/main.min.css" rel="stylesheet" />
   <link rel="favicon" href="/favicon/favicon.ico">
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://cloudnative-pg.io/images/hero_image.png">
-  <meta name="twitter:title" content="Floor Drees">
-  <meta name="twitter:description" content="Open Source community advocate and Principal Program Manager at EDB. PostgreSQL Code of Conduct Committee member, PG EU Diversity Committee member, PGDay Lowlands organizer.">
+  <meta name="twitter:title" content="Sticking with Open Source: pgEdge and CloudNativePG">
+  <meta name="twitter:description" content="We talked to Matthew Mols, Sr. Director of Engineering at pgEdge, about how CloudNativePG enables them to meet the requirements of their customers using just open source.">
 
-  <meta property="og:url" content="https://cloudnative-pg.io/authors/fdrees/">
+  <meta property="og:url" content="https://cloudnative-pg.io/blog/matthew-mols-pgedge/">
   <meta property="og:site_name" content="CloudNativePG - PostgreSQL Operator for Kubernetes">
-  <meta property="og:title" content="Floor Drees">
-  <meta property="og:description" content="Open Source community advocate and Principal Program Manager at EDB. PostgreSQL Code of Conduct Committee member, PG EU Diversity Committee member, PGDay Lowlands organizer.">
+  <meta property="og:title" content="Sticking with Open Source: pgEdge and CloudNativePG">
+  <meta property="og:description" content="We talked to Matthew Mols, Sr. Director of Engineering at pgEdge, about how CloudNativePG enables them to meet the requirements of their customers using just open source.">
   <meta property="og:locale" content="en_us">
-  <meta property="og:type" content="website">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="blog">
+    <meta property="article:published_time" content="2026-01-02T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-01-02T00:00:00+00:00">
+    <meta property="article:tag" content="Helm">
+    <meta property="article:tag" content="Imagecatalog">
+    <meta property="article:tag" content="Cncf">
+    <meta property="article:tag" content="Kubernetes">
+    <meta property="article:tag" content="Postgresql">
+    <meta property="article:tag" content="Open-Source">
     <meta property="og:image" content="https://cloudnative-pg.io/images/hero_image.png">
 
   
@@ -126,223 +134,135 @@
 </script>
 
     
-
+<h1 class="h1 text-center mx-auto md:w-3/5">Sticking with Open Source: pgEdge and CloudNativePG</h1>
 <div class="md:w-3/5 mx-auto">
     <div class="px-4">
         
-        <div>
-          <img src="/authors/fdrees/floor.jpg" width="400" height="400"  alt="blog image" class="mx-auto">
-        </div>
+        <div class="grid gap-3 my-10 mx-auto justify-center">
+            
+<div class="flex gap-3">  
+    
+      <div class="my-auto">
         
         
+        <img src="/authors/fdrees/floor.jpg" class="w-10 h-10 rounded-full"
+            alt="Floor Drees">
+        
+      </div>
 
-        <div class="mx-auto my-10">
-            <h3><a href="https://github.com/floord">Floor Drees</a></h3>
+      <div>
+          <h1 class="text-lg charcoal font-bold">
+              <a href="/authors/fdrees/">Floor Drees</a>
+          </h1>
+      </div>
+    
+</div>
 
-            <p>Open Source community advocate and Principal Program Manager at EDB. PostgreSQL Code of Conduct Committee member, PG EU Diversity Committee member, PGDay Lowlands organizer.</p>
 
-        </div>
-
-        <h3 class="text-xl font-bold mb-6">Posts by Floor Drees</h3>
-          
-            <div class="column is-half">
-                <a href="/blog/matthew-mols-pgedge/">Sticking with Open Source: pgEdge and CloudNativePG</a>
-                <div class="block gap-2 text-sm charcoal opacity-75">
+<div class="block gap-2 text-sm charcoal opacity-75">
     <h6 class="block gap-2 text-sm charcoal">
         January 2, 2026
         •
         3 minutes
     </h6>
 </div>
-            </div>
-          
-            <div class="column is-half">
-                <a href="/blog/contributor-highlight-gabriele-quaresima/">Contributor Spotlight: Gabriele Quaresima</a>
-                <div class="block gap-2 text-sm charcoal opacity-75">
-    <h6 class="block gap-2 text-sm charcoal">
-        September 11, 2025
-        •
-        2 minutes
-    </h6>
-</div>
-            </div>
-          
-            <div class="column is-half">
-                <a href="/blog/interview-vito-botta-brella/">Unlocking full Kubernetes functionality at Brella with CloudNativePG and Hetzner</a>
-                <div class="block gap-2 text-sm charcoal opacity-75">
-    <h6 class="block gap-2 text-sm charcoal">
-        August 19, 2025
-        •
-        3 minutes
-    </h6>
-</div>
-            </div>
-          
-            <div class="column is-half">
-                <a href="/blog/summarizing-ying-zhu-lfx-mentorship/">Beyond the Patch: Continuing our LFX Mentorship</a>
-                <div class="block gap-2 text-sm charcoal opacity-75">
-    <h6 class="block gap-2 text-sm charcoal">
-        August 14, 2025
-        •
-        3 minutes
-    </h6>
-</div>
-            </div>
-          
-            <div class="column is-half">
-                <a href="/blog/contributor-highlight-niccolo-fei/">Contributor Spotlight: Niccolò Fei</a>
-                <div class="block gap-2 text-sm charcoal opacity-75">
-    <h6 class="block gap-2 text-sm charcoal">
-        August 11, 2025
-        •
-        2 minutes
-    </h6>
-</div>
-            </div>
-          
-            <div class="column is-half">
-                <a href="/blog/2025-term3-lfx-cncf-mentorship/">CloudNativePG part of LFX Mentorship again - sign up as a mentee!</a>
-                <div class="block gap-2 text-sm charcoal opacity-75">
-    <h6 class="block gap-2 text-sm charcoal">
-        August 4, 2025
-        •
-        3 minutes
-    </h6>
-</div>
-            </div>
-          
-            <div class="column is-half">
-                <a href="/releases/cloudnative-pg-1-27.0-rc1-released/">CloudNativePG 1.27.0 RC1 Released!</a>
-                <div class="block gap-2 text-sm charcoal opacity-75">
-    <h6 class="block gap-2 text-sm charcoal">
-        July 29, 2025
-        •
-        2 minutes
-    </h6>
-</div>
-            </div>
-          
-            <div class="column is-half">
-                <a href="/blog/contributor-highlight-jaime-silvela/">Contributor Spotlight: Jaime Silvela</a>
-                <div class="block gap-2 text-sm charcoal opacity-75">
-    <h6 class="block gap-2 text-sm charcoal">
-        July 7, 2025
-        •
-        3 minutes
-    </h6>
-</div>
-            </div>
-          
-            <div class="column is-half">
-                <a href="/blog/contributor-highlight-ying-zhu/">Contributor Spotlight: Ying Zhu</a>
-                <div class="block gap-2 text-sm charcoal opacity-75">
-    <h6 class="block gap-2 text-sm charcoal">
-        July 1, 2025
-        •
-        2 minutes
-    </h6>
-</div>
-            </div>
-          
-            <div class="column is-half">
-                <a href="/blog/contributor-highlight-marco-nenciarini/">Contributor Spotlight: Marco Nenciarini</a>
-                <div class="block gap-2 text-sm charcoal opacity-75">
-    <h6 class="block gap-2 text-sm charcoal">
-        June 16, 2025
-        •
-        2 minutes
-    </h6>
-</div>
-            </div>
-          
-            <div class="column is-half">
-                <a href="/blog/contributor-highlight-jonathan-battiato/">Contributor Spotlight: Jonathan Battiato</a>
-                <div class="block gap-2 text-sm charcoal opacity-75">
-    <h6 class="block gap-2 text-sm charcoal">
-        June 10, 2025
-        •
-        2 minutes
-    </h6>
-</div>
-            </div>
-          
-            <div class="column is-half">
-                <a href="/blog/contributor-highlight-david-wheeler/">Contributor Spotlight: David Wheeler</a>
-                <div class="block gap-2 text-sm charcoal opacity-75">
-    <h6 class="block gap-2 text-sm charcoal">
-        May 26, 2025
-        •
-        2 minutes
-    </h6>
-</div>
-            </div>
-          
-            <div class="column is-half">
-                <a href="/blog/contributor-highlight-francesco-canovai/">Contributor Spotlight: Francesco Canovai</a>
-                <div class="block gap-2 text-sm charcoal opacity-75">
-    <h6 class="block gap-2 text-sm charcoal">
-        May 21, 2025
-        •
-        2 minutes
-    </h6>
-</div>
-            </div>
-          
-            <div class="column is-half">
-                <a href="/blog/contributor-highlight-jeff-mealo/">Contributor Spotlight: Jeff Mealo</a>
-                <div class="block gap-2 text-sm charcoal opacity-75">
-    <h6 class="block gap-2 text-sm charcoal">
-        May 11, 2025
-        •
-        4 minutes
-    </h6>
-</div>
-            </div>
-          
-            <div class="column is-half">
-                <a href="/blog/contributor-highlight-philippe-scorsolini/">Contributor Spotlight: Philippe Scorsolini</a>
-                <div class="block gap-2 text-sm charcoal opacity-75">
-    <h6 class="block gap-2 text-sm charcoal">
-        May 4, 2025
-        •
-        2 minutes
-    </h6>
-</div>
-            </div>
-          
-            <div class="column is-half">
-                <a href="/blog/contributor-highlight-daniel-chambre/">Contributor Spotlight: Daniel Chambre</a>
-                <div class="block gap-2 text-sm charcoal opacity-75">
-    <h6 class="block gap-2 text-sm charcoal">
-        April 28, 2025
-        •
-        2 minutes
-    </h6>
-</div>
-            </div>
-          
-            <div class="column is-half">
-                <a href="/blog/contributor-highlight-jonathan-gonzalez/">Contributor Spotlight: Jonathan Gonzalez</a>
-                <div class="block gap-2 text-sm charcoal opacity-75">
-    <h6 class="block gap-2 text-sm charcoal">
-        April 22, 2025
-        •
-        2 minutes
-    </h6>
-</div>
-            </div>
-          
-            <div class="column is-half">
-                <a href="/blog/contributor-highlight-itay/">Contributor Spotlight: Itay Grudev</a>
-                <div class="block gap-2 text-sm charcoal opacity-75">
-    <h6 class="block gap-2 text-sm charcoal">
-        April 14, 2025
-        •
-        2 minutes
-    </h6>
-</div>
-            </div>
-          
+
+        </div>
+        
+
+        
+        <div>
+            <img src="pgedge_cloudnativepg.jpg" alt="blog image" class="mx-auto">
+        </div>
+        
+
+        
+        <div class="mx-auto my-10">
+            <p><a href="https://www.linkedin.com/in/mmols/">Matthew Mols</a> is the Sr. Director of Engineering at pgEdge, a team of engineers and
+entrepreneurs on a mission to make it easy to build, deploy and manage enterprise
+grade applications at scale on Postgres.</p>
+<p>Recently pgEdge announced their <a href="https://www.postgresql.org/about/news/pgedge-announces-cloudnativepg-integration-simplifying-postgres-on-kubernetes-3166/">CloudNativePG integration</a> and them joining the
+Cloud Native Computing Foundation (CNCF).</p>
+<p>We had a chance to talk to Matt about their use of CloudNativePG.</p>
+<h2 id="why-cloudnativepg-works-for-pgedge">Why CloudNativePG works for pgEdge</h2>
+<p>Matt loves learning about customers&rsquo; challenges with Postgres, and thinking about
+how they can build or suggest tools and approaches to make their lives easier.
+&ldquo;I&rsquo;m continually surprised by the different ways folks are leveraging Postgres
+in their businesses.&rdquo;</p>
+<p>Matt&rsquo;s role is focused on developing tools that enable pgEdge&rsquo;s customers to
+effectively deploy Postgres, whether that’s on Kubernetes, VMs, bare metal, or in
+the Cloud. A lot of this work is centered around making it easier to use tools
+together to meet the requirements of different kinds of customers.</p>
+<p>&ldquo;We are fully committed to open source and tend to utilize a combination of open
+source extensions and tools that we&rsquo;ve developed and released, like Spock for
+multi-master (active-active) logical replication, combined with stable community
+tools like CloudNativePG.&rdquo;</p>
+<p>pgEdge uses CloudNativePG in their <a href="https://docs.pgedge.com/pgedge-containers/">Helm chart</a>, which allows users to deploy
+active-active databases into multiple Kubernetes clusters, and keep them in sync.</p>
+<h2 id="getting-started-with-cloudnativepg">Getting started with CloudNativePG</h2>
+<p>Before CloudNativePG, Matt and his team used other operators, and a mix of custom
+Helm charts that leveraged Kubernetes primitives to deploy Postgres instances.
+CloudNativePG&rsquo;s popularity and stability, and its acceptance into the CNCF,
+confirmed that it was the right choice to switch to as the default.</p>
+<p>&ldquo;Working with CloudNativePG has been really straightforward for us since we&rsquo;ve
+moved to it exclusively. In particular, the documentation is very well done,
+with a combination of &ldquo;start from here&rdquo; examples, combined with in-depth guides
+for every feature. Deploying Postgres comes with a lot of choices on specific
+configuration, and it does a great job of laying out why you would choose from
+one option or the other, with sensible defaults.&rdquo;</p>
+<p>Access to stable Service endpoints that point to the current primary instance
+is the thing Matt mentions as &ldquo;one of the most valuable aspects of deploying a
+CloudNativePG cluster&rdquo;. Matt: &ldquo;Outside of Kubernetes there are many tools you need
+to integrate correctly to give that guarantee to applications and integrations.&rdquo;
+pgEdge leverages these stable services to enable distributed databases across
+multiple CloudNativePG clusters in different Kubernetes clusters, while relying
+on automatic failover with standby instances in each region.</p>
+<p>In terms of roadmap, Matt is particularly excited about the recent introduction
+of dynamic loading of PostgreSQL extensions, and some of the upcoming work to
+extend that to the ImageCatalog CRD. &ldquo;As Postgres has embraced containerization
+more and more, this has been a challenging area to navigate, with growing image
+sizes, dependency management headaches, and adherence to license requirements.
+In particular, this is going to go a long way towards improving how we manage
+supply chain risk in the Postgres community.&rdquo;</p>
+<h2 id="whats-next">What&rsquo;s next?</h2>
+<p>Matt looks forward to contributing back to the project in the future. &ldquo;Our hope
+is to look to contribute more capabilities that enable distributed deployment
+with CloudNativePG, potentially as part of supporting the CNPG-I approach to
+plugins.&rdquo; The goal is to make it easier to operate active-active databases that
+span across multiple Kubernetes clusters, enabling better support for different
+types of multi-region deployments. &ldquo;Our thought is that it&rsquo;s best done through
+CloudNativePG interfaces.&rdquo;</p>
+
+        </div>
+        
+    </div>
+
+    <div class="px-4">
+        <h3 class="text-xl font-bold mb-6">Categories in this blog post</h3>
+        <div class="text-xs space-y-1.5 mb-14">
+            <ul class="text-sm">
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/helm"
+                        class="mr-2">helm</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/ImageCatalog"
+                        class="mr-2">ImageCatalog</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/CNCF"
+                        class="mr-2">CNCF</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/kubernetes"
+                        class="mr-2">kubernetes</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/postgresql"
+                        class="mr-2">postgresql</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/open-source"
+                        class="mr-2">open-source</a></li>
+                
+            </ul>
+
+        </div>
     </div>
 
     

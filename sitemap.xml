@@ -35,10 +35,40 @@
     <loc>https://cloudnative-pg.io/end_users/pgedge/</loc>
   </url><url>
     <loc>https://cloudnative-pg.io/</loc>
-    <lastmod>2025-12-09T00:00:00+00:00</lastmod>
+    <lastmod>2026-01-02T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://cloudnative-pg.io/authors/</loc>
-    <lastmod>2025-12-09T00:00:00+00:00</lastmod>
+    <lastmod>2026-01-02T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://cloudnative-pg.io/blog/</loc>
+    <lastmod>2026-01-02T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://cloudnative-pg.io/tags/cncf/</loc>
+    <lastmod>2026-01-02T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://cloudnative-pg.io/authors/fdrees/</loc>
+    <lastmod>2026-01-02T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://cloudnative-pg.io/tags/helm/</loc>
+    <lastmod>2026-01-02T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://cloudnative-pg.io/tags/imagecatalog/</loc>
+    <lastmod>2026-01-02T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://cloudnative-pg.io/tags/kubernetes/</loc>
+    <lastmod>2026-01-02T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://cloudnative-pg.io/tags/open-source/</loc>
+    <lastmod>2026-01-02T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://cloudnative-pg.io/tags/postgresql/</loc>
+    <lastmod>2026-01-02T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://cloudnative-pg.io/blog/matthew-mols-pgedge/</loc>
+    <lastmod>2026-01-02T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://cloudnative-pg.io/tags/</loc>
+    <lastmod>2026-01-02T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://cloudnative-pg.io/tags/cloudnativepg/</loc>
     <lastmod>2025-12-09T00:00:00+00:00</lastmod>
@@ -64,25 +94,16 @@
     <loc>https://cloudnative-pg.io/tags/k8s/</loc>
     <lastmod>2025-12-09T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://cloudnative-pg.io/tags/kubernetes/</loc>
-    <lastmod>2025-12-09T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://cloudnative-pg.io/tags/maintenance/</loc>
     <lastmod>2025-12-09T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://cloudnative-pg.io/tags/postgres/</loc>
     <lastmod>2025-12-09T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://cloudnative-pg.io/tags/postgresql/</loc>
-    <lastmod>2025-12-09T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://cloudnative-pg.io/tags/release/</loc>
     <lastmod>2025-12-09T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://cloudnative-pg.io/releases/</loc>
-    <lastmod>2025-12-09T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://cloudnative-pg.io/tags/</loc>
     <lastmod>2025-12-09T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://cloudnative-pg.io/releases/cloudnative-pg-1-28.0-rc2-released/</loc>
@@ -97,22 +118,13 @@
     <loc>https://cloudnative-pg.io/releases/cloudnative-pg-1-27.1-released/</loc>
     <lastmod>2025-10-23T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://cloudnative-pg.io/blog/</loc>
-    <lastmod>2025-09-11T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://cloudnative-pg.io/blog/contributor-highlight-gabriele-quaresima/</loc>
-    <lastmod>2025-09-11T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://cloudnative-pg.io/authors/fdrees/</loc>
     <lastmod>2025-09-11T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://cloudnative-pg.io/tags/linux/</loc>
     <lastmod>2025-09-11T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://cloudnative-pg.io/tags/modernize/</loc>
-    <lastmod>2025-09-11T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://cloudnative-pg.io/tags/open-source/</loc>
     <lastmod>2025-09-11T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://cloudnative-pg.io/tags/spotlight/</loc>
@@ -164,9 +176,6 @@
     <lastmod>2025-08-19T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://cloudnative-pg.io/blog/summarizing-ying-zhu-lfx-mentorship/</loc>
-    <lastmod>2025-08-14T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://cloudnative-pg.io/tags/cncf/</loc>
     <lastmod>2025-08-14T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://cloudnative-pg.io/tags/lfx/</loc>
@@ -331,9 +340,6 @@
     <loc>https://cloudnative-pg.io/tags/grafana/</loc>
     <lastmod>2025-04-14T14:51:43+02:00</lastmod>
   </url><url>
-    <loc>https://cloudnative-pg.io/tags/helm/</loc>
-    <lastmod>2025-04-14T14:51:43+02:00</lastmod>
-  </url><url>
     <loc>https://cloudnative-pg.io/releases/cloudnative-pg-1-26.0-rc1-released/</loc>
     <lastmod>2025-03-28T11:03:23+01:00</lastmod>
   </url><url>
@@ -362,9 +368,6 @@
     <lastmod>2024-06-12T23:49:11+02:00</lastmod>
   </url><url>
     <loc>https://cloudnative-pg.io/releases/cloudnative-pg-1-23.0-released/</loc>
-    <lastmod>2024-04-25T16:04:04+02:00</lastmod>
-  </url><url>
-    <loc>https://cloudnative-pg.io/tags/imagecatalog/</loc>
     <lastmod>2024-04-25T16:04:04+02:00</lastmod>
   </url><url>
     <loc>https://cloudnative-pg.io/tags/pdb/</loc>

@@ -6,8 +6,50 @@
     <description>Recent content in Tags on CloudNativePG - PostgreSQL Operator for Kubernetes</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 09 Dec 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 02 Jan 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://cloudnative-pg.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Cncf</title>
+      <link>https://cloudnative-pg.io/tags/cncf/</link>
+      <pubDate>Fri, 02 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>https://cloudnative-pg.io/tags/cncf/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Helm</title>
+      <link>https://cloudnative-pg.io/tags/helm/</link>
+      <pubDate>Fri, 02 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>https://cloudnative-pg.io/tags/helm/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Imagecatalog</title>
+      <link>https://cloudnative-pg.io/tags/imagecatalog/</link>
+      <pubDate>Fri, 02 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>https://cloudnative-pg.io/tags/imagecatalog/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Kubernetes</title>
+      <link>https://cloudnative-pg.io/tags/kubernetes/</link>
+      <pubDate>Fri, 02 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>https://cloudnative-pg.io/tags/kubernetes/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Open-Source</title>
+      <link>https://cloudnative-pg.io/tags/open-source/</link>
+      <pubDate>Fri, 02 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>https://cloudnative-pg.io/tags/open-source/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Postgresql</title>
+      <link>https://cloudnative-pg.io/tags/postgresql/</link>
+      <pubDate>Fri, 02 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>https://cloudnative-pg.io/tags/postgresql/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Cloudnativepg</title>
       <link>https://cloudnative-pg.io/tags/cloudnativepg/</link>
@@ -51,13 +93,6 @@
       <description></description>
     </item>
     <item>
-      <title>Kubernetes</title>
-      <link>https://cloudnative-pg.io/tags/kubernetes/</link>
-      <pubDate>Tue, 09 Dec 2025 00:00:00 +0000</pubDate>
-      <guid>https://cloudnative-pg.io/tags/kubernetes/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>Maintenance</title>
       <link>https://cloudnative-pg.io/tags/maintenance/</link>
       <pubDate>Tue, 09 Dec 2025 00:00:00 +0000</pubDate>
@@ -69,13 +104,6 @@
       <link>https://cloudnative-pg.io/tags/postgres/</link>
       <pubDate>Tue, 09 Dec 2025 00:00:00 +0000</pubDate>
       <guid>https://cloudnative-pg.io/tags/postgres/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Postgresql</title>
-      <link>https://cloudnative-pg.io/tags/postgresql/</link>
-      <pubDate>Tue, 09 Dec 2025 00:00:00 +0000</pubDate>
-      <guid>https://cloudnative-pg.io/tags/postgresql/</guid>
       <description></description>
     </item>
     <item>
@@ -104,13 +132,6 @@
       <link>https://cloudnative-pg.io/tags/modernize/</link>
       <pubDate>Thu, 11 Sep 2025 00:00:00 +0000</pubDate>
       <guid>https://cloudnative-pg.io/tags/modernize/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Open-Source</title>
-      <link>https://cloudnative-pg.io/tags/open-source/</link>
-      <pubDate>Thu, 11 Sep 2025 00:00:00 +0000</pubDate>
-      <guid>https://cloudnative-pg.io/tags/open-source/</guid>
       <description></description>
     </item>
     <item>
@@ -202,13 +223,6 @@
       <link>https://cloudnative-pg.io/tags/react/</link>
       <pubDate>Tue, 19 Aug 2025 00:00:00 +0000</pubDate>
       <guid>https://cloudnative-pg.io/tags/react/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Cncf</title>
-      <link>https://cloudnative-pg.io/tags/cncf/</link>
-      <pubDate>Thu, 14 Aug 2025 00:00:00 +0000</pubDate>
-      <guid>https://cloudnative-pg.io/tags/cncf/</guid>
       <description></description>
     </item>
     <item>
@@ -412,20 +426,6 @@
       <link>https://cloudnative-pg.io/tags/grafana/</link>
       <pubDate>Mon, 14 Apr 2025 14:51:43 +0200</pubDate>
       <guid>https://cloudnative-pg.io/tags/grafana/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Helm</title>
-      <link>https://cloudnative-pg.io/tags/helm/</link>
-      <pubDate>Mon, 14 Apr 2025 14:51:43 +0200</pubDate>
-      <guid>https://cloudnative-pg.io/tags/helm/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Imagecatalog</title>
-      <link>https://cloudnative-pg.io/tags/imagecatalog/</link>
-      <pubDate>Thu, 25 Apr 2024 16:04:04 +0200</pubDate>
-      <guid>https://cloudnative-pg.io/tags/imagecatalog/</guid>
       <description></description>
     </item>
     <item>

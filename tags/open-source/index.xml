@@ -6,8 +6,15 @@
     <description>Recent content in Open-Source on CloudNativePG - PostgreSQL Operator for Kubernetes</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 11 Sep 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 02 Jan 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://cloudnative-pg.io/tags/open-source/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Sticking with Open Source: pgEdge and CloudNativePG</title>
+      <link>https://cloudnative-pg.io/blog/matthew-mols-pgedge/</link>
+      <pubDate>Fri, 02 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>https://cloudnative-pg.io/blog/matthew-mols-pgedge/</guid>
+      <description>We talked to Matthew Mols, Sr. Director of Engineering at pgEdge, about how CloudNativePG enables them to meet the requirements of their customers using just open source.</description>
+    </item>
     <item>
       <title>Contributor Spotlight: Gabriele Quaresima</title>
       <link>https://cloudnative-pg.io/blog/contributor-highlight-gabriele-quaresima/</link>
