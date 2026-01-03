@@ -43,7 +43,7 @@ Let's see an example of how to do that:
 First of all, you should have CloudNativePG running on your kubernetes cluster,
 and a Postgres cluster created with CloudNativePG.
 If you don't yet have this, you can follow the
-[CloudNativePG quickstart](https://cloudnative-pg.io/documentation/current/quickstart/).
+[CloudNativePG quickstart](https://cloudnative-pg.io/docs/devel/quickstart/).
 
 Whether you follow the quickstart or you already had a CloudNativePG/Postgres
 cluster up and running, we'll assume for the rest of this post that your
