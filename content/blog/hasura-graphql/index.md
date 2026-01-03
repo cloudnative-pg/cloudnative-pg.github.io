@@ -39,7 +39,7 @@ for details.
 ## Installing CloudNativePG
 
 To install CloudNativePG, we'll follow the [installation and
-upgrade](https://cloudnative-pg.io/documentation/current/installation_upgrade/)
+upgrade](https://cloudnative-pg.io/docs/devel/installation_upgrade/)
 section of the CloudNativePG website.
 
 At the time of writing, the latest version is 1.20. The following

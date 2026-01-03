@@ -150,7 +150,7 @@ uploaded there instead of the `localhost:5000` registry used in the
 ### Step 3: Use it
 
 The only missing step to use the images is to update your 
-[Image Catalog / Cluster Image Catalog](https://cloudnative-pg.io/documentation/current/image_catalog/) 
+[Image Catalog / Cluster Image Catalog](https://cloudnative-pg.io/docs/devel/image_catalog/)
 with the newly built images.
 Test them and stage them through your environment.
 
