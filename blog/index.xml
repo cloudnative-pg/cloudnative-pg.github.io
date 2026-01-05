@@ -6,8 +6,15 @@
     <description>Recent content in Blog posts on CloudNativePG - PostgreSQL Operator for Kubernetes</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 02 Jan 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 05 Jan 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://cloudnative-pg.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Chaos testing the CloudNativePG project</title>
+      <link>https://cloudnative-pg.io/blog/lfx-chaos-testing-yash-agarwal/</link>
+      <pubDate>Mon, 05 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>https://cloudnative-pg.io/blog/lfx-chaos-testing-yash-agarwal/</guid>
+      <description>Meet the mentee: Yash Agarwal worked with the project maintainers on adding chaos testing to CloudNativePG, as part of the LFX mentorship program.</description>
+    </item>
     <item>
       <title>Sticking with Open Source: pgEdge and CloudNativePG</title>
       <link>https://cloudnative-pg.io/blog/matthew-mols-pgedge/</link>
