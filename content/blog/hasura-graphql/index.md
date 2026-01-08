@@ -65,7 +65,7 @@ architecture with a primary database node and two replicas. We can simply
 apply the example manifest included with CloudNativePG:
 
 ``` sh
-$ kubectl apply -f https://cloudnative-pg.io/documentation/1.20/samples/cluster-example.yaml
+$ kubectl apply -f https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/refs/heads/release-1.20/docs/src/samples/cluster-example.yaml
 cluster.postgresql.cnpg.io/cluster-example created
 ```
 
