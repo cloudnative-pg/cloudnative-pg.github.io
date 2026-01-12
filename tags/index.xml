@@ -6,8 +6,57 @@
     <description>Recent content in Tags on CloudNativePG - PostgreSQL Operator for Kubernetes</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 05 Jan 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 12 Jan 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://cloudnative-pg.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Cncf</title>
+      <link>https://cloudnative-pg.io/tags/cncf/</link>
+      <pubDate>Mon, 12 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>https://cloudnative-pg.io/tags/cncf/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Documentation</title>
+      <link>https://cloudnative-pg.io/tags/documentation/</link>
+      <pubDate>Mon, 12 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>https://cloudnative-pg.io/tags/documentation/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Docusaurus</title>
+      <link>https://cloudnative-pg.io/tags/docusaurus/</link>
+      <pubDate>Mon, 12 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>https://cloudnative-pg.io/tags/docusaurus/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Kubernetes</title>
+      <link>https://cloudnative-pg.io/tags/kubernetes/</link>
+      <pubDate>Mon, 12 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>https://cloudnative-pg.io/tags/kubernetes/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Lfx</title>
+      <link>https://cloudnative-pg.io/tags/lfx/</link>
+      <pubDate>Mon, 12 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>https://cloudnative-pg.io/tags/lfx/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Mentorship</title>
+      <link>https://cloudnative-pg.io/tags/mentorship/</link>
+      <pubDate>Mon, 12 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>https://cloudnative-pg.io/tags/mentorship/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Postgresql</title>
+      <link>https://cloudnative-pg.io/tags/postgresql/</link>
+      <pubDate>Mon, 12 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>https://cloudnative-pg.io/tags/postgresql/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Devops</title>
       <link>https://cloudnative-pg.io/tags/devops/</link>
@@ -16,45 +65,10 @@
       <description></description>
     </item>
     <item>
-      <title>Kubernetes</title>
-      <link>https://cloudnative-pg.io/tags/kubernetes/</link>
-      <pubDate>Mon, 05 Jan 2026 00:00:00 +0000</pubDate>
-      <guid>https://cloudnative-pg.io/tags/kubernetes/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Lfx</title>
-      <link>https://cloudnative-pg.io/tags/lfx/</link>
-      <pubDate>Mon, 05 Jan 2026 00:00:00 +0000</pubDate>
-      <guid>https://cloudnative-pg.io/tags/lfx/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>Litmus</title>
       <link>https://cloudnative-pg.io/tags/litmus/</link>
       <pubDate>Mon, 05 Jan 2026 00:00:00 +0000</pubDate>
       <guid>https://cloudnative-pg.io/tags/litmus/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Mentorship</title>
-      <link>https://cloudnative-pg.io/tags/mentorship/</link>
-      <pubDate>Mon, 05 Jan 2026 00:00:00 +0000</pubDate>
-      <guid>https://cloudnative-pg.io/tags/mentorship/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Postgresql</title>
-      <link>https://cloudnative-pg.io/tags/postgresql/</link>
-      <pubDate>Mon, 05 Jan 2026 00:00:00 +0000</pubDate>
-      <guid>https://cloudnative-pg.io/tags/postgresql/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Cncf</title>
-      <link>https://cloudnative-pg.io/tags/cncf/</link>
-      <pubDate>Fri, 02 Jan 2026 00:00:00 +0000</pubDate>
-      <guid>https://cloudnative-pg.io/tags/cncf/</guid>
       <description></description>
     </item>
     <item>

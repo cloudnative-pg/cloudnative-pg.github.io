@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Documentation on CloudNativePG - PostgreSQL Operator for Kubernetes</title>
+    <link>https://cloudnative-pg.io/tags/documentation/</link>
+    <description>Recent content in Documentation on CloudNativePG - PostgreSQL Operator for Kubernetes</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 12 Jan 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://cloudnative-pg.io/tags/documentation/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Updating CloudNativePG&#39;s documentation</title>
+      <link>https://cloudnative-pg.io/blog/lfx-mentorship-documentation-anushka-saxena/</link>
+      <pubDate>Mon, 12 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>https://cloudnative-pg.io/blog/lfx-mentorship-documentation-anushka-saxena/</guid>
+      <description>Meet the mentee: Anushka Saxena worked with the project maintainers on transforming the documentation for CloudNativePG, as part of the LFX mentorship program.</description>
+    </item>
+  </channel>
+</rss>
