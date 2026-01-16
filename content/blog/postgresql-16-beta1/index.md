@@ -58,7 +58,7 @@ PostgreSQL 16beta1 (Debian 16~beta1-2.pgdg110+1) on x86_64-pc-linux-gnu,
 
 If you are interested in trying CloudNativePG on your laptop with 'kind'
 (Kubernetes in Docker), follow the instructions you find in the
-[Quickstart](https://cloudnative-pg.io/documentation/current/quickstart/).
+[Quickstart](https://cloudnative-pg.io/docs/devel/quickstart/).
 
 One last note: at the moment, PGAudit is not compatible with PostgreSQL 16
 and cannot be used with the operator. There's a
