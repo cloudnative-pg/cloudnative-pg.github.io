@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="The CloudNativePG Contributors" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Client TLS/SSL connections - CloudNativePG v1.24.0-rc1</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../css/override.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Client TLS/SSL connections";
+        var mkdocs_page_input_path = "ssl_connections.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> CloudNativePG v1.24.0-rc1
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">CloudNativePG</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../before_you_start/">Before You Start</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../use_cases/">Use cases</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../architecture/">Architecture</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../installation_upgrade/">Installation and upgrades</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../quickstart/">Quickstart</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../image_catalog/">Image Catalog</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../bootstrap/">Bootstrap</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../database_import/">Importing Postgres databases</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../security/">Security</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../instance_manager/">Postgres instance manager</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../scheduling/">Scheduling</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../resource_management/">Resource management</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../failure_modes/">Failure Modes</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../rolling_update/">Rolling Updates</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../replication/">Replication</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../backup/">Backup</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../backup_barmanobjectstore/">Backup on object stores</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../wal_archiving/">WAL archiving</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../backup_volumesnapshot/">Backup on volume snapshots</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../recovery/">Recovery</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../service_management/">Service Management</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../postgresql_conf/">PostgreSQL Configuration</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../declarative_role_management/">Database Role Management</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../tablespaces/">Tablespaces</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../operator_conf/">Operator configuration</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../cluster_conf/">Instance pod configuration</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../storage/">Storage</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../labels_annotations/">Labels and annotations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../monitoring/">Monitoring</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../logging/">Logging</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../certificates/">Certificates</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Client TLS/SSL connections</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#issuing-a-new-certificate">Issuing a new certificate</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#testing-the-connection-via-a-tls-certificate">Testing the connection via a TLS certificate</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#about-tls-protocol-versions">About TLS protocol versions</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../applications/">Connecting from an application</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../connection_pooling/">Connection pooling</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../replica_cluster/">Replica clusters</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../kubernetes_upgrade/">Kubernetes Upgrade and Maintenance</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../kubectl-plugin/">Kubectl Plugin</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../failover/">Automated failover</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../troubleshooting/">Troubleshooting</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../fencing/">Fencing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../declarative_hibernation/">Declarative hibernation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../postgis/">PostGIS</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../e2e/">End-to-End Tests</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../container_images/">Container Image Requirements</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../operator_capability_levels/">Operator capability levels</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../controller/">Custom Pod Controller</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../samples/">Examples</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../networking/">Networking</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../benchmarking/">Benchmarking</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../commercial_support/">Commercial support</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../faq/">Frequently Asked Questions (FAQ)</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../cloudnative-pg.v1/">API Reference</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../supported_releases/">Supported releases</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../preview_version/">Preview Versions</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../release_notes/">Release notes</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Appendixes</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../appendixes/object_stores/">Appendix A - Common object stores for backups</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">CloudNativePG v1.24.0-rc1</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Client TLS/SSL connections</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="client-tlsssl-connections">Client TLS/SSL connections</h1>
+<div class="admonition seealso">
+<p class="admonition-title">Certificates</p>
+<p>See <a href="../certificates/">Certificates</a>
+for more details on how CloudNativePG supports TLS certificates.</p>
+</div>
+<p>The CloudNativePG operator was designed to work with TLS/SSL for both
+encryption in transit and authentication on the server and client sides.
+Clusters created using the CNPG operator come with a certification authority
+(CA) to create and sign TLS client certificates. Using the cnpg plugin for
+kubectl, you can issue a new TLS client certificate for authenticating a user
+instead of using passwords.</p>
+<p>These instructions for authenticating using TLS/SSL certificates assume you
+installed a cluster using the
+<a href="../samples/cluster-example-pg-hba.yaml">cluster-example-pg-hba.yaml</a> manifest.
+According to the convention-over-configuration paradigm, that file creates an
+<code>app</code> database that's owned by a user called app. (You can change this
+convention by way of the <code>initdb</code> configuration in the <code>bootstrap</code> section.)</p>
+<h2 id="issuing-a-new-certificate">Issuing a new certificate</h2>
+<div class="admonition seealso">
+<p class="admonition-title">About CNPG plugin for kubectl</p>
+<p>See the <a href="../kubectl-plugin/#certificates">Certificates in the CloudNativePG plugin</a>
+content for details on how to use the plugin for kubectl.</p>
+</div>
+<p>You can create a certificate for the app user in the <code>cluster-example</code>
+PostgreSQL cluster as follows:</p>
+<pre><code class="language-shell">kubectl cnpg certificate cluster-app \
+  --cnpg-cluster cluster-example \
+  --cnpg-user app
+</code></pre>
+<p>You can now verify the certificate:</p>
+<pre><code class="language-shell">kubectl get secret cluster-app \
+  -o jsonpath=&quot;{.data['tls\.crt']}&quot; \
+  | base64 -d | openssl x509 -text -noout \
+  | head -n 11
+</code></pre>
+<p>Output:</p>
+<pre><code class="language-console">
+Certificate:
+  Data:
+    Version: 3 (0x2)
+    Serial Number:
+      5d:e1:72:8a:39:9f:ce:51:19:9d:21:ff:1e:4b:24:5d
+    Signature Algorithm: ecdsa-with-SHA256
+    Issuer: OU = default, CN = cluster-example
+    Validity
+      Not Before: Mar 22 10:22:14 2021 GMT
+      Not After : Mar 22 10:22:14 2022 GMT
+    Subject: CN = app
+</code></pre>
+<p>As you can see, TLS client certificates by default are created with 90 days of
+validity, and with a simple CN that corresponds to the username in PostgreSQL.
+You can specify the validity and threshold values using the
+<code>EXPIRE_CHECK_THRESHOLD</code> and <code>CERTIFICATE_DURATION</code> parameters. This is
+necessary to leverage the <code>cert</code> authentication method for <code>hostssl</code> entries in
+<code>pg_hba.conf</code>.</p>
+<h2 id="testing-the-connection-via-a-tls-certificate">Testing the connection via a TLS certificate</h2>
+<p>Next, test this client certificate by configuring a demo client application
+that connects to your CloudNativePG cluster.</p>
+<p>The following manifest, called <code>cert-test.yaml</code>, creates a demo pod with a test
+application in the same namespace where your database cluster is running:</p>
+<pre><code class="language-yaml">apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cert-test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: webtest
+  template:
+    metadata:
+      labels:
+        app: webtest
+    spec:
+      containers:
+        - image: ghcr.io/cloudnative-pg/webtest:1.6.0
+          name: cert-test
+          volumeMounts:
+            - name: secret-volume-root-ca
+              mountPath: /etc/secrets/ca
+            - name: secret-volume-app
+              mountPath: /etc/secrets/app
+          ports:
+            - containerPort: 8080
+          env:
+            - name: DATABASE_URL
+              value: &gt;
+                sslkey=/etc/secrets/app/tls.key
+                sslcert=/etc/secrets/app/tls.crt
+                sslrootcert=/etc/secrets/ca/ca.crt
+                host=cluster-example-rw.default.svc
+                dbname=app
+                user=app
+                sslmode=verify-full
+            - name: SQL_QUERY
+              value: SELECT 1
+          readinessProbe:
+            httpGet:
+              port: 8080
+              path: /tx
+      volumes:
+        - name: secret-volume-root-ca
+          secret:
+            secretName: cluster-example-ca
+            defaultMode: 0600
+        - name: secret-volume-app
+          secret:
+            secretName: cluster-app
+            defaultMode: 0600
+</code></pre>
+<p>This pod mounts secrets managed by the CloudNativePG operator, including:</p>
+<ul>
+<li><code>sslcert</code> – The TLS client public certificate.</li>
+<li><code>sslkey</code> – The TLS client certificate private key.</li>
+<li><code>sslrootcert</code> – The TLS CA certificate that signed the certificate on
+  the server to use to verify the identity of the instances.</li>
+</ul>
+<p>They're used to create the default resources that psql (and other libpq-based
+applications, like pgbench) requires to establish a TLS-encrypted connection to
+the Postgres database.</p>
+<p>By default, psql searches for certificates in the <code>~/.postgresql</code> directory of
+the current user, but you can use the <code>sslkey</code>, <code>sslcert</code>, and <code>sslrootcert</code>
+options to point libpq to the actual location of the cryptographic material.
+The content of these files is gathered from the secrets that were previously
+created by using the cnpg plugin for kubectl.</p>
+<p>Deploy the application:</p>
+<pre><code class="language-shell">kubectl create -f cert-test.yaml
+</code></pre>
+<p>Then use the created pod as the PostgreSQL client to validate the SSL
+connection and authentication using the TLS certificates you just created.</p>
+<p>A readiness probe was configured to ensure that the application is ready when
+the database server can be reached.</p>
+<p>You can verify that the connection works. To do so, execute an interactive
+<code>bash</code> inside the pod's container to run psql using the necessary options. The
+PostgreSQL server is exposed through the read-write Kubernetes service. Point
+the psql command to connect to this service:</p>
+<pre><code class="language-shell">kubectl exec -it cert-test -- bash -c &quot;psql
+'sslkey=/etc/secrets/app/tls.key sslcert=/etc/secrets/app/tls.crt
+sslrootcert=/etc/secrets/ca/ca.crt host=cluster-example-rw.default.svc dbname=app
+user=app sslmode=verify-full' -c 'select version();'&quot;
+</code></pre>
+<p>Output:</p>
+<pre><code class="language-console">                                        version
+--------------------------------------------------------------------------------------
+------------------
+PostgreSQL 16.3 on x86_64-pc-linux-gnu, compiled by gcc (GCC) 8.3.1 20191121 (Red Hat
+8.3.1-5), 64-bit
+(1 row)
+</code></pre>
+<h2 id="about-tls-protocol-versions">About TLS protocol versions</h2>
+<p>By default, the operator sets both <a href="https://www.postgresql.org/docs/current/runtime-config-connection.html#GUC-SSL-MIN-PROTOCOL-VERSION"><code>ssl_min_protocol_version</code></a>
+and <a href="https://www.postgresql.org/docs/current/runtime-config-connection.html#GUC-SSL-MAX-PROTOCOL-VERSION"><code>ssl_max_protocol_version</code></a>
+to <code>TLSv1.3</code>.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>In PostgreSQL 11, these two GUCs don't exist. Hence, in these specific versions
+these values aren't set,  and the default values are used.</p>
+</div>
+<p>This assumes that the PostgreSQL operand images include an OpenSSL library that
+supports the <code>TLSv1.3</code> version. If not, or if your client applications need a
+lower version number, you need to manually configure it in the PostgreSQL
+configuration as any other Postgres GUC.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../certificates/" class="btn btn-neutral float-left" title="Certificates"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../applications/" class="btn btn-neutral float-right" title="Connecting from an application">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../certificates/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../applications/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

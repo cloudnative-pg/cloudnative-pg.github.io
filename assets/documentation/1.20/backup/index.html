@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="The CloudNativePG Contributors" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Backup - CloudNativePG</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+        <link href="../css/override.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Backup";
+        var mkdocs_page_input_path = "backup.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> CloudNativePG
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">CloudNativePG</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../before_you_start/">Before You Start</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../use_cases/">Use cases</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../architecture/">Architecture</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../installation_upgrade/">Installation and upgrades</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../quickstart/">Quickstart</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../bootstrap/">Bootstrap</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../database_import/">Importing Postgres databases</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../security/">Security</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../instance_manager/">Postgres instance manager</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../scheduling/">Scheduling</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../resource_management/">Resource management</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../failure_modes/">Failure Modes</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../rolling_update/">Rolling Updates</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../replication/">Replication</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Backup</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#common-object-stores">Common object stores</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#on-demand-backups">On-demand backups</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#scheduled-backups">Scheduled backups</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#wal-archiving">WAL archiving</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#backup-from-a-standby">Backup from a standby</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#retention-policies">Retention policies</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#compression-algorithms">Compression algorithms</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#tagging-of-backup-objects">Tagging of backup objects</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../recovery/">Recovery</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../postgresql_conf/">PostgreSQL Configuration</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../declarative_role_management/">Database Role Management</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../operator_conf/">Operator configuration</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../cluster_conf/">Instance pod configuration</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../storage/">Storage</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../labels_annotations/">Labels and annotations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../monitoring/">Monitoring</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../logging/">Logging</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../certificates/">Certificates</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../ssl_connections/">Client TLS/SSL connections</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../applications/">Connecting from an application</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../connection_pooling/">Connection pooling</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../replica_cluster/">Replica clusters</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../kubernetes_upgrade/">Kubernetes Upgrade</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../expose_pg_services/">Exposing Postgres Services</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../kubectl-plugin/">CloudNativePG Plugin</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../failover/">Automated failover</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../troubleshooting/">Troubleshooting</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../fencing/">Fencing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../declarative_hibernation/">Declarative hibernation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../postgis/">PostGIS</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../e2e/">End-to-End Tests</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../container_images/">Container Image Requirements</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../operator_capability_levels/">Operator capability levels</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../controller/">Custom Pod Controller</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../samples/">Examples</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../networking/">Networking</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../benchmarking/">Benchmarking</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../commercial_support/">Commercial support</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../faq/">Frequently Asked Questions (FAQ)</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../cloudnative-pg.v1/">API Reference</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../supported_releases/">Supported releases</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../release_notes/">Release notes</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Appendixes</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../appendixes/object_stores/">Appendix A - Common object stores for backups</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">CloudNativePG</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+      <li>Backup</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="backup">Backup</h1>
+<!-- TODO:
+
+- Explain the two methods: object store and volume snapshots
+- Explain the role of WAL archiving for both cold/hot backups and PITR
+
+-->
+
+<p>CloudNativePG natively supports <strong>online/hot backup</strong> of PostgreSQL
+clusters through continuous physical backup and WAL archiving.
+This means that the database is always up (no downtime required)
+and that you can recover at any point in time from the first
+available base backup in your system. The latter is normally
+referred to as "Point In Time Recovery" (PITR).</p>
+<p>The operator can orchestrate a continuous backup infrastructure
+that is based on the <a href="https://pgbarman.org">Barman</a> tool. Instead
+of using the classical architecture with a Barman server, which
+backs up many PostgreSQL instances, the operator relies on the
+<code>barman-cloud-wal-archive</code>, <code>barman-cloud-check-wal-archive</code>,
+<code>barman-cloud-backup</code>, <code>barman-cloud-backup-list</code>, and
+<code>barman-cloud-backup-delete</code> tools. As a result, base backups will
+be <em>tarballs</em>. Both base backups and WAL files can be compressed
+and encrypted.</p>
+<p>For this, it is required to use an image with <code>barman-cli-cloud</code> included.
+You can use the image <code>ghcr.io/cloudnative-pg/postgresql</code> for this scope,
+as it is composed of a community PostgreSQL image and the latest
+<code>barman-cli-cloud</code> package.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Always ensure that you are running the latest version of the operands
+in your system to take advantage of the improvements introduced in
+Barman cloud (as well as improve the security aspects of your cluster).</p>
+</div>
+<p>A backup is performed from a primary or a designated primary instance in a
+<code>Cluster</code> (please refer to
+<a href="../replica_cluster/">replica clusters</a>
+for more information about designated primary instances), or alternatively
+on a <a href="#backup-from-a-standby">standby</a>.</p>
+<h2 id="common-object-stores">Common object stores</h2>
+<p>If you are looking for a specific object store such as
+<a href="../appendixes/object_stores/#aws-s3">AWS S3</a>,
+<a href="../appendixes/object_stores/#azure-blob-storage">Microsoft Azure Blob Storage</a>,
+<a href="../appendixes/object_stores/#google-cloud-storage">Google Cloud Storage</a>, or
+<a href="../appendixes/object_stores/#minio-gateway">MinIO Gateway</a>, or a compatible
+provider, please refer to <a href="../appendixes/object_stores/">Appendix A - Common object stores</a>.</p>
+<h2 id="on-demand-backups">On-demand backups</h2>
+<p>To request a new backup, you need to create a new Backup resource
+like the following one:</p>
+<pre><code class="language-yaml">apiVersion: postgresql.cnpg.io/v1
+kind: Backup
+metadata:
+  name: backup-example
+spec:
+  cluster:
+    name: pg-backup
+</code></pre>
+<p>The operator will start to orchestrate the cluster to take the
+required backup using <code>barman-cloud-backup</code>. You can check
+the backup status using the plain <code>kubectl describe backup &lt;name&gt;</code>
+command:</p>
+<pre><code class="language-text">Name:         backup-example
+Namespace:    default
+Labels:       &lt;none&gt;
+Annotations:  API Version:  postgresql.cnpg.io/v1
+Kind:         Backup
+Metadata:
+  Creation Timestamp:  2020-10-26T13:57:40Z
+  Self Link:         /apis/postgresql.cnpg.io/v1/namespaces/default/backups/backup-example
+  UID:               ad5f855c-2ffd-454a-a157-900d5f1f6584
+Spec:
+  Cluster:
+    Name:  pg-backup
+Status:
+  Phase:       running
+  Started At:  2020-10-26T13:57:40Z
+Events:        &lt;none&gt;
+</code></pre>
+<p>When the backup has been completed, the phase will be <code>completed</code>
+like in the following example:</p>
+<pre><code class="language-text">Name:         backup-example
+Namespace:    default
+Labels:       &lt;none&gt;
+Annotations:  API Version:  postgresql.cnpg.io/v1
+Kind:         Backup
+Metadata:
+  Creation Timestamp:  2020-10-26T13:57:40Z
+  Self Link:         /apis/postgresql.cnpg.io/v1/namespaces/default/backups/backup-example
+  UID:               ad5f855c-2ffd-454a-a157-900d5f1f6584
+Spec:
+  Cluster:
+    Name:  pg-backup
+Status:
+  Backup Id:         20201026T135740
+  Destination Path:  s3://backups/
+  Endpoint URL:      http://minio:9000
+  Phase:             completed
+  s3Credentials:
+    Access Key Id:
+      Key:   ACCESS_KEY_ID
+      Name:  minio
+    Secret Access Key:
+      Key:      ACCESS_SECRET_KEY
+      Name:     minio
+  Server Name:  pg-backup
+  Started At:   2020-10-26T13:57:40Z
+  Stopped At:   2020-10-26T13:57:44Z
+Events:         &lt;none&gt;
+</code></pre>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>This feature will not backup the secrets for the superuser and the
+application user. The secrets are supposed to be backed up as part of
+the standard backup procedures for the Kubernetes cluster.</p>
+</div>
+<h2 id="scheduled-backups">Scheduled backups</h2>
+<p>You can also schedule your backups periodically by creating a
+resource named <code>ScheduledBackup</code>. The latter is similar to a
+<code>Backup</code> but with an added field, called <code>schedule</code>.</p>
+<p>This field allows you to define a <em>six-term cron schedule</em> specification,
+which includes seconds, as expressed in
+the <a href="https://pkg.go.dev/github.com/robfig/cron#hdr-CRON_Expression_Format">Go <code>cron</code> package format</a>.</p>
+<p>This is an example of a scheduled backup:</p>
+<pre><code class="language-yaml">apiVersion: postgresql.cnpg.io/v1
+kind: ScheduledBackup
+metadata:
+  name: backup-example
+spec:
+  schedule: &quot;0 0 0 * * *&quot;
+  backupOwnerReference: self
+  cluster:
+    name: pg-backup
+</code></pre>
+<p>The above example will schedule a backup every day at midnight because the schedule
+specifies zero for the second, minute, and hour, while specifying wildcard, meaning all,
+for day of the month, month, and day of the week.</p>
+<p>In Kubernetes CronJobs, the equivalent expression is <code>0 0 * * *</code> because seconds
+are not included.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>Backup frequency might impact your recovery time object (RTO) after a
+disaster which requires a full or Point-In-Time recovery operation. Our
+advice is that you regularly test your backups by recovering them, and then
+measuring the time it takes to recover from scratch so that you can refine
+your RTO predictability. Recovery time is influenced by the size of the
+base backup and the amount of WAL files that need to be fetched from the archive
+and replayed during recovery (remember that WAL archiving is what enables
+continuous backup in PostgreSQL!).
+Based on our experience, a weekly base backup is more than enough for most
+cases - while it is extremely rare to schedule backups more frequently than once
+a day.</p>
+</div>
+<p>ScheduledBackups can be suspended if needed by setting <code>.spec.suspend: true</code>,
+this will stop any new backup to be scheduled as long as the option is set to false.</p>
+<p>In case you want to issue a backup as soon as the ScheduledBackup resource is created
+you can set <code>.spec.immediate: true</code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code>.spec.backupOwnerReference</code> indicates which ownerReference should be put inside
+the created backup resources.</p>
+<ul>
+<li><em>none:</em> no owner reference for created backup objects (same behavior as before the field was introduced)</li>
+<li><em>self:</em> sets the Scheduled backup object as owner of the backup</li>
+<li><em>cluster:</em> set the cluster as owner of the backup</li>
+</ul>
+</div>
+<h2 id="wal-archiving">WAL archiving</h2>
+<p>WAL archiving is enabled as soon as you choose a destination path
+and you configure your cloud credentials.</p>
+<p>If required, you can choose to compress WAL files as soon as they
+are uploaded and/or encrypt them:</p>
+<pre><code class="language-yaml">apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+[...]
+spec:
+  backup:
+    barmanObjectStore:
+      [...]
+      wal:
+        compression: gzip
+        encryption: AES256
+</code></pre>
+<p>You can configure the encryption directly in your bucket, and the operator
+will use it unless you override it in the cluster configuration.</p>
+<p>PostgreSQL implements a sequential archiving scheme, where the
+<code>archive_command</code> will be executed sequentially for every WAL
+segment to be archived.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>By default, CloudNativePG sets <code>archive_timeout</code> to <code>5min</code>, ensuring
+that WAL files, even in case of low workloads, are closed and archived
+at least every 5 minutes, providing a deterministic time-based value for
+your Recovery Point Objective (RPO). Even though you change the value
+of the <a href="https://www.postgresql.org/docs/current/runtime-config-wal.html#GUC-ARCHIVE-TIMEOUT"><code>archive_timeout</code> setting in the PostgreSQL configuration</a>,
+our experience suggests that the default value set by the operator is
+suitable for most use cases.</p>
+</div>
+<p>When the bandwidth between the PostgreSQL instance and the object
+store allows archiving more than one WAL file in parallel, you
+can use the parallel WAL archiving feature of the instance manager
+like in the following example:</p>
+<pre><code class="language-yaml">apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+[...]
+spec:
+  backup:
+    barmanObjectStore:
+      [...]
+      wal:
+        compression: gzip
+        maxParallel: 8
+        encryption: AES256
+</code></pre>
+<p>In the previous example, the instance manager optimizes the WAL
+archiving process by archiving in parallel at most eight ready
+WALs, including the one requested by PostgreSQL.</p>
+<p>When PostgreSQL will request the archiving of a WAL that has
+already been archived by the instance manager as an optimization,
+that archival request will be just dismissed with a positive status.</p>
+<h2 id="backup-from-a-standby">Backup from a standby</h2>
+<p>Taking a base backup requires to scrape the whole data content of the
+PostgreSQL instance on disk, possibly resulting in I/O contention with the
+actual workload of the database.</p>
+<p>For this reason, CloudNativePG allows you to take advantage of a
+feature which is directly available in PostgreSQL: <strong>backup from a standby</strong>.</p>
+<p>By default, backups will run on the most aligned replica of a <code>Cluster</code>. If
+no replicas are available, backups will run on the primary instance.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Although the standby might not always be up to date with the primary,
+in the time continuum from the first available backup to the last
+archived WAL this is normally irrelevant. The base backup indeed
+represents the starting point from which to begin a recovery operation,
+including PITR. Similarly to what happens with
+<a href="https://www.postgresql.org/docs/current/app-pgbasebackup.html"><code>pg_basebackup</code></a>,
+when backing up from a standby we do not force a switch of the WAL on the
+primary. This might produce unexpected results in the short term (before
+<code>archive_timeout</code> kicks in) in deployments with low write activity.</p>
+</div>
+<p>If you prefer to always run backups on the primary, you can set the backup
+target to <code>primary</code> as outlined in the example below:</p>
+<pre><code class="language-yaml">apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  [...]
+spec:
+  backup:
+    target: &quot;primary&quot;
+</code></pre>
+<p>When the backup target is set to <code>prefer-standby</code>, such policy will ensure
+backups are run on the most up-to-date available secondary instance, or if no
+other instance is available, on the primary instance.</p>
+<p>By default, when not otherwise specified, target is automatically set to take
+backups from a standby.</p>
+<p>The backup target specified in the <code>Cluster</code> can be overridden in the <code>Backup</code>
+and <code>ScheduledBackup</code> types, like in the following example:</p>
+<pre><code class="language-yaml">apiVersion: postgresql.cnpg.io/v1
+kind: Backup
+metadata:
+  [...]
+spec:
+  cluster:
+    name: [...]
+  target: &quot;primary&quot;
+</code></pre>
+<p>In the previous example, CloudNativePG will invariably choose the primary
+instance even if the <code>Cluster</code> is set to prefer replicas.</p>
+<h2 id="retention-policies">Retention policies</h2>
+<p>CloudNativePG can manage the automated deletion of backup files from
+the backup object store, using <strong>retention policies</strong> based on the recovery
+window.</p>
+<p>Internally, the retention policy feature uses <code>barman-cloud-backup-delete</code>
+with <code>--retention-policy “RECOVERY WINDOW OF {{ retention policy value }} {{ retention policy unit }}”</code>.</p>
+<p>For example, you can define your backups with a retention policy of 30 days as
+follows:</p>
+<pre><code class="language-yaml">apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+[...]
+spec:
+  backup:
+    barmanObjectStore:
+      destinationPath: &quot;&lt;destination path here&gt;&quot;
+      s3Credentials:
+        accessKeyId:
+          name: aws-creds
+          key: ACCESS_KEY_ID
+        secretAccessKey:
+          name: aws-creds
+          key: ACCESS_SECRET_KEY
+    retentionPolicy: &quot;30d&quot;
+</code></pre>
+<div class="admonition note">
+<p class="admonition-title">There's more ...</p>
+<p>The <strong>recovery window retention policy</strong> is focused on the concept of
+<em>Point of Recoverability</em> (<code>PoR</code>), a moving point in time determined by
+<code>current time - recovery window</code>. The <em>first valid backup</em> is the first
+available backup before <code>PoR</code> (in reverse chronological order).
+CloudNativePG must ensure that we can recover the cluster at
+any point in time between <code>PoR</code> and the latest successfully archived WAL
+file, starting from the first valid backup. Base backups that are older
+than the first valid backup will be marked as <em>obsolete</em> and permanently
+removed after the next backup is completed.</p>
+</div>
+<h2 id="compression-algorithms">Compression algorithms</h2>
+<p>CloudNativePG by default archives backups and WAL files in an
+uncompressed fashion. However, it also supports the following compression
+algorithms via <code>barman-cloud-backup</code> (for backups) and
+<code>barman-cloud-wal-archive</code> (for WAL files):</p>
+<ul>
+<li>bzip2</li>
+<li>gzip</li>
+<li>snappy</li>
+</ul>
+<p>The compression settings for backups and WALs are independent. See the
+<a href="../cloudnative-pg.v1/#postgresql-cnpg-io-v1-DataBackupConfiguration">DataBackupConfiguration</a> and
+<a href="../cloudnative-pg.v1/#postgresql-cnpg-io-v1-WalBackupConfiguration">WALBackupConfiguration</a> sections in
+the API reference.</p>
+<p>It is important to note that archival time, restore time, and size change
+between the algorithms, so the compression algorithm should be chosen according
+to your use case.</p>
+<p>The Barman team has performed an evaluation of the performance of the supported
+algorithms for Barman Cloud. The following table summarizes a scenario where a
+backup is taken on a local MinIO deployment. The Barman GitHub project includes
+a <a href="https://github.com/EnterpriseDB/barman/issues/344#issuecomment-992547396">deeper analysis</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Compression</th>
+<th>Backup Time (ms)</th>
+<th>Restore Time (ms)</th>
+<th>Uncompressed size (MB)</th>
+<th>Compressed size (MB)</th>
+<th>Approx ratio</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>None</td>
+<td>10927</td>
+<td>7553</td>
+<td>395</td>
+<td>395</td>
+<td>1:1</td>
+</tr>
+<tr>
+<td>bzip2</td>
+<td>25404</td>
+<td>13886</td>
+<td>395</td>
+<td>67</td>
+<td>5.9:1</td>
+</tr>
+<tr>
+<td>gzip</td>
+<td>116281</td>
+<td>3077</td>
+<td>395</td>
+<td>91</td>
+<td>4.3:1</td>
+</tr>
+<tr>
+<td>snappy</td>
+<td>8134</td>
+<td>8341</td>
+<td>395</td>
+<td>166</td>
+<td>2.4:1</td>
+</tr>
+</tbody>
+</table>
+<h2 id="tagging-of-backup-objects">Tagging of backup objects</h2>
+<p>Barman 2.18 introduces support for tagging backup resources when saving them in
+object stores via <code>barman-cloud-backup</code> and <code>barman-cloud-wal-archive</code>. As a
+result, if your PostgreSQL container image includes Barman with version 2.18 or
+higher, CloudNativePG enables you to specify tags as key-value pairs
+for backup objects, namely base backups, WAL files and history files.</p>
+<p>You can use two properties in the <code>.spec.backup.barmanObjectStore</code> definition:</p>
+<ul>
+<li><code>tags</code>: key-value pair tags to be added to backup objects and archived WAL
+  file in the backup object store</li>
+<li><code>historyTags</code>: key-value pair tags to be added to archived history files in
+  the backup object store</li>
+</ul>
+<p>The excerpt of a YAML manifest below provides an example of usage of this
+feature:</p>
+<pre><code class="language-yaml">apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+[...]
+spec:
+  backup:
+    barmanObjectStore:
+      [...]
+      tags:
+        backupRetentionPolicy: &quot;expire&quot;
+      historyTags:
+        backupRetentionPolicy: &quot;keep&quot;
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../replication/" class="btn btn-neutral float-left" title="Replication"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../recovery/" class="btn btn-neutral float-right" title="Recovery">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../replication/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../recovery/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

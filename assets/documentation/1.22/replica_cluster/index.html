@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="The CloudNativePG Contributors" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Replica clusters - CloudNativePG v1.22</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../css/override.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Replica clusters";
+        var mkdocs_page_input_path = "replica_cluster.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> CloudNativePG v1.22
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">CloudNativePG</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../before_you_start/">Before You Start</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../use_cases/">Use cases</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../architecture/">Architecture</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../installation_upgrade/">Installation and upgrades</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../quickstart/">Quickstart</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../bootstrap/">Bootstrap</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../database_import/">Importing Postgres databases</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../security/">Security</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../instance_manager/">Postgres instance manager</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../scheduling/">Scheduling</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../resource_management/">Resource management</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../failure_modes/">Failure Modes</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../rolling_update/">Rolling Updates</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../replication/">Replication</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../backup/">Backup</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../backup_barmanobjectstore/">Backup on object stores</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../wal_archiving/">WAL archiving</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../backup_volumesnapshot/">Backup on volume snapshots</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../recovery/">Recovery</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../postgresql_conf/">PostgreSQL Configuration</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../declarative_role_management/">Database Role Management</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../tablespaces/">Tablespaces</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../operator_conf/">Operator configuration</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../cluster_conf/">Instance pod configuration</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../storage/">Storage</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../labels_annotations/">Labels and annotations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../monitoring/">Monitoring</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../logging/">Logging</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../certificates/">Certificates</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../ssl_connections/">Client TLS/SSL connections</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../applications/">Connecting from an application</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../connection_pooling/">Connection pooling</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Replica clusters</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#basic-concepts">Basic concepts</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#setting-up-a-replica-cluster">Setting up a replica cluster</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#example-using-pg_basebackup">Example using pg_basebackup</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example-using-a-backup-from-an-object-store">Example using a Backup from an object store</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example-using-a-volume-snapshot">Example using a Volume Snapshot</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#promoting-the-designated-primary-in-the-replica-cluster">Promoting the designated primary in the replica cluster</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../kubernetes_upgrade/">Kubernetes Upgrade</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../expose_pg_services/">Exposing Postgres Services</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../kubectl-plugin/">Kubectl Plugin</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../failover/">Automated failover</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../troubleshooting/">Troubleshooting</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../fencing/">Fencing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../declarative_hibernation/">Declarative hibernation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../postgis/">PostGIS</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../e2e/">End-to-End Tests</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../container_images/">Container Image Requirements</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../operator_capability_levels/">Operator capability levels</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../controller/">Custom Pod Controller</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../samples/">Examples</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../networking/">Networking</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../benchmarking/">Benchmarking</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../commercial_support/">Commercial support</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../faq/">Frequently Asked Questions (FAQ)</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../cloudnative-pg.v1/">API Reference</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../supported_releases/">Supported releases</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../release_notes/">Release notes</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Appendixes</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../appendixes/object_stores/">Appendix A - Common object stores for backups</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">CloudNativePG v1.22</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Replica clusters</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="replica-clusters">Replica clusters</h1>
+<p>A replica cluster is an independent CloudNativePG <code>Cluster</code> resource that has
+the main characteristic to be in replica from another Postgres instance,
+ideally also managed by CloudNativePG. Normally, a replica cluster is in another
+Kubernetes cluster in another region. Replica clusters can be cascading too,
+and they can solely rely on object stores for replication of the data from
+the source, as described further down.</p>
+<p>The diagram below - taken from the <a href="../architecture/#deployments-across-kubernetes-clusters">"Architecture"
+section</a> containing more
+information about this capability - shows just an example of architecture
+that you can implement with replica clusters.</p>
+<p><img alt="An example of multi-cluster deployment with a primary and a replica cluster" src="../images/multi-cluster.png" /></p>
+<h2 id="basic-concepts">Basic concepts</h2>
+<p>CloudNativePG relies on the foundations of the PostgreSQL replication
+framework even when a PostgreSQL cluster is created from an existing one (source)
+and kept synchronized through the
+<a href="../architecture/#deployments-across-kubernetes-clusters">replica cluster</a> feature. The source
+can be a primary cluster or another replica cluster (cascading replica cluster).</p>
+<p>The first step is to bootstrap the replica cluster, choosing among one of the
+available methods:</p>
+<ul>
+<li>streaming replication, via <code>pg_basebackup</code></li>
+<li>recovery from a volume snapshot</li>
+<li>recovery from a Barman Cloud backup in an object store</li>
+</ul>
+<p>Please refer to the <a href="../bootstrap/#bootstrap-from-another-cluster">"Bootstrap" section</a>
+for information on how to clone a PostgreSQL server using either
+<code>pg_basebackup</code> (streaming) or <code>recovery</code> (volume snapshot or object store).</p>
+<p>Once the replica cluster's base backup is available, you need to define how
+changes are replicated from the origin, through PostgreSQL continuous recovery.
+There are two options:</p>
+<ul>
+<li>use streaming replication between the replica cluster and the source
+  (this will certainly require some administrative and security related
+  work to be done to make sure that the network connection between the
+  two clusters are correctly setup)</li>
+<li>use the WAL archive (on an object store) to fetch the WAL files that are
+  regularly shipped from the source to the object store and pulled by
+  <code>barman-cloud-wal-restore</code> in the replica cluster</li>
+<li>any of the two</li>
+</ul>
+<p>All you have to do is actually define an external cluster.</p>
+<p>If the external cluster contains a <code>barmanObjectStore</code> section:</p>
+<ul>
+<li>you'll be able to use the WAL archive, and CloudNativePG will automatically
+  set the <code>restore_command</code> in the designated primary instance</li>
+<li>you'll be able to bootstrap the replica cluster from an object store
+  using the <code>recovery</code> section, in case you cannot take advantage of
+  volume snapshots</li>
+</ul>
+<p>If the external cluster contains a <code>connectionParameters</code> section:</p>
+<ul>
+<li>you'll be able to bootstrap the replica cluster via streaming replication
+  using the <code>pg_basebackup</code> section</li>
+<li>CloudNativePG will automatically set the <code>primary_conninfo</code>
+  option in the designated primary instance, so that a WAL receiver
+  process is started to connect to the source cluster and receive data</li>
+</ul>
+<p>The created replica cluster can perform backups in a reserved object store from
+the designated primary, enabling symmetric architectures in a distributed
+fashion.</p>
+<p>You have full flexibility and freedom to decide your favorite
+distributed architecture for a PostgreSQL database by choosing:</p>
+<ul>
+<li>a private cloud spanning over multiple Kubernetes clusters in different data
+  centers</li>
+<li>a public cloud spanning over multiple Kubernetes clusters in different
+  regions</li>
+<li>a mix of the previous two (hybrid)</li>
+<li>a public cloud spanning over multiple Kubernetes clusters in different
+  regions and on different Cloud Service Providers</li>
+</ul>
+<h2 id="setting-up-a-replica-cluster">Setting up a replica cluster</h2>
+<p>To set up a replica cluster from a source cluster, we need to create a cluster YAML
+file and define the following parts accordingly:</p>
+<ul>
+<li>define the <code>externalClusters</code> section in the replica cluster</li>
+<li>define the bootstrap part for the replica cluster. We can either bootstrap via
+  streaming using the <code>pg_basebackup</code> section, or bootstrap from a volume snapshot
+  or an object store using the <code>recovery</code> section</li>
+<li>define the continuous recovery part (<code>.spec.replica</code>) in the replica cluster. All
+  we need to do is to enable the replica mode through option <code>.spec.replica.enabled</code>
+  and set the <code>externalClusters</code> name in option <code>.spec.replica.source</code></li>
+</ul>
+<h4 id="example-using-pg_basebackup">Example using pg_basebackup</h4>
+<p>This <strong>first example</strong> defines a replica cluster using streaming replication in
+both bootstrap and continuous recovery. The replica cluster connects to the
+source cluster using TLS authentication.</p>
+<p>You can check the <a href="../samples/cluster-example-replica-streaming.yaml">sample YAML</a>
+in the <code>samples/</code> subdirectory.</p>
+<p>Note the <code>bootstrap</code> and <code>replica</code> sections pointing to the source cluster.</p>
+<pre><code class="language-yaml">  bootstrap:
+    pg_basebackup:
+      source: cluster-example
+
+  replica:
+    enabled: true
+    source: cluster-example
+</code></pre>
+<p>The previous configuration assumes that the application database and its owning
+user are set to the default, <code>app</code>. If the PostgreSQL cluster being restored
+uses different names, you must specify them as documented in <a href="../bootstrap/#configure-the-application-database">Configure the application database</a>.
+You should also consider copying over the application user secret from
+the original cluster and keep it synchronized with the source.
+See <a href="#about-postgresql-roles">"About PostgreSQL Roles"</a> for more details.</p>
+<p>In the <code>externalClusters</code> section, remember to use the right namespace for the
+host in the <code>connectionParameters</code> sub-section.
+The <code>-replication</code> and <code>-ca</code> secrets should have been copied over if necessary,
+in case the replica cluster is in a separate namespace.</p>
+<pre><code class="language-yaml">  externalClusters:
+  - name: &lt;MAIN-CLUSTER&gt;
+    connectionParameters:
+      host: &lt;MAIN-CLUSTER&gt;-rw.&lt;NAMESPACE&gt;.svc
+      user: streaming_replica
+      sslmode: verify-full
+      dbname: postgres
+    sslKey:
+      name: &lt;MAIN-CLUSTER&gt;-replication
+      key: tls.key
+    sslCert:
+      name: &lt;MAIN-CLUSTER&gt;-replication
+      key: tls.crt
+    sslRootCert:
+      name: &lt;MAIN-CLUSTER&gt;-ca
+      key: ca.crt
+</code></pre>
+<h4 id="example-using-a-backup-from-an-object-store">Example using a Backup from an object store</h4>
+<p>The <strong>second example</strong> defines a replica cluster that bootstraps from an object
+store using the <code>recovery</code> section and continuous recovery using both streaming
+replication and the given object store. For streaming replication, the replica
+cluster connects to the source cluster using basic authentication.</p>
+<p>You can check the <a href="../samples/cluster-example-replica-from-backup-simple.yaml">sample YAML</a>
+for it in the <code>samples/</code> subdirectory.</p>
+<p>Note the <code>bootstrap</code> and <code>replica</code> sections pointing to the source cluster.</p>
+<pre><code class="language-yaml">  bootstrap:
+    recovery:
+      source: cluster-example
+
+  replica:
+    enabled: true
+    source: cluster-example
+</code></pre>
+<p>The previous configuration assumes that the application database and its owning
+user are set to the default, <code>app</code>. If the PostgreSQL cluster being restored
+uses different names, you must specify them as documented in <a href="../recovery/#configure-the-application-database">Configure the application database</a>.
+You should also consider copying over the application user secret from
+the original cluster and keep it synchronized with the source.
+See <a href="#about-postgresql-roles">"About PostgreSQL Roles"</a> for more details.</p>
+<p>In the <code>externalClusters</code> section, take care to use the right namespace in the
+<code>endpointURL</code> and the <code>connectionParameters.host</code>.
+And do ensure that the necessary secrets have been copied if necessary, and that
+a backup of the source cluster has been created already.</p>
+<pre><code class="language-yaml">  externalClusters:
+  - name: &lt;MAIN-CLUSTER&gt;
+    barmanObjectStore:
+      destinationPath: s3://backups/
+      endpointURL: http://minio:9000
+      s3Credentials:
+        …
+    connectionParameters:
+      host: &lt;MAIN-CLUSTER&gt;-rw.default.svc
+      user: postgres
+      dbname: postgres
+    password:
+      name: &lt;MAIN-CLUSTER&gt;-superuser
+      key: password
+</code></pre>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>To use streaming replication between the source cluster and the replica
+cluster, we need to make sure there is network connectivity between the two
+clusters, and that all the necessary secrets which hold passwords or
+certificates are properly created in advance.</p>
+</div>
+<h4 id="example-using-a-volume-snapshot">Example using a Volume Snapshot</h4>
+<p>If you use volume snapshots and your storage class provides
+snapshots cross-cluster availability, you can leverage that to
+bootstrap a replica cluster through a volume snapshot of the
+source cluster.</p>
+<p>The <strong>third example</strong> defines a replica cluster that bootstraps
+from a volume snapshot using the <code>recovery</code> section. It uses
+streaming replication (via basic authentication) and the object
+store to fetch the WAL files.</p>
+<p>You can check the <a href="../samples/cluster-example-replica-from-volume-snapshot.yaml">sample YAML</a>
+for it in the <code>samples/</code> subdirectory.</p>
+<p>The example assumes that the application database and its owning
+user are set to the default, <code>app</code>. If the PostgreSQL cluster being restored
+uses different names, you must specify them as documented in <a href="../recovery/#configure-the-application-database">Configure the
+application database</a>.
+You should also consider copying over the application user secret from
+the original cluster and keep it synchronized with the source.
+See <a href="#about-postgresql-roles">"About PostgreSQL Roles"</a> for more details.</p>
+<h2 id="promoting-the-designated-primary-in-the-replica-cluster">Promoting the designated primary in the replica cluster</h2>
+<p>To promote the <strong>designated primary</strong> to <strong>primary</strong>, all we need to do is to
+disable the replica mode in the replica cluster through the option
+<code>.spec.replica.enabled</code></p>
+<pre><code class="language-yaml"> replica:
+   enabled: false
+   source: cluster-example
+</code></pre>
+<p>Once the replica mode is disabled, the replica cluster and the source cluster
+will become two separate clusters, and the <strong>designated primary</strong> in the replica
+cluster will be promoted to be that cluster's <strong>primary</strong>. We can verify the role
+change using the cnpg plugin, checking the status of the cluster which was
+previously the replica:</p>
+<pre><code class="language-shell">kubectl cnpg -n &lt;cluster-name-space&gt; status cluster-replica-example
+</code></pre>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Disabling replication is an <strong>irreversible</strong> operation: once replication is
+disabled and the <strong>designated primary</strong> is promoted to <strong>primary</strong>, the
+replica cluster and the source cluster will become two independent clusters
+definitively.</p>
+</div>
+<!--
+## Delayed replicas
+
+In addition to standard replica clusters, our system supports the creation of
+**delayed replicas** through the utilization of PostgreSQL's
+[`recovery_min_apply_delay`](https://www.postgresql.org/docs/current/runtime-config-replication.html#GUC-RECOVERY-MIN-APPLY-DELAY)
+option.
+
+Delayed replicas intentionally lag behind the primary database by a specified
+amount of time. This delay is configurable using the `recovery_min_apply_delay`
+option in PostgreSQL. The primary objective of introducing delayed replicas is
+to mitigate the impact of unintentional executions of SQL statements on the
+primary database. This is particularly useful in scenarios where an incorrect
+or missing `WHERE` clause is used in operations such as `UPDATE` or `DELETE`.
+
+To introduce a delay in a replica cluster, adjust the
+`recovery_min_apply_delay` option. This parameter determines the time by which
+replicas lag behind the primary. For example:
+
+
+<pre><code class="language-yaml">  # ...
+  postgresql:
+    parameters:
+      # Enforce a delay of 8 hours
+      recovery_min_apply_delay = '8h'
+  # ...
+</code></pre>
+
+
+Monitor and adjust the delay as needed based on your recovery time objectives
+and the potential impact of unintended primary database operations.
+
+The main use cases of delayed replicas can be summarized into:
+
+1. mitigating human errors: reduce the risk of data corruption or loss
+   resulting from unintentional SQL operations on the primary database
+
+2. recovery time optimization: facilitate quicker recovery from unintended
+   changes by having a delayed replica that allows you to identify and rectify
+   issues before changes are applied to other replicas.
+
+3. enhanced data protection: safeguard critical data by introducing a time
+   buffer that provides an opportunity to intervene and prevent the propagation of
+   undesirable changes.
+
+By integrating delayed replicas into your replication strategy, you can enhance
+the resilience and data protection capabilities of your PostgreSQL environment.
+Adjust the delay duration based on your specific needs and the criticality of
+your data.
+
+!!! Important
+    Always measure your goals. Depending on your environment, it might be more
+    efficient to rely on volume snapshot-based recovery for faster outcomes.
+    Evaluate and choose the approach that best aligns with your unique requirements
+    and infrastructure.
+-->
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../connection_pooling/" class="btn btn-neutral float-left" title="Connection pooling"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../kubernetes_upgrade/" class="btn btn-neutral float-right" title="Kubernetes Upgrade">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../connection_pooling/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../kubernetes_upgrade/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
