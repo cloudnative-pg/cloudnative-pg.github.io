@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="The CloudNativePG Contributors" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>PostGIS - CloudNativePG</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+        <link href="../css/override.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "PostGIS";
+        var mkdocs_page_input_path = "postgis.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> CloudNativePG
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">CloudNativePG</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../before_you_start/">Before You Start</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../use_cases/">Use cases</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../architecture/">Architecture</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../installation_upgrade/">Installation and upgrades</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../quickstart/">Quickstart</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../bootstrap/">Bootstrap</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../database_import/">Importing Postgres databases</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../security/">Security</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../instance_manager/">Postgres instance manager</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../scheduling/">Scheduling</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../resource_management/">Resource management</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../failure_modes/">Failure Modes</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../rolling_update/">Rolling Updates</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../replication/">Replication</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../backup/">Backup</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../recovery/">Recovery</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../postgresql_conf/">PostgreSQL Configuration</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../declarative_role_management/">Database Role Management</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../operator_conf/">Operator configuration</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../cluster_conf/">Instance pod configuration</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../storage/">Storage</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../labels_annotations/">Labels and annotations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../monitoring/">Monitoring</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../logging/">Logging</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../certificates/">Certificates</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../ssl_connections/">Client TLS/SSL connections</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../applications/">Connecting from an application</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../connection_pooling/">Connection pooling</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../replica_cluster/">Replica clusters</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../kubernetes_upgrade/">Kubernetes Upgrade</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../expose_pg_services/">Exposing Postgres Services</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../kubectl-plugin/">CloudNativePG Plugin</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../failover/">Automated failover</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../troubleshooting/">Troubleshooting</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../fencing/">Fencing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../declarative_hibernation/">Declarative hibernation</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">PostGIS</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#basic-concepts-about-a-postgis-cluster">Basic concepts about a PostGIS cluster</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#create-a-new-postgresql-cluster-with-postgis">Create a new PostgreSQL cluster with PostGIS</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../e2e/">End-to-End Tests</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../container_images/">Container Image Requirements</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../operator_capability_levels/">Operator capability levels</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../controller/">Custom Pod Controller</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../samples/">Examples</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../networking/">Networking</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../benchmarking/">Benchmarking</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../commercial_support/">Commercial support</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../faq/">Frequently Asked Questions (FAQ)</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../cloudnative-pg.v1/">API Reference</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../supported_releases/">Supported releases</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../release_notes/">Release notes</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Appendixes</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../appendixes/object_stores/">Appendix A - Common object stores for backups</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">CloudNativePG</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+      <li>PostGIS</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="postgis">PostGIS</h1>
+<p><a href="https://postgis.net/">PostGIS</a> is a very popular open source extension
+for PostgreSQL that introduces support for storing GIS (Geographic Information
+Systems) objects in the database and be queried via SQL.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>This section assumes you are familiar with PostGIS and provides some basic
+information about how to create a new PostgreSQL cluster with a PostGIS database
+in Kubernetes via CloudNativePG.</p>
+</div>
+<p>The CloudNativePG Community maintains container images that are built on top
+of the official <a href="https://hub.docker.com/r/postgis/postgis">PostGIS images hosted on DockerHub</a>.
+For more information please visit:</p>
+<ul>
+<li>The <a href="https://github.com/cloudnative-pg/postgis-containers"><code>postgis-containers</code> project in GitHub</a></li>
+<li>The <a href="https://github.com/cloudnative-pg/postgis-containers/pkgs/container/postgis"><code>postgis-containers</code> Container Registry in GitHub</a></li>
+</ul>
+<h2 id="basic-concepts-about-a-postgis-cluster">Basic concepts about a PostGIS cluster</h2>
+<p>Conceptually, a PostGIS-based PostgreSQL cluster (or simply a PostGIS cluster)
+is like any other PostgreSQL cluster. The only differences are:</p>
+<ul>
+<li>the presence in the system of PostGIS and related libraries</li>
+<li>the presence in the database(s) of the PostGIS extension</li>
+</ul>
+<p>Since CloudNativePG is based on Immutable Application Containers, the only way
+to provision PostGIS is to add it to the container image that you use for the
+operand. The <a href="../container_images/">"Container Image Requirements" section</a> provides
+detailed instructions on how this is achieved. More simply, you can just use
+the PostGIS container images from the Community, as in the examples below.</p>
+<p>The second step is to install the extension in the PostgreSQL database. You can
+do this in two ways:</p>
+<ul>
+<li>install it in the application database, which is the main and supposedly only
+  database you host in the cluster according to the microservice architecture, or</li>
+<li>install it in the <code>template1</code> database so as to make it available for all the
+  databases you end up creating in the cluster, in case you adopt the monolith
+  architecture where the instance is shared by multiple databases</li>
+</ul>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>For more information on the microservice vs monolith architecture in the database
+please refer to the <a href="../faq/">"How many databases should be hosted in a single PostgreSQL instance?" FAQ</a>
+or the <a href="../database_import/">"Database import" section</a>.</p>
+</div>
+<h2 id="create-a-new-postgresql-cluster-with-postgis">Create a new PostgreSQL cluster with PostGIS</h2>
+<p>Let's suppose you want to create a new PostgreSQL 14 cluster with PostGIS 3.2.</p>
+<p>The first step is to ensure you use the right PostGIS container image for the
+operand, and properly set the <code>.spec.imageName</code> option in the <code>Cluster</code>
+resource.</p>
+<p>The <a href="../samples/postgis-example.yaml"><code>postgis-example.yaml</code> manifest</a> below
+provides some guidance on how the creation of a PostGIS cluster can be done.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Please consider that, although convention over configuration applies in
+CloudNativePG, you should spend time configuring and tuning your system for
+production. Also the <code>imageName</code> in the example below deliberately points
+to the latest available image for PostgreSQL 14 - you should use a specific
+image name or, preferably, the SHA256 digest for true immutability.</p>
+</div>
+<pre><code class="language-yaml">apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: postgis-example
+spec:
+  instances: 3
+  imageName: ghcr.io/cloudnative-pg/postgis:14
+  bootstrap:
+    initdb:
+      postInitTemplateSQL:
+        - CREATE EXTENSION postgis;
+        - CREATE EXTENSION postgis_topology;
+        - CREATE EXTENSION fuzzystrmatch;
+        - CREATE EXTENSION postgis_tiger_geocoder;
+
+  storage:
+    size: 1Gi
+</code></pre>
+<p>The example relies on the <code>postInitTemplateSQL</code> option which executes a list of
+queries against the <code>template1</code> database, before the actual creation of the
+application database (called <code>app</code>). This means that, once you have applied the
+manifest and the cluster is up, you will have the above extensions installed in
+both the template database and the application database, ready for use.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Take some time and look at the available options in <code>.spec.bootstrap.initdb</code>
+from the <a href="../cloudnative-pg.v1/#postgresql-cnpg-io-v1-BootstrapInitDB">API reference</a>, such as
+<code>postInitApplicationSQL</code>.</p>
+</div>
+<p>You can easily verify the available version of PostGIS that is in the
+container, by connecting to the <code>app</code> database (you might obtain different
+values from the ones in this document):</p>
+<pre><code class="language-console">$ kubectl exec -ti postgis-example-1 -- psql app
+Defaulted container &quot;postgres&quot; out of: postgres, bootstrap-controller (init)
+psql (16.1 (Debian 16.1-1.pgdg110+1))
+Type &quot;help&quot; for help.
+
+app=# SELECT * FROM pg_available_extensions WHERE name ~ '^postgis' ORDER BY 1;
+           name           | default_version | installed_version |                          comment
+--------------------------+-----------------+-------------------+------------------------------------------------------------
+ postgis                  | 3.2.2           | 3.2.2             | PostGIS geometry and geography spatial types and functions
+ postgis-3                | 3.2.2           |                   | PostGIS geometry and geography spatial types and functions
+ postgis_raster           | 3.2.2           |                   | PostGIS raster types and functions
+ postgis_raster-3         | 3.2.2           |                   | PostGIS raster types and functions
+ postgis_sfcgal           | 3.2.2           |                   | PostGIS SFCGAL functions
+ postgis_sfcgal-3         | 3.2.2           |                   | PostGIS SFCGAL functions
+ postgis_tiger_geocoder   | 3.2.2           | 3.2.2             | PostGIS tiger geocoder and reverse geocoder
+ postgis_tiger_geocoder-3 | 3.2.2           |                   | PostGIS tiger geocoder and reverse geocoder
+ postgis_topology         | 3.2.2           | 3.2.2             | PostGIS topology spatial types and functions
+ postgis_topology-3       | 3.2.2           |                   | PostGIS topology spatial types and functions
+(10 rows)
+</code></pre>
+<p>The next step is to verify that the extensions listed in the
+<code>postInitTemplateSQL</code> section have been correctly installed in the <code>app</code>
+database.</p>
+<pre><code class="language-console">app=# \dx
+                                        List of installed extensions
+          Name          | Version |   Schema   |                        Description
+------------------------+---------+------------+------------------------------------------------------------
+ fuzzystrmatch          | 1.1     | public     | determine similarities and distance between strings
+ plpgsql                | 1.0     | pg_catalog | PL/pgSQL procedural language
+ postgis                | 3.2.2   | public     | PostGIS geometry and geography spatial types and functions
+ postgis_tiger_geocoder | 3.2.2   | tiger      | PostGIS tiger geocoder and reverse geocoder
+ postgis_topology       | 3.2.2   | topology   | PostGIS topology spatial types and functions
+(5 rows)
+</code></pre>
+<p>Finally:</p>
+<pre><code class="language-console">app=# SELECT postgis_full_version();
+                                                                            postgis_full_version
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ POSTGIS=&quot;3.2.2 628da50&quot; [EXTENSION] PGSQL=&quot;140&quot; GEOS=&quot;3.9.0-CAPI-1.16.2&quot; PROJ=&quot;7.2.1&quot; LIBXML=&quot;2.9.10&quot; LIBJSON=&quot;0.15&quot; LIBPROTOBUF=&quot;1.3.3&quot; WAGYU=&quot;0.5.0 (Internal)&quot; TOPOLOGY
+(1 row)
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../declarative_hibernation/" class="btn btn-neutral float-left" title="Declarative hibernation"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../e2e/" class="btn btn-neutral float-right" title="End-to-End Tests">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../declarative_hibernation/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../e2e/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="The CloudNativePG Contributors" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Installation and upgrades - CloudNativePG v1.21</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../css/override.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Installation and upgrades";
+        var mkdocs_page_input_path = "installation_upgrade.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> CloudNativePG v1.21
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">CloudNativePG</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../before_you_start/">Before You Start</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../use_cases/">Use cases</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../architecture/">Architecture</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Installation and upgrades</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#installation-on-kubernetes">Installation on Kubernetes</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#directly-using-the-operator-manifest">Directly using the operator manifest</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#using-the-cnpg-plugin-for-kubectl">Using the cnpg plugin for kubectl</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#testing-the-latest-development-snapshot">Testing the latest development snapshot</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#using-the-helm-chart">Using the Helm Chart</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#using-olm">Using OLM</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#details-about-the-deployment">Details about the deployment</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#upgrades">Upgrades</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#in-place-updates-of-the-instance-manager">In-place updates of the instance manager</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#compatibility-among-versions">Compatibility among versions</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#upgrading-to-121-from-a-previous-minor-version">Upgrading to 1.21 from a previous minor version</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#superuser-access-disabled">Superuser access disabled</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#replication-slots-for-ha">Replication slots for HA</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#delay-for-postgresql-shutdown">Delay for PostgreSQL shutdown</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#delay-for-postgresql-startup">Delay for PostgreSQL startup</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#delay-for-postgresql-switchover">Delay for PostgreSQL switchover</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#labels">Labels</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#shortcut-for-keeping-the-existing-behavior">Shortcut for keeping the existing behavior</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#server-side-apply-of-manifests">Server-side apply of manifests</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#upgrading-to-120-from-a-previous-minor-version">Upgrading to 1.20 from a previous minor version</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#backup-from-a-standby">Backup from a standby</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#restart-of-a-primary-after-a-rolling-update">Restart of a primary after a rolling update</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#replication-slots-for-high-availability">Replication slots for High Availability</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../quickstart/">Quickstart</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../bootstrap/">Bootstrap</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../database_import/">Importing Postgres databases</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../security/">Security</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../instance_manager/">Postgres instance manager</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../scheduling/">Scheduling</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../resource_management/">Resource management</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../failure_modes/">Failure Modes</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../rolling_update/">Rolling Updates</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../replication/">Replication</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../backup/">Backup</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../backup_barmanobjectstore/">Backup on object stores</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../wal_archiving/">WAL archiving</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../backup_volumesnapshot/">Backup on volume snapshots</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../recovery/">Recovery</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../postgresql_conf/">PostgreSQL Configuration</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../declarative_role_management/">Database Role Management</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../operator_conf/">Operator configuration</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../cluster_conf/">Instance pod configuration</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../storage/">Storage</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../labels_annotations/">Labels and annotations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../monitoring/">Monitoring</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../logging/">Logging</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../certificates/">Certificates</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../ssl_connections/">Client TLS/SSL connections</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../applications/">Connecting from an application</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../connection_pooling/">Connection pooling</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../replica_cluster/">Replica clusters</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../kubernetes_upgrade/">Kubernetes Upgrade</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../expose_pg_services/">Exposing Postgres Services</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../kubectl-plugin/">Kubectl Plugin</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../failover/">Automated failover</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../troubleshooting/">Troubleshooting</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../fencing/">Fencing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../declarative_hibernation/">Declarative hibernation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../postgis/">PostGIS</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../e2e/">End-to-End Tests</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../container_images/">Container Image Requirements</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../operator_capability_levels/">Operator capability levels</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../controller/">Custom Pod Controller</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../samples/">Examples</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../networking/">Networking</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../benchmarking/">Benchmarking</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../commercial_support/">Commercial support</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../faq/">Frequently Asked Questions (FAQ)</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../cloudnative-pg.v1/">API Reference</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../supported_releases/">Supported releases</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../release_notes/">Release notes</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Appendixes</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../appendixes/object_stores/">Appendix A - Common object stores for backups</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">CloudNativePG v1.21</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Installation and upgrades</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="installation-and-upgrades">Installation and upgrades</h1>
+<h2 id="installation-on-kubernetes">Installation on Kubernetes</h2>
+<h3 id="directly-using-the-operator-manifest">Directly using the operator manifest</h3>
+<p>The operator can be installed like any other resource in Kubernetes,
+through a YAML manifest applied via <code>kubectl</code>.</p>
+<p>You can install the <a href="https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/release-1.21/releases/cnpg-1.21.6.yaml">latest operator manifest</a>
+for this minor release as follows:</p>
+<pre><code class="language-sh">kubectl apply --server-side -f \
+  https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/release-1.21/releases/cnpg-1.21.6.yaml
+</code></pre>
+<p>You can verify that with:</p>
+<pre><code class="language-sh">kubectl get deployment -n cnpg-system cnpg-controller-manager
+</code></pre>
+<h3 id="using-the-cnpg-plugin-for-kubectl">Using the <code>cnpg</code> plugin for <code>kubectl</code></h3>
+<p>You can use the <code>cnpg</code> plugin to override the default configuration options
+that are in the static manifests. </p>
+<p>For example, to generate the default latest manifest but change the watch
+namespaces to only be a specific namespace, you could run:</p>
+<pre><code class="language-shell">kubectl cnpg install generate \
+  --watch-namespace &quot;specific-namespace&quot; \
+  &gt; cnpg_for_specific_namespace.yaml
+</code></pre>
+<p>Please refer to <a href="../kubectl-plugin/#generation-of-installation-manifests">"<code>cnpg</code> plugin"</a> documentation
+for a more comprehensive example. </p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If you are deploying CloudNativePG on GKE and get an error (<code>... failed to
+call webhook...</code>), be aware that by default traffic between worker nodes
+and control plane is blocked by the firewall except for a few specific
+ports, as explained in the official
+<a href="https://cloud.google.com/kubernetes-engine/docs/how-to/private-clusters#add_firewall_rules">docs</a>
+and by this
+<a href="https://github.com/cloudnative-pg/cloudnative-pg/issues/1360">issue</a>.
+You'll need to either change the <code>targetPort</code> in the webhook service, to be
+one of the allowed ones, or open the webhooks' port (<code>9443</code>) on the
+firewall.</p>
+</div>
+<h3 id="testing-the-latest-development-snapshot">Testing the latest development snapshot</h3>
+<p>If you want to test or evaluate the latest development snapshot of
+CloudNativePG before the next official patch release, you can download the
+manifests from the
+<a href="https://github.com/cloudnative-pg/artifacts"><code>cloudnative-pg/artifacts</code></a>
+which provides easy access to the current trunk (main) as well as to each
+supported release.</p>
+<p>For example, you can install the latest snapshot of the operator with:</p>
+<pre><code class="language-sh">curl -sSfL \
+  https://raw.githubusercontent.com/cloudnative-pg/artifacts/main/manifests/operator-manifest.yaml | \
+  kubectl apply --server-side -f -
+</code></pre>
+<p>If you are instead looking for the latest snapshot of the operator for this
+specific minor release, you can just run:</p>
+<pre><code class="language-sh">curl -sSfL \
+  https://raw.githubusercontent.com/cloudnative-pg/artifacts/release-1.21/manifests/operator-manifest.yaml | \
+  kubectl apply --server-side -f -
+</code></pre>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Snapshots are not supported by the CloudNativePG and not intended for production usage.</p>
+</div>
+<h3 id="using-the-helm-chart">Using the Helm Chart</h3>
+<p>The operator can be installed using the provided <a href="https://github.com/cloudnative-pg/charts">Helm chart</a>.</p>
+<h3 id="using-olm">Using OLM</h3>
+<p>CloudNativePG can also be installed using the
+<a href="https://olm.operatorframework.io/docs/">Operator Lifecycle Manager (OLM)</a>
+directly from <a href="https://operatorhub.io/operator/cloudnative-pg">OperatorHub.io</a>.</p>
+<h2 id="details-about-the-deployment">Details about the deployment</h2>
+<p>In Kubernetes, the operator is by default installed in the <code>cnpg-system</code>
+namespace as a Kubernetes <code>Deployment</code>. The name of this deployment
+depends on the installation method.
+When installed through the manifest or the <code>cnpg</code> plugin, it is called
+<code>cnpg-controller-manager</code> by default. When installed via Helm, the default name
+is <code>cnpg-cloudnative-pg</code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>With Helm you can customize the name of the deployment via the
+<code>fullnameOverride</code> field in the <a href="https://helm.sh/docs/chart_template_guide/values_files/"><em>"values.yaml"</em> file</a>.</p>
+</div>
+<p>You can get more information using the <code>describe</code> command in <code>kubectl</code>:</p>
+<pre><code class="language-sh">$ kubectl get deployments -n cnpg-system
+NAME                READY   UP-TO-DATE   AVAILABLE   AGE
+&lt;deployment-name&gt;   1/1     1            1           18m
+</code></pre>
+<pre><code class="language-sh">kubectl describe deploy \
+  -n cnpg-system \
+  &lt;deployment-name&gt;
+</code></pre>
+<p>As with any Deployment, it sits on top of a ReplicaSet and supports rolling
+upgrades. The default configuration of the CloudNativePG operator
+comes with a Deployment of a single replica, which is suitable for most
+installations. In case the node where the pod is running is not reachable
+anymore, the pod will be rescheduled on another node.</p>
+<p>If you require high availability at the operator level, it is possible to
+specify multiple replicas in the Deployment configuration - given that the
+operator supports leader election. Also, you can take advantage of taints and
+tolerations to make sure that the operator does not run on the same nodes where
+the actual PostgreSQL clusters are running (this might even include the control
+plane for self-managed Kubernetes installations).</p>
+<div class="admonition seealso">
+<p class="admonition-title">Operator configuration</p>
+<p>You can change the default behavior of the operator by overriding
+some default options. For more information, please refer to the
+<a href="../operator_conf/">"Operator configuration"</a> section.</p>
+</div>
+<h2 id="upgrades">Upgrades</h2>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Please carefully read the <a href="../release_notes/">release notes</a>
+before performing an upgrade as some versions might require
+extra steps.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If you are upgrading to version 1.20, please read carefully
+the <a href="#upgrading-to-120-from-a-previous-minor-version">dedicated section below</a>.</p>
+</div>
+<p>Upgrading CloudNativePG operator is a two-step process:</p>
+<ol>
+<li>upgrade the controller and the related Kubernetes resources</li>
+<li>upgrade the instance manager running in every PostgreSQL pod</li>
+</ol>
+<p>Unless differently stated in the release notes, the first step is normally done
+by applying the manifest of the newer version for plain Kubernetes
+installations, or using the native package manager of the used distribution
+(please follow the instructions in the above sections).</p>
+<p>The second step is automatically executed after having updated the controller,
+by default triggering a rolling update of every deployed PostgreSQL instance to
+use the new instance manager. The rolling update procedure culminates with a
+switchover, which is controlled by the <code>primaryUpdateStrategy</code> option, by
+default set to <code>unsupervised</code>. When set to <code>supervised</code>, users need to complete
+the rolling update by manually promoting a new instance through the <code>cnpg</code>
+plugin for <code>kubectl</code>.</p>
+<div class="admonition seealso">
+<p class="admonition-title">Rolling updates</p>
+<p>This process is discussed in-depth on the <a href="../rolling_update/">Rolling Updates</a> page.</p>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>In case <code>primaryUpdateStrategy</code> is set to the default value of <code>unsupervised</code>,
+an upgrade of the operator will trigger a switchover on your PostgreSQL cluster,
+causing a (normally negligible) downtime.</p>
+</div>
+<p>Since version 1.10.0, the rolling update behavior can be replaced with in-place
+updates of the instance manager. The latter don't require a restart of the
+PostgreSQL instance and, as a result, a switchover in the cluster.
+This behavior, which is disabled by default, is described below.</p>
+<h3 id="in-place-updates-of-the-instance-manager">In-place updates of the instance manager</h3>
+<p>By default, CloudNativePG issues a rolling update of the cluster
+every time the operator is updated. The new instance manager shipped with the
+operator is added to each PostgreSQL pod via an init container.</p>
+<p>However, this behavior can be changed via configuration to enable in-place
+updates of the instance manager, which is the PID 1 process that keeps the
+container alive.</p>
+<p>Internally, any instance manager from version 1.10 of CloudNativePG
+supports injection of a new executable that will replace the existing one,
+once the integrity verification phase is completed, as well as graceful
+termination of all the internal processes. When the new instance manager
+restarts using the new binary, it adopts the already running <em>postmaster</em>.</p>
+<p>As a result, the PostgreSQL process is unaffected by the update, refraining
+from the need to perform a switchover. The other side of the coin, is that
+the Pod is changed after the start, breaking the pure concept of immutability.</p>
+<p>You can enable this feature by setting the <code>ENABLE_INSTANCE_MANAGER_INPLACE_UPDATES</code>
+environment variable to <code>'true'</code> in the
+<a href="../operator_conf/#available-options">operator configuration</a>.</p>
+<p>The in-place upgrade process will not change the init container image inside the
+Pods. Therefore, the Pod definition will not reflect the current version of the
+operator.</p>
+<h3 id="compatibility-among-versions">Compatibility among versions</h3>
+<p>CloudNativePG follows semantic versioning. Every release of the
+operator within the same API version is compatible with the previous one.
+The current API version is v1, corresponding to versions 1.x.y of the operator.</p>
+<p>In addition to new features, new versions of the operator contain bug fixes and
+stability enhancements. Because of this, <strong>we strongly encourage users to upgrade
+to the latest version of the operator</strong>, as each version is released in order to
+maintain the most secure and stable Postgres environment.</p>
+<p>CloudNativePG currently releases new versions of the operator at
+least monthly. If you are unable to apply updates as each version becomes
+available, we recommend upgrading through each version in sequential order to
+come current periodically and not skipping versions.</p>
+<p>The <a href="../release_notes/">release notes</a> page contains a detailed list of the
+changes introduced in every released version of CloudNativePG,
+and it must be read before upgrading to a newer version of the software.</p>
+<p>Most versions are directly upgradable and in that case, applying the newer
+manifest for plain Kubernetes installations or using the native package
+manager of the chosen distribution is enough.</p>
+<p>When versions are not directly upgradable, the old version needs to be
+removed before installing the new one. This won't affect user data but
+only the operator itself.</p>
+<h3 id="upgrading-to-121-from-a-previous-minor-version">Upgrading to 1.21 from a previous minor version</h3>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>If you are transitioning from a prior minor version to version 1.21, it's
+essential to note that 1.21 is not the most recent minor release. We strongly
+recommend upgrading to the latest minor release for optimal features,
+enhancements, and stability. However, if your specific requirement is to
+upgrade to version 1.21, please ensure that you are using the latest available
+patch version, which is currently 1.21.4. This guarantees that you benefit from
+the most recent bug fixes, security updates, and improvements associated with
+the 1.21 series.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Every time you are upgrading to a higher minor release, make sure you
+go through the release notes and upgrade instructions of all the
+intermediate minor releases. For example, if you want to move
+from 1.19.x to 1.21, make sure you go through the release notes
+and upgrade instructions for 1.20 and 1.21.</p>
+</div>
+<p>With the goal to keep improving out-of-the-box the <em>convention over
+configuration</em> behavior of the operator, CloudNativePG changes the default
+value of several knobs in the following areas:</p>
+<ul>
+<li>startup and shutdown control of the PostgreSQL instance</li>
+<li>self-healing</li>
+<li>security</li>
+<li>labels</li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Please read carefully the list of changes below, and how to modify the
+<code>Cluster</code> manifests to retain the existing behavior if you don't want to
+disrupt your existing workloads. Alternatively, postpone the upgrade to
+until you are sure. In general, we recommend adopting these default
+values unless you have valid reasons not to.</p>
+</div>
+<h4 id="superuser-access-disabled">Superuser access disabled</h4>
+<p>Pushing towards <em>security-by-default</em>, CloudNativePG now disables access
+<code>postgres</code> superuser access via the network in all new clusters, unless
+explicitly enabled.</p>
+<p>If you want to ensure superuser access to the PostgreSQL cluster, regardless
+which version of CloudNativePG you are running, we advise you to explicitly
+declare it by setting:</p>
+<pre><code class="language-yaml">spec:
+   ...
+   enableSuperuserAccess: true
+</code></pre>
+<h4 id="replication-slots-for-ha">Replication slots for HA</h4>
+<p>Replication slots for High Availability are enabled by default.</p>
+<p>If you want to ensure replication slots are disabled, regardless of which
+version of CloudNativePG you are running, we advise you to explicitly declare
+it by setting:</p>
+<pre><code class="language-yaml">spec:
+   ...
+   replicationSlots:
+     highAvailability:
+       enabled: false
+</code></pre>
+<h4 id="delay-for-postgresql-shutdown">Delay for PostgreSQL shutdown</h4>
+<p>Up to 1.20.2, <a href="../instance_manager/#shutdown-control">the <code>stopDelay</code> parameter</a>
+was set to 30 seconds. Despite the recommendations to change and tune this
+value, almost all the cases we have examined during support incidents or
+community issues show that this value is left unchanged.</p>
+<p>The <a href="https://github.com/cloudnative-pg/cloudnative-pg/commit/9f7f18c5b9d9103423a53d180c0e2f2189e71c3c">new default value is 1800 seconds</a>,
+the equivalent of 30 minutes.</p>
+<p>The new <code>smartShutdownTimeout</code> parameter has been introduced to define
+the maximum time window within the <code>stopDelay</code> value reserved to complete
+the <code>smart</code> shutdown procedure in PostgreSQL. During this time, the
+Postgres server rejects any new connections while waiting for all regular
+sessions to terminate.</p>
+<p>Once elapsed, the remaining time up to <code>stopDelay</code> will be reserved for
+PostgreSQL to complete its duties regarding WAL commitments with both the
+archive and the streaming replicas to ensure the cluster doesn't lose any data.</p>
+<p>If you want to retain the old behavior, you need to set explicitly:</p>
+<pre><code class="language-yaml">spec:
+   ...
+   stopDelay: 30
+</code></pre>
+<p>And, <strong>after</strong> the upgrade has completed, specify <code>smartShutdownTimeout</code>:</p>
+<pre><code class="language-yaml">spec:
+   ...
+   stopDelay: 30
+   smartShutdownTimeout: 15
+</code></pre>
+<h4 id="delay-for-postgresql-startup">Delay for PostgreSQL startup</h4>
+<p>Up to 1.20.2, <a href="../instance_manager/#startup-liveness-and-readiness-probes">the <code>startDelay</code> parameter</a>
+was set to 30 seconds, and CloudNativePG used this parameter as
+<code>initialDelaySeconds</code> for the Kubernetes liveness probe. Given that all the
+supported Kubernetes releases provide <a href="https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/#define-startup-probes">startup probes</a>,
+<code>startDelay</code> is now automatically divided into periods of 10 seconds of
+duration  each.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>In order to add the <code>startupProbe</code>, each pod needs to be restarted.
+As a result, when you upgrade the operator, a one-time rolling
+update of the cluster will be executed even in the online update case.</p>
+</div>
+<p>Despite the recommendations to change and tune this value, almost all the cases
+we have examined during support incidents or community issues show that this
+value is left unchanged. Given that this parameter influences the startup of
+a PostgreSQL instance, a low value of <code>startDelay</code> would cause Postgres
+never to reach a consistent recovery state and be restarted indefinitely.</p>
+<p>For this reason, <code>startDelay</code> has been <a href="https://github.com/cloudnative-pg/cloudnative-pg/commit/4f4cd96bc6f8e284a200705c11a2b41652d58146">raised by default to 3600 seconds</a>,
+the equivalent of 1 hour.</p>
+<p>If you want to retain the existing behavior using the new implementation, you
+can do that by explicitly setting:</p>
+<pre><code class="language-yaml">spec:
+   ...
+   startDelay: 30
+</code></pre>
+<h4 id="delay-for-postgresql-switchover">Delay for PostgreSQL switchover</h4>
+<p>Up to 1.20.2, <a href="../instance_manager/#shutdown-of-the-primary-during-a-switchover">the <code>switchoverDelay</code> parameter</a>
+was set by default to 40000000 seconds (over 15 months) to simulate a very long
+interval.</p>
+<p>The <a href="https://github.com/cloudnative-pg/cloudnative-pg/commit/9565f9f2ebab8bc648d9c361198479974664c322">default value has been lowered to 3600 seconds</a>,
+the equivalent of 1 hour.</p>
+<p>If you want to retain the old behavior, you need to set explicitly:</p>
+<pre><code class="language-yaml">spec:
+   ...
+   switchoverDelay: 40000000
+</code></pre>
+<h4 id="labels">Labels</h4>
+<p>In version 1.18, we deprecated the <code>postgresql</code> label in pods to identify the
+name of the cluster, and replaced it with the more canonical <code>cnpg.io/cluster</code>
+label. The <code>postgresql</code> label is no longer maintained.</p>
+<p>Similarly, from this version, the <code>role</code> label is deprecated. The new label
+<code>cnpg.io/instanceRole</code> is now used, and will entirely replace the <code>role</code> label
+in a future release.</p>
+<h4 id="shortcut-for-keeping-the-existing-behavior">Shortcut for keeping the existing behavior</h4>
+<p>If you want to explicitly keep the behavior of CloudNativePG up to version
+1.20.2 (we advise not to), you need to set these values in all your <code>Cluster</code>
+definitions <strong>before upgrading</strong> to a higher version:</p>
+<pre><code class="language-yaml">spec:
+   ...
+   # Changed in 1.21.0, 1.20.3 and 1.19.5
+   startDelay: 30
+   stopDelay: 30
+   switchoverDelay: 40000000
+   # Changed in 1.21.0 only
+   enableSuperuserAccess: true
+   replicationSlots:
+     highAvailability:
+       enabled: false
+</code></pre>
+<p>Once the upgrade is completed, also add:</p>
+<pre><code class="language-yaml">spec:
+   ...
+   smartShutdownTimeout: 15
+</code></pre>
+<h4 id="server-side-apply-of-manifests">Server-side apply of manifests</h4>
+<p>To ensure compatibility with Kubernetes 1.29 and upcoming versions,
+CloudNativePG now mandates the utilization of
+<a href="https://kubernetes.io/docs/reference/using-api/server-side-apply/">"Server-side apply"</a>
+when deploying the operator manifest.</p>
+<p>While employing this installation method poses no challenges for new
+deployments, updating existing operator manifests using the <code>--server-side</code>
+option may result in errors resembling the example below:</p>
+<pre><code class="language-text">Apply failed with 1 conflict: conflict with &quot;kubectl-client-side-apply&quot; using..
+</code></pre>
+<p>If such errors arise, they can be resolved by explicitly specifying the
+<code>--force-conflicts</code> option to enforce conflict resolution:</p>
+<pre><code class="language-sh">kubectl apply --server-side --force-conflicts -f &lt;OPERATOR_MANIFEST&gt;
+</code></pre>
+<p>Henceforth, <code>kube-apiserver</code> will be automatically acknowledged as a recognized
+manager for the CRDs, eliminating the need for any further manual intervention
+on this matter.</p>
+<h3 id="upgrading-to-120-from-a-previous-minor-version">Upgrading to 1.20 from a previous minor version</h3>
+<p>CloudNativePG 1.20 introduces some changes from previous versions of the
+operator in the default behavior of a few features, with the goal to improve
+resilience and usability of a Postgres cluster out of the box, through
+convention over configuration.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>These changes all involve cases where at least one replica is present, and
+<strong>only affect new <code>Cluster</code> resources</strong>.</p>
+</div>
+<h4 id="backup-from-a-standby">Backup from a standby</h4>
+<p><a href="../backup/#backup-from-a-standby">Backup from a standby</a>
+was introduced in CloudNativePG 1.19, but disabled by default - meaning that
+the base backup is taken from the primary unless the target is explicitly
+set to prefer standby.</p>
+<p>From version 1.20, if one or more replicas are available, the operator
+will prefer the most aligned standby to take a full base backup.</p>
+<p>If you are upgrading your CloudNativePG deployment to 1.20 and are concerned that
+this feature might impact your production environment for the new <code>Cluster</code> resources
+that you create, you can explicitly set the target to the primary by adding the
+following line to all your <code>Cluster</code> resources:</p>
+<pre><code class="language-yaml">spec:
+   ...
+   backup:
+     target: &quot;primary&quot;
+</code></pre>
+<h4 id="restart-of-a-primary-after-a-rolling-update">Restart of a primary after a rolling update</h4>
+<p><a href="../rolling_update/#automated-updates-unsupervised">Automated rolling updates</a>
+have been always available in CloudNativePG, and by default they update the
+primary after having performed a switchover to the most aligned replica.</p>
+<p>From version 1.20, we are changing the default update method
+of the primary from switchover to restart as, in most cases, this is
+the fastest and safest way.</p>
+<p>If you are upgrading your CloudNativePG deployment to 1.20 and are concerned that
+this feature might impact your production environment for the new <code>Cluster</code>
+resources that you create, you can explicitly set the update method of the
+primary to switchover by adding the following line to all your <code>Cluster</code>
+resources:</p>
+<pre><code class="language-yaml">spec:
+   ...
+   primaryUpdateMethod: switchover
+</code></pre>
+<h4 id="replication-slots-for-high-availability">Replication slots for High Availability</h4>
+<p><a href="../replication/#replication-slots-for-high-availability">Replication slots for High Availability</a>
+were introduced in CloudNativePG in version 1.18, but disabled by default.</p>
+<p>Version 1.20 prepares the ground for enabling this feature by default in any
+future release, as replication slots enhance the resilience and robustness of a
+High Availability cluster.</p>
+<p>For future compatibility, if you already know that your environments won't ever
+need replication slots, our recommendation is that you explicitly disable their
+management by adding from now the following lines to your <code>Cluster</code> resources:</p>
+<pre><code class="language-yaml">spec:
+   ...
+   replicationSlots:
+     highAvailability:
+       enabled: false
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../architecture/" class="btn btn-neutral float-left" title="Architecture"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../quickstart/" class="btn btn-neutral float-right" title="Quickstart">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../architecture/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../quickstart/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
