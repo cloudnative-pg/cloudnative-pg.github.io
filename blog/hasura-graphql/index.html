@@ -194,7 +194,7 @@ You will also need the CLI tool <code>kubectl</code>. Please refer to
 the <a href="https://kubernetes.io/docs/tasks/tools/">kubernetes guide</a>
 for details.</p>
 <h2 id="installing-cloudnativepg">Installing CloudNativePG</h2>
-<p>To install CloudNativePG, we&rsquo;ll follow the <a href="https://cloudnative-pg.io/documentation/current/installation_upgrade/">installation and
+<p>To install CloudNativePG, we&rsquo;ll follow the <a href="https://cloudnative-pg.io/docs/devel/installation_upgrade/">installation and
 upgrade</a>
 section of the CloudNativePG website.</p>
 <p>At the time of writing, the latest version is 1.20. The following
@@ -209,7 +209,7 @@ It&rsquo;s enough to wait until the READY column shows <code>1/1</code>. Should 
 <p>The simplest CloudNativePG example cluster creates a High-Availability
 architecture with a primary database node and two replicas. We can simply
 apply the example manifest included with CloudNativePG:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ kubectl apply -f https://cloudnative-pg.io/documentation/1.20/samples/cluster-example.yaml
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ kubectl apply -f https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/refs/heads/release-1.20/docs/src/samples/cluster-example.yaml
 </span></span><span style="display:flex;"><span>cluster.postgresql.cnpg.io/cluster-example created
 </span></span></code></pre></div><p>We should now wait for the cluster to be up and running:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ kubectl wait --for<span style="color:#f92672">=</span>condition<span style="color:#f92672">=</span>Ready cluster/cluster-example
@@ -1047,7 +1047,7 @@ command issued after the deployment&#160;<a href="#fnref:1" class="footnote-back
         <h3 class="text-3xl font-semibold mb-0">Learn</h3>
         <div class="space-y-2 text-base text-red-500">
           <div><a href="/docs" class="hover:text-red-700 transition">Documentation</a></div>
-          <div><a href="https://cloudnative-pg.io/documentation/current/quickstart/"
+          <div><a href="https://cloudnative-pg.io/docs/devel/quickstart/"
               class="hover:text-red-600 transition">Quickstart Guide</a></div>
           <div><a href="/tags/tutorial" class="hover:text-red-600 transition">Tutorials</a></div>
         </div>

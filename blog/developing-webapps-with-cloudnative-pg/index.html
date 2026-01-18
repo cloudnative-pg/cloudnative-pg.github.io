@@ -201,7 +201,7 @@ production.</p>
 <li>
 <p>It makes available a lot of powerful components built by the Kubernetes
 community. For example, in the
-<a href="http://cloudnative-pg.io/documentation/current/quickstart/">Quickstart guide</a>
+<a href="http://cloudnative-pg.io/docs/devel/quickstart/">Quickstart guide</a>
 for CloudNativePG you will find a section that takes you through installing
 the <a href="https://prometheus-operator.dev">Prometheus Operator</a>, with a
 <a href="https://grafana.com">Grafana</a> dashboard to get metrics for your database.
@@ -236,7 +236,7 @@ web browser</li>
 </ol>
 <h3 id="hands-on">Hands-on</h3>
 <p>If you don&rsquo;t yet have a local Kubernetes cluster, please refer to the
-<a href="http://cloudnative-pg.io/documentation/current/quickstart/">Quickstart guide</a>.
+<a href="http://cloudnative-pg.io/docs/devel/quickstart/">Quickstart guide</a>.
 You will need <code>kind</code> installed, as well as <code>kubectl</code> and <code>docker</code>.
 If you want to run and compile the webapp locally to kick the tires, you will
 also need the <a href="https://go.dev">Go compiler</a> - though this is not necessary if
@@ -253,7 +253,7 @@ you will only run it containerized.</p>
 several worker nodes with KinD.</p>
 <h4 id="cloudnativepg-operator">CloudNativePG operator</h4>
 <p>Now let&rsquo;s install the CloudNativePG operator. As explained in the
-<a href="https://cloudnative-pg.io/documentation/current/installation_upgrade/">installation document</a>,
+<a href="https://cloudnative-pg.io/docs/devel/installation_upgrade/">installation document</a>,
 you can deploy it by applying the latest manifest.
 At the time of this writing, this is version 1.20.1:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>kubectl apply -f <span style="color:#ae81ff">\
@@ -284,7 +284,7 @@ cluster.</p>
 </span></span></code></pre></div><p>This YAML is part of a set of example cluster manifests provided with
 CloudNativePG that show off various features and are ready to deploy.
 You can find out more
-<a href="https://cloudnative-pg.io/documentation/current/samples/">in the CloudNativePG documentation</a>.</p>
+<a href="https://cloudnative-pg.io/docs/devel/samples/">in the CloudNativePG documentation</a>.</p>
 <p>In a few seconds, you should have the PostgreSQL cluster <code>cluster-example</code> up
 and ready. It is a 3-instance cluster, with a primary and two hot-standbys.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>kubectl get clusters
@@ -439,7 +439,7 @@ Kubernetes?</p>
 saw the possibility of doing port-forwarding. Port-forwarding could be used to
 expose one or more of the CloudNativePG services over regular TCP ports.
 Credentials too would be handled without much trouble.</p>
-<p>For further information, please refer to the <a href="https://cloudnative-pg.io/documentation/current/use_cases/">use cases discussion</a>.</p>
+<p>For further information, please refer to the <a href="https://cloudnative-pg.io/docs/devel/use_cases/">use cases discussion</a>.</p>
 <h3 id="where-to-go-from-here">Where to go from here</h3>
 <p>We&rsquo;ve created a replicated webserver running inside a Kubernetes cluster, and
 a PostgreSQL cluster with 2 standbys, in under 10 minutes.
@@ -465,10 +465,10 @@ are tradeoffs that you can now explore meaningfully at development time.</p>
 <p>You could add connection pooling. CloudNativePG offers support out of the
 box for <a href="https://www.pgbouncer.org/">PgBouncer</a> through the <code>Pooler</code> resource.
 You can find more information in the
-<a href="https://cloudnative-pg.io/documentation/current/connection_pooling/">connection pooling document</a>.</p>
+<a href="https://cloudnative-pg.io/docs/devel/connection_pooling/">connection pooling document</a>.</p>
 <p>There&rsquo;s a lot of power to experiment and iterate through your system design.</p>
 <p>We mentioned in the beginning that the
-<a href="http://cloudnative-pg.io/documentation/current/quickstart/">quickstart guide</a>
+<a href="http://cloudnative-pg.io/docs/devel/quickstart/">quickstart guide</a>
 takes you through adding Prometheus / Grafana monitoring for your database
 cluster. It would not be difficult to publish Prometheus metrics for your
 webserver too, and have a dashboard for your full system.</p>
@@ -1032,7 +1032,7 @@ operations you could want.</p>
         <h3 class="text-3xl font-semibold mb-0">Learn</h3>
         <div class="space-y-2 text-base text-red-500">
           <div><a href="/docs" class="hover:text-red-700 transition">Documentation</a></div>
-          <div><a href="https://cloudnative-pg.io/documentation/current/quickstart/"
+          <div><a href="https://cloudnative-pg.io/docs/devel/quickstart/"
               class="hover:text-red-600 transition">Quickstart Guide</a></div>
           <div><a href="/tags/tutorial" class="hover:text-red-600 transition">Tutorials</a></div>
         </div>

@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="The CloudNativePG Contributors" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Benchmarking - CloudNativePG v1.26.0-rc1</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../css/override.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Benchmarking";
+        var mkdocs_page_input_path = "benchmarking.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> CloudNativePG v1.26.0-rc1
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">CloudNativePG</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../before_you_start/">Before You Start</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../use_cases/">Use cases</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../architecture/">Architecture</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../installation_upgrade/">Installation and upgrades</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../quickstart/">Quickstart</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../image_catalog/">Image Catalog</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../bootstrap/">Bootstrap</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../database_import/">Importing Postgres databases</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../security/">Security</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../instance_manager/">Postgres instance manager</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../scheduling/">Scheduling</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../resource_management/">Resource management</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../failure_modes/">Failure Modes</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../rolling_update/">Rolling Updates</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../replication/">Replication</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../logical_replication/">Logical Replication</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../backup/">Backup</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../backup_barmanobjectstore/">Backup on object stores</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../wal_archiving/">WAL archiving</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../backup_volumesnapshot/">Backup on volume snapshots</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../recovery/">Recovery</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../service_management/">Service Management</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../postgresql_conf/">PostgreSQL Configuration</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../declarative_role_management/">PostgreSQL Role Management</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../declarative_database_management/">PostgreSQL Database Management</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../tablespaces/">Tablespaces</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../operator_conf/">Operator configuration</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../cluster_conf/">Instance pod configuration</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../storage/">Storage</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../labels_annotations/">Labels and annotations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../monitoring/">Monitoring</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../logging/">Logging</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../certificates/">Certificates</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../ssl_connections/">Client TLS/SSL connections</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../applications/">Connecting from an application</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../connection_pooling/">Connection pooling</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../replica_cluster/">Replica clusters</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../kubernetes_upgrade/">Kubernetes Upgrade and Maintenance</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../postgres_upgrades/">PostgreSQL Upgrades</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../kubectl-plugin/">Kubectl Plugin</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../failover/">Automated failover</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../troubleshooting/">Troubleshooting</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../fencing/">Fencing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../declarative_hibernation/">Declarative hibernation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../postgis/">PostGIS</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../e2e/">End-to-End Tests</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../container_images/">Container Image Requirements</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../operator_capability_levels/">Operator capability levels</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../controller/">Custom Pod Controller</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../samples/">Examples</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../networking/">Networking</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Benchmarking</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#pgbench">pgbench</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#fio">fio</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../faq/">Frequently Asked Questions (FAQ)</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../cloudnative-pg.v1/">API Reference</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../supported_releases/">Supported releases</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../preview_version/">Preview Versions</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../release_notes/">Release notes</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Appendixes</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../appendixes/object_stores/">Appendix A - Common object stores for backups</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">CloudNativePG v1.26.0-rc1</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Benchmarking</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="benchmarking">Benchmarking</h1>
+<!-- SPDX-License-Identifier: CC-BY-4.0 -->
+
+<p>The CNPG kubectl plugin provides an easy way for benchmarking a PostgreSQL deployment in Kubernetes using CloudNativePG.</p>
+<p>Benchmarking is focused on two aspects:</p>
+<ul>
+<li>the <strong>database</strong>, by relying on <a href="https://www.postgresql.org/docs/current/pgbench.html">pgbench</a></li>
+<li>the <strong>storage</strong>, by relying on <a href="https://fio.readthedocs.io/en/latest/fio_doc.html">fio</a></li>
+</ul>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p><code>pgbench</code> and <code>fio</code> must be run in a staging or pre-production environment.
+Do not use these plugins in a production environment, as it might have
+catastrophic consequences on your databases and the other
+workloads/applications that run in the same shared environment.</p>
+</div>
+<h3 id="pgbench">pgbench</h3>
+<p>The <code>kubectl</code> CNPG plugin command <code>pgbench</code> executes a user-defined <code>pgbench</code> job
+against an existing Postgres Cluster.</p>
+<p>Through the <code>--dry-run</code> flag you can generate the manifest of the job for later
+modification/execution.</p>
+<p>A common command structure with <code>pgbench</code> is the following:</p>
+<pre><code class="language-shell">kubectl cnpg pgbench \
+  -n &lt;namespace&gt; &lt;cluster-name&gt; \
+  --job-name &lt;pgbench-job&gt; \
+  --db-name &lt;db-name&gt; \
+  -- &lt;pgbench options&gt;
+</code></pre>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Please refer to the <a href="https://www.postgresql.org/docs/current/pgbench.html"><code>pgbench</code> documentation</a>
+for information about the specific options to be used in your jobs.</p>
+</div>
+<p>This example creates a job called <code>pgbench-init</code> that initializes for <code>pgbench</code>
+OLTP-like purposes the <code>app</code> database in a <code>Cluster</code> named <code>cluster-example</code>,
+using a scale factor of 1000:</p>
+<pre><code class="language-shell">kubectl cnpg pgbench \
+  --job-name pgbench-init \
+  cluster-example \
+  -- --initialize --scale 1000
+</code></pre>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This will generate a database with 100000000 records, taking approximately 13GB
+of space on disk.</p>
+</div>
+<p>You can see the progress of the job with:</p>
+<pre><code class="language-shell">kubectl logs jobs/pgbench-run
+</code></pre>
+<p>The following example creates a job called <code>pgbench-run</code> executing <code>pgbench</code>
+against the previously initialized database for 30 seconds, using a single
+connection:</p>
+<pre><code class="language-shell">kubectl cnpg pgbench \
+  --job-name pgbench-run \
+  cluster-example \
+  -- --time 30 --client 1 --jobs 1
+</code></pre>
+<p>The next example runs <code>pgbench</code> against an existing database by using the
+<code>--db-name</code> flag and the <code>pgbench</code> namespace:</p>
+<pre><code class="language-shell">kubectl cnpg pgbench \
+  --db-name pgbench \
+  --job-name pgbench-job \
+  cluster-example \
+  -- --time 30 --client 1 --jobs 1
+</code></pre>
+<p>By default, jobs do not expire. You can enable automatic deletion with the
+<code>--ttl</code> flag. The job will be deleted after the specified duration (in seconds).</p>
+<pre><code class="language-shell">kubectl cnpg pgbench \
+  --job-name pgbench-run \
+  --ttl 600 \
+  cluster-example \
+  -- --time 30 --client 1 --jobs 1
+</code></pre>
+<p>If you want to run a <code>pgbench</code> job on a specific worker node, you can use
+the <code>--node-selector</code> option. Suppose you want to run the previous
+initialization job on a node having the <code>workload=pgbench</code> label, you can run:</p>
+<pre><code class="language-shell">kubectl cnpg pgbench \
+  --db-name pgbench \
+  --job-name pgbench-init \
+  --node-selector workload=pgbench \
+  cluster-example \
+  -- --initialize --scale 1000
+</code></pre>
+<p>The job status can be fetched by running:</p>
+<pre><code>kubectl get job/pgbench-job -n &lt;namespace&gt;
+
+NAME       COMPLETIONS   DURATION   AGE
+job-name   1/1           15s        41s
+</code></pre>
+<p>Once the job is completed the results can be gathered by executing:</p>
+<pre><code>kubectl logs job/pgbench-job -n &lt;namespace&gt;
+</code></pre>
+<h3 id="fio">fio</h3>
+<p>The kubectl CNPG plugin command <code>fio</code> executes a fio job with default values
+and read operations.
+Through the <code>--dry-run</code> flag you can generate the manifest of the job for later
+modification/execution.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The kubectl plugin command <code>fio</code> will create a deployment with predefined
+fio job values using a ConfigMap. If you want to provide custom job values, we
+recommend generating a manifest using the <code>--dry-run</code> flag and providing your
+custom job values in the generated ConfigMap.</p>
+</div>
+<p>Example of default usage:</p>
+<pre><code class="language-shell">kubectl cnpg fio &lt;fio-name&gt;
+</code></pre>
+<p>Example with custom values:</p>
+<pre><code class="language-shell">kubectl cnpg fio &lt;fio-name&gt; \
+  -n &lt;namespace&gt;  \
+  --storageClass &lt;name&gt; \
+  --pvcSize &lt;size&gt;
+</code></pre>
+<p>Example of how to run the <code>fio</code> command against a <code>StorageClass</code> named
+<code>standard</code> and <code>pvcSize: 2Gi</code> in the <code>fio</code> namespace:</p>
+<pre><code class="language-shell">kubectl cnpg fio fio-job \
+  -n fio  \
+  --storageClass standard \
+  --pvcSize 2Gi
+</code></pre>
+<p>The deployment status can be fetched by running:</p>
+<pre><code class="language-shell">kubectl get deployment/fio-job -n fio
+
+NAME          READY   UP-TO-DATE   AVAILABLE   AGE
+fio-job        1/1     1            1           14s
+
+</code></pre>
+<p>After running kubectl plugin command <code>fio</code>.</p>
+<p>It will:</p>
+<ol>
+<li>Create a PVC</li>
+<li>Create a ConfigMap representing the configuration of a fio job</li>
+<li>Create a fio deployment composed by a single Pod, which will run fio on
+   the PVC, create graphs after completing the benchmark and start serving the
+   generated files with a webserver. We use the
+   <a href="https://github.com/wallnerryan/fio-tools`"><code>fio-tools</code></a> image for that.</li>
+</ol>
+<p>The Pod created by the deployment will be ready when it starts serving the
+results. You can forward the port of the pod created by the deployment</p>
+<pre><code>kubectl port-forward -n &lt;namespace&gt; deployment/&lt;fio-name&gt; 8000
+</code></pre>
+<p>and then use a browser and connect to <code>http://localhost:8000/</code> to get the data.</p>
+<p>The default 8k block size has been chosen to emulate a PostgreSQL workload.
+Disks that cap the amount of available IOPS can show very different throughput
+values when changing this parameter.</p>
+<p>Below is an example diagram of sequential writes on a local disk
+mounted on a dedicated Kubernetes node
+(1 hour benchmark):</p>
+<p><img alt="Sequential writes bandwidth" src="../images/write_bw.1-2Draw.png" /></p>
+<p>After all testing is done, fio deployment and resources can be deleted by:</p>
+<pre><code class="language-shell">kubectl cnpg fio &lt;fio-job-name&gt; --dry-run | kubectl delete -f -
+</code></pre>
+<p>make sure use the same name which was used to create the fio deployment and add namespace if applicable.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../networking/" class="btn btn-neutral float-left" title="Networking"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../faq/" class="btn btn-neutral float-right" title="Frequently Asked Questions (FAQ)">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+      <p>Copyright © CloudNativePG a Series of LF Projects, LLC</p>
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../networking/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../faq/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

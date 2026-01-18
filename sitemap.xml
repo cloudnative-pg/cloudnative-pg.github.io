@@ -484,6 +484,12 @@
     <loc>https://cloudnative-pg.io/blog/running-postgresql-the-kubernetes-way/</loc>
     <lastmod>2022-05-11T14:13:20+02:00</lastmod>
   </url><url>
+    <loc>https://cloudnative-pg.io/docs/1.26/</loc>
+  </url><url>
+    <loc>https://cloudnative-pg.io/docs/1.27/</loc>
+  </url><url>
+    <loc>https://cloudnative-pg.io/docs/1.28/</loc>
+  </url><url>
     <loc>https://cloudnative-pg.io/footer/footer/</loc>
   </url><url>
     <loc>https://cloudnative-pg.io/info/advanced-architectures/</loc>
@@ -511,6 +517,8 @@
     <loc>https://cloudnative-pg.io/cards/integrated/</loc>
   </url><url>
     <loc>https://cloudnative-pg.io/info/disaster-recovery/</loc>
+  </url><url>
+    <loc>https://cloudnative-pg.io/docs/</loc>
   </url><url>
     <loc>https://cloudnative-pg.io/support/edb/</loc>
   </url><url>
