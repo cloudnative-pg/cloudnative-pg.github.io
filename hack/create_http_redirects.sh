@@ -1,49 +1,53 @@
 #!/bin/bash
 
 # 1. Capture the version from the first argument
-VERSION=$1
+INPUT_VERSION=$1
 
 # 2. Check if a version was provided
-if [ -z "$VERSION" ]; then
+if [ -z "$INPUT_VERSION" ]; then
     echo "Usage: $0 <version>"
     echo "Example: $0 1.28"
+    echo "Example: $0 current"
     exit 1
 fi
 
-# 3. Define paths relative to this script's location
-# $(dirname "$0") is the 'hack' folder. /.. moves up to the root.
-SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-ROOT_DIR="$SCRIPT_DIR/.."
-BASE_DIR="$ROOT_DIR/assets/documentation/$VERSION"
-BASE_URL="https://cloudnative-pg.io/docs/$VERSION"
-
-# Special handling of "current"
-if [ $VERSION = "current" ]
-then
-     BASE_URL="https://cloudnative-pg.io/docs/devel"
+# 3. Handle specific redirection mapping logic
+if [ "$INPUT_VERSION" == "current" ]; then
+    # Map 'current' to 'devel'
+    DEST_VERSION="devel"
+elif [[ "$INPUT_VERSION" =~ -rc[0-9]+$ ]]; then
+    # Strip -rc suffix (e.g., 1.27.0-rc1 -> 1.27.0)
+    DEST_VERSION=$(echo "$INPUT_VERSION" | sed -E 's/-rc[0-9]+$//')
+else
+    # Keep as is
+    DEST_VERSION="$INPUT_VERSION"
 fi
 
-# The message displayed to users
+# 4. Define paths relative to this script's location
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+ROOT_DIR="$SCRIPT_DIR/.."
+BASE_DIR="$ROOT_DIR/assets/documentation/$INPUT_VERSION"
+BASE_URL="https://cloudnative-pg.io/docs/$DEST_VERSION"
+
+# The message requested
 MSG_TITLE="CloudNativePG documentation has moved"
 MSG_BODY="CloudNativePG has changed the way we build and organize our documentation to provide a better experience."
 
-# 4. Check if the target directory exists
+# 5. Check if the target directory exists
 if [ ! -d "$BASE_DIR" ]; then
     echo "Error: Directory not found at $BASE_DIR"
-    echo "Make sure you are passing the correct version and the assets folder exists."
     exit 1
 fi
 
-echo "Searching for index.html files in: $BASE_DIR"
+echo "Source Version: $INPUT_VERSION"
+echo "Target URL Version: $DEST_VERSION"
+echo "Searching for index.html files..."
 
-# 5. Find and process files
+# 6. Find and process files
 find "$BASE_DIR" -type f -name "index.html" | while read -r file; do
 
     # Calculate the slug
-    # We strip the absolute path to the base directory to get the relative piece
     rel_path=${file#"$BASE_DIR/"}
-    
-    # Remove the filename suffix (/index.html)
     slug=${rel_path%/index.html}
 
     # Handle the root index.html case
@@ -52,9 +56,6 @@ find "$BASE_DIR" -type f -name "index.html" | while read -r file; do
     else
         new_url="$BASE_URL/$slug"
     fi
-
-    echo "Updating: assets/documentation/$VERSION/$rel_path"
-    echo "      -> $new_url"
 
     # Overwrite the file
     cat <<EOF > "$file"
@@ -76,4 +77,4 @@ EOF
 done
 
 echo "------------------------------------------------"
-echo "Success: All files in $VERSION updated from the hack folder."
+echo "Success: All files in $INPUT_VERSION have been updated."
