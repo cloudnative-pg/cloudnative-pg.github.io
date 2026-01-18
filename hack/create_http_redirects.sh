@@ -16,10 +16,11 @@ if [ "$INPUT_VERSION" == "current" ]; then
     # Map 'current' to 'devel'
     DEST_VERSION="devel"
 elif [[ "$INPUT_VERSION" =~ -rc[0-9]+$ ]]; then
-    # Strip -rc suffix (e.g., 1.27.0-rc1 -> 1.27.0)
-    DEST_VERSION=$(echo "$INPUT_VERSION" | sed -E 's/-rc[0-9]+$//')
+    # Extract only Major.Minor (e.g., 1.27.0-rc1 -> 1.27)
+    # This regex looks for the first two number groups separated by a dot
+    DEST_VERSION=$(echo "$INPUT_VERSION" | sed -E 's/^([0-9]+\.[0-9]+).*/\1/')
 else
-    # Keep as is
+    # Keep as is (e.g., 1.28 -> 1.28)
     DEST_VERSION="$INPUT_VERSION"
 fi
 
