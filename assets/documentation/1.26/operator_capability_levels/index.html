@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="The CloudNativePG Contributors" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Operator capability levels - CloudNativePG v1.26</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../css/override.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Operator capability levels";
+        var mkdocs_page_input_path = "operator_capability_levels.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> CloudNativePG v1.26
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">CloudNativePG</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../before_you_start/">Before you start</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../use_cases/">Use cases</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../architecture/">Architecture</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../installation_upgrade/">Installation and upgrades</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../quickstart/">Quickstart</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../image_catalog/">Image Catalog</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../bootstrap/">Bootstrap</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../database_import/">Importing Postgres databases</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../security/">Security</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../instance_manager/">Postgres Instance Manager</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../scheduling/">Scheduling</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../resource_management/">Resource management</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../failure_modes/">Failure Modes</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../rolling_update/">Rolling updates</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../replication/">Replication</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../logical_replication/">Logical Replication</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../backup/">Backup</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../wal_archiving/">WAL archiving</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../recovery/">Recovery</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../service_management/">Service management</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../postgresql_conf/">PostgreSQL Configuration</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../declarative_role_management/">PostgreSQL Role management</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../declarative_database_management/">PostgreSQL Database management</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../tablespaces/">Tablespaces</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../operator_conf/">Operator configuration</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../cluster_conf/">Instance Pod configuration</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../storage/">Storage</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../labels_annotations/">Labels and Annotations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../monitoring/">Monitoring</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../logging/">Logging</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../certificates/">Certificates</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../ssl_connections/">Client TLS/SSL connections</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../applications/">Connecting from an application</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../connection_pooling/">Connection Pooling</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../replica_cluster/">Replica clusters</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../kubernetes_upgrade/">Kubernetes upgrade and maintenance</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../postgres_upgrades/">PostgreSQL upgrades</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../kubectl-plugin/">Kubectl Plugin</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../failover/">Automated failover</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../troubleshooting/">Troubleshooting</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../fencing/">Fencing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../declarative_hibernation/">Declarative hibernation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../postgis/">PostGIS</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../e2e/">End-to-End Tests</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../container_images/">Container Image Requirements</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../cnpg_i/">CNPG-I</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Operator capability levels</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#level-1-basic-install">Level 1: Basic install</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#operator-deployment-via-declarative-configuration">Operator deployment via declarative configuration</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#postgresql-cluster-deployment-via-declarative-configuration">PostgreSQL cluster deployment via declarative configuration</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#override-of-operand-images-through-the-crd">Override of operand images through the CRD</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#labels-and-annotations">Labels and annotations</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#self-contained-instance-manager">Self-contained instance manager</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#storage-configuration">Storage configuration</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#replica-configuration">Replica configuration</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#service-configuration">Service Configuration</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#database-configuration">Database configuration</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#configuration-of-postgres-roles-users-and-groups">Configuration of Postgres roles, users, and groups</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#pod-security-standards">Pod security standards</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#affinity">Affinity</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#topology-spread-constraints">Topology spread constraints</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#command-line-interface">Command-line interface</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#current-status-of-the-cluster">Current status of the cluster</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#operators-certification-authority">Operator's certification authority</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#clusters-certification-authority">Cluster's certification authority</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#tls-connections">TLS connections</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#certificate-authentication-for-streaming-replication">Certificate authentication for streaming replication</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#continuous-configuration-management">Continuous configuration management</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#import-of-existing-postgresql-databases">Import of existing PostgreSQL databases</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#postgis-clusters">PostGIS clusters</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#basic-ldap-authentication-for-postgresql">Basic LDAP authentication for PostgreSQL</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#multiple-installation-methods">Multiple installation methods</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#convention-over-configuration">Convention over configuration</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#level-2-seamless-upgrades">Level 2: Seamless upgrades</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#operator-upgrade">Operator Upgrade</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#upgrade-of-the-managed-workload">Upgrade of the managed workload</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#offline-in-place-major-upgrades-of-postgresql">Offline In-Place Major Upgrades of PostgreSQL</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#display-cluster-availability-status-during-upgrade">Display cluster availability status during upgrade</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#level-3-full-lifecycle">Level 3: Full lifecycle</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#postgresql-wal-archive">PostgreSQL WAL archive</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#postgresql-backups">PostgreSQL Backups</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#backups-from-a-standby">Backups from a standby</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#full-restore-from-a-backup">Full restore from a backup</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#point-in-time-recovery-pitr-from-a-backup">Point-in-time recovery (PITR) from a backup</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#zero-data-loss-clusters-through-synchronous-replication">Zero-Data-Loss Clusters Through Synchronous Replication</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#replica-clusters">Replica clusters</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#distributed-database-topologies">Distributed Database Topologies</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#tablespace-support">Tablespace support</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#customizable-startup-liveness-and-readiness-probes">Customizable Startup, Liveness, and Readiness Probes</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#rolling-deployments">Rolling deployments</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#scale-up-and-down-of-replicas">Scale up and down of replicas</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#maintenance-window-and-poddisruptionbudget-for-kubernetes-nodes">Maintenance window and PodDisruptionBudget for Kubernetes nodes</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#fencing">Fencing</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#hibernation">Hibernation</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#reuse-of-persistent-volumes-storage-in-pods">Reuse of persistent volumes storage in pods</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#cpu-and-memory-requests-and-limits">CPU and memory requests and limits</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#connection-pooling-with-pgbouncer">Connection pooling with PgBouncer</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#logical-replication">Logical Replication</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#level-4-deep-insights">Level 4: Deep insights</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#prometheus-exporter-with-configurable-queries">Prometheus exporter with configurable queries</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#grafana-dashboard">Grafana dashboard</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#standard-output-logging-of-postgresql-error-messages-in-json-format">Standard output logging of PostgreSQL error messages in JSON format</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#real-time-query-monitoring">Real-time query monitoring</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#audit">Audit</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#kubernetes-events">Kubernetes events</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#level-5-auto-pilot">Level 5: Auto pilot</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#automated-failover-for-self-healing">Automated failover for self-healing</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#automated-recreation-of-a-standby">Automated recreation of a standby</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../controller/">Custom Pod Controller</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../samples/">Examples</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../networking/">Networking</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../benchmarking/">Benchmarking</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../faq/">Frequently Asked Questions (FAQ)</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../cloudnative-pg.v1/">API Reference</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../supported_releases/">Supported releases</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../preview_version/">Preview Versions</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../release_notes/">Release notes</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">CNCF Projects Integrations</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../cncf-projects/external-secrets/">External Secrets</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cncf-projects/cilium/">Cilium</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Appendixes</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../appendixes/backup_volumesnapshot/">Appendix A - Backup on volume snapshots</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../appendixes/backup_barmanobjectstore/">Appendix B - Backup on object stores</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../appendixes/object_stores/">Appendix C - Common object stores for backups</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">CloudNativePG v1.26</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Operator capability levels</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="operator-capability-levels">Operator capability levels</h1>
+<!-- SPDX-License-Identifier: CC-BY-4.0 -->
+
+<p>These capabilities were implemented by CloudNativePG,
+classified using the
+<a href="https://operatorframework.io/operator-capabilities/">Operator SDK definition of Capability Levels</a>
+framework.</p>
+<p><img alt="Operator Capability Levels" src="../images/operator-capability-level.png" /></p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Based on the <a href="./">Operator Capability Levels model</a>,
+you can expect a "Level V - Auto Pilot" set of capabilities from the
+CloudNativePG operator.</p>
+</div>
+<p>Each capability level is associated with a certain set of management features the operator offers:</p>
+<ol>
+<li>Basic install</li>
+<li>Seamless upgrades</li>
+<li>Full lifecycle</li>
+<li>Deep insights</li>
+<li>Auto pilot</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We consider this framework as a guide for future work and implementations in the operator.</p>
+</div>
+<h2 id="level-1-basic-install">Level 1: Basic install</h2>
+<p>Capability level 1 involves installing and configuring the
+operator. This category includes usability and user experience
+enhancements, such as improvements in how you interact with the
+operator and a PostgreSQL cluster configuration.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>We consider information security part of this level.</p>
+</div>
+<h3 id="operator-deployment-via-declarative-configuration">Operator deployment via declarative configuration</h3>
+<p>The operator is installed in a declarative way using a Kubernetes manifest
+that defines four major <code>CustomResourceDefinition</code> objects: <code>Cluster</code>, <code>Pooler</code>,
+<code>Backup</code>, and <code>ScheduledBackup</code>.</p>
+<h3 id="postgresql-cluster-deployment-via-declarative-configuration">PostgreSQL cluster deployment via declarative configuration</h3>
+<p>You define a PostgreSQL cluster (operand) using the <code>Cluster</code> custom resource
+in a fully declarative way. The PostgreSQL version is determined by the
+operand container image defined in the CR, which is automatically fetched
+from the requested registry. When deploying an operand, the operator also
+creates the following resources: <code>Pod</code>, <code>Service</code>, <code>Secret</code>,
+<code>ConfigMap</code>,<code>PersistentVolumeClaim</code>, <code>PodDisruptionBudget</code>, <code>ServiceAccount</code>,
+<code>RoleBinding</code>, and <code>Role</code>.</p>
+<h3 id="override-of-operand-images-through-the-crd">Override of operand images through the CRD</h3>
+<p>The operator is designed to support any operand container image with
+PostgreSQL inside.
+By default, the operator uses the latest available minor
+version of the latest stable major version supported by the PostgreSQL
+community and published on ghcr.io.
+You can use any compatible image of PostgreSQL supporting the
+primary/standby architecture directly by setting the <code>imageName</code>
+attribute in the CR. The operator also supports <code>imagePullSecrets</code>
+to access private container registries, and it supports digests and
+tags for finer control of container image immutability.
+If you prefer not to specify an image name, you can leverage
+<a href="../image_catalog/">image catalogs</a> by simply referencing the PostgreSQL
+major version. Moreover, image catalogs enable you to effortlessly create
+custom catalogs, directing to images based on your specific requirements.</p>
+<h3 id="labels-and-annotations">Labels and annotations</h3>
+<p>You can configure the operator to support inheriting labels and annotations
+that are defined in a cluster's metadata. The goal is to improve the organization
+of the CloudNativePG deployment in your Kubernetes infrastructure.</p>
+<h3 id="self-contained-instance-manager">Self-contained instance manager</h3>
+<p>Instead of relying on an external tool to
+coordinate PostgreSQL instances in the Kubernetes cluster pods,
+such as Patroni or Stolon, the operator
+injects the operator executable inside each pod, in a file named
+<code>/controller/manager</code>. The application is used to control the underlying
+PostgreSQL instance and to reconcile the pod status with the instance
+based on the PostgreSQL cluster topology. The instance manager also starts a
+web server that's invoked by the <code>kubelet</code> for probes. Unix signals invoked
+by the <code>kubelet</code> are filtered by the instance manager. Where appropriate, they're
+forwarded to the <code>postgres</code> process for fast and controlled reactions to
+external events. The instance manager is written in Go and has no external
+dependencies.</p>
+<h3 id="storage-configuration">Storage configuration</h3>
+<p>Storage is a critical component in a database workload. Taking advantage of the
+Kubernetes native capabilities and resources in terms of storage, the
+operator gives you enough flexibility to choose the right storage for your
+workload requirements, based on what the underlying Kubernetes environment
+can offer. This implies choosing a particular storage class in
+a public cloud environment or fine-tuning the generated PVC through a
+PVC template in the CR's <code>storage</code> parameter.</p>
+<p>For better performance and finer control, you can also choose to host your
+cluster's write-ahead log (WAL, also known as <code>pg_wal</code>) on a separate volume,
+preferably on different storage.
+The <a href="../benchmarking/">"Benchmarking"</a> section of the documentation provides
+detailed instructions on benchmarking both storage and the database before
+production. It relies on the <code>cnpg</code> plugin to ensure optimal performance and
+reliability.</p>
+<h3 id="replica-configuration">Replica configuration</h3>
+<p>The operator detects replicas in a cluster
+through a single parameter, called <code>instances</code>. If set to <code>1</code>, the cluster
+comprises a single primary PostgreSQL instance with no replica. If higher
+than <code>1</code>, the operator manages <code>instances -1</code> replicas, including high
+availability (HA) through automated failover and rolling updates through
+switchover operations.</p>
+<p>CloudNativePG manages replication slots for all the replicas
+in the HA cluster. The implementation is inspired by the previously
+proposed patch for PostgreSQL, called
+<a href="https://wiki.postgresql.org/wiki/Failover_slots">failover slots</a>, and
+also supports user defined physical replication slots on the primary.</p>
+<h3 id="service-configuration">Service Configuration</h3>
+<p>By default, CloudNativePG creates three Kubernetes <a href="../service_management/">services</a>
+for applications to access the cluster via the network:</p>
+<ul>
+<li>One pointing to the primary for read/write operations.</li>
+<li>One pointing to replicas for read-only queries.</li>
+<li>A generic one pointing to any instance for read operations.</li>
+</ul>
+<p>You can disable the read-only and read services via configuration.
+Additionally, you can leverage the service template capability
+to create custom service resources, including load balancers, to access
+PostgreSQL outside Kubernetes. This is particularly useful for DBaaS purposes.</p>
+<h3 id="database-configuration">Database configuration</h3>
+<p>The operator is designed to bootstrap a PostgreSQL cluster with a single
+database. The operator transparently manages network access to the cluster
+through three Kubernetes services provisioned and managed for read-write,
+read, and read-only workloads.
+Using the convention-over-configuration approach, the operator creates a
+database called <code>app</code>, by default owned by a regular Postgres user with the
+same name. You can specify both the database name and the user name, if
+required, as part of the bootstrap.</p>
+<p>Additional databases can be created or managed via
+<a href="../declarative_database_management/">declarative database management</a> using
+the <code>Database</code> CRD, also supporting extensions and schemas.</p>
+<p>Although no configuration is required to run the cluster, you can customize
+both PostgreSQL runtime configuration and PostgreSQL host-based
+authentication rules in the <code>postgresql</code> section of the CR.</p>
+<h3 id="configuration-of-postgres-roles-users-and-groups">Configuration of Postgres roles, users, and groups</h3>
+<p>CloudNativePG supports
+<a href="../declarative_role_management/">management of PostgreSQL roles, users, and groups through declarative configuration</a>
+using the <code>.spec.managed.roles</code> stanza.</p>
+<h3 id="pod-security-standards">Pod security standards</h3>
+<p>For InfoSec requirements, the operator doesn't require privileged mode for
+any container. It enforces a read-only root filesystem to guarantee containers
+immutability for both the operator and the operand pods. It also explicitly
+sets the required security contexts.</p>
+<h3 id="affinity">Affinity</h3>
+<p>The cluster's <code>affinity</code> section enables fine-tuning of how pods and related
+resources, such as persistent volumes, are scheduled across the nodes of a
+Kubernetes cluster. In particular, the operator supports:</p>
+<ul>
+<li>Pod affinity and anti-affinity</li>
+<li>Node selector</li>
+<li>Taints and tolerations</li>
+</ul>
+<h3 id="topology-spread-constraints">Topology spread constraints</h3>
+<p>The cluster's <code>topologySpreadConstraints</code> section enables additional control of
+scheduling pods across topologies, enhancing what affinity and
+anti-affinity can offer.</p>
+<h3 id="command-line-interface">Command-line interface</h3>
+<p>CloudNativePG doesn't have its own command-line interface.
+It relies on the best command-line interface for Kubernetes, kubectl,
+by providing a plugin called <code>cnpg</code>. This plugin enhances and simplifies your PostgreSQL
+cluster management experience.</p>
+<h3 id="current-status-of-the-cluster">Current status of the cluster</h3>
+<p>The operator continuously updates the status section of the CR with the
+observed status of the cluster. The entire PostgreSQL cluster status is
+continuously monitored by the instance manager running in each pod. The
+instance manager is responsible for applying the required changes to the
+controlled PostgreSQL instance to converge to the required status of
+the cluster. (For example, if the cluster status reports that pod <code>-1</code> is the
+primary, pod <code>-1</code> needs to promote itself while the other pods need to follow
+pod <code>-1</code>.) The same status is used by the <code>cnpg</code> plugin for kubectl to provide
+details.</p>
+<h3 id="operators-certification-authority">Operator's certification authority</h3>
+<p>The operator creates a certification authority for itself.
+It creates and signs with the operator certification authority a leaf certificate
+for the webhook server to use. This certificate ensures safe communication between the
+Kubernetes API server and the operator.</p>
+<h3 id="clusters-certification-authority">Cluster's certification authority</h3>
+<p>The operator creates a certification authority for every PostgreSQL
+cluster. This certification authority is used to issue and renew TLS certificates for clients' authentication,
+including streaming replication standby servers (instead of passwords).
+Support for a custom certification authority for client certificates is
+available through secrets, which also includes integration with cert-manager.
+Certificates can be issued with the <code>cnpg</code> plugin for kubectl.</p>
+<h3 id="tls-connections">TLS connections</h3>
+<p>The operator transparently and natively supports TLS/SSL connections
+to encrypt client/server communications for increased security using the
+cluster's certification authority.
+Support for custom server certificates is available through secrets, which also
+includes integration with cert-manager.</p>
+<h3 id="certificate-authentication-for-streaming-replication">Certificate authentication for streaming replication</h3>
+<p>To authorize streaming replication connections from the standby servers,
+the operator relies on TLS client certificate authentication. This method is used
+instead of relying on a password (and therefore a secret).</p>
+<h3 id="continuous-configuration-management">Continuous configuration management</h3>
+<p>The operator enables you to apply changes to the <code>Cluster</code> resource YAML
+section of the PostgreSQL configuration. Depending on the configuration option,
+it also makes sure that all instances are properly reloaded or restarted.</p>
+<div class="admonition note current limitation">
+<p class="admonition-title">Note</p>
+<p>Changes with <code>ALTER SYSTEM</code> aren't detected, meaning
+that the cluster state isn't enforced.</p>
+</div>
+<h3 id="import-of-existing-postgresql-databases">Import of existing PostgreSQL databases</h3>
+<p>The operator provides a declarative way to import existing
+Postgres databases in a new CloudNativePG cluster in Kubernetes, using
+offline migrations.
+The same feature also covers offline major upgrades of PostgreSQL databases.
+Offline means that applications must stop their write operations at the source
+until the database is imported.
+The feature extends the <code>initdb</code> bootstrap method to create a new PostgreSQL
+cluster using a logical snapshot of the data available in another PostgreSQL
+database. This data can be accessed by way of the network through a superuser
+connection. Import is from any supported version of Postgres. It relies on
+<code>pg_dump</code> and <code>pg_restore</code> being executed from the new cluster primary
+for all databases that are part of the operation and, if requested, for roles.</p>
+<h3 id="postgis-clusters">PostGIS clusters</h3>
+<p>CloudNativePG supports the installation of clusters with the <a href="../postgis/">PostGIS</a>
+open source extension for geographical databases. This extension is one of the most popular
+extensions for PostgreSQL.</p>
+<h3 id="basic-ldap-authentication-for-postgresql">Basic LDAP authentication for PostgreSQL</h3>
+<p>The operator allows you to configure LDAP authentication for your PostgreSQL
+clients, using either the <em>simple bind</em> or <em>search+bind</em> mode, as described in
+the <a href="https://www.postgresql.org/docs/current/auth-ldap.html">LDAP authentication section of the PostgreSQL documentation</a>.</p>
+<h3 id="multiple-installation-methods">Multiple installation methods</h3>
+<p>The operator can be installed through a Kubernetes manifest by way of <code>kubectl
+apply</code>, to be used in a traditional Kubernetes installation in public
+and private cloud environments. CloudNativePG also supports
+installation by way of a Helm chart or OLM bundle from OperatorHub.io.</p>
+<h3 id="convention-over-configuration">Convention over configuration</h3>
+<p>The operator supports the convention-over-configuration paradigm, deciding
+standard default values while allowing you to override them and customize
+them. You can specify a deployment of a PostgreSQL cluster using
+the <code>Cluster</code> CRD in a couple of lines of YAML code.</p>
+<h2 id="level-2-seamless-upgrades">Level 2: Seamless upgrades</h2>
+<p>Capability level 2 is about enabling updates of the operator and the actual
+workload, in this case PostgreSQL servers. This includes PostgreSQL minor
+release updates (security and bug fixes normally) as well as major online
+upgrades.</p>
+<h3 id="operator-upgrade">Operator Upgrade</h3>
+<p>Upgrading the operator is seamless and can be done as a new deployment. After
+upgrading the controller, a rolling update of all deployed PostgreSQL clusters
+is initiated. You can choose to update all clusters simultaneously or
+distribute their upgrades over time.</p>
+<p>Thanks to the instance manager's injection, upgrading the operator does not
+require changes to the operand, allowing the operator to manage older versions
+of it.</p>
+<p>Additionally, CloudNativePG supports <a href="../installation_upgrade/#in-place-updates-of-the-instance-manager">in-place updates of the instance manager</a>
+following an operator upgrade. In-place updates do not require a rolling update
+or a subsequent switchover of the cluster.</p>
+<h3 id="upgrade-of-the-managed-workload">Upgrade of the managed workload</h3>
+<p>The operand can be upgraded using a declarative configuration approach as
+part of changing the CR and, in particular, the <code>imageName</code> parameter.
+This is normally initiated by security updates or Postgres minor version updates.
+In the presence of standby servers, the operator performs rolling updates
+starting from the replicas. It does this by dropping the existing pod and creating a new
+one with the new requested operand image that reuses the underlying storage.
+Depending on the value of the <code>primaryUpdateStrategy</code>, the operator proceeds
+with a switchover before updating the former primary (<code>unsupervised</code>). Or, it waits
+for the user to manually issue the switchover procedure (<code>supervised</code>) by way of the
+<code>cnpg</code> plugin for kubectl.
+The setting to use depends on the business requirements, as the operation
+might generate some downtime for the applications. This downtime can range from a few seconds to
+minutes, based on the actual database workload.</p>
+<h3 id="offline-in-place-major-upgrades-of-postgresql">Offline In-Place Major Upgrades of PostgreSQL</h3>
+<p>CloudNativePG supports declarative offline in-place major upgrades when a new
+operand container image with a higher PostgreSQL major version is applied to a
+cluster. The upgrade can be triggered by updating the image tag via the
+<code>.spec.imageName</code> option or by using an image catalog to manage version
+changes. During the upgrade, all cluster pods are shut down to ensure data
+consistency. A new job is then created to validate the upgrade conditions,
+execute <code>pg_upgrade</code>, and create new directories for <code>PGDATA</code>, WAL files, and
+tablespaces if needed. Once the upgrade is complete, replicas are re-created.
+Failed upgrades can be rolled back.</p>
+<h3 id="display-cluster-availability-status-during-upgrade">Display cluster availability status during upgrade</h3>
+<p>At any time, convey the cluster's high availability status, for example,
+<code>Setting up primary</code>, <code>Creating a new replica</code>, <code>Cluster in healthy state</code>,
+<code>Switchover in progress</code>, <code>Failing over</code>, <code>Upgrading cluster</code>, and <code>Upgrading
+Postgres major version</code>.</p>
+<h2 id="level-3-full-lifecycle">Level 3: Full lifecycle</h2>
+<p>Capability level 3 requires the operator to manage aspects of business
+continuity and scalability.</p>
+<p><em>Disaster recovery</em> is a business continuity component that requires
+that both backup and recovery of a database work correctly. While as a
+starting point, the goal is to achieve <a href="../before_you_start/#rpo">RPO</a> &lt; 5
+minutes, the long-term goal is to implement RPO=0 backup solutions. <em>High
+availability</em> is the other important component of business continuity. Through
+PostgreSQL native physical replication and hot standby replicas, it allows the
+operator to perform failover and switchover operations. This area includes
+enhancements in:</p>
+<ul>
+<li>Control of PostgreSQL physical replication, such as synchronous replication,
+  (cascading) replication clusters, and so on</li>
+<li>Connection pooling, to improve performance and control through a
+  connection pooling layer with pgBouncer</li>
+</ul>
+<h3 id="postgresql-wal-archive">PostgreSQL WAL archive</h3>
+<p>The operator supports PostgreSQL continuous archiving of WAL files
+to an object store (AWS S3 and S3-compatible, Azure Blob Storage, Google Cloud
+Storage, and gateways like MinIO).</p>
+<p>WAL archiving is defined at the cluster level, declaratively, through the
+<code>backup</code> parameter in the cluster definition. This is done by specifying an S3 protocol
+destination URL (for example, to point to a specific folder in an AWS S3
+bucket) and, optionally, a generic endpoint URL.</p>
+<p>WAL archiving, a prerequisite for continuous backup, doesn't require any further
+user action. The operator transparently sets
+the <code>archive_command</code> to rely on <code>barman-cloud-wal-archive</code> to ship WAL
+files to the defined endpoint. You can decide the compression algorithm,
+as well as the number of parallel jobs to concurrently upload WAL files
+in the archive. In addition, <code>Instance Manager</code> checks
+the correctness of the archive destination by performing the <code>barman-cloud-check-wal-archive</code>
+command before beginning to ship the first set of WAL files.</p>
+<h3 id="postgresql-backups">PostgreSQL Backups</h3>
+<p>CloudNativePG provides a pluggable interface (CNPG-I) for managing
+application-level backups using PostgreSQL’s native physical backup
+mechanisms—namely base backups and continuous WAL archiving. This
+design enables flexibility and extensibility while ensuring consistency and
+performance.</p>
+<p>The CloudNativePG Community officially supports the <a href="https://cloudnative-pg.io/plugin-barman-cloud/">Barman Cloud Plugin</a>,
+which enables continuous physical backups to object stores, along with full and
+Point-In-Time Recovery (PITR) capabilities.</p>
+<p>In addition to CNPG-I plugins, CloudNativePG also natively supports backups
+using Kubernetes volume snapshots, when supported by the underlying storage
+class and CSI driver.</p>
+<p>You can initiate base backups in two ways:</p>
+<ul>
+<li>On-demand, using the <code>Backup</code> custom resource</li>
+<li>Scheduled, using the <code>ScheduledBackup</code> custom resource, with a cron-like
+  schedule format</li>
+</ul>
+<p>Volume snapshots leverage the Kubernetes API and are particularly effective for
+very large databases (VLDBs) due to their speed and storage efficiency.</p>
+<p>Both volume snapshots and CNPG-I-based backups support:</p>
+<ul>
+<li>Hot backups: Taken while PostgreSQL is running, ensuring minimal
+  disruption.</li>
+<li>Cold backups: Performed by temporarily stopping PostgreSQL to ensure a
+  fully consistent snapshot, when required.</li>
+</ul>
+<h3 id="backups-from-a-standby">Backups from a standby</h3>
+<p>The operator supports offloading base backups onto a standby without impacting
+the <a href="../before_you_start/#rpo">RPO</a> of the database. This allows resources to
+be preserved on the primary, in particular I/O, for standard database
+operations.</p>
+<h3 id="full-restore-from-a-backup">Full restore from a backup</h3>
+<p>The operator enables you to bootstrap a new cluster (with its settings)
+starting from an existing and accessible backup, either on a volume snapshot,
+or in an object store, or via a plugin.</p>
+<p>Once the bootstrap process is completed, the operator initiates the instance in
+recovery mode. It replays all available WAL files from the specified archive,
+exiting recovery and starting as a primary.
+Subsequently, the operator clones the requested number of standby instances
+from the primary.
+CloudNativePG supports parallel WAL fetching from the archive.</p>
+<h3 id="point-in-time-recovery-pitr-from-a-backup">Point-in-time recovery (PITR) from a backup</h3>
+<p>The operator enables you to create a new PostgreSQL cluster by recovering
+an existing backup to a specific point in time, defined with a timestamp, a
+label, or a transaction ID. This capability is built on top of the full restore
+one and supports all the options available in
+<a href="https://www.postgresql.org/docs/current/runtime-config-wal.html#RUNTIME-CONFIG-WAL-RECOVERY-TARGET">PostgreSQL for PITR</a>.</p>
+<h3 id="zero-data-loss-clusters-through-synchronous-replication">Zero-Data-Loss Clusters Through Synchronous Replication</h3>
+<p>Achieve <em>zero data loss</em> (RPO=0) in your local high-availability CloudNativePG
+cluster with support for both quorum-based and priority-based synchronous
+replication. The operator offers a flexible way to define the number of
+expected synchronous standby replicas available at any time, and allows
+customization of the <code>synchronous_standby_names</code> option as needed.</p>
+<h3 id="replica-clusters">Replica clusters</h3>
+<p>Establish a robust cross-Kubernetes cluster topology for PostgreSQL clusters,
+harnessing the power of native streaming and cascading replication. With the
+<code>replica</code> option, you can configure an autonomous cluster to consistently
+replicate data from another PostgreSQL source of the same major version. This
+source can be located anywhere, provided you have access to a WAL archive for
+fetching WAL files or a direct streaming connection via TLS between the two
+endpoints.</p>
+<p>Notably, the source PostgreSQL instance can exist outside the Kubernetes
+environment, whether in a physical or virtual setting.</p>
+<p>Replica clusters can be instantiated through various methods, including volume
+snapshots, a recovery object store (using the Barman Cloud backup format),
+or streaming using <code>pg_basebackup</code>. Both WAL file shipping and WAL streaming
+are supported. The deployment of replica clusters significantly elevates the
+business continuity posture of PostgreSQL databases within Kubernetes,
+extending across multiple data centers and facilitating hybrid and multi-cloud
+setups. (While anticipating Kubernetes federation native capabilities, manual
+switchover across data centers remains necessary.)</p>
+<p>Additionally, the flexibility extends to creating delayed replica clusters
+intentionally lagging behind the primary cluster. This intentional lag aims to
+minimize the Recovery Time Objective (<a href="../before_you_start/#rto">RTO</a>) in the
+event of unintended errors, such as incorrect <code>DELETE</code> or <code>UPDATE</code> SQL operations.</p>
+<h3 id="distributed-database-topologies">Distributed Database Topologies</h3>
+<p>Leverage replica clusters to
+define <a href="../replica_cluster/#distributed-topology">distributed database topologies</a>
+for PostgreSQL that span across various Kubernetes clusters, facilitating hybrid
+and multi-cloud deployments. With CloudNativePG, you gain powerful capabilities,
+including:</p>
+<ul>
+<li><strong>Declarative Primary Control</strong>: Easily specify which PostgreSQL cluster acts
+  as the primary.</li>
+<li><strong>Seamless Primary Switchover</strong>: Effortlessly demote the current primary and
+  promote another PostgreSQL cluster, typically located in a different region,
+  without needing to re-clone the former primary.</li>
+</ul>
+<p>This setup can efficiently operate across two or more regions, can rely entirely
+on object stores for replication, and guarantees a maximum RPO (Recovery Point
+Objective) of 5 minutes. This advanced feature is uniquely provided by
+CloudNativePG, ensuring robust data integrity and continuity across diverse
+environments.</p>
+<h3 id="tablespace-support">Tablespace support</h3>
+<p>CloudNativePG seamlessly integrates robust support for PostgreSQL tablespaces
+by facilitating the declarative definition of individual persistent volumes.
+This innovative feature empowers you to efficiently distribute I/O operations
+across a diverse array of storage devices. Through the transparent
+orchestration of tablespaces, CloudNativePG enhances the performance and
+scalability of PostgreSQL databases, ensuring a streamlined and optimized
+experience for managing large scale data storage in cloud-native environments.
+Support for temporary tablespaces is also included.</p>
+<h3 id="customizable-startup-liveness-and-readiness-probes">Customizable Startup, Liveness, and Readiness Probes</h3>
+<p>CloudNativePG configures startup, liveness, and readiness probes for PostgreSQL
+containers, which are managed by the Kubernetes kubelet. These probes interact
+with the <code>/startupz</code>, <code>/healthz</code>, and <code>/readyz</code> endpoints exposed by
+the instance manager's web server to monitor the Pod's health and readiness.</p>
+<p>All probes are configured with default settings but can be fully customized to
+meet specific needs, allowing for fine-tuning to align with your environment
+and workloads.</p>
+<p>For detailed configuration options and advanced usage,
+refer to the <a href="../instance_manager/">Postgres instance manager</a> documentation.</p>
+<h3 id="rolling-deployments">Rolling deployments</h3>
+<p>The operator supports rolling deployments to minimize the downtime. If a
+PostgreSQL cluster is exposed publicly, the service load-balances the
+read-only traffic only to available pods during the initialization or the
+update.</p>
+<h3 id="scale-up-and-down-of-replicas">Scale up and down of replicas</h3>
+<p>The operator allows you to scale up and down the number of instances in a
+PostgreSQL cluster. New replicas are started up from the
+primary server and participate in the cluster's HA infrastructure.
+The CRD declares a "scale" subresource that allows you to use the
+<code>kubectl scale</code> command.</p>
+<h3 id="maintenance-window-and-poddisruptionbudget-for-kubernetes-nodes">Maintenance window and PodDisruptionBudget for Kubernetes nodes</h3>
+<p>The operator creates a <code>PodDisruptionBudget</code> resource to limit the number of
+concurrent disruptions to one primary instance. This configuration prevents the
+maintenance operation from deleting all the pods in a cluster, allowing the
+specified number of instances to be created. The PodDisruptionBudget is
+applied during the node-draining operation, preventing any disruption of the
+cluster service.</p>
+<p>While this strategy is correct for Kubernetes clusters where
+storage is shared among all the worker nodes, it might not be the best solution
+for clusters using local storage or for clusters installed in a private
+cloud. The operator allows you to specify a maintenance window and
+configure the reaction to any underlying node eviction. The <code>ReusePVC</code> option
+in the maintenance window section enables to specify the strategy to use.
+Allocate new storage in a different PVC for the evicted instance, or wait
+for the underlying node to be available again.</p>
+<h3 id="fencing">Fencing</h3>
+<p>Fencing is the process of protecting the data in one, more, or even all
+instances of a PostgreSQL cluster when they appear to be malfunctioning.
+When an instance is fenced, the PostgreSQL server process is
+guaranteed to be shut down, while the pod is kept running. This ensures
+that, until the fence is lifted, data on the pod isn't modified by PostgreSQL
+and that you can investigate file system for debugging and troubleshooting
+purposes.</p>
+<h3 id="hibernation">Hibernation</h3>
+<p>CloudNativePG supports <a href="../declarative_hibernation/">hibernation of a running PostgreSQL cluster</a>
+in a declarative manner, through the <code>cnpg.io/hibernation</code> annotation.
+Hibernation enables saving CPU power by removing the database pods while
+keeping the database PVCs. This feature simulates scaling to 0 instances.</p>
+<h3 id="reuse-of-persistent-volumes-storage-in-pods">Reuse of persistent volumes storage in pods</h3>
+<p>When the operator needs to create a pod that was deleted by the user or
+was evicted by a Kubernetes maintenance operation, it reuses the
+<code>PersistentVolumeClaim</code>, if available. This ability avoids the need
+to clone the data from the primary again.</p>
+<h3 id="cpu-and-memory-requests-and-limits">CPU and memory requests and limits</h3>
+<p>The operator allows administrators to control and manage resource usage by
+the cluster's pods in the <code>resources</code> section of the manifest. In
+particular, you can set <code>requests</code> and <code>limits</code> values for both CPU and RAM.</p>
+<h3 id="connection-pooling-with-pgbouncer">Connection pooling with PgBouncer</h3>
+<p>CloudNativePG provides native support for connection pooling with
+<a href="../connection_pooling/">PgBouncer</a>, one of the most popular open source
+connection poolers for PostgreSQL. From an architectural point of view, the
+native implementation of a PgBouncer connection pooler introduces a new layer
+to access the database. This optimizes the query flow toward the instances
+and makes the use of the underlying PostgreSQL resources more efficient.
+Instead of connecting directly to a PostgreSQL service, applications can now
+connect to the PgBouncer service and start reusing any existing connection.</p>
+<h3 id="logical-replication">Logical Replication</h3>
+<p>CloudNativePG supports PostgreSQL's logical replication in a declarative manner
+using <code>Publication</code> and <code>Subscription</code> custom resource definitions.</p>
+<p>Logical replication is particularly useful together with the import facility
+for online data migrations (even from public DBaaS solutions) and major
+PostgreSQL upgrades.</p>
+<h2 id="level-4-deep-insights">Level 4: Deep insights</h2>
+<p>Capability level 4 is about <em>observability</em>: monitoring,
+alerting, trending, and log processing. This might involve the use of external tools,
+such as Prometheus, Grafana, and Fluent Bit, as well as extensions in the
+PostgreSQL engine for the output of error logs directly in JSON format.</p>
+<p>CloudNativePG was designed to provide everything needed
+to easily integrate with industry-standard and community-accepted tools for
+flexible monitoring and logging.</p>
+<h3 id="prometheus-exporter-with-configurable-queries">Prometheus exporter with configurable queries</h3>
+<p>The instance manager provides a pluggable framework. By way of its own web server
+listening on the <code>metrics</code> port (9187), it exposes an endpoint to export metrics
+for the <a href="https://prometheus.io/">Prometheus</a> monitoring and alerting tool.
+The operator supports custom monitoring queries defined as <code>ConfigMap</code>
+or <code>Secret</code> objects using a syntax that's compatible with
+<a href="https://github.com/prometheus-community/postgres_exporter"><code>postgres_exporter</code> for Prometheus</a>.
+CloudNativePG provides a set of basic monitoring queries for
+PostgreSQL that can be integrated and adapted to your context.</p>
+<h3 id="grafana-dashboard">Grafana dashboard</h3>
+<p>CloudNativePG comes with a Grafana dashboard that you can use as a base to
+monitor all critical aspects of a PostgreSQL cluster, and customize.</p>
+<h3 id="standard-output-logging-of-postgresql-error-messages-in-json-format">Standard output logging of PostgreSQL error messages in JSON format</h3>
+<p>Every log message is delivered to standard output in JSON format. The first level is the
+definition of the timestamp, the log level, and the type of log entry, such as
+<code>postgres</code> for the canonical PostgreSQL error message channel.
+As a result, every pod managed by CloudNativePG can be easily and directly
+integrated with any downstream log processing stack that supports JSON as source
+data type.</p>
+<h3 id="real-time-query-monitoring">Real-time query monitoring</h3>
+<p>CloudNativePG transparently and natively supports:</p>
+<ul>
+<li>The essential <a href="https://www.postgresql.org/docs/current/pgstatstatements.html"><code>pg_stat_statements</code> extension</a>,
+  which enables tracking of planning and execution statistics of all SQL
+  statements executed by a PostgreSQL server</li>
+<li>The <a href="https://www.postgresql.org/docs/current/auto-explain.html"><code>auto_explain</code> extension</a>,
+  which provides a means for logging execution plans of slow statements
+  automatically, without having to manually run <code>EXPLAIN</code> (helpful for tracking
+  down un-optimized queries)</li>
+<li>The <a href="https://github.com/EnterpriseDB/pg_failover_slots"><code>pg_failover_slots</code> extension</a>,
+  which makes logical replication slots usable across a physical failover,
+  ensuring resilience in change data capture (CDC) contexts based on PostgreSQL's
+  native logical replication</li>
+</ul>
+<h3 id="audit">Audit</h3>
+<p>CloudNativePG allows database and security administrators, auditors,
+and operators to track and analyze database activities using PGAudit for
+PostgreSQL.
+Such activities flow directly in the JSON log and can be properly routed to the
+correct downstream target using common log brokers like Fluentd.</p>
+<h3 id="kubernetes-events">Kubernetes events</h3>
+<p>Record major events as expected by the Kubernetes API, such as creating resources,
+removing nodes, and upgrading. Events can be displayed by using
+the <code>kubectl describe</code> and <code>kubectl get events</code> commands.</p>
+<h2 id="level-5-auto-pilot">Level 5: Auto pilot</h2>
+<p>Capability level 5 is focused on automated scaling, healing, and
+tuning through the discovery of anomalies and insights that emerged
+from the observability layer.</p>
+<h3 id="automated-failover-for-self-healing">Automated failover for self-healing</h3>
+<p>In case of detected failure on the primary, the operator changes the
+status of the cluster by setting the most aligned replica as the new target
+primary. As a consequence, the instance manager in each alive pod
+initiates the required procedures to align itself with the requested status of
+the cluster. It does this by either becoming the new primary or by following it.
+In case the former primary comes back up, the same mechanism avoids a
+split-brain by preventing applications from reaching it, running <code>pg_rewind</code> on
+the server and restarting it as a standby.</p>
+<h3 id="automated-recreation-of-a-standby">Automated recreation of a standby</h3>
+<p>If the pod hosting a standby is removed, the operator initiates
+the procedure to re-create a standby server.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../cnpg_i/" class="btn btn-neutral float-left" title="CNPG-I"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../controller/" class="btn btn-neutral float-right" title="Custom Pod Controller">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+      <p>Copyright © CloudNativePG a Series of LF Projects, LLC</p>
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../cnpg_i/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../controller/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
