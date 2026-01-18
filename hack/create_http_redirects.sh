@@ -77,5 +77,15 @@ EOF
 
 done
 
+echo "Purging old assets (404, yaml, png, css, jpg)..."
+
+find "$BASE_DIR" -type f \( \
+    -name "404.html" -o \
+    -name "*.yaml" -o \
+    -name "*.png" -o \
+    -name "*.css" -o \
+    -name "*.jpg" \
+\) -exec git rm -f --ignore-unmatch {} +
+
 echo "------------------------------------------------"
-echo "Success: All files in $INPUT_VERSION have been updated."
+echo "Success: $INPUT_VERSION updated and cleaned."
