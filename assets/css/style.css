@@ -13,7 +13,7 @@
     --color-link-footer: #DC2626; /* red-600, 4.53:1 on white */
 
     /* Background Colors */
-    --color-accent-red: #DC2626; /* red-600, for CTAs */
+    --color-accent-red: #B91C1C; /* red-700, ensures 5.74:1 contrast with white */
     --color-accent-red-dark: #B91C1C; /* red-700, darker variant */
 
     /* Focus Indicators */
