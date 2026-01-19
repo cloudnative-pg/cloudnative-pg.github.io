@@ -7,10 +7,16 @@
 
 <head>
   <title>{{with .Title }}{{.}} | {{end}}{{ .Site.Title }}</title>
-  <meta charset="UTF-8" />
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <meta name="description" content="{{ with .GetPage " hero" }}{{ .Content | chomp }}{{ end }}" />
+  {{ if .IsHome }}
+    {{ with site.GetPage "/hero" }}
+      <meta name="description" content="{{ .Content | plainify | truncate 160 }}" />
+    {{ end }}
+  {{ else }}
+    <meta name="description" content="{{ .Description | default .Summary | plainify | truncate 160 }}" />
+  {{ end }}
   <meta name="keywords" content="" />
   <link rel="preload" href="/fonts/Supreme-Variable.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet" />
@@ -35,13 +41,17 @@
 <body>
   <a href="#main-content" class="skip-link">Skip to main content</a>
   <div class="h-screen w-screen">
-    {{ partial "nav" . }}
+    <header>
+      {{ partial "nav" . }}
+    </header>
 
     <main id="main-content">
       {{ block "main" . }}{{ end }}
     </main>
 
-    {{ partial "footer" . }}
+    <footer>
+      {{ partial "footer" . }}
+    </footer>
   </div>
 </body>
 
