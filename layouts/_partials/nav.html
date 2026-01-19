@@ -1,26 +1,30 @@
 <!--Navbar starts here-->
-<nav>
+<nav aria-label="Main navigation">
   <header>
     <div class="md:flex md:flex-row md:px-16 md:justify-between py-5 items-center">
       <div class="flex justify-between px-4 md:hidden">
         <div>
           {{ $image := resources.Get "logo/large_logo.svg" }}
-          <a href="/"><img src="/logo/large_logo.svg" class="md:h-14 h-9" alt="Cloud Native Postgres Logo"></a>
+          <a href="/" aria-label="CloudNativePG home"><img src="/logo/large_logo.svg" class="md:h-14 h-9"
+              alt="CloudNativePG"></a>
         </div>
-        <div class="h-6 my-auto" id="toggle-button">
+        <button class="h-6 my-auto bg-transparent border-none p-2 text-gray-900 hover:text-red-700 focus-visible:outline-blue-600"
+          id="toggle-button" type="button" aria-expanded="false" aria-controls="navi-list"
+          aria-label="Toggle navigation menu">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"
             stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
           </svg>
-        </div>
+        </button>
       </div>
       <div class="md:block hidden">
         {{ $image := resources.Get "logo/large_logo.svg" }}
-        <a href="/"><img src="/logo/large_logo.svg" class="h-14" alt="Cloud Native Postgres Logo"></a>
+        <a href="/" aria-label="CloudNativePG home"><img src="/logo/large_logo.svg" class="h-14"
+            alt="CloudNativePG"></a>
       </div>
 
       <div class="hidden md:block px-4">
-        <ul class="md:flex gap-10 text-2xl medium-gray my-5 pb-0">
+        <ul class="md:flex gap-10 text-2xl text-gray-900 my-5 pb-0">
           <li><a href="/blog">Blog</a></li>
           <li><a href="/tags/tutorial">Tutorials</a></li>
           <li><a href="/releases">Releases</a></li>
@@ -69,6 +73,16 @@
   const naviList = document.getElementById('navi-list')
 
   toggleButton.addEventListener('click', () => {
+    const isExpanded = toggleButton.getAttribute('aria-expanded') === 'true'
+    toggleButton.setAttribute('aria-expanded', String(!isExpanded))
     naviList.classList.toggle('hidden');
+  })
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && toggleButton.getAttribute('aria-expanded') === 'true') {
+      toggleButton.setAttribute('aria-expanded', 'false')
+      naviList.classList.add('hidden')
+      toggleButton.focus()
+    }
   })
 </script>

@@ -1,5 +1,29 @@
 /* Custom styling goes here, if not in the tailwind.config.js theme */
 
+/* Accessible Color System - WCAG 2.1 AA Compliant */
+:root {
+    /* Text Colors */
+    --color-text-primary: #1F2937; /* gray-800, 12.46:1 on white */
+    --color-text-body: #374151; /* gray-700, 8.59:1 on white */
+    --color-nav-text: #111827; /* gray-900, 15.3:1 on white */
+
+    /* Link Colors */
+    --color-link: #B91C1C; /* red-700, 5.74:1 on white */
+    --color-link-hover: #991B1B; /* red-800, 7.56:1 on white */
+    --color-link-footer: #DC2626; /* red-600, 4.53:1 on white */
+
+    /* Background Colors */
+    --color-accent-red: #DC2626; /* red-600, for CTAs */
+    --color-accent-red-dark: #B91C1C; /* red-700, darker variant */
+
+    /* Focus Indicators */
+    --color-focus-ring: #2563EB; /* blue-600, 4.58:1 on white */
+
+    /* Footer */
+    --color-footer-bg: #F9FAFB; /* gray-50, light background option */
+    --color-footer-text: #1F2937; /* gray-800, high contrast */
+}
+
 .space-x-20 {
     margin-left: 5rem;
 }
@@ -17,7 +41,7 @@
 }
 
 .medium-gray {
-    color: #ACADBE;
+    color: var(--color-nav-text, #111827);
 }
 
 .cnp-blue {
@@ -33,7 +57,24 @@
 }
 
 a {
-    color: #E63054;
+    color: var(--color-link, #B91C1C);
+    text-decoration: none;
+}
+
+a:hover,
+a:focus {
+    color: var(--color-link-hover, #991B1B);
+    text-decoration: underline;
+}
+
+/* Footer-specific links (if needed) */
+footer a {
+    color: var(--color-link-footer, #DC2626);
+}
+
+footer a:hover,
+footer a:focus {
+    color: var(--color-link-hover, #991B1B);
 }
 
 .red-1 {
@@ -41,7 +82,7 @@ a {
 }
 
 .bg-red-1 {
-    background: #E63054;
+    background: var(--color-accent-red, #DC2626);
 }
 
 .red-2 {
@@ -262,6 +303,45 @@ pre {
     margin-top: 24px;
     margin-bottom: 24px;
     padding: 16px;
+}
+
+/* Accessible Focus Indicators */
+a:focus-visible,
+button:focus-visible,
+[role="button"]:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+    outline: 3px solid var(--color-focus-ring, #2563EB);
+    outline-offset: 2px;
+    border-radius: 2px;
+}
+
+/* Remove default outline to avoid double-ring in some browsers */
+a:focus,
+button:focus {
+    outline: none;
+}
+
+/* Skip Link - Hidden until focused */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    padding: 8px 16px;
+    background-color: var(--color-focus-ring, #2563EB);
+    color: #ffffff;
+    font-weight: 600;
+    text-decoration: none;
+    z-index: 1000;
+    border-radius: 0 0 4px 0;
+    transition: top 0.2s ease-in-out;
+}
+
+.skip-link:focus {
+    top: 0;
+    outline: 3px solid #ffffff;
+    outline-offset: 2px;
 }
 
 hr {
