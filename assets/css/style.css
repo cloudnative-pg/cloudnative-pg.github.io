@@ -317,9 +317,9 @@ select:focus-visible {
     border-radius: 2px;
 }
 
-/* Remove default outline to avoid double-ring in some browsers */
-a:focus,
-button:focus {
+/* Only remove outlines for non-keyboard focus */
+a:focus:not(:focus-visible),
+button:focus:not(:focus-visible) {
     outline: none;
 }
 
@@ -338,7 +338,7 @@ button:focus {
     transition: top 0.2s ease-in-out;
 }
 
-.skip-link:focus {
+.skip-link:focus-visible {
     top: 0;
     outline: 3px solid #ffffff;
     outline-offset: 2px;
