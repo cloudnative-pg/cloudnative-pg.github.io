@@ -1,22 +1,20 @@
 <!--Navbar starts here-->
-<nav>
+<nav aria-label="Main navigation">
   <header>
     <div class="md:flex md:flex-row md:px-16 md:justify-between py-5 items-center">
-      <div class="flex justify-between px-4 md:hidden">
+      <div class="flex justify-between px-4 md:px-0 w-full md:w-auto">
         <div>
           {{ $image := resources.Get "logo/large_logo.svg" }}
-          <a href="/"><img src="/logo/large_logo.svg" class="md:h-14 h-9" alt="Cloud Native Postgres Logo"></a>
+          <a href="/" aria-label="CloudNativePG home" class="flex items-center">
+            <img src="/logo/large_logo.svg" class="h-9 md:h-14" alt="CloudNativePG">
+          </a>
         </div>
-        <div class="h-6 my-auto" id="toggle-button">
+        <div class="h-6 my-auto md:hidden" id="toggle-button">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"
             stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
           </svg>
         </div>
-      </div>
-      <div class="md:block hidden">
-        {{ $image := resources.Get "logo/large_logo.svg" }}
-        <a href="/"><img src="/logo/large_logo.svg" class="h-14" alt="Cloud Native Postgres Logo"></a>
       </div>
 
       <div class="hidden md:block px-4">
@@ -41,13 +39,13 @@
         </ul>
         <div class="flex gap-3 py-4 justify-center bg-gray-1 fill-cnp-blue">
           <a href="https://github.com/cloudnative-pg/cloudnative-pg">
-            <img src="/icons/Git.svg" alt="Github">
+            <img src="/icons/Git.svg" alt="GitHub">
           </a>
           <a href="https://cloud-native.slack.com/archives/C08MAUJ7NPM">
             <img src="/icons/Slack.svg" alt="Slack">
           </a>
           <a href="https://x.com/CloudNativePg">
-            <img src="/icons/x.svg" alt="x" style="width:28px; height:43px;">
+            <img src="/icons/x.svg" alt="X" style="width:28px; height:43px;">
           </a>
           <a href="https://www.youtube.com/channel/UCTGH88W1BiuRRPTzJUDPJyA">
             <img src="/icons/YouTube.svg" alt="YouTube">
