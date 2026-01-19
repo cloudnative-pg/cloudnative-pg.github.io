@@ -385,3 +385,17 @@ pre {
     white-space: nowrap;
     border-width: 0;
 }
+
+/* Make .sr-only elements visible when focused */
+.sr-only:focus,
+.sr-only:active {
+    position: static;
+    width: auto;
+    height: auto;
+    padding: 0.5rem 1rem;
+    margin: 0;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+    border-width: initial;
+}
