@@ -6,8 +6,15 @@
     <description>Recent content in Floor Drees on CloudNativePG - PostgreSQL Operator for Kubernetes</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 12 Jan 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 05 Feb 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://cloudnative-pg.io/authors/fdrees/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CloudNativePG 1.28.1 and 1.27.3 released!</title>
+      <link>https://cloudnative-pg.io/releases/cloudnative-pg-1-28.1-released/</link>
+      <pubDate>Thu, 05 Feb 2026 00:00:00 +0000</pubDate>
+      <guid>https://cloudnative-pg.io/releases/cloudnative-pg-1-28.1-released/</guid>
+      <description>The CloudNativePG community has released new updates for the 1.28 and 1.27 versions of the CloudNativePG operator.</description>
+    </item>
     <item>
       <title>Updating CloudNativePG&#39;s documentation</title>
       <link>https://cloudnative-pg.io/blog/lfx-mentorship-documentation-anushka-saxena/</link>
