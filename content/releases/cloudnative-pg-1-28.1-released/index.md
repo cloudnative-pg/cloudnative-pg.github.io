@@ -49,8 +49,8 @@ impact production reliability:
 
 Read the full release notes for details:
 
-- [Release notes for 1.28.1](https://github.com/cloudnative-pg/cloudnative-pg/releases/tag/v1.28.1)
-- [Release notes for 1.27.3](https://github.com/cloudnative-pg/cloudnative-pg/releases/tag/v1.27.3)
+- [Release notes for 1.28.1](https://cloudnative-pg.io/docs/current/release_notes/v1.28/#version-1281)
+- [Release notes for 1.27.3](https://cloudnative-pg.io/docs/current/release_notes/v1.27/#version-1273)
 
 ---
 
