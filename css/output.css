@@ -807,10 +807,6 @@ video {
   max-width: 20rem;
 }
 
-.grow {
-  flex-grow: 1;
-}
-
 .resize {
   resize: both;
 }
