@@ -1,5 +1,5 @@
 ---
-title: "CloudNativePG 1.28.1, and 1.27.3 released!"
+title: "CloudNativePG 1.28.1 and 1.27.3 released!"
 date: 2026-02-05
 draft: false
 authors:
@@ -15,11 +15,11 @@ tags:
  - k8s
  - cloudnativepg
  - cnpg
-summary: The CloudNativePG community has released new updates for the 1.28, and 1.27 versions of the CloudNativePG operator.
+summary: The CloudNativePG community has released new updates for the 1.28 and 1.27 versions of the CloudNativePG operator.
 ---
 
 The **CloudNativePG Community** is pleased to announce the release of
-**CloudNativePG Operator** versions 1.28.1, and 1.27.3.
+**CloudNativePG Operator** versions 1.28.1 and 1.27.3.
 
 These releases deliver important bug fixes and stability
 improvements, ensuring your PostgreSQL clusters continue to run reliably in
@@ -29,15 +29,16 @@ These releases introduce a few key changes:
 
 - **Azure authentication support:** Support for Azure's `DefaultAzureCredential` 
 authentication mechanism for backup and recovery operations.
-- **Support for other naming conventions:** Support for PostgreSQL extension 
-names containing underscores (e.g., pg_ivm, pg_stat_statements), that would 
-otherwise be automatically sanitized to use hyphens.
+- **Support for other naming conventions:** Fixed a bug with image volume 
+extensions where Postgres extension container images didn't work if the 
+extension had underscores in the name.
 
 Among the fixes there was one critical issue where the `TimelineID` in the 
 cluster status was not reset to 1 after a major version upgrade. causing 
 replicas to attempt to restore incompatible history files from object storage, 
 ultimately leading to fatal "requested timeline is not a child of this server's 
-history" errors.
+history" errors. This often caused replicas to enter an unrecoverable state which 
+required manual intervention to recover by recreating the volume.
   
 We encourage all users to upgrade to benefit from these enhancements.
 
@@ -71,40 +72,3 @@ If you're using CloudNativePG in production, consider
 to support the project's growth and evolution.
 
 Thank you for your continued support and for being part of the CloudNativePG community!
-
-<!--
-## About CloudNativePG
-
-[CloudNativePG](https://cloudnative-pg.io) is an open-source Kubernetes
-Operator specifically designed for PostgreSQL workloads. It manages the entire
-lifecycle of a PostgreSQL cluster, including bootstrapping, configuration, high
-availability, connection routing, and comprehensive backup and disaster
-recovery mechanisms. By leveraging PostgreSQL's native streaming replication,
-CloudNativePG efficiently distributes data across pods, nodes, and zones using
-standard Kubernetes patterns, enabling seamless scaling of replicas in a
-Kubernetes-native manner. Originally developed and supported by
-[EDB](https://www.enterprisedb.com/), CloudNativePG is a CNCF Sandbox project
-and the sole PostgreSQL operator in this category.
--->
-<!--
-
-We've just released CloudNativePG 1.27.1, 1.26.2, and 1.25.4! 🚀
-
-These maintenance releases deliver important stability improvements and bug
-fixes to keep your production clusters running smoothly.
-
-Key highlights in 1.27.1 include:
-- Support for **PostgreSQL 18**
-- Native in-core support for Barman Cloud extended
-- The `monitoring.enablePodMonitor` field is now deprecated
-
-We recommend upgrading to 1.27.1 for the latest features and long-term
-stability.
-
-Note: 1.25.4 is the final release for the unsupported 1.25.x series.
-
-Read the full announcement: https://cloudnative-pg.io/releases/cloudnative-pg-1-27.1-released/
-
-#CloudNativePG #PostgreSQL #Kubernetes #K8s #DevOps #Database #Operator
-
---->
