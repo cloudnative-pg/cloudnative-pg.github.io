@@ -21,26 +21,31 @@ summary: The CloudNativePG community has released new updates for the 1.28 and 1
 The **CloudNativePG Community** is pleased to announce the release of
 **CloudNativePG Operator** versions 1.28.1 and 1.27.3.
 
-These releases deliver important bug fixes and stability
-improvements, ensuring your PostgreSQL clusters continue to run reliably in
-production environments.
+These releases deliver important bug fixes and stability improvements, ensuring
+your PostgreSQL clusters continue to run reliably in production environments.
+We recommend all users upgrade at their earliest convenience, particularly
+those using PgBouncer or managing replica clusters.
 
-These releases introduce a few key changes:
+Specifically, these updates address several critical scenarios that directly
+impact production reliability:
 
-- **Azure authentication support:** Support for Azure's `DefaultAzureCredential` 
-authentication mechanism for backup and recovery operations.
-- **Support for other naming conventions:** Fixed a bug with image volume 
-extensions where Postgres extension container images didn't work if the 
-extension had underscores in the name.
+- **Critical fix for PgBouncer upgrades**: We resolved an issue where stale TLS
+  status fields in the `Pooler` were not correctly cleared. This was
+  particularly disruptive for users upgrading to version 1.28, as it could cause
+  PgBouncer to use incorrect certificates, resulting in "unsupported certificate"
+  errors and blocking all application connectivity.
 
-Among the fixes there was one critical issue where the `TimelineID` in the 
-cluster status was not reset to 1 after a major version upgrade. causing 
-replicas to attempt to restore incompatible history files from object storage, 
-ultimately leading to fatal "requested timeline is not a child of this server's 
-history" errors. This often caused replicas to enter an unrecoverable state which 
-required manual intervention to recover by recreating the volume.
-  
-We encourage all users to upgrade to benefit from these enhancements.
+- **Timeline protection during WAL restore**: Improved the WAL restore logic to
+  prevent replicas from downloading timeline history files with IDs greater
+  than the cluster's current timeline. This prevents recovery failures caused by
+  incomplete promotion attempts, where PostgreSQL creates history files for
+  timelines that the cluster never officially adopts.
+
+- **Timeline reset after major upgrades**: We addressed a critical issue in the
+  major version upgrade path. After a `pg_upgrade`, the operator now correctly
+  resets the `TimelineID` to 1. This prevents replicas from attempting to follow
+  an incompatible timeline from the previous major version, which formerly led to
+  fatal recovery errors.
 
 Read the full release notes for details:
 
@@ -54,10 +59,11 @@ Read the full release notes for details:
 We recommend upgrading to **1.28.1** to benefit from the latest features,
 enhancements, and long-term stability.
 
-If you’re on **1.27.x**, upgrade to **1.27.3** to get the latest fixes in that
-series. 
+If you’re on **1.27.x**, please be reminded that version 1.27 will be supported until **9 March 2026**.
+Upgrade to **1.27.3** to get the latest fixes in that series and begin planning
+your transition to the 1.28 minor release series.
 
-Follow the [upgrade instructions](https://cloudnative-pg.io/documentation/1.27/installation_upgrade/#upgrades)
+Follow the [upgrade instructions](https://cloudnative-pg.io/documentation/current/installation_upgrade/#upgrades)
 for a smooth transition.
 
 ---
