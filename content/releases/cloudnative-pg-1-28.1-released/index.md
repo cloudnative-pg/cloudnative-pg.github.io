@@ -63,7 +63,7 @@ If you’re on **1.27.x**, please be reminded that version 1.27 will be supporte
 Upgrade to **1.27.3** to get the latest fixes in that series and begin planning
 your transition to the 1.28 minor release series.
 
-Follow the [upgrade instructions](https://cloudnative-pg.io/documentation/current/installation_upgrade/#upgrades)
+Follow the [upgrade instructions](https://cloudnative-pg.io/docs/current/installation_upgrade/#upgrades)
 for a smooth transition.
 
 ---
