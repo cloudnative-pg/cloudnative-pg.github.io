@@ -23,7 +23,7 @@ tags:
  - extensions
  - artifacts
  - podSelectorRefs
-summary: "The CloudNativePG community is excited to announce the first release candidate of CloudNativePG 1.29! This preview revolutionises extension management through Image Catalogs and the new artifacts ecosystem. Join us in testing these updates to shape the final release."
+summary: "The CloudNativePG community is excited to announce the first release candidate of CloudNativePG 1.29! This preview revolutionizes extension management through Image Catalogs and the new artifacts ecosystem. Join us in testing these updates to shape the final release."
 ---
 
 The CloudNativePG Community is thrilled to announce the first release candidate
@@ -36,31 +36,35 @@ While refinements may still occur, here’s a look at what’s new.
 ### PostgreSQL Extensions Ecosystem and Image Catalogs
 
 The most significant architectural advancement in 1.29 is the integration of
-Image Catalogs with a new dedicated ecosystem for PostgreSQL extensions. By
-leveraging the
-[`postgres-extensions-containers`](https://github.com/cloudnative-pg/artifacts/tree/main/image-catalogs-extensions)
-project, CloudNativePG now provides a structured way to distribute and manage
+[Image Catalogs](https://cloudnative-pg.io/docs/1.29/image_catalog#image-catalog-with-image-volume-extensions)
+with a new dedicated ecosystem for PostgreSQL extensions. By leveraging the
+[`postgres-extensions-containers`](https://github.com/cloudnative-pg/postgres-extensions-containers)
+project and its [official extension images and catalogs](https://cloudnative-pg.io/docs/1.29/imagevolume_extensions#official-extension-images-and-catalogs),
+CloudNativePG now provides a structured way to distribute and manage
 extension-specific images.
 
 This feature allows you to define these extensions within a catalog, ensuring
 that the database engine and its modules are version-aligned, secure, and
-treated as a single cohesive unit. This approach centralises your image supply
+treated as a single cohesive unit. This approach centralizes your image supply
 chain and removes the need for users to manually build and maintain complex
 custom PostgreSQL images.
 
 ### Dynamic Network Access Control via Pod Selectors
 
 We’ve introduced a major enhancement to how PostgreSQL network security is
-handled in Kubernetes. By using the new `podSelectorRefs` field, you can now
+handled in Kubernetes. By using the new
+[`podSelectorRefs`](https://cloudnative-pg.io/docs/1.29/postgresql_conf/#dynamic-address-resolution-with-podselectorrefs)
+field, you can now
 define `pg_hba.conf` rules that dynamically resolve the IP addresses of client
-pods based on label selectors. This ensures that only authorised workloads in
+pods based on label selectors. This ensures that only authorized workloads in
 the same namespace can connect to your database, eliminating the need for
 manual IP management or static CIDR ranges.
 
 ### Shared ServiceAccount Support
 
-CloudNativePG now supports referencing a pre-existing `ServiceAccount` in
-`Cluster` and `Pooler` resources. This enables a more streamlined integration
+CloudNativePG now supports referencing a pre-existing
+[`ServiceAccount`](https://cloudnative-pg.io/docs/1.29/security/#using-a-shared-serviceaccount)
+in `Cluster` and `Pooler` resources. This enables a more streamlined integration
 with cloud provider IAM services, such as AWS IRSA, GCP Workload Identity, and
 Azure Workload Identity.
 
@@ -89,9 +93,9 @@ CloudNativePG 1.29 RC1 is the first in a series of release candidates.
 Additional release candidates may follow as needed before the final release,
 currently planned for the end of March.
 
-# Join the Community
+## Join the Community
 
-[Connect with our community on your preferred platform](https://github.com/cloudnative-pg#getting-in-touch).
+[Connect with our community on your preferred platform](https://github.com/cloudnative-pg#getting-in-touch)!
 
 Thank you for your continued support of CloudNativePG. Your contributions help
 us advance the Kubernetes-native PostgreSQL experience.
