@@ -44,7 +44,7 @@
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-SJWWHL48V3"></script>
       <script>
         var doNotTrack = false;
-        if ( false ) {
+        if ( true ) {
           var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
           var doNotTrack = (dnt == "1" || dnt == "yes");
         }
@@ -202,7 +202,7 @@ So here are my detailed instructions, in case they could prove useful to others.
 <h3 id="step-1-prepare-the-local-bake-file">Step 1: Prepare the local Bake file</h3>
 <p>To build a custom image we add the following content in a local file with name
 <code>bake.hcl</code>:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-hcl" data-lang="hcl"><span style="display:flex;"><span>platforms <span style="color:#f92672">=</span> [
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-hcl" data-lang="hcl"><span style="display:flex;"><span>platforms <span style="color:#f92672">=</span> [
 </span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;linux/amd64&#34;</span>,
 </span></span><span style="display:flex;"><span>]
 </span></span><span style="display:flex;"><span>
@@ -284,7 +284,7 @@ to have, some needed by extensions or other tools I use e.g. <a href="https://gi
 </ul>
 <h3 id="step-2-build-the-image">Step 2: Build the image</h3>
 <p>We can now build the image using the following command:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>environment<span style="color:#f92672">=</span>production registry<span style="color:#f92672">=</span>your.repo.url docker buildx bake -f docker-bake.hcl -f cwd://bake.hcl <span style="color:#e6db74">&#34;https://github.com/cloudnative-pg/postgres-containers.git&#34;</span> myimage
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>environment<span style="color:#f92672">=</span>production registry<span style="color:#f92672">=</span>your.repo.url docker buildx bake -f docker-bake.hcl -f cwd://bake.hcl <span style="color:#e6db74">&#34;https://github.com/cloudnative-pg/postgres-containers.git&#34;</span> myimage
 </span></span></code></pre></div><ul>
 <li>The <code>environment</code> variable is set to <code>production</code> for all of my images,
 because I use the same image to stage it through dev/test/prod.</li>

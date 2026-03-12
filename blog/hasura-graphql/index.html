@@ -46,7 +46,7 @@ using GraphQL">
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-SJWWHL48V3"></script>
       <script>
         var doNotTrack = false;
-        if ( false ) {
+        if ( true ) {
           var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
           var doNotTrack = (dnt == "1" || dnt == "yes");
         }
@@ -199,20 +199,20 @@ upgrade</a>
 section of the CloudNativePG website.</p>
 <p>At the time of writing, the latest version is 1.20. The following
 command will deploy the CloudNativePG operator on your local Kubernetes cluster:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>kubectl apply -f https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/release-1.20/releases/cnpg-1.20.0.yaml
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>kubectl apply -f https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/release-1.20/releases/cnpg-1.20.0.yaml
 </span></span></code></pre></div><p>We should wait until CloudNativePG is up and running.
 It&rsquo;s enough to wait until the READY column shows <code>1/1</code>. Should be a few seconds:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ kubectl get deployments -n cnpg-system
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ kubectl get deployments -n cnpg-system
 </span></span><span style="display:flex;"><span>NAME                      READY   UP-TO-DATE   AVAILABLE   AGE
 </span></span><span style="display:flex;"><span>cnpg-controller-manager   1/1     <span style="color:#ae81ff">1</span>            <span style="color:#ae81ff">1</span>           6d16h
 </span></span></code></pre></div><h2 id="creating-a-postgresql-cluster">Creating a PostgreSQL cluster</h2>
 <p>The simplest CloudNativePG example cluster creates a High-Availability
 architecture with a primary database node and two replicas. We can simply
 apply the example manifest included with CloudNativePG:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ kubectl apply -f https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/refs/heads/release-1.20/docs/src/samples/cluster-example.yaml
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ kubectl apply -f https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/refs/heads/release-1.20/docs/src/samples/cluster-example.yaml
 </span></span><span style="display:flex;"><span>cluster.postgresql.cnpg.io/cluster-example created
 </span></span></code></pre></div><p>We should now wait for the cluster to be up and running:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ kubectl wait --for<span style="color:#f92672">=</span>condition<span style="color:#f92672">=</span>Ready cluster/cluster-example
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ kubectl wait --for<span style="color:#f92672">=</span>condition<span style="color:#f92672">=</span>Ready cluster/cluster-example
 </span></span><span style="display:flex;"><span>cluster.postgresql.cnpg.io/cluster-example condition met
 </span></span></code></pre></div><p>Now we have our sandbox ready for testing.</p>
 <h2 id="installing-hasura">Installing Hasura</h2>
@@ -241,7 +241,7 @@ manifest</li>
 <li>Use <code>cluster-example-app-rw</code> as a target hostname.</li>
 <li>Use <code>app</code> as the database name.</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">apps/v1</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">apps/v1</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Deployment</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">hasura</span>
@@ -261,18 +261,18 @@ manifest</li>
 </span></span><span style="display:flex;"><span>              <span style="color:#f92672">key</span>: <span style="color:#ae81ff">password</span>
 </span></span></code></pre></div><p>The complete manifest can be found in the file <a href="hasura-deployment.yaml"><code>hasura-deployment.yaml</code></a>.</p>
 <p>You can deploy it with:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>kubectl apply -f hasura-deployment.yaml
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>kubectl apply -f hasura-deployment.yaml
 </span></span></code></pre></div><p>And make sure it came up:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ kubectl get deployments
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ kubectl get deployments
 </span></span><span style="display:flex;"><span>NAME     READY   UP-TO-DATE   AVAILABLE   AGE
 </span></span><span style="display:flex;"><span>hasura   1/1     <span style="color:#ae81ff">1</span>            <span style="color:#ae81ff">1</span>           30s
 </span></span></code></pre></div><p>We now need a service for our applications to use. An example can be found in
 the file <a href="hasura-service.yaml">hasura-service.yaml</a>.
 Again, we can simply apply it:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>kubectl apply -f hasura-service.yaml
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>kubectl apply -f hasura-service.yaml
 </span></span></code></pre></div><p>We should see the hasura service, along with the services CloudNativePG created
 for our database cluster:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ kubectl get services                
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ kubectl get services                
 </span></span><span style="display:flex;"><span>NAME                 TYPE        CLUSTER-IP      EXTERNAL-IP   PORT<span style="color:#f92672">(</span>S<span style="color:#f92672">)</span>    AGE
 </span></span><span style="display:flex;"><span>…
 </span></span><span style="display:flex;"><span>cluster-example-rw   ClusterIP   10.96.164.82    &lt;none&gt;        5432/TCP   19m
@@ -280,7 +280,7 @@ for our database cluster:</p>
 </span></span></code></pre></div><h2 id="playing-with-hasuras-ui">Playing with Hasura&rsquo;s UI</h2>
 <p>Now you can create tables and play with GraphQL using Hasura&rsquo;s UI. All we need
 is to expose Hasura&rsquo;s service to our computer with the following:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ kubectl port-forward service/hasura 8080:80
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ kubectl port-forward service/hasura 8080:80
 </span></span><span style="display:flex;"><span>Forwarding from 127.0.0.1:8080 -&gt; <span style="color:#ae81ff">8080</span>
 </span></span><span style="display:flex;"><span>Forwarding from <span style="color:#f92672">[</span>::1<span style="color:#f92672">]</span>:8080 -&gt; <span style="color:#ae81ff">8080</span>
 </span></span><span style="display:flex;"><span>Handling connection <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">8080</span>
@@ -296,14 +296,14 @@ which is applied to the database via the Hasura CLI.</p>
 <a href="https://github.com/leonardoce/hasura-blog">here</a>.</p>
 <p>Hasura projects can be scaffolded with <code>init</code>, which will create a new project
 folder<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ hasura init
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ hasura init
 </span></span><span style="display:flex;"><span>? Name of project directory ? hasura
 </span></span><span style="display:flex;"><span>INFO directory created. execute the following commands to <span style="color:#66d9ef">continue</span>:
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>  cd hasura
 </span></span><span style="display:flex;"><span>  hasura console 
 </span></span></code></pre></div><p>To create new tables, we&rsquo;ll need to create a new migration. We can do that with:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ hasura migrate create init
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ hasura migrate create init
 </span></span><span style="display:flex;"><span>? Select a database to use default
 </span></span><span style="display:flex;"><span>INFO Created Migrations                           
 </span></span><span style="display:flex;"><span>INFO Migrations files created                      name<span style="color:#f92672">=</span>init version<span style="color:#f92672">=</span><span style="color:#ae81ff">1682932686238</span>
@@ -312,11 +312,11 @@ folder<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">
 above created a new directory called <code>migrations</code> inside the project directory,
 with a subdirectory for the database (<code>default</code>), and inside it a subdirectory
 for the migration we&rsquo;re about to apply:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ cd migrations/default/&lt;version-ID&gt;_init
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ cd migrations/default/&lt;version-ID&gt;_init
 </span></span><span style="display:flex;"><span>$ ls
 </span></span><span style="display:flex;"><span>down.sql  up.sql
 </span></span></code></pre></div><p>We&rsquo;ll add the queries to create our tables in <code>up.sql</code>:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> authors (
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> authors (
 </span></span><span style="display:flex;"><span>    id SERIAL <span style="color:#66d9ef">PRIMARY</span> <span style="color:#66d9ef">KEY</span>,
 </span></span><span style="display:flex;"><span>    name TEXT <span style="color:#66d9ef">UNIQUE</span>
 </span></span><span style="display:flex;"><span>);
@@ -335,11 +335,11 @@ for the migration we&rsquo;re about to apply:</p>
 </span></span><span style="display:flex;"><span>    content TEXT <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>
 </span></span><span style="display:flex;"><span>);
 </span></span></code></pre></div><p>And the queries deleting the tables in <code>down.sql</code>:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">DROP</span> <span style="color:#66d9ef">TABLE</span> comments;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">DROP</span> <span style="color:#66d9ef">TABLE</span> comments;
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">DROP</span> <span style="color:#66d9ef">TABLE</span> articles;
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">DROP</span> <span style="color:#66d9ef">TABLE</span> authors;
 </span></span></code></pre></div><p>After having created the migration we can apply it with:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ hasura migrate apply
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ hasura migrate apply
 </span></span></code></pre></div><p><a href="https://github.com/leonardoce/hasura-blog/commit/e75cfbb7a262f286d818e471904da314875bef58">This
 commit</a>
 contains the migrations code.</p>
@@ -370,7 +370,7 @@ We can do that with:</p>
 <p>We can now execute our first GraphQL mutation on our database to create a new
 article and a new author at the same time:</p>
 <p>This is the mutation we would like to apply:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-graphql" data-lang="graphql"><span style="display:flex;"><span><span style="color:#66d9ef">mutation</span> <span style="color:#a6e22e">AddArticle</span>($title: <span style="color:#a6e22e">String</span>, $content: <span style="color:#a6e22e">String</span>, $author: <span style="color:#a6e22e">String</span>) {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-graphql" data-lang="graphql"><span style="display:flex;"><span><span style="color:#66d9ef">mutation</span> <span style="color:#a6e22e">AddArticle</span>($title: <span style="color:#a6e22e">String</span>, $content: <span style="color:#a6e22e">String</span>, $author: <span style="color:#a6e22e">String</span>) {
 </span></span><span style="display:flex;"><span>	insert_articles_one(object: {
 </span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">title</span>: $title,
 </span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">content</span>: $content,
@@ -389,13 +389,13 @@ article and a new author at the same time:</p>
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>To run the mutation, we will need to supply it with variables. We can do
 that with the following JSON, for example.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;title&#34;</span>: <span style="color:#e6db74">&#34;Hasura is great!&#34;</span>,
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;content&#34;</span>: <span style="color:#e6db74">&#34;Look! I can insert the author and the comment at the same time&#34;</span>,
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;author&#34;</span>: <span style="color:#e6db74">&#34;Leonardo Cecchi&#34;</span>
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>The result of the mutation applied to this argument will be:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;data&#34;</span>: {
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;insert_articles_one&#34;</span>: {
 </span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#ae81ff">1</span>
@@ -408,7 +408,7 @@ variables into the text areas shown here.</p>
 <p><img src="hasura-graphiql.png" alt="graphql"></p>
 <h2 id="graphql-queries">GraphQL queries</h2>
 <p>On the GraphQL interface, we can also run read queries such as:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-graphql" data-lang="graphql"><span style="display:flex;"><span>{
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-graphql" data-lang="graphql"><span style="display:flex;"><span>{
 </span></span><span style="display:flex;"><span>  authors {
 </span></span><span style="display:flex;"><span>   	id
 </span></span><span style="display:flex;"><span>    name
@@ -416,7 +416,7 @@ variables into the text areas shown here.</p>
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>similar to before, run by pasting it into the top text area, and leaving the
 <em>QUERY VARIABLES</em> text area empty. We should get this result:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;data&#34;</span>: {
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;authors&#34;</span>: [
 </span></span><span style="display:flex;"><span>      {
@@ -432,7 +432,7 @@ variables into the text areas shown here.</p>
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>A fuller query will provide us with the list of articles together with their
 authors:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-graphql" data-lang="graphql"><span style="display:flex;"><span>{
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-graphql" data-lang="graphql"><span style="display:flex;"><span>{
 </span></span><span style="display:flex;"><span>  articles {
 </span></span><span style="display:flex;"><span>   	title
 </span></span><span style="display:flex;"><span>    author {
@@ -441,7 +441,7 @@ authors:</p>
 </span></span><span style="display:flex;"><span>  }
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>With a result like:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>  {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>  {
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;data&#34;</span>: {
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;articles&#34;</span>: [
 </span></span><span style="display:flex;"><span>      {

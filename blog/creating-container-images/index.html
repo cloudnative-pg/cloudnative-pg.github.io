@@ -44,7 +44,7 @@
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-SJWWHL48V3"></script>
       <script>
         var doNotTrack = false;
-        if ( false ) {
+        if ( true ) {
           var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
           var doNotTrack = (dnt == "1" || dnt == "yes");
         }
@@ -198,37 +198,38 @@ this post will help people  get started.</p>
 <p>First step: in the <a href="https://github.com/pgvector/pgvector">pgvector</a> page
 we can find an <code>APT</code> section with this information:</p>
 <blockquote>
-<p>Debian and Ubuntu packages are available from the PostgreSQL APT Repository.</p></blockquote>
+<p>Debian and Ubuntu packages are available from the PostgreSQL APT Repository.</p>
+</blockquote>
 <p>That&rsquo;s a great starting point, as we already have the PostgreSQL APT Repository
 in our <code>postgres-containers</code> images; we can go ahead and use <code>apt</code>. Let&rsquo;s start:</p>
 <h2 id="creating-the-dockerfile">Creating the Dockerfile</h2>
 <p>We just need to run the command <code>apt install postgresql-15-pgvector</code>; we can
 add that to a Dockerfile:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Dockerfile" data-lang="Dockerfile"><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> <span style="color:#e6db74">ghcr.io/cloudnative-pg/postgresql:15.4-3</span><span style="color:#960050;background-color:#1e0010">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-Dockerfile" data-lang="Dockerfile"><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> <span style="color:#e6db74">ghcr.io/cloudnative-pg/postgresql:15.4-3</span><span style="color:#960050;background-color:#1e0010">
 </span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#75715e"># To install any package we need to be root</span><span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">USER</span> <span style="color:#e6db74">root</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># To install any package we need to be root</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">USER</span> <span style="color:#e6db74">root</span><span style="color:#960050;background-color:#1e0010">
 </span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#75715e"># We update the package list, install our package</span><span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#75715e"># and clean up any cache from the package manager</span><span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">RUN</span> set -xe; <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>	apt-get update; <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>	apt-get install -y --no-install-recommends <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>		<span style="color:#e6db74">&#34;postgresql-15-pgvector&#34;</span> ; <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>	rm -fr /tmp/* ; <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>	rm -rf /var/lib/apt/lists/*;<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># We update the package list, install our package</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># and clean up any cache from the package manager</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">RUN</span> set -xe; <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>	apt-get update; <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>	apt-get install -y --no-install-recommends <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>		<span style="color:#e6db74">&#34;postgresql-15-pgvector&#34;</span> ; <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>	rm -fr /tmp/* ; <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>	rm -rf /var/lib/apt/lists/*;<span style="color:#960050;background-color:#1e0010">
 </span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#75715e"># Change to the uid of postgres (26)</span><span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">USER</span> <span style="color:#e6db74">26</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># Change to the uid of postgres (26)</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">USER</span> <span style="color:#e6db74">26</span><span style="color:#960050;background-color:#1e0010">
 </span></span></span></code></pre></div><p>So we update, and then install the target package. It&rsquo;s really important to keep the last two lines
 where we set the user to 26, which is the <code>postgres</code> user.</p>
 <p>Then we can build the image:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>docker build -t pgvector:15 .
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>docker build -t pgvector:15 .
 </span></span></code></pre></div><p>In the build process, it&rsquo;s important to keep the <code>15</code> tag, since the tag is used by the CloudNativePG operator to
 detect database versions. Never use <code>latest</code> as tag, since the operator will reject your image.</p>
 <p>Once the image is built, you can load it into your Kubernetes cluster, and create a
 PostgreSQL cluster with that image:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">postgresql.cnpg.io/v1</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">postgresql.cnpg.io/v1</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Cluster</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">cluster-example</span>
@@ -240,7 +241,7 @@ PostgreSQL cluster with that image:</p>
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">size</span>: <span style="color:#ae81ff">1Gi</span>
 </span></span></code></pre></div><p>Now that you have an image with the extension inside, you can create the extension in
 the <code>app</code> database:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>kubectl exec -ti cluster-example-1 -- psql app
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>kubectl exec -ti cluster-example-1 -- psql app
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>CREATE EXTENSION vector;
 </span></span></code></pre></div><p>You could add the command <code>CREATE EXTENSION vector;</code> to the
@@ -260,64 +261,64 @@ need, like the <code>.so</code> files.</p>
 <p>This sounds more complicated than it really is; let&rsquo;s try with an example.
 We&rsquo;re going to compile <a href="https://github.com/cybertec-postgresql/pg_crash"><code>pg_crash</code></a>.
 The first layer will be the one where we compile.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Dockerfile" data-lang="Dockerfile"><span style="display:flex;"><span><span style="color:#75715e"># First step is to build the the extension</span><span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">FROM</span> <span style="color:#e6db74">debian:bullseye-slim</span> <span style="color:#66d9ef">as</span> <span style="color:#e6db74">builder</span><span style="color:#960050;background-color:#1e0010">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-Dockerfile" data-lang="Dockerfile"><span style="display:flex;"><span><span style="color:#75715e"># First step is to build the the extension</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> <span style="color:#e6db74">debian:bullseye-slim</span> <span style="color:#66d9ef">as</span> <span style="color:#e6db74">builder</span><span style="color:#960050;background-color:#1e0010">
 </span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">RUN</span> set -xe ;<span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    apt update <span style="color:#f92672">&amp;&amp;</span> apt install wget lsb-release gnupg2 -y ;<span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    sh -c <span style="color:#e6db74">&#39;echo &#34;deb https://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main&#34; &gt; /etc/apt/sources.list.d/pgdg.list&#39;</span> ;<span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add - ;<span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    apt-get update ;<span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    apt-get install -y postgresql-server-dev-15 build-essential git; <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    cd /tmp; <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    git clone https://github.com/cybertec-postgresql/pg_crash; <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    cd /tmp/pg_crash; <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    PG_CONFIG<span style="color:#f92672">=</span>/usr/lib/postgresql/15/bin/pg_config make; <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    PG_CONFIG<span style="color:#f92672">=</span>/usr/lib/postgresql/15/bin/pg_config make install<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">RUN</span> set -xe ;<span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>    apt update <span style="color:#f92672">&amp;&amp;</span> apt install wget lsb-release gnupg2 -y ;<span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>    sh -c <span style="color:#e6db74">&#39;echo &#34;deb https://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main&#34; &gt; /etc/apt/sources.list.d/pgdg.list&#39;</span> ;<span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>    wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add - ;<span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>    apt-get update ;<span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>    apt-get install -y postgresql-server-dev-15 build-essential git; <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>    cd /tmp; <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>    git clone https://github.com/cybertec-postgresql/pg_crash; <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>    cd /tmp/pg_crash; <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>    PG_CONFIG<span style="color:#f92672">=</span>/usr/lib/postgresql/15/bin/pg_config make; <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>    PG_CONFIG<span style="color:#f92672">=</span>/usr/lib/postgresql/15/bin/pg_config make install<span style="color:#960050;background-color:#1e0010">
 </span></span></span></code></pre></div><p>This will install all the necessary packages to download from source and compile the <code>pg_crash</code> extension. The key
 section here is the <code>as builder</code> part in the <code>FROM</code> line; this helps us to identify this layer with a name for later use.
 Now in the next section of the file we continue with the standard process:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Dockerfile" data-lang="Dockerfile"><span style="display:flex;"><span><span style="color:#75715e"># Second step, we build the final image</span><span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">FROM</span> <span style="color:#e6db74">ghcr.io/cloudnative-pg/postgresql:15.4-3</span><span style="color:#960050;background-color:#1e0010">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-Dockerfile" data-lang="Dockerfile"><span style="display:flex;"><span><span style="color:#75715e"># Second step, we build the final image</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> <span style="color:#e6db74">ghcr.io/cloudnative-pg/postgresql:15.4-3</span><span style="color:#960050;background-color:#1e0010">
 </span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#75715e"># To install any package we need to be root user</span><span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">USER</span> <span style="color:#e6db74">root</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># To install any package we need to be root user</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">USER</span> <span style="color:#e6db74">root</span><span style="color:#960050;background-color:#1e0010">
 </span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#75715e"># But this time we copy the .so file from the build process</span><span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">COPY</span> --from<span style="color:#f92672">=</span>builder /tmp/pg_crash/pg_crash.so /usr/lib/postgresql/15/lib/<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># But this time we copy the .so file from the build process</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">COPY</span> --from<span style="color:#f92672">=</span>builder /tmp/pg_crash/pg_crash.so /usr/lib/postgresql/15/lib/<span style="color:#960050;background-color:#1e0010">
 </span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#75715e"># Change the uid of postgres to 26</span><span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">RUN</span> usermod -u <span style="color:#ae81ff">26</span> postgres<span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">USER</span> <span style="color:#e6db74">26</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># Change the uid of postgres to 26</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">RUN</span> usermod -u <span style="color:#ae81ff">26</span> postgres<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">USER</span> <span style="color:#e6db74">26</span><span style="color:#960050;background-color:#1e0010">
 </span></span></span></code></pre></div><p>As you can see, we used the identifier <code>builder</code> to specify the path where we are going to copy the content from. We know that we can copy the <code>.so</code> file to the postgresql <code>lib</code> folder.</p>
 <p>Combined, our Dockerfile will look like this:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Dockerfile" data-lang="Dockerfile"><span style="display:flex;"><span><span style="color:#75715e"># First step is to build the the extension</span><span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">FROM</span> <span style="color:#e6db74">debian:bullseye-slim</span> <span style="color:#66d9ef">as</span> <span style="color:#e6db74">builder</span><span style="color:#960050;background-color:#1e0010">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-Dockerfile" data-lang="Dockerfile"><span style="display:flex;"><span><span style="color:#75715e"># First step is to build the the extension</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> <span style="color:#e6db74">debian:bullseye-slim</span> <span style="color:#66d9ef">as</span> <span style="color:#e6db74">builder</span><span style="color:#960050;background-color:#1e0010">
 </span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">RUN</span> set -xe ;<span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    apt update <span style="color:#f92672">&amp;&amp;</span> apt install wget lsb-release gnupg2 -y ;<span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    sh -c <span style="color:#e6db74">&#39;echo &#34;deb https://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main&#34; &gt; /etc/apt/sources.list.d/pgdg.list&#39;</span> ;<span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add - ;<span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    apt-get update ;<span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>	apt-get install -y postgresql-server-dev-15 build-essential git; <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>	cd /tmp; <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>	git clone https://github.com/cybertec-postgresql/pg_crash; <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>	cd /tmp/pg_crash; <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>	PG_CONFIG<span style="color:#f92672">=</span>/usr/lib/postgresql/15/bin/pg_config make; <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>	PG_CONFIG<span style="color:#f92672">=</span>/usr/lib/postgresql/15/bin/pg_config make install<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">RUN</span> set -xe ;<span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>    apt update <span style="color:#f92672">&amp;&amp;</span> apt install wget lsb-release gnupg2 -y ;<span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>    sh -c <span style="color:#e6db74">&#39;echo &#34;deb https://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main&#34; &gt; /etc/apt/sources.list.d/pgdg.list&#39;</span> ;<span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>    wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add - ;<span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>    apt-get update ;<span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>	apt-get install -y postgresql-server-dev-15 build-essential git; <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>	cd /tmp; <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>	git clone https://github.com/cybertec-postgresql/pg_crash; <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>	cd /tmp/pg_crash; <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>	PG_CONFIG<span style="color:#f92672">=</span>/usr/lib/postgresql/15/bin/pg_config make; <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>	PG_CONFIG<span style="color:#f92672">=</span>/usr/lib/postgresql/15/bin/pg_config make install<span style="color:#960050;background-color:#1e0010">
 </span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#75715e"># Second step, we build the final image</span><span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">FROM</span> <span style="color:#e6db74">ghcr.io/cloudnative-pg/postgresql:15.4-3</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># Second step, we build the final image</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> <span style="color:#e6db74">ghcr.io/cloudnative-pg/postgresql:15.4-3</span><span style="color:#960050;background-color:#1e0010">
 </span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#75715e"># To install any package we need to be root user</span><span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">USER</span> <span style="color:#e6db74">root</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># To install any package we need to be root user</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">USER</span> <span style="color:#e6db74">root</span><span style="color:#960050;background-color:#1e0010">
 </span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#75715e"># But this time we copy the .so file from the build process</span><span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">COPY</span> --from<span style="color:#f92672">=</span>builder /tmp/pg_crash/pg_crash.so /usr/lib/postgresql/15/lib/<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># But this time we copy the .so file from the build process</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">COPY</span> --from<span style="color:#f92672">=</span>builder /tmp/pg_crash/pg_crash.so /usr/lib/postgresql/15/lib/<span style="color:#960050;background-color:#1e0010">
 </span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#75715e"># Change the uid of postgres to 26</span><span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">RUN</span> usermod -u <span style="color:#ae81ff">26</span> postgres<span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">USER</span> <span style="color:#e6db74">26</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># Change the uid of postgres to 26</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">RUN</span> usermod -u <span style="color:#ae81ff">26</span> postgres<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">USER</span> <span style="color:#e6db74">26</span><span style="color:#960050;background-color:#1e0010">
 </span></span></span></code></pre></div><p>And that&rsquo;s it! Now you know a way to install extensions from packages and from source code! Let&rsquo;s start creating
 PostgreSQL clusters with many different extensions! Keep in mind that images may increase in size when you add more
 extensions, and that may affect the time to download an image.</p>

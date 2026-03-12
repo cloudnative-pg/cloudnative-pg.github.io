@@ -43,7 +43,7 @@
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-SJWWHL48V3"></script>
       <script>
         var doNotTrack = false;
-        if ( false ) {
+        if ( true ) {
           var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
           var doNotTrack = (dnt == "1" || dnt == "yes");
         }
@@ -243,9 +243,9 @@ also need the <a href="https://go.dev">Go compiler</a> - though this is not nece
 you will only run it containerized.</p>
 <p>We&rsquo;re going to create a Kubernetes cluster from scratch using
 <a href="https://kind.sigs.k8s.io">KinD</a>, and call it <code>webapp-demo</code>.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>kind create cluster --name webapp-demo
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>kind create cluster --name webapp-demo
 </span></span></code></pre></div><p>This should run quickly. You can make sure it&rsquo;s ready:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>kubectl get nodes
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>kubectl get nodes
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>NAME                        STATUS   ROLES           AGE    VERSION
 </span></span><span style="display:flex;"><span>webapp-demo-control-plane   Ready    control-plane   114s   v1.27.1
@@ -256,11 +256,11 @@ several worker nodes with KinD.</p>
 <a href="https://cloudnative-pg.io/docs/devel/installation_upgrade/">installation document</a>,
 you can deploy it by applying the latest manifest.
 At the time of this writing, this is version 1.20.1:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>kubectl apply -f <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/release-1.20/releases/cnpg-1.20.1.yaml
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>kubectl apply -f <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/release-1.20/releases/cnpg-1.20.1.yaml
 </span></span></code></pre></div><p>The installation should take seconds, and you should find the deployment
 ready:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>kubectl get deployments -n cnpg-system
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>kubectl get deployments -n cnpg-system
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>NAME                      READY   UP-TO-DATE   AVAILABLE   AGE
 </span></span><span style="display:flex;"><span>cnpg-controller-manager   1/1     <span style="color:#ae81ff">1</span>            <span style="color:#ae81ff">1</span>           18s
@@ -269,25 +269,25 @@ ready:</p>
 <a href="https://github.com/jsilvela/kubecon-webapp-cnpg">github project page</a>.
 From the top-level directory of the checked-out project, containerize the app
 by running:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>docker build -t myapp .
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>docker build -t myapp .
 </span></span></code></pre></div><p>You should be able to see the image <code>myapp</code> in the <code>docker images</code> listing.
 Now we&rsquo;d like to <em>load</em> this image into our KinD cluster&rsquo;s nodes.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>kind load docker-image myapp:latest --name webapp-demo
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>kind load docker-image myapp:latest --name webapp-demo
 </span></span></code></pre></div><p>(*) You could have uploaded your Dockerfile into a public container registry,
 and used its public handle in the following YAML files, but
 for local development and quick iteration, directly loading it may be preferable.</p>
 <h4 id="creating-a-postgresql-cluster">Creating a PostgreSQL cluster</h4>
 <p>Before we deploy the app, let&rsquo;s create the simplest possible CloudNativePG
 cluster.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>kubectl apply -f <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/main/docs/src/samples/cluster-example.yaml
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>kubectl apply -f <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/main/docs/src/samples/cluster-example.yaml
 </span></span></code></pre></div><p>This YAML is part of a set of example cluster manifests provided with
 CloudNativePG that show off various features and are ready to deploy.
 You can find out more
 <a href="https://cloudnative-pg.io/docs/devel/samples/">in the CloudNativePG documentation</a>.</p>
 <p>In a few seconds, you should have the PostgreSQL cluster <code>cluster-example</code> up
 and ready. It is a 3-instance cluster, with a primary and two hot-standbys.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>kubectl get clusters
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>kubectl get clusters
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>NAME              AGE     INSTANCES   READY   STATUS                     PRIMARY
 </span></span><span style="display:flex;"><span>cluster-example   2m23s   <span style="color:#ae81ff">3</span>           <span style="color:#ae81ff">3</span>       Cluster in healthy state   cluster-example-1
@@ -296,16 +296,16 @@ and ready. It is a 3-instance cluster, with a primary and two hot-standbys.</p>
 representing stocks and stock tickers:</p>
 <p>In the file <a href="https://raw.githubusercontent.com/jsilvela/kubecon-webapp-cnpg/main/migrations/example-changelog.sql"><code>example-changelog.sql</code></a>
 you can find:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">--changeset jaime.silvela:1 labels:kubecon-demo
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">--changeset jaime.silvela:1 labels:kubecon-demo
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e">--comment: let&#39;s start off with 50 stocks
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">create</span> <span style="color:#66d9ef">table</span> stocks <span style="color:#66d9ef">as</span>
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">create</span> <span style="color:#66d9ef">table</span> stocks <span style="color:#66d9ef">as</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">select</span> <span style="color:#e6db74">&#39;stock_&#39;</span> <span style="color:#f92672">||</span> generate_series <span style="color:#66d9ef">as</span> stock
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">from</span> generate_series(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">50</span>);
 </span></span><span style="display:flex;"><span><span style="color:#75715e">--rollback DROP TABLE stocks;
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">--changeset jaime.silvela:2 labels:kubecon-demo
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e">--comment: lets add a bunch of random stock values
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">create</span> <span style="color:#66d9ef">table</span> stock_values <span style="color:#66d9ef">as</span>
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">create</span> <span style="color:#66d9ef">table</span> stock_values <span style="color:#66d9ef">as</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">with</span> dates <span style="color:#66d9ef">as</span> (
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">SELECT</span> generate_series <span style="color:#66d9ef">as</span> date
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">FROM</span> generate_series(<span style="color:#e6db74">&#39;2020-01-01 00:00&#39;</span>::<span style="color:#66d9ef">timestamp</span>,
@@ -320,7 +320,7 @@ but for this demo we can just push through and apply the changes manually.</p>
 <p>Check with <code>kubectl get clusters</code> which is the primary instance of
 <code>cluster-example</code>. Let&rsquo;s assume it&rsquo;s <code>cluster-example-1</code>, and let&rsquo;s open
 a <code>psql</code> terminal on it:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>kubectl exec -ti cluster-example-1 -- psql app
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>kubectl exec -ti cluster-example-1 -- psql app
 </span></span></code></pre></div><p>This will open a session as the <code>postgres</code> superuser.
 Applications should run database code with a less-privileged user.
 By default, CloudNativePG creates a user called <code>app</code>, and a database owned
@@ -328,10 +328,10 @@ by it, also called <code>app</code>. This is a very reasonable default, but of c
 can configure your clusters to fit your needs.</p>
 <p>The tables above should be created by the <code>app</code> user.
 In our <code>psql</code> session, let&rsquo;s switch:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">SET</span> <span style="color:#66d9ef">role</span> <span style="color:#66d9ef">TO</span> app;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">SET</span> <span style="color:#66d9ef">role</span> <span style="color:#66d9ef">TO</span> app;
 </span></span></code></pre></div><p>Now you can simply copy and paste the SQL above. You should
 see two tables:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>app=&gt; \dt
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>app=&gt; \dt
 </span></span><span style="display:flex;"><span>           List of relations
 </span></span><span style="display:flex;"><span> Schema |     Name     | Type  | Owner
 </span></span><span style="display:flex;"><span>--------+--------------+-------+-------
@@ -340,11 +340,11 @@ see two tables:</p>
 </span></span><span style="display:flex;"><span>(2 rows)
 </span></span></code></pre></div><p>There are 50 stocks in the <code>stocks</code> table, and 43300 stock values in
 the <code>stock_values</code> table:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#f92672">#</span> <span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">FROM</span> stock_values <span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span> date <span style="color:#66d9ef">DESC</span>;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#f92672">#</span> <span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">FROM</span> stock_values <span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span> date <span style="color:#66d9ef">DESC</span>;
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>  stock   <span style="color:#f92672">|</span>            date            <span style="color:#f92672">|</span>      stock_value
 </span></span><span style="display:flex;"><span><span style="color:#75715e">----------+----------------------------+------------------------
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span> stock_43 <span style="color:#f92672">|</span> <span style="color:#ae81ff">2022</span><span style="color:#f92672">-</span><span style="color:#ae81ff">05</span><span style="color:#f92672">-</span><span style="color:#ae81ff">15</span> <span style="color:#ae81ff">00</span>:<span style="color:#ae81ff">00</span>:<span style="color:#ae81ff">00</span>        <span style="color:#f92672">|</span>     <span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">1512641999535136</span>
+</span></span></span><span style="display:flex;"><span> stock_43 <span style="color:#f92672">|</span> <span style="color:#ae81ff">2022</span><span style="color:#f92672">-</span><span style="color:#ae81ff">05</span><span style="color:#f92672">-</span><span style="color:#ae81ff">15</span> <span style="color:#ae81ff">00</span>:<span style="color:#ae81ff">00</span>:<span style="color:#ae81ff">00</span>        <span style="color:#f92672">|</span>     <span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">1512641999535136</span>
 </span></span><span style="display:flex;"><span> stock_50 <span style="color:#f92672">|</span> <span style="color:#ae81ff">2022</span><span style="color:#f92672">-</span><span style="color:#ae81ff">05</span><span style="color:#f92672">-</span><span style="color:#ae81ff">15</span> <span style="color:#ae81ff">00</span>:<span style="color:#ae81ff">00</span>:<span style="color:#ae81ff">00</span>        <span style="color:#f92672">|</span>     <span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">6586900953813299</span>
 </span></span><span style="display:flex;"><span> stock_49 <span style="color:#f92672">|</span> <span style="color:#ae81ff">2022</span><span style="color:#f92672">-</span><span style="color:#ae81ff">05</span><span style="color:#f92672">-</span><span style="color:#ae81ff">15</span> <span style="color:#ae81ff">00</span>:<span style="color:#ae81ff">00</span>:<span style="color:#ae81ff">00</span>        <span style="color:#f92672">|</span>   <span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">052571752658662874</span>
 </span></span><span style="display:flex;"><span> stock_48 <span style="color:#f92672">|</span> <span style="color:#ae81ff">2022</span><span style="color:#f92672">-</span><span style="color:#ae81ff">05</span><span style="color:#f92672">-</span><span style="color:#ae81ff">15</span> <span style="color:#ae81ff">00</span>:<span style="color:#ae81ff">00</span>:<span style="color:#ae81ff">00</span>        <span style="color:#f92672">|</span>     <span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">8326971243933354</span>
@@ -360,13 +360,13 @@ manifest contains a <em>deployment</em> and a <em>service</em> for our webapp.</
 the credentials for the <code>app</code> user for <code>cluster-example</code>.
 The Service builds a load balancer to route traffic to any of the 3 replicas.</p>
 <p>Simply apply the file:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>kubectl apply -f webapp-deploy.yaml
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>kubectl apply -f webapp-deploy.yaml
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>service/mywebapp created
 </span></span><span style="display:flex;"><span>deployment.apps/mywebapp created
 </span></span></code></pre></div><p>Right away you can see the 3 pods running the web server, as well as the
 3 pods running our database:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>kubectl get pods
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>kubectl get pods
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>NAME                        READY   STATUS    RESTARTS   AGE
 </span></span><span style="display:flex;"><span>cluster-example-1           1/1     Running   <span style="color:#ae81ff">0</span>          27m
@@ -377,7 +377,7 @@ The Service builds a load balancer to route traffic to any of the 3 replicas.</p
 </span></span><span style="display:flex;"><span>mywebapp-548d97848b-whnnp   1/1     Running   <span style="color:#ae81ff">0</span>          20s
 </span></span></code></pre></div><p>You can also see the load balancer for our webapp, as well as 3 services
 for <code>cluster-example</code> (we&rsquo;ll say more about them shortly.)</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>kubectl get svc
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>kubectl get svc
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>NAME                 TYPE           CLUSTER-IP      EXTERNAL-IP   PORT<span style="color:#f92672">(</span>S<span style="color:#f92672">)</span>          AGE
 </span></span><span style="display:flex;"><span>cluster-example-r    ClusterIP      10.96.103.136   &lt;none&gt;        5432/TCP         29m
@@ -387,7 +387,7 @@ for <code>cluster-example</code> (we&rsquo;ll say more about them shortly.)</p>
 </span></span></code></pre></div><p>Our webapp is now fully running!
 However, our local Kind cluster is not generally visible to the local network.
 Let&rsquo;s add port forwarding of the application port for HTTP:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>kubectl port-forward service/mywebapp  8080:8088
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>kubectl port-forward service/mywebapp  8080:8088
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>Forwarding from 127.0.0.1:8080 -&gt; <span style="color:#ae81ff">8080</span>
 </span></span><span style="display:flex;"><span>Forwarding from <span style="color:#f92672">[</span>::1<span style="color:#f92672">]</span>:8080 -&gt; <span style="color:#ae81ff">8080</span>
@@ -410,7 +410,7 @@ guess, acts as a load-balancer for our read-only replicas.</p>
 credentials to the database. In the webapp deployment manifest
 <a href="https://raw.githubusercontent.com/jsilvela/kubecon-webapp-cnpg/main/webapp-deploy.yaml">webapp-deploy.yaml</a>
 you can find the following section:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>        <span style="color:#ae81ff">... snipped ...</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>        <span style="color:#ae81ff">... snipped ...</span>
 </span></span><span style="display:flex;"><span>        <span style="color:#f92672">env</span>:
 </span></span><span style="display:flex;"><span>        - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">PG_PASSWORD</span>
 </span></span><span style="display:flex;"><span>          <span style="color:#f92672">valueFrom</span>:
@@ -448,9 +448,9 @@ We mentioned DevOps and blurring the line between development and production.</p
 <p>We could create load on the webapp, introducing new stock values by repeatedly
 hitting the <code>/update</code> endpoint.
 Using the <a href="https://github.com/rakyll/hey"><em>hey</em></a> load generator:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>hey -z 100s -q <span style="color:#ae81ff">1</span> -c <span style="color:#ae81ff">2</span>  http://localhost:8080/update
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>hey -z 100s -q <span style="color:#ae81ff">1</span> -c <span style="color:#ae81ff">2</span>  http://localhost:8080/update
 </span></span></code></pre></div><p>And during this time, how about killing the primary instance?</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>kubectl delete pod cluster-example-1
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>kubectl delete pod cluster-example-1
 </span></span></code></pre></div><p>The webapp might be momentarily unavailable, and you might see
 <code>pq: the database system is shutting down</code> in the <em>latests stocks</em> page.
 Recovery should take no longer than 1-2 seconds, as a replica would be

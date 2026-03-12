@@ -44,7 +44,7 @@
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-SJWWHL48V3"></script>
       <script>
         var doNotTrack = false;
-        if ( false ) {
+        if ( true ) {
           var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
           var doNotTrack = (dnt == "1" || dnt == "yes");
         }
@@ -195,7 +195,7 @@ parallel.</p>
 <h2 id="instructions">Instructions</h2>
 <h3 id="step-1-prepare-local-bake-file">Step 1: Prepare local Bake file</h3>
 <p>To build a custom image we add the following content in a local file with name <code>bake.hcl</code>:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-hcl" data-lang="hcl"><span style="display:flex;"><span>extensions <span style="color:#f92672">=</span> [
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-hcl" data-lang="hcl"><span style="display:flex;"><span>extensions <span style="color:#f92672">=</span> [
 </span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;pgvector&#34;</span>,
 </span></span><span style="display:flex;"><span>]
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">target</span> <span style="color:#e6db74">&#34;myimage&#34;</span> {
@@ -241,7 +241,7 @@ why later.</li>
 </ul>
 <h3 id="step-2-build-the-image">Step 2: Build the image</h3>
 <p>We can now build the image using the following command:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker buildx bake -f docker-bake.hcl -f cwd://bake.hcl <span style="color:#e6db74">&#34;https://github.com/cloudnative-pg/postgres-containers.git&#34;</span> myimage
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker buildx bake -f docker-bake.hcl -f cwd://bake.hcl <span style="color:#e6db74">&#34;https://github.com/cloudnative-pg/postgres-containers.git&#34;</span> myimage
 </span></span></code></pre></div><p>This will build the image for the bake matrix we previously created, and will try to push the image to the registry at
 <code>localhost:5000</code>, which is the default registry defined for testing environments in the parent Bake file. Let&rsquo;s explain
 the full command:</p>
@@ -251,10 +251,10 @@ functions and default targets, then attach a local Bake file to override any def
 <code>-f docker-bake.hcl</code> is the remote file in the git repo, that we&rsquo;re using to build the image.</p>
 <p>You can explore more about all the content generated and used inside the Bake file by appending the <code>--print</code> flag, as
 in the following command:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker buildx bake -f docker-bake.hcl -f cwd://bake.hcl <span style="color:#e6db74">&#34;https://github.com/cloudnative-pg/postgres-containers.git&#34;</span> myimage --print
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker buildx bake -f docker-bake.hcl -f cwd://bake.hcl <span style="color:#e6db74">&#34;https://github.com/cloudnative-pg/postgres-containers.git&#34;</span> myimage --print
 </span></span></code></pre></div><h3 id="step-3-push-the-image-to-a-registry">Step 3: Push the image to a registry</h3>
 <p>Now you just need to push the image to a registry. You can do this by using the following command:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>registry<span style="color:#f92672">=</span>your/registry:5000 docker buildx bake -f docker-bake.hcl -f cwd://bake.hcl <span style="color:#e6db74">&#34;https://github.com/cloudnative-pg/postgres-containers.git&#34;</span> myimage --push
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>registry<span style="color:#f92672">=</span>your/registry:5000 docker buildx bake -f docker-bake.hcl -f cwd://bake.hcl <span style="color:#e6db74">&#34;https://github.com/cloudnative-pg/postgres-containers.git&#34;</span> myimage --push
 </span></span></code></pre></div><p>The previous command will push the images in the following format: <code>your/registry:5000/postgresql-testing:17-standard-bookworm</code>.
 Using the <code>--print</code> flag you can explore the full list of tags created that are in the parent Bake file.</p>
 <h3 id="step-4-serve-the-image">Step 4: Serve the image</h3>
@@ -281,7 +281,7 @@ CloudNativePG images and add only the extensions we need—without rebuilding ev
 <p>By default, images are built for both <code>amd64</code> and <code>arm64</code> architectures, which is the recommended setup for most users.
 However, if you want to build images only for one specific architecture, saving some space, you can override the
 <code>platforms</code> variable in your local Bake file.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-hcl" data-lang="hcl"><span style="display:flex;"><span>platforms <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#34;linux/amd64&#34;</span>]
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-hcl" data-lang="hcl"><span style="display:flex;"><span>platforms <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#34;linux/amd64&#34;</span>]
 </span></span></code></pre></div><p>If you’d like to build everything into your own repository while managing the same tags, that’s also possible.
 We may cover that in a future post.</p>
 

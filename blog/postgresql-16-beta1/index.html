@@ -41,7 +41,7 @@
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-SJWWHL48V3"></script>
       <script>
         var doNotTrack = false;
-        if ( false ) {
+        if ( true ) {
           var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
           var doNotTrack = (dnt == "1" || dnt == "yes");
         }
@@ -187,7 +187,7 @@ to be used with the CloudNativePG operator. The images are tagged with the
 and help us diagnose and fix bugs in Postgres before the final launch.</p>
 <p>Here follows a quick example of a 3 instance Postgres 16 &lsquo;Cluster&rsquo; manifest to be
 deployed in your Kubernetes cluster.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">postgresql.cnpg.io/v1</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">postgresql.cnpg.io/v1</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Cluster</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
 </span></span><span style="display:flex;"><span> <span style="color:#f92672">name</span>: <span style="color:#ae81ff">pg16</span>
@@ -198,9 +198,9 @@ deployed in your Kubernetes cluster.</p>
 </span></span><span style="display:flex;"><span> <span style="color:#f92672">storage</span>:
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">size</span>: <span style="color:#ae81ff">1Gi</span>
 </span></span></code></pre></div><p>Once deployed, you can easily verify the version with:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>kubectl exec -ti pg16-1 -c postgres -- psql -qAt -c <span style="color:#e6db74">&#39;SELECT version()&#39;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>kubectl exec -ti pg16-1 -c postgres -- psql -qAt -c <span style="color:#e6db74">&#39;SELECT version()&#39;</span>
 </span></span></code></pre></div><p>Returning:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>PostgreSQL 16beta1 (Debian 16~beta1-2.pgdg110+1) on x86_64-pc-linux-gnu,
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>PostgreSQL 16beta1 (Debian 16~beta1-2.pgdg110+1) on x86_64-pc-linux-gnu,
 </span></span><span style="display:flex;"><span>  compiled by gcc (Debian 10.2.1-6) 10.2.1 20210110, 64-bit
 </span></span></code></pre></div><p>If you are interested in trying CloudNativePG on your laptop with &lsquo;kind&rsquo;
 (Kubernetes in Docker), follow the instructions you find in the
