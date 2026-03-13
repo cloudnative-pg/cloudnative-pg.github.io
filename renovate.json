@@ -1,6 +1,20 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:recommended"
-  ]
+    "config:recommended",
+    ":gitSignOff",
+    ":semanticCommitType(chore)",
+    ":labels(automated,no-issue)",
+    "customManagers:githubActionsVersions",
+    ":automergeMinor",
+    ":automergeDigest",
+    "helpers:pinGitHubActionDigests"
+  ],
+  "enabled": true,
+  "prConcurrentLimit": 5,
+  "lockFileMaintenance": {
+    "enabled": true
+  },
+  "semanticCommits": "enabled",
+  "commitBodyTable": true
 }
