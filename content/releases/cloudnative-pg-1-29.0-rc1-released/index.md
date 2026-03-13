@@ -89,9 +89,9 @@ identify bugs and regressions early.
 
 ## Release Timeline
 
-CloudNativePG 1.29 RC1 is the first in a series of release candidates.
-Additional release candidates may follow as needed before the final release,
-currently planned for the end of March.
+This is the first release candidate for CloudNativePG 1.29. Further
+candidates will be released only as necessary before the final launch,
+currently planned before the end of March.
 
 ## Join the Community
 
