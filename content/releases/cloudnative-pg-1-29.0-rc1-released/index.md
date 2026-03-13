@@ -1,6 +1,6 @@
 ---
 title: "CloudNativePG 1.29.0 RC1 Released!"
-date: 2026-03-12
+date: 2026-03-13
 draft: false
 authors:
  - gbartolini
