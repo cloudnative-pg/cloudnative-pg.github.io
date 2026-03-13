@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Cncf on CloudNativePG - PostgreSQL Operator for Kubernetes</title>
+    <title>CNCF on CloudNativePG - PostgreSQL Operator for Kubernetes</title>
     <link>https://cloudnative-pg.io/tags/cncf/</link>
-    <description>Recent content in Cncf on CloudNativePG - PostgreSQL Operator for Kubernetes</description>
+    <description>Recent content in CNCF on CloudNativePG - PostgreSQL Operator for Kubernetes</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 12 Jan 2026 00:00:00 +0000</lastBuildDate>

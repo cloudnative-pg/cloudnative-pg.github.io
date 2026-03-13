@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ServiceAccount on CloudNativePG - PostgreSQL Operator for Kubernetes</title>
+    <link>https://cloudnative-pg.io/tags/serviceaccount/</link>
+    <description>Recent content in ServiceAccount on CloudNativePG - PostgreSQL Operator for Kubernetes</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 13 Mar 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://cloudnative-pg.io/tags/serviceaccount/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CloudNativePG 1.29.0 RC1 Released!</title>
+      <link>https://cloudnative-pg.io/releases/cloudnative-pg-1-29.0-rc1-released/</link>
+      <pubDate>Fri, 13 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>https://cloudnative-pg.io/releases/cloudnative-pg-1-29.0-rc1-released/</guid>
+      <description>The CloudNativePG community is excited to announce the first release candidate of CloudNativePG 1.29! This preview revolutionizes extension management through Image Catalogs and the new artifacts ecosystem. Join us in testing these updates to shape the final release.</description>
+    </item>
+  </channel>
+</rss>
