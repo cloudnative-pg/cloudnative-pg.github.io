@@ -30,7 +30,7 @@
     "@babel/preset-env": "^7.12.7",
     "autoprefixer": "^10.0.2",
     "object-fit-images": "^3.2.4",
-    "postcss-cli": "^8.3.0",
+    "postcss-cli": "^11.0.0",
     "postcss-nested": "^5.0.1",
     "postcss-object-fit-images": "^1.1.2",
     "postcss-preset-env": "^10.2.4",
