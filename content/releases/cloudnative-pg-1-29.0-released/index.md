@@ -94,7 +94,7 @@ clusters. This work was contributed by Salih Bozkaya ([@bozkayasalihx](https://g
   Contributed by [@alex1989hu](https://github.com/alex1989hu).
 
 Dive into the full list of changes and fixes in the
-[Release notes for CloudNativePG 1.29](https://cloudnative-pg.io/documentation/1.29/release_notes/v1.29/).
+[Release notes for CloudNativePG 1.29](https://cloudnative-pg.io/docs/1.29/release_notes/v1.29/).
 
 ## Maintenance Releases: 1.28.2 & 1.27.4
 
