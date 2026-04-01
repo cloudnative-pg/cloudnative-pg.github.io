@@ -35,36 +35,60 @@
     <loc>https://cloudnative-pg.io/end_users/pgedge/</loc>
   </url><url>
     <loc>https://cloudnative-pg.io/</loc>
-    <lastmod>2026-03-13T00:00:00+00:00</lastmod>
+    <lastmod>2026-03-31T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://cloudnative-pg.io/tags/artifacts/</loc>
-    <lastmod>2026-03-13T00:00:00+00:00</lastmod>
+    <lastmod>2026-03-31T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://cloudnative-pg.io/authors/</loc>
-    <lastmod>2026-03-13T00:00:00+00:00</lastmod>
+    <lastmod>2026-03-31T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://cloudnative-pg.io/tags/cloudnativepg/</loc>
-    <lastmod>2026-03-13T00:00:00+00:00</lastmod>
+    <lastmod>2026-03-31T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://cloudnative-pg.io/releases/cloudnative-pg-1-29.0-released/</loc>
+    <lastmod>2026-03-31T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://cloudnative-pg.io/tags/cnpg/</loc>
+    <lastmod>2026-03-31T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://cloudnative-pg.io/tags/extensions/</loc>
+    <lastmod>2026-03-31T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://cloudnative-pg.io/authors/gbartolini/</loc>
+    <lastmod>2026-03-31T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://cloudnative-pg.io/tags/imagecatalog/</loc>
+    <lastmod>2026-03-31T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://cloudnative-pg.io/tags/k8s/</loc>
+    <lastmod>2026-03-31T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://cloudnative-pg.io/tags/kubernetes/</loc>
+    <lastmod>2026-03-31T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://cloudnative-pg.io/tags/maintenance/</loc>
+    <lastmod>2026-03-31T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://cloudnative-pg.io/tags/postgres/</loc>
+    <lastmod>2026-03-31T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://cloudnative-pg.io/tags/postgresql/</loc>
+    <lastmod>2026-03-31T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://cloudnative-pg.io/tags/release/</loc>
+    <lastmod>2026-03-31T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://cloudnative-pg.io/releases/</loc>
+    <lastmod>2026-03-31T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://cloudnative-pg.io/tags/</loc>
+    <lastmod>2026-03-31T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://cloudnative-pg.io/releases/cloudnative-pg-1-29.0-rc1-released/</loc>
     <lastmod>2026-03-13T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://cloudnative-pg.io/tags/cnpg/</loc>
-    <lastmod>2026-03-13T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://cloudnative-pg.io/tags/extensions/</loc>
-    <lastmod>2026-03-13T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://cloudnative-pg.io/authors/gbartolini/</loc>
-    <lastmod>2026-03-13T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://cloudnative-pg.io/tags/imagecatalogs/</loc>
-    <lastmod>2026-03-13T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://cloudnative-pg.io/tags/k8s/</loc>
-    <lastmod>2026-03-13T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://cloudnative-pg.io/tags/kubernetes/</loc>
     <lastmod>2026-03-13T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://cloudnative-pg.io/tags/networking/</loc>
@@ -73,28 +97,13 @@
     <loc>https://cloudnative-pg.io/tags/podselectorrefs/</loc>
     <lastmod>2026-03-13T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://cloudnative-pg.io/tags/postgres/</loc>
-    <lastmod>2026-03-13T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://cloudnative-pg.io/tags/postgresql/</loc>
-    <lastmod>2026-03-13T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://cloudnative-pg.io/tags/preview/</loc>
-    <lastmod>2026-03-13T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://cloudnative-pg.io/tags/release/</loc>
-    <lastmod>2026-03-13T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://cloudnative-pg.io/releases/</loc>
     <lastmod>2026-03-13T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://cloudnative-pg.io/tags/security/</loc>
     <lastmod>2026-03-13T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://cloudnative-pg.io/tags/serviceaccount/</loc>
-    <lastmod>2026-03-13T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://cloudnative-pg.io/tags/</loc>
     <lastmod>2026-03-13T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://cloudnative-pg.io/releases/cloudnative-pg-1-28.1-released/</loc>
@@ -136,9 +145,6 @@
     <loc>https://cloudnative-pg.io/tags/helm/</loc>
     <lastmod>2026-01-02T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://cloudnative-pg.io/tags/imagecatalog/</loc>
-    <lastmod>2026-01-02T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://cloudnative-pg.io/tags/open-source/</loc>
     <lastmod>2026-01-02T00:00:00+00:00</lastmod>
   </url><url>
@@ -155,9 +161,6 @@
     <lastmod>2025-12-09T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://cloudnative-pg.io/tags/foreigndata/</loc>
-    <lastmod>2025-12-09T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://cloudnative-pg.io/tags/maintenance/</loc>
     <lastmod>2025-12-09T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://cloudnative-pg.io/releases/cloudnative-pg-1-28.0-rc2-released/</loc>
@@ -519,6 +522,8 @@
     <loc>https://cloudnative-pg.io/info/advanced-architectures/</loc>
   </url><url>
     <loc>https://cloudnative-pg.io/cards/automated/</loc>
+  </url><url>
+    <loc>https://cloudnative-pg.io/support/axians/</loc>
   </url><url>
     <loc>https://cloudnative-pg.io/support/b1-systems/</loc>
   </url><url>
