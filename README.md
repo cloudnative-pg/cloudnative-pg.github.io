@@ -102,6 +102,8 @@ release_notes: https://github.com/cloudnative-pg/cloudnative-pg/releases/tag/vX.
 ---
 ```
 
+If it is a preview release, the location must be `/documentation/preview`.
+
 Then run:
 
 ```console
