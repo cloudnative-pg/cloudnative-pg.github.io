@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Cve on CloudNativePG - PostgreSQL Operator for Kubernetes</title>
+    <link>https://cloudnative-pg.io/tags/cve/</link>
+    <description>Recent content in Cve on CloudNativePG - PostgreSQL Operator for Kubernetes</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 08 May 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://cloudnative-pg.io/tags/cve/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CloudNativePG 1.29.1 and 1.28.3 released: critical CVE fix</title>
+      <link>https://cloudnative-pg.io/releases/cloudnative-pg-1-29.1-released/</link>
+      <pubDate>Fri, 08 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://cloudnative-pg.io/releases/cloudnative-pg-1-29.1-released/</guid>
+      <description>CloudNativePG 1.29.1 and 1.28.3 are now available. These releases address CVE-2026-44477 (Critical, CVSS 9.4) in the metrics exporter, remediate additional CVEs in pgx and the Go runtime, and ship important HA fixes including a data-safety bug in the failover path. All users should upgrade immediately.</description>
+    </item>
+  </channel>
+</rss>

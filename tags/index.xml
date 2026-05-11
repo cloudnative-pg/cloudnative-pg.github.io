@@ -6,27 +6,83 @@
     <description>Recent content in Tags on CloudNativePG - PostgreSQL Operator for Kubernetes</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 31 Mar 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 08 May 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://cloudnative-pg.io/tags/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Artifacts</title>
-      <link>https://cloudnative-pg.io/tags/artifacts/</link>
-      <pubDate>Tue, 31 Mar 2026 00:00:00 +0000</pubDate>
-      <guid>https://cloudnative-pg.io/tags/artifacts/</guid>
-      <description></description>
-    </item>
     <item>
       <title>Cloudnativepg</title>
       <link>https://cloudnative-pg.io/tags/cloudnativepg/</link>
-      <pubDate>Tue, 31 Mar 2026 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 08 May 2026 00:00:00 +0000</pubDate>
       <guid>https://cloudnative-pg.io/tags/cloudnativepg/</guid>
       <description></description>
     </item>
     <item>
       <title>Cnpg</title>
       <link>https://cloudnative-pg.io/tags/cnpg/</link>
-      <pubDate>Tue, 31 Mar 2026 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 08 May 2026 00:00:00 +0000</pubDate>
       <guid>https://cloudnative-pg.io/tags/cnpg/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Cve</title>
+      <link>https://cloudnative-pg.io/tags/cve/</link>
+      <pubDate>Fri, 08 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://cloudnative-pg.io/tags/cve/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>High-Availability</title>
+      <link>https://cloudnative-pg.io/tags/high-availability/</link>
+      <pubDate>Fri, 08 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://cloudnative-pg.io/tags/high-availability/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>K8s</title>
+      <link>https://cloudnative-pg.io/tags/k8s/</link>
+      <pubDate>Fri, 08 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://cloudnative-pg.io/tags/k8s/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Kubernetes</title>
+      <link>https://cloudnative-pg.io/tags/kubernetes/</link>
+      <pubDate>Fri, 08 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://cloudnative-pg.io/tags/kubernetes/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Postgres</title>
+      <link>https://cloudnative-pg.io/tags/postgres/</link>
+      <pubDate>Fri, 08 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://cloudnative-pg.io/tags/postgres/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Postgresql</title>
+      <link>https://cloudnative-pg.io/tags/postgresql/</link>
+      <pubDate>Fri, 08 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://cloudnative-pg.io/tags/postgresql/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Release</title>
+      <link>https://cloudnative-pg.io/tags/release/</link>
+      <pubDate>Fri, 08 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://cloudnative-pg.io/tags/release/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Security</title>
+      <link>https://cloudnative-pg.io/tags/security/</link>
+      <pubDate>Fri, 08 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://cloudnative-pg.io/tags/security/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Artifacts</title>
+      <link>https://cloudnative-pg.io/tags/artifacts/</link>
+      <pubDate>Tue, 31 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>https://cloudnative-pg.io/tags/artifacts/</guid>
       <description></description>
     </item>
     <item>
@@ -37,24 +93,10 @@
       <description></description>
     </item>
     <item>
-      <title>ImageCatalog</title>
+      <title>Imagecatalog</title>
       <link>https://cloudnative-pg.io/tags/imagecatalog/</link>
       <pubDate>Tue, 31 Mar 2026 00:00:00 +0000</pubDate>
       <guid>https://cloudnative-pg.io/tags/imagecatalog/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>K8s</title>
-      <link>https://cloudnative-pg.io/tags/k8s/</link>
-      <pubDate>Tue, 31 Mar 2026 00:00:00 +0000</pubDate>
-      <guid>https://cloudnative-pg.io/tags/k8s/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Kubernetes</title>
-      <link>https://cloudnative-pg.io/tags/kubernetes/</link>
-      <pubDate>Tue, 31 Mar 2026 00:00:00 +0000</pubDate>
-      <guid>https://cloudnative-pg.io/tags/kubernetes/</guid>
       <description></description>
     </item>
     <item>
@@ -62,27 +104,6 @@
       <link>https://cloudnative-pg.io/tags/maintenance/</link>
       <pubDate>Tue, 31 Mar 2026 00:00:00 +0000</pubDate>
       <guid>https://cloudnative-pg.io/tags/maintenance/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Postgres</title>
-      <link>https://cloudnative-pg.io/tags/postgres/</link>
-      <pubDate>Tue, 31 Mar 2026 00:00:00 +0000</pubDate>
-      <guid>https://cloudnative-pg.io/tags/postgres/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Postgresql</title>
-      <link>https://cloudnative-pg.io/tags/postgresql/</link>
-      <pubDate>Tue, 31 Mar 2026 00:00:00 +0000</pubDate>
-      <guid>https://cloudnative-pg.io/tags/postgresql/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Release</title>
-      <link>https://cloudnative-pg.io/tags/release/</link>
-      <pubDate>Tue, 31 Mar 2026 00:00:00 +0000</pubDate>
-      <guid>https://cloudnative-pg.io/tags/release/</guid>
       <description></description>
     </item>
     <item>
@@ -111,13 +132,6 @@
       <link>https://cloudnative-pg.io/tags/preview/</link>
       <pubDate>Fri, 13 Mar 2026 00:00:00 +0000</pubDate>
       <guid>https://cloudnative-pg.io/tags/preview/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Security</title>
-      <link>https://cloudnative-pg.io/tags/security/</link>
-      <pubDate>Fri, 13 Mar 2026 00:00:00 +0000</pubDate>
-      <guid>https://cloudnative-pg.io/tags/security/</guid>
       <description></description>
     </item>
     <item>

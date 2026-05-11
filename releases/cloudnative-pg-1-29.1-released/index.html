@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+
+
+
+
+<html lang="en">
+
+<head>
+  <title>CloudNativePG 1.29.1 and 1.28.3 released: critical CVE fix | CloudNativePG - PostgreSQL Operator for Kubernetes</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <meta name="description" content="" />
+  <meta name="keywords" content="" />
+  <link rel="preload" href="/fonts/Supreme-Variable.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet" />
+  <link href="/main.min.css" rel="stylesheet" />
+  <link rel="icon" href="/favicon/favicon.ico">
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+  
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://cloudnative-pg.io/images/hero_image.png">
+  <meta name="twitter:title" content="CloudNativePG 1.29.1 and 1.28.3 released: critical CVE fix">
+  <meta name="twitter:description" content="CloudNativePG 1.29.1 and 1.28.3 are now available. These releases address CVE-2026-44477 (Critical, CVSS 9.4) in the metrics exporter, remediate additional CVEs in pgx and the Go runtime, and ship important HA fixes including a data-safety bug in the failover path. All users should upgrade immediately.">
+
+  <meta property="og:url" content="https://cloudnative-pg.io/releases/cloudnative-pg-1-29.1-released/">
+  <meta property="og:site_name" content="CloudNativePG - PostgreSQL Operator for Kubernetes">
+  <meta property="og:title" content="CloudNativePG 1.29.1 and 1.28.3 released: critical CVE fix">
+  <meta property="og:description" content="CloudNativePG 1.29.1 and 1.28.3 are now available. These releases address CVE-2026-44477 (Critical, CVSS 9.4) in the metrics exporter, remediate additional CVEs in pgx and the Go runtime, and ship important HA fixes including a data-safety bug in the failover path. All users should upgrade immediately.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="releases">
+    <meta property="article:published_time" content="2026-05-08T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-05-08T00:00:00+00:00">
+    <meta property="article:tag" content="Release">
+    <meta property="article:tag" content="Postgresql">
+    <meta property="article:tag" content="Postgres">
+    <meta property="article:tag" content="Kubernetes">
+    <meta property="article:tag" content="K8s">
+    <meta property="article:tag" content="Cloudnativepg">
+    <meta property="og:image" content="https://cloudnative-pg.io/images/hero_image.png">
+
+  
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-SJWWHL48V3"></script>
+      <script>
+        var doNotTrack = false;
+        if ( true ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-SJWWHL48V3');
+        }
+      </script></head>
+
+<body>
+  <div class="h-screen w-screen">
+    
+<nav>
+  <header>
+    <div class="md:flex md:flex-row md:px-16 md:justify-between py-5 items-center">
+      <div class="flex justify-between px-4 md:hidden">
+        <div>
+          
+          <a href="/"><img src="/logo/large_logo.svg" class="md:h-14 h-9" alt="Cloud Native Postgres Logo"></a>
+        </div>
+        <div class="h-6 my-auto" id="toggle-button">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+            stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </div>
+      </div>
+      <div class="md:block hidden">
+        
+        <a href="/"><img src="/logo/large_logo.svg" class="h-14" alt="Cloud Native Postgres Logo"></a>
+      </div>
+
+      <div class="hidden md:block px-4">
+        <ul class="md:flex gap-10 text-2xl medium-gray my-5 pb-0">
+          <li><a href="/blog">Blog</a></li>
+          <li><a href="/tags/tutorial">Tutorials</a></li>
+          <li><a href="/releases">Releases</a></li>
+          <li><a href="/docs">Documentation</a></li>
+          <li><a href="/support">Support</a></li>
+          <li><a href="/end_users">End Users</a></li>
+        </ul>
+      </div>
+      
+      <div class="py-4 bg-gray-1 mt-5 hidden" id="navi-list">
+        <ul class="md:flex gap-14 text-2xl md:medium-gray charcoal">
+          <li class="text-center py-4"><a href="/blog">Blog</a></li>
+          <li class="text-center py-4"><a href="/tags/tutorial">Tutorials</a></li>
+          <li class="text-center py-4"><a href="/releases">Releases</a></li>
+          <li class="text-center py-4"><a href="/docs">Documentation</a></li>
+          <li class="text-center py-4"><a href="/support">Support</a></li>
+          <li class="text-center py-4"><a href="/end_users">End Users</a></li>
+        </ul>
+        <div class="flex gap-3 py-4 justify-center bg-gray-1 fill-cnp-blue">
+          <a href="https://github.com/cloudnative-pg/cloudnative-pg">
+            <img src="/icons/Git.svg" alt="Github">
+          </a>
+          <a href="https://cloud-native.slack.com/archives/C08MAUJ7NPM">
+            <img src="/icons/Slack.svg" alt="Slack">
+          </a>
+          <a href="https://x.com/CloudNativePg">
+            <img src="/icons/x.svg" alt="x" style="width:28px; height:43px;">
+          </a>
+          <a href="https://www.youtube.com/channel/UCTGH88W1BiuRRPTzJUDPJyA">
+            <img src="/icons/YouTube.svg" alt="YouTube">
+          </a>
+        </div>
+      </div>
+      
+
+      <div class="my-4 hidden md:flex">
+        <a class="github-button" href="https://github.com/cloudnative-pg/cloudnative-pg"
+          data-color-scheme="no-preference: light; light: light; dark: dark;" data-size="large" data-show-count="true"
+          aria-label="Star cloudnative-pg/cloudnative-pg on GitHub">Star</a>
+      </div>
+    </div>
+  </header>
+</nav>
+<script>
+  const toggleButton = document.getElementById('toggle-button')
+  const naviList = document.getElementById('navi-list')
+
+  toggleButton.addEventListener('click', () => {
+    naviList.classList.toggle('hidden');
+  })
+</script>
+
+    
+<h1 class="h1 text-center mx-auto md:w-3/5">CloudNativePG 1.29.1 and 1.28.3 released: critical CVE fix</h1>
+<div class="md:w-3/5 mx-auto">
+    <div class="px-4">
+        
+        <div class="grid gap-3 my-10 mx-auto justify-center">
+            
+<div class="flex gap-3">  
+    
+      <div class="my-auto">
+        
+        
+        <img src="/authors/gbartolini/gb.png" class="w-10 h-10 rounded-full"
+            alt="Gabriele Bartolini">
+        
+      </div>
+
+      <div>
+          <h1 class="text-lg charcoal font-bold">
+              <a href="/authors/gbartolini/">Gabriele Bartolini</a>
+          </h1>
+      </div>
+    
+</div>
+
+
+<div class="block gap-2 text-sm charcoal opacity-75">
+    <h6 class="block gap-2 text-sm charcoal">
+        May 8, 2026
+        •
+        3 minutes
+    </h6>
+</div>
+
+        </div>
+        
+
+        
+        <div>
+            <img src="58364dde1adc4a0a8.37186404-2048x1445.jpg" alt="blog image" class="mx-auto">
+        </div>
+        
+
+        
+        <div class="mx-auto my-10">
+            <p>The CloudNativePG community is releasing <strong>maintenance updates for all
+currently supported series</strong>: <strong>1.29.1</strong> and <strong>1.28.3</strong>.</p>
+<p>This is a high-priority release. It addresses <strong><a href="https://github.com/cloudnative-pg/cloudnative-pg/security/advisories/GHSA-423p-g724-fr39">CVE-2026-44477</a></strong>
+(the first CVE officially assigned against CloudNativePG, rated <strong>Critical</strong>
+with a CVSS v4 score of <strong>9.4</strong>), alongside additional CVE remediations in
+dependencies and the Go runtime.</p>
+<p>On the reliability side, three independent bugs in the HA failover path are
+resolved, including a label retention issue that could route writes to a former
+primary during a network partition
+(<a href="https://github.com/cloudnative-pg/cloudnative-pg/pull/10409">#10409</a>), a
+condition that prevented failover from triggering when a node became
+unreachable
+(<a href="https://github.com/cloudnative-pg/cloudnative-pg/pull/10448">#10448</a>), and a
+guard against spurious failovers from transient HTTP endpoint failures
+(<a href="https://github.com/cloudnative-pg/cloudnative-pg/pull/10445">#10445</a>). Both
+releases also include a number of correctness and robustness fixes. See the
+release notes for the full list.</p>
+<p><strong>All users should upgrade immediately.</strong></p>
+<hr>
+<h2 id="security">Security</h2>
+<h3 id="cve-2026-44477-metrics-exporter-privilege-escalation-and-os-rce">CVE-2026-44477: metrics exporter privilege escalation and OS RCE</h3>
+<p>The metrics exporter previously opened its PostgreSQL connection as the
+<code>postgres</code> superuser and demoted the session with <code>SET ROLE pg_monitor</code>. That
+demotion is insufficient: <code>session_user</code> remains <code>postgres</code>, and any SQL
+evaluated inside the scrape session can call <code>RESET ROLE</code> to recover full
+superuser privileges, then use <code>COPY ... TO PROGRAM</code> to spawn an arbitrary OS
+process inside the primary pod.</p>
+<p>Two independent paths exploit this root cause. The first requires a custom
+metric query with an unqualified relation or function reference; the attack
+completes within one scrape interval (≤ 30 s). The second requires no custom
+metrics at all: the shipped <code>pg_extensions</code> metric was sufficient to let the
+default <code>app</code> role (created automatically by <code>bootstrap.initdb</code>) trigger
+the full escalation chain on a completely stock deployment. The combined impact
+is superuser privilege escalation plus arbitrary OS command execution inside
+the primary pod from a low-privileged database role.</p>
+<p>The fix introduces a dedicated <code>cnpg_metrics_exporter</code> PostgreSQL role with
+<code>pg_monitor</code> privileges only, mapped via <code>pg_ident.conf</code> peer authentication
+(the same pattern used for <code>cnpg_pooler_pgbouncer</code>). The exporter now connects
+as this role, so <code>RESET ROLE</code> has no escalation effect. All shipped monitoring
+queries have also been hardened with explicit <code>pg_catalog.</code> qualification
+(<a href="https://github.com/cloudnative-pg/cloudnative-pg/pull/10576">#10576</a>).</p>
+<p>For the full technical analysis, exploitation paths, workarounds and upgrade
+impact, refer to the
+<a href="https://github.com/cloudnative-pg/cloudnative-pg/security/advisories/GHSA-423p-g724-fr39">security advisory</a>.</p>
+<h3 id="additional-cve-remediations">Additional CVE remediations</h3>
+<p>These releases also pick up:</p>
+<ul>
+<li>
+<p><strong><code>github.com/jackc/pgx/v5</code> v5.9.2</strong>: fixes <code>CVE-2026-33816</code>
+(memory-safety in <code>pgproto3</code>) and <code>GHSA-j88v-2chj-qfwx</code> (SQL injection via
+dollar-quoted string handling in the simple protocol).</p>
+</li>
+<li>
+<p><strong>Go 1.26.3 runtime</strong>: fixes across <code>crypto/x509</code>, <code>crypto/tls</code>,
+<code>net/http</code>, and <code>net</code> (CVE-2026-32280, CVE-2026-32281, CVE-2026-33810,
+CVE-2026-33811, CVE-2026-33814, CVE-2026-39825), plus CVE-2026-42501 in
+<code>cmd/go</code> module-checksum validation during release builds.</p>
+</li>
+<li>
+<p><strong>Discoverable SBOM and provenance attestations</strong>
+(<a href="https://github.com/cloudnative-pg/cloudnative-pg/pull/10601">#10601</a>):
+attestations attached to operator images now follow the OCI 1.1 Referrers
+spec, making them automatically discoverable by standard registry tooling and
+supply-chain scanners.</p>
+</li>
+</ul>
+<hr>
+<h2 id="acknowledgement">Acknowledgement</h2>
+<p>We thank <strong>Mehmet Ince</strong> (<a href="https://github.com/mdisec">@mdisec</a>) for
+responsibly disclosing CVE-2026-44477, providing a thorough analysis of both
+exploitation paths and a working proof of concept.</p>
+<hr>
+<h2 id="upgrade">Upgrade</h2>
+<p>Follow the upgrade instructions specific to your series:</p>
+<ul>
+<li><strong>1.29.x → 1.29.1:</strong> <a href="https://cloudnative-pg.io/docs/1.29/installation_upgrade#upgrading-to-1291-or-1283">upgrade guide</a></li>
+<li><strong>1.28.x → 1.28.3:</strong> <a href="https://cloudnative-pg.io/docs/1.28/installation_upgrade#upgrading-to-1291-or-1283">upgrade guide</a></li>
+</ul>
+<p>For deployments with replica clusters, upgrade the source primary cluster
+first. See the <a href="https://github.com/cloudnative-pg/cloudnative-pg/security/advisories/GHSA-423p-g724-fr39">security advisory</a>
+for sequencing details.</p>
+<p>For the complete list of changes, see the release notes:</p>
+<ul>
+<li><a href="https://cloudnative-pg.io/docs/1.29/release_notes/v1.29/#version-1291">Release notes for 1.29.1</a></li>
+<li><a href="https://cloudnative-pg.io/docs/1.28/release_notes/v1.28/#version-1283">Release notes for 1.28.3</a></li>
+</ul>
+<hr>
+<h2 id="get-involved-with-the-community">Get Involved with the Community</h2>
+<p><a href="https://github.com/cloudnative-pg/cloudnative-pg?tab=readme-ov-file#communications">Join us</a>
+to help shape the future of cloud-native Postgres!</p>
+<p>If you&rsquo;re using CloudNativePG in production, consider
+<a href="https://github.com/cloudnative-pg/cloudnative-pg/blob/main/ADOPTERS.md">adding your organization as an adopter</a>
+to support the project&rsquo;s growth and evolution.</p>
+<p>Thank you for your continued support!</p>
+
+        </div>
+        
+    </div>
+
+    <div class="px-4">
+        <h3 class="text-xl font-bold mb-6">Categories in this blog post</h3>
+        <div class="text-xs space-y-1.5 mb-14">
+            <ul class="text-sm">
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/release"
+                        class="mr-2">release</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/postgresql"
+                        class="mr-2">postgresql</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/postgres"
+                        class="mr-2">postgres</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/kubernetes"
+                        class="mr-2">kubernetes</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/k8s"
+                        class="mr-2">k8s</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/cloudnativepg"
+                        class="mr-2">cloudnativepg</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/cnpg"
+                        class="mr-2">cnpg</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/security"
+                        class="mr-2">security</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/cve"
+                        class="mr-2">cve</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/high-availability"
+                        class="mr-2">high-availability</a></li>
+                
+            </ul>
+
+        </div>
+    </div>
+
+    
+    <div class="space-y-10 md:pt-10">
+            
+
+    
+    <div class="px-4">
+        <h3 class="text-xl font-bold mb-6">All categories</h3>
+        <div class="text-xs space-y-1.5 mb-14">
+            <ul class="text-sm">
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/alerts/"
+                        class="mr-2">Alerts</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/applications/"
+                        class="mr-2">Applications</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/artifacts/"
+                        class="mr-2">Artifacts</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/bake/"
+                        class="mr-2">Bake</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/benchmarks/"
+                        class="mr-2">Benchmarks</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/blog/"
+                        class="mr-2">Blog</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/chaos-engineering/"
+                        class="mr-2">Chaos-Engineering</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/ciclops/"
+                        class="mr-2">Ciclops</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/cloudnativepg/"
+                        class="mr-2">Cloudnativepg</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/cncf/"
+                        class="mr-2">Cncf</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/cnpg/"
+                        class="mr-2">Cnpg</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/community/"
+                        class="mr-2">Community</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/containers/"
+                        class="mr-2">Containers</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/continuous-delivery/"
+                        class="mr-2">Continuous-Delivery</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/continuous-integration/"
+                        class="mr-2">Continuous-Integration</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/cve/"
+                        class="mr-2">Cve</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/dashboards/"
+                        class="mr-2">Dashboards</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/dba/"
+                        class="mr-2">Dba</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/debian/"
+                        class="mr-2">Debian</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/devops/"
+                        class="mr-2">Devops</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/docker/"
+                        class="mr-2">Docker</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/documentation/"
+                        class="mr-2">Documentation</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/docusaurus/"
+                        class="mr-2">Docusaurus</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/extensions/"
+                        class="mr-2">Extensions</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/failover/"
+                        class="mr-2">Failover</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/failoverquorum/"
+                        class="mr-2">FailoverQuorum</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/fdw/"
+                        class="mr-2">FDW</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/foreigndata/"
+                        class="mr-2">ForeignData</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/github/"
+                        class="mr-2">Github</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/grafana/"
+                        class="mr-2">Grafana</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/graphql/"
+                        class="mr-2">Graphql</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/hasura/"
+                        class="mr-2">Hasura</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/helm/"
+                        class="mr-2">Helm</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/hetzner/"
+                        class="mr-2">Hetzner</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/high-availability/"
+                        class="mr-2">High-Availability</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/imagecatalog/"
+                        class="mr-2">Imagecatalog</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/imagecatalogs/"
+                        class="mr-2">ImageCatalogs</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/images/"
+                        class="mr-2">Images</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/imagevolume/"
+                        class="mr-2">ImageVolume</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/information/"
+                        class="mr-2">Information</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/k8s/"
+                        class="mr-2">K8s</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/kubectl/"
+                        class="mr-2">Kubectl</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/kubernetes/"
+                        class="mr-2">Kubernetes</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/lfx/"
+                        class="mr-2">Lfx</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/linux/"
+                        class="mr-2">Linux</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/litmus/"
+                        class="mr-2">Litmus</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/maintenance/"
+                        class="mr-2">Maintenance</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/mentorship/"
+                        class="mr-2">Mentorship</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/migrations/"
+                        class="mr-2">Migrations</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/minecraft/"
+                        class="mr-2">Minecraft</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/modernize/"
+                        class="mr-2">Modernize</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/networking/"
+                        class="mr-2">Networking</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/open-source/"
+                        class="mr-2">Open-Source</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/operator/"
+                        class="mr-2">Operator</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/pdb/"
+                        class="mr-2">Pdb</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/performance/"
+                        class="mr-2">Performance</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/pg16beta1/"
+                        class="mr-2">Pg16beta1</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/pgbouncer/"
+                        class="mr-2">Pgbouncer</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/pgtap/"
+                        class="mr-2">PgTAP</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/pgxn/"
+                        class="mr-2">PGXN</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/podselectorrefs/"
+                        class="mr-2">PodSelectorRefs</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/pooler/"
+                        class="mr-2">Pooler</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/postgres/"
+                        class="mr-2">Postgres</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/postgresql/"
+                        class="mr-2">Postgresql</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/preview/"
+                        class="mr-2">Preview</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/programming/"
+                        class="mr-2">Programming</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/prometheus/"
+                        class="mr-2">Prometheus</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/rails/"
+                        class="mr-2">Rails</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/react/"
+                        class="mr-2">React</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/release/"
+                        class="mr-2">Release</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/ruby/"
+                        class="mr-2">Ruby</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/security/"
+                        class="mr-2">Security</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/service-mesh/"
+                        class="mr-2">Service-Mesh</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/serviceaccount/"
+                        class="mr-2">ServiceAccount</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/spotlight/"
+                        class="mr-2">Spotlight</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/sqitch/"
+                        class="mr-2">Sqitch</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/tablespaces/"
+                        class="mr-2">Tablespaces</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/testing/"
+                        class="mr-2">Testing</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/tutorial/"
+                        class="mr-2">Tutorial</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/ux/"
+                        class="mr-2">UX</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/volumesnapshots/"
+                        class="mr-2">Volumesnapshots</a></li>
+                
+            </ul>
+
+        </div>
+    </div>
+    
+
+    
+    <div>
+        <h3 class="text-xl font-bold pb-6 px-4">Latest Posts</h3>
+        <div class="space-y-10 px-4">
+            
+            
+            <div class="p-8 bg-white drop-shadow-md md:w-2/6 rounded-md border-2 border-slate-50 align-super inline-grid max-w-xs"
+                style="min-width: 260px;">
+                
+                <div class="flex gap-3 mb-2.5">
+                    
+<div class="flex gap-3">
+    
+      <div class="my-auto">
+        
+        
+        <img src="/authors/fdrees/floor.jpg" class="w-10 h-10 rounded-full"
+            alt="Floor Drees">
+        
+      <h1 class="text-lg charcoal font-bold">
+        Floor Drees
+      </h1>
+      </div>
+    
+</div>
+
+
+                </div>
+                
+                <a href="/blog/lfx-mentorship-documentation-anushka-saxena/">
+                    
+                    <div>
+                        <img src="/blog/lfx-mentorship-documentation-anushka-saxena//anushka-saxena.jpg" class="object-fill"
+                            alt="Blog image">
+                    </div>
+                    <div class="charcoal">
+                        <h2 class="text-lg my-2.5 font-bold">Updating CloudNativePG&#39;s documentation</h2>
+                    </div>
+                    
+
+                    <div class="block gap-2 text-sm charcoal opacity-75">
+    <h6 class="block gap-2 text-sm charcoal">
+        January 12, 2026
+        •
+        4 minutes
+    </h6>
+</div>
+                </a>
+            </div>
+            
+            <div class="p-8 bg-white drop-shadow-md md:w-2/6 rounded-md border-2 border-slate-50 align-super inline-grid max-w-xs"
+                style="min-width: 260px;">
+                
+                <div class="flex gap-3 mb-2.5">
+                    
+<div class="flex gap-3">
+    
+      <div class="my-auto">
+        
+        
+        <img src="/authors/fdrees/floor.jpg" class="w-10 h-10 rounded-full"
+            alt="Floor Drees">
+        
+      <h1 class="text-lg charcoal font-bold">
+        Floor Drees
+      </h1>
+      </div>
+    
+</div>
+
+
+                </div>
+                
+                <a href="/blog/lfx-chaos-testing-yash-agarwal/">
+                    
+                    <div>
+                        <img src="/blog/lfx-chaos-testing-yash-agarwal//yash.jpeg" class="object-fill"
+                            alt="Blog image">
+                    </div>
+                    <div class="charcoal">
+                        <h2 class="text-lg my-2.5 font-bold">Chaos testing the CloudNativePG project</h2>
+                    </div>
+                    
+
+                    <div class="block gap-2 text-sm charcoal opacity-75">
+    <h6 class="block gap-2 text-sm charcoal">
+        January 5, 2026
+        •
+        3 minutes
+    </h6>
+</div>
+                </a>
+            </div>
+            
+            <div class="p-8 bg-white drop-shadow-md md:w-2/6 rounded-md border-2 border-slate-50 align-super inline-grid max-w-xs"
+                style="min-width: 260px;">
+                
+                <div class="flex gap-3 mb-2.5">
+                    
+<div class="flex gap-3">
+    
+      <div class="my-auto">
+        
+        
+        <img src="/authors/fdrees/floor.jpg" class="w-10 h-10 rounded-full"
+            alt="Floor Drees">
+        
+      <h1 class="text-lg charcoal font-bold">
+        Floor Drees
+      </h1>
+      </div>
+    
+</div>
+
+
+                </div>
+                
+                <a href="/blog/matthew-mols-pgedge/">
+                    
+                    <div>
+                        <img src="/blog/matthew-mols-pgedge//pgedge_cloudnativepg.jpg" class="object-fill"
+                            alt="Blog image">
+                    </div>
+                    <div class="charcoal">
+                        <h2 class="text-lg my-2.5 font-bold">Sticking with Open Source: pgEdge and CloudNativePG</h2>
+                    </div>
+                    
+
+                    <div class="block gap-2 text-sm charcoal opacity-75">
+    <h6 class="block gap-2 text-sm charcoal">
+        January 2, 2026
+        •
+        3 minutes
+    </h6>
+</div>
+                </a>
+            </div>
+            
+            <div class="p-8 bg-white drop-shadow-md md:w-2/6 rounded-md border-2 border-slate-50 align-super inline-grid max-w-xs"
+                style="min-width: 260px;">
+                
+                <div class="flex gap-3 mb-2.5">
+                    
+<div class="flex gap-3">
+    
+      <div class="my-auto">
+        
+        
+        <img src="/authors/fdrees/floor.jpg" class="w-10 h-10 rounded-full"
+            alt="Floor Drees">
+        
+      <h1 class="text-lg charcoal font-bold">
+        Floor Drees
+      </h1>
+      </div>
+    
+</div>
+
+
+                </div>
+                
+                <a href="/blog/contributor-highlight-gabriele-quaresima/">
+                    
+                    <div>
+                        <img src="/blog/contributor-highlight-gabriele-quaresima//gabrieleq.png" class="object-fill"
+                            alt="Blog image">
+                    </div>
+                    <div class="charcoal">
+                        <h2 class="text-lg my-2.5 font-bold">Contributor Spotlight: Gabriele Quaresima</h2>
+                    </div>
+                    
+
+                    <div class="block gap-2 text-sm charcoal opacity-75">
+    <h6 class="block gap-2 text-sm charcoal">
+        September 11, 2025
+        •
+        2 minutes
+    </h6>
+</div>
+                </a>
+            </div>
+            
+            <div class="p-8 bg-white drop-shadow-md md:w-2/6 rounded-md border-2 border-slate-50 align-super inline-grid max-w-xs"
+                style="min-width: 260px;">
+                
+                <div class="flex gap-3 mb-2.5">
+                    
+<div class="flex gap-3">
+    
+      <div class="my-auto">
+        
+        
+        <img src="/authors/dchambre/daniel.jpg" class="w-10 h-10 rounded-full"
+            alt="Daniel Chambre">
+        
+      <h1 class="text-lg charcoal font-bold">
+        Daniel Chambre
+      </h1>
+      </div>
+    
+</div>
+
+
+                </div>
+                
+                <a href="/blog/customizing-hcl/">
+                    
+                    <div>
+                        <img src="/blog/customizing-hcl//elephant_cookie.jpg" class="object-fill"
+                            alt="Blog image">
+                    </div>
+                    <div class="charcoal">
+                        <h2 class="text-lg my-2.5 font-bold">Customizing the docker build bake hcl file</h2>
+                    </div>
+                    
+
+                    <div class="block gap-2 text-sm charcoal opacity-75">
+    <h6 class="block gap-2 text-sm charcoal">
+        August 22, 2025
+        •
+        3 minutes
+    </h6>
+</div>
+                </a>
+            </div>
+            
+            <div class="p-8 bg-white drop-shadow-md md:w-2/6 rounded-md border-2 border-slate-50 align-super inline-grid max-w-xs"
+                style="min-width: 260px;">
+                
+                <div class="flex gap-3 mb-2.5">
+                    
+<div class="flex gap-3">
+    
+      <div class="my-auto">
+        
+        
+        <img src="/authors/fdrees/floor.jpg" class="w-10 h-10 rounded-full"
+            alt="Floor Drees">
+        
+      <h1 class="text-lg charcoal font-bold">
+        Floor Drees
+      </h1>
+      </div>
+    
+</div>
+
+
+                </div>
+                
+                <a href="/blog/interview-vito-botta-brella/">
+                    
+                    <div>
+                        <img src="/blog/interview-vito-botta-brella//brella_cloudnativepg.jpg" class="object-fill"
+                            alt="Blog image">
+                    </div>
+                    <div class="charcoal">
+                        <h2 class="text-lg my-2.5 font-bold">Unlocking full Kubernetes functionality at Brella with CloudNativePG and Hetzner</h2>
+                    </div>
+                    
+
+                    <div class="block gap-2 text-sm charcoal opacity-75">
+    <h6 class="block gap-2 text-sm charcoal">
+        August 19, 2025
+        •
+        3 minutes
+    </h6>
+</div>
+                </a>
+            </div>
+            
+            
+        </div>
+    </div>
+    
+
+    </div>
+    
+</div>
+
+
+    <footer class="section pb-0">
+
+  <div class="pt-16">
+    <div
+      class="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 pb-10 border-b border-b-zinc-200">
+
+      
+      <div class="px-4">
+        <h3 class="text-3xl font-semibold mb-0">Learn</h3>
+        <div class="space-y-2 text-base text-red-500">
+          <div><a href="/docs" class="hover:text-red-700 transition">Documentation</a></div>
+          <div><a href="https://cloudnative-pg.io/docs/devel/quickstart/"
+              class="hover:text-red-600 transition">Quickstart Guide</a></div>
+          <div><a href="/tags/tutorial" class="hover:text-red-600 transition">Tutorials</a></div>
+        </div>
+      </div>
+
+      
+      <div class="px-4">
+        <h3 class="text-3xl font-semibold mb-0">Community</h3>
+        <div class="space-y-2 text-base text-red-500">
+          <div><a href="/blog" class="hover:text-red-700 transition">Blog</a></div>
+          <div><a href="/releases" class="hover:text-red-600 transition">Releases</a></div>
+          <div><a href="https://github.com/cloudnative-pg/cloudnative-pg/blob/main/CONTRIBUTING.md"
+              class="hover:text-red-600 transition">How to Contribute</a></div>
+        </div>
+      </div>
+
+      
+      <div class="flex flex-col items-center px-4">
+        <a href="https://cloudnative-pg.io/">
+          <img src="/logo/large_logo.svg" alt="CloudNativePG Logo" class="mb-2">
+        </a>
+        <div class="flex space-x-4 mb-2">
+          <a href="https://cloud-native.slack.com/archives/C08MAUJ7NPM">
+            <img src="/icons/Slack.svg" alt="Slack" title="Join our Slack channel now!">
+          </a>
+          <a href="https://x.com/CloudNativePg">
+            <img src="/icons/x.svg" alt="x" style="width:28px; height:43px;">
+          </a>
+          <a href="https://www.youtube.com/channel/UCTGH88W1BiuRRPTzJUDPJyA">
+            <img src="/icons/YouTube.svg" alt="YouTube">
+          </a>
+          <a href="https://www.linkedin.com/company/cloudnative-pg">
+            <img src="/icons/linkedin.svg" alt="linkedin" style="width:25px; height:43px;">
+          </a>
+          <a href="https://mastodon.social/@CloudNativePG" class="px-1">
+            <img src="/icons/mastodon.svg" alt="Mastodon">
+          </a>
+          <a href="https://bsky.app/profile/cloudnativepg.bsky.social" class="px-1">
+            <img src="/icons/bluesky.svg" alt="Bluesky">
+          </a>
+        </div>
+        <div class="text-center pt-4">
+          <a href="https://github.com/cloudnative-pg/cloudnative-pg"
+            class="bg-red-1 py-2 px-12 rounded-full text-white text-xl">View on GitHub</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+  <div class="text-center pb-4">
+    <p class="text-sm charcoal md:w-1/2 mx-auto md:pt-10 px-6 pt-12">
+      Copyright &copy; CloudNativePG a Series of LF Projects, LLC.<br>
+      For website terms of use, trademark policy and other project policies please see
+      <a href="https://lfprojects.org/policies/">LF Projects, LLC Policies</a>.<br><br>
+      <a href="https://www.linuxfoundation.org/trademark-usage/" class="red-1">The Linux Foundation has registered
+        trademarks and uses trademarks</a>.<br><br>
+      <a href="https://www.postgresql.org/about/policies/trademarks" class="red-1">Postgres, PostgreSQL and the Slonik
+        Logo are trademarks or
+        registered trademarks of the PostgreSQL Community Association of Canada, and
+        used with their permission</a>.
+    </p>
+  </div>
+</footer>
+
+  </div>
+</body>
+
+</html>
