@@ -41,6 +41,41 @@ npm install && npm run prod
 
 This will compile the css file into `assets/css/output.css`. This file is ignored by git, so it is generated each build. If you make changes to `assets/css/main.css` you will need to restart the hugo server (e.g. stop it and run `npm run prod`) to pick up the changes. This is a temporary fix while Hugo & Tailwind JIT learn how to play nicely together.
 
+### Using Docker
+
+If you'd rather not install Hugo and Node.js locally, you can serve the
+site with the
+[`hugomods/hugo`](https://hub.docker.com/r/hugomods/hugo) image (the
+`-node-` variant is required because this site builds CSS through
+Tailwind/PostCSS):
+
+``` sh
+docker run --rm \
+  --name cnpg-www \
+  -p 8080:8080 \
+  -e HUGO_SECURITY_NODE_PERMISSIONS_ALLOWREAD='*' \
+  -v "$(pwd)":/src \
+  --entrypoint sh \
+  hugomods/hugo:debian-reg-dart-sass-node-git-0.161.1 \
+  -c "npm install && npm run dev -- --bind 0.0.0.0 -p 8080"
+```
+
+The site will then be available at <http://localhost:8080>.
+
+Notes:
+
+- `node_modules/` is in `.gitignore`, so `npm install` writes into your
+  working tree and is reused across container runs. If you also run
+  `npm install` on the host, delete `node_modules/` before switching
+  between host and container (or vice versa) so the Linux-built native
+  binaries don't clash with the host ones.
+- `HUGO_SECURITY_NODE_PERMISSIONS_ALLOWREAD='*'` widens Hugo's default
+  Node permission policy so `browserslist` (loaded by `postcss-preset-env`)
+  can walk parent directories looking for its config.
+- To serve without drafts, replace `npm run dev` with `npm run prod`.
+- The image tag pins Hugo `0.161.1`; bump it as the project's Hugo version
+  advances.
+
 ### CSS
 
 CSS is partly built by hugo & partly built outside of hugo by `npm run css`, which is called by `npm run dev|prod`. If you start to use a new Tailwind class restarting hugo is required (stop the server and `npm run dev`), if you edit `assets/style.css` it should compile in correctly without restart. This is to mitigate [this issue](https://github.com/gohugoio/hugo/issues/8343).
