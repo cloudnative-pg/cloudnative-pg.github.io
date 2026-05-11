@@ -54,7 +54,7 @@ docker run --rm \
   --name cnpg-www \
   -p 8080:8080 \
   -e HUGO_SECURITY_NODE_PERMISSIONS_ALLOWREAD='*' \
-  -v ${PWD}:/src \
+  -v "$(pwd)":/src \
   --entrypoint sh \
   hugomods/hugo:debian-reg-dart-sass-node-git-0.161.1 \
   -c "npm install && npm run dev -- --bind 0.0.0.0 -p 8080"
@@ -72,7 +72,9 @@ Notes:
 - `HUGO_SECURITY_NODE_PERMISSIONS_ALLOWREAD='*'` widens Hugo's default
   Node permission policy so `browserslist` (loaded by `postcss-preset-env`)
   can walk parent directories looking for its config.
-- To build without drafts, replace `npm run dev` with `npm run prod`.
+- To serve without drafts, replace `npm run dev` with `npm run prod`.
+- The image tag pins Hugo `0.161.1`; bump it as the project's Hugo version
+  advances.
 
 ### CSS
 
