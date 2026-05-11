@@ -16,17 +16,17 @@ tags:
   - cloudnativepg
   - cnpg
   - security
-  - CVE
+  - cve
   - high-availability
-summary: "CloudNativePG 1.29.1 and 1.28.3 are now available. These releases address CVE-2026-44477 (Critical, CVSS 9.4) in the metrics exporter, remediate additional CVEs in pgx and the Go runtime, and ship important HA fixes including two data-safety failover bugs. All users should upgrade immediately."
+summary: "CloudNativePG 1.29.1 and 1.28.3 are now available. These releases address CVE-2026-44477 (Critical, CVSS 9.4) in the metrics exporter, remediate additional CVEs in pgx and the Go runtime, and ship important HA fixes including a data-safety bug in the failover path. All users should upgrade immediately."
 ---
 
 The CloudNativePG community is releasing **maintenance updates for all
 currently supported series**: **1.29.1** and **1.28.3**.
 
 This is a high-priority release. It addresses **[CVE-2026-44477](https://github.com/cloudnative-pg/cloudnative-pg/security/advisories/GHSA-423p-g724-fr39)**
-— the first CVE officially assigned against CloudNativePG, rated **Critical**
-with a CVSS v4 score of **9.4** — alongside additional CVE remediations in
+(the first CVE officially assigned against CloudNativePG, rated **Critical**
+with a CVSS v4 score of **9.4**), alongside additional CVE remediations in
 dependencies and the Go runtime.
 
 On the reliability side, three independent bugs in the HA failover path are
@@ -38,7 +38,7 @@ unreachable
 ([#10448](https://github.com/cloudnative-pg/cloudnative-pg/pull/10448)), and a
 guard against spurious failovers from transient HTTP endpoint failures
 ([#10445](https://github.com/cloudnative-pg/cloudnative-pg/pull/10445)). Both
-releases also include a number of correctness and robustness fixes — see the
+releases also include a number of correctness and robustness fixes. See the
 release notes for the full list.
 
 **All users should upgrade immediately.**
@@ -60,7 +60,7 @@ Two independent paths exploit this root cause. The first requires a custom
 metric query with an unqualified relation or function reference; the attack
 completes within one scrape interval (≤ 30 s). The second requires no custom
 metrics at all: the shipped `pg_extensions` metric was sufficient to let the
-default `app` role — created automatically by `bootstrap.initdb` — trigger
+default `app` role (created automatically by `bootstrap.initdb`) trigger
 the full escalation chain on a completely stock deployment. The combined impact
 is superuser privilege escalation plus arbitrary OS command execution inside
 the primary pod from a low-privileged database role.
@@ -113,7 +113,7 @@ Follow the upgrade instructions specific to your series:
 - **1.28.x → 1.28.3:** [upgrade guide](https://cloudnative-pg.io/docs/1.28/installation_upgrade#upgrading-to-1291-or-1283)
 
 For deployments with replica clusters, upgrade the source primary cluster
-first — see the [security advisory](https://github.com/cloudnative-pg/cloudnative-pg/security/advisories/GHSA-423p-g724-fr39)
+first. See the [security advisory](https://github.com/cloudnative-pg/cloudnative-pg/security/advisories/GHSA-423p-g724-fr39)
 for sequencing details.
 
 For the complete list of changes, see the release notes:
@@ -132,8 +132,8 @@ If you're using CloudNativePG in production, consider
 [adding your organization as an adopter](https://github.com/cloudnative-pg/cloudnative-pg/blob/main/ADOPTERS.md)
 to support the project's growth and evolution.
 
-Thank you for your continued support! Upgrade today and discover how
-CloudNativePG can elevate your PostgreSQL experience to new heights.
+Thank you for your continued support! Upgrade today to pick up these
+security and reliability fixes.
 
 <!--
 ## About CloudNativePG
