@@ -132,8 +132,7 @@ If you're using CloudNativePG in production, consider
 [adding your organization as an adopter](https://github.com/cloudnative-pg/cloudnative-pg/blob/main/ADOPTERS.md)
 to support the project's growth and evolution.
 
-Thank you for your continued support! Upgrade today to pick up these
-security and reliability fixes.
+Thank you for your continued support!
 
 <!--
 ## About CloudNativePG
