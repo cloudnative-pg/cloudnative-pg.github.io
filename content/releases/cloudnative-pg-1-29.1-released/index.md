@@ -1,5 +1,5 @@
 ---
-title: "Security and reliability release: CloudNativePG 1.29.1 and 1.28.3"
+title: "CloudNativePG 1.29.1 and 1.28.3 released: critical CVE fix"
 date: 2026-05-08
 draft: false
 authors:
