@@ -6,8 +6,15 @@
     <description>Recent content in Postgres on CloudNativePG - PostgreSQL Operator for Kubernetes</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 08 May 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 05 Jun 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://cloudnative-pg.io/tags/postgres/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How to test PostgreSQL 19 beta in your Kubernetes cluster</title>
+      <link>https://cloudnative-pg.io/blog/postgresql-19-beta1/</link>
+      <pubDate>Fri, 05 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>https://cloudnative-pg.io/blog/postgresql-19-beta1/</guid>
+      <description>Participate in the PostgreSQL 19 beta program using Kubernetes and our CloudNativePG operator</description>
+    </item>
     <item>
       <title>CloudNativePG 1.29.1 and 1.28.3 released: critical CVE fix</title>
       <link>https://cloudnative-pg.io/releases/cloudnative-pg-1-29.1-released/</link>
