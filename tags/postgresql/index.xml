@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>PostgreSQL on CloudNativePG - PostgreSQL Operator for Kubernetes</title>
+    <title>Postgresql on CloudNativePG - PostgreSQL Operator for Kubernetes</title>
     <link>https://cloudnative-pg.io/tags/postgresql/</link>
-    <description>Recent content in PostgreSQL on CloudNativePG - PostgreSQL Operator for Kubernetes</description>
+    <description>Recent content in Postgresql on CloudNativePG - PostgreSQL Operator for Kubernetes</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 05 Jun 2026 00:00:00 +0000</lastBuildDate>
