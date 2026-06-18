@@ -58,7 +58,7 @@ cluster, that acts as a mutex serializing primary promotion. The instance
 manager must hold the lease before acting as primary and releases it on clean
 shutdown, so replicas can promote without waiting for the full TTL. Timings are
 configurable through the new
-[`.spec.primaryLease`](https://cloudnative-pg.io/docs/preview/failover#tuning-the-primary-lease)
+[`.spec.primaryLease`](https://cloudnative-pg.io/docs/preview/failover/#tuning-the-primary-lease)
 stanza.
 
 To be precise about the architecture: the lease is a promotion gate, not a
