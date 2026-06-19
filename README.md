@@ -57,7 +57,7 @@ docker run --rm \
   -v "$(pwd)":/src \
   --entrypoint sh \
   hugomods/hugo:debian-reg-dart-sass-node-git-0.161.1 \
-  -c "npm install && npm run dev -- --bind 0.0.0.0 -p 8080"
+  -c "npm install && npm run dev -- --bind 0.0.0.0 -p 8080 -F"
 ```
 
 The site will then be available at <http://localhost:8080>.
