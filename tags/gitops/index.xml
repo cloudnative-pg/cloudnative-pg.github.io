@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>GitOps on CloudNativePG - PostgreSQL Operator for Kubernetes</title>
+    <link>https://cloudnative-pg.io/tags/gitops/</link>
+    <description>Recent content in GitOps on CloudNativePG - PostgreSQL Operator for Kubernetes</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 19 Jun 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://cloudnative-pg.io/tags/gitops/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CloudNativePG 1.30.0 RC1 Released!</title>
+      <link>https://cloudnative-pg.io/releases/cloudnative-pg-1-30.0-rc1-released/</link>
+      <pubDate>Fri, 19 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>https://cloudnative-pg.io/releases/cloudnative-pg-1-30.0-rc1-released/</guid>
+      <description>The CloudNativePG community is excited to announce the first release candidate of CloudNativePG 1.30! This preview introduces the DatabaseRole CRD for declarative, GitOps-friendly role management and a Lease-based primary election primitive for safer failover. Join us in testing these updates to shape the final release.</description>
+    </item>
+  </channel>
+</rss>
