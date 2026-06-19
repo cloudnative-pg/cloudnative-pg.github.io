@@ -33,7 +33,7 @@
     <meta property="article:published_time" content="2026-06-19T00:00:00+00:00">
     <meta property="article:modified_time" content="2026-06-19T00:00:00+00:00">
     <meta property="article:tag" content="Release">
-    <meta property="article:tag" content="Postgresql">
+    <meta property="article:tag" content="PostgreSQL">
     <meta property="article:tag" content="Postgres">
     <meta property="article:tag" content="Kubernetes">
     <meta property="article:tag" content="K8s">
@@ -185,7 +185,7 @@ While refinements may still occur, here&rsquo;s a look at what&rsquo;s new.</p>
 <h2 id="key-features">Key Features</h2>
 <h3 id="databaserole-crd-for-declarative-role-management">DatabaseRole CRD for declarative role management</h3>
 <p>The headline addition in 1.30 is the new
-<a href="https://cloudnative-pg.io/docs/preview/declarative_role_management/#the-databaserole-resource"><code>DatabaseRole</code></a>
+<a href="https://cloudnative-pg.io/docs/1.30/declarative_role_management/#the-databaserole-resource"><code>DatabaseRole</code></a>
 custom resource, which manages a PostgreSQL role as a standalone Kubernetes
 object rather than inline in the <code>Cluster</code>&rsquo;s <code>.spec.managed.roles</code> stanza. Each
 role now has its own lifecycle, status and RBAC, which suits GitOps workflows
@@ -204,7 +204,7 @@ cluster, that acts as a mutex serializing primary promotion. The instance
 manager must hold the lease before acting as primary and releases it on clean
 shutdown, so replicas can promote without waiting for the full TTL. Timings are
 configurable through the new
-<a href="https://cloudnative-pg.io/docs/preview/failover/#tuning-the-primary-lease"><code>.spec.primaryLease</code></a>
+<a href="https://cloudnative-pg.io/docs/1.30/failover/#tuning-the-primary-lease"><code>.spec.primaryLease</code></a>
 stanza.</p>
 <p>To be precise about the architecture: the lease is a promotion gate, not a
 fence. Primary isolation remains responsible for fencing — the Lease simply
@@ -234,7 +234,7 @@ resources. Re-pointing one of these at a different cluster is now rejected by a
 CEL validation rule at the API server, as it had no well-defined semantics.</p>
 </blockquote>
 <p>Dive into the full details in the
-<a href="https://cloudnative-pg.io/docs/preview/release_notes/v1.30/">release notes for 1.30 RC1</a>.</p>
+<a href="https://cloudnative-pg.io/docs/1.30/release_notes/v1.30/">release notes for 1.30 RC1</a>.</p>
 <h2 id="testing">Testing</h2>
 <p>The stability of each CloudNativePG release relies on the community&rsquo;s
 engagement. Testing your workloads with this release candidate helps identify
@@ -520,7 +520,7 @@ us advance the Kubernetes-native PostgreSQL experience.</p>
                         class="mr-2">Postgres</a></li>
                 
                 <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/postgresql/"
-                        class="mr-2">Postgresql</a></li>
+                        class="mr-2">PostgreSQL</a></li>
                 
                 <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="https://cloudnative-pg.io/tags/preview/"
                         class="mr-2">Preview</a></li>
