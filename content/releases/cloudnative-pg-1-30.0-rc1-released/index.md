@@ -36,7 +36,7 @@ While refinements may still occur, here's a look at what's new.
 ### DatabaseRole CRD for declarative role management
 
 The headline addition in 1.30 is the new
-[`DatabaseRole`](https://cloudnative-pg.io/docs/preview/declarative_role_management/#the-databaserole-resource)
+[`DatabaseRole`](https://cloudnative-pg.io/docs/1.30/declarative_role_management/#the-databaserole-resource)
 custom resource, which manages a PostgreSQL role as a standalone Kubernetes
 object rather than inline in the `Cluster`'s `.spec.managed.roles` stanza. Each
 role now has its own lifecycle, status and RBAC, which suits GitOps workflows
@@ -58,7 +58,7 @@ cluster, that acts as a mutex serializing primary promotion. The instance
 manager must hold the lease before acting as primary and releases it on clean
 shutdown, so replicas can promote without waiting for the full TTL. Timings are
 configurable through the new
-[`.spec.primaryLease`](https://cloudnative-pg.io/docs/preview/failover/#tuning-the-primary-lease)
+[`.spec.primaryLease`](https://cloudnative-pg.io/docs/1.30/failover/#tuning-the-primary-lease)
 stanza.
 
 To be precise about the architecture: the lease is a promotion gate, not a
@@ -91,7 +91,7 @@ PostgreSQL version to 18.4.
 > CEL validation rule at the API server, as it had no well-defined semantics.
 
 Dive into the full details in the
-[release notes for 1.30 RC1](https://cloudnative-pg.io/docs/preview/release_notes/v1.30/).
+[release notes for 1.30 RC1](https://cloudnative-pg.io/docs/1.30/release_notes/v1.30/).
 
 ## Testing
 
