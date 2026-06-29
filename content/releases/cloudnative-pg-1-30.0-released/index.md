@@ -38,9 +38,9 @@ We are also pleased to announce the release of maintenance versions **1.29.2**
 and **1.28.4**, the latter of which is the final planned release in the 1.28.x
 series. We encourage users on 1.28 to plan their upgrade to 1.29 or 1.30.
 
-With the release of CloudNativePG 1.30.0, the End-of-Life (EOL) date for the
-CloudNativePG 1.28.x series is reached, and the EOL date for the CloudNativePG
-1.29.x series is confirmed as September 29, 2026.
+With the release of CloudNativePG 1.30.0, the CloudNativePG 1.28.x series
+reaches its End-of-Life (EOL) date of June 30, 2026, and the EOL date for the
+CloudNativePG 1.29.x series is confirmed as September 29, 2026.
 
 ---
 
@@ -94,7 +94,7 @@ and supply-chain integrity:
   `CREATE`/`ALTER ROLE` commands, so the SCRAM verifier — rather than the
   cleartext secret — is what could ever appear in logs or extension captures.
 - **Authenticated instance communication ([GHSA-7qwx-x8ff-3px9](https://github.com/cloudnative-pg/cloudnative-pg/security/advisories/GHSA-7qwx-x8ff-3px9)):**
-  operator-to-instance-manager communication is now authenticated via ECDSA
+  Operator-to-instance-manager communication is now authenticated via ECDSA
   certificates. This hardening is new in 1.30.0 and is not backported; on
   earlier releases continue to restrict the instance status port with a
   `NetworkPolicy`.
@@ -134,7 +134,7 @@ Dive into the full list of changes and fixes in the
 In parallel with the 1.30 release, we have also shipped maintenance updates for
 the previous stable series. Both backport the security fixes above — including
 `search_path` pinning and SCRAM-SHA-256 password encoding — along with VPA/HPA
-support, primary status visibility, automatic CNPG-i plugin reloading, Kubernetes
+support, primary status visibility, automatic CNPG-I plugin reloading, Kubernetes
 1.36 support, the updated PostgreSQL 18.4 default, and dozens of bug fixes:
 
 - **CloudNativePG 1.29.2:** see the
