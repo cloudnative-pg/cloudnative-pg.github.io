@@ -85,16 +85,19 @@ closes the window for an uncoordinated promotion during transitions.
 This release includes significant improvements focused on stability, security,
 and supply-chain integrity:
 
-- **`search_path` pinning:** Fixed a privilege-escalation vulnerability
-  (CWE-426) where a database owner could plant overloaded operators in the
-  `public` schema. The operator now pins
-  `search_path = pg_catalog, public, pg_temp` on its pooled connections.
-- **SCRAM-SHA-256 password encoding:** The operator now SCRAM-SHA-256 encodes
-  cleartext passwords before issuing `CREATE`/`ALTER ROLE` commands, so the
-  SCRAM verifier — rather than the cleartext secret — is what could ever appear
-  in logs or extension captures.
-- **Authenticated instance communication:** Operator-to-instance-manager
-  communication is now authenticated via ECDSA certificates.
+- **`search_path` pinning ([CVE-2026-55769](https://github.com/cloudnative-pg/cloudnative-pg/security/advisories/GHSA-x8c2-3p4r-v9r6)):**
+  Fixed a privilege-escalation vulnerability (CWE-426) where a database owner
+  could plant overloaded operators in the `public` schema. The operator now
+  pins `search_path = pg_catalog, public, pg_temp` on its pooled connections.
+- **SCRAM-SHA-256 password encoding ([CVE-2026-55765](https://github.com/cloudnative-pg/cloudnative-pg/security/advisories/GHSA-w3gf-xc94-wvmj)):**
+  The operator now SCRAM-SHA-256 encodes cleartext passwords before issuing
+  `CREATE`/`ALTER ROLE` commands, so the SCRAM verifier — rather than the
+  cleartext secret — is what could ever appear in logs or extension captures.
+- **Authenticated instance communication ([GHSA-7qwx-x8ff-3px9](https://github.com/cloudnative-pg/cloudnative-pg/security/advisories/GHSA-7qwx-x8ff-3px9)):**
+  operator-to-instance-manager communication is now authenticated via ECDSA
+  certificates. This hardening is new in 1.30.0 and is not backported; on
+  earlier releases continue to restrict the instance status port with a
+  `NetworkPolicy`.
 
 ## Other Notable Enhancements
 
