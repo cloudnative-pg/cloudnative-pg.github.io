@@ -18,7 +18,10 @@ tags:
  - DatabaseRole
  - primaryLease
  - high-availability
+ - failover
  - security
+ - RBAC
+ - supplychain
  - GitOps
  - PgBouncer
  - ImageCatalogs
@@ -54,7 +57,7 @@ custom resource, which manages a PostgreSQL role as a standalone Kubernetes
 object rather than inline in the `Cluster`'s `.spec.managed.roles` stanza. Each
 role now has its own lifecycle, status and RBAC, which suits GitOps workflows
 and lets role definitions live next to the applications that own them. Migrating
-an existing role is simply a matter of moving its stanza into a dedicated
+an existing role is a matter of moving its stanza into a dedicated
 manifest.
 
 A `DatabaseRole` can also include a `clientCertificate` block, having the
@@ -75,8 +78,8 @@ configurable through the new
 stanza.
 
 To be precise about the architecture: the lease is a promotion gate, not a
-fence. Primary isolation remains responsible for fencing — the Lease simply
-closes the window for an uncoordinated promotion during transitions.
+fence. Primary isolation remains responsible for fencing — the Lease closes
+the window for an uncoordinated promotion during transitions.
 
 ---
 
