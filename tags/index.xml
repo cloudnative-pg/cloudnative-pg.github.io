@@ -6,83 +6,125 @@
     <description>Recent content in Tags on CloudNativePG - PostgreSQL Operator for Kubernetes</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 19 Jun 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 29 Jun 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://cloudnative-pg.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Cloudnativepg</title>
       <link>https://cloudnative-pg.io/tags/cloudnativepg/</link>
-      <pubDate>Fri, 19 Jun 2026 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 29 Jun 2026 00:00:00 +0000</pubDate>
       <guid>https://cloudnative-pg.io/tags/cloudnativepg/</guid>
       <description></description>
     </item>
     <item>
       <title>Cnpg</title>
       <link>https://cloudnative-pg.io/tags/cnpg/</link>
-      <pubDate>Fri, 19 Jun 2026 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 29 Jun 2026 00:00:00 +0000</pubDate>
       <guid>https://cloudnative-pg.io/tags/cnpg/</guid>
       <description></description>
     </item>
     <item>
       <title>DatabaseRole</title>
       <link>https://cloudnative-pg.io/tags/databaserole/</link>
-      <pubDate>Fri, 19 Jun 2026 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 29 Jun 2026 00:00:00 +0000</pubDate>
       <guid>https://cloudnative-pg.io/tags/databaserole/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Failover</title>
+      <link>https://cloudnative-pg.io/tags/failover/</link>
+      <pubDate>Mon, 29 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>https://cloudnative-pg.io/tags/failover/</guid>
       <description></description>
     </item>
     <item>
       <title>GitOps</title>
       <link>https://cloudnative-pg.io/tags/gitops/</link>
-      <pubDate>Fri, 19 Jun 2026 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 29 Jun 2026 00:00:00 +0000</pubDate>
       <guid>https://cloudnative-pg.io/tags/gitops/</guid>
       <description></description>
     </item>
     <item>
       <title>High-Availability</title>
       <link>https://cloudnative-pg.io/tags/high-availability/</link>
-      <pubDate>Fri, 19 Jun 2026 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 29 Jun 2026 00:00:00 +0000</pubDate>
       <guid>https://cloudnative-pg.io/tags/high-availability/</guid>
       <description></description>
     </item>
     <item>
       <title>ImageCatalogs</title>
       <link>https://cloudnative-pg.io/tags/imagecatalogs/</link>
-      <pubDate>Fri, 19 Jun 2026 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 29 Jun 2026 00:00:00 +0000</pubDate>
       <guid>https://cloudnative-pg.io/tags/imagecatalogs/</guid>
       <description></description>
     </item>
     <item>
       <title>K8s</title>
       <link>https://cloudnative-pg.io/tags/k8s/</link>
-      <pubDate>Fri, 19 Jun 2026 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 29 Jun 2026 00:00:00 +0000</pubDate>
       <guid>https://cloudnative-pg.io/tags/k8s/</guid>
       <description></description>
     </item>
     <item>
       <title>Kubernetes</title>
       <link>https://cloudnative-pg.io/tags/kubernetes/</link>
-      <pubDate>Fri, 19 Jun 2026 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 29 Jun 2026 00:00:00 +0000</pubDate>
       <guid>https://cloudnative-pg.io/tags/kubernetes/</guid>
       <description></description>
     </item>
     <item>
       <title>Pgbouncer</title>
       <link>https://cloudnative-pg.io/tags/pgbouncer/</link>
-      <pubDate>Fri, 19 Jun 2026 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 29 Jun 2026 00:00:00 +0000</pubDate>
       <guid>https://cloudnative-pg.io/tags/pgbouncer/</guid>
       <description></description>
     </item>
     <item>
       <title>Postgres</title>
       <link>https://cloudnative-pg.io/tags/postgres/</link>
-      <pubDate>Fri, 19 Jun 2026 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 29 Jun 2026 00:00:00 +0000</pubDate>
       <guid>https://cloudnative-pg.io/tags/postgres/</guid>
       <description></description>
     </item>
     <item>
-      <title>PostgreSQL</title>
+      <title>Postgresql</title>
       <link>https://cloudnative-pg.io/tags/postgresql/</link>
-      <pubDate>Fri, 19 Jun 2026 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 29 Jun 2026 00:00:00 +0000</pubDate>
       <guid>https://cloudnative-pg.io/tags/postgresql/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>PrimaryLease</title>
+      <link>https://cloudnative-pg.io/tags/primarylease/</link>
+      <pubDate>Mon, 29 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>https://cloudnative-pg.io/tags/primarylease/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>RBAC</title>
+      <link>https://cloudnative-pg.io/tags/rbac/</link>
+      <pubDate>Mon, 29 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>https://cloudnative-pg.io/tags/rbac/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Release</title>
+      <link>https://cloudnative-pg.io/tags/release/</link>
+      <pubDate>Mon, 29 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>https://cloudnative-pg.io/tags/release/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Security</title>
+      <link>https://cloudnative-pg.io/tags/security/</link>
+      <pubDate>Mon, 29 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>https://cloudnative-pg.io/tags/security/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Supplychain</title>
+      <link>https://cloudnative-pg.io/tags/supplychain/</link>
+      <pubDate>Mon, 29 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>https://cloudnative-pg.io/tags/supplychain/</guid>
       <description></description>
     </item>
     <item>
@@ -90,27 +132,6 @@
       <link>https://cloudnative-pg.io/tags/preview/</link>
       <pubDate>Fri, 19 Jun 2026 00:00:00 +0000</pubDate>
       <guid>https://cloudnative-pg.io/tags/preview/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>PrimaryLease</title>
-      <link>https://cloudnative-pg.io/tags/primarylease/</link>
-      <pubDate>Fri, 19 Jun 2026 00:00:00 +0000</pubDate>
-      <guid>https://cloudnative-pg.io/tags/primarylease/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Release</title>
-      <link>https://cloudnative-pg.io/tags/release/</link>
-      <pubDate>Fri, 19 Jun 2026 00:00:00 +0000</pubDate>
-      <guid>https://cloudnative-pg.io/tags/release/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Security</title>
-      <link>https://cloudnative-pg.io/tags/security/</link>
-      <pubDate>Fri, 19 Jun 2026 00:00:00 +0000</pubDate>
-      <guid>https://cloudnative-pg.io/tags/security/</guid>
       <description></description>
     </item>
     <item>
@@ -142,7 +163,7 @@
       <description></description>
     </item>
     <item>
-      <title>ImageCatalog</title>
+      <title>Imagecatalog</title>
       <link>https://cloudnative-pg.io/tags/imagecatalog/</link>
       <pubDate>Tue, 31 Mar 2026 00:00:00 +0000</pubDate>
       <guid>https://cloudnative-pg.io/tags/imagecatalog/</guid>
@@ -177,7 +198,7 @@
       <description></description>
     </item>
     <item>
-      <title>Cncf</title>
+      <title>CNCF</title>
       <link>https://cloudnative-pg.io/tags/cncf/</link>
       <pubDate>Mon, 12 Jan 2026 00:00:00 +0000</pubDate>
       <guid>https://cloudnative-pg.io/tags/cncf/</guid>
@@ -587,13 +608,6 @@
       <link>https://cloudnative-pg.io/tags/continuous-integration/</link>
       <pubDate>Wed, 25 Jan 2023 13:13:36 +0100</pubDate>
       <guid>https://cloudnative-pg.io/tags/continuous-integration/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Failover</title>
-      <link>https://cloudnative-pg.io/tags/failover/</link>
-      <pubDate>Wed, 11 May 2022 14:13:20 +0200</pubDate>
-      <guid>https://cloudnative-pg.io/tags/failover/</guid>
       <description></description>
     </item>
     <item>
