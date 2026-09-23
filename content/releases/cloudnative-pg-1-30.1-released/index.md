@@ -38,7 +38,8 @@ timing window during restarts
 
 Alongside that, both releases pick up a handful of smaller enhancements,
 such as a configurable `auth_user` for the connection pooler and a
-`--dry-run` option for `cnpg backup`, plus the usual assortment of fixes.
+`--dry-run` option for `cnpg backup`, plus a number of correctness and
+robustness fixes.
 Full details, as always, are in the release notes linked below.
 
 Both releases also bump `google.golang.org/grpc` to fix
@@ -53,7 +54,7 @@ on it to make failover and High Availability even more solid.
 
 ## Upgrade
 
-Follow the [upgrade instructions](https://cloudnative-pg.io/docs/current/installation_upgrade/#upgrades)
+Follow the [upgrade instructions](https://cloudnative-pg.io/docs/1.30/installation_upgrade/#upgrades)
 for a smooth transition.
 
 For the complete list of changes, see the release notes:
