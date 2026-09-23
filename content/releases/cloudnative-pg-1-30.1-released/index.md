@@ -17,6 +17,7 @@ tags:
   - cnpg
   - high-availability
   - failover
+  - cve
 summary: "CloudNativePG 1.30.1 and 1.29.3 are now available, with continued improvements to failover behavior and a handful of other fixes and enhancements. Upgrading is recommended as part of your normal maintenance cycle."
 ---
 
@@ -39,6 +40,11 @@ Alongside that, both releases pick up a handful of smaller enhancements,
 such as a configurable `auth_user` for the connection pooler and a
 `--dry-run` option for `cnpg backup`, plus the usual assortment of fixes.
 Full details, as always, are in the release notes linked below.
+
+Both releases also bump `google.golang.org/grpc` to fix
+[CVE-2026-84304](https://nvd.nist.gov/vuln/detail/CVE-2026-84304)
+(GHSA-vp52-pcj8-j9qc), a heap-exhaustion issue in gRPC-Go's HTTP/2 frame
+handling.
 
 This kind of groundwork is also paving the way for 1.31.0, which will build
 on it to make failover and High Availability even more solid.
