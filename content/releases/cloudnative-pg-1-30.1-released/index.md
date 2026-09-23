@@ -47,8 +47,8 @@ Both releases also bump `google.golang.org/grpc` to fix
 (GHSA-vp52-pcj8-j9qc), a heap-exhaustion issue in gRPC-Go's HTTP/2 frame
 handling.
 
-This kind of groundwork is also paving the way for 1.31.0, which will build
-on it to make failover and High Availability even more solid.
+This kind of groundwork is also paving the way for 1.31.0, which will
+further solidify failover and High Availability.
 
 ---
 
