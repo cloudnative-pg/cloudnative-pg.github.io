@@ -6,7 +6,7 @@
 <html lang="en">
 
 <head>
-  <title>CloudNativePG 1.25.1 and 1.24.3 Released! | CloudNativePG - PostgreSQL Operator for Kubernetes</title>
+  <title>CloudNativePG 1.30.1 and 1.29.3 released | CloudNativePG - PostgreSQL Operator for Kubernetes</title>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
@@ -20,18 +20,18 @@
   
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://cloudnative-pg.io/images/hero_image.png">
-  <meta name="twitter:title" content="CloudNativePG 1.25.1 and 1.24.3 Released!">
-  <meta name="twitter:description" content="The CloudNativePG community has released new updates for the 1.25 and 1.24 versions of the CloudNativePG operator.">
+  <meta name="twitter:title" content="CloudNativePG 1.30.1 and 1.29.3 released">
+  <meta name="twitter:description" content="CloudNativePG 1.30.1 and 1.29.3 are now available, with continued improvements to failover behavior and a handful of other fixes and enhancements. Upgrading is recommended as part of your normal maintenance cycle.">
 
-  <meta property="og:url" content="https://cloudnative-pg.io/releases/cloudnative-pg-1-25.1-released/">
+  <meta property="og:url" content="https://cloudnative-pg.io/releases/cloudnative-pg-1-30.1-released/">
   <meta property="og:site_name" content="CloudNativePG - PostgreSQL Operator for Kubernetes">
-  <meta property="og:title" content="CloudNativePG 1.25.1 and 1.24.3 Released!">
-  <meta property="og:description" content="The CloudNativePG community has released new updates for the 1.25 and 1.24 versions of the CloudNativePG operator.">
+  <meta property="og:title" content="CloudNativePG 1.30.1 and 1.29.3 released">
+  <meta property="og:description" content="CloudNativePG 1.30.1 and 1.29.3 are now available, with continued improvements to failover behavior and a handful of other fixes and enhancements. Upgrading is recommended as part of your normal maintenance cycle.">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="releases">
-    <meta property="article:published_time" content="2025-02-28T21:53:07+01:00">
-    <meta property="article:modified_time" content="2025-02-28T21:53:07+01:00">
+    <meta property="article:published_time" content="2026-09-23T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-23T00:00:00+00:00">
     <meta property="article:tag" content="Release">
     <meta property="article:tag" content="Postgresql">
     <meta property="article:tag" content="Postgres">
@@ -134,7 +134,7 @@
 </script>
 
     
-<h1 class="h1 text-center mx-auto md:w-3/5">CloudNativePG 1.25.1 and 1.24.3 Released!</h1>
+<h1 class="h1 text-center mx-auto md:w-3/5">CloudNativePG 1.30.1 and 1.29.3 released</h1>
 <div class="md:w-3/5 mx-auto">
     <div class="px-4">
         
@@ -161,7 +161,7 @@
 
 <div class="block gap-2 text-sm charcoal opacity-75">
     <h6 class="block gap-2 text-sm charcoal">
-        February 28, 2025
+        September 23, 2026
         •
         2 minutes
     </h6>
@@ -172,63 +172,62 @@
 
         
         <div>
-            <img src="pexels-chris-clark-1933184-16116726.jpg" alt="blog image" class="mx-auto">
+            <img src="58364dde1adc4a0a8.37186404-2048x1445.jpg" alt="blog image" class="mx-auto">
         </div>
         
 
         
         <div class="mx-auto my-10">
-            <p>The <strong>CloudNativePG Community</strong> is pleased to announce the release of the
-<strong>CloudNativePG Operator</strong> versions 1.25.1 and 1.24.3. Notably, this is our
-first release since joining the CNCF Sandbox.</p>
-<p>Key Updates in this release:</p>
-<ul>
-<li>
-<p><strong>Operator Startup Probe:</strong> Enhanced reliability during initialization by
-introducing a startup probe to prevent premature liveness probe failures.</p>
-</li>
-<li>
-<p><strong>Security Enhancements:</strong> Strengthened the operator image build process by
-signing images with <code>cosign</code>, generating OCI attestations that include
-Software Bill of Materials (SBOM) and provenance data, and adding OCI
-annotations for improved traceability and integrity.</p>
-</li>
-<li>
-<p><strong>Backup Reliability Fixes:</strong> Resolved several race conditions affecting
-volume snapshot backups, improving backup stability and consistency.</p>
-</li>
-</ul>
-<p>For comprehensive details, please refer to the full release notes:</p>
-<ul>
-<li><a href="https://cloudnative-pg.io/documentation/1.25/release_notes/v1.25/">Release notes for 1.25.1</a></li>
-<li><a href="https://cloudnative-pg.io/documentation/1.24/release_notes/v1.24/">Release notes for 1.24.3</a></li>
-</ul>
-<p>Thank you for your continued support. Upgrade today to fully harness the
-capabilities of your PostgreSQL clusters!</p>
+            <p>The CloudNativePG community is releasing <strong>maintenance updates for both
+currently supported series</strong>: <strong>1.30.1</strong> and <strong>1.29.3</strong>.</p>
+<p>These are routine updates, and CloudNativePG remains as stable as ever. The
+main thread running through both releases is continued polish to failover
+and primary-election behavior, part of our ongoing investment in making
+replication, including asynchronous setups, more predictable under
+real-world conditions. A pending failover that could previously stall or get
+silently reverted is now handled correctly
+(<a href="https://github.com/cloudnative-pg/cloudnative-pg/pull/11336">#11336</a>), and
+in <strong>1.30.1</strong>, PostgreSQL startup is now gated on the instance manager
+actually holding the primary <code>Lease</code> introduced in 1.30, closing a small
+timing window during restarts
+(<a href="https://github.com/cloudnative-pg/cloudnative-pg/pull/11356">#11356</a>).</p>
+<p>Alongside that, both releases pick up a handful of smaller enhancements,
+such as a configurable <code>auth_user</code> for the connection pooler and a
+<code>--dry-run</code> option for <code>cnpg backup</code>, plus a number of correctness and
+robustness fixes.
+Full details, as always, are in the release notes linked below.</p>
+<p>Both releases also bump <code>google.golang.org/grpc</code> to fix
+<a href="https://nvd.nist.gov/vuln/detail/CVE-2026-84304">CVE-2026-84304</a>
+(GHSA-vp52-pcj8-j9qc), a heap-exhaustion issue in gRPC-Go&rsquo;s HTTP/2 frame
+handling.</p>
+<p>This kind of groundwork is also paving the way for 1.31.0, which will
+further solidify failover and High Availability.</p>
 <hr>
-<h2 id="upgrade-recommendations">Upgrade Recommendations</h2>
+<h2 id="upgrade">Upgrade</h2>
+<p>Follow the <a href="https://cloudnative-pg.io/docs/1.30/installation_upgrade/#upgrades">upgrade instructions</a>
+for a smooth transition.</p>
+<p>For the complete list of changes, see the release notes:</p>
 <ul>
-<li>
-<p><strong>Version 1.25.1:</strong> We strongly recommend upgrading to this version promptly
-to benefit from the latest improvements.</p>
-</li>
-<li>
-<p><strong>Version 1.24.3:</strong> For users on version 1.24, updating to 1.24.3 is
-essential for continued stability and support. Please note that support for
-version 1.24 will conclude on <strong>March 23, 2025</strong>.</p>
-</li>
+<li><a href="https://cloudnative-pg.io/docs/1.30/release_notes/v1.30/#version-1301">Release notes for 1.30.1</a></li>
+<li><a href="https://cloudnative-pg.io/docs/1.29/release_notes/v1.29/#version-1293">Release notes for 1.29.3</a></li>
 </ul>
-<p>Before proceeding with the upgrade, ensure you review the
-<a href="https://cloudnative-pg.io/documentation/1.25/installation_upgrade/#upgrading-to-125-from-a-previous-minor-version">upgrade instructions</a>
-carefully.</p>
 <hr>
-<h2 id="join-our-community">Join Our Community</h2>
-<p>Join our vibrant, open-source, vendor-neutral community! <a href="https://github.com/cloudnative-pg/cloudnative-pg?tab=readme-ov-file#communications">Connect with us</a>!</p>
-<p>Stay informed about the latest developments by following us on
-<a href="https://twitter.com/CloudNativePg">Twitter</a>.</p>
+<h2 id="get-involved-with-the-community">Get involved with the community</h2>
+<p><a href="https://github.com/cloudnative-pg/cloudnative-pg?tab=readme-ov-file#communications">Join us</a>
+to help shape the future of cloud-native Postgres!</p>
+<p>We&rsquo;re also actively working with the CNCF TOC toward CloudNativePG&rsquo;s
+acceptance into Incubation. As part of that effort, we&rsquo;re pleased to share
+that we&rsquo;ve been evolving our governance model to better reflect the
+project&rsquo;s community. You can read the current
+<a href="https://github.com/cloudnative-pg/governance/blob/main/GOVERNANCE.md">governance model</a>
+to learn more, as well as our new <a href="https://github.com/cloudnative-pg/governance/blob/main/CONTRIBUTOR_LADDER.md">contributor ladder</a>.</p>
 <p>If you&rsquo;re using CloudNativePG in production, consider
 <a href="https://github.com/cloudnative-pg/cloudnative-pg/blob/main/ADOPTERS.md">adding your organization as an adopter</a>
 to support the project&rsquo;s growth and evolution.</p>
+<p>We&rsquo;d also like to thank everyone who contributed a pull request to this
+release. The number of community contributions keeps growing, and we
+couldn&rsquo;t be happier about it.</p>
+<p>Thank you for your continued support!</p>
 
         </div>
         
@@ -256,6 +255,18 @@ to support the project&rsquo;s growth and evolution.</p>
                 
                 <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/cloudnativepg"
                         class="mr-2">cloudnativepg</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/cnpg"
+                        class="mr-2">cnpg</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/high-availability"
+                        class="mr-2">high-availability</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/failover"
+                        class="mr-2">failover</a></li>
+                
+                <li class="bg-charcoal-opacity-10 py-1 px-2.5 inline-block mr-2 mb-2"><a href="/tags/cve"
+                        class="mr-2">cve</a></li>
                 
             </ul>
 

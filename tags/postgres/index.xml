@@ -6,8 +6,15 @@
     <description>Recent content in Postgres on CloudNativePG - PostgreSQL Operator for Kubernetes</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 29 Jun 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 23 Sep 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://cloudnative-pg.io/tags/postgres/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CloudNativePG 1.30.1 and 1.29.3 released</title>
+      <link>https://cloudnative-pg.io/releases/cloudnative-pg-1-30.1-released/</link>
+      <pubDate>Wed, 23 Sep 2026 00:00:00 +0000</pubDate>
+      <guid>https://cloudnative-pg.io/releases/cloudnative-pg-1-30.1-released/</guid>
+      <description>CloudNativePG 1.30.1 and 1.29.3 are now available, with continued improvements to failover behavior and a handful of other fixes and enhancements. Upgrading is recommended as part of your normal maintenance cycle.</description>
+    </item>
     <item>
       <title>CloudNativePG 1.30.0 Released!</title>
       <link>https://cloudnative-pg.io/releases/cloudnative-pg-1-30.0-released/</link>
