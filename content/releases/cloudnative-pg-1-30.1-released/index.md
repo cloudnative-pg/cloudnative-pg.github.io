@@ -52,8 +52,8 @@ for a smooth transition.
 
 For the complete list of changes, see the release notes:
 
-- [Release notes for 1.30.1](https://cloudnative-pg.io/documentation/1.30/release_notes/v1.30/#version-1301)
-- [Release notes for 1.29.3](https://cloudnative-pg.io/documentation/1.29/release_notes/v1.29/#version-1293)
+- [Release notes for 1.30.1](https://cloudnative-pg.io/docs/1.30/release_notes/v1.30/#version-1301)
+- [Release notes for 1.29.3](https://cloudnative-pg.io/docs/1.29/release_notes/v1.29/#version-1293)
 
 ---
 
