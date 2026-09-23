@@ -80,6 +80,10 @@ If you're using CloudNativePG in production, consider
 [adding your organization as an adopter](https://github.com/cloudnative-pg/cloudnative-pg/blob/main/ADOPTERS.md)
 to support the project's growth and evolution.
 
+We'd also like to thank everyone who contributed a pull request to this
+release. The number of community contributions keeps growing, and we
+couldn't be happier about it.
+
 Thank you for your continued support!
 
 <!--
