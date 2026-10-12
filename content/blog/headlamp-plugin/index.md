@@ -48,6 +48,8 @@ During the meeting, I proposed donating the project to the CloudNativePG communi
 
 What had started as something I was doing in my free time had become a community project.
 
+A big thank you to all the contributors who helped from the very start - with ideas, feedback, fixes, new features, and work on CI.
+
 ## Why Headlamp?
 
 For those who haven't used it yet, [Headlamp](https://headlamp.dev/) is a Kubernetes UI.
