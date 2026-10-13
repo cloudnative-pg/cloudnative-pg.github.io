@@ -12,15 +12,15 @@ tags:
 summary: Bringing PostgreSQL Closer to the Kubernetes UI
 ---
 
-TL;DR: The CNPG Headlamp Plugin has been released. You can install it today from the official Headlamp plugin catalog.
+TL;DR: The [CNPG Headlamp Plugin](https://github.com/cloudnative-pg/cnpg-headlamp-plugin) has been released. You can install it today from the official [Headlamp plugin catalog](https://headlamp.dev/docs/latest/installation/desktop/plugins-install-desktop/).
 
 What started as a small experiment in my spare time is now a [CloudNativePG community](https://github.com/cloudnative-pg) project.
 
-This is the story of how the [CNPG Headlamp Plugin](https://github.com/cloudnative-pg/cnpg-headlamp-plugin) came to be, and why I think having a UI for CloudNativePG can be useful.
+This is the story of how the CNPG Headlamp Plugin came to be, and why I think having a UI for CloudNativePG can be useful.
 
 ## It started with a conversation
 
-I first heard about Headlamp at the office. Some of the CloudNativePG maintainers were talking about it after coming [back from a conference](https://www.cncf.io/blog/2025/08/05/kubecon-cloudnativecon-europe-2026-returning-to-amsterdam-23-26-march/). I didn't know much about Headlamp at the time, but the idea immediately caught my attention.
+I first heard about Headlamp at the office. Some of the CloudNativePG maintainers were talking about it after coming back from the conference *KubeCon + CloudNativeCon Europe 2026*. I didn't know much about Headlamp at the time, but the idea immediately caught my attention.
 
 I was looking for a Kubernetes UI for my own work, so I started wondering:
 
