@@ -1,6 +1,6 @@
 ---
 title: "From a conversation to the CNPG Headlamp Plugin"
-date: 2026-10-12
+date: 2026-10-15
 draft: false
 image:
     url: elephant-headlamp.png
