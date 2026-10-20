@@ -11,6 +11,7 @@
     "helpers:pinGitHubActionDigests"
   ],
   "enabled": true,
+  "automergeStrategy": "rebase",
   "prConcurrentLimit": 5,
   "lockFileMaintenance": {
     "enabled": true
