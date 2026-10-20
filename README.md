@@ -1,7 +1,7 @@
 # CloudNativePG Website
 
 Welcome to the **CloudNativePG Website** Project! Are you interested in helping
-improve the CloudNativePG website or documentation? We’d love your support!
+improve the CloudNativePG website? We’d love your support!
 
 Join the conversation and collaborate with us in the
 [#cloudnativepg-www Slack channel](https://cloud-native.slack.com/archives/C08LV0CMNMD).
@@ -110,58 +110,20 @@ Edit the file, and once happy remove the `draft: true` - it should now show up f
 
 ### Documentation
 
-Documentation lives [alongside the operator code](https://github.com/cloudnative-pg/cloudnative-pg),
-inside the `docs/src` folder. It is written in Markdown using mkdocs.
+This repository does not build the documentation. The sources live in the
+[operator repository](https://github.com/cloudnative-pg/cloudnative-pg), inside
+`docs/src`. The [cloudnative-pg/docs](https://github.com/cloudnative-pg/docs)
+repository imports them, builds a Docusaurus site and deploys it with GitHub
+Pages, under this site's domain at
+[cloudnative-pg.io/docs](https://cloudnative-pg.io/docs/).
 
-The website contains a static copy of the HTML files generated from the
-Markdown sources, inside the `assets/documentation/$version_number` folder
-(where $version_number is a **minor** release of CloudNativePG).
+A release needs no documentation change here. The operator repository starts
+the import on every release tag (RCs included). It also imports `main` on every
+change to `docs/src`, which feeds `/docs/devel`.
 
-The `hack/import_docs.sh` script has the logic to import the files from a
-release branch, generate the HTML and save the files in the appropriate folder.
-
-Below you find instructions on how to update the docs for a new minor release
-or a patch release.
-
-#### New minor release
-
-Create a new file called `X.Y.md` (X.Y matching the minor release branch in the
-operator repo) inside the `content/docs` folder, with the following content:
-
-```markdown
----
-release:  X.Y.0
-location: /documentation/X.Y
-release_date: DD Mon Year
-release_notes: https://github.com/cloudnative-pg/cloudnative-pg/releases/tag/vX.Y.0
----
-```
-
-Then run:
-
-```console
-hack/import_docs.sh X.Y
-```
-
-This will import all the files under `assets/documentation/X.Y`. Open the
-top-level `./assets/documentation/X.Y/index.html` page with your browser and
-verify everything is OK, then add the folder to the Git repo (in a development
-branch).
-
-#### New patch release
-
-Modify the `X.Y.md` file inside `content/docs` folder by updating the version
-and the release date.
-
-Then run:
-
-```console
-hack/import_docs.sh X.Y
-```
-
-Apply all changes in the development branch and push. If you are adding a new
-patch release to the latest minor version, you will need to update the
-`current` branch (which at the moment is a copy of the folder).
+The `assets/documentation` folder holds old static copies (up to 1.24) and
+redirect stubs to the new site (1.25 and later). `hack/create_http_redirects.sh`
+generates the stubs. No new versions are added there.
 
 ## Publishing on the website
 
