@@ -12,10 +12,7 @@ if [ -z "$INPUT_VERSION" ]; then
 fi
 
 # 3. Handle specific redirection mapping logic
-if [ "$INPUT_VERSION" == "current" ]; then
-    # Map 'current' to 'devel'
-    DEST_VERSION="devel"
-elif [[ "$INPUT_VERSION" =~ -rc[0-9]+$ ]]; then
+if [[ "$INPUT_VERSION" =~ -rc[0-9]+$ ]]; then
     # Extract only Major.Minor (e.g., 1.27.0-rc1 -> 1.27)
     # This regex looks for the first two number groups separated by a dot
     DEST_VERSION=$(echo "$INPUT_VERSION" | sed -E 's/^([0-9]+\.[0-9]+).*/\1/')
