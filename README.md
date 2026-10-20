@@ -122,8 +122,8 @@ the import on every release tag (RCs included). It also imports `main` on every
 change to `docs/src`, which feeds `/docs/devel`.
 
 The `assets/documentation` folder holds old static copies (up to 1.24) and
-redirect stubs to the new site (1.25 and later). `hack/create_http_redirects.sh`
-generates the stubs. No new versions are added there.
+redirect stubs to the new site (1.25 and later). Old versions are left as they
+are, and no new versions are added there.
 
 ## Publishing on the website
 
