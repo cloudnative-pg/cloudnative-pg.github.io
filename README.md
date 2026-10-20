@@ -1,7 +1,7 @@
 # CloudNativePG Website
 
 Welcome to the **CloudNativePG Website** Project! Are you interested in helping
-improve the CloudNativePG website or documentation? We’d love your support!
+improve the CloudNativePG website? We’d love your support!
 
 Join the conversation and collaborate with us in the
 [#cloudnativepg-www Slack channel](https://cloud-native.slack.com/archives/C08LV0CMNMD).
@@ -110,23 +110,20 @@ Edit the file, and once happy remove the `draft: true` - it should now show up f
 
 ### Documentation
 
-The documentation is not built in this repository. The Markdown sources live
-in the [operator repository](https://github.com/cloudnative-pg/cloudnative-pg),
-inside `docs/src`. They are published at
-[cloudnative-pg.io/docs](https://cloudnative-pg.io/docs/) from the
-[cloudnative-pg/docs](https://github.com/cloudnative-pg/docs) repository, which
-uses Docusaurus.
+This repository does not build the documentation. The sources live in the
+[operator repository](https://github.com/cloudnative-pg/cloudnative-pg), inside
+`docs/src`. The [cloudnative-pg/docs](https://github.com/cloudnative-pg/docs)
+repository imports them, builds a Docusaurus site and deploys it with GitHub
+Pages, under this site's domain at
+[cloudnative-pg.io/docs](https://cloudnative-pg.io/docs/).
 
-A new release needs no change here. The `sync_docs.yml` workflow in
-`cloudnative-pg/docs` imports the docs of a release tag. It runs on every new
-tag, or manually:
+A release needs no documentation change here. The operator repository starts
+the import on every release tag (RCs included). It also imports `main` on every
+change to `docs/src`, which feeds `/docs/devel`.
 
-```console
-gh workflow run sync_docs.yml --repo cloudnative-pg/docs -f tag=vX.Y.Z
-```
-
-The `assets/documentation` folder holds the old static copies of the
-documentation. No new versions are added there.
+The `assets/documentation` folder holds old static copies (up to 1.24) and
+redirect stubs to the new site (1.25 and later). `hack/create_http_redirects.sh`
+generates the stubs. No new versions are added there.
 
 ## Publishing on the website
 
