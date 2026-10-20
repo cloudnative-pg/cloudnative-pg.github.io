@@ -44,19 +44,18 @@ This will compile the css file into `assets/css/output.css`. This file is ignore
 ### Using Docker
 
 If you'd rather not install Hugo and Node.js locally, you can serve the
-site with the
-[`hugomods/hugo`](https://hub.docker.com/r/hugomods/hugo) image (the
-`-node-` variant is required because this site builds CSS through
-Tailwind/PostCSS):
+site with the official
+[`gohugoio/hugo`](https://github.com/gohugoio/hugo/pkgs/container/hugo) image
+(it ships the extended build, Node.js and npm):
 
 ``` sh
 docker run --rm \
   --name cnpg-www \
   -p 8080:8080 \
   -e HUGO_SECURITY_NODE_PERMISSIONS_ALLOWREAD='*' \
-  -v "$(pwd)":/src \
+  -v "$(pwd)":/project \
   --entrypoint sh \
-  hugomods/hugo:debian-reg-dart-sass-node-git-0.161.1 \
+  ghcr.io/gohugoio/hugo:v0.168.0 \
   -c "npm install && npm run dev -- --bind 0.0.0.0 -p 8080 -F"
 ```
 
@@ -73,8 +72,8 @@ Notes:
   Node permission policy so `browserslist` (loaded by `postcss-preset-env`)
   can walk parent directories looking for its config.
 - To serve without drafts, replace `npm run dev` with `npm run prod`.
-- The image tag pins the Hugo version. Renovate keeps it in sync with the CI
-  workflow.
+- The image tag pins the Hugo version. Renovate updates it on its own, apart
+  from the CI workflow.
 
 ### CSS
 

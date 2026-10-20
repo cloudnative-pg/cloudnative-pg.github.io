@@ -25,10 +25,10 @@
         "/^README\\.md$/"
       ],
       "matchStrings": [
-        "(?<depName>hugomods/hugo):(?<currentValue>debian-reg-dart-sass-node-git-\\d+\\.\\d+\\.\\d+)"
+        "(?<depName>ghcr\\.io/gohugoio/hugo):(?<currentValue>v\\d+\\.\\d+\\.\\d+)"
       ],
       "datasourceTemplate": "docker",
-      "versioningTemplate": "regex:^debian-reg-dart-sass-node-git-(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)$"
+      "versioningTemplate": "semver-coerced"
     }
   ]
 }
