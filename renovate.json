@@ -25,12 +25,10 @@
         "/^README\\.md$/"
       ],
       "matchStrings": [
-        "hugomods/hugo:debian-reg-dart-sass-node-git-(?<currentValue>\\d+\\.\\d+\\.\\d+)"
+        "(?<depName>hugomods/hugo):(?<currentValue>debian-reg-dart-sass-node-git-\\d+\\.\\d+\\.\\d+)"
       ],
-      "depNameTemplate": "hugo",
-      "datasourceTemplate": "github-releases",
-      "extractVersionTemplate": "^v(?<version>.+)$",
-      "packageNameTemplate": "gohugoio/hugo"
+      "datasourceTemplate": "docker",
+      "versioningTemplate": "regex:^debian-reg-dart-sass-node-git-(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)$"
     }
   ]
 }

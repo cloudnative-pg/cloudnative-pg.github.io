@@ -56,7 +56,7 @@ docker run --rm \
   -e HUGO_SECURITY_NODE_PERMISSIONS_ALLOWREAD='*' \
   -v "$(pwd)":/src \
   --entrypoint sh \
-  hugomods/hugo:debian-reg-dart-sass-node-git-0.168.0 \
+  hugomods/hugo:debian-reg-dart-sass-node-git-0.161.1 \
   -c "npm install && npm run dev -- --bind 0.0.0.0 -p 8080 -F"
 ```
 
