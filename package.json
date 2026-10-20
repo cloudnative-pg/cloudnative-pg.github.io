@@ -25,9 +25,9 @@
     "postcss-scss": "^4.0.2"
   },
   "devDependencies": {
-    "@babel/cli": "^7.12.8",
-    "@babel/core": "^7.12.9",
-    "@babel/preset-env": "^7.12.7",
+    "@babel/cli": "^8.0.0",
+    "@babel/core": "^8.0.0",
+    "@babel/preset-env": "^8.0.0",
     "autoprefixer": "^10.0.2",
     "object-fit-images": "^3.2.4",
     "postcss-cli": "^8.3.0",
