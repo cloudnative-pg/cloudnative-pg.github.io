@@ -306,15 +306,12 @@ using a scale factor of 1000:</p>
 of space on disk.</p>
 </div>
 <p>You can see the progress of the job with:</p>
-<p>```shell
-kubectl logs jobs/pgbench-run</p>
-<pre><code>
-The following example creates a job called `pgbench-run` executing `pgbench`
+<pre><code class="language-shell">kubectl logs jobs/pgbench-run
+</code></pre>
+<p>The following example creates a job called <code>pgbench-run</code> executing <code>pgbench</code>
 against the previously initialized database for 30 seconds, using a single
-connection:
-
-```shell
-kubectl cnpg pgbench \
+connection:</p>
+<pre><code class="language-shell">kubectl cnpg pgbench \
   --job-name pgbench-run \
   cluster-example \
   -- --time 30 --client 1 --jobs 1
