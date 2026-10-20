@@ -56,7 +56,7 @@ docker run --rm \
   -e HUGO_SECURITY_NODE_PERMISSIONS_ALLOWREAD='*' \
   -v "$(pwd)":/src \
   --entrypoint sh \
-  hugomods/hugo:debian-reg-dart-sass-node-git-0.161.1 \
+  hugomods/hugo:debian-reg-dart-sass-node-git-0.168.0 \
   -c "npm install && npm run dev -- --bind 0.0.0.0 -p 8080 -F"
 ```
 
@@ -73,8 +73,8 @@ Notes:
   Node permission policy so `browserslist` (loaded by `postcss-preset-env`)
   can walk parent directories looking for its config.
 - To serve without drafts, replace `npm run dev` with `npm run prod`.
-- The image tag pins Hugo `0.161.1`; bump it as the project's Hugo version
-  advances.
+- The image tag pins the Hugo version. Renovate keeps it in sync with the CI
+  workflow.
 
 ### CSS
 
