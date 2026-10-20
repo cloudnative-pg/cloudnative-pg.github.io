@@ -27,8 +27,7 @@
       "matchStrings": [
         "(?<depName>ghcr\\.io/gohugoio/hugo):(?<currentValue>v\\d+\\.\\d+\\.\\d+)"
       ],
-      "datasourceTemplate": "docker",
-      "versioningTemplate": "semver-coerced"
+      "datasourceTemplate": "docker"
     }
   ]
 }

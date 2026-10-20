@@ -52,7 +52,8 @@ site with the official
 docker run --rm \
   --name cnpg-www \
   -p 8080:8080 \
-  -e HUGO_SECURITY_NODE_PERMISSIONS_ALLOWREAD='*' \
+  --user "$(id -u):$(id -g)" \
+  -e HOME=/tmp \
   -v "$(pwd)":/project \
   --entrypoint sh \
   ghcr.io/gohugoio/hugo:v0.168.0 \
@@ -68,12 +69,12 @@ Notes:
   `npm install` on the host, delete `node_modules/` before switching
   between host and container (or vice versa) so the Linux-built native
   binaries don't clash with the host ones.
-- `HUGO_SECURITY_NODE_PERMISSIONS_ALLOWREAD='*'` widens Hugo's default
-  Node permission policy so `browserslist` (loaded by `postcss-preset-env`)
-  can walk parent directories looking for its config.
+- The image runs as user 1000. `--user` gives you ownership of the files it
+  writes. With rootless Podman, use `--userns=keep-id` instead of `--user` and
+  `-e HOME`.
 - To serve without drafts, replace `npm run dev` with `npm run prod`.
-- The image tag pins the Hugo version. Renovate updates it on its own, apart
-  from the CI workflow.
+- The image tag pins the Hugo version. Renovate bumps it and the Hugo version
+  of the CI workflow in separate PRs.
 
 ### CSS
 
