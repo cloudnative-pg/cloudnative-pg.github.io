@@ -80,6 +80,8 @@ Notes:
 
 CSS is partly built by hugo & partly built outside of hugo by `npm run css`, which is called by `npm run dev|prod`. If you start to use a new Tailwind class restarting hugo is required (stop the server and `npm run dev`), if you edit `assets/style.css` it should compile in correctly without restart. This is to mitigate [this issue](https://github.com/gohugoio/hugo/issues/8343).
 
+The Tailwind entry point is `assets/tailwind.css`. It is kept outside `assets/css`, so hugo only processes the generated `output.css` and the other files in that folder.
+
 ## Adding content
 
 ### Blogs
