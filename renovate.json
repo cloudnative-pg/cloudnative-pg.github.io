@@ -16,5 +16,20 @@
     "enabled": true
   },
   "semanticCommits": "enabled",
-  "commitBodyTable": true
+  "commitBodyTable": true,
+  "customManagers": [
+    {
+      "customType": "regex",
+      "managerFilePatterns": [
+        "/^README\\.md$/"
+      ],
+      "matchStrings": [
+        "hugomods/hugo:debian-reg-dart-sass-node-git-(?<currentValue>\\d+\\.\\d+\\.\\d+)"
+      ],
+      "depNameTemplate": "hugo",
+      "datasourceTemplate": "github-releases",
+      "extractVersionTemplate": "^v(?<version>.+)$",
+      "packageNameTemplate": "gohugoio/hugo"
+    }
+  ]
 }
