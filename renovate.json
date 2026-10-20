@@ -32,5 +32,13 @@
       "extractVersionTemplate": "^v(?<version>.+)$",
       "packageNameTemplate": "gohugoio/hugo"
     }
+  ],
+  "packageRules": [
+    {
+      "matchPackageNames": [
+        "tailwindcss"
+      ],
+      "allowedVersions": "<4"
+    }
   ]
 }

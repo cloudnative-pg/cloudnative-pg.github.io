@@ -31,7 +31,6 @@
     "autoprefixer": "^10.0.2",
     "object-fit-images": "^3.2.4",
     "postcss-cli": "^12.0.0",
-    "postcss-nested": "^7.0.2",
     "postcss-object-fit-images": "^1.1.2",
     "postcss-preset-env": "^11.0.0",
     "tailwindcss": "^3.0.23"
