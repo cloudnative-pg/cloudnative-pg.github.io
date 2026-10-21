@@ -33,12 +33,6 @@
   "packageRules": [
     {
       "matchPackageNames": [
-        "tailwindcss"
-      ],
-      "allowedVersions": "<4"
-    },
-    {
-      "matchPackageNames": [
         "gohugoio/hugo",
         "ghcr.io/gohugoio/hugo"
       ],
