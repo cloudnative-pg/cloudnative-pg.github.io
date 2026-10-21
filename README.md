@@ -132,22 +132,16 @@ to the new site. No new versions are added there.
 Changes that have been merged into `main` are not yet visible on the website. To
 publish them, they need to be merged into the `production` branch.
 
-Please publish to `production` by doing a direct merge into the branch from
-`main`.
+Please publish to `production` by fast-forwarding it to `main`
+(`git merge --ff-only main`), as the branch requires a linear history.
 This needs to be done by an administrator.
 
-If you try to merge or cherry-pick into `production` and you don't have the
-right permissions, `git` will alert you about the branch protections.
-
-``` sh
-remote: error: GH006: Protected branch update failed for refs/heads/production.
-remote: error: Changes must be made through a pull request.
-```
+If you try to push to `production` without the right permissions, GitHub
+rejects the push with a "Repository rule violations" error.
 
 Please **don't make a pull request**. Instead, get an administrator to make the
 needed changes, or to make you an administrator. A pull request would create
 unnecessary discrepancies between `main` and `production`.
 
-Once a commit is merged to `production`, github will trigger the necessary
-`hugo_build` and `pages-build-deployment` workflows that will update
-[cloudnative-pg.io](https://cloudnative-pg.io).
+Once a commit is merged to `production`, github will trigger the `hugo_build`
+workflow that will update [cloudnative-pg.io](https://cloudnative-pg.io).
