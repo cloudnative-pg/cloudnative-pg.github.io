@@ -73,8 +73,8 @@ Notes:
   writes. With rootless Podman, use `--userns=keep-id` instead of `--user` and
   `-e HOME`.
 - To serve without drafts, replace `npm run dev` with `npm run prod`.
-- The image tag pins the Hugo version. Renovate bumps it and the Hugo version
-  of the CI workflow in separate PRs.
+- The image tag pins the Hugo version. Renovate bumps it together with the
+  Hugo version of the CI workflows.
 
 ### CSS
 
