@@ -2,7 +2,6 @@ name: hugo_build
 
 # Controls when the action will run.
 on:
-  # Triggers the workflow on push or pull request events but only for the main branch
   push:
     # build pages from the "production" branch
     branches: [production]
@@ -43,6 +42,8 @@ jobs:
         run: npm run build
 
       - name: Deploy
+        # a manual run from another branch only builds
+        if: github.ref == 'refs/heads/production'
         uses: peaceiris/actions-gh-pages@84c30a85c19949d7eee79c4ff27748b70285e453 # v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
