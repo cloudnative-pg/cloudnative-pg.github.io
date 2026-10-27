@@ -56,7 +56,7 @@ docker run --rm \
   -e HOME=/tmp \
   -v "$(pwd)":/project \
   --entrypoint sh \
-  ghcr.io/gohugoio/hugo:v0.168.0 \
+  ghcr.io/gohugoio/hugo:v0.169.0 \
   -c "npm install && npm run dev -- --bind 0.0.0.0 -p 8080 -F"
 ```
 
