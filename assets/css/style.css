@@ -1,4 +1,4 @@
-/* Custom styling goes here, if not in the tailwind.config.js theme */
+/* Custom styling goes here, if not in the @theme block of assets/tailwind.css */
 
 .space-x-20 {
     margin-left: 5rem;

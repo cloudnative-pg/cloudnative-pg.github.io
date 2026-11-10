@@ -1,7 +1,7 @@
 # CloudNativePG Website
 
 Welcome to the **CloudNativePG Website** Project! Are you interested in helping
-improve the CloudNativePG website or documentation? We’d love your support!
+improve the CloudNativePG website? We’d love your support!
 
 Join the conversation and collaborate with us in the
 [#cloudnativepg-www Slack channel](https://cloud-native.slack.com/archives/C08LV0CMNMD).
@@ -44,19 +44,19 @@ This will compile the css file into `assets/css/output.css`. This file is ignore
 ### Using Docker
 
 If you'd rather not install Hugo and Node.js locally, you can serve the
-site with the
-[`hugomods/hugo`](https://hub.docker.com/r/hugomods/hugo) image (the
-`-node-` variant is required because this site builds CSS through
-Tailwind/PostCSS):
+site with the official
+[`gohugoio/hugo`](https://github.com/gohugoio/hugo/pkgs/container/hugo) image
+(it ships the extended build, Node.js and npm):
 
 ``` sh
 docker run --rm \
   --name cnpg-www \
   -p 8080:8080 \
-  -e HUGO_SECURITY_NODE_PERMISSIONS_ALLOWREAD='*' \
-  -v "$(pwd)":/src \
+  --user "$(id -u):$(id -g)" \
+  -e HOME=/tmp \
+  -v "$(pwd)":/project \
   --entrypoint sh \
-  hugomods/hugo:debian-reg-dart-sass-node-git-0.161.1 \
+  ghcr.io/gohugoio/hugo:v0.169.0 \
   -c "npm install && npm run dev -- --bind 0.0.0.0 -p 8080 -F"
 ```
 
@@ -69,16 +69,18 @@ Notes:
   `npm install` on the host, delete `node_modules/` before switching
   between host and container (or vice versa) so the Linux-built native
   binaries don't clash with the host ones.
-- `HUGO_SECURITY_NODE_PERMISSIONS_ALLOWREAD='*'` widens Hugo's default
-  Node permission policy so `browserslist` (loaded by `postcss-preset-env`)
-  can walk parent directories looking for its config.
+- The image runs as user 1000. `--user` gives you ownership of the files it
+  writes. With rootless Podman, use `--userns=keep-id` instead of `--user` and
+  `-e HOME`.
 - To serve without drafts, replace `npm run dev` with `npm run prod`.
-- The image tag pins Hugo `0.161.1`; bump it as the project's Hugo version
-  advances.
+- The image tag pins the Hugo version. Renovate bumps it together with the
+  Hugo version of the CI workflows.
 
 ### CSS
 
 CSS is partly built by hugo & partly built outside of hugo by `npm run css`, which is called by `npm run dev|prod`. If you start to use a new Tailwind class restarting hugo is required (stop the server and `npm run dev`), if you edit `assets/style.css` it should compile in correctly without restart. This is to mitigate [this issue](https://github.com/gohugoio/hugo/issues/8343).
+
+The Tailwind entry point is `assets/tailwind.css`. It is kept outside `assets/css`, so hugo only processes the generated `output.css` and the other files in that folder.
 
 ## Adding content
 
@@ -110,80 +112,36 @@ Edit the file, and once happy remove the `draft: true` - it should now show up f
 
 ### Documentation
 
-Documentation lives [alongside the operator code](https://github.com/cloudnative-pg/cloudnative-pg),
-inside the `docs/src` folder. It is written in Markdown using mkdocs.
+This repository does not build the documentation. The sources live in the
+[operator repository](https://github.com/cloudnative-pg/cloudnative-pg), inside
+`docs/src`. The [cloudnative-pg/docs](https://github.com/cloudnative-pg/docs)
+repository imports them, builds a Docusaurus site and deploys it with GitHub
+Pages, under this site's domain at
+[cloudnative-pg.io/docs](https://cloudnative-pg.io/docs/).
 
-The website contains a static copy of the HTML files generated from the
-Markdown sources, inside the `assets/documentation/$version_number` folder
-(where $version_number is a **minor** release of CloudNativePG).
+A release needs no documentation change here. The operator repository starts
+the import on every release tag (RCs included). It also imports `main` on every
+change to `docs/src`, which feeds `/docs/devel`.
 
-The `hack/import_docs.sh` script has the logic to import the files from a
-release branch, generate the HTML and save the files in the appropriate folder.
-
-Below you find instructions on how to update the docs for a new minor release
-or a patch release.
-
-#### New minor release
-
-Create a new file called `X.Y.md` (X.Y matching the minor release branch in the
-operator repo) inside the `content/docs` folder, with the following content:
-
-```markdown
----
-release:  X.Y.0
-location: /documentation/X.Y
-release_date: DD Mon Year
-release_notes: https://github.com/cloudnative-pg/cloudnative-pg/releases/tag/vX.Y.0
----
-```
-
-Then run:
-
-```console
-hack/import_docs.sh X.Y
-```
-
-This will import all the files under `assets/documentation/X.Y`. Open the
-top-level `./assets/documentation/X.Y/index.html` page with your browser and
-verify everything is OK, then add the folder to the Git repo (in a development
-branch).
-
-#### New patch release
-
-Modify the `X.Y.md` file inside `content/docs` folder by updating the version
-and the release date.
-
-Then run:
-
-```console
-hack/import_docs.sh X.Y
-```
-
-Apply all changes in the development branch and push. If you are adding a new
-patch release to the latest minor version, you will need to update the
-`current` branch (which at the moment is a copy of the folder).
+The `assets/documentation` folder holds the old documentation. Versions up to
+1.24, 1.25.0-rc1 and 1.26-rc1 are static copies. The others are redirect stubs
+to the new site. No new versions are added there.
 
 ## Publishing on the website
 
 Changes that have been merged into `main` are not yet visible on the website. To
 publish them, they need to be merged into the `production` branch.
 
-Please publish to `production` by doing a direct merge into the branch from
-`main`.
+Please publish to `production` by fast-forwarding it to `main`
+(`git merge --ff-only main`), as the branch requires a linear history.
 This needs to be done by an administrator.
 
-If you try to merge or cherry-pick into `production` and you don't have the
-right permissions, `git` will alert you about the branch protections.
-
-``` sh
-remote: error: GH006: Protected branch update failed for refs/heads/production.
-remote: error: Changes must be made through a pull request.
-```
+If you try to push to `production` without the right permissions, GitHub
+rejects the push with a "Repository rule violations" error.
 
 Please **don't make a pull request**. Instead, get an administrator to make the
 needed changes, or to make you an administrator. A pull request would create
 unnecessary discrepancies between `main` and `production`.
 
-Once a commit is merged to `production`, github will trigger the necessary
-`hugo_build` and `pages-build-deployment` workflows that will update
-[cloudnative-pg.io](https://cloudnative-pg.io).
+Once a commit is merged to `production`, github will trigger the `hugo_build`
+workflow that will update [cloudnative-pg.io](https://cloudnative-pg.io).

@@ -1,8 +1,0 @@
-/*
-Pull in the pieces of Tailwind that we need.
-This is used to auto-generate output.css at build time
-*/
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-@tailwind variants;

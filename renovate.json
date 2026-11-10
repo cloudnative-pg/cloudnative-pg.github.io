@@ -11,10 +11,32 @@
     "helpers:pinGitHubActionDigests"
   ],
   "enabled": true,
+  "automergeStrategy": "rebase",
   "prConcurrentLimit": 5,
   "lockFileMaintenance": {
     "enabled": true
   },
   "semanticCommits": "enabled",
-  "commitBodyTable": true
+  "commitBodyTable": true,
+  "customManagers": [
+    {
+      "customType": "regex",
+      "managerFilePatterns": [
+        "/^README\\.md$/"
+      ],
+      "matchStrings": [
+        "(?<depName>ghcr\\.io/gohugoio/hugo):(?<currentValue>v\\d+\\.\\d+\\.\\d+)"
+      ],
+      "datasourceTemplate": "docker"
+    }
+  ],
+  "packageRules": [
+    {
+      "matchPackageNames": [
+        "gohugoio/hugo",
+        "ghcr.io/gohugoio/hugo"
+      ],
+      "groupName": "hugo"
+    }
+  ]
 }
