@@ -1,6 +1,6 @@
 ---
 title: ""
-date: 2026-04-16
+date: 2026-11-12
 draft: false
 image:
     url: 
@@ -17,7 +17,7 @@ summary: "We had a chance to talk to Mohsin Ejaz, Principal Customer Solutions E
  
 Mohsin Ejaz is a Principal Customer Solutions Engineer at DBtune, where he focuses on PostgreSQL 
 performance tuning across diverse infrastructure—from on-prem to managed 
-services. Lately, a major part of his work involves working directly with 
+services. A major part of his work involves working directly with 
 DBtune’s PostgreSQL CloudNativePG integration. In fact, leading the PostgreSQL 
 CloudNativePG integration was a highlight for Mohsin: he owned the feature 
 end-to-end, from coding the Kubernetes agent to writing the technical 
