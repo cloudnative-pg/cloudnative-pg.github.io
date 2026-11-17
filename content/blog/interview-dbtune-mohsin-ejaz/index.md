@@ -1,9 +1,9 @@
 ---
-title: ""
+title: "Inside DBtune’s CloudNativePG Journey"
 date: 2026-11-12
 draft: false
 image:
-    url: 
+    url: dbtunexcnpg.png
     attribution:
 authors:
  - fdrees
