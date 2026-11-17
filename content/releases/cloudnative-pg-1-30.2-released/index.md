@@ -27,9 +27,7 @@ maintenance update for the 1.30 series and the first release since the project
 
 We had planned to ship these fixes together with 1.31.0. Given the security
 relevance of the PostgreSQL 18.7 release, though, we decided to make an
-exception and release 1.30.2 on its own, ahead of the new minor version. This
-also makes it **the last patch release before 1.31.0**, which will be preceded
-by a release candidate.
+exception and release 1.30.2 on its own, ahead of the new minor version.
 
 Three changes are worth knowing about before you upgrade to 1.30.2:
 
