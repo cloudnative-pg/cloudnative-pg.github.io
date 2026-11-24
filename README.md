@@ -33,6 +33,14 @@ With drafts:
 npm install && npm run dev
 ```
 
+Hugo does not build content dated in the future (for example, an announcement
+prepared the day before a release), so it will not show up with the command
+above. To preview it, pass `-F` to the Hugo server:
+
+``` sh
+npm install && npm run dev -- -F
+```
+
 As the GH Action builds (excludes draft content):
 
 ``` sh
