@@ -22,7 +22,7 @@ tags:
  - OpenTelemetry
  - security
  - DatabaseRole
-summary: "We are thrilled to announce the first release candidate of CloudNativePG 1.31! This preview brings safer failover and switchover, native OpenTelemetry log export, improved declarative database and role support, and PostgreSQL 19 support. With so much new, we need your help testing it!"
+summary: "We are thrilled to announce the first release candidate of CloudNativePG 1.31! This preview brings safer failover and switchover, native OpenTelemetry log export, improved declarative database and role support, and PostgreSQL 19 support. Help us test it before the final release!"
 ---
 
 We are thrilled to announce the first release candidate of CloudNativePG 1.31!
