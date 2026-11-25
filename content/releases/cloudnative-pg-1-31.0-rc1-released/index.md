@@ -45,13 +45,10 @@ read about before upgrading. Thank you to everyone who made this possible!
 ### Safer failover and switchover
 
 Building on the primary `Lease` introduced in 1.30, failover and switchover are
-now more reliable, more predictable and easier to follow. A replica that
-diverged from the timeline of the primary is detected, excluded from the read
-services, the election and the failover quorum, and fenced until you rebuild
-it. A switchover now waits until the new primary has all the data that the
-previous primary published on the `Lease`. You can still promote without
-waiting, or cancel the switchover. This is especially valuable with
-asynchronous replication.
+now more reliable, more predictable and easier to follow. A switchover now
+waits until the new primary has all the data that the previous primary
+published on the `Lease`. You can still promote without waiting, or cancel the
+switchover. This is especially valuable with asynchronous replication.
 
 ### Export logs via OpenTelemetry, without a DaemonSet
 
