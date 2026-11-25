@@ -34,9 +34,9 @@ what we are so excited about.
 Kept for the 1.31.0 launch announcement (refresh the numbers first):
 
 CloudNativePG 1.31 is our biggest release yet by number of commits. Since
-1.30.0, **39 contributors** have landed **407 commits**, delivering
-**8 new features**, **6 enhancements**, **2 security and supply chain
-improvements** and **3 fixes**, along with **8 important changes** you should
+1.30.0, **40 contributors** have landed **409 commits**, delivering
+**8 new features**, **6 enhancements**, **3 security and supply chain
+improvements** and **4 fixes**, along with **8 important changes** you should
 read about before upgrading. Thank you to everyone who made this possible!
 -->
 
