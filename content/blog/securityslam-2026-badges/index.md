@@ -3,9 +3,9 @@ title: "Fall 2026 SecuritySlam results are in: 6/6 badges"
 date: 2026-11-18
 draft: false
 image:
-    url:
+    url: sec_slam_fall_2026.png
 authors:
- - 
+ - jbattiato
 tags:
  - security
  - openssf
